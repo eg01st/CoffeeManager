@@ -65,5 +65,10 @@ namespace CoffeeManager.Droid.Views
 
             viewPager.Adapter = adapter;
         }
+
+        public override void OnBackPressed()
+        {
+            
+        }
     }
 }
