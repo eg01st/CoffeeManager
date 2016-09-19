@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CoffeeManager.Models;
+﻿using CoffeeManager.Models;
 
-namespace CoffeeManager.Core
+namespace CoffeeManager.Core.Managers
 {
     public class UserManager
     {

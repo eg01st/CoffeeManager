@@ -47,31 +47,117 @@ namespace CoffeeManager.Droid
 			global::MvvmCross.Binding.Droid.Resource.Styleable.MvxListView = global::CoffeeManager.Droid.Resource.Styleable.MvxListView;
 			global::MvvmCross.Binding.Droid.Resource.Styleable.MvxListView_MvxDropDownItemTemplate = global::CoffeeManager.Droid.Resource.Styleable.MvxListView_MvxDropDownItemTemplate;
 			global::MvvmCross.Binding.Droid.Resource.Styleable.MvxListView_MvxItemTemplate = global::CoffeeManager.Droid.Resource.Styleable.MvxListView_MvxItemTemplate;
+			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Attribute.MvxBind = global::CoffeeManager.Droid.Resource.Attribute.MvxBind;
+			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Attribute.MvxDropDownItemTemplate = global::CoffeeManager.Droid.Resource.Attribute.MvxDropDownItemTemplate;
+			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Attribute.MvxGroupItemTemplate = global::CoffeeManager.Droid.Resource.Attribute.MvxGroupItemTemplate;
+			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Attribute.MvxItemTemplate = global::CoffeeManager.Droid.Resource.Attribute.MvxItemTemplate;
+			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Attribute.MvxLang = global::CoffeeManager.Droid.Resource.Attribute.MvxLang;
+			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Attribute.MvxSource = global::CoffeeManager.Droid.Resource.Attribute.MvxSource;
+			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Attribute.MvxTemplate = global::CoffeeManager.Droid.Resource.Attribute.MvxTemplate;
+			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Attribute.MvxTemplateSelector = global::CoffeeManager.Droid.Resource.Attribute.MvxTemplateSelector;
+			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Attribute.layoutManager = global::CoffeeManager.Droid.Resource.Attribute.layoutManager;
+			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Attribute.reverseLayout = global::CoffeeManager.Droid.Resource.Attribute.reverseLayout;
+			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Attribute.spanCount = global::CoffeeManager.Droid.Resource.Attribute.spanCount;
+			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Attribute.stackFromEnd = global::CoffeeManager.Droid.Resource.Attribute.stackFromEnd;
+			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Dimension.item_touch_helper_max_drag_scroll_per_frame = global::CoffeeManager.Droid.Resource.Dimension.item_touch_helper_max_drag_scroll_per_frame;
+			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Dimension.item_touch_helper_swipe_escape_max_velocity = global::CoffeeManager.Droid.Resource.Dimension.item_touch_helper_swipe_escape_max_velocity;
+			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Dimension.item_touch_helper_swipe_escape_velocity = global::CoffeeManager.Droid.Resource.Dimension.item_touch_helper_swipe_escape_velocity;
+			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Id.MvvmCrossTagId = global::CoffeeManager.Droid.Resource.Id.MvvmCrossTagId;
+			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Id.MvxBindingTagUnique = global::CoffeeManager.Droid.Resource.Id.MvxBindingTagUnique;
+			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Id.item_touch_helper_previous_elevation = global::CoffeeManager.Droid.Resource.Id.item_touch_helper_previous_elevation;
+			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Styleable.MvxBinding = global::CoffeeManager.Droid.Resource.Styleable.MvxBinding;
+			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Styleable.MvxBinding_MvxBind = global::CoffeeManager.Droid.Resource.Styleable.MvxBinding_MvxBind;
+			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Styleable.MvxBinding_MvxLang = global::CoffeeManager.Droid.Resource.Styleable.MvxBinding_MvxLang;
+			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Styleable.MvxControl = global::CoffeeManager.Droid.Resource.Styleable.MvxControl;
+			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Styleable.MvxControl_MvxTemplate = global::CoffeeManager.Droid.Resource.Styleable.MvxControl_MvxTemplate;
+			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Styleable.MvxExpandableListView = global::CoffeeManager.Droid.Resource.Styleable.MvxExpandableListView;
+			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Styleable.MvxExpandableListView_MvxGroupItemTemplate = global::CoffeeManager.Droid.Resource.Styleable.MvxExpandableListView_MvxGroupItemTemplate;
+			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Styleable.MvxImageView = global::CoffeeManager.Droid.Resource.Styleable.MvxImageView;
+			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Styleable.MvxImageView_MvxSource = global::CoffeeManager.Droid.Resource.Styleable.MvxImageView_MvxSource;
+			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Styleable.MvxListView = global::CoffeeManager.Droid.Resource.Styleable.MvxListView;
+			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Styleable.MvxListView_MvxDropDownItemTemplate = global::CoffeeManager.Droid.Resource.Styleable.MvxListView_MvxDropDownItemTemplate;
+			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Styleable.MvxListView_MvxItemTemplate = global::CoffeeManager.Droid.Resource.Styleable.MvxListView_MvxItemTemplate;
+			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Styleable.MvxRecyclerView = global::CoffeeManager.Droid.Resource.Styleable.MvxRecyclerView;
+			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Styleable.MvxRecyclerView_MvxTemplateSelector = global::CoffeeManager.Droid.Resource.Styleable.MvxRecyclerView_MvxTemplateSelector;
+			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Styleable.RecyclerView = global::CoffeeManager.Droid.Resource.Styleable.RecyclerView;
+			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Styleable.RecyclerView_android_orientation = global::CoffeeManager.Droid.Resource.Styleable.RecyclerView_android_orientation;
+			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Styleable.RecyclerView_layoutManager = global::CoffeeManager.Droid.Resource.Styleable.RecyclerView_layoutManager;
+			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Styleable.RecyclerView_reverseLayout = global::CoffeeManager.Droid.Resource.Styleable.RecyclerView_reverseLayout;
+			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Styleable.RecyclerView_spanCount = global::CoffeeManager.Droid.Resource.Styleable.RecyclerView_spanCount;
+			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Styleable.RecyclerView_stackFromEnd = global::CoffeeManager.Droid.Resource.Styleable.RecyclerView_stackFromEnd;
 		}
 		
 		public partial class Attribute
 		{
 			
-			// aapt resource value: 0x7f010000
-			public const int MvxBind = 2130771968;
+			// aapt resource value: 0x7f010010
+			public const int MvxBind = 2130771984;
+			
+			// aapt resource value: 0x7f010014
+			public const int MvxDropDownItemTemplate = 2130771988;
+			
+			// aapt resource value: 0x7f010015
+			public const int MvxGroupItemTemplate = 2130771989;
+			
+			// aapt resource value: 0x7f010013
+			public const int MvxItemTemplate = 2130771987;
+			
+			// aapt resource value: 0x7f010011
+			public const int MvxLang = 2130771985;
+			
+			// aapt resource value: 0x7f010016
+			public const int MvxSource = 2130771990;
+			
+			// aapt resource value: 0x7f010012
+			public const int MvxTemplate = 2130771986;
+			
+			// aapt resource value: 0x7f01000f
+			public const int MvxTemplateSelector = 2130771983;
 			
 			// aapt resource value: 0x7f010004
-			public const int MvxDropDownItemTemplate = 2130771972;
+			public const int cardBackgroundColor = 2130771972;
 			
 			// aapt resource value: 0x7f010005
-			public const int MvxGroupItemTemplate = 2130771973;
-			
-			// aapt resource value: 0x7f010003
-			public const int MvxItemTemplate = 2130771971;
-			
-			// aapt resource value: 0x7f010001
-			public const int MvxLang = 2130771969;
+			public const int cardCornerRadius = 2130771973;
 			
 			// aapt resource value: 0x7f010006
-			public const int MvxSource = 2130771974;
+			public const int cardElevation = 2130771974;
+			
+			// aapt resource value: 0x7f010007
+			public const int cardMaxElevation = 2130771975;
+			
+			// aapt resource value: 0x7f010009
+			public const int cardPreventCornerOverlap = 2130771977;
+			
+			// aapt resource value: 0x7f010008
+			public const int cardUseCompatPadding = 2130771976;
+			
+			// aapt resource value: 0x7f01000a
+			public const int contentPadding = 2130771978;
+			
+			// aapt resource value: 0x7f01000e
+			public const int contentPaddingBottom = 2130771982;
+			
+			// aapt resource value: 0x7f01000b
+			public const int contentPaddingLeft = 2130771979;
+			
+			// aapt resource value: 0x7f01000c
+			public const int contentPaddingRight = 2130771980;
+			
+			// aapt resource value: 0x7f01000d
+			public const int contentPaddingTop = 2130771981;
+			
+			// aapt resource value: 0x7f010000
+			public const int layoutManager = 2130771968;
 			
 			// aapt resource value: 0x7f010002
-			public const int MvxTemplate = 2130771970;
+			public const int reverseLayout = 2130771970;
+			
+			// aapt resource value: 0x7f010001
+			public const int spanCount = 2130771969;
+			
+			// aapt resource value: 0x7f010003
+			public const int stackFromEnd = 2130771971;
 			
 			static Attribute()
 			{
@@ -79,6 +165,62 @@ namespace CoffeeManager.Droid
 			}
 			
 			private Attribute()
+			{
+			}
+		}
+		
+		public partial class Color
+		{
+			
+			// aapt resource value: 0x7f070000
+			public const int cardview_dark_background = 2131165184;
+			
+			// aapt resource value: 0x7f070001
+			public const int cardview_light_background = 2131165185;
+			
+			// aapt resource value: 0x7f070002
+			public const int cardview_shadow_end_color = 2131165186;
+			
+			// aapt resource value: 0x7f070003
+			public const int cardview_shadow_start_color = 2131165187;
+			
+			static Color()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private Color()
+			{
+			}
+		}
+		
+		public partial class Dimension
+		{
+			
+			// aapt resource value: 0x7f040003
+			public const int cardview_compat_inset_shadow = 2130968579;
+			
+			// aapt resource value: 0x7f040004
+			public const int cardview_default_elevation = 2130968580;
+			
+			// aapt resource value: 0x7f040005
+			public const int cardview_default_radius = 2130968581;
+			
+			// aapt resource value: 0x7f040000
+			public const int item_touch_helper_max_drag_scroll_per_frame = 2130968576;
+			
+			// aapt resource value: 0x7f040001
+			public const int item_touch_helper_swipe_escape_max_velocity = 2130968577;
+			
+			// aapt resource value: 0x7f040002
+			public const int item_touch_helper_swipe_escape_velocity = 2130968578;
+			
+			static Dimension()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private Dimension()
 			{
 			}
 		}
@@ -102,11 +244,14 @@ namespace CoffeeManager.Droid
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f040000
-			public const int MvvmCrossTagId = 2130968576;
+			// aapt resource value: 0x7f050001
+			public const int MvvmCrossTagId = 2131034113;
 			
-			// aapt resource value: 0x7f040001
-			public const int MvxBindingTagUnique = 2130968577;
+			// aapt resource value: 0x7f050002
+			public const int MvxBindingTagUnique = 2131034114;
+			
+			// aapt resource value: 0x7f050000
+			public const int item_touch_helper_previous_elevation = 2131034112;
 			
 			static Id()
 			{
@@ -125,7 +270,13 @@ namespace CoffeeManager.Droid
 			public const int login = 2130903040;
 			
 			// aapt resource value: 0x7f030001
-			public const int SplashScreen = 2130903041;
+			public const int main = 2130903041;
+			
+			// aapt resource value: 0x7f030002
+			public const int SplashScreen = 2130903042;
+			
+			// aapt resource value: 0x7f030003
+			public const int user_card = 2130903043;
 			
 			static Layout()
 			{
@@ -140,11 +291,14 @@ namespace CoffeeManager.Droid
 		public partial class String
 		{
 			
-			// aapt resource value: 0x7f050001
-			public const int ApplicationName = 2131034113;
+			// aapt resource value: 0x7f080001
+			public const int ApplicationName = 2131230721;
 			
-			// aapt resource value: 0x7f050000
-			public const int Hello = 2131034112;
+			// aapt resource value: 0x7f080000
+			public const int Hello = 2131230720;
+			
+			// aapt resource value: 0x7f080002
+			public const int select_user = 2131230722;
 			
 			static String()
 			{
@@ -156,12 +310,91 @@ namespace CoffeeManager.Droid
 			}
 		}
 		
+		public partial class Style
+		{
+			
+			// aapt resource value: 0x7f060001
+			public const int Base_CardView = 2131099649;
+			
+			// aapt resource value: 0x7f060000
+			public const int CardView = 2131099648;
+			
+			// aapt resource value: 0x7f060002
+			public const int CardView_Dark = 2131099650;
+			
+			// aapt resource value: 0x7f060003
+			public const int CardView_Light = 2131099651;
+			
+			static Style()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private Style()
+			{
+			}
+		}
+		
 		public partial class Styleable
 		{
 			
+			public static int[] CardView = new int[] {
+					16843071,
+					16843072,
+					2130771972,
+					2130771973,
+					2130771974,
+					2130771975,
+					2130771976,
+					2130771977,
+					2130771978,
+					2130771979,
+					2130771980,
+					2130771981,
+					2130771982};
+			
+			// aapt resource value: 1
+			public const int CardView_android_minHeight = 1;
+			
+			// aapt resource value: 0
+			public const int CardView_android_minWidth = 0;
+			
+			// aapt resource value: 2
+			public const int CardView_cardBackgroundColor = 2;
+			
+			// aapt resource value: 3
+			public const int CardView_cardCornerRadius = 3;
+			
+			// aapt resource value: 4
+			public const int CardView_cardElevation = 4;
+			
+			// aapt resource value: 5
+			public const int CardView_cardMaxElevation = 5;
+			
+			// aapt resource value: 7
+			public const int CardView_cardPreventCornerOverlap = 7;
+			
+			// aapt resource value: 6
+			public const int CardView_cardUseCompatPadding = 6;
+			
+			// aapt resource value: 8
+			public const int CardView_contentPadding = 8;
+			
+			// aapt resource value: 12
+			public const int CardView_contentPaddingBottom = 12;
+			
+			// aapt resource value: 9
+			public const int CardView_contentPaddingLeft = 9;
+			
+			// aapt resource value: 10
+			public const int CardView_contentPaddingRight = 10;
+			
+			// aapt resource value: 11
+			public const int CardView_contentPaddingTop = 11;
+			
 			public static int[] MvxBinding = new int[] {
-					2130771968,
-					2130771969};
+					2130771984,
+					2130771985};
 			
 			// aapt resource value: 0
 			public const int MvxBinding_MvxBind = 0;
@@ -170,32 +403,60 @@ namespace CoffeeManager.Droid
 			public const int MvxBinding_MvxLang = 1;
 			
 			public static int[] MvxControl = new int[] {
-					2130771970};
+					2130771986};
 			
 			// aapt resource value: 0
 			public const int MvxControl_MvxTemplate = 0;
 			
 			public static int[] MvxExpandableListView = new int[] {
-					2130771973};
+					2130771989};
 			
 			// aapt resource value: 0
 			public const int MvxExpandableListView_MvxGroupItemTemplate = 0;
 			
 			public static int[] MvxImageView = new int[] {
-					2130771974};
+					2130771990};
 			
 			// aapt resource value: 0
 			public const int MvxImageView_MvxSource = 0;
 			
 			public static int[] MvxListView = new int[] {
-					2130771971,
-					2130771972};
+					2130771987,
+					2130771988};
 			
 			// aapt resource value: 1
 			public const int MvxListView_MvxDropDownItemTemplate = 1;
 			
 			// aapt resource value: 0
 			public const int MvxListView_MvxItemTemplate = 0;
+			
+			public static int[] MvxRecyclerView = new int[] {
+					2130771983};
+			
+			// aapt resource value: 0
+			public const int MvxRecyclerView_MvxTemplateSelector = 0;
+			
+			public static int[] RecyclerView = new int[] {
+					16842948,
+					2130771968,
+					2130771969,
+					2130771970,
+					2130771971};
+			
+			// aapt resource value: 0
+			public const int RecyclerView_android_orientation = 0;
+			
+			// aapt resource value: 1
+			public const int RecyclerView_layoutManager = 1;
+			
+			// aapt resource value: 3
+			public const int RecyclerView_reverseLayout = 3;
+			
+			// aapt resource value: 2
+			public const int RecyclerView_spanCount = 2;
+			
+			// aapt resource value: 4
+			public const int RecyclerView_stackFromEnd = 4;
 			
 			static Styleable()
 			{

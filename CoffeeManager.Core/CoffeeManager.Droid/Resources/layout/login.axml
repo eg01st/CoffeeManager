@@ -6,7 +6,24 @@
     android:layout_height="match_parent">
 
   <TextView 
+    android:layout_marginTop="40dp"
+    android:gravity="center"
+    android:textSize="50dp"
     android:layout_height="wrap_content"
-    android:layout_width="wrap_content"
-    local:MvxBind="Text Prope"/>
+    android:layout_width="match_parent"
+    android:text="@string/select_user"/>
+
+  <Mvx.MvxListView
+    android:layout_marginTop="20dp"
+    android:divider="@null"
+    android:layout_gravity="center"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    local:MvxBind="ItemsSource Users; ItemClick SelectUserCommand"
+    local:MvxItemTemplate="@layout/user_card"
+    >
+    
+    
+  
+  </Mvx.MvxListView>
 </LinearLayout>
