@@ -124,7 +124,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Adapters\GridAdapter.cs" />
     <Compile Include="Adapters\ViewHolders\UserViewHolder.cs" />
     <Compile Include="Adapters\ViewPagerAdapter.cs" />
     <Compile Include="Entities\TabItem.cs" />
@@ -137,9 +136,11 @@
     <Compile Include="Views\Abstract\LazyViewModelLoadingFragment.cs" />
     <Compile Include="Views\ActivityBase.cs" />
     <Compile Include="Views\Controls\GridItemView.cs" />
+    <Compile Include="Views\Fragments\BaseFragment.cs" />
     <Compile Include="Views\Fragments\CoffeeFragment.cs" />
     <Compile Include="Views\Fragments\ColdDrinksFragment.cs" />
     <Compile Include="Views\Fragments\IceCreamFragment.cs" />
+    <Compile Include="Views\Fragments\MealsFragment.cs" />
     <Compile Include="Views\Fragments\TeaFragment.cs" />
     <Compile Include="Views\Fragments\WaterFragment.cs" />
     <Compile Include="Views\LoginView.cs" />
@@ -162,10 +163,7 @@
     <AndroidResource Include="Resources\layout\main.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\coffee_list.axml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
-    <AndroidResource Include="Resources\layout\tea_list.axml">
+    <AndroidResource Include="Resources\layout\product_list.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\product_card.axml">
@@ -193,6 +191,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\values-v21\" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\values\styles.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Android.Support.Vector.Drawable.23.4.0.1\build\Xamarin.Android.Support.Vector.Drawable.targets" Condition="Exists('..\packages\Xamarin.Android.Support.Vector.Drawable.23.4.0.1\build\Xamarin.Android.Support.Vector.Drawable.targets')" />

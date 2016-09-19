@@ -7,11 +7,11 @@ using CoffeeManager.Models;
 
 namespace CoffeeManager.Core.ViewModels
 {
-    public class IceCreamViewModel : ProductBaseViewModel
+    public class MealsViewModel : ProductBaseViewModel
     {
         protected override Product[] GetProducts()
         {
-            return ProductManager.GetIceCreamProducts();
+            return ProductManager.GetMealsProducts();
         }
     }
 }

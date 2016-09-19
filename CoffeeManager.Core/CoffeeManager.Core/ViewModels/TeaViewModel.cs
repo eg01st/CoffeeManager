@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CoffeeManager.Models;
 
 namespace CoffeeManager.Core.ViewModels
 {
-    public class TeaViewModel : ViewModelBase
+    public class TeaViewModel : ProductBaseViewModel
     {
-        public string Prop => "test tea";
+        protected override Product[] GetProducts()
+        {
+            return ProductManager.GetTeaProducts();
+        }
     }
 }

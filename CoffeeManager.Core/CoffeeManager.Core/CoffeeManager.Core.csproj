@@ -44,6 +44,8 @@
     <Compile Include="ViewModels\IceCreamViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\MealsViewModel.cs" />
+    <Compile Include="ViewModels\ProductBaseViewModel.cs" />
     <Compile Include="ViewModels\ProductViewModel.cs" />
     <Compile Include="ViewModels\TeaViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />

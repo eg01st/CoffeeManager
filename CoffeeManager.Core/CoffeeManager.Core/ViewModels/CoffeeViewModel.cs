@@ -4,29 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CoffeeManager.Core.Managers;
+using CoffeeManager.Models;
 
 namespace CoffeeManager.Core.ViewModels
 {
-    public class CoffeeViewModel : ViewModelBase
+    public class CoffeeViewModel : ProductBaseViewModel
     {
-
-        private ProductManager _productManager = new ProductManager();
-
-        private List<ProductViewModel> _items;
-
-        public List<ProductViewModel> Items
+        protected override Product[] GetProducts()
         {
-            get { return _items; }
-            set
-            {
-                _items = value;
-                RaisePropertyChanged(nameof(Items));
-            }
-        } 
-
-        public CoffeeViewModel()
-        {
-            _items = _productManager.GetCoffeeProducts().Select(s => new ProductViewModel(s)).ToList();
+            return ProductManager.GetCoffeeProducts();
         }
     }
 }
