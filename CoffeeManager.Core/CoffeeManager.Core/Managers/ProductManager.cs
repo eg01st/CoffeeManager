@@ -79,5 +79,11 @@ namespace CoffeeManager.Core.Managers
         {
             return mock;
         }
+
+
+        public void SaleProduct(int id)
+        {
+            
+        }
     }
 }
