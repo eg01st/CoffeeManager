@@ -124,13 +124,24 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Adapters\GridAdapter.cs" />
     <Compile Include="Adapters\ViewHolders\UserViewHolder.cs" />
+    <Compile Include="Adapters\ViewPagerAdapter.cs" />
+    <Compile Include="Entities\TabItem.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Setup.cs" />
     <Compile Include="SplashScreen.cs" />
     <Compile Include="Adapters\UsersAdapter.cs" />
+    <Compile Include="TabFactory.cs" />
+    <Compile Include="Views\Abstract\LazyViewModelLoadingFragment.cs" />
     <Compile Include="Views\ActivityBase.cs" />
+    <Compile Include="Views\Controls\GridItemView.cs" />
+    <Compile Include="Views\Fragments\CoffeeFragment.cs" />
+    <Compile Include="Views\Fragments\ColdDrinksFragment.cs" />
+    <Compile Include="Views\Fragments\IceCreamFragment.cs" />
+    <Compile Include="Views\Fragments\TeaFragment.cs" />
+    <Compile Include="Views\Fragments\WaterFragment.cs" />
     <Compile Include="Views\LoginView.cs" />
     <Compile Include="Views\MainView.cs" />
   </ItemGroup>
@@ -149,6 +160,15 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\main.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\coffee_list.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\tea_list.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\product_card.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

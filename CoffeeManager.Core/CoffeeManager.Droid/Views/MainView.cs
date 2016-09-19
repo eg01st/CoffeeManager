@@ -12,6 +12,10 @@ using Android.Support.V4.View;
 using Android.Views;
 using Android.Widget;
 using CoffeeManager.Core.ViewModels;
+using CoffeeManager.Droid.Adapters;
+using Fragment = Android.Support.V4.App.Fragment;
+using FragmentManager = Android.Support.V4.App.FragmentManager;
+using TabItem = CoffeeManager.Droid.Entities.TabItem;
 
 namespace CoffeeManager.Droid.Views
 {
@@ -20,6 +24,9 @@ namespace CoffeeManager.Droid.Views
     {
         private ViewPager viewPager;
         private TabLayout tabLayout;
+
+        private TabFactory tabFactory = new TabFactory();
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -34,7 +41,29 @@ namespace CoffeeManager.Droid.Views
 
         private void SetTabLayout()
         {
-            
+            var tabItems = tabFactory.Produce();
+            SetupViewPager(tabItems);
+            tabLayout.SetupWithViewPager(viewPager);
+
+            for (var i = 0; i < tabItems.Length; i++)
+            {
+                var tab = tabLayout.GetTabAt(i);
+                var tabItem = tabItems[i];
+                tab.SetText(tabItem.Title);
+            }
+        }
+
+        private void SetupViewPager(IEnumerable<TabItem> tabItems)
+        {
+            var adapter = new ViewPagerAdapter(SupportFragmentManager);
+            foreach (var tabItem in tabItems)
+            {
+                var fragment = tabItem.Fragment;
+                var title = tabItem.Title;
+                adapter.AddFragment(fragment, title);
+            }
+
+            viewPager.Adapter = adapter;
         }
     }
 }

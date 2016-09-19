@@ -15,7 +15,8 @@ using MvvmCross.Droid.Views;
 
 namespace CoffeeManager.Droid.Views
 {
-    public class ActivityBase <T> : MvxActivity where T : ViewModelBase
+    [Activity(Theme = "@style/Theme.AppCompat.Light")]
+    public class ActivityBase <T> : MvxAppCompatActivity<T> where T : ViewModelBase
     {
     }
 }
