@@ -1,17 +1,17 @@
 using Android.App;
-using Android.Content.PM;
 using Android.OS;
 using CoffeeManager.Core.ViewModels;
 
 namespace CoffeeManager.Droid.Views
 {
-    [Activity(Label = "", Theme = "@style/Theme.AppCompat.Light", ScreenOrientation = ScreenOrientation.Landscape)]
-    public class LoginView : ActivityBase<LoginViewModel>
+    [Activity(Theme = "@style/Theme.AppCompat.Light", Label = "Долги")]
+    public class DeptView : ActivityBase<DeptViewModel>
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            SetContentView(Resource.Layout.login);
+            SetContentView(Resource.Layout.dept_layout);
+            // Create your application here
         }
     }
 }

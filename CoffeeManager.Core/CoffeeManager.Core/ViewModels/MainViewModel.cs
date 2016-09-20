@@ -17,6 +17,8 @@ namespace CoffeeManager.Core.ViewModels
         private readonly MvxSubscriptionToken token;
         private ICommand _endShiftCommand;
         private ICommand _deleteCupCommand;
+        private ICommand _showDeptsCommand;
+        private ICommand _showCurrentSalesCommand;
 
         private float _currentShiftMoney;
         private float _entireMoney;
@@ -43,12 +45,26 @@ namespace CoffeeManager.Core.ViewModels
 
         public ICommand EndShiftCommand => _endShiftCommand;
         public ICommand DeleteCupCommand => _deleteCupCommand;
+        public ICommand ShowDeptsCommand => _showDeptsCommand;
+        public ICommand ShowCurrentSalesCommand => _showCurrentSalesCommand;
 
         public MainViewModel()
         {
             token = Subscribe<AmoutChangedMessage>(OnCallBackMessage);
             _endShiftCommand = new MvxCommand(DoEndShift);
             _deleteCupCommand = new MvxCommand(DoShowDeleteCup);
+            _showDeptsCommand = new MvxCommand(DoShowDepts);
+            _showCurrentSalesCommand = new MvxCommand(DoShowCurrentSales);
+        }
+
+        private void DoShowCurrentSales()
+        {
+            ShowViewModel<CurrentShiftSalesViewModel>();
+        }
+
+        private void DoShowDepts()
+        {
+            ShowViewModel<DeptViewModel>();
         }
 
         private void DoShowDeleteCup()

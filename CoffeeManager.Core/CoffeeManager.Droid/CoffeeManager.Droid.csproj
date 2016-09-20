@@ -151,6 +151,7 @@
     <Compile Include="Adapters\ViewPagerAdapter.cs" />
     <Compile Include="Bindings\LongPressEventBinding.cs" />
     <Compile Include="Bootstrap\MessengerPluginBootstrap.cs" />
+    <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Entities\TabItem.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -159,7 +160,9 @@
     <Compile Include="TabFactory.cs" />
     <Compile Include="Views\Abstract\LazyViewModelLoadingFragment.cs" />
     <Compile Include="Views\ActivityBase.cs" />
+    <Compile Include="Views\CurrentShiftSalesView.cs" />
     <Compile Include="Views\DeleteCupView.cs" />
+    <Compile Include="Views\DeptView.cs" />
     <Compile Include="Views\Fragments\BaseFragment.cs" />
     <Compile Include="Views\Fragments\CoffeeFragment.cs" />
     <Compile Include="Views\Fragments\ColdDrinksFragment.cs" />
@@ -202,6 +205,12 @@
     <AndroidResource Include="Resources\layout\cup_item.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\dept_layout.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\current_sales.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
@@ -238,6 +247,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\ic_cup_delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ic_coin.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Android.Support.Vector.Drawable.23.4.0.1\build\Xamarin.Android.Support.Vector.Drawable.targets" Condition="Exists('..\packages\Xamarin.Android.Support.Vector.Drawable.23.4.0.1\build\Xamarin.Android.Support.Vector.Drawable.targets')" />

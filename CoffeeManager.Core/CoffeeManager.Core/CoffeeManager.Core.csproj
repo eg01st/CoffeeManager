@@ -36,6 +36,7 @@
   <ItemGroup>
     <Compile Include="App.cs" />
     <Compile Include="Managers\CupManager.cs" />
+    <Compile Include="Managers\DeptManager.cs" />
     <Compile Include="Managers\PaymentManager.cs" />
     <Compile Include="Managers\ProductManager.cs" />
     <Compile Include="Managers\ShiftManager.cs" />
@@ -46,7 +47,9 @@
     <Compile Include="ViewModels\CoffeeViewModel.cs" />
     <Compile Include="ViewModels\ColdDrinksViewModel.cs" />
     <Compile Include="ViewModels\CupViewModel.cs" />
+    <Compile Include="ViewModels\CurrentShiftSalesViewModel.cs" />
     <Compile Include="ViewModels\DeleteCupViewModel.cs" />
+    <Compile Include="ViewModels\DeptViewModel.cs" />
     <Compile Include="ViewModels\IceCreamViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />

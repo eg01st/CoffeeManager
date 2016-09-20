@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
+using Acr.UserDialogs;
 using CoffeeManager.Core.Managers;
 using MvvmCross.Core.ViewModels;
 
@@ -13,7 +11,6 @@ namespace CoffeeManager.Core.ViewModels
     {
         private CupManager _cupManager = new CupManager();
         private List<CupViewModel> _items;
-        private CupViewModel _selectedItem;
 
         private ICommand _submitCommand;
 
@@ -29,27 +26,25 @@ namespace CoffeeManager.Core.ViewModels
             }
         }
 
-        public CupViewModel SelectedItem
-        {
-            get { return _selectedItem; }
-            set
-            {
-                _selectedItem = value;
-                RaisePropertyChanged(nameof(SelectedItem));
-            }
-        }
-
-
         public DeleteCupViewModel()
         {
-            _submitCommand = new MvxCommand(DoSubmit);
+            _submitCommand = new MvxCommand<CupViewModel>(DoSubmit);
         }
 
-        private void DoSubmit()
+        private void DoSubmit(CupViewModel item)
         {
-            _cupManager.UtilizeCup(SelectedItem.Id);
-            ShowSuccessMessage("Стакан успешно списан!");
-            Close(this);
+            UserDialogs.Confirm(new ConfirmConfig()
+            {
+                Message = $"Списать {item.Name} стакан? Действие нельзя отменить.",
+                OnAction = (ok) =>
+                {
+                    if (ok)
+                    {
+                        _cupManager.UtilizeCup(item.Id);
+                        Close(this);
+                    }
+                }
+            });
         }
 
         public void Init()

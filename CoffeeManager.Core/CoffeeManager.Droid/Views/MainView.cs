@@ -44,7 +44,24 @@ namespace CoffeeManager.Droid.Views
             endShiftImage.Click += Image_Click;
 
             var deleteCupImage = FindViewById<ImageView>(Resource.Id.delete_cup_icon);
-            deleteCupImage.Click += DeleteCupImage_Click; ;
+            deleteCupImage.Click += DeleteCupImage_Click;
+
+
+            var deptsImage = FindViewById<TextView>(Resource.Id.dept_icon);
+            deptsImage.Click += DeptsImage_Click;
+
+            var currentSales = FindViewById<TextView>(Resource.Id.current_shift_sales);
+            currentSales.Click += CurrentSales_Click;
+        }
+
+        private void CurrentSales_Click(object sender, System.EventArgs e)
+        {
+            ViewModel.ShowCurrentSalesCommand.Execute(null);
+        }
+
+        private void DeptsImage_Click(object sender, System.EventArgs e)
+        {
+            ViewModel.ShowDeptsCommand.Execute(null);
         }
 
         private void DeleteCupImage_Click(object sender, System.EventArgs e)

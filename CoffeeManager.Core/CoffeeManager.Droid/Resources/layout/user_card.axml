@@ -9,6 +9,7 @@
         android:layout_width="300dp"
         android:layout_height="100dp"
         local:cardElevation="4dp"
+        android:foreground="?android:selectableItemBackground"
         local:cardUseCompatPadding="true"
         local:cardCornerRadius="5dp">
     <TextView
