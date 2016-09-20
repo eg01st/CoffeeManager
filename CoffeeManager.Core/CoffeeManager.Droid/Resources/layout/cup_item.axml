@@ -2,9 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:local="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:layout_width="250dp"
-    android:layout_height="100dp"
-              local:MvxBind="Click SelectItemCommand; LongPress DismisItemCommand">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
   <CardView
         android:layout_gravity="center"
         android:layout_width="match_parent"
@@ -20,12 +19,5 @@
         android:gravity="center"
         android:textSize="24dp"
         local:MvxBind="Text Name"/>
-    <TextView     
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:gravity="center"
-      android:textSize="16dp"
-      android:textColor="#008000"
-      local:MvxBind="Text Price"/>
   </CardView>
 </LinearLayout>

@@ -85,5 +85,11 @@ namespace CoffeeManager.Core.Managers
         {
             
         }
+
+
+        public void DismisSaleProduct(int id)
+        {
+
+        }
     }
 }

@@ -12,5 +12,10 @@ namespace CoffeeManager.Core.Managers
         {
             
         }
+
+        public void EndUserShift(int userId)
+        {
+
+        }
     }
 }

@@ -2,7 +2,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Android.Content;
+using Android.Views;
 using CoffeeManager.Core;
+using CoffeeManager.Droid.Bindings;
+using MvvmCross.Binding.Bindings.Target.Construction;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Droid.Platform;
 
@@ -31,6 +34,13 @@ namespace CoffeeManager.Droid
 
                 return assemblies;
             }
+        }
+
+        protected override void FillTargetFactories(IMvxTargetBindingFactoryRegistry registry)
+        {
+            base.FillTargetFactories(registry);
+
+            registry.RegisterFactory(new MvxCustomBindingFactory<View>("LongPress", view => new LongPressEventBinding(view)));
         }
     }
 }

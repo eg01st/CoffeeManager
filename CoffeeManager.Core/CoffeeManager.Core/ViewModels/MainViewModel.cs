@@ -1,19 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows.Input;
+using Acr.UserDialogs;
 using CoffeeManager.Core.Managers;
 using CoffeeManager.Core.Messages;
+using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Messenger;
 
 namespace CoffeeManager.Core.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
-        private PaymentManager _paymentManager = new PaymentManager();
-        private readonly MvxSubscriptionToken token;
+        private int _userId;
 
+        private PaymentManager _paymentManager = new PaymentManager();
+        private ShiftManager _shiftManager = new ShiftManager();
+        private readonly MvxSubscriptionToken token;
+        private ICommand _endShiftCommand;
+        private ICommand _deleteCupCommand;
 
         private float _currentShiftMoney;
         private float _entireMoney;
@@ -38,17 +41,44 @@ namespace CoffeeManager.Core.ViewModels
             }
         }
 
+        public ICommand EndShiftCommand => _endShiftCommand;
+        public ICommand DeleteCupCommand => _deleteCupCommand;
+
         public MainViewModel()
         {
             token = Subscribe<AmoutChangedMessage>(OnCallBackMessage);
+            _endShiftCommand = new MvxCommand(DoEndShift);
+            _deleteCupCommand = new MvxCommand(DoShowDeleteCup);
         }
 
-        public void Init()
+        private void DoShowDeleteCup()
         {
+            ShowViewModel<DeleteCupViewModel>();
+        }
+
+        public void Init(int userId)
+        {
+            _userId = userId;
+
             _currentShiftMoney = _paymentManager.GetCurrentShiftMoney();
             _entireMoney = _paymentManager.GetEntireMoney();
+        }
 
-           
+        private void DoEndShift()
+        {
+            UserDialogs.Confirm(new ConfirmConfig()
+            {
+                Message = "Завершить смену?",
+                OnAction =
+                            (confirm) =>
+                            {
+                                if (confirm)
+                                {
+                                    _shiftManager.EndUserShift(_userId);
+                                    ShowViewModel<LoginViewModel>();
+                                }
+                            }
+            });
         }
 
         private void OnCallBackMessage(AmoutChangedMessage message)

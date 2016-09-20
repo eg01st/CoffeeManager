@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Acr.UserDialogs;
 using CoffeeManager.Core.Managers;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
+using MvvmCross.Platform.Exceptions;
 using MvvmCross.Plugins.Messenger;
 
 namespace CoffeeManager.Core.ViewModels
@@ -22,6 +24,14 @@ namespace CoffeeManager.Core.ViewModels
             }
         }
 
+        protected IUserDialogs UserDialogs
+        {
+            get
+            {
+                return Mvx.Resolve<IUserDialogs>();
+            }
+        }
+
         protected MvxSubscriptionToken Subscribe<TMessage>(Action<TMessage> action)
             where TMessage : MvxMessage
         {
@@ -34,15 +44,14 @@ namespace CoffeeManager.Core.ViewModels
             MvxMessenger.Unsubscribe<TMessage>(id);
         }
 
-        public void ToastMessage(string message)
+        protected void Publish<T>(T message) where T : MvxMessage
         {
-            //InvokeOnMainThread(() =>
-            //{
-            //    var toast = Mvx.Resolve<IUserDialogs>();
-            //    toast.InfoToast(message);
+            MvxMessenger.Publish(message);
+        }
 
-            //});
-
+        public void ShowSuccessMessage(string message)
+        {
+            UserDialogs.ShowSuccess(message);
         }
     }
 }

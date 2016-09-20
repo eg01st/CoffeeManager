@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Acr.UserDialogs;
 using CoffeeManager.Core.Messages;
 using CoffeeManager.Models;
 using MvvmCross.Core.ViewModels;
@@ -13,6 +14,7 @@ namespace CoffeeManager.Core.ViewModels
     public class ProductViewModel : ViewModelBase
     {
         private ICommand _selectItemCommand;
+        private ICommand _dismisItemCommand;
         private Product product;
 
         public int Id => product.Id;
@@ -23,18 +25,44 @@ namespace CoffeeManager.Core.ViewModels
 
         public ICommand SelectItemCommand => _selectItemCommand;
 
+        public ICommand DismisItemCommand => _dismisItemCommand;
+
         public ProductViewModel(Product product)
         {
             this.product = product;
             _selectItemCommand = new MvxAsyncCommand(DoSelectItem);
+            _dismisItemCommand = new MvxAsyncCommand(DoDismisItem);
+        }
+
+        private Task DoDismisItem()
+        {
+            return Task.Run(() =>
+            {
+                UserDialogs.Confirm(new ConfirmConfig()
+                {
+                    Message = $"Отменить продажу товара {Name} ?",
+                    OnAction =
+                        (confirm) =>
+                        {
+                            if (confirm)
+                            {
+                                ProductManager.DismisSaleProduct(Id);
+                                Publish(new AmoutChangedMessage(new Tuple<float, bool>(Price, false), this));
+                                ShowSuccessMessage($"Отменена продажа товара {Name} !");
+                            }
+                        }
+                });
+            });
         }
 
         private Task DoSelectItem()
         {
-            ProductManager.SaleProduct(Id);
-            MvxMessenger.Publish(new AmoutChangedMessage(new Tuple<float, bool>(Price, true), this));
-            ToastMessage("test");
-            return Task.Delay(2000);
+            return Task.Run(() =>
+            {
+                ProductManager.SaleProduct(Id);
+                Publish(new AmoutChangedMessage(new Tuple<float, bool>(Price, true), this));
+                ShowSuccessMessage($"Продан товар {Name} !");
+            });
         }
     }
 }

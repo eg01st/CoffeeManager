@@ -24,7 +24,7 @@ namespace CoffeeManager.Core.ViewModels
         private void DoSelectUser(User user)
         {
             _shiftManager.StartUserShift(user.Id);
-            ShowViewModel<MainViewModel>();
+            ShowViewModel<MainViewModel>( new {userId = user.Id});
         }
 
         public User[] Users

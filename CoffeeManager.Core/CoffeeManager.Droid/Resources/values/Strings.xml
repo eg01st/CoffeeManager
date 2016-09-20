@@ -5,4 +5,5 @@
   <string name="select_user">Выбор пользователя</string>
   <string name="current_shift_money">Касса за смену</string>
   <string name="entire_money">Общая касса</string>
+  <string name="capacity">Обьем</string>
 </resources>

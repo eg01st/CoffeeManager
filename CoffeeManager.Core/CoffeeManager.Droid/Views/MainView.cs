@@ -1,25 +1,19 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+using Acr.UserDialogs;
 using Android.App;
-using Android.Content;
 using Android.OS;
-using Android.Runtime;
 using Android.Support.Design.Widget;
 using Android.Support.V4.View;
+using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
 using CoffeeManager.Core.ViewModels;
 using CoffeeManager.Droid.Adapters;
-using Fragment = Android.Support.V4.App.Fragment;
-using FragmentManager = Android.Support.V4.App.FragmentManager;
 using TabItem = CoffeeManager.Droid.Entities.TabItem;
 
 namespace CoffeeManager.Droid.Views
 {
-    [Activity(Label = "MainView", Theme = "@style/Theme.AppCompat.Light")]
+    [Activity(Theme = "@style/Theme.AppCompat.Light")]
     public class MainView : ActivityBase<MainViewModel>
     {
         private ViewPager viewPager;
@@ -31,12 +25,36 @@ namespace CoffeeManager.Droid.Views
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.main);
-            // Create your application here
+
+            UserDialogs.Init(this);
 
             viewPager = FindViewById<ViewPager>(Resource.Id.main_viewpager);
             tabLayout = FindViewById<TabLayout>(Resource.Id.main_tabs);
 
+            InitToolBarCommands();
             SetTabLayout();
+        }
+
+        private void InitToolBarCommands()
+        {
+            SupportActionBar.SetCustomView(Resource.Layout.action_bar);
+            SupportActionBar.SetDisplayShowCustomEnabled(true);
+
+            var endShiftImage = FindViewById<ImageView>(Resource.Id.end_shift_icon);
+            endShiftImage.Click += Image_Click;
+
+            var deleteCupImage = FindViewById<ImageView>(Resource.Id.delete_cup_icon);
+            deleteCupImage.Click += DeleteCupImage_Click; ;
+        }
+
+        private void DeleteCupImage_Click(object sender, System.EventArgs e)
+        {
+            ViewModel.DeleteCupCommand.Execute(null);
+        }
+
+        private void Image_Click(object sender, System.EventArgs e)
+        {
+            ViewModel.EndShiftCommand.Execute(null);
         }
 
         private void SetTabLayout()
