@@ -19,6 +19,7 @@ namespace CoffeeManager.Core.ViewModels
         private ICommand _deleteCupCommand;
         private ICommand _showDeptsCommand;
         private ICommand _showCurrentSalesCommand;
+        private ICommand _showExpenseCommand;
 
         private float _currentShiftMoney;
         private float _entireMoney;
@@ -47,6 +48,7 @@ namespace CoffeeManager.Core.ViewModels
         public ICommand DeleteCupCommand => _deleteCupCommand;
         public ICommand ShowDeptsCommand => _showDeptsCommand;
         public ICommand ShowCurrentSalesCommand => _showCurrentSalesCommand;
+        public ICommand ShowExpenseCommand => _showExpenseCommand;
 
         public MainViewModel()
         {
@@ -55,6 +57,12 @@ namespace CoffeeManager.Core.ViewModels
             _deleteCupCommand = new MvxCommand(DoShowDeleteCup);
             _showDeptsCommand = new MvxCommand(DoShowDepts);
             _showCurrentSalesCommand = new MvxCommand(DoShowCurrentSales);
+            _showExpenseCommand = new MvxCommand(DoShowExpense);
+        }
+
+        private void DoShowExpense()
+        {
+            ShowViewModel<ExpenseViewModel>();
         }
 
         private void DoShowCurrentSales()

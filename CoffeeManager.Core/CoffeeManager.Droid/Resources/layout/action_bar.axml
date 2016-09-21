@@ -35,4 +35,12 @@
     android:layout_height="wrap_content"
     android:textColor="#000000"
     android:text="Продажи за смену" />
+  <TextView
+    android:layout_marginLeft="50dp"
+    android:textSize="24dp"
+    android:id="@+id/exprense"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textColor="#000000"
+    android:text="Расходы" />
 </android.support.v7.widget.Toolbar>

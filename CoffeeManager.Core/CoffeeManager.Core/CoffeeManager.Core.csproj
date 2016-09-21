@@ -35,6 +35,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
+    <Compile Include="Managers\BaseManager.cs" />
     <Compile Include="Managers\CupManager.cs" />
     <Compile Include="Managers\DeptManager.cs" />
     <Compile Include="Managers\PaymentManager.cs" />
@@ -44,12 +45,14 @@
     <Compile Include="Messages\BaseMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Managers\UserManager.cs" />
+    <Compile Include="ViewModels\BaseItemViewModel.cs" />
     <Compile Include="ViewModels\CoffeeViewModel.cs" />
     <Compile Include="ViewModels\ColdDrinksViewModel.cs" />
     <Compile Include="ViewModels\CupViewModel.cs" />
     <Compile Include="ViewModels\CurrentShiftSalesViewModel.cs" />
     <Compile Include="ViewModels\DeleteCupViewModel.cs" />
     <Compile Include="ViewModels\DeptViewModel.cs" />
+    <Compile Include="ViewModels\ExpenseViewModel.cs" />
     <Compile Include="ViewModels\IceCreamViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />

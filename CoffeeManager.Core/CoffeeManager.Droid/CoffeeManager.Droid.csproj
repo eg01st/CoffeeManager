@@ -163,6 +163,7 @@
     <Compile Include="Views\CurrentShiftSalesView.cs" />
     <Compile Include="Views\DeleteCupView.cs" />
     <Compile Include="Views\DeptView.cs" />
+    <Compile Include="Views\ExpenseView.cs" />
     <Compile Include="Views\Fragments\BaseFragment.cs" />
     <Compile Include="Views\Fragments\CoffeeFragment.cs" />
     <Compile Include="Views\Fragments\ColdDrinksFragment.cs" />
@@ -209,6 +210,12 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\current_sales.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\exprense_layout.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\exprense_card.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

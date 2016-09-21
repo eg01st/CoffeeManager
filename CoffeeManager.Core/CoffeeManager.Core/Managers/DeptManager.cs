@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CoffeeManager.Core.Managers
 {
-    public class DeptManager
+    public class DeptManager : BaseManager
     {
         public void AddDept(int amout)
         {

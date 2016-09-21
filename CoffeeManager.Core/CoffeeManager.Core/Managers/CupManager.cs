@@ -2,7 +2,7 @@
 
 namespace CoffeeManager.Core.Managers
 {
-    public class CupManager
+    public class CupManager : BaseManager
     {
         public Cup[] GetSupportedCups()
         {

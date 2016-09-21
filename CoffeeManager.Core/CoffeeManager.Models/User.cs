@@ -6,9 +6,7 @@ using System.Threading.Tasks;
 
 namespace CoffeeManager.Models
 {
-    public class User
+    public class User : ItemBase
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
     }
 }

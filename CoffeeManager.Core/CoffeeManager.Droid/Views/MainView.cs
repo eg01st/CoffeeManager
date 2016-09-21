@@ -52,6 +52,15 @@ namespace CoffeeManager.Droid.Views
 
             var currentSales = FindViewById<TextView>(Resource.Id.current_shift_sales);
             currentSales.Click += CurrentSales_Click;
+
+
+            var expense = FindViewById<TextView>(Resource.Id.exprense);
+            expense.Click += Expense_Click; 
+        }
+
+        private void Expense_Click(object sender, System.EventArgs e)
+        {
+            ViewModel.ShowExpenseCommand.Execute(null);
         }
 
         private void CurrentSales_Click(object sender, System.EventArgs e)

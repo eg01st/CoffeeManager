@@ -7,7 +7,7 @@ using CoffeeManager.Models;
 
 namespace CoffeeManager.Core.Managers
 {
-    public class ProductManager
+    public class ProductManager : BaseManager
     {
         private Product[] mock = new Product[]
             {

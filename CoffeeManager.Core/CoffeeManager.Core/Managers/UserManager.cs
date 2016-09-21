@@ -2,7 +2,7 @@
 
 namespace CoffeeManager.Core.Managers
 {
-    public class UserManager
+    public class UserManager : BaseManager
     {
         public User[] GetUsers()
         {

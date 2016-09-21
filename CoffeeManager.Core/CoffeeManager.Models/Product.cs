@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace CoffeeManager.Models
 {
-    public class Product
+    public class Product : ItemBase
     {
-        public int Id { get; set; }
         public float Price { get; set; }
-        public string Name { get; set; }
     }
 }
