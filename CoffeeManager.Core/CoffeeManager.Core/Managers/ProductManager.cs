@@ -49,33 +49,52 @@ namespace CoffeeManager.Core.Managers
                 new Product {Id = 12, Name = "coffee four", Price = 22},
             };
 
-        public Product[] GetCoffeeProducts()
+        public Product[] GetCoffeeProducts(bool isPoliceSale)
+        {
+            if (isPoliceSale)
+            {
+                return new Product[]
+                {
+                    new Product {Id = 1, Name = "coffee one cop", Price = 3.33f, IsPoliceSale = true},
+                    new Product {Id = 2, Name = "coffee two cop", Price = 4, IsPoliceSale = true},
+                    new Product {Id = 3, Name = "coffee tree cop", Price = 65, IsPoliceSale = true},
+                    new Product {Id = 4, Name = "coffee four cop", Price = 22, IsPoliceSale = true},
+                    new Product {Id = 5, Name = "coffee one cop", Price = 3.33f, IsPoliceSale = true},
+                    new Product {Id = 6, Name = "coffee two cop", Price = 4, IsPoliceSale = true},
+                    new Product {Id = 7, Name = "coffee tree cop", Price = 65, IsPoliceSale = true},
+                    new Product {Id = 8, Name = "coffee four cop", Price = 22, IsPoliceSale = true},
+                    new Product {Id = 9, Name = "coffee one cop", Price = 3.33f, IsPoliceSale = true},
+                };
+            }
+            else
+            {
+                return mock;
+            }
+
+        }
+
+        public Product[] GetTeaProducts(bool isPoliceSale)
         {
             return mock;
         }
 
-        public Product[] GetTeaProducts()
-        {
-            return mock;
-        }
-
-        public Product[] GetColdDrinksProducts()
+        public Product[] GetColdDrinksProducts(bool isPoliceSale)
         {
             return mock;
 
         }
 
-        public Product[] GetIceCreamProducts()
+        public Product[] GetIceCreamProducts(bool isPoliceSale)
         {
             return mock;
         }
 
-        public Product[] GetMealsProducts()
+        public Product[] GetMealsProducts(bool isPoliceSale)
         {
             return mock;
         }
 
-        public Product[] GetWaterProducts()
+        public Product[] GetWaterProducts(bool isPoliceSale)
         {
             return mock;
         }

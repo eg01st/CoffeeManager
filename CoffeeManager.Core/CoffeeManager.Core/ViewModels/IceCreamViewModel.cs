@@ -9,9 +9,9 @@ namespace CoffeeManager.Core.ViewModels
 {
     public class IceCreamViewModel : ProductBaseViewModel
     {
-        protected override Product[] GetProducts()
+        protected override Product[] GetProducts(bool isPoliceSale)
         {
-            return ProductManager.GetIceCreamProducts();
+            return ProductManager.GetIceCreamProducts(isPoliceSale);
         }
     }
 }

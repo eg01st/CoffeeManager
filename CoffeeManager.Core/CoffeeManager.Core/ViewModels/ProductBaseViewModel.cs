@@ -4,13 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CoffeeManager.Core.Managers;
+using CoffeeManager.Core.Messages;
 using CoffeeManager.Models;
+using MvvmCross.Plugins.Messenger;
 
 namespace CoffeeManager.Core.ViewModels
 {
     public abstract class ProductBaseViewModel : ViewModelBase
     {
-        protected ProductManager ProductManager = new ProductManager();
+        private readonly MvxSubscriptionToken token;
 
         protected List<ProductViewModel> _items;
 
@@ -24,11 +26,24 @@ namespace CoffeeManager.Core.ViewModels
             }
         }
 
-        protected abstract Product[] GetProducts();
+        protected abstract Product[] GetProducts(bool isPoliceSale);
+
+        public ProductBaseViewModel()
+        {
+            token = Subscribe<IsPoliceSaleMessage>(
+                (arg) => 
+            GetItems(arg.Data)
+            );
+        }
 
         public void Init()
         {
-            _items = GetProducts().Select(s => new ProductViewModel(s)).ToList();
+            GetItems(false);
+        }
+
+        private void GetItems(bool isPoliceSale)
+        {
+            Items = GetProducts(isPoliceSale).Select(s => new ProductViewModel(s)).ToList();
         }
     }
 }

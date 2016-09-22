@@ -20,9 +20,11 @@ namespace CoffeeManager.Core.ViewModels
         private ICommand _showDeptsCommand;
         private ICommand _showCurrentSalesCommand;
         private ICommand _showExpenseCommand;
+        private ICommand _enablePoliceSaleCommand;
 
         private float _currentShiftMoney;
         private float _entireMoney;
+        private bool _policeSaleEnabled;
 
         public string CurrentShiftMoney
         {
@@ -44,11 +46,22 @@ namespace CoffeeManager.Core.ViewModels
             }
         }
 
+        public bool IsPoliceSaleEnabled
+        {
+            get { return _policeSaleEnabled; }
+            set
+            {
+                _policeSaleEnabled = value;
+                RaisePropertyChanged(nameof(IsPoliceSaleEnabled));
+            }
+        }
+
         public ICommand EndShiftCommand => _endShiftCommand;
         public ICommand DeleteCupCommand => _deleteCupCommand;
         public ICommand ShowDeptsCommand => _showDeptsCommand;
         public ICommand ShowCurrentSalesCommand => _showCurrentSalesCommand;
         public ICommand ShowExpenseCommand => _showExpenseCommand;
+        public ICommand EnablePoliceSaleCommand => _enablePoliceSaleCommand;
 
         public MainViewModel()
         {
@@ -58,6 +71,13 @@ namespace CoffeeManager.Core.ViewModels
             _showDeptsCommand = new MvxCommand(DoShowDepts);
             _showCurrentSalesCommand = new MvxCommand(DoShowCurrentSales);
             _showExpenseCommand = new MvxCommand(DoShowExpense);
+            _enablePoliceSaleCommand = new MvxCommand(DoEnablePoliceSale);
+        }
+
+        private void DoEnablePoliceSale()
+        {
+            IsPoliceSaleEnabled = !IsPoliceSaleEnabled;
+            Publish(new IsPoliceSaleMessage(_policeSaleEnabled, this));
         }
 
         private void DoShowExpense()

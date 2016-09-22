@@ -18,6 +18,7 @@ namespace CoffeeManager.Droid.Views
     {
         private ViewPager viewPager;
         private TabLayout tabLayout;
+        private View _policeSaveView;
 
         private TabFactory tabFactory = new TabFactory();
 
@@ -55,7 +56,19 @@ namespace CoffeeManager.Droid.Views
 
 
             var expense = FindViewById<TextView>(Resource.Id.exprense);
-            expense.Click += Expense_Click; 
+            expense.Click += Expense_Click;
+
+
+            _policeSaveView = FindViewById<View>(Resource.Id.police_sale_enabled);
+
+            var police = FindViewById<ImageView>(Resource.Id.police_sale);
+            police.Click += PoliceSale_Click; 
+        }
+
+        private void PoliceSale_Click(object sender, System.EventArgs e)
+        {
+            ViewModel.EnablePoliceSaleCommand.Execute(null);
+            _policeSaveView.Visibility = ViewModel.IsPoliceSaleEnabled ? ViewStates.Visible : ViewStates.Invisible;
         }
 
         private void Expense_Click(object sender, System.EventArgs e)

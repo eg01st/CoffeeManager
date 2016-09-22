@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Acr.UserDialogs;
@@ -16,6 +13,9 @@ namespace CoffeeManager.Core.ViewModels
         private ICommand _selectItemCommand;
         private ICommand _dismisItemCommand;
         private Product product;
+        private bool _isPoliceSale;
+
+        public bool IsPoliceSale => product.IsPoliceSale;
 
         public int Id => product.Id;
 
@@ -32,6 +32,7 @@ namespace CoffeeManager.Core.ViewModels
             this.product = product;
             _selectItemCommand = new MvxAsyncCommand(DoSelectItem);
             _dismisItemCommand = new MvxAsyncCommand(DoDismisItem);
+
         }
 
         private Task DoDismisItem()
@@ -59,10 +60,33 @@ namespace CoffeeManager.Core.ViewModels
         {
             return Task.Run(() =>
             {
-                ProductManager.SaleProduct(Id);
-                Publish(new AmoutChangedMessage(new Tuple<float, bool>(Price, true), this));
-                ShowSuccessMessage($"Продан товар {Name} !");
+                if (IsPoliceSale)
+                {
+                    UserDialogs.Confirm(new ConfirmConfig()
+                    {
+                        Message = $"Продать товар {Name} полицейскому?",
+                        OnAction =
+                            (confirm) =>
+                            {
+                                if (confirm)
+                                {
+                                    Sale();
+                                }
+                            }
+                    });
+                }
+                else
+                {
+                    Sale();
+                }
             });
+        }
+
+        private void Sale()
+        {
+            ProductManager.SaleProduct(Id);
+            Publish(new AmoutChangedMessage(new Tuple<float, bool>(Price, true), this));
+            ShowSuccessMessage($"Продан товар {Name} !");
         }
     }
 }
