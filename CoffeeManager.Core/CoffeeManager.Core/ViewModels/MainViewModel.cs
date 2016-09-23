@@ -11,6 +11,7 @@ namespace CoffeeManager.Core.ViewModels
     public class MainViewModel : ViewModelBase
     {
         private int _userId;
+        private int _shiftId;
 
         private PaymentManager _paymentManager = new PaymentManager();
         private ShiftManager _shiftManager = new ShiftManager();
@@ -100,9 +101,10 @@ namespace CoffeeManager.Core.ViewModels
             ShowViewModel<DeleteCupViewModel>();
         }
 
-        public void Init(int userId)
+        public void Init(int userId, int shiftId)
         {
             _userId = userId;
+            _shiftId = shiftId;
 
             _currentShiftMoney = _paymentManager.GetCurrentShiftMoney();
             _entireMoney = _paymentManager.GetEntireMoney();
@@ -114,11 +116,11 @@ namespace CoffeeManager.Core.ViewModels
             {
                 Message = "Завершить смену?",
                 OnAction =
-                            (confirm) =>
+                            async (confirm) =>
                             {
                                 if (confirm)
                                 {
-                                    _shiftManager.EndUserShift(_userId);
+                                    await _shiftManager.EndUserShift(_shiftId);
                                     ShowViewModel<LoginViewModel>();
                                 }
                             }

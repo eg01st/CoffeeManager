@@ -43,11 +43,12 @@ namespace CoffeeManager.Core.ViewModels
                 {
                     Message = $"Отменить продажу товара {Name} ?",
                     OnAction =
-                        (confirm) =>
+                         async
+                         (confirm) =>
                         {
                             if (confirm)
                             {
-                                ProductManager.DismisSaleProduct(Id);
+                                await ProductManager.DismisSaleProduct(Id);
                                 Publish(new AmoutChangedMessage(new Tuple<float, bool>(Price, false), this));
                                 ShowSuccessMessage($"Отменена продажа товара {Name} !");
                             }
@@ -56,35 +57,32 @@ namespace CoffeeManager.Core.ViewModels
             });
         }
 
-        private Task DoSelectItem()
+        private async Task DoSelectItem()
         {
-            return Task.Run(() =>
+            if (IsPoliceSale)
             {
-                if (IsPoliceSale)
+                UserDialogs.Confirm(new ConfirmConfig()
                 {
-                    UserDialogs.Confirm(new ConfirmConfig()
-                    {
-                        Message = $"Продать товар {Name} полицейскому?",
-                        OnAction =
-                            (confirm) =>
+                    Message = $"Продать товар {Name} полицейскому?",
+                    OnAction = async 
+                        (confirm) =>
+                        {
+                            if (confirm)
                             {
-                                if (confirm)
-                                {
-                                    Sale();
-                                }
+                                await Sale();
                             }
-                    });
-                }
-                else
-                {
-                    Sale();
-                }
-            });
+                        }
+                });
+            }
+            else
+            {
+                await Sale();
+            }
         }
 
-        private void Sale()
+        private async Task Sale()
         {
-            ProductManager.SaleProduct(Id);
+            await ProductManager.SaleProduct(Id, IsPoliceSale);
             Publish(new AmoutChangedMessage(new Tuple<float, bool>(Price, true), this));
             ShowSuccessMessage($"Продан товар {Name} !");
         }

@@ -24,13 +24,13 @@ namespace CoffeeManager.Core.Managers
             
         }
 
-        public ItemBase[] GetExpenseItems()
+        public Entity[] GetExpenseItems()
         {
-            return new ItemBase[]
+            return new Entity[]
             {
-                new ItemBase { Id = 1, Name = "Кофе"},
-                new ItemBase { Id = 1, Name = "Молоко"},
-                new ItemBase { Id = 1, Name = "Панини"},
+                new Entity { Id = 1, Name = "Кофе"},
+                new Entity { Id = 1, Name = "Молоко"},
+                new Entity { Id = 1, Name = "Панини"},
             };
         }
 

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Acr.UserDialogs;
 using Android.App;
+using Android.Content.PM;
 using Android.OS;
 using Android.Support.Design.Widget;
 using Android.Support.V4.View;
@@ -13,7 +14,7 @@ using TabItem = CoffeeManager.Droid.Entities.TabItem;
 
 namespace CoffeeManager.Droid.Views
 {
-    [Activity(Theme = "@style/Theme.AppCompat.Light")]
+    [Activity(Theme = "@style/Theme.AppCompat.Light", ScreenOrientation = ScreenOrientation.Landscape)]
     public class MainView : ActivityBase<MainViewModel>
     {
         private ViewPager viewPager;

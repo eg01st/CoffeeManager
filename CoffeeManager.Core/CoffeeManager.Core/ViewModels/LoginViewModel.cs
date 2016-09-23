@@ -21,10 +21,10 @@ namespace CoffeeManager.Core.ViewModels
             _selectUserCommand = new MvxCommand<User>(DoSelectUser);
         }
 
-        private void DoSelectUser(User user)
+        private async void DoSelectUser(User user)
         {
-            _shiftManager.StartUserShift(user.Id);
-            ShowViewModel<MainViewModel>( new {userId = user.Id});
+            int shiftId = await _shiftManager.StartUserShift(user.Id);
+            ShowViewModel<MainViewModel>( new {userId = user.Id, shiftId = shiftId });
         }
 
         public User[] Users
@@ -37,9 +37,9 @@ namespace CoffeeManager.Core.ViewModels
             }
         }
 
-        public void Init()
+        public async void Init()
         {
-            Users = _userManager.GetUsers();
+            Users = await _userManager.GetUsers();
         }
     }
 }

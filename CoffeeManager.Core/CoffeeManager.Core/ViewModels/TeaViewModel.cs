@@ -1,12 +1,13 @@
-﻿using CoffeeManager.Models;
+﻿using System.Threading.Tasks;
+using CoffeeManager.Models;
 
 namespace CoffeeManager.Core.ViewModels
 {
     public class TeaViewModel : ProductBaseViewModel
     {
-        protected override Product[] GetProducts(bool isPoliceSale)
+        protected override async Task<Product[]> GetProducts(bool isPoliceSale)
         {
-            return ProductManager.GetTeaProducts(isPoliceSale);
+            return await ProductManager.GetTeaProducts(isPoliceSale);
         }
     }
 }

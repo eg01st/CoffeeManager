@@ -1,6 +1,6 @@
 ﻿namespace CoffeeManager.Models
 {
-    public class Cup :ItemBase
+    public class Cup :Entity
     {
 
         public int Capacity { get; set; }

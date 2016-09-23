@@ -1,27 +1,25 @@
-﻿using CoffeeManager.Models;
+﻿using System.Threading.Tasks;
+using CoffeeManager.Core.ServiceProviders;
+using CoffeeManager.Models;
 
 namespace CoffeeManager.Core.Managers
 {
     public class UserManager : BaseManager
     {
-        public User[] GetUsers()
+        private UserServiceProvider provider = new UserServiceProvider();
+        public async Task<User[]> GetUsers()
         {
-            return new[]
-            {
-                new User() {Id = 1, Name = "User1"},
-                new User() {Id = 2, Name = "User 2"},
-                new User() {Id = 3, Name = "User 3"},
-            };
+             return await provider.GetUsers();
         }
 
-        public void AddUser(User user)
+        public async Task<User> AddUser(string userName)
         {
-            
+            return await provider.AddUser(userName);
         }
 
-        public void DeleteUser(int id)
+        public async Task DeleteUser(int id)
         {
-            
+            await provider.DeleteUser(id);
         }
     }
 }

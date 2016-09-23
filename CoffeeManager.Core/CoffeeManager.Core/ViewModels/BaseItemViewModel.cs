@@ -27,7 +27,7 @@ namespace CoffeeManager.Core.ViewModels
             }
         }
 
-        public BaseItemViewModel(ItemBase item)
+        public BaseItemViewModel(Entity item)
         {
             Id = item.Id;
             Name = item.Name;

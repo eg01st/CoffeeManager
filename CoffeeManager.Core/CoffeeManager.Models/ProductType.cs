@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace CoffeeManager.Models
 {
-    public class User : Entity
+    public enum ProductType
     {
+        Coffee = 1,
+        Tea,
+        ColdDrinks,
+        IceCream,
+        Meals,
+        Water
     }
 }

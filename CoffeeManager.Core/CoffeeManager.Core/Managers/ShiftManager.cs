@@ -1,17 +1,24 @@
-﻿namespace CoffeeManager.Core.Managers
+﻿using System.Threading.Tasks;
+using CoffeeManager.Core.ServiceProviders;
+
+namespace CoffeeManager.Core.Managers
 {
     public class ShiftManager : BaseManager
     {
-        public void StartUserShift(int userId)
+        private ShiftServiceProvider provider = new ShiftServiceProvider();
+        public async Task<int> StartUserShift(int userId)
         {
-            //rest call here
+            return await provider.StartUserShift(userId).ContinueWith((shiftId) =>
+            {
+                ShiftNo = shiftId.Result;
+                return ShiftNo;
+            });
 
-            ShiftNo = 1;
         }
 
-        public void EndUserShift(int userId)
+        public async Task EndUserShift(int shiftId)
         {
-
+            await provider.EndShift(shiftId);
         }
     }
 }
