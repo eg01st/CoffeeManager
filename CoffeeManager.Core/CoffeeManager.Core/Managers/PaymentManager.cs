@@ -3,29 +3,34 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CoffeeManager.Core.ServiceProviders;
 using CoffeeManager.Models;
 
 namespace CoffeeManager.Core.Managers
 {
     public class PaymentManager : BaseManager
     {
-        public float GetCurrentShiftMoney()
+        private PaymentServiceProvider provider = new PaymentServiceProvider();
+
+        public async Task<float> GetCurrentShiftMoney()
         {
-            return 33.55f;
+            return await provider.GetCurrentShiftMoney();
         }
 
-        public float GetEntireMoney()
+        public async Task<float> GetEntireMoney()
         {
-            return 5555.44f;
+            return await provider.GetEntireMoney();
         }
 
-        public void AddExpense(int expenseId, float amout)
+        public async Task AddExpense(int expenseId, float amout)
         {
-            
+            await provider.AddExpense(ShiftNo, expenseId, amout);
         }
 
-        public Entity[] GetExpenseItems()
+        public async Task<Entity[]> GetExpenseItems()
         {
+            return await provider.GetExpenseItems();
+
             return new Entity[]
             {
                 new Entity { Id = 1, Name = "Кофе"},
@@ -34,9 +39,9 @@ namespace CoffeeManager.Core.Managers
             };
         }
 
-        public void AddNewExpenseType(string typeName)
+        public async Task AddNewExpenseType(string typeName)
         {
-            
+            await provider.AddNewExpenseType(typeName);
         }
     }
 }

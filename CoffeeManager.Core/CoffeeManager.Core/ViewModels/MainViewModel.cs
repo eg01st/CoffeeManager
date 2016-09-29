@@ -101,13 +101,23 @@ namespace CoffeeManager.Core.ViewModels
             ShowViewModel<DeleteCupViewModel>();
         }
 
-        public void Init(int userId, int shiftId)
+        public async void Init(int userId, int shiftId)
         {
             _userId = userId;
             _shiftId = shiftId;
 
-            _currentShiftMoney = _paymentManager.GetCurrentShiftMoney();
-            _entireMoney = _paymentManager.GetEntireMoney();
+            await _paymentManager.GetCurrentShiftMoney().ContinueWith((amount) =>
+            {
+                _currentShiftMoney = amount.Result;
+                RaisePropertyChanged(nameof(CurrentShiftMoney));
+            });
+
+            await _paymentManager.GetEntireMoney().ContinueWith((amount) =>
+            {
+                _entireMoney = amount.Result;
+                RaisePropertyChanged(nameof(EntireMoney));
+            });
+
         }
 
         private void DoEndShift()

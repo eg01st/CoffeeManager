@@ -14,7 +14,7 @@ namespace CoffeeManager.Core.ServiceProviders
 
         public async Task<User> AddUser(string userName)
         {
-           return await Post<User, User>(Users, new User() {CofferRoomNo = CoffeeRommNo, Name = userName});
+           return await Post<User, User>(Users, new User() {CofferRoomNo = CoffeeRoomNo, Name = userName});
         }
 
         public async Task DeleteUser(int userId)

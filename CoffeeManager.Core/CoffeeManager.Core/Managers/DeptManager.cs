@@ -8,19 +8,20 @@ namespace CoffeeManager.Core.Managers
 {
     public class DeptManager : BaseManager
     {
-        public void AddDept(int amout)
+        private DeptProvider provider = new DeptProvider();
+        public async Task AddDept(float amount)
         {
-            
+           await provider.AddDept(amount, ShiftNo);
         }
 
-        public void RemoveDept(int amount)
+        public async Task RemoveDept(float amount)
         {
-            
+            await provider.RemoveDept(amount, ShiftNo);
         }
 
-        public int GetCurrentDeptSum()
+        public async Task<float> GetCurrentDeptSum()
         {
-            return 343;
+            return await provider.GetCurrentDeptSum();
         }
     }
 }

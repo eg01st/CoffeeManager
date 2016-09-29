@@ -45,13 +45,13 @@ namespace CoffeeManager.Core.Managers
 
         public async Task SaleProduct(int id, bool isPoliceSale)
         {
-            await provider.SaleProduct(new Product() {CofferRoomNo = CoffeeRoomNo, Id = id, IsPoliceSale = isPoliceSale});
+            await provider.SaleProduct(ShiftNo, id, isPoliceSale);
         }
 
 
         public async Task DismisSaleProduct(int id)
         {
-            await provider.DeleteSale(new Product() { CofferRoomNo = CoffeeRoomNo, Id = id });
+            await provider.DeleteSale(ShiftNo, id);
         }
     }
 }

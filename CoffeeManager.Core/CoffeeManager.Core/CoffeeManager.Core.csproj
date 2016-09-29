@@ -38,6 +38,7 @@
     <Compile Include="Managers\BaseManager.cs" />
     <Compile Include="Managers\CupManager.cs" />
     <Compile Include="Managers\DeptManager.cs" />
+    <Compile Include="Managers\DeptProvider.cs" />
     <Compile Include="Managers\PaymentManager.cs" />
     <Compile Include="Managers\ProductManager.cs" />
     <Compile Include="Managers\ShiftManager.cs" />
@@ -47,6 +48,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Managers\UserManager.cs" />
     <Compile Include="ServiceProviders\BaseServiceProvider.cs" />
+    <Compile Include="ServiceProviders\CupsServiceProvider.cs" />
+    <Compile Include="ServiceProviders\PaymentServiceProvider.cs" />
     <Compile Include="ServiceProviders\ProductProvider.cs" />
     <Compile Include="ServiceProviders\ShiftServiceProvider.cs" />
     <Compile Include="ServiceProviders\UserServiceProvider.cs" />

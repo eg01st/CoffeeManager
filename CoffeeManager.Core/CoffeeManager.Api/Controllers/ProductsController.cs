@@ -18,6 +18,12 @@ namespace CoffeeManager.Api.Controllers
             switch (productType)
             {
                     case ProductType.Coffee:
+
+                        foreach (var product in mock)
+                        {
+                            product.IsPoliceSale = isPoliceSale;
+                        }
+
                     return Request.CreateResponse(HttpStatusCode.OK, mock);
                     break;
                     case ProductType.Tea:
@@ -31,7 +37,7 @@ namespace CoffeeManager.Api.Controllers
 
         [Route("api/products/saleproduct")]
         [HttpPut]
-        public async Task<HttpResponseMessage> SaleProduct([FromUri]string coffeeroomno, HttpRequestMessage message)
+        public async Task<HttpResponseMessage> SaleProduct([FromUri]string coffeeroomno, [FromUri]int shiftId, HttpRequestMessage message)
         {
             var request = await message.Content.ReadAsStringAsync();
             var product = JsonConvert.DeserializeObject<Product>(request);
@@ -41,7 +47,7 @@ namespace CoffeeManager.Api.Controllers
 
         [Route("api/products/deletesale")]
         [HttpDelete]
-        public async Task<HttpResponseMessage> DeleteSale([FromUri]string coffeeroomno, HttpRequestMessage message)
+        public async Task<HttpResponseMessage> DeleteSale([FromUri]string coffeeroomno, [FromUri]int shiftId, HttpRequestMessage message)
         {
             var request = await message.Content.ReadAsStringAsync();
             var product = JsonConvert.DeserializeObject<Product>(request);

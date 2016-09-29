@@ -2033,19 +2033,22 @@ namespace CoffeeManager.Droid
 			public const int ic_power = 2130837585;
 			
 			// aapt resource value: 0x7f020052
-			public const int ic_successstatus = 2130837586;
+			public const int ic_star_small = 2130837586;
 			
 			// aapt resource value: 0x7f020053
-			public const int Icon = 2130837587;
-			
-			// aapt resource value: 0x7f020056
-			public const int notification_template_icon_bg = 2130837590;
+			public const int ic_successstatus = 2130837587;
 			
 			// aapt resource value: 0x7f020054
-			public const int roundedbg = 2130837588;
+			public const int Icon = 2130837588;
+			
+			// aapt resource value: 0x7f020057
+			public const int notification_template_icon_bg = 2130837591;
 			
 			// aapt resource value: 0x7f020055
-			public const int roundedbgdark = 2130837589;
+			public const int roundedbg = 2130837589;
+			
+			// aapt resource value: 0x7f020056
+			public const int roundedbgdark = 2130837590;
 			
 			static Drawable()
 			{

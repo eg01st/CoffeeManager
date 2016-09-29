@@ -125,9 +125,10 @@ namespace CoffeeManager.Core.ViewModels
             LoadTypes();
         }
 
-        private void LoadTypes()
+        private async void LoadTypes()
         {
-            Items = _paymentManager.GetExpenseItems().Select(s => new BaseItemViewModel(s)).ToList();
+            var result = await _paymentManager.GetExpenseItems();
+            Items = result.Select(s => new BaseItemViewModel(s)).ToList();
         }
     }
 }

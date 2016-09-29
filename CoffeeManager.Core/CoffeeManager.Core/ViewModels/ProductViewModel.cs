@@ -32,6 +32,7 @@ namespace CoffeeManager.Core.ViewModels
             this.product = product;
             _selectItemCommand = new MvxAsyncCommand(DoSelectItem);
             _dismisItemCommand = new MvxAsyncCommand(DoDismisItem);
+            RaiseAllPropertiesChanged();
 
         }
 

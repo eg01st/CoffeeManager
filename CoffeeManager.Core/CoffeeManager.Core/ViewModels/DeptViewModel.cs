@@ -1,4 +1,5 @@
-﻿using System.Windows.Input;
+﻿using System.Threading.Tasks;
+using System.Windows.Input;
 using Acr.UserDialogs;
 using CoffeeManager.Core.Managers;
 using MvvmCross.Core.ViewModels;
@@ -53,41 +54,41 @@ namespace CoffeeManager.Core.ViewModels
 
         public DeptViewModel()
         {
-             _addDeptCommand = new MvxCommand(DoAddDept);
-            _removeDeptCommand = new MvxCommand(DoRemoveDept);
+             _addDeptCommand = new MvxAsyncCommand(DoAddDept);
+            _removeDeptCommand = new MvxAsyncCommand(DoRemoveDept);
         }
 
-        public void Init()
+        public async void Init()
         {
-            CurrentDeptSum = _deptManager.GetCurrentDeptSum().ToString();
+             await _deptManager.GetCurrentDeptSum().ContinueWith((sum) => CurrentDeptSum = sum.Result.ToString());
         }
 
-        private void DoRemoveDept()
+        private async Task DoRemoveDept()
         {
             if (!string.IsNullOrEmpty(DeptToRemove))
             {
                 UserDialogs.Confirm(new ConfirmConfig()
                 {
                     Message = $"Списать сумму {DeptToRemove}?",
-                    OnAction = (ok) =>
+                    OnAction = async (ok) =>
                     {
-                        _deptManager.RemoveDept(int.Parse(DeptToRemove));
+                        await _deptManager.RemoveDept(int.Parse(DeptToRemove));
                         Close(this);
                     }
                 });
             }
         }
 
-        private void DoAddDept()
+        private async Task DoAddDept()
         {
             if (!string.IsNullOrEmpty(DeptToAdd))
             {
                 UserDialogs.Confirm(new ConfirmConfig()
                 {
                     Message = $"Добавить сумму {DeptToRemove}?",
-                    OnAction = (ok) =>
+                    OnAction = async (ok) =>
                     {
-                        _deptManager.AddDept(int.Parse(DeptToAdd));
+                        await _deptManager.AddDept(int.Parse(DeptToAdd));
                         Close(this);
                     }
                 });

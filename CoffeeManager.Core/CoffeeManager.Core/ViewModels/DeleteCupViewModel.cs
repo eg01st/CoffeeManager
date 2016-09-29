@@ -36,20 +36,21 @@ namespace CoffeeManager.Core.ViewModels
             UserDialogs.Confirm(new ConfirmConfig()
             {
                 Message = $"Списать {item.Name} стакан? Действие нельзя отменить.",
-                OnAction = (ok) =>
+                OnAction = async (ok) =>
                 {
                     if (ok)
                     {
-                        _cupManager.UtilizeCup(item.Id);
+                        await _cupManager.UtilizeCup(item.Id);
                         Close(this);
                     }
                 }
             });
         }
 
-        public void Init()
+        public async void Init()
         {
-            Items = _cupManager.GetSupportedCups().Select(s => new CupViewModel(s)).ToList();
+            var result = await _cupManager.GetSupportedCups();
+            Items = result.Select(s => new CupViewModel(s)).ToList();
         }
 
     }

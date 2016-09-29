@@ -20,14 +20,14 @@ namespace CoffeeManager.Core.ServiceProviders
                 });
         }
 
-        public async Task SaleProduct(Product product)
+        public async Task SaleProduct(int shiftId, int id, bool isPoliceSale)
         {
-            await Put($"{Products}/SaleProduct", product);
+            await Put($"{Products}/SaleProduct", new Product() { CofferRoomNo = CoffeeRoomNo, Id = id, IsPoliceSale = isPoliceSale }, new Dictionary<string, string>() { {nameof(shiftId), shiftId.ToString()} });
         }
 
-        public async Task DeleteSale(Product product)
+        public async Task DeleteSale(int shiftId, int id)
         {
-            await Put($"{Products}/DeleteSale", product);
+            await Put($"{Products}/DeleteSale", new Product() { CofferRoomNo = CoffeeRoomNo, Id = id}, new Dictionary<string, string>() { { nameof(shiftId), shiftId.ToString() } });
         }
     }
 }
