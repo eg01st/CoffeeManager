@@ -31,6 +31,9 @@ namespace CoffeeManager.Api.Controllers
             {
                 var entities = new CoffeeRoomDbEntities();
                 entities.Sales.Add(sale);
+                var currentShift = entities.Shifts.First(s => s.Id == sale.ShiftId.Value);
+                currentShift.CurrentAmount += sale.Product1.Price;
+                currentShift.TotalAmount += sale.Product1.Price;
                 await entities.SaveChangesAsync();
                 return Request.CreateResponse(HttpStatusCode.OK);
             }

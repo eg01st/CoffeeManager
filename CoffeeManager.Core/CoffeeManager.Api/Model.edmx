@@ -18,7 +18,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Amount" Type="money" />
+          <Property Name="Amount" Type="money" Nullable="false" />
           <Property Name="ShiftId" Type="int" />
           <Property Name="ExpenseType" Type="int" />
           <Property Name="CoffeeRoomNo" Type="int" />
@@ -38,8 +38,8 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
           <Property Name="ProductType" Type="int" />
-          <Property Name="Price" Type="money" />
-          <Property Name="PolicePrice" Type="money" />
+          <Property Name="Price" Type="money" Nullable="false" />
+          <Property Name="PolicePrice" Type="money" Nullable="false" />
           <Property Name="CoffeeRoomNo" Type="int" />
         </EntityType>
         <EntityType Name="ProductType">
@@ -70,10 +70,11 @@
           <Property Name="UserId" Type="int" />
           <Property Name="Date" Type="datetime" />
           <Property Name="IsFinished" Type="bit" />
-          <Property Name="StartAmount" Type="money" />
-          <Property Name="CurrentAmount" Type="money" />
-          <Property Name="TotalAmount" Type="money" />
+          <Property Name="StartAmount" Type="money" Nullable="false" />
+          <Property Name="CurrentAmount" Type="money" Nullable="false" />
+          <Property Name="TotalAmount" Type="money" Nullable="false" />
           <Property Name="CoffeeRoomNo" Type="int" />
+          <Property Name="TotalExprenses" Type="money" Nullable="false" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -83,7 +84,7 @@
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
           <Property Name="CoffeeRoomNo" Type="int" />
         </EntityType>
-        <Association Name="FK__Expense__Expense__31EC6D26">
+        <Association Name="FK__Expense__Expense__02084FDA">
           <End Role="ExpenseType" Type="Self.ExpenseType" Multiplicity="0..1" />
           <End Role="Expense" Type="Self.Expense" Multiplicity="*" />
           <ReferentialConstraint>
@@ -164,7 +165,7 @@
           <EntitySet Name="Sale" EntityType="Self.Sale" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Shifts" EntityType="Self.Shifts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Expense__Expense__31EC6D26" Association="Self.FK__Expense__Expense__31EC6D26">
+          <AssociationSet Name="FK__Expense__Expense__02084FDA" Association="Self.FK__Expense__Expense__02084FDA">
             <End Role="ExpenseType" EntitySet="ExpenseType" />
             <End Role="Expense" EntitySet="Expense" />
           </AssociationSet>
@@ -206,7 +207,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Amount" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Amount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="ShiftId" Type="Int32" />
           <Property Name="ExpenseType" Type="Int32" />
           <NavigationProperty Name="ExpenseType1" Relationship="Self.FK__Expense__Expense__31EC6D26" FromRole="Expense" ToRole="ExpenseType" />
@@ -229,8 +230,8 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ProductType" Type="Int32" />
-          <Property Name="Price" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="PolicePrice" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="PolicePrice" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <NavigationProperty Name="ProductType1" Relationship="Self.FK__Product__Product__34C8D9D1" FromRole="Product" ToRole="ProductType" />
           <NavigationProperty Name="Sales" Relationship="Self.FK__Sale__Product__38996AB5" FromRole="Product" ToRole="Sale" />
           <Property Name="CoffeeRoomNo" Type="Int32" />
@@ -269,10 +270,11 @@
           <NavigationProperty Name="Expenses" Relationship="Self.FK__Expense__ShiftId__30F848ED" FromRole="Shifts" ToRole="Expense" />
           <NavigationProperty Name="Sales" Relationship="Self.FK__Sale__ShiftId__37A5467C" FromRole="Shifts" ToRole="Sale" />
           <NavigationProperty Name="User" Relationship="Self.FK__Shifts__UserId__2E1BDC42" FromRole="Shifts" ToRole="Users" />
-          <Property Name="StartAmount" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="CurrentAmount" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="TotalAmount" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="StartAmount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="CurrentAmount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="TotalAmount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="CoffeeRoomNo" Type="Int32" />
+          <Property Name="TotalExprenses" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -461,6 +463,7 @@
           <EntitySetMapping Name="Shifts">
             <EntityTypeMapping TypeName="CoffeeRoomModel.Shift">
               <MappingFragment StoreEntitySet="Shifts">
+                <ScalarProperty Name="TotalExprenses" ColumnName="TotalExprenses" />
                 <ScalarProperty Name="CoffeeRoomNo" ColumnName="CoffeeRoomNo" />
                 <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
                 <ScalarProperty Name="CurrentAmount" ColumnName="CurrentAmount" />

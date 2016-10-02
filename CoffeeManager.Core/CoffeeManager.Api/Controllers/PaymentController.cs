@@ -58,6 +58,8 @@ namespace CoffeeManager.Api.Controllers
 
             var entities = new CoffeeRoomDbEntities();
             entities.Expenses.Add(expense);
+            var currentShift = entities.Shifts.First(s => s.Id == expense.ShiftId.Value);
+            currentShift.TotalExprenses += expense.Amount;
             await entities.SaveChangesAsync();
 
             return Request.CreateResponse(HttpStatusCode.OK);

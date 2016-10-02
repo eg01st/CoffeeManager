@@ -15,7 +15,7 @@ namespace CoffeeManager.Api
     public partial class Expense
     {
         public int Id { get; set; }
-        public Nullable<decimal> Amount { get; set; }
+        public decimal Amount { get; set; }
         public Nullable<int> ShiftId { get; set; }
         public Nullable<int> ExpenseType { get; set; }
         public Nullable<int> CoffeeRoomNo { get; set; }

@@ -23,8 +23,8 @@ namespace CoffeeManager.Api
         public int Id { get; set; }
         public string Name { get; set; }
         public Nullable<int> ProductType { get; set; }
-        public Nullable<decimal> Price { get; set; }
-        public Nullable<decimal> PolicePrice { get; set; }
+        public decimal Price { get; set; }
+        public decimal PolicePrice { get; set; }
         public Nullable<int> CoffeeRoomNo { get; set; }
     
         public virtual ProductType ProductType1 { get; set; }

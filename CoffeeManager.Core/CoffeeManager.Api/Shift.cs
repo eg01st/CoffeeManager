@@ -25,10 +25,11 @@ namespace CoffeeManager.Api
         public Nullable<int> UserId { get; set; }
         public Nullable<System.DateTime> Date { get; set; }
         public Nullable<bool> IsFinished { get; set; }
-        public Nullable<decimal> StartAmount { get; set; }
-        public Nullable<decimal> CurrentAmount { get; set; }
-        public Nullable<decimal> TotalAmount { get; set; }
+        public decimal StartAmount { get; set; }
+        public decimal CurrentAmount { get; set; }
+        public decimal TotalAmount { get; set; }
         public Nullable<int> CoffeeRoomNo { get; set; }
+        public decimal TotalExprenses { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Expense> Expenses { get; set; }

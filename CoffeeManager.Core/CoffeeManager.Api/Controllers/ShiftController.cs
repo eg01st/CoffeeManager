@@ -24,6 +24,12 @@ namespace CoffeeManager.Api.Controllers
                 UserId = userId
             };
             var entities = new CoffeeRoomDbEntities();
+            var lastShift = entities.Shifts.LastOrDefault(s => s.CoffeeRoomNo == coffeeroomno);
+            if (lastShift != null)
+            {
+                shift.TotalAmount = lastShift.TotalAmount;
+            }
+
             entities.Shifts.Add(shift);
             await entities.SaveChangesAsync();
 
@@ -62,5 +68,13 @@ namespace CoffeeManager.Api.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, shift);
         }
 
+        [Route("api/shift/getShiftSales")]
+        [HttpGet]
+        public async Task<HttpResponseMessage> GetShiftSales([FromUri]int coffeeroomno, [FromUri]int shiftId, HttpRequestMessage message)
+        {
+            var entities = new CoffeeRoomDbEntities();
+            var sales = entities.Sales.Where(s => s.CoffeeRoomNo == coffeeroomno && s.ShiftId == shiftId);
+            return Request.CreateResponse(HttpStatusCode.OK, sales);
+        }
     }
 }
