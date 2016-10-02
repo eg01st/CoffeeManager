@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using CoffeeManager.Core.ServiceProviders;
+using CoffeeManager.Models;
 
 namespace CoffeeManager.Core.Managers
 {
@@ -19,6 +20,15 @@ namespace CoffeeManager.Core.Managers
         public async Task EndUserShift(int shiftId)
         {
             await provider.EndShift(shiftId);
+        }
+
+        public async Task<Shift> GetCurrentShift()
+        {
+            return await provider.GetCurrentShift().ContinueWith((shift) =>
+            {
+                ShiftNo = shift.Result.Id;
+                return shift.Result;
+            }); 
         }
     }
 }

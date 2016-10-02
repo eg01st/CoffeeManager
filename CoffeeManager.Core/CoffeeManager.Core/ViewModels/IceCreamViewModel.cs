@@ -9,9 +9,9 @@ namespace CoffeeManager.Core.ViewModels
 {
     public class IceCreamViewModel : ProductBaseViewModel
     {
-        protected override async Task<Product[]> GetProducts(bool isPoliceSale)
+        protected override async Task<Product[]> GetProducts()
         {
-            return await ProductManager.GetIceCreamProducts(isPoliceSale);
+            return await ProductManager.GetIceCreamProducts();
         }
     }
 }

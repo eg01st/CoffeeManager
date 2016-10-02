@@ -2,6 +2,6 @@
 {
     public class BaseManager
     {
-        protected static int ShiftNo { get; set; }
+        public static int ShiftNo { get; set; }
     }
 }

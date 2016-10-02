@@ -16,33 +16,36 @@ namespace CoffeeManager.Api.Controllers
         [HttpGet]
         public async Task<HttpResponseMessage> GetCurrentShiftMoney([FromUri]int coffeeroomno, HttpRequestMessage message)
         {
-            return Request.CreateResponse(HttpStatusCode.OK, 33.56f);
+            var entities = new CoffeeRoomDbEntities();
+            var shift = entities.Shifts.FirstOrDefault(s => s.CoffeeRoomNo == coffeeroomno && !s.IsFinished.Value);
+            if (shift != null)
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, shift.CurrentAmount);
+            }
+
+            return Request.CreateResponse(HttpStatusCode.OK, 0);
         }
 
         [Route("api/payment/getentiremoney")]
         [HttpGet]
         public async Task<HttpResponseMessage> GetEntireMoney([FromUri]int coffeeroomno, HttpRequestMessage message)
         {
-            return Request.CreateResponse(HttpStatusCode.OK, 5555.56f);
+            var entities = new CoffeeRoomDbEntities();
+            var shift = entities.Shifts.LastOrDefault(s => s.CoffeeRoomNo == coffeeroomno);
+            if (shift != null)
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, shift.TotalAmount);
+            }
+            return Request.CreateResponse(HttpStatusCode.OK, 0);
         }
 
         [Route("api/payment/getexpenseitems")]
         [HttpGet]
         public async Task<HttpResponseMessage> GetExpenseItems([FromUri]int coffeeroomno, HttpRequestMessage message)
         {
-            var res = new Entity[]
-            {
-                new Entity { Id = 1, Name = "Кофе"},
-                new Entity { Id = 1, Name = "Молоко"},
-                new Entity { Id = 1, Name = "Панини"},
-                new Entity { Id = 1, Name = "test"},
-                new Entity { Id = 1, Name = "test"},
-                new Entity { Id = 1, Name = "test"},
-                new Entity { Id = 1, Name = "test"},
-                new Entity { Id = 1, Name = "test"},
-                new Entity { Id = 1, Name = "test"},
-            };
-            return Request.CreateResponse(HttpStatusCode.OK, res);
+            var entities = new CoffeeRoomDbEntities();
+            var types = entities.ExpenseTypes.Where(t => t.CoffeeRoomNo == coffeeroomno);
+            return Request.CreateResponse(HttpStatusCode.OK, types);
         }
 
 
@@ -53,6 +56,10 @@ namespace CoffeeManager.Api.Controllers
             var request = await message.Content.ReadAsStringAsync();
             var expense = JsonConvert.DeserializeObject<Expense>(request);
 
+            var entities = new CoffeeRoomDbEntities();
+            entities.Expenses.Add(expense);
+            await entities.SaveChangesAsync();
+
             return Request.CreateResponse(HttpStatusCode.OK);
         }
 
@@ -60,7 +67,10 @@ namespace CoffeeManager.Api.Controllers
         [HttpPut]
         public async Task<HttpResponseMessage> Put([FromUri]int coffeeroomno, [FromBody]string typeName)
         {
-
+            var entities = new CoffeeRoomDbEntities();
+            var type = new ExpenseType() {CoffeeRoomNo = coffeeroomno, Name = typeName};
+            entities.ExpenseTypes.Add(type);
+            await entities.SaveChangesAsync();
             return Request.CreateResponse(HttpStatusCode.OK);
         }
 

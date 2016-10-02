@@ -5,21 +5,41 @@ using Acr.UserDialogs;
 using CoffeeManager.Core.Messages;
 using CoffeeManager.Models;
 using MvvmCross.Core.ViewModels;
+using MvvmCross.Plugins.Messenger;
 
 namespace CoffeeManager.Core.ViewModels
 {
     public class ProductViewModel : ViewModelBase
     {
+        private readonly MvxSubscriptionToken token;
         private ICommand _selectItemCommand;
         private ICommand _dismisItemCommand;
         private Product product;
         private bool _isPoliceSale;
+        private decimal _price;
 
-        public bool IsPoliceSale => product.IsPoliceSale;
+        public bool IsPoliceSale
+        {
+            get { return _isPoliceSale; }
+            set
+            {
+                _isPoliceSale = value;
+                Price = IsPoliceSale ? product.PolicePrice : product.Price;
+                RaisePropertyChanged(nameof(IsPoliceSale));
+            }
+        }
 
         public int Id => product.Id;
 
-        public float Price => product.Price;
+        public decimal Price
+        {
+            get { return _price; }
+            set
+            {
+                _price = value;
+                RaisePropertyChanged(nameof(Price));
+            }
+        }
 
         public string Name => product.Name;
 
@@ -32,7 +52,8 @@ namespace CoffeeManager.Core.ViewModels
             this.product = product;
             _selectItemCommand = new MvxAsyncCommand(DoSelectItem);
             _dismisItemCommand = new MvxAsyncCommand(DoDismisItem);
-            RaiseAllPropertiesChanged();
+            token = Subscribe<IsPoliceSaleMessage>((arg) => IsPoliceSale = arg.Data);
+            //RaiseAllPropertiesChanged();
 
         }
 
@@ -50,7 +71,7 @@ namespace CoffeeManager.Core.ViewModels
                             if (confirm)
                             {
                                 await ProductManager.DismisSaleProduct(Id);
-                                Publish(new AmoutChangedMessage(new Tuple<float, bool>(Price, false), this));
+                                Publish(new AmoutChangedMessage(new Tuple<decimal, bool>(Price, false), this));
                                 ShowSuccessMessage($"Отменена продажа товара {Name} !");
                             }
                         }
@@ -83,8 +104,8 @@ namespace CoffeeManager.Core.ViewModels
 
         private async Task Sale()
         {
-            await ProductManager.SaleProduct(Id, IsPoliceSale);
-            Publish(new AmoutChangedMessage(new Tuple<float, bool>(Price, true), this));
+            await ProductManager.SaleProduct(Id, Price, IsPoliceSale);
+            Publish(new AmoutChangedMessage(new Tuple<decimal, bool>(Price, true), this));
             ShowSuccessMessage($"Продан товар {Name} !");
         }
     }

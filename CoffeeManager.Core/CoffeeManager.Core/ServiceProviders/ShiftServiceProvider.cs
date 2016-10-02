@@ -12,13 +12,26 @@ namespace CoffeeManager.Core.ServiceProviders
         private const string Shift = "shift";
         public async Task<int> StartUserShift(int userId)
         {
-            var result = await Post<Entity, Entity>(Shift, new Entity(CoffeeRoomNo) {Id = userId});
+            var result = await Post<Shift, Shift>(Shift, new Shift() {UserId = userId});
             return result.Id;
         }
 
         public async Task EndShift(int shiftId)
         {
-            await Put(Shift, new Entity(CoffeeRoomNo) {Id = shiftId});
+            await Put(Shift, shiftId);
+        }
+
+        public async Task<Shift> GetCurrentShift()
+        {
+            try
+            {
+                return await Get<Shift>($"{Shift}/getCurrentShift");
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            
         }
     }
 }

@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CoffeeManager.Models.Interfaces;
 
-namespace CoffeeManager.Models
+namespace CoffeeManager.Models.Interfaces
 {
-    public class User : Entity, IUser
+    public interface IUser
     {
+        int Id { get; set; }
+        string Name { get; set; }
     }
 }

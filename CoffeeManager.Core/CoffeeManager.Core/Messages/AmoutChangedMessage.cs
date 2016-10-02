@@ -2,9 +2,9 @@
 
 namespace CoffeeManager.Core.Messages
 {
-    public class AmoutChangedMessage : BaseMessage<Tuple<float, bool>>
+    public class AmoutChangedMessage : BaseMessage<Tuple<Decimal, bool>>
     {
-        public AmoutChangedMessage(Tuple<float, bool> data, object sender) : base(data, sender)
+        public AmoutChangedMessage(Tuple<decimal, bool> data, object sender) : base(data, sender)
         {
         }
     }

@@ -11,14 +11,14 @@ namespace CoffeeManager.Core.ServiceProviders
     {
         private const string Payment = "Payment";
 
-        public async Task<float> GetCurrentShiftMoney()
+        public async Task<decimal> GetCurrentShiftMoney()
         {
-            return await Get<float>($"{Payment}/getcurrentshiftmoney", null);
+            return await Get<decimal>($"{Payment}/getcurrentshiftmoney", null);
         }
 
-        public async Task<float> GetEntireMoney()
+        public async Task<decimal> GetEntireMoney()
         {
-            return await Get<float>($"{Payment}/getentiremoney", null);
+            return await Get<decimal>($"{Payment}/getentiremoney", null);
         }
 
         public async Task AddExpense(int shiftId, int expenseId, float amout)

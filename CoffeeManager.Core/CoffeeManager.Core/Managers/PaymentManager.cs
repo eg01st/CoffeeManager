@@ -12,12 +12,12 @@ namespace CoffeeManager.Core.Managers
     {
         private PaymentServiceProvider provider = new PaymentServiceProvider();
 
-        public async Task<float> GetCurrentShiftMoney()
+        public async Task<decimal> GetCurrentShiftMoney()
         {
             return await provider.GetCurrentShiftMoney();
         }
 
-        public async Task<float> GetEntireMoney()
+        public async Task<decimal> GetEntireMoney()
         {
             return await provider.GetEntireMoney();
         }

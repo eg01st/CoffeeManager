@@ -12,40 +12,40 @@ namespace CoffeeManager.Core.Managers
     {
         private ProductProvider provider = new ProductProvider();
 
-        public async Task<Product[]> GetCoffeeProducts(bool isPoliceSale)
+        public async Task<Product[]> GetCoffeeProducts()
         {
-            return await provider.GetProduct(ProductType.Coffee, isPoliceSale);
+            return await provider.GetProduct(ProductType.Coffee);
         }
 
-        public async Task<Product[]> GetTeaProducts(bool isPoliceSale)
+        public async Task<Product[]> GetTeaProducts()
         {
-            return await provider.GetProduct(ProductType.Tea, isPoliceSale);
+            return await provider.GetProduct(ProductType.Tea);
         }
 
-        public async Task<Product[]> GetColdDrinksProducts(bool isPoliceSale)
+        public async Task<Product[]> GetColdDrinksProducts()
         {
-            return await provider.GetProduct(ProductType.ColdDrinks, isPoliceSale);
+            return await provider.GetProduct(ProductType.ColdDrinks);
         }
 
-        public async Task<Product[]> GetIceCreamProducts(bool isPoliceSale)
+        public async Task<Product[]> GetIceCreamProducts()
         {
-            return await provider.GetProduct(ProductType.IceCream, isPoliceSale);
+            return await provider.GetProduct(ProductType.IceCream);
         }
 
-        public async Task<Product[]> GetMealsProducts(bool isPoliceSale)
+        public async Task<Product[]> GetMealsProducts()
         {
-            return await provider.GetProduct(ProductType.Meals, isPoliceSale);
+            return await provider.GetProduct(ProductType.Meals);
         }
 
-        public async Task<Product[]> GetWaterProducts(bool isPoliceSale)
+        public async Task<Product[]> GetWaterProducts()
         {
-            return await provider.GetProduct(ProductType.Water, isPoliceSale);
+            return await provider.GetProduct(ProductType.Water);
         }
 
 
-        public async Task SaleProduct(int id, bool isPoliceSale)
+        public async Task SaleProduct(int id, decimal price, bool isPoliceSale)
         {
-            await provider.SaleProduct(ShiftNo, id, isPoliceSale);
+            await provider.SaleProduct(ShiftNo, id, price, isPoliceSale);
         }
 
 

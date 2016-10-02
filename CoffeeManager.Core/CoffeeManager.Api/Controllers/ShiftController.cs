@@ -13,28 +13,54 @@ namespace CoffeeManager.Api.Controllers
 {
     public class ShiftController : ApiController
     {
-        public async Task<HttpResponseMessage> Post(HttpRequestMessage message)
+        public async Task<HttpResponseMessage> Post([FromUri]int coffeeroomno, HttpRequestMessage message)
         {
             var request = await message.Content.ReadAsStringAsync();
-            var userId = JsonConvert.DeserializeObject<Entity>(request).Id;
+            var userId = JsonConvert.DeserializeObject<int>(request);
+            var shift = new Shift
+            {
+                CoffeeRoomNo = coffeeroomno,
+                IsFinished = false,
+                UserId = userId
+            };
+            var entities = new CoffeeRoomDbEntities();
+            entities.Shifts.Add(shift);
+            await entities.SaveChangesAsync();
 
-            int shiftNo = 123;
-            return Request.CreateResponse<Entity>(HttpStatusCode.OK, new Entity() { Id = shiftNo });
+            return Request.CreateResponse<Shift>(HttpStatusCode.OK, shift);
         }
 
-        public async Task<HttpResponseMessage> Put(HttpRequestMessage message)
+        public async Task<HttpResponseMessage> Put([FromUri]int coffeeroomno, HttpRequestMessage message)
         {
             try
             {
                 var request = await message.Content.ReadAsStringAsync();
-                var shiftId = JsonConvert.DeserializeObject<Entity>(request).Id;
-                // finish shift
-                return new HttpResponseMessage() { StatusCode = HttpStatusCode.OK };
+                var shiftId = JsonConvert.DeserializeObject<int>(request);
+                
+                var enities = new CoffeeRoomDbEntities();
+                var shift = enities.Shifts.FirstOrDefault(s => s.Id == shiftId && s.CoffeeRoomNo == coffeeroomno);
+                if (shift != null)
+                {
+                    shift.IsFinished = true;
+                    await enities.SaveChangesAsync();
+                    return new HttpResponseMessage() { StatusCode = HttpStatusCode.OK };
+                }               
+                return new HttpResponseMessage() { StatusCode = HttpStatusCode.BadRequest };
             }
             catch (Exception ex)
             {
                 return new HttpResponseMessage() { StatusCode = HttpStatusCode.BadRequest };
             }
         }
+
+        [Route("api/shift/getCurrentShift")]
+        [HttpGet]
+        public async Task<HttpResponseMessage> GetCurrentShift([FromUri]int coffeeroomno, HttpRequestMessage message)
+        {
+            var entities = new CoffeeRoomDbEntities();
+            var shift = entities.Shifts.FirstOrDefault(s => s.CoffeeRoomNo == coffeeroomno && s.IsFinished.Value);
+            return Request.CreateResponse(HttpStatusCode.OK, shift);
+        }
+
     }
 }

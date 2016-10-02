@@ -26,23 +26,17 @@ namespace CoffeeManager.Core.ViewModels
             }
         }
 
-        protected abstract Task<Product[]> GetProducts(bool isPoliceSale);
+        protected abstract Task<Product[]> GetProducts();
 
-        public ProductBaseViewModel()
-        {
-            token = Subscribe<IsPoliceSaleMessage>(
-               async (arg) =>  await GetItems(arg.Data)
-            );
-        }
 
         public async void Init()
         {
-            await GetItems(false);
+            await GetItems();
         }
 
-        private async Task GetItems(bool isPoliceSale)
+        private async Task GetItems()
         {
-            var items = await GetProducts(isPoliceSale);
+            var items = await GetProducts();
             Items = items.Select(s => new ProductViewModel(s)).ToList();
         }
     }

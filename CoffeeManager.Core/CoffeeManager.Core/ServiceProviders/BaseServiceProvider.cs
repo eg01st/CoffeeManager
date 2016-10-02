@@ -11,7 +11,7 @@ namespace CoffeeManager.Core.ServiceProviders
     public class BaseServiceProvider
     {
         protected readonly int CoffeeRoomNo = 1; //Take from config later
-        private readonly string _apiUrl = "http://192.168.8.101:8080/api/";  //"http://169.254.80.80:8080/api/"; //Todo: init from configfile
+        private readonly string _apiUrl = "http://192.168.8.101:8082/api/";  //"http://169.254.80.80:8080/api/"; //Todo: init from configfile
 
         protected async Task<T> Get<T>(string path, Dictionary<string, string> param = null)
         {

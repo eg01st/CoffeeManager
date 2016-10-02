@@ -23,8 +23,8 @@ namespace CoffeeManager.Core.ViewModels
         private ICommand _showExpenseCommand;
         private ICommand _enablePoliceSaleCommand;
 
-        private float _currentShiftMoney;
-        private float _entireMoney;
+        private decimal _currentShiftMoney;
+        private decimal _entireMoney;
         private bool _policeSaleEnabled;
 
         public string CurrentShiftMoney
@@ -32,7 +32,7 @@ namespace CoffeeManager.Core.ViewModels
             get { return _currentShiftMoney.ToString(); }
             set
             {
-                _currentShiftMoney = float.Parse(value);
+                _currentShiftMoney = decimal.Parse(value);
                 RaisePropertyChanged(nameof(CurrentShiftMoney));
             }
         }
@@ -42,7 +42,7 @@ namespace CoffeeManager.Core.ViewModels
             get { return _entireMoney.ToString(); }
             set
             {
-                _entireMoney = float.Parse(value);
+                _entireMoney = decimal.Parse(value);
                 RaisePropertyChanged(nameof(EntireMoney));
             }
         }
