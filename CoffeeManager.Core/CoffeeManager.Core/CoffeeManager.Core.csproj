@@ -67,6 +67,7 @@
     <Compile Include="ViewModels\MealsViewModel.cs" />
     <Compile Include="ViewModels\ProductBaseViewModel.cs" />
     <Compile Include="ViewModels\ProductViewModel.cs" />
+    <Compile Include="ViewModels\SaleViewModel.cs" />
     <Compile Include="ViewModels\TeaViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="ViewModels\WaterViewModel.cs" />

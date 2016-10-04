@@ -4,7 +4,20 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="CoffeeRoomModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="CoffeeRoomModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CupSuply">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="110" Type="int" />
+          <Property Name="170" Type="int" />
+          <Property Name="250" Type="int" />
+          <Property Name="400" Type="int" />
+          <Property Name="Plastic" Type="int" />
+          <Property Name="CoffeeRoomNo" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="CupType">
           <Key>
             <PropertyRef Name="Id" />
@@ -41,6 +54,7 @@
           <Property Name="Price" Type="money" Nullable="false" />
           <Property Name="PolicePrice" Type="money" Nullable="false" />
           <Property Name="CoffeeRoomNo" Type="int" />
+          <Property Name="CupType" Type="int" />
         </EntityType>
         <EntityType Name="ProductType">
           <Key>
@@ -55,12 +69,12 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Amount" Type="money" />
-          <Property Name="ShiftId" Type="int" />
-          <Property Name="Product" Type="int" />
+          <Property Name="Amount" Type="money" Nullable="false" />
+          <Property Name="ShiftId" Type="int" Nullable="false" />
+          <Property Name="Product" Type="int" Nullable="false" />
           <Property Name="IsPoliceSale" Type="bit" />
-          <Property Name="Time" Type="datetime" />
-          <Property Name="CoffeeRoomNo" Type="int" />
+          <Property Name="Time" Type="datetime" Nullable="false" />
+          <Property Name="CoffeeRoomNo" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Shifts">
           <Key>
@@ -76,6 +90,19 @@
           <Property Name="CoffeeRoomNo" Type="int" />
           <Property Name="TotalExprenses" Type="money" Nullable="false" />
         </EntityType>
+        <EntityType Name="UsedCupsPerShift">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="ShiftId" Type="int" Nullable="false" />
+          <Property Name="110" Type="int" Nullable="false" />
+          <Property Name="170" Type="int" Nullable="false" />
+          <Property Name="250" Type="int" Nullable="false" />
+          <Property Name="400" Type="int" Nullable="false" />
+          <Property Name="Plastic" Type="int" Nullable="false" />
+          <Property Name="CoffeeRoomNo" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Users">
           <Key>
             <PropertyRef Name="Id" />
@@ -84,7 +111,17 @@
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
           <Property Name="CoffeeRoomNo" Type="int" />
         </EntityType>
-        <Association Name="FK__Expense__Expense__02084FDA">
+        <EntityType Name="UtilizedCup">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="ShiftId" Type="int" Nullable="false" />
+          <Property Name="CupTypeId" Type="int" Nullable="false" />
+          <Property Name="DateTime" Type="datetime" />
+          <Property Name="CoffeeRoomNo" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Expense__Expense__37A5467C">
           <End Role="ExpenseType" Type="Self.ExpenseType" Multiplicity="0..1" />
           <End Role="Expense" Type="Self.Expense" Multiplicity="*" />
           <ReferentialConstraint>
@@ -96,7 +133,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Expense__ShiftId__30F848ED">
+        <Association Name="FK__Expense__ShiftId__38996AB5">
           <End Role="Shifts" Type="Self.Shifts" Multiplicity="0..1" />
           <End Role="Expense" Type="Self.Expense" Multiplicity="*" />
           <ReferentialConstraint>
@@ -108,7 +145,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Product__Product__34C8D9D1">
+        <Association Name="FK__Product__CupType__32E0915F">
+          <End Role="CupType" Type="Self.CupType" Multiplicity="0..1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CupType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="CupType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Product__Product__33D4B598">
           <End Role="ProductType" Type="Self.ProductType" Multiplicity="0..1" />
           <End Role="Product" Type="Self.Product" Multiplicity="*" />
           <ReferentialConstraint>
@@ -120,8 +169,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Sale__Product__38996AB5">
-          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+        <Association Name="FK__Sale__Product__3B75D760">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
           <End Role="Sale" Type="Self.Sale" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Product">
@@ -132,8 +181,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Sale__ShiftId__37A5467C">
-          <End Role="Shifts" Type="Self.Shifts" Multiplicity="0..1" />
+        <Association Name="FK__Sale__ShiftId__3C69FB99">
+          <End Role="Shifts" Type="Self.Shifts" Multiplicity="1" />
           <End Role="Sale" Type="Self.Sale" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Shifts">
@@ -144,7 +193,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Shifts__UserId__2E1BDC42">
+        <Association Name="FK__Shifts__UserId__22AA2996">
           <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
           <End Role="Shifts" Type="Self.Shifts" Multiplicity="*" />
           <ReferentialConstraint>
@@ -156,7 +205,44 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__UsedCupsP__Shift__2E1BDC42">
+          <End Role="Shifts" Type="Self.Shifts" Multiplicity="1" />
+          <End Role="UsedCupsPerShift" Type="Self.UsedCupsPerShift" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shifts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsedCupsPerShift">
+              <PropertyRef Name="ShiftId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UtilizedC__CupTy__267ABA7A">
+          <End Role="CupType" Type="Self.CupType" Multiplicity="1" />
+          <End Role="UtilizedCup" Type="Self.UtilizedCup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CupType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UtilizedCup">
+              <PropertyRef Name="CupTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UtilizedC__Shift__25869641">
+          <End Role="Shifts" Type="Self.Shifts" Multiplicity="1" />
+          <End Role="UtilizedCup" Type="Self.UtilizedCup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shifts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UtilizedCup">
+              <PropertyRef Name="ShiftId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="CoffeeRoomModelStoreContainer">
+          <EntitySet Name="CupSuply" EntityType="Self.CupSuply" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CupType" EntityType="Self.CupType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Expense" EntityType="Self.Expense" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ExpenseType" EntityType="Self.ExpenseType" Schema="dbo" store:Type="Tables" />
@@ -164,36 +250,68 @@
           <EntitySet Name="ProductType" EntityType="Self.ProductType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sale" EntityType="Self.Sale" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Shifts" EntityType="Self.Shifts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UsedCupsPerShift" EntityType="Self.UsedCupsPerShift" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Expense__Expense__02084FDA" Association="Self.FK__Expense__Expense__02084FDA">
+          <EntitySet Name="UtilizedCup" EntityType="Self.UtilizedCup" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Expense__Expense__37A5467C" Association="Self.FK__Expense__Expense__37A5467C">
             <End Role="ExpenseType" EntitySet="ExpenseType" />
             <End Role="Expense" EntitySet="Expense" />
           </AssociationSet>
-          <AssociationSet Name="FK__Expense__ShiftId__30F848ED" Association="Self.FK__Expense__ShiftId__30F848ED">
+          <AssociationSet Name="FK__Expense__ShiftId__38996AB5" Association="Self.FK__Expense__ShiftId__38996AB5">
             <End Role="Shifts" EntitySet="Shifts" />
             <End Role="Expense" EntitySet="Expense" />
           </AssociationSet>
-          <AssociationSet Name="FK__Product__Product__34C8D9D1" Association="Self.FK__Product__Product__34C8D9D1">
+          <AssociationSet Name="FK__Product__CupType__32E0915F" Association="Self.FK__Product__CupType__32E0915F">
+            <End Role="CupType" EntitySet="CupType" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Product__Product__33D4B598" Association="Self.FK__Product__Product__33D4B598">
             <End Role="ProductType" EntitySet="ProductType" />
             <End Role="Product" EntitySet="Product" />
           </AssociationSet>
-          <AssociationSet Name="FK__Sale__Product__38996AB5" Association="Self.FK__Sale__Product__38996AB5">
+          <AssociationSet Name="FK__Sale__Product__3B75D760" Association="Self.FK__Sale__Product__3B75D760">
             <End Role="Product" EntitySet="Product" />
             <End Role="Sale" EntitySet="Sale" />
           </AssociationSet>
-          <AssociationSet Name="FK__Sale__ShiftId__37A5467C" Association="Self.FK__Sale__ShiftId__37A5467C">
+          <AssociationSet Name="FK__Sale__ShiftId__3C69FB99" Association="Self.FK__Sale__ShiftId__3C69FB99">
             <End Role="Shifts" EntitySet="Shifts" />
             <End Role="Sale" EntitySet="Sale" />
           </AssociationSet>
-          <AssociationSet Name="FK__Shifts__UserId__2E1BDC42" Association="Self.FK__Shifts__UserId__2E1BDC42">
+          <AssociationSet Name="FK__Shifts__UserId__22AA2996" Association="Self.FK__Shifts__UserId__22AA2996">
             <End Role="Users" EntitySet="Users" />
             <End Role="Shifts" EntitySet="Shifts" />
           </AssociationSet>
+          <AssociationSet Name="FK__UsedCupsP__Shift__2E1BDC42" Association="Self.FK__UsedCupsP__Shift__2E1BDC42">
+            <End Role="Shifts" EntitySet="Shifts" />
+            <End Role="UsedCupsPerShift" EntitySet="UsedCupsPerShift" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UtilizedC__CupTy__267ABA7A" Association="Self.FK__UtilizedC__CupTy__267ABA7A">
+            <End Role="CupType" EntitySet="CupType" />
+            <End Role="UtilizedCup" EntitySet="UtilizedCup" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UtilizedC__Shift__25869641" Association="Self.FK__UtilizedC__Shift__25869641">
+            <End Role="Shifts" EntitySet="Shifts" />
+            <End Role="UtilizedCup" EntitySet="UtilizedCup" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CoffeeRoomModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CupSuply">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="C110" Type="Int32" />
+          <Property Name="C170" Type="Int32" />
+          <Property Name="C250" Type="Int32" />
+          <Property Name="C400" Type="Int32" />
+          <Property Name="Plastic" Type="Int32" />
+          <Property Name="CoffeeRoomNo" Type="Int32" Nullable="false" />
+        </EntityType>
         <EntityType Name="CupType">
           <Key>
             <PropertyRef Name="Id" />
@@ -201,6 +319,8 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CoffeeRoomNo" Type="Int32" />
+          <NavigationProperty Name="Products" Relationship="Self.FK__Product__CupType__32E0915F" FromRole="CupType" ToRole="Product" />
+          <NavigationProperty Name="UtilizedCups" Relationship="Self.FK__UtilizedC__CupTy__267ABA7A" FromRole="CupType" ToRole="UtilizedCup" />
         </EntityType>
         <EntityType Name="Expense">
           <Key>
@@ -210,9 +330,9 @@
           <Property Name="Amount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="ShiftId" Type="Int32" />
           <Property Name="ExpenseType" Type="Int32" />
-          <NavigationProperty Name="ExpenseType1" Relationship="Self.FK__Expense__Expense__31EC6D26" FromRole="Expense" ToRole="ExpenseType" />
-          <NavigationProperty Name="Shift" Relationship="Self.FK__Expense__ShiftId__30F848ED" FromRole="Expense" ToRole="Shifts" />
           <Property Name="CoffeeRoomNo" Type="Int32" />
+          <NavigationProperty Name="ExpenseType1" Relationship="Self.FK__Expense__Expense__37A5467C" FromRole="Expense" ToRole="ExpenseType" />
+          <NavigationProperty Name="Shift" Relationship="Self.FK__Expense__ShiftId__38996AB5" FromRole="Expense" ToRole="Shifts" />
         </EntityType>
         <EntityType Name="ExpenseType">
           <Key>
@@ -220,8 +340,8 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Expenses" Relationship="Self.FK__Expense__Expense__31EC6D26" FromRole="ExpenseType" ToRole="Expense" />
           <Property Name="CoffeeRoomNo" Type="Int32" />
+          <NavigationProperty Name="Expenses" Relationship="Self.FK__Expense__Expense__37A5467C" FromRole="ExpenseType" ToRole="Expense" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
@@ -232,9 +352,11 @@
           <Property Name="ProductType" Type="Int32" />
           <Property Name="Price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="PolicePrice" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
-          <NavigationProperty Name="ProductType1" Relationship="Self.FK__Product__Product__34C8D9D1" FromRole="Product" ToRole="ProductType" />
-          <NavigationProperty Name="Sales" Relationship="Self.FK__Sale__Product__38996AB5" FromRole="Product" ToRole="Sale" />
           <Property Name="CoffeeRoomNo" Type="Int32" />
+          <Property Name="CupType" Type="Int32" />
+          <NavigationProperty Name="CupType1" Relationship="Self.FK__Product__CupType__32E0915F" FromRole="Product" ToRole="CupType" />
+          <NavigationProperty Name="ProductType1" Relationship="Self.FK__Product__Product__33D4B598" FromRole="Product" ToRole="ProductType" />
+          <NavigationProperty Name="Sales" Relationship="Self.FK__Sale__Product__3B75D760" FromRole="Product" ToRole="Sale" />
         </EntityType>
         <EntityType Name="ProductType">
           <Key>
@@ -242,22 +364,22 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Products" Relationship="Self.FK__Product__Product__34C8D9D1" FromRole="ProductType" ToRole="Product" />
           <Property Name="CoffeeRoomNo" Type="Int32" />
+          <NavigationProperty Name="Products" Relationship="Self.FK__Product__Product__33D4B598" FromRole="ProductType" ToRole="Product" />
         </EntityType>
         <EntityType Name="Sale">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Amount" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="ShiftId" Type="Int32" />
-          <Property Name="Product" Type="Int32" />
+          <Property Name="Amount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="ShiftId" Type="Int32" Nullable="false" />
+          <Property Name="Product" Type="Int32" Nullable="false" />
           <Property Name="IsPoliceSale" Type="Boolean" />
-          <Property Name="Time" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Product1" Relationship="Self.FK__Sale__Product__38996AB5" FromRole="Sale" ToRole="Product" />
-          <NavigationProperty Name="Shift" Relationship="Self.FK__Sale__ShiftId__37A5467C" FromRole="Sale" ToRole="Shifts" />
-          <Property Name="CoffeeRoomNo" Type="Int32" />
+          <Property Name="Time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CoffeeRoomNo" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Product1" Relationship="Self.FK__Sale__Product__3B75D760" FromRole="Sale" ToRole="Product" />
+          <NavigationProperty Name="Shift" Relationship="Self.FK__Sale__ShiftId__3C69FB99" FromRole="Sale" ToRole="Shifts" />
         </EntityType>
         <EntityType Name="Shift">
           <Key>
@@ -267,14 +389,30 @@
           <Property Name="UserId" Type="Int32" />
           <Property Name="Date" Type="DateTime" Precision="3" />
           <Property Name="IsFinished" Type="Boolean" />
-          <NavigationProperty Name="Expenses" Relationship="Self.FK__Expense__ShiftId__30F848ED" FromRole="Shifts" ToRole="Expense" />
-          <NavigationProperty Name="Sales" Relationship="Self.FK__Sale__ShiftId__37A5467C" FromRole="Shifts" ToRole="Sale" />
-          <NavigationProperty Name="User" Relationship="Self.FK__Shifts__UserId__2E1BDC42" FromRole="Shifts" ToRole="Users" />
           <Property Name="StartAmount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="CurrentAmount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="TotalAmount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="CoffeeRoomNo" Type="Int32" />
-          <Property Name="TotalExprenses" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="TotalExprenses" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <NavigationProperty Name="Expenses" Relationship="Self.FK__Expense__ShiftId__38996AB5" FromRole="Shifts" ToRole="Expense" />
+          <NavigationProperty Name="Sales" Relationship="Self.FK__Sale__ShiftId__3C69FB99" FromRole="Shifts" ToRole="Sale" />
+          <NavigationProperty Name="User" Relationship="Self.FK__Shifts__UserId__22AA2996" FromRole="Shifts" ToRole="Users" />
+          <NavigationProperty Name="UsedCupsPerShifts" Relationship="Self.FK__UsedCupsP__Shift__2E1BDC42" FromRole="Shifts" ToRole="UsedCupsPerShift" />
+          <NavigationProperty Name="UtilizedCups" Relationship="Self.FK__UtilizedC__Shift__25869641" FromRole="Shifts" ToRole="UtilizedCup" />
+        </EntityType>
+        <EntityType Name="UsedCupsPerShift">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="ShiftId" Type="Int32" Nullable="false" />
+          <Property Name="C110" Type="Int32" Nullable="false" />
+          <Property Name="C170" Type="Int32" Nullable="false" />
+          <Property Name="C250" Type="Int32" Nullable="false" />
+          <Property Name="C400" Type="Int32" Nullable="false" />
+          <Property Name="Plastic" Type="Int32" Nullable="false" />
+          <Property Name="CoffeeRoomNo" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Shift" Relationship="Self.FK__UsedCupsP__Shift__2E1BDC42" FromRole="UsedCupsPerShift" ToRole="Shifts" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -282,10 +420,46 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Shifts" Relationship="Self.FK__Shifts__UserId__2E1BDC42" FromRole="Users" ToRole="Shifts" />
           <Property Name="CoffeeRoomNo" Type="Int32" />
+          <NavigationProperty Name="Shifts" Relationship="Self.FK__Shifts__UserId__22AA2996" FromRole="Users" ToRole="Shifts" />
         </EntityType>
-        <Association Name="FK__Expense__Expense__31EC6D26">
+        <EntityType Name="UtilizedCup">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="ShiftId" Type="Int32" Nullable="false" />
+          <Property Name="CupTypeId" Type="Int32" Nullable="false" />
+          <Property Name="DateTime" Type="DateTime" Precision="3" />
+          <Property Name="CoffeeRoomNo" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CupType" Relationship="Self.FK__UtilizedC__CupTy__267ABA7A" FromRole="UtilizedCup" ToRole="CupType" />
+          <NavigationProperty Name="Shift" Relationship="Self.FK__UtilizedC__Shift__25869641" FromRole="UtilizedCup" ToRole="Shifts" />
+        </EntityType>
+        <Association Name="FK__Product__CupType__32E0915F">
+          <End Role="CupType" Type="Self.CupType" Multiplicity="0..1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CupType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="CupType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UtilizedC__CupTy__267ABA7A">
+          <End Role="CupType" Type="Self.CupType" Multiplicity="1" />
+          <End Role="UtilizedCup" Type="Self.UtilizedCup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CupType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UtilizedCup">
+              <PropertyRef Name="CupTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Expense__Expense__37A5467C">
           <End Role="ExpenseType" Type="Self.ExpenseType" Multiplicity="0..1" />
           <End Role="Expense" Type="Self.Expense" Multiplicity="*" />
           <ReferentialConstraint>
@@ -297,7 +471,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Expense__ShiftId__30F848ED">
+        <Association Name="FK__Expense__ShiftId__38996AB5">
           <End Role="Shifts" Type="Self.Shift" Multiplicity="0..1" />
           <End Role="Expense" Type="Self.Expense" Multiplicity="*" />
           <ReferentialConstraint>
@@ -309,7 +483,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Product__Product__34C8D9D1">
+        <Association Name="FK__Product__Product__33D4B598">
           <End Role="ProductType" Type="Self.ProductType" Multiplicity="0..1" />
           <End Role="Product" Type="Self.Product" Multiplicity="*" />
           <ReferentialConstraint>
@@ -321,8 +495,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Sale__Product__38996AB5">
-          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+        <Association Name="FK__Sale__Product__3B75D760">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
           <End Role="Sale" Type="Self.Sale" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Product">
@@ -333,8 +507,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Sale__ShiftId__37A5467C">
-          <End Role="Shifts" Type="Self.Shift" Multiplicity="0..1" />
+        <Association Name="FK__Sale__ShiftId__3C69FB99">
+          <End Role="Shifts" Type="Self.Shift" Multiplicity="1" />
           <End Role="Sale" Type="Self.Sale" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Shifts">
@@ -345,7 +519,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Shifts__UserId__2E1BDC42">
+        <Association Name="FK__Shifts__UserId__22AA2996">
           <End Role="Users" Type="Self.User" Multiplicity="0..1" />
           <End Role="Shifts" Type="Self.Shift" Multiplicity="*" />
           <ReferentialConstraint>
@@ -357,7 +531,32 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="CoffeeRoomDbEntities" annotation:LazyLoadingEnabled="true">
+        <Association Name="FK__UsedCupsP__Shift__2E1BDC42">
+          <End Role="Shifts" Type="Self.Shift" Multiplicity="1" />
+          <End Role="UsedCupsPerShift" Type="Self.UsedCupsPerShift" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shifts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsedCupsPerShift">
+              <PropertyRef Name="ShiftId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UtilizedC__Shift__25869641">
+          <End Role="Shifts" Type="Self.Shift" Multiplicity="1" />
+          <End Role="UtilizedCup" Type="Self.UtilizedCup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shifts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UtilizedCup">
+              <PropertyRef Name="ShiftId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CoffeeRoomEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CupSuplies" EntityType="Self.CupSuply" />
           <EntitySet Name="CupTypes" EntityType="Self.CupType" />
           <EntitySet Name="Expenses" EntityType="Self.Expense" />
           <EntitySet Name="ExpenseTypes" EntityType="Self.ExpenseType" />
@@ -365,30 +564,48 @@
           <EntitySet Name="ProductTypes" EntityType="Self.ProductType" />
           <EntitySet Name="Sales" EntityType="Self.Sale" />
           <EntitySet Name="Shifts" EntityType="Self.Shift" />
+          <EntitySet Name="UsedCupsPerShifts" EntityType="Self.UsedCupsPerShift" />
           <EntitySet Name="Users" EntityType="Self.User" />
-          <AssociationSet Name="FK__Expense__Expense__31EC6D26" Association="Self.FK__Expense__Expense__31EC6D26">
+          <EntitySet Name="UtilizedCups" EntityType="Self.UtilizedCup" />
+          <AssociationSet Name="FK__Product__CupType__32E0915F" Association="Self.FK__Product__CupType__32E0915F">
+            <End Role="CupType" EntitySet="CupTypes" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UtilizedC__CupTy__267ABA7A" Association="Self.FK__UtilizedC__CupTy__267ABA7A">
+            <End Role="CupType" EntitySet="CupTypes" />
+            <End Role="UtilizedCup" EntitySet="UtilizedCups" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Expense__Expense__37A5467C" Association="Self.FK__Expense__Expense__37A5467C">
             <End Role="ExpenseType" EntitySet="ExpenseTypes" />
             <End Role="Expense" EntitySet="Expenses" />
           </AssociationSet>
-          <AssociationSet Name="FK__Expense__ShiftId__30F848ED" Association="Self.FK__Expense__ShiftId__30F848ED">
+          <AssociationSet Name="FK__Expense__ShiftId__38996AB5" Association="Self.FK__Expense__ShiftId__38996AB5">
             <End Role="Shifts" EntitySet="Shifts" />
             <End Role="Expense" EntitySet="Expenses" />
           </AssociationSet>
-          <AssociationSet Name="FK__Product__Product__34C8D9D1" Association="Self.FK__Product__Product__34C8D9D1">
+          <AssociationSet Name="FK__Product__Product__33D4B598" Association="Self.FK__Product__Product__33D4B598">
             <End Role="ProductType" EntitySet="ProductTypes" />
             <End Role="Product" EntitySet="Products" />
           </AssociationSet>
-          <AssociationSet Name="FK__Sale__Product__38996AB5" Association="Self.FK__Sale__Product__38996AB5">
+          <AssociationSet Name="FK__Sale__Product__3B75D760" Association="Self.FK__Sale__Product__3B75D760">
             <End Role="Product" EntitySet="Products" />
             <End Role="Sale" EntitySet="Sales" />
           </AssociationSet>
-          <AssociationSet Name="FK__Sale__ShiftId__37A5467C" Association="Self.FK__Sale__ShiftId__37A5467C">
+          <AssociationSet Name="FK__Sale__ShiftId__3C69FB99" Association="Self.FK__Sale__ShiftId__3C69FB99">
             <End Role="Shifts" EntitySet="Shifts" />
             <End Role="Sale" EntitySet="Sales" />
           </AssociationSet>
-          <AssociationSet Name="FK__Shifts__UserId__2E1BDC42" Association="Self.FK__Shifts__UserId__2E1BDC42">
+          <AssociationSet Name="FK__Shifts__UserId__22AA2996" Association="Self.FK__Shifts__UserId__22AA2996">
             <End Role="Users" EntitySet="Users" />
             <End Role="Shifts" EntitySet="Shifts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UsedCupsP__Shift__2E1BDC42" Association="Self.FK__UsedCupsP__Shift__2E1BDC42">
+            <End Role="Shifts" EntitySet="Shifts" />
+            <End Role="UsedCupsPerShift" EntitySet="UsedCupsPerShifts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UtilizedC__Shift__25869641" Association="Self.FK__UtilizedC__Shift__25869641">
+            <End Role="Shifts" EntitySet="Shifts" />
+            <End Role="UtilizedCup" EntitySet="UtilizedCups" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -396,91 +613,131 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="CoffeeRoomModelStoreContainer" CdmEntityContainer="CoffeeRoomDbEntities">
+        <EntityContainerMapping StorageEntityContainer="CoffeeRoomModelStoreContainer" CdmEntityContainer="CoffeeRoomEntities">
+          <EntitySetMapping Name="CupSuplies">
+            <EntityTypeMapping TypeName="CoffeeRoomModel.CupSuply">
+              <MappingFragment StoreEntitySet="CupSuply">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="C110" ColumnName="110" />
+                <ScalarProperty Name="C170" ColumnName="170" />
+                <ScalarProperty Name="C250" ColumnName="250" />
+                <ScalarProperty Name="C400" ColumnName="400" />
+                <ScalarProperty Name="Plastic" ColumnName="Plastic" />
+                <ScalarProperty Name="CoffeeRoomNo" ColumnName="CoffeeRoomNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="CupTypes">
             <EntityTypeMapping TypeName="CoffeeRoomModel.CupType">
               <MappingFragment StoreEntitySet="CupType">
-                <ScalarProperty Name="CoffeeRoomNo" ColumnName="CoffeeRoomNo" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CoffeeRoomNo" ColumnName="CoffeeRoomNo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Expenses">
             <EntityTypeMapping TypeName="CoffeeRoomModel.Expense">
               <MappingFragment StoreEntitySet="Expense">
-                <ScalarProperty Name="CoffeeRoomNo" ColumnName="CoffeeRoomNo" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Amount" ColumnName="Amount" />
                 <ScalarProperty Name="ShiftId" ColumnName="ShiftId" />
                 <ScalarProperty Name="ExpenseType" ColumnName="ExpenseType" />
+                <ScalarProperty Name="CoffeeRoomNo" ColumnName="CoffeeRoomNo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ExpenseTypes">
             <EntityTypeMapping TypeName="CoffeeRoomModel.ExpenseType">
               <MappingFragment StoreEntitySet="ExpenseType">
-                <ScalarProperty Name="CoffeeRoomNo" ColumnName="CoffeeRoomNo" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CoffeeRoomNo" ColumnName="CoffeeRoomNo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Products">
             <EntityTypeMapping TypeName="CoffeeRoomModel.Product">
               <MappingFragment StoreEntitySet="Product">
-                <ScalarProperty Name="CoffeeRoomNo" ColumnName="CoffeeRoomNo" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ProductType" ColumnName="ProductType" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="PolicePrice" ColumnName="PolicePrice" />
+                <ScalarProperty Name="CoffeeRoomNo" ColumnName="CoffeeRoomNo" />
+                <ScalarProperty Name="CupType" ColumnName="CupType" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ProductTypes">
             <EntityTypeMapping TypeName="CoffeeRoomModel.ProductType">
               <MappingFragment StoreEntitySet="ProductType">
-                <ScalarProperty Name="CoffeeRoomNo" ColumnName="CoffeeRoomNo" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CoffeeRoomNo" ColumnName="CoffeeRoomNo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Sales">
             <EntityTypeMapping TypeName="CoffeeRoomModel.Sale">
               <MappingFragment StoreEntitySet="Sale">
-                <ScalarProperty Name="CoffeeRoomNo" ColumnName="CoffeeRoomNo" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Amount" ColumnName="Amount" />
                 <ScalarProperty Name="ShiftId" ColumnName="ShiftId" />
                 <ScalarProperty Name="Product" ColumnName="Product" />
                 <ScalarProperty Name="IsPoliceSale" ColumnName="IsPoliceSale" />
                 <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="CoffeeRoomNo" ColumnName="CoffeeRoomNo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Shifts">
             <EntityTypeMapping TypeName="CoffeeRoomModel.Shift">
               <MappingFragment StoreEntitySet="Shifts">
-                <ScalarProperty Name="TotalExprenses" ColumnName="TotalExprenses" />
-                <ScalarProperty Name="CoffeeRoomNo" ColumnName="CoffeeRoomNo" />
-                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
-                <ScalarProperty Name="CurrentAmount" ColumnName="CurrentAmount" />
-                <ScalarProperty Name="StartAmount" ColumnName="StartAmount" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="IsFinished" ColumnName="IsFinished" />
+                <ScalarProperty Name="StartAmount" ColumnName="StartAmount" />
+                <ScalarProperty Name="CurrentAmount" ColumnName="CurrentAmount" />
+                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+                <ScalarProperty Name="CoffeeRoomNo" ColumnName="CoffeeRoomNo" />
+                <ScalarProperty Name="TotalExprenses" ColumnName="TotalExprenses" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UsedCupsPerShifts">
+            <EntityTypeMapping TypeName="CoffeeRoomModel.UsedCupsPerShift">
+              <MappingFragment StoreEntitySet="UsedCupsPerShift">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ShiftId" ColumnName="ShiftId" />
+                <ScalarProperty Name="C110" ColumnName="110" />
+                <ScalarProperty Name="C170" ColumnName="170" />
+                <ScalarProperty Name="C250" ColumnName="250" />
+                <ScalarProperty Name="C400" ColumnName="400" />
+                <ScalarProperty Name="Plastic" ColumnName="Plastic" />
+                <ScalarProperty Name="CoffeeRoomNo" ColumnName="CoffeeRoomNo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="CoffeeRoomModel.User">
               <MappingFragment StoreEntitySet="Users">
-                <ScalarProperty Name="CoffeeRoomNo" ColumnName="CoffeeRoomNo" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CoffeeRoomNo" ColumnName="CoffeeRoomNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UtilizedCups">
+            <EntityTypeMapping TypeName="CoffeeRoomModel.UtilizedCup">
+              <MappingFragment StoreEntitySet="UtilizedCup">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ShiftId" ColumnName="ShiftId" />
+                <ScalarProperty Name="CupTypeId" ColumnName="CupTypeId" />
+                <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+                <ScalarProperty Name="CoffeeRoomNo" ColumnName="CoffeeRoomNo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

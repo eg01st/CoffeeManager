@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 using CoffeeManager.Models;
-using CoffeeManager.Models.Interfaces;
+
 
 namespace CoffeeManager.Core.ServiceProviders
 {
@@ -8,14 +8,14 @@ namespace CoffeeManager.Core.ServiceProviders
     {
         private const string Users = "Users";
 
-        public async Task<IUser[]> GetUsers()
+        public async Task<User[]> GetUsers()
         {
-            return await Get<IUser[]>(Users);
+            return await Get<User[]>(Users);
         }
 
-        public async Task<IUser> AddUser(string userName)
+        public async Task<User> AddUser(string userName)
         {
-           return await Post<IUser, IUser>(Users, new User() {CofferRoomNo = CoffeeRoomNo, Name = userName});
+           return await Post<User, User>(Users, new User() {CoffeeRoomNo = CoffeeRoomNo, Name = userName});
         }
 
         public async Task DeleteUser(int userId)

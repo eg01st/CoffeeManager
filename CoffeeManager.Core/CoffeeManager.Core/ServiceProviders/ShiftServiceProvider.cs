@@ -12,7 +12,7 @@ namespace CoffeeManager.Core.ServiceProviders
         private const string Shift = "shift";
         public async Task<int> StartUserShift(int userId)
         {
-            var result = await Post<Shift, Shift>(Shift, new Shift() {UserId = userId});
+            var result = await Post<Shift, object>(Shift, null, new Dictionary<string, string>() { {nameof(userId), userId.ToString()} });
             return result.Id;
         }
 
@@ -32,6 +32,11 @@ namespace CoffeeManager.Core.ServiceProviders
                 return null;
             }
             
+        }
+
+        public async Task<Sale[]> GetCurrentShiftSales()
+        {
+            return await Get<Sale[]>($"{Shift}/getShiftSales");
         }
     }
 }

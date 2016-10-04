@@ -40,7 +40,6 @@
     <Compile Include="Cup.cs" />
     <Compile Include="Entity.cs" />
     <Compile Include="Expense.cs" />
-    <Compile Include="Interfaces\IUser.cs" />
     <Compile Include="Product.cs" />
     <Compile Include="ProductType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

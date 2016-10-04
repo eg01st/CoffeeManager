@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -11,7 +12,7 @@ namespace CoffeeManager.Core.ServiceProviders
     public class BaseServiceProvider
     {
         protected readonly int CoffeeRoomNo = 1; //Take from config later
-        private readonly string _apiUrl = "http://192.168.8.101:8082/api/";  //"http://169.254.80.80:8080/api/"; //Todo: init from configfile
+        private readonly string _apiUrl = "http://192.168.8.50:8080/api/";  //"http://169.254.80.80:8080/api/"; //Todo: init from configfile
 
         protected async Task<T> Get<T>(string path, Dictionary<string, string> param = null)
         {
@@ -27,6 +28,7 @@ namespace CoffeeManager.Core.ServiceProviders
             }
             var response = await client.GetAsync(url);
             string responseString = await response.Content.ReadAsStringAsync();
+            Debug.WriteLine(responseString);
             var result = JsonConvert.DeserializeObject<T>(responseString);
             return result;
         }

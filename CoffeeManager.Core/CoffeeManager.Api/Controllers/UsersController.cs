@@ -4,7 +4,6 @@ using System.Net.Http;
 using System.Net.Http.Formatting;
 using System.Threading.Tasks;
 using System.Web.Http;
-using CoffeeManager.Models.Interfaces;
 using Newtonsoft.Json;
 
 namespace CoffeeManager.Api.Controllers
@@ -15,7 +14,7 @@ namespace CoffeeManager.Api.Controllers
         [HttpGet]
         public HttpResponseMessage Get([FromUri]int coffeeroomno)
         {
-            var users = new CoffeeRoomDbEntities().Users.Where(u => u.CoffeeRoomNo == coffeeroomno).ToArray();
+            var users = new  CoffeeRoomEntities().Users.Where(u => u.CoffeeRoomNo == coffeeroomno).ToArray();
             return new HttpResponseMessage() { Content = new ObjectContent<User[]>(users, new JsonMediaTypeFormatter())};
         }
 
@@ -25,7 +24,7 @@ namespace CoffeeManager.Api.Controllers
         {
             var request = await message.Content.ReadAsStringAsync();
             var user = JsonConvert.DeserializeObject<User>(request);
-            var entites = new CoffeeRoomDbEntities();
+            var entites = new  CoffeeRoomEntities();
             entites.Users.Add(user);
             await entites.SaveChangesAsync();
             return Request.CreateResponse<User>(HttpStatusCode.OK, user);
@@ -36,7 +35,7 @@ namespace CoffeeManager.Api.Controllers
         [HttpDelete]
         public async Task<HttpResponseMessage> Delete([FromUri]int coffeeroomno, [FromUri]int id)
         {
-            var entities = new CoffeeRoomDbEntities();
+            var entities = new  CoffeeRoomEntities();
             var user = entities.Users.FirstOrDefault(u => u.Id == id && u.CoffeeRoomNo == coffeeroomno);
             if (user != null)
             {

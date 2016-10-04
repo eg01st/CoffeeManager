@@ -14,8 +14,20 @@ namespace CoffeeManager.Api
     
     public partial class CupType
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public CupType()
+        {
+            this.Products = new HashSet<Product>();
+            this.UtilizedCups = new HashSet<UtilizedCup>();
+        }
+    
         public int Id { get; set; }
         public string Name { get; set; }
         public Nullable<int> CoffeeRoomNo { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Product> Products { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UtilizedCup> UtilizedCups { get; set; }
     }
 }

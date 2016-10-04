@@ -2723,22 +2723,25 @@ namespace CoffeeManager.Droid
 			public const int product_list = 2130903098;
 			
 			// aapt resource value: 0x7f03003b
-			public const int select_dialog_item_material = 2130903099;
+			public const int sale_card = 2130903099;
 			
 			// aapt resource value: 0x7f03003c
-			public const int select_dialog_multichoice_material = 2130903100;
+			public const int select_dialog_item_material = 2130903100;
 			
 			// aapt resource value: 0x7f03003d
-			public const int select_dialog_singlechoice_material = 2130903101;
+			public const int select_dialog_multichoice_material = 2130903101;
 			
 			// aapt resource value: 0x7f03003e
-			public const int SplashScreen = 2130903102;
+			public const int select_dialog_singlechoice_material = 2130903102;
 			
 			// aapt resource value: 0x7f03003f
-			public const int support_simple_spinner_dropdown_item = 2130903103;
+			public const int SplashScreen = 2130903103;
 			
 			// aapt resource value: 0x7f030040
-			public const int user_card = 2130903104;
+			public const int support_simple_spinner_dropdown_item = 2130903104;
+			
+			// aapt resource value: 0x7f030041
+			public const int user_card = 2130903105;
 			
 			static Layout()
 			{

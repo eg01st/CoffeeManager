@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CoffeeManager.Models.Interfaces;
-
-namespace CoffeeManager.Models
+﻿namespace CoffeeManager.Models
 {
-    public class User : Entity, IUser
+    public class User
     {
+        public Shift[] Shifts { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public int CoffeeRoomNo { get; set; }
     }
 }

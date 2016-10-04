@@ -16,7 +16,7 @@ namespace CoffeeManager.Api.Controllers
         [HttpGet]
         public async Task<HttpResponseMessage> GetCurrentShiftMoney([FromUri]int coffeeroomno, HttpRequestMessage message)
         {
-            var entities = new CoffeeRoomDbEntities();
+            var entities = new  CoffeeRoomEntities();
             var shift = entities.Shifts.FirstOrDefault(s => s.CoffeeRoomNo == coffeeroomno && !s.IsFinished.Value);
             if (shift != null)
             {
@@ -30,7 +30,7 @@ namespace CoffeeManager.Api.Controllers
         [HttpGet]
         public async Task<HttpResponseMessage> GetEntireMoney([FromUri]int coffeeroomno, HttpRequestMessage message)
         {
-            var entities = new CoffeeRoomDbEntities();
+            var entities = new  CoffeeRoomEntities();
             var shift = entities.Shifts.LastOrDefault(s => s.CoffeeRoomNo == coffeeroomno);
             if (shift != null)
             {
@@ -43,7 +43,7 @@ namespace CoffeeManager.Api.Controllers
         [HttpGet]
         public async Task<HttpResponseMessage> GetExpenseItems([FromUri]int coffeeroomno, HttpRequestMessage message)
         {
-            var entities = new CoffeeRoomDbEntities();
+            var entities = new  CoffeeRoomEntities();
             var types = entities.ExpenseTypes.Where(t => t.CoffeeRoomNo == coffeeroomno);
             return Request.CreateResponse(HttpStatusCode.OK, types);
         }
@@ -56,7 +56,7 @@ namespace CoffeeManager.Api.Controllers
             var request = await message.Content.ReadAsStringAsync();
             var expense = JsonConvert.DeserializeObject<Expense>(request);
 
-            var entities = new CoffeeRoomDbEntities();
+            var entities = new  CoffeeRoomEntities();
             entities.Expenses.Add(expense);
             var currentShift = entities.Shifts.First(s => s.Id == expense.ShiftId.Value);
             currentShift.TotalExprenses += expense.Amount;
@@ -69,7 +69,7 @@ namespace CoffeeManager.Api.Controllers
         [HttpPut]
         public async Task<HttpResponseMessage> Put([FromUri]int coffeeroomno, [FromBody]string typeName)
         {
-            var entities = new CoffeeRoomDbEntities();
+            var entities = new  CoffeeRoomEntities();
             var type = new ExpenseType() {CoffeeRoomNo = coffeeroomno, Name = typeName};
             entities.ExpenseTypes.Add(type);
             await entities.SaveChangesAsync();

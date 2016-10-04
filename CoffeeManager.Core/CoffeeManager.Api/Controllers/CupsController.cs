@@ -19,6 +19,10 @@ namespace CoffeeManager.Api.Controllers
 
         public async Task<HttpResponseMessage> Get([FromUri] int coffeeroomno)
         {
+            var entites = new CoffeeRoomEntities();
+            var types = entites.CupTypes.Where(t => t.CoffeeRoomNo == coffeeroomno);
+
+
             var res = new[]
             {
                 new Cup() {Capacity = 110, Name = "110 ml", Id = 1},

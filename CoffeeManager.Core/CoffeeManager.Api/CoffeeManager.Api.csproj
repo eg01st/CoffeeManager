@@ -150,6 +150,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Data\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
@@ -162,6 +163,9 @@
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\ShiftController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="CupSuply.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="CupType.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -202,15 +206,17 @@
     <Compile Include="Shift.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="UsedCupsPerShift.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="User.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UtilizedCup.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\CoffeeRoomDb.mdf" />
-    <Content Include="App_Data\CoffeeRoomDb_log.ldf">
-      <DependentUpon>CoffeeRoomDb.mdf</DependentUpon>
-    </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

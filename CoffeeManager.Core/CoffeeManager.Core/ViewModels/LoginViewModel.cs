@@ -1,7 +1,6 @@
 ﻿using System.Windows.Input;
 using CoffeeManager.Core.Managers;
 using CoffeeManager.Models;
-using CoffeeManager.Models.Interfaces;
 using MvvmCross.Core.ViewModels;
 
 namespace CoffeeManager.Core.ViewModels
@@ -11,7 +10,7 @@ namespace CoffeeManager.Core.ViewModels
         private readonly UserManager _userManager;
         private readonly ShiftManager _shiftManager; 
         private readonly ICommand _selectUserCommand;
-        private IUser[] _users;
+        private User[] _users;
 
         public ICommand SelectUserCommand => _selectUserCommand;
 
@@ -28,7 +27,7 @@ namespace CoffeeManager.Core.ViewModels
             ShowViewModel<MainViewModel>( new {userId = user.Id, shiftId = shiftId });
         }
 
-        public IUser[] Users
+        public User[] Users
         {
             get { return _users; }
             set

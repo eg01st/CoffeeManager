@@ -14,10 +14,10 @@ namespace CoffeeManager.Api.Controllers
     public class ProductsController : ApiController
     {
         // GET: api/Products
-        public async Task<HttpResponseMessage> Get([FromUri]int coffeeroomno, [FromUri]int productType, [FromUri]bool isPoliceSale)
+        public async Task<HttpResponseMessage> Get([FromUri]int coffeeroomno, [FromUri]int productType)
         {
-            var entities = new CoffeeRoomDbEntities();
-            var products = entities.Products.Where(p => p.CoffeeRoomNo == coffeeroomno && p.ProductType.Value == productType);
+            var entities = new  CoffeeRoomEntities();
+            var products = entities.Products.Where(p => p.CoffeeRoomNo == coffeeroomno && p.ProductType.Value == productType).ToList();
             return Request.CreateResponse(HttpStatusCode.OK, products);
         }
 
@@ -29,9 +29,9 @@ namespace CoffeeManager.Api.Controllers
             var sale = JsonConvert.DeserializeObject<Sale>(request);
             try
             {
-                var entities = new CoffeeRoomDbEntities();
+                var entities = new  CoffeeRoomEntities();
                 entities.Sales.Add(sale);
-                var currentShift = entities.Shifts.First(s => s.Id == sale.ShiftId.Value);
+                var currentShift = entities.Shifts.First(s => s.Id == sale.ShiftId);
                 currentShift.CurrentAmount += sale.Product1.Price;
                 currentShift.TotalAmount += sale.Product1.Price;
                 await entities.SaveChangesAsync();
@@ -50,7 +50,7 @@ namespace CoffeeManager.Api.Controllers
         {
             var request = await message.Content.ReadAsStringAsync();
             var sale = JsonConvert.DeserializeObject<Sale>(request);
-            var entities = new CoffeeRoomDbEntities();
+            var entities = new  CoffeeRoomEntities();
             var saleDb =
                 entities.Sales.LastOrDefault(
                     s => s.CoffeeRoomNo == coffeeroomno && s.Product == sale.Product && s.ShiftId == sale.ShiftId);

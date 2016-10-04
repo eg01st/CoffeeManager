@@ -1,5 +1,8 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using CoffeeManager.Core.ServiceProviders;
+using CoffeeManager.Core.ViewModels;
 using CoffeeManager.Models;
 
 namespace CoffeeManager.Core.Managers
@@ -24,11 +27,44 @@ namespace CoffeeManager.Core.Managers
 
         public async Task<Shift> GetCurrentShift()
         {
-            return await provider.GetCurrentShift().ContinueWith((shift) =>
+            var task = await provider.GetCurrentShift().ContinueWith(async shift =>
             {
-                ShiftNo = shift.Result.Id;
-                return shift.Result;
-            }); 
+                var res = await shift;
+                if (res != null)
+                {
+                    ShiftNo = res.Id;
+                }
+                return res;
+            });
+            return await task;
+        }
+
+        public async Task<Sale[]> GetCurrentShiftSales()
+        {
+            return new[]
+            {
+                new Sale()
+                {
+                    Amount = 11,
+                    Id = 1,
+                    IsPoliceSale = false,
+                    ShiftId = 1,
+                    Time = DateTime.Now,
+                    Product = 1,
+                    Product1 = new Product() {Id = 1, Name = "Prod1", Price = 11, PolicePrice = 6, ProductType = 1}
+                },
+                                new Sale()
+                {
+                    Amount = 22,
+                    Id = 2,
+                    IsPoliceSale = true,
+                    ShiftId = 1,
+                    Time = DateTime.Now,
+                    Product = 1,
+                    Product1 = new Product() {Id = 1, Name = "Prod2", Price = 22, PolicePrice = 6, ProductType = 2}
+                },
+            };
+            return await provider.GetCurrentShiftSales();
         }
     }
 }

@@ -13,10 +13,10 @@ namespace CoffeeManager.Api
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class CoffeeRoomDbEntities : DbContext
+    public partial class CoffeeRoomEntities : DbContext
     {
-        public CoffeeRoomDbEntities()
-            : base("name=CoffeeRoomDbEntities")
+        public CoffeeRoomEntities()
+            : base("name=CoffeeRoomEntities")
         {
         }
     
@@ -25,6 +25,7 @@ namespace CoffeeManager.Api
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<CupSuply> CupSuplies { get; set; }
         public virtual DbSet<CupType> CupTypes { get; set; }
         public virtual DbSet<Expense> Expenses { get; set; }
         public virtual DbSet<ExpenseType> ExpenseTypes { get; set; }
@@ -32,6 +33,8 @@ namespace CoffeeManager.Api
         public virtual DbSet<ProductType> ProductTypes { get; set; }
         public virtual DbSet<Sale> Sales { get; set; }
         public virtual DbSet<Shift> Shifts { get; set; }
+        public virtual DbSet<UsedCupsPerShift> UsedCupsPerShifts { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<UtilizedCup> UtilizedCups { get; set; }
     }
 }
