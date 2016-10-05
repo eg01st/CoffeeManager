@@ -6,6 +6,8 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
+using AttributeRouting.Helpers;
+using CoffeeManager.Api.Mappers;
 using CoffeeManager.Models;
 using Newtonsoft.Json;
 
@@ -17,7 +19,7 @@ namespace CoffeeManager.Api.Controllers
         public async Task<HttpResponseMessage> Get([FromUri]int coffeeroomno, [FromUri]int productType)
         {
             var entities = new  CoffeeRoomEntities();
-            var products = entities.Products.Where(p => p.CoffeeRoomNo == coffeeroomno && p.ProductType.Value == productType).ToList();
+            var products = entities.Products.Where(p => p.CoffeeRoomNo == coffeeroomno && p.ProductType.Value == productType).ToList().Select(s => s.ToDTO());
             return Request.CreateResponse(HttpStatusCode.OK, products);
         }
 
@@ -26,14 +28,14 @@ namespace CoffeeManager.Api.Controllers
         public async Task<HttpResponseMessage> SaleProduct([FromUri]int coffeeroomno, HttpRequestMessage message)
         {
             var request = await message.Content.ReadAsStringAsync();
-            var sale = JsonConvert.DeserializeObject<Sale>(request);
+            var sale = JsonConvert.DeserializeObject<Models.Sale>(request);
             try
             {
                 var entities = new  CoffeeRoomEntities();
-                entities.Sales.Add(sale);
+                entities.Sales.Add(DbMapper.Map(sale));
                 var currentShift = entities.Shifts.First(s => s.Id == sale.ShiftId);
-                currentShift.CurrentAmount += sale.Product1.Price;
-                currentShift.TotalAmount += sale.Product1.Price;
+                currentShift.CurrentAmount += sale.Amount;
+                currentShift.TotalAmount += sale.Amount;
                 await entities.SaveChangesAsync();
                 return Request.CreateResponse(HttpStatusCode.OK);
             }

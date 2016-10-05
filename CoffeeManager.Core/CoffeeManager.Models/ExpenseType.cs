@@ -6,11 +6,7 @@ using System.Threading.Tasks;
 
 namespace CoffeeManager.Models
 {
-    public class Expense : Entity
+    public class ExpenseType : Entity
     {
-        public int ShiftId { get; set; }
-        public int ExpenseId { get; set; }
-        public decimal Amount { get; set; }
-
     }
 }

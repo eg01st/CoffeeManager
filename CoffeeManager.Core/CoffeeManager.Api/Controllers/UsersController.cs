@@ -1,9 +1,11 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Formatting;
 using System.Threading.Tasks;
 using System.Web.Http;
+using CoffeeManager.Api.Mappers;
 using Newtonsoft.Json;
 
 namespace CoffeeManager.Api.Controllers
@@ -14,8 +16,8 @@ namespace CoffeeManager.Api.Controllers
         [HttpGet]
         public HttpResponseMessage Get([FromUri]int coffeeroomno)
         {
-            var users = new  CoffeeRoomEntities().Users.Where(u => u.CoffeeRoomNo == coffeeroomno).ToArray();
-            return new HttpResponseMessage() { Content = new ObjectContent<User[]>(users, new JsonMediaTypeFormatter())};
+            var users = new  CoffeeRoomEntities().Users.Where(u => u.CoffeeRoomNo == coffeeroomno).ToArray().Select(u => u.ToDTO());
+            return new HttpResponseMessage() { Content = new ObjectContent<IEnumerable<Models.User>>(users, new JsonMediaTypeFormatter())};
         }
 
         [Route("api/users")]

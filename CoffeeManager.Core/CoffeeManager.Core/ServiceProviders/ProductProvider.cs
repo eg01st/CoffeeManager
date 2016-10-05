@@ -21,7 +21,7 @@ namespace CoffeeManager.Core.ServiceProviders
 
         public async Task SaleProduct(int shiftId, int id, decimal price, bool isPoliceSale)
         {
-            await Put($"{Products}/SaleProduct", new Sale() { ShiftId = shiftId, Amount = price, Product = id, IsPoliceSale = isPoliceSale }, new Dictionary<string, string>() { {nameof(shiftId), shiftId.ToString()} });
+            await Put($"{Products}/SaleProduct", new Sale() { ShiftId = shiftId, Amount = price, Product = id, IsPoliceSale = isPoliceSale, CoffeeRoomNo = CoffeeRoomNo, Time = DateTime.Now}, new Dictionary<string, string>() { {nameof(shiftId), shiftId.ToString()} });
         }
 
         public async Task DeleteSale(int shiftId, int id)

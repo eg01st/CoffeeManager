@@ -22,7 +22,7 @@ namespace CoffeeManager.Core.Managers
             return await provider.GetEntireMoney();
         }
 
-        public async Task AddExpense(int expenseId, float amout)
+        public async Task AddExpense(int expenseId, decimal amout)
         {
             await provider.AddExpense(ShiftNo, expenseId, amout);
         }

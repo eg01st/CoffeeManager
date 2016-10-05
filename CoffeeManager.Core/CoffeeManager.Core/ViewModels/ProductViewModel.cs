@@ -50,6 +50,7 @@ namespace CoffeeManager.Core.ViewModels
         public ProductViewModel(Product product)
         {
             this.product = product;
+            Price = product.Price;
             _selectItemCommand = new MvxAsyncCommand(DoSelectItem);
             _dismisItemCommand = new MvxAsyncCommand(DoDismisItem);
             token = Subscribe<IsPoliceSaleMessage>((arg) => IsPoliceSale = arg.Data);

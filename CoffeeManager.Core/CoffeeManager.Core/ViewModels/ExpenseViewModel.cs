@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Acr.UserDialogs;
 using CoffeeManager.Core.Managers;
+using CoffeeManager.Core.Messages;
 using CoffeeManager.Models;
 using MvvmCross.Core.ViewModels;
 
@@ -89,11 +90,13 @@ namespace CoffeeManager.Core.ViewModels
             UserDialogs.Confirm(new ConfirmConfig()
             {
                 Message = $"Добавить сумму {Amount} как трату за {SelectedExprense}?",
-                OnAction = (ok) =>
+                OnAction = async (ok) =>
                 {
                     if (ok)
                     {
-                        _paymentManager.AddExpense(_selectedExpence.Id, float.Parse(Amount));
+                        var amount = decimal.Parse(Amount);
+                        await _paymentManager.AddExpense(_selectedExpence.Id, amount);
+                        Publish(new ExpenseAddedMessage(amount, this));
                         Close(this);
                     }
                 }
@@ -105,11 +108,11 @@ namespace CoffeeManager.Core.ViewModels
             UserDialogs.Confirm(new ConfirmConfig()
             {
                 Message = $"Добавить {NewExprenseType} как новый тип расходов?",
-                OnAction = (ok) =>
+                OnAction = async (ok) =>
                 {
                     if (ok)
                     {
-                        _paymentManager.AddNewExpenseType(NewExprenseType);
+                        await _paymentManager.AddNewExpenseType(NewExprenseType);
                         LoadTypes();
                         ShowSuccessMessage($"{NewExprenseType} добавлен и находится в списке.");
                         NewExprenseType = string.Empty;

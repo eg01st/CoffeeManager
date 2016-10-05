@@ -2,7 +2,7 @@
 {
     public class Entity
     {
-        public int CofferRoomNo { get; set; }
+        public int CoffeeRoomNo { get; set; }
         public int Id { get; set; }
         public string Name { get; set; }
 
@@ -13,7 +13,7 @@
 
         public Entity(int coffeeRoomNo)
         {
-            CofferRoomNo = coffeeRoomNo;
+            CoffeeRoomNo = coffeeRoomNo;
         }
     }
 }

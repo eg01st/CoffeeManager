@@ -19,19 +19,22 @@ namespace CoffeeManager.Api.Controllers
             {
                 CoffeeRoomNo = coffeeroomno,
                 IsFinished = false,
-                UserId = userId
+                UserId = userId,
+                Date = DateTime.Now
             };
             var entities = new  CoffeeRoomEntities();
-            var lastShift = entities.Shifts.LastOrDefault(s => s.CoffeeRoomNo == coffeeroomno);
+            var lastShift =
+                entities.Shifts.Where(s => s.CoffeeRoomNo == coffeeroomno).OrderByDescending(s => s.Id).First();
             if (lastShift != null)
             {
                 shift.TotalAmount = lastShift.TotalAmount;
+                shift.StartAmount = lastShift.TotalAmount;
             }
 
             entities.Shifts.Add(shift);
             await entities.SaveChangesAsync();
 
-            return Request.CreateResponse<Shift>(HttpStatusCode.OK, shift);
+            return Request.CreateResponse<Models.Shift>(HttpStatusCode.OK, new Models.Shift() { Id = shift.Id, UserId = userId});
         }
 
         public async Task<HttpResponseMessage> Put([FromUri]int coffeeroomno, HttpRequestMessage message)
@@ -60,7 +63,8 @@ namespace CoffeeManager.Api.Controllers
                         C170 = cup170,
                         C250 = cup250,
                         C400 = cup400,
-                        Plastic = plastic
+                        Plastic = plastic,
+                        CoffeeRoomNo = coffeeroomno
                     };
                     enities.UsedCupsPerShifts.Add(usedCups);
 
@@ -80,8 +84,16 @@ namespace CoffeeManager.Api.Controllers
         public async Task<HttpResponseMessage> GetCurrentShift([FromUri]int coffeeroomno, HttpRequestMessage message)
         {
             var entities = new  CoffeeRoomEntities();
-            var shift = entities.Shifts.FirstOrDefault(s => s.CoffeeRoomNo == coffeeroomno && s.IsFinished.Value);
-            return Request.CreateResponse(HttpStatusCode.OK, shift);
+            var shift = entities.Shifts.FirstOrDefault(s => s.CoffeeRoomNo == coffeeroomno && !s.IsFinished.Value);
+            if (shift != null)
+            {
+                return Request.CreateResponse(HttpStatusCode.OK,
+                    new Models.Shift() {Id = shift.Id, UserId = shift.UserId.Value});
+            }
+            else
+            {
+                return Request.CreateResponse<Models.Shift>(HttpStatusCode.OK, null);
+            }
         }
 
         [Route("api/shift/getShiftSales")]

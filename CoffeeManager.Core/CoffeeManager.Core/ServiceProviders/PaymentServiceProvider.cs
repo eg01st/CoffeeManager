@@ -21,17 +21,16 @@ namespace CoffeeManager.Core.ServiceProviders
             return await Get<decimal>($"{Payment}/getentiremoney", null);
         }
 
-        public async Task AddExpense(int shiftId, int expenseId, float amout)
+        public async Task AddExpense(int shiftId, int expenseId, decimal amount)
         {
                 await
                     Put(Payment,
                         new Expense()
                         {
-                            Amount = amout,
+                            Amount = amount,
                             ExpenseId = expenseId,
-                        }, new Dictionary<string, string>()
-                        {
-                            {nameof(shiftId), shiftId.ToString() }
+                            ShiftId = shiftId,
+                            CoffeeRoomNo = CoffeeRoomNo
                         });
         }
 
@@ -42,7 +41,7 @@ namespace CoffeeManager.Core.ServiceProviders
 
         public async Task AddNewExpenseType(string typeName)
         {
-            await Put($"{Payment}/addnewexpensetype", typeName);
+            await Put<object>($"{Payment}/addnewexpensetype", null, new Dictionary<string, string>() { {nameof(typeName), typeName} });
         }
     }
 }

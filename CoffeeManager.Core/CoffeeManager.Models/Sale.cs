@@ -13,6 +13,8 @@ namespace CoffeeManager.Models
         public int ShiftId { get; set; }
         public Product Product1 { get; set; }
 
+        public int CoffeeRoomNo { get; set; }
+
         public int Product { get; set; }
         public bool IsPoliceSale { get; set; }
         public DateTime Time { get; set; }

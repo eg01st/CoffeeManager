@@ -16,6 +16,7 @@ namespace CoffeeManager.Core.ViewModels
         private PaymentManager _paymentManager = new PaymentManager();
         private ShiftManager _shiftManager = new ShiftManager();
         private readonly MvxSubscriptionToken token;
+        private readonly MvxSubscriptionToken expenseAddedToken;
         private ICommand _endShiftCommand;
         private ICommand _deleteCupCommand;
         private ICommand _showDeptsCommand;
@@ -67,12 +68,19 @@ namespace CoffeeManager.Core.ViewModels
         public MainViewModel()
         {
             token = Subscribe<AmoutChangedMessage>(OnCallBackMessage);
+            expenseAddedToken = Subscribe<ExpenseAddedMessage>(OnExpenseAdded);
             _endShiftCommand = new MvxCommand(DoEndShift);
             _deleteCupCommand = new MvxCommand(DoShowDeleteCup);
             _showDeptsCommand = new MvxCommand(DoShowDepts);
             _showCurrentSalesCommand = new MvxCommand(DoShowCurrentSales);
             _showExpenseCommand = new MvxCommand(DoShowExpense);
             _enablePoliceSaleCommand = new MvxCommand(DoEnablePoliceSale);
+        }
+
+        private void OnExpenseAdded(ExpenseAddedMessage obj)
+        {
+            _entireMoney -= obj.Data;
+            RaisePropertyChanged(nameof(EntireMoney));
         }
 
         private void DoEnablePoliceSale()
@@ -131,7 +139,8 @@ namespace CoffeeManager.Core.ViewModels
                                 if (confirm)
                                 {
                                     await _shiftManager.EndUserShift(_shiftId);
-                                    ShowViewModel<LoginViewModel>();
+                                    Close(this);
+
                                 }
                             }
             });

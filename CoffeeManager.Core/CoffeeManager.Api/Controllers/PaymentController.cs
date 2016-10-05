@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
+using CoffeeManager.Api.Mappers;
 using CoffeeManager.Models;
 using Newtonsoft.Json;
 
@@ -31,12 +32,8 @@ namespace CoffeeManager.Api.Controllers
         public async Task<HttpResponseMessage> GetEntireMoney([FromUri]int coffeeroomno, HttpRequestMessage message)
         {
             var entities = new  CoffeeRoomEntities();
-            var shift = entities.Shifts.LastOrDefault(s => s.CoffeeRoomNo == coffeeroomno);
-            if (shift != null)
-            {
-                return Request.CreateResponse(HttpStatusCode.OK, shift.TotalAmount);
-            }
-            return Request.CreateResponse(HttpStatusCode.OK, 0);
+            var shift = entities.Shifts.Where(s => s.CoffeeRoomNo == coffeeroomno).OrderByDescending(s => s.Id).First();
+            return Request.CreateResponse(HttpStatusCode.OK, shift.TotalAmount);
         }
 
         [Route("api/payment/getexpenseitems")]
@@ -44,22 +41,23 @@ namespace CoffeeManager.Api.Controllers
         public async Task<HttpResponseMessage> GetExpenseItems([FromUri]int coffeeroomno, HttpRequestMessage message)
         {
             var entities = new  CoffeeRoomEntities();
-            var types = entities.ExpenseTypes.Where(t => t.CoffeeRoomNo == coffeeroomno);
+            var types = entities.ExpenseTypes.Where(t => t.CoffeeRoomNo == coffeeroomno).ToList().Select(s => s.ToDTO());
             return Request.CreateResponse(HttpStatusCode.OK, types);
         }
 
 
         [Route("api/payment")]
         [HttpPut]
-        public async Task<HttpResponseMessage> Put([FromUri]int coffeeroomno, [FromUri]int shiftId, HttpRequestMessage message)
+        public async Task<HttpResponseMessage> Put([FromUri]int coffeeroomno, HttpRequestMessage message)
         {
             var request = await message.Content.ReadAsStringAsync();
-            var expense = JsonConvert.DeserializeObject<Expense>(request);
+            var expense = JsonConvert.DeserializeObject<Models.Expense>(request);
 
             var entities = new  CoffeeRoomEntities();
-            entities.Expenses.Add(expense);
-            var currentShift = entities.Shifts.First(s => s.Id == expense.ShiftId.Value);
+            entities.Expenses.Add(DbMapper.Map(expense));
+            var currentShift = entities.Shifts.First(s => s.Id == expense.ShiftId);
             currentShift.TotalExprenses += expense.Amount;
+            currentShift.TotalAmount -= expense.Amount;
             await entities.SaveChangesAsync();
 
             return Request.CreateResponse(HttpStatusCode.OK);
@@ -67,7 +65,7 @@ namespace CoffeeManager.Api.Controllers
 
         [Route("api/payment/addnewexpensetype")]
         [HttpPut]
-        public async Task<HttpResponseMessage> Put([FromUri]int coffeeroomno, [FromBody]string typeName)
+        public async Task<HttpResponseMessage> Put([FromUri]int coffeeroomno, [FromUri]string typeName)
         {
             var entities = new  CoffeeRoomEntities();
             var type = new ExpenseType() {CoffeeRoomNo = coffeeroomno, Name = typeName};
