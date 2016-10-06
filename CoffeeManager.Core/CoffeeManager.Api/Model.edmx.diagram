@@ -26,6 +26,8 @@
         <AssociationConnector Association="CoffeeRoomModel.FK__Shifts__UserId__22AA2996" ManuallyRouted="false" />
         <AssociationConnector Association="CoffeeRoomModel.FK__UsedCupsP__Shift__2E1BDC42" ManuallyRouted="false" />
         <AssociationConnector Association="CoffeeRoomModel.FK__UtilizedC__Shift__25869641" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="CoffeeRoomModel.Dept" Width="1.5" PointX="5.25" PointY="9.875" />
+        <AssociationConnector Association="CoffeeRoomModel.FK__Dept__ShiftId__49C3F6B7" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

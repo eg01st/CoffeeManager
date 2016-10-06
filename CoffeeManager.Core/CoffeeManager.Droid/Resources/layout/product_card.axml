@@ -4,7 +4,7 @@
     android:orientation="vertical"
     android:layout_width="250dp"
     android:layout_height="100dp"
-              local:MvxBind="Click SelectItemCommand; LongPress DismisItemCommand">
+    local:MvxBind="Click SelectItemCommand; LongPress DismisItemCommand">
   <CardView
         android:layout_gravity="center"
         android:layout_width="match_parent"
@@ -47,7 +47,12 @@
         android:src="@drawable/ic_star_small"
         local:MvxBind="Visibility BoolToVisibility(IsPoliceSale)"/>
     </LinearLayout>
-    
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        
+        android:textSize="18dp"
+        local:MvxBind="Text CupType"/>
 
   </CardView>
 </LinearLayout>

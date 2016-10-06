@@ -17,6 +17,7 @@ namespace CoffeeManager.Core.ViewModels
         private ShiftManager _shiftManager = new ShiftManager();
         private readonly MvxSubscriptionToken token;
         private readonly MvxSubscriptionToken expenseAddedToken;
+        private readonly MvxSubscriptionToken deptAddedToken;
         private ICommand _endShiftCommand;
         private ICommand _deleteCupCommand;
         private ICommand _showDeptsCommand;
@@ -69,12 +70,26 @@ namespace CoffeeManager.Core.ViewModels
         {
             token = Subscribe<AmoutChangedMessage>(OnCallBackMessage);
             expenseAddedToken = Subscribe<ExpenseAddedMessage>(OnExpenseAdded);
+            deptAddedToken = Subscribe<DeptAddedMessage>(OnDeptAdded);
             _endShiftCommand = new MvxCommand(DoEndShift);
             _deleteCupCommand = new MvxCommand(DoShowDeleteCup);
             _showDeptsCommand = new MvxCommand(DoShowDepts);
             _showCurrentSalesCommand = new MvxCommand(DoShowCurrentSales);
             _showExpenseCommand = new MvxCommand(DoShowExpense);
             _enablePoliceSaleCommand = new MvxCommand(DoEnablePoliceSale);
+        }
+
+        private void OnDeptAdded(DeptAddedMessage obj)
+        {
+            if (obj.Data.Item2)
+            {
+                _entireMoney += obj.Data.Item1;
+            }
+            else
+            {
+                _entireMoney -= obj.Data.Item1;
+            }
+            RaisePropertyChanged(nameof(EntireMoney));
         }
 
         private void OnExpenseAdded(ExpenseAddedMessage obj)

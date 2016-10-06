@@ -169,6 +169,9 @@
     <Compile Include="CupType.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Dept.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Expense.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>

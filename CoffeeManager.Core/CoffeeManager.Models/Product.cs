@@ -7,6 +7,6 @@
         public int ProductType { get; set; }
         public decimal Price { get; set; }
         public decimal PolicePrice { get; set; }
-
+        public int CupType { get; set; }
     }
 }

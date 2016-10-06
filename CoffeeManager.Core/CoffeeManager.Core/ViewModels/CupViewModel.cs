@@ -4,14 +4,13 @@ namespace CoffeeManager.Core.ViewModels
 {
     public class CupViewModel : ViewModelBase
     {
-        private Cup _cup;
-        public CupViewModel(Cup cup)
+        private CupType _cupType;
+        public CupViewModel(CupType cupType)
         {
-            _cup = cup;
+            _cupType = cupType;
         }
 
-        public int Id => _cup.Id;
-        public string Name => _cup.Name;
-        public int Capacity => _cup.Capacity;
+        public int Id => _cupType.Id;
+        public string Name => _cupType.Name;
     }
 }

@@ -11,17 +11,14 @@ namespace CoffeeManager.Core.ServiceProviders
     {
         private const string Cups = "cups";
 
-        public async Task<Cup[]> GetSupportedCups()
+        public async Task<CupType[]> GetSupportedCups()
         {
-            return await Get<Cup[]>(Cups);
+            return await Get<CupType[]>(Cups);
         }
 
         public async Task UtilizeCup(int id, int shiftId)
         {
-            await Put(Cups, id, new Dictionary<string, string>()
-            {
-                {nameof(shiftId), shiftId.ToString()}
-            });
+            await Put(Cups, new UtilizedCup() {CupTypeId = id, DateTime = DateTime.Now, CoffeeRoomNo = CoffeeRoomNo, ShiftId = shiftId});
         }
     }
 }

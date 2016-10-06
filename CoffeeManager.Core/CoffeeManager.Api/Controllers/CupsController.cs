@@ -5,33 +5,30 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
+using CoffeeManager.Api.Mappers;
 using CoffeeManager.Models;
+using Newtonsoft.Json;
 
 namespace CoffeeManager.Api.Controllers
 {
     public class CupsController : ApiController
     {
-        public async Task<HttpResponseMessage> Put([FromUri] int coffeeroomno, [FromUri] int shiftId,
-      [FromBody] int id)
+        public async Task<HttpResponseMessage> Put([FromUri] int coffeeroomno, HttpRequestMessage message)
         {
+            var request = await message.Content.ReadAsStringAsync();
+            var cup = JsonConvert.DeserializeObject<Models.UtilizedCup>(request);
+            var entities = new CoffeeRoomEntities();
+            entities.UtilizedCups.Add(DbMapper.Map(cup));
+            await entities.SaveChangesAsync();
             return Request.CreateResponse(HttpStatusCode.OK);
         }
 
         public async Task<HttpResponseMessage> Get([FromUri] int coffeeroomno)
         {
             var entites = new CoffeeRoomEntities();
-            var types = entites.CupTypes.Where(t => t.CoffeeRoomNo == coffeeroomno);
+            var types = entites.CupTypes.Where(t => t.CoffeeRoomNo == coffeeroomno).ToList().Select(s => s.ToDTO());
 
-
-            var res = new[]
-            {
-                new Cup() {Capacity = 110, Name = "110 ml", Id = 1},
-                new Cup() {Capacity = 110, Name = "170 ml", Id = 2},
-                new Cup() {Capacity = 110, Name = "250 ml", Id = 3},
-                new Cup() {Capacity = 110, Name = "400 ml", Id = 4},
-                new Cup() {Capacity = 110, Name = "Пластиковый", Id = 5},
-            };
-            return Request.CreateResponse(HttpStatusCode.OK, res);
+            return Request.CreateResponse(HttpStatusCode.OK, types);
         }
     }
 }

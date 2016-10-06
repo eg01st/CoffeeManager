@@ -43,6 +43,8 @@ namespace CoffeeManager.Core.ViewModels
 
         public string Name => product.Name;
 
+        public int CupType => product.CupType;
+
         public ICommand SelectItemCommand => _selectItemCommand;
 
         public ICommand DismisItemCommand => _dismisItemCommand;

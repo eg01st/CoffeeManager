@@ -1,7 +1,9 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Acr.UserDialogs;
 using CoffeeManager.Core.Managers;
+using CoffeeManager.Core.Messages;
 using MvvmCross.Core.ViewModels;
 
 namespace CoffeeManager.Core.ViewModels
@@ -72,7 +74,9 @@ namespace CoffeeManager.Core.ViewModels
                     Message = $"Списать сумму {DeptToRemove}?",
                     OnAction = async (ok) =>
                     {
-                        await _deptManager.RemoveDept(int.Parse(DeptToRemove));
+                        var dept = decimal.Parse(DeptToRemove);
+                        await _deptManager.RemoveDept(dept);
+                        Publish(new DeptAddedMessage(new Tuple<decimal, bool>(dept, true), this));
                         Close(this);
                     }
                 });
@@ -85,10 +89,12 @@ namespace CoffeeManager.Core.ViewModels
             {
                 UserDialogs.Confirm(new ConfirmConfig()
                 {
-                    Message = $"Добавить сумму {DeptToRemove}?",
+                    Message = $"Добавить сумму {DeptToAdd}?",
                     OnAction = async (ok) =>
                     {
-                        await _deptManager.AddDept(int.Parse(DeptToAdd));
+                        var dept = decimal.Parse(DeptToAdd);
+                        await _deptManager.AddDept(dept);
+                        Publish(new DeptAddedMessage(new Tuple<decimal, bool>(dept, false), this));
                         Close(this);
                     }
                 });

@@ -7,7 +7,7 @@ namespace CoffeeManager.Core.Managers
     public class CupManager : BaseManager
     {
         private CupsServiceProvider provider = new CupsServiceProvider();
-        public async Task<Cup[]> GetSupportedCups()
+        public async Task<CupType[]> GetSupportedCups()
         {
             return await provider.GetSupportedCups();
         }
