@@ -14,7 +14,6 @@ namespace CoffeeManager.Core.ViewModels
         private int _shiftId;
 
         private PaymentManager _paymentManager = new PaymentManager();
-        private ShiftManager _shiftManager = new ShiftManager();
         private readonly MvxSubscriptionToken token;
         private readonly MvxSubscriptionToken expenseAddedToken;
         private readonly MvxSubscriptionToken deptAddedToken;
@@ -149,13 +148,12 @@ namespace CoffeeManager.Core.ViewModels
             {
                 Message = "Завершить смену?",
                 OnAction =
-                            async (confirm) =>
+                            (confirm) =>
                             {
                                 if (confirm)
                                 {
-                                    await _shiftManager.EndUserShift(_shiftId);
+                                    ShowViewModel<EndShiftViewModel>(new { shiftId = _shiftId});
                                     Close(this);
-
                                 }
                             }
             });

@@ -12,18 +12,14 @@ namespace CoffeeManager.Api
     using System;
     using System.Collections.Generic;
     
-    public partial class Sale
+    public partial class UsedProductsPerShift
     {
         public int Id { get; set; }
-        public decimal Amount { get; set; }
-        public int ShiftId { get; set; }
-        public int Product { get; set; }
-        public Nullable<bool> IsPoliceSale { get; set; }
-        public System.DateTime Time { get; set; }
+        public Nullable<int> ShiftId { get; set; }
+        public int CoffeePacks { get; set; }
+        public int MilkPacks { get; set; }
         public int CoffeeRoomNo { get; set; }
-        public bool IsRejected { get; set; }
     
-        public virtual Product Product1 { get; set; }
         public virtual Shift Shift { get; set; }
     }
 }

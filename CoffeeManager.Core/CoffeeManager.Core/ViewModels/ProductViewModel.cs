@@ -13,7 +13,7 @@ namespace CoffeeManager.Core.ViewModels
     {
         private readonly MvxSubscriptionToken token;
         private ICommand _selectItemCommand;
-        private ICommand _dismisItemCommand;
+        
         private Product product;
         private bool _isPoliceSale;
         private decimal _price;
@@ -47,40 +47,19 @@ namespace CoffeeManager.Core.ViewModels
 
         public ICommand SelectItemCommand => _selectItemCommand;
 
-        public ICommand DismisItemCommand => _dismisItemCommand;
+       
 
         public ProductViewModel(Product product)
         {
             this.product = product;
             Price = product.Price;
             _selectItemCommand = new MvxAsyncCommand(DoSelectItem);
-            _dismisItemCommand = new MvxAsyncCommand(DoDismisItem);
+            
             token = Subscribe<IsPoliceSaleMessage>((arg) => IsPoliceSale = arg.Data);
             //RaiseAllPropertiesChanged();
 
         }
 
-        private Task DoDismisItem()
-        {
-            return Task.Run(() =>
-            {
-                UserDialogs.Confirm(new ConfirmConfig()
-                {
-                    Message = $"Отменить продажу товара {Name} ?",
-                    OnAction =
-                         async
-                         (confirm) =>
-                        {
-                            if (confirm)
-                            {
-                                await ProductManager.DismisSaleProduct(Id);
-                                Publish(new AmoutChangedMessage(new Tuple<decimal, bool>(Price, false), this));
-                                ShowSuccessMessage($"Отменена продажа товара {Name} !");
-                            }
-                        }
-                });
-            });
-        }
 
         private async Task DoSelectItem()
         {

@@ -16,10 +16,6 @@ namespace CoffeeManager.Core.ServiceProviders
             return result.Id;
         }
 
-        public async Task EndShift(int shiftId)
-        {
-            await Put(Shift, shiftId);
-        }
 
         public async Task<Shift> GetCurrentShift()
         {
@@ -37,6 +33,11 @@ namespace CoffeeManager.Core.ServiceProviders
         public async Task<Sale[]> GetCurrentShiftSales()
         {
             return await Get<Sale[]>($"{Shift}/getShiftSales");
+        }
+
+        public async Task EndShift(int shiftId, decimal realAmount, int coffeePacks, int milkPacks)
+        {
+            await Put(Shift, new EndShiftDTO() {CoffeeRoomNo = CoffeeRoomNo, ShiftId = shiftId, CoffeePacks = coffeePacks, RealAmount = realAmount, MilkPacks = milkPacks});
         }
     }
 }

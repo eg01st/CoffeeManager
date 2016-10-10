@@ -28,8 +28,8 @@ namespace CoffeeManager.Api.Controllers
                 entities.Shifts.Where(s => s.CoffeeRoomNo == coffeeroomno).OrderByDescending(s => s.Id).First();
             if (lastShift != null)
             {
-                shift.TotalAmount = lastShift.TotalAmount;
-                shift.StartAmount = lastShift.TotalAmount;
+                shift.TotalAmount = lastShift.RealAmount;
+                shift.StartAmount = lastShift.RealAmount;
             }
 
             entities.Shifts.Add(shift);
@@ -43,12 +43,14 @@ namespace CoffeeManager.Api.Controllers
             try
             {
                 var request = await message.Content.ReadAsStringAsync();
-                var shiftId = JsonConvert.DeserializeObject<int>(request);
+                var shiftInfo = JsonConvert.DeserializeObject<EndShiftDTO>(request);
+                int shiftId = shiftInfo.ShiftId;
                 
                 var enities = new  CoffeeRoomEntities();
                 var shift = enities.Shifts.First(s => s.Id == shiftId && s.CoffeeRoomNo == coffeeroomno);
                 shift.IsFinished = true;
-                var sales = enities.Sales.Where(s => s.ShiftId == shiftId && s.Product1.CupType.HasValue);
+                shift.RealAmount = shiftInfo.RealAmount;
+                var sales = enities.Sales.Where(s => s.ShiftId == shiftId && !s.IsRejected && s.Product1.CupType.HasValue);
                 var cup110 = sales.Count(s => s.Product1.CupType.Value == (int)CupTypeEnum.c110);
                 var cup170 = sales.Count(s => s.Product1.CupType.Value == (int)CupTypeEnum.c170);
                 var cup250 = sales.Count(s => s.Product1.CupType.Value == (int)CupTypeEnum.c250);
@@ -74,6 +76,15 @@ namespace CoffeeManager.Api.Controllers
                     CoffeeRoomNo = coffeeroomno
                 };
                 enities.UsedCupsPerShifts.Add(usedCups);
+
+                var usedProducts = new UsedProductsPerShift()
+                {
+                    CoffeePacks = shiftInfo.CoffeePacks,
+                    MilkPacks = shiftInfo.MilkPacks,
+                    ShiftId = shiftId,
+                    CoffeeRoomNo = shiftInfo.CoffeeRoomNo
+                };
+                enities.UsedProductsPerShifts.Add(usedProducts);
 
                 await enities.SaveChangesAsync();
                 return new HttpResponseMessage() { StatusCode = HttpStatusCode.OK };
@@ -107,7 +118,7 @@ namespace CoffeeManager.Api.Controllers
         {
             var entities = new  CoffeeRoomEntities();
             var shift = entities.Shifts.First(s => !s.IsFinished.Value && s.CoffeeRoomNo == coffeeroomno).Id;
-            var sales = entities.Sales.Where(s => s.CoffeeRoomNo == coffeeroomno && s.ShiftId == shift).ToList().Select(s => s.ToDTO());
+            var sales = entities.Sales.Where(s => s.CoffeeRoomNo == coffeeroomno && s.ShiftId == shift && !s.IsRejected).ToList().Select(s => s.ToDTO());
             return Request.CreateResponse(HttpStatusCode.OK, sales);
         }
     }

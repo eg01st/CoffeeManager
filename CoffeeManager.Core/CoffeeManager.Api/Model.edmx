@@ -85,6 +85,7 @@
           <Property Name="IsPoliceSale" Type="bit" />
           <Property Name="Time" Type="datetime" Nullable="false" />
           <Property Name="CoffeeRoomNo" Type="int" Nullable="false" />
+          <Property Name="IsRejected" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Shifts">
           <Key>
@@ -99,6 +100,7 @@
           <Property Name="TotalAmount" Type="money" Nullable="false" />
           <Property Name="CoffeeRoomNo" Type="int" />
           <Property Name="TotalExprenses" Type="money" Nullable="false" />
+          <Property Name="RealAmount" Type="money" Nullable="false" />
         </EntityType>
         <EntityType Name="UsedCupsPerShift">
           <Key>
@@ -111,6 +113,16 @@
           <Property Name="250" Type="int" Nullable="false" />
           <Property Name="400" Type="int" Nullable="false" />
           <Property Name="Plastic" Type="int" Nullable="false" />
+          <Property Name="CoffeeRoomNo" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UsedProductsPerShift">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ShiftId" Type="int" />
+          <Property Name="CoffeePacks" Type="int" Nullable="false" />
+          <Property Name="MilkPacks" Type="int" Nullable="false" />
           <Property Name="CoffeeRoomNo" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Users">
@@ -239,6 +251,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__UsedProdu__Shift__628FA481">
+          <End Role="Shifts" Type="Self.Shifts" Multiplicity="0..1" />
+          <End Role="UsedProductsPerShift" Type="Self.UsedProductsPerShift" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shifts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsedProductsPerShift">
+              <PropertyRef Name="ShiftId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__UtilizedC__Shift__46E78A0C">
           <End Role="Shifts" Type="Self.Shifts" Multiplicity="1" />
           <End Role="UtilizedCup" Type="Self.UtilizedCup" Multiplicity="*" />
@@ -262,6 +286,7 @@
           <EntitySet Name="Sale" EntityType="Self.Sale" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Shifts" EntityType="Self.Shifts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UsedCupsPerShift" EntityType="Self.UsedCupsPerShift" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UsedProductsPerShift" EntityType="Self.UsedProductsPerShift" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UtilizedCup" EntityType="Self.UtilizedCup" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__Dept__ShiftId__4E88ABD4" Association="Self.FK__Dept__ShiftId__4E88ABD4">
@@ -299,6 +324,10 @@
           <AssociationSet Name="FK__UsedCupsP__Shift__3F466844" Association="Self.FK__UsedCupsP__Shift__3F466844">
             <End Role="Shifts" EntitySet="Shifts" />
             <End Role="UsedCupsPerShift" EntitySet="UsedCupsPerShift" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UsedProdu__Shift__628FA481" Association="Self.FK__UsedProdu__Shift__628FA481">
+            <End Role="Shifts" EntitySet="Shifts" />
+            <End Role="UsedProductsPerShift" EntitySet="UsedProductsPerShift" />
           </AssociationSet>
           <AssociationSet Name="FK__UtilizedC__Shift__46E78A0C" Association="Self.FK__UtilizedC__Shift__46E78A0C">
             <End Role="Shifts" EntitySet="Shifts" />
@@ -390,6 +419,7 @@
           <Property Name="CoffeeRoomNo" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Product1" Relationship="Self.FK__Sale__Product__3B75D760" FromRole="Sale" ToRole="Product" />
           <NavigationProperty Name="Shift" Relationship="Self.FK__Sale__ShiftId__3C69FB99" FromRole="Sale" ToRole="Shifts" />
+          <Property Name="IsRejected" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="Shift">
           <Key>
@@ -410,6 +440,8 @@
           <NavigationProperty Name="UsedCupsPerShifts" Relationship="Self.FK__UsedCupsP__Shift__2E1BDC42" FromRole="Shifts" ToRole="UsedCupsPerShift" />
           <NavigationProperty Name="UtilizedCups" Relationship="Self.FK__UtilizedC__Shift__25869641" FromRole="Shifts" ToRole="UtilizedCup" />
           <NavigationProperty Name="Depts" Relationship="CoffeeRoomModel.FK__Dept__ShiftId__49C3F6B7" FromRole="Shift" ToRole="Dept" />
+          <NavigationProperty Name="UsedProductsPerShifts" Relationship="CoffeeRoomModel.FK__UsedProdu__Shift__5DCAEF64" FromRole="Shift" ToRole="UsedProductsPerShift" />
+          <Property Name="RealAmount" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
         </EntityType>
         <EntityType Name="UsedCupsPerShift">
           <Key>
@@ -623,6 +655,11 @@
             <End Role="Shift" EntitySet="Shifts" />
             <End Role="Dept" EntitySet="Depts" />
           </AssociationSet>
+          <EntitySet Name="UsedProductsPerShifts" EntityType="CoffeeRoomModel.UsedProductsPerShift" />
+          <AssociationSet Name="FK__UsedProdu__Shift__5DCAEF64" Association="CoffeeRoomModel.FK__UsedProdu__Shift__5DCAEF64">
+            <End Role="Shift" EntitySet="Shifts" />
+            <End Role="UsedProductsPerShift" EntitySet="UsedProductsPerShifts" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Dept">
           <Key>
@@ -643,6 +680,29 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Dept">
+              <PropertyRef Name="ShiftId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="UsedProductsPerShift">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ShiftId" Type="Int32" />
+          <Property Name="CoffeePacks" Type="Int32" Nullable="false" />
+          <Property Name="MilkPacks" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Shift" Relationship="CoffeeRoomModel.FK__UsedProdu__Shift__5DCAEF64" FromRole="UsedProductsPerShift" ToRole="Shift" />
+          <Property Name="CoffeeRoomNo" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__UsedProdu__Shift__5DCAEF64">
+          <End Type="CoffeeRoomModel.Shift" Role="Shift" Multiplicity="0..1" />
+          <End Type="CoffeeRoomModel.UsedProductsPerShift" Role="UsedProductsPerShift" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shift">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsedProductsPerShift">
               <PropertyRef Name="ShiftId" />
             </Dependent>
           </ReferentialConstraint>
@@ -721,6 +781,7 @@
           <EntitySetMapping Name="Sales">
             <EntityTypeMapping TypeName="CoffeeRoomModel.Sale">
               <MappingFragment StoreEntitySet="Sale">
+                <ScalarProperty Name="IsRejected" ColumnName="IsRejected" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Amount" ColumnName="Amount" />
                 <ScalarProperty Name="ShiftId" ColumnName="ShiftId" />
@@ -734,6 +795,7 @@
           <EntitySetMapping Name="Shifts">
             <EntityTypeMapping TypeName="CoffeeRoomModel.Shift">
               <MappingFragment StoreEntitySet="Shifts">
+                <ScalarProperty Name="RealAmount" ColumnName="RealAmount" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
@@ -787,6 +849,17 @@
                 <ScalarProperty Name="IsPaid" ColumnName="IsPaid" />
                 <ScalarProperty Name="ShiftId" ColumnName="ShiftId" />
                 <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UsedProductsPerShifts">
+            <EntityTypeMapping TypeName="CoffeeRoomModel.UsedProductsPerShift">
+              <MappingFragment StoreEntitySet="UsedProductsPerShift">
+                <ScalarProperty Name="CoffeeRoomNo" ColumnName="CoffeeRoomNo" />
+                <ScalarProperty Name="MilkPacks" ColumnName="MilkPacks" />
+                <ScalarProperty Name="CoffeePacks" ColumnName="CoffeePacks" />
+                <ScalarProperty Name="ShiftId" ColumnName="ShiftId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

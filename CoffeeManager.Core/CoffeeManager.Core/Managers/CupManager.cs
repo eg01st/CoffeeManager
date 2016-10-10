@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using CoffeeManager.Core.ServiceProviders;
 using CoffeeManager.Models;
 
@@ -9,7 +10,8 @@ namespace CoffeeManager.Core.Managers
         private CupsServiceProvider provider = new CupsServiceProvider();
         public async Task<CupType[]> GetSupportedCups()
         {
-            return await provider.GetSupportedCups();
+            var cupTypes = await provider.GetSupportedCups();
+            return cupTypes.Skip(1).ToArray();
         }
 
         public async Task UtilizeCup(int id)

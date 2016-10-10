@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:local ="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+  <LinearLayout
+        android:orientation="vertical"
+    android:layout_width="400dp"
+    android:layout_height="match_parent">
+  <TextView
+     android:gravity="center"
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+     android:textSize="24dp"
+     android:text="Завершение смены"/>
+
+  <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+    <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:textSize="18dp"
+      android:text="Точная сумма в кассе: "/>
+    <EditText
+      android:layout_marginLeft="30dp"
+      android:layout_width="100dp"
+      android:layout_height="wrap_content"
+      android:inputType="numberDecimal"
+      android:textSize="18dp"
+      local:MvxBind="Text RealAmount" />
+  </LinearLayout>
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:gravity="center"
+      android:orientation="horizontal">
+    <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:textSize="18dp"
+      android:text="Открыто пачек молока: "/>
+    <EditText
+      android:layout_marginLeft="30dp"
+      android:layout_width="100dp"
+      android:layout_height="wrap_content"
+      android:inputType="numberDecimal"
+      android:textSize="18dp"
+      local:MvxBind="Text MilkPack" />
+  </LinearLayout>
+
+  <LinearLayout
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+     android:gravity="center"
+     android:orientation="horizontal">
+    <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:textSize="18dp"
+      android:text="Открыто пачек кофе: "/>
+    <EditText
+      android:layout_marginLeft="30dp"
+      android:layout_width="100dp"
+      android:inputType="numberDecimal"
+      android:layout_height="wrap_content"
+      android:textSize="18dp"
+      local:MvxBind="Text CoffeePack" />
+  </LinearLayout>
+  </LinearLayout>
+  <Button
+    android:layout_margin="50dp"
+    android:layout_gravity="top"
+      android:layout_width="300dp"
+      android:layout_height="wrap_content"
+      android:text="Завершить смену"
+       android:textSize="24dp"
+      local:MvxBind="Click FinishShiftCommand"
+      />
+</LinearLayout>

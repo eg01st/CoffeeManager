@@ -22,6 +22,7 @@ namespace CoffeeManager.Api
             this.UsedCupsPerShifts = new HashSet<UsedCupsPerShift>();
             this.UtilizedCups = new HashSet<UtilizedCup>();
             this.Depts = new HashSet<Dept>();
+            this.UsedProductsPerShifts = new HashSet<UsedProductsPerShift>();
         }
     
         public int Id { get; set; }
@@ -33,6 +34,7 @@ namespace CoffeeManager.Api
         public decimal TotalAmount { get; set; }
         public Nullable<int> CoffeeRoomNo { get; set; }
         public decimal TotalExprenses { get; set; }
+        public decimal RealAmount { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Expense> Expenses { get; set; }
@@ -45,5 +47,7 @@ namespace CoffeeManager.Api
         public virtual ICollection<UtilizedCup> UtilizedCups { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Dept> Depts { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UsedProductsPerShift> UsedProductsPerShifts { get; set; }
     }
 }

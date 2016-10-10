@@ -26,7 +26,7 @@ namespace CoffeeManager.Core.ServiceProviders
 
         public async Task DeleteSale(int shiftId, int id)
         {
-            await Put($"{Products}/DeleteSale", new Sale() { ShiftId = shiftId, Product = id});
+            await Post($"{Products}/DeleteSale", new Sale() { ShiftId = shiftId, Id = id});
         }
     }
 }

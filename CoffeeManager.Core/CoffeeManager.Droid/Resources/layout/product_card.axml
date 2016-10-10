@@ -4,7 +4,7 @@
     android:orientation="vertical"
     android:layout_width="250dp"
     android:layout_height="100dp"
-    local:MvxBind="Click SelectItemCommand; LongPress DismisItemCommand">
+    local:MvxBind="Click SelectItemCommand">
   <CardView
         android:layout_gravity="center"
         android:layout_width="match_parent"
@@ -24,6 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:layout_gravity="top"      
         android:gravity="center">
       <TextView
         android:layout_width="wrap_content"
@@ -31,7 +32,7 @@
         android:gravity="center"
         android:textSize="16dp"
         android:textColor="#008000"
-        local:MvxBind="Text Price"/>
+        local:MvxBind="Text DecimalToPrice(Price)"/>
       <TextView
         android:layout_marginLeft="5dp"
         android:layout_width="wrap_content"
@@ -47,12 +48,28 @@
         android:src="@drawable/ic_star_small"
         local:MvxBind="Visibility BoolToVisibility(IsPoliceSale)"/>
     </LinearLayout>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        
-        android:textSize="18dp"
-        local:MvxBind="Text CupType"/>
 
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal"
+      android:layout_gravity="bottom"
+      android:gravity="center">
+      <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="16dp"
+        android:textColor="#008000"
+        local:MvxBind="Text CupTypeToName(CupType)"/>
+      <TextView
+        android:layout_marginLeft="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="16dp"
+        android:textColor="#008000"
+        android:text=" мл"/>
+    </LinearLayout>
   </CardView>
 </LinearLayout>

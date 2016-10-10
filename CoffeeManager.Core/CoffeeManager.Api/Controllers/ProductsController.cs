@@ -47,20 +47,15 @@ namespace CoffeeManager.Api.Controllers
         }
 
         [Route("api/products/deletesale")]
-        [HttpDelete]
+        [HttpPost]
         public async Task<HttpResponseMessage> DeleteSale([FromUri]int coffeeroomno, HttpRequestMessage message)
         {
             var request = await message.Content.ReadAsStringAsync();
             var sale = JsonConvert.DeserializeObject<Sale>(request);
             var entities = new  CoffeeRoomEntities();
-            var saleDb =
-                entities.Sales.LastOrDefault(
-                    s => s.CoffeeRoomNo == coffeeroomno && s.Product == sale.Product && s.ShiftId == sale.ShiftId);
-            if (saleDb != null)
-            {
-                entities.Sales.Remove(saleDb);
-                await entities.SaveChangesAsync();
-            }
+            var saleDb = entities.Sales.First(s => s.CoffeeRoomNo == coffeeroomno && s.Id == sale.Id);
+            saleDb.IsRejected = true;
+            await entities.SaveChangesAsync();
             return Request.CreateResponse(HttpStatusCode.OK);
         }
     }

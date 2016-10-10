@@ -5,32 +5,54 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using Acr.UserDialogs;
+using Cheesebaron.MvxPlugins.SMS;
+using MvvmCross.Platform;
 using Newtonsoft.Json;
 
 namespace CoffeeManager.Core.ServiceProviders
 {
     public class BaseServiceProvider
     {
+        protected ISmsTask UserDialogs
+        {
+            get
+            {
+                return Mvx.Resolve<ISmsTask>();
+            }
+        }
+
         protected readonly int CoffeeRoomNo = 1; //Take from config later
-        private readonly string _apiUrl = "http://192.168.8.50:8080/api/";  //"http://169.254.80.80:8080/api/"; //Todo: init from configfile
+        private readonly string _apiUrl = "http://coffeeroom.ddns.net:8082/api/";  //"http://169.254.80.80:8080/api/"; //Todo: init from configfile
 
         protected async Task<T> Get<T>(string path, Dictionary<string, string> param = null)
         {
-            var client = new HttpClient();
-
-            string url = $"{_apiUrl}{path}?coffeeroomno={CoffeeRoomNo}";
-            if (param != null && param.Count > 0)
+            string url = string.Empty;
+            try
             {
-                foreach (var parameter in param)
+                throw new NotSupportedException("test");
+                var client = new HttpClient();
+
+                url = $"{_apiUrl}{path}?coffeeroomno={CoffeeRoomNo}";
+                if (param != null && param.Count > 0)
                 {
-                    url += $"&{parameter.Key}={parameter.Value}";
+                    foreach (var parameter in param)
+                    {
+                        url += $"&{parameter.Key}={parameter.Value}";
+                    }
                 }
+                var response = await client.GetAsync(url);
+                string responseString = await response.Content.ReadAsStringAsync();
+                Debug.WriteLine(responseString);
+                var result = JsonConvert.DeserializeObject<T>(responseString);
+                return result;
+
             }
-            var response = await client.GetAsync(url);
-            string responseString = await response.Content.ReadAsStringAsync();
-            Debug.WriteLine(responseString);
-            var result = JsonConvert.DeserializeObject<T>(responseString);
-            return result;
+            catch (Exception ex)
+            {
+                UserDialogs.SendSMS($"GET {url}, {ex}", "+380636026265");
+                throw;
+            }
         }
 
         protected async Task<T> Post<T, TY>(string path, TY obj, Dictionary<string, string> param = null)
