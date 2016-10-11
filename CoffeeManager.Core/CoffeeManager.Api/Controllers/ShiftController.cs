@@ -16,26 +16,37 @@ namespace CoffeeManager.Api.Controllers
     {
         public async Task<HttpResponseMessage> Post([FromUri]int coffeeroomno, [FromUri]int userId)
         {
-            var shift = new Shift
-            {
-                CoffeeRoomNo = coffeeroomno,
-                IsFinished = false,
-                UserId = userId,
-                Date = DateTime.Now
-            };
+            var shiftToReturn = new Models.Shift();
             var entities = new  CoffeeRoomEntities();
-            var lastShift =
-                entities.Shifts.Where(s => s.CoffeeRoomNo == coffeeroomno).OrderByDescending(s => s.Id).First();
-            if (lastShift != null)
+            var currentShift = entities.Shifts.FirstOrDefault(s => s.IsFinished.Value == false);
+            if (currentShift == null)
             {
-                shift.TotalAmount = lastShift.RealAmount;
-                shift.StartAmount = lastShift.RealAmount;
+                var shift = new Shift
+                {
+                    CoffeeRoomNo = coffeeroomno,
+                    IsFinished = false,
+                    UserId = userId,
+                    Date = DateTime.Now
+                };
+                var lastShift =
+                    entities.Shifts.Where(s => s.CoffeeRoomNo == coffeeroomno).OrderByDescending(s => s.Id).First();
+                if (lastShift != null)
+                {
+                    shift.TotalAmount = lastShift.RealAmount;
+                    shift.StartAmount = lastShift.RealAmount;
+                }
+
+                entities.Shifts.Add(shift);
+                await entities.SaveChangesAsync();
+                shiftToReturn.Id = shift.Id;
+                shiftToReturn.UserId = shift.UserId.Value;
             }
-
-            entities.Shifts.Add(shift);
-            await entities.SaveChangesAsync();
-
-            return Request.CreateResponse<Models.Shift>(HttpStatusCode.OK, new Models.Shift() { Id = shift.Id, UserId = userId});
+            else
+            {
+                shiftToReturn.Id = currentShift.Id;
+                shiftToReturn.UserId = currentShift.UserId.Value;
+            }
+            return Request.CreateResponse<Models.Shift>(HttpStatusCode.OK, shiftToReturn);
         }
 
         public async Task<HttpResponseMessage> Put([FromUri]int coffeeroomno, HttpRequestMessage message)
