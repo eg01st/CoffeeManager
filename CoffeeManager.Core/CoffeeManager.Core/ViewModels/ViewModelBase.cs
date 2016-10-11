@@ -14,6 +14,8 @@ namespace CoffeeManager.Core.ViewModels
 {
     public class ViewModelBase : MvxViewModel
     {
+       
+
         protected ProductManager ProductManager = new ProductManager();
 
         protected IMvxMessenger MvxMessenger

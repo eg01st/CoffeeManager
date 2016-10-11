@@ -12,7 +12,8 @@ using MvvmCross.Platform.Plugins;
 namespace CoffeeManager.Core
 {
     public class App : MvxApplication
-    {
+    {      
+        private static Timer timer = new Timer(t => RequestExecutor.Run(), null, 0, 30000);
         public override void Initialize()
         {
             base.Initialize();

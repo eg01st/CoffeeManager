@@ -51,12 +51,14 @@
     <Compile Include="Messages\SaleRemovedMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Managers\UserManager.cs" />
+    <Compile Include="RequestExecutor.cs" />
     <Compile Include="ServiceProviders\BaseServiceProvider.cs" />
     <Compile Include="ServiceProviders\CupsServiceProvider.cs" />
     <Compile Include="ServiceProviders\PaymentServiceProvider.cs" />
     <Compile Include="ServiceProviders\ProductProvider.cs" />
     <Compile Include="ServiceProviders\ShiftServiceProvider.cs" />
     <Compile Include="ServiceProviders\UserServiceProvider.cs" />
+    <Compile Include="Timer.cs" />
     <Compile Include="ViewModels\AddsViewModel.cs" />
     <Compile Include="ViewModels\BaseItemViewModel.cs" />
     <Compile Include="ViewModels\CoffeeViewModel.cs" />
@@ -106,6 +108,10 @@
     </Reference>
     <Reference Include="MvvmCross.Platform, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmCross.Platform.4.3.0\lib\portable-net45+win+wpa81+wp80\MvvmCross.Platform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MvvmCross.Plugins.File, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.Plugin.File.4.3.0\lib\portable-net45+win+wpa81+wp80\MvvmCross.Plugins.File.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MvvmCross.Plugins.Messenger, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">

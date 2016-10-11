@@ -7,6 +7,8 @@ namespace CoffeeManager.Core.ViewModels
 {
     public class LoginViewModel : ViewModelBase
     {
+       // private static RequestExecutor executor = new RequestExecutor();
+
         private readonly UserManager _userManager;
         private readonly ShiftManager _shiftManager; 
         private readonly ICommand _selectUserCommand;
@@ -16,6 +18,7 @@ namespace CoffeeManager.Core.ViewModels
 
         public LoginViewModel()
         {
+            //executor.RunTimer();
             _userManager = new UserManager();
             _shiftManager = new ShiftManager();
             _selectUserCommand = new MvxCommand<User>(DoSelectUser);

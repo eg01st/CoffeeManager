@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Threading;
 using Android.Content;
 using Android.Views;
 using CoffeeManager.Core;
@@ -8,7 +10,6 @@ using CoffeeManager.Droid.Bindings;
 using MvvmCross.Binding.Bindings.Target.Construction;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Droid.Platform;
-using MvvmCross.Droid.Support.V7.AppCompat;
 
 namespace CoffeeManager.Droid
 {

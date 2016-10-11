@@ -25,6 +25,16 @@ namespace CoffeeManager.Core.ServiceProviders
         protected readonly int CoffeeRoomNo = 1; //Take from config later
         private readonly string _apiUrl = "http://coffeeroom.ddns.net:8082/api/";  //"http://169.254.80.80:8080/api/"; //Todo: init from configfile
 
+        protected async Task PutInternal(string path, string obj)
+        {
+            RequestExecutor.Put(path, obj);
+        }
+
+        protected async Task PostInternal(string path, string obj)
+        {
+            await RequestExecutor.Post(path, obj);
+        }
+
         protected async Task<T> Get<T>(string path, Dictionary<string, string> param = null)
         {
             string url = string.Empty;
