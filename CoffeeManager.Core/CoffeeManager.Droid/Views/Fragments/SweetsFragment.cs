@@ -2,7 +2,7 @@ using CoffeeManager.Core.ViewModels;
 
 namespace CoffeeManager.Droid.Views.Fragments
 {
-    public class TeaFragment : BaseFragment<TeaViewModel>
+    public class SweetsFragment : BaseFragment<SweetsViewModel>
     {
     }
 }

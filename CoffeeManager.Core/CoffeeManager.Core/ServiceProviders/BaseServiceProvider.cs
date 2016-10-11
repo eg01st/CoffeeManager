@@ -30,7 +30,6 @@ namespace CoffeeManager.Core.ServiceProviders
             string url = string.Empty;
             try
             {
-                throw new NotSupportedException("test");
                 var client = new HttpClient();
 
                 url = $"{_apiUrl}{path}?coffeeroomno={CoffeeRoomNo}";
@@ -41,6 +40,7 @@ namespace CoffeeManager.Core.ServiceProviders
                         url += $"&{parameter.Key}={parameter.Value}";
                     }
                 }
+                //Bot.SendMessage($"GET {url}, TestError");
                 var response = await client.GetAsync(url);
                 string responseString = await response.Content.ReadAsStringAsync();
                 Debug.WriteLine(responseString);
@@ -50,7 +50,6 @@ namespace CoffeeManager.Core.ServiceProviders
             }
             catch (Exception ex)
             {
-                UserDialogs.SendSMS($"GET {url}, {ex}", "+380636026265");
                 throw;
             }
         }

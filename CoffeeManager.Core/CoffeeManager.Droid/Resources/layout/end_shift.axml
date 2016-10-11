@@ -79,6 +79,6 @@
       android:layout_height="wrap_content"
       android:text="Завершить смену"
        android:textSize="24dp"
-      local:MvxBind="Click FinishShiftCommand"
+      local:MvxBind="Click FinishShiftCommand; Enabled EndShiftButtonEnabled"
       />
 </LinearLayout>

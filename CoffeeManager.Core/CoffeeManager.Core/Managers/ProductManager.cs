@@ -53,5 +53,15 @@ namespace CoffeeManager.Core.Managers
         {
             await provider.DeleteSale(ShiftNo, id);
         }
+
+        public async Task<Product[]> GetSweetsProducts()
+        {
+            return await provider.GetProduct(ProductType.Sweets);
+        }
+
+        public async Task<Product[]> GetAddsProducts()
+        {
+            return await provider.GetProduct(ProductType.Adds);
+        }
     }
 }

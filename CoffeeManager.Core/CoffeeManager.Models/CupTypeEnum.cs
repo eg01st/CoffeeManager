@@ -2,6 +2,7 @@
 {
     public enum CupTypeEnum
     {
+        Unknown =1,
         c110 = 2,
         c170,
         c250,

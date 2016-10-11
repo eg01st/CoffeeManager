@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CoffeeManager.Models
+﻿namespace CoffeeManager.Models
 {
     public enum ProductType
     {
@@ -13,6 +7,8 @@ namespace CoffeeManager.Models
         ColdDrinks,
         IceCream,
         Meals,
-        Water
+        Water,
+        Sweets,
+        Adds
     }
 }

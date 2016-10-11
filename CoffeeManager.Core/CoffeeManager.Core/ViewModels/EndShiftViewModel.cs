@@ -20,9 +20,13 @@ namespace CoffeeManager.Core.ViewModels
             {
                 _realAmount = value; 
                 RaisePropertyChanged(nameof(RealAmount));
+                RaisePropertyChanged(nameof(EndShiftButtonEnabled));
             }
         }
 
+        public bool EndShiftButtonEnabled
+            => !string.IsNullOrEmpty(RealAmount) && !string.IsNullOrEmpty(MilkPack) && !string.IsNullOrEmpty(CoffeePack)
+            ;
         public string MilkPack
         {
             get { return _milkPack; }
@@ -30,6 +34,7 @@ namespace CoffeeManager.Core.ViewModels
             {
                 _milkPack = value;
                 RaisePropertyChanged(nameof(MilkPack));
+                RaisePropertyChanged(nameof(EndShiftButtonEnabled));
             }
         }
 
@@ -40,6 +45,7 @@ namespace CoffeeManager.Core.ViewModels
             {
                 _coffeePack = value;
                 RaisePropertyChanged(nameof(CoffeePack));
+                RaisePropertyChanged(nameof(EndShiftButtonEnabled));
             }
         }
 

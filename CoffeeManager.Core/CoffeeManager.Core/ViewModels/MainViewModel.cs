@@ -148,7 +148,7 @@ namespace CoffeeManager.Core.ViewModels
             {
                 Message = "Завершить смену?",
                 OnAction =
-                            (confirm) =>
+                            (confirm) =>    
                             {
                                 if (confirm)
                                 {

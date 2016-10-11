@@ -35,6 +35,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
+    <Compile Include="Bot.cs" />
     <Compile Include="Managers\BaseManager.cs" />
     <Compile Include="Managers\CupManager.cs" />
     <Compile Include="Managers\DeptManager.cs" />
@@ -56,6 +57,7 @@
     <Compile Include="ServiceProviders\ProductProvider.cs" />
     <Compile Include="ServiceProviders\ShiftServiceProvider.cs" />
     <Compile Include="ServiceProviders\UserServiceProvider.cs" />
+    <Compile Include="ViewModels\AddsViewModel.cs" />
     <Compile Include="ViewModels\BaseItemViewModel.cs" />
     <Compile Include="ViewModels\CoffeeViewModel.cs" />
     <Compile Include="ViewModels\ColdDrinksViewModel.cs" />
@@ -72,6 +74,7 @@
     <Compile Include="ViewModels\ProductBaseViewModel.cs" />
     <Compile Include="ViewModels\ProductViewModel.cs" />
     <Compile Include="ViewModels\SaleViewModel.cs" />
+    <Compile Include="ViewModels\SweetsViewModel.cs" />
     <Compile Include="ViewModels\TeaViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="ViewModels\WaterViewModel.cs" />
@@ -115,6 +118,10 @@
     </Reference>
     <Reference Include="Splat, Version=1.6.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Splat.1.6.2\lib\Portable-net45+win+wpa81+wp80\Splat.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telegram.Bot, Version=10.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Telegram.Bot.10.4.0\lib\netstandard1.1\Telegram.Bot.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>

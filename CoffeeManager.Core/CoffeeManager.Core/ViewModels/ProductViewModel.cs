@@ -17,6 +17,7 @@ namespace CoffeeManager.Core.ViewModels
         private Product product;
         private bool _isPoliceSale;
         private decimal _price;
+        private bool _enabled = true;
 
         public bool IsPoliceSale
         {
@@ -26,6 +27,17 @@ namespace CoffeeManager.Core.ViewModels
                 _isPoliceSale = value;
                 Price = IsPoliceSale ? product.PolicePrice : product.Price;
                 RaisePropertyChanged(nameof(IsPoliceSale));
+            }
+        }
+
+        public bool Enabled
+        {
+            get { return _enabled; }
+            set
+            {
+                _enabled = value;
+                
+                RaisePropertyChanged(nameof(Enabled));
             }
         }
 
@@ -63,6 +75,10 @@ namespace CoffeeManager.Core.ViewModels
 
         private async Task DoSelectItem()
         {
+            if (!Enabled)
+            {
+                return;
+            }
             if (IsPoliceSale)
             {
                 UserDialogs.Confirm(new ConfirmConfig()
@@ -86,9 +102,11 @@ namespace CoffeeManager.Core.ViewModels
 
         private async Task Sale()
         {
+            Enabled = false;
             await ProductManager.SaleProduct(Id, Price, IsPoliceSale);
             Publish(new AmoutChangedMessage(new Tuple<decimal, bool>(Price, true), this));
             ShowSuccessMessage($"Продан товар {Name} !");
+            Enabled = true;
         }
     }
 }

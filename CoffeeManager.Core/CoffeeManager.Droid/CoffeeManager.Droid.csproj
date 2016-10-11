@@ -161,7 +161,9 @@
     <Compile Include="Bootstrap\MessengerPluginBootstrap.cs" />
     <Compile Include="Bootstrap\SmsPluginBootstrap.cs" />
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="Converters\CupTypeToColorConverter.cs" />
     <Compile Include="Converters\CupTypeToNameConverter.cs" />
+    <Compile Include="Converters\CupTypeToVisibility.cs" />
     <Compile Include="Converters\DecimalToPriceConverter.cs" />
     <Compile Include="Entities\TabItem.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
@@ -176,11 +178,13 @@
     <Compile Include="Views\DeptView.cs" />
     <Compile Include="Views\EndShiftView.cs" />
     <Compile Include="Views\ExpenseView.cs" />
+    <Compile Include="Views\Fragments\AddsFragment.cs" />
     <Compile Include="Views\Fragments\BaseFragment.cs" />
     <Compile Include="Views\Fragments\CoffeeFragment.cs" />
     <Compile Include="Views\Fragments\ColdDrinksFragment.cs" />
     <Compile Include="Views\Fragments\IceCreamFragment.cs" />
     <Compile Include="Views\Fragments\MealsFragment.cs" />
+    <Compile Include="Views\Fragments\SweetsFragment.cs" />
     <Compile Include="Views\Fragments\TeaFragment.cs" />
     <Compile Include="Views\Fragments\WaterFragment.cs" />
     <Compile Include="Views\LoginView.cs" />
@@ -281,6 +285,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\ic_star_small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\values\colors.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Android.Support.Vector.Drawable.23.4.0.1\build\Xamarin.Android.Support.Vector.Drawable.targets" Condition="Exists('..\packages\Xamarin.Android.Support.Vector.Drawable.23.4.0.1\build\Xamarin.Android.Support.Vector.Drawable.targets')" />

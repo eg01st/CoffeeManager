@@ -27,7 +27,7 @@ namespace CoffeeManager.Core.ViewModels
 
         public async void Init()
         {
-            token = Subscribe<SaleRemovedMessage>((message => { LoadSales(); }));
+            token = Subscribe<SaleRemovedMessage>( (async message => { await LoadSales(); }));
             await LoadSales();
         }
 

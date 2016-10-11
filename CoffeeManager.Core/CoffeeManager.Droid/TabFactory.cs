@@ -26,18 +26,18 @@ namespace CoffeeManager.Droid
         {
             var coffee = ProduceFragment<CoffeeFragment, CoffeeViewModel>();
             var tea = ProduceFragment<TeaFragment, TeaViewModel>();
-            var coldDrinks = ProduceFragment<ColdDrinksFragment, ColdDrinksViewModel>();
+            var sweets = ProduceFragment<SweetsFragment, SweetsViewModel>();
             var water = ProduceFragment<WaterFragment, WaterViewModel>();
-            var iceCream = ProduceFragment<IceCreamFragment, IceCreamViewModel>();
+            var adds = ProduceFragment<AddsFragment, AddsViewModel>();
             var meals = ProduceFragment<MealsFragment, MealsViewModel>();
 
             return new TabItem[]
             {
                 new TabItem("Кофе", coffee),
                 new TabItem("Чай", tea),
-                new TabItem("Хол. напитки", coldDrinks),
+                new TabItem("Сладости", sweets),
                 new TabItem("Вода", water),
-                new TabItem("Мороженое", iceCream),
+                new TabItem("Добавки", adds),
                 new TabItem("Еда", meals),
             };
 

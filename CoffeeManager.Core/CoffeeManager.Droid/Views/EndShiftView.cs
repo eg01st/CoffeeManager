@@ -15,5 +15,10 @@ namespace CoffeeManager.Droid.Views
 
             SetContentView(Resource.Layout.end_shift);
         }
+
+        public override void OnBackPressed()
+        {
+            
+        }
     }
 }

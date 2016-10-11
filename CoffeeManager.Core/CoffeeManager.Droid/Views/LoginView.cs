@@ -13,5 +13,10 @@ namespace CoffeeManager.Droid.Views
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.login);
         }
+
+        public override void OnBackPressed()
+        {
+           
+        }
     }
 }
