@@ -23,6 +23,7 @@ namespace CoffeeManager.Core.ViewModels
         private ICommand _showCurrentSalesCommand;
         private ICommand _showExpenseCommand;
         private ICommand _enablePoliceSaleCommand;
+        private ICommand _showErrorsCommand;
 
         private decimal _currentShiftMoney;
         private decimal _entireMoney;
@@ -65,6 +66,8 @@ namespace CoffeeManager.Core.ViewModels
         public ICommand ShowExpenseCommand => _showExpenseCommand;
         public ICommand EnablePoliceSaleCommand => _enablePoliceSaleCommand;
 
+        public ICommand ShowErrorsCommand => _showErrorsCommand;
+
         public MainViewModel()
         {
             token = Subscribe<AmoutChangedMessage>(OnCallBackMessage);
@@ -76,6 +79,12 @@ namespace CoffeeManager.Core.ViewModels
             _showCurrentSalesCommand = new MvxCommand(DoShowCurrentSales);
             _showExpenseCommand = new MvxCommand(DoShowExpense);
             _enablePoliceSaleCommand = new MvxCommand(DoEnablePoliceSale);
+            _showErrorsCommand = new MvxCommand(DoShowErrors);
+        }
+
+        private void DoShowErrors()
+        {
+            ShowViewModel<ErrorsViewModel>();
         }
 
         private void OnDeptAdded(DeptAddedMessage obj)

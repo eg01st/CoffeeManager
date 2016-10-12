@@ -25,7 +25,7 @@ namespace CoffeeManager.Core
                 }
 
             }, Tuple.Create(callback, state), CancellationToken.None,
-                TaskContinuationOptions.ExecuteSynchronously | TaskContinuationOptions.OnlyOnRanToCompletion,
+                TaskContinuationOptions.OnlyOnRanToCompletion,
                 TaskScheduler.Default);
         }
 

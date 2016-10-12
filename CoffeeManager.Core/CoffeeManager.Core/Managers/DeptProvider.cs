@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CoffeeManager.Core.ServiceProviders;
 using CoffeeManager.Models;
+using Newtonsoft.Json;
 
 namespace CoffeeManager.Core.Managers
 {
@@ -13,12 +14,12 @@ namespace CoffeeManager.Core.Managers
         private const string Dept = "dept";
         public async Task AddDept(decimal amount, int shiftId)
         {
-            await Put<Dept>(Dept, new Dept() {Amount = amount, CoffeeRoomNo = CoffeeRoomNo, ShiftId = shiftId, IsPaid = false});
+            await PutInternal(Dept, JsonConvert.SerializeObject(new Dept() {Amount = amount, CoffeeRoomNo = CoffeeRoomNo, ShiftId = shiftId, IsPaid = false}));
         }
 
         public async Task RemoveDept(decimal amount, int shiftId)
         {
-            await Put(Dept, new Dept() { Amount = amount, CoffeeRoomNo = CoffeeRoomNo, ShiftId = shiftId, IsPaid = true });
+            await PutInternal(Dept, JsonConvert.SerializeObject(new Dept() { Amount = amount, CoffeeRoomNo = CoffeeRoomNo, ShiftId = shiftId, IsPaid = true }));
         }
 
         public async Task<float> GetCurrentDeptSum()

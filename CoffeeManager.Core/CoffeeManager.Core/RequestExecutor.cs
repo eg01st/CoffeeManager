@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -13,13 +14,13 @@ namespace CoffeeManager.Core
 {
     public class RequestExecutor
     {
-        protected static readonly int CoffeeRoomNo = 1; //Take from config later
-        private static readonly string _apiUrl = "http://coffeeroom.ddns.net:8082/api/";  //"http://169.254.80.80:8080/api/"; //Todo: init from configfile
+        protected static readonly int CoffeeRoomNo = Config.CoffeeRoomNo;
+        private static readonly string _apiUrl = Config.ApiUrl;
 
 
         private static IMvxFileStore storage = Mvx.Resolve<IMvxFileStore>();
-        private const string FileName = "RequestsQueue";
-        private static bool _timerRunning = true;
+        private const string RequestQueue = "RequestsQueue";
+        private const string ErrorsLog = "ErrorsLog";
 
         public static void Run()
         {
@@ -31,21 +32,25 @@ namespace CoffeeManager.Core
                         try
                         {
                             RunInternal(request);
+                            Debug.WriteLine($"REQUESTEXECUTOR: {request.Method} {request.Path} {request.ObjectJson}");
                             requestStorage.Requests.Remove(request);
-                            SaveStorage(requestStorage);
                         }
                         catch (Exception ex)
                         {
+                            request.ErrorMessage = $"{request.Method} {request.Path} {request.ObjectJson} {ex}";
                             continue;
                         }
-
+                        finally
+                        {
+                            SaveStorage(requestStorage);
+                        }
                     }
                 }
         }
         private static RequestStorage GetStorage()
         {
             string storageJson;
-            if(storage.TryReadTextFile(FileName, out storageJson))
+            if(storage.TryReadTextFile(RequestQueue, out storageJson))
             {
                 return JsonConvert.DeserializeObject<RequestStorage>(storageJson);
             }
@@ -55,24 +60,41 @@ namespace CoffeeManager.Core
             }
         }
 
-        private static void SaveStorage(RequestStorage requestStorage)
+        private static RequestStorage GetErrorStorage()
         {
-            storage.WriteFile(FileName, JsonConvert.SerializeObject(requestStorage));
+            string storageJson;
+            if (storage.TryReadTextFile(ErrorsLog, out storageJson))
+            {
+                return JsonConvert.DeserializeObject<RequestStorage>(storageJson);
+            }
+            else
+            {
+                return new RequestStorage() { Requests = new List<Request>() };
+            }
         }
 
-        public static Task Post(string path, string obj)
+        private static void SaveStorage(RequestStorage requestStorage)
+        {
+            storage.WriteFile(RequestQueue, JsonConvert.SerializeObject(requestStorage));
+        }
+
+        private static void SaveErrorStorage(RequestStorage requestStorage)
+        {
+            storage.WriteFile(ErrorsLog, JsonConvert.SerializeObject(requestStorage));
+        }
+
+        public static void Post(string path, string obj)
         {
             var requestStorage = GetStorage();
             requestStorage.Requests.Add(new Request() {Method = "POST", Path = path, ObjectJson = obj});
-            storage.WriteFile(FileName, JsonConvert.SerializeObject(requestStorage));
-            return null;
+            storage.WriteFile(RequestQueue, JsonConvert.SerializeObject(requestStorage));
         }
 
         public static void Put(string path, string obj)
         {
             var requestStorage = GetStorage();
             requestStorage.Requests.Add(new Request() { Method = "PUT", Path = path, ObjectJson = obj });
-            storage.WriteFile(FileName, JsonConvert.SerializeObject(requestStorage));
+            storage.WriteFile(RequestQueue, JsonConvert.SerializeObject(requestStorage));
         }
 
         private static void RunInternal(Request request)
@@ -89,6 +111,23 @@ namespace CoffeeManager.Core
                 var response = client.PostAsync(url, new StringContent(request.ObjectJson)).Result;
                 response.Content.ReadAsStringAsync();
             }
+        }
+
+        public static void LogError(string message)
+        {
+            var st = GetErrorStorage();
+            st.Errors.Add(message);
+            SaveErrorStorage(st);
+        }
+
+        public static List<Request> GetRequests()
+        {
+            return GetStorage().Requests;
+        }
+
+        public static List<string> GetErrors()
+        {
+            return GetErrorStorage().Errors;
         }
     }
 }

@@ -186,6 +186,7 @@
     <Compile Include="Views\DeleteCupView.cs" />
     <Compile Include="Views\DeptView.cs" />
     <Compile Include="Views\EndShiftView.cs" />
+    <Compile Include="Views\ErrorsView.cs" />
     <Compile Include="Views\ExpenseView.cs" />
     <Compile Include="Views\Fragments\AddsFragment.cs" />
     <Compile Include="Views\Fragments\BaseFragment.cs" />
@@ -247,6 +248,12 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\end_shift.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\errors.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\request_card.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

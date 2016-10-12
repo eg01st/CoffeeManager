@@ -32,12 +32,11 @@ namespace CoffeeManager.Core.ServiceProviders
                 Time = DateTime.Now
             };
             await PutInternal($"{Products}/SaleProduct", JsonConvert.SerializeObject(sale));
-            // await Put($"{Products}/SaleProduct", sale);
         }
 
         public async Task DeleteSale(int shiftId, int id)
         {
-            await Post($"{Products}/DeleteSale", new Sale() { ShiftId = shiftId, Id = id});
+            await PostInternal($"{Products}/DeleteSale", JsonConvert.SerializeObject(new Sale() { ShiftId = shiftId, Id = id}));
         }
     }
 }

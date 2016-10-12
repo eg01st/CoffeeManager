@@ -50,6 +50,11 @@
           local:MvxBind="Text CurrentShiftMoney"/>
     </LinearLayout>
 
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:text="Ошибки"
+        local:MvxBind="Click ShowErrorsCommand" />
     <LinearLayout
       android:layout_weight="50"
       android:gravity="right"

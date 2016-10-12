@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CoffeeManager.Models;
+using Newtonsoft.Json;
 
 namespace CoffeeManager.Core.ServiceProviders
 {
@@ -18,7 +19,15 @@ namespace CoffeeManager.Core.ServiceProviders
 
         public async Task UtilizeCup(int id, int shiftId)
         {
-            await Put(Cups, new UtilizedCup() {CupTypeId = id, DateTime = DateTime.Now, CoffeeRoomNo = CoffeeRoomNo, ShiftId = shiftId});
+            await
+                PutInternal(Cups,
+                    JsonConvert.SerializeObject(new UtilizedCup()
+                    {
+                        CupTypeId = id,
+                        DateTime = DateTime.Now,
+                        CoffeeRoomNo = CoffeeRoomNo,
+                        ShiftId = shiftId
+                    }));
         }
     }
 }

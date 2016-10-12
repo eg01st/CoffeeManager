@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using Acr.UserDialogs;
-using Cheesebaron.MvxPlugins.SMS;
 using MvvmCross.Platform;
 using Newtonsoft.Json;
 
@@ -14,16 +11,16 @@ namespace CoffeeManager.Core.ServiceProviders
 {
     public class BaseServiceProvider
     {
-        protected ISmsTask UserDialogs
+        protected IUserDialogs UserDialogs
         {
             get
             {
-                return Mvx.Resolve<ISmsTask>();
+                return Mvx.Resolve<IUserDialogs>();
             }
         }
 
-        protected readonly int CoffeeRoomNo = 1; //Take from config later
-        private readonly string _apiUrl = "http://coffeeroom.ddns.net:8082/api/";  //"http://169.254.80.80:8080/api/"; //Todo: init from configfile
+        protected readonly int CoffeeRoomNo = Config.CoffeeRoomNo;
+        private readonly string _apiUrl = Config.ApiUrl;
 
         protected async Task PutInternal(string path, string obj)
         {
@@ -32,7 +29,7 @@ namespace CoffeeManager.Core.ServiceProviders
 
         protected async Task PostInternal(string path, string obj)
         {
-            await RequestExecutor.Post(path, obj);
+            RequestExecutor.Post(path, obj);
         }
 
         protected async Task<T> Get<T>(string path, Dictionary<string, string> param = null)
@@ -50,7 +47,6 @@ namespace CoffeeManager.Core.ServiceProviders
                         url += $"&{parameter.Key}={parameter.Value}";
                     }
                 }
-                //Bot.SendMessage($"GET {url}, TestError");
                 var response = await client.GetAsync(url);
                 string responseString = await response.Content.ReadAsStringAsync();
                 Debug.WriteLine(responseString);
@@ -60,88 +56,139 @@ namespace CoffeeManager.Core.ServiceProviders
             }
             catch (Exception ex)
             {
+                RequestExecutor.LogError($"GET {path} {ex}");
+                UserDialogs.Alert("Произошла ошибка запроса к серверу");
                 throw;
             }
         }
 
         protected async Task<T> Post<T, TY>(string path, TY obj, Dictionary<string, string> param = null)
         {
-            var client = new HttpClient();
-            string url = $"{_apiUrl}{path}?coffeeroomno={CoffeeRoomNo}";
-            if (param != null && param.Count > 0)
+            string url = string.Empty;
+            try
             {
-                foreach (var parameter in param)
+                var client = new HttpClient();
+                url = $"{_apiUrl}{path}?coffeeroomno={CoffeeRoomNo}";
+                if (param != null && param.Count > 0)
                 {
-                    url += $"&{parameter.Key}={parameter.Value}";
+                    foreach (var parameter in param)
+                    {
+                        url += $"&{parameter.Key}={parameter.Value}";
+                    }
                 }
+                var response = await client.PostAsync(url, new StringContent(JsonConvert.SerializeObject(obj)));
+                string responseString = await response.Content.ReadAsStringAsync();
+                var result = JsonConvert.DeserializeObject<T>(responseString);
+                return result;
             }
-            var response = await client.PostAsync(url, new StringContent(JsonConvert.SerializeObject(obj)));
-            string responseString = await response.Content.ReadAsStringAsync();
-            var result = JsonConvert.DeserializeObject<T>(responseString);
-            return result;
+            catch (Exception ex)
+            {
+                RequestExecutor.LogError($"Post {path} {ex}");
+                UserDialogs.Alert("Произошла ошибка запроса к серверу");
+                throw;
+            }
         }
 
         protected async Task<string> Post<T>(string path, T obj, Dictionary<string, string> param = null)
         {
-            var client = new HttpClient();
-            string url = $"{_apiUrl}{path}?coffeeroomno={CoffeeRoomNo}";
-            if (param != null && param.Count > 0)
+            string url = string.Empty;
+            try
             {
-                foreach (var parameter in param)
+                var client = new HttpClient();
+                url = $"{_apiUrl}{path}?coffeeroomno={CoffeeRoomNo}";
+                if (param != null && param.Count > 0)
                 {
-                    url += $"&{parameter.Key}={parameter.Value}";
+                    foreach (var parameter in param)
+                    {
+                        url += $"&{parameter.Key}={parameter.Value}";
+                    }
                 }
+                var response = await client.PostAsync(url, new StringContent(JsonConvert.SerializeObject(obj)));
+                return await response.Content.ReadAsStringAsync();
             }
-            var response = await client.PostAsync(url, new StringContent(JsonConvert.SerializeObject(obj)));
-            return await response.Content.ReadAsStringAsync();
+            catch (Exception ex)
+            {
+                RequestExecutor.LogError($"Post {path} {ex}");
+                UserDialogs.Alert("Произошла ошибка запроса к серверу");
+                throw;
+            }
         }
 
         protected async Task<T> Put<T, TY>(string path, TY obj, Dictionary<string, string> param = null)
         {
-            var client = new HttpClient();
-            string url = $"{_apiUrl}{path}?coffeeroomno={CoffeeRoomNo}";
-            if (param != null && param.Count > 0)
+            string url = string.Empty;
+            try
             {
-                foreach (var parameter in param)
+                var client = new HttpClient();
+                url = $"{_apiUrl}{path}?coffeeroomno={CoffeeRoomNo}";
+                if (param != null && param.Count > 0)
                 {
-                    url += $"&{parameter.Key}={parameter.Value}";
+                    foreach (var parameter in param)
+                    {
+                        url += $"&{parameter.Key}={parameter.Value}";
+                    }
                 }
+                var response = await client.PutAsync(url, new StringContent(JsonConvert.SerializeObject(obj)));
+                string responseString = await response.Content.ReadAsStringAsync();
+                var result = JsonConvert.DeserializeObject<T>(responseString);
+                return result;
             }
-            var response = await client.PutAsync(url, new StringContent(JsonConvert.SerializeObject(obj)));
-            string responseString = await response.Content.ReadAsStringAsync();
-            var result = JsonConvert.DeserializeObject<T>(responseString);
-            return result;
+            catch (Exception ex)
+            {
+                RequestExecutor.LogError($"Put {path} {ex}");
+                UserDialogs.Alert("Произошла ошибка запроса к серверу");
+                throw;
+            }
         }
 
         protected async Task<string> Put<T>(string path, T obj, Dictionary<string, string> param = null)
         {
-            var client = new HttpClient();
-            string url = $"{_apiUrl}{path}?coffeeroomno={CoffeeRoomNo}";
-            if (param != null && param.Count > 0)
+            string url = string.Empty;
+            try
             {
-                foreach (var parameter in param)
+                var client = new HttpClient();
+                url = $"{_apiUrl}{path}?coffeeroomno={CoffeeRoomNo}";
+                if (param != null && param.Count > 0)
                 {
-                    url += $"&{parameter.Key}={parameter.Value}";
+                    foreach (var parameter in param)
+                    {
+                        url += $"&{parameter.Key}={parameter.Value}";
+                    }
                 }
+                var response = await client.PutAsync(url, new StringContent(JsonConvert.SerializeObject(obj)));
+                return await response.Content.ReadAsStringAsync();
             }
-            var response = await client.PutAsync(url, new StringContent(JsonConvert.SerializeObject(obj)));
-            return await response.Content.ReadAsStringAsync();
+            catch (Exception ex)
+            {
+                RequestExecutor.LogError($"Put {path} {ex}");
+                UserDialogs.Alert("Произошла ошибка запроса к серверу");
+                throw;
+            }
         }
 
         protected async Task<string> Delete(string path, Dictionary<string, string> param = null)
         {
-            var client = new HttpClient();
-            string url = $"{_apiUrl}{path}?coffeeroomno={CoffeeRoomNo}";
-            if (param != null && param.Count > 0)
+            string url = string.Empty;
+            try
             {
-                foreach (var parameter in param)
+                var client = new HttpClient();
+                url = $"{_apiUrl}{path}?coffeeroomno={CoffeeRoomNo}";
+                if (param != null && param.Count > 0)
                 {
-                    url += $"&{parameter.Key}={parameter.Value}";
+                    foreach (var parameter in param)
+                    {
+                        url += $"&{parameter.Key}={parameter.Value}";
+                    }
                 }
+                var response = await client.DeleteAsync(url);
+                return await response.Content.ReadAsStringAsync();
             }
-            var response = await client.DeleteAsync(url);
-            return await response.Content.ReadAsStringAsync();
-
+            catch (Exception ex)
+            {
+                RequestExecutor.LogError($"Delete {path} {ex}");
+                UserDialogs.Alert("Произошла ошибка запроса к серверу");
+                throw;
+            }
         }
     }
 }
