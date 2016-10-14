@@ -184,5 +184,10 @@ namespace CoffeeManager.Core.ViewModels
             RaisePropertyChanged(nameof(CurrentShiftMoney));
             RaisePropertyChanged(nameof(EntireMoney));
         }
+
+        public void HandleError(string toString)
+        {
+            RequestExecutor.LogError(toString);
+        }
     }
 }

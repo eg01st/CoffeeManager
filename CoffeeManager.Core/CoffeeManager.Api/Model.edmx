@@ -5,6 +5,14 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="CoffeeRoomModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AdminUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="CupSuply">
           <Key>
             <PropertyRef Name="Id" />
@@ -35,6 +43,16 @@
           <Property Name="ShiftId" Type="int" Nullable="false" />
           <Property Name="IsPaid" Type="bit" Nullable="false" />
           <Property Name="CoffeeRoomNo" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Errors">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Method" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Url" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Exception" Type="nvarchar" MaxLength="1024" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Expense">
           <Key>
@@ -276,9 +294,11 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="CoffeeRoomModelStoreContainer">
+          <EntitySet Name="AdminUser" EntityType="Self.AdminUser" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CupSuply" EntityType="Self.CupSuply" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CupType" EntityType="Self.CupType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Dept" EntityType="Self.Dept" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Errors" EntityType="Self.Errors" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Expense" EntityType="Self.Expense" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ExpenseType" EntityType="Self.ExpenseType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
@@ -660,6 +680,8 @@
             <End Role="Shift" EntitySet="Shifts" />
             <End Role="UsedProductsPerShift" EntitySet="UsedProductsPerShifts" />
           </AssociationSet>
+          <EntitySet Name="Errors" EntityType="CoffeeRoomModel.Error" />
+          <EntitySet Name="AdminUsers" EntityType="CoffeeRoomModel.AdminUser" />
         </EntityContainer>
         <EntityType Name="Dept">
           <Key>
@@ -707,6 +729,24 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Error">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Method" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Url" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Exception" Type="String" Nullable="false" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="AdminUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -860,6 +900,26 @@
                 <ScalarProperty Name="MilkPacks" ColumnName="MilkPacks" />
                 <ScalarProperty Name="CoffeePacks" ColumnName="CoffeePacks" />
                 <ScalarProperty Name="ShiftId" ColumnName="ShiftId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Errors">
+            <EntityTypeMapping TypeName="CoffeeRoomModel.Error">
+              <MappingFragment StoreEntitySet="Errors">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Exception" ColumnName="Exception" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="Method" ColumnName="Method" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AdminUsers">
+            <EntityTypeMapping TypeName="CoffeeRoomModel.AdminUser">
+              <MappingFragment StoreEntitySet="AdminUser">
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

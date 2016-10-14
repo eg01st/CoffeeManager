@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -6,6 +7,7 @@ using System.Net.Http.Formatting;
 using System.Threading.Tasks;
 using System.Web.Http;
 using CoffeeManager.Api.Mappers;
+using CoffeeManager.Models;
 using Newtonsoft.Json;
 
 namespace CoffeeManager.Api.Controllers
@@ -30,6 +32,24 @@ namespace CoffeeManager.Api.Controllers
             entites.Users.Add(user);
             await entites.SaveChangesAsync();
             return Request.CreateResponse<User>(HttpStatusCode.OK, user);
+        }
+
+        [Route("api/users/login")]
+        [HttpPost]
+        public async Task<HttpResponseMessage> Login([FromUri]int coffeeroomno, HttpRequestMessage message)
+        {
+            var request = await message.Content.ReadAsStringAsync();
+            var userInfo = JsonConvert.DeserializeObject<UserInfo>(request);
+            var entites = new CoffeeRoomEntities();
+            var user =
+                entites.AdminUsers.FirstOrDefault(u => u.Name == userInfo.Login && u.Password == userInfo.Password);
+            if (user != null)
+            {
+                var guid = Guid.NewGuid().ToString();
+                UserSessions.Sessions.Add(guid);
+                return Request.CreateResponse<string>(HttpStatusCode.OK, guid);
+            }
+            return Request.CreateErrorResponse(HttpStatusCode.Forbidden, "Invalid user name or password");
         }
 
 

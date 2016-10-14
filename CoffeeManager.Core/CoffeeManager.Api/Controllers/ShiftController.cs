@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -121,6 +122,36 @@ namespace CoffeeManager.Api.Controllers
             {
                 return Request.CreateResponse<Models.Shift>(HttpStatusCode.OK, null);
             }
+        }
+
+        [Route("api/shift/getShifts")]
+        [HttpGet]
+        public async Task<HttpResponseMessage> GetShifts([FromUri]int coffeeroomno, HttpRequestMessage message)
+        {
+            var token = message.Headers.GetValues("token").FirstOrDefault();
+            if (token == null || !UserSessions.Sessions.Contains(token))
+            {
+                return Request.CreateResponse(HttpStatusCode.Forbidden);
+            }
+            var entities = new CoffeeRoomEntities();
+            var shifts = entities.Shifts.Include(s => s.User);
+            var response = new List<ShiftInfo>();
+            foreach (var shift in shifts)
+            {
+                var res = new ShiftInfo()
+                {
+                    Id = shift.Id,
+                    Date = shift.Date.Value,
+                    RealAmount = shift.RealAmount,
+                    StartMoney = shift.StartAmount,
+                    UserName = shift.User.Name,
+                    TotalAmount = shift.TotalAmount,
+                    ExpenseAmount = shift.TotalExprenses,
+                    ShiftEarnedMoney = shift.CurrentAmount
+                };
+                response.Add(res);
+            }
+            return Request.CreateResponse(HttpStatusCode.OK, response);
         }
 
         [Route("api/shift/getShiftSales")]

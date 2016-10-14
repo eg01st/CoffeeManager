@@ -38,5 +38,7 @@ namespace CoffeeManager.Api
         public virtual DbSet<UtilizedCup> UtilizedCups { get; set; }
         public virtual DbSet<Dept> Depts { get; set; }
         public virtual DbSet<UsedProductsPerShift> UsedProductsPerShifts { get; set; }
+        public virtual DbSet<Error> Errors { get; set; }
+        public virtual DbSet<AdminUser> AdminUsers { get; set; }
     }
 }

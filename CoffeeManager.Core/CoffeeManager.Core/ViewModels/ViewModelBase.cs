@@ -53,7 +53,7 @@ namespace CoffeeManager.Core.ViewModels
 
         public void ShowSuccessMessage(string message)
         {
-            UserDialogs.ShowSuccess(message, 1000);
+            UserDialogs.ShowSuccess(message, 300);
         }
     }
 }

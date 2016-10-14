@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Acr.UserDialogs;
 using Android.App;
@@ -25,6 +26,7 @@ namespace CoffeeManager.Droid.Views
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.main);
 
@@ -35,6 +37,11 @@ namespace CoffeeManager.Droid.Views
 
             InitToolBarCommands();
             SetTabLayout();
+        }
+
+        private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+            ViewModel.HandleError(e.ExceptionObject.ToString());
         }
 
         private void InitToolBarCommands()

@@ -154,6 +154,9 @@
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminUser.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
@@ -169,7 +172,11 @@
     <Compile Include="CupType.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="CustomExceptionFilterAttribute.cs" />
     <Compile Include="Dept.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Error.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Expense.cs">
@@ -220,6 +227,7 @@
     <Compile Include="User.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="UserSessions.cs" />
     <Compile Include="UtilizedCup.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
