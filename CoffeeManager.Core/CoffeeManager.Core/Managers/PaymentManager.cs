@@ -22,21 +22,14 @@ namespace CoffeeManager.Core.Managers
             return await provider.GetEntireMoney();
         }
 
-        public async Task AddExpense(int expenseId, decimal amout)
+        public async Task AddExpense(int expenseId, decimal amout, int itemCount)
         {
-            await provider.AddExpense(ShiftNo, expenseId, amout);
+            await provider.AddExpense(ShiftNo, expenseId, amout, itemCount);
         }
 
         public async Task<Entity[]> GetExpenseItems()
         {
             return await provider.GetExpenseItems();
-
-            return new Entity[]
-            {
-                new Entity { Id = 1, Name = "Кофе"},
-                new Entity { Id = 1, Name = "Молоко"},
-                new Entity { Id = 1, Name = "Панини"},
-            };
         }
 
         public async Task AddNewExpenseType(string typeName)

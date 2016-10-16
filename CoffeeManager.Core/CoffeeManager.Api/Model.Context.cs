@@ -40,5 +40,6 @@ namespace CoffeeManager.Api
         public virtual DbSet<UsedProductsPerShift> UsedProductsPerShifts { get; set; }
         public virtual DbSet<Error> Errors { get; set; }
         public virtual DbSet<AdminUser> AdminUsers { get; set; }
+        public virtual DbSet<SupliedProduct> SupliedProducts { get; set; }
     }
 }

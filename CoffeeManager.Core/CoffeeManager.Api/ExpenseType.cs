@@ -18,6 +18,7 @@ namespace CoffeeManager.Api
         public ExpenseType()
         {
             this.Expenses = new HashSet<Expense>();
+            this.SupliedProducts = new HashSet<SupliedProduct>();
         }
     
         public int Id { get; set; }
@@ -26,5 +27,7 @@ namespace CoffeeManager.Api
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Expense> Expenses { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SupliedProduct> SupliedProducts { get; set; }
     }
 }

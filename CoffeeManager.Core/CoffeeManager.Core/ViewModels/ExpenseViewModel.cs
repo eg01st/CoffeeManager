@@ -19,6 +19,7 @@ namespace CoffeeManager.Core.ViewModels
         protected List<BaseItemViewModel> _items;
         private BaseItemViewModel _selectedExpence;
         private string _amount;
+        private string _itemCount;
         private string _newExpenseType;
         private ICommand _addNewExprenseTypeCommand;
         private ICommand _addExpenseCommand;
@@ -52,6 +53,17 @@ namespace CoffeeManager.Core.ViewModels
                 RaisePropertyChanged(nameof(IsAddButtomEnabled));
             }
         }
+
+        public string ItemCount
+        {
+            get { return _itemCount; }
+            set
+            {
+                _itemCount = value;
+                RaisePropertyChanged(nameof(ItemCount));
+                RaisePropertyChanged(nameof(IsAddButtomEnabled));
+            }
+        }
         public string NewExprenseType
         {
             get { return _newExpenseType; }
@@ -68,7 +80,7 @@ namespace CoffeeManager.Core.ViewModels
         public ICommand SelectExpenseTypeCommand => _selectExpenseTypeCommand;
 
         public bool IsAddNewExpenseTypeEnabled => !string.IsNullOrEmpty(NewExprenseType);
-        public bool IsAddButtomEnabled => !string.IsNullOrEmpty(Amount) && !string.IsNullOrEmpty(SelectedExprense);
+        public bool IsAddButtomEnabled => !string.IsNullOrEmpty(Amount) && !string.IsNullOrEmpty(SelectedExprense) && !string.IsNullOrEmpty(ItemCount);
         
 
         public ExpenseViewModel()
@@ -95,7 +107,7 @@ namespace CoffeeManager.Core.ViewModels
                     if (ok)
                     {
                         var amount = decimal.Parse(Amount);
-                        await _paymentManager.AddExpense(_selectedExpence.Id, amount);
+                        await _paymentManager.AddExpense(_selectedExpence.Id, amount, int.Parse(ItemCount));
                         Publish(new ExpenseAddedMessage(amount, this));
                         Close(this);
                     }

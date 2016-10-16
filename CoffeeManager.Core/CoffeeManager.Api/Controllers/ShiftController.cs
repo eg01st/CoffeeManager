@@ -96,6 +96,14 @@ namespace CoffeeManager.Api.Controllers
                     ShiftId = shiftId,
                     CoffeeRoomNo = shiftInfo.CoffeeRoomNo
                 };
+                int coffeeId = (int) Models.ExpenseTypeEnum.Coffee;
+                var coffee = enities.SupliedProducts.First(e => e.ExprenseTypeId.HasValue && e.ExprenseTypeId.Value == coffeeId);
+                coffee.Amount -= shiftInfo.CoffeePacks;
+
+                int milkId = (int)Models.ExpenseTypeEnum.Milk;
+                var milk = enities.SupliedProducts.First(e => e.ExprenseTypeId.HasValue && e.ExprenseTypeId.Value == milkId);
+                milk.Amount -= shiftInfo.MilkPacks;
+
                 enities.UsedProductsPerShifts.Add(usedProducts);
 
                 await enities.SaveChangesAsync();

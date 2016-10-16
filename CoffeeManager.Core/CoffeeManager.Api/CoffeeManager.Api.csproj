@@ -218,6 +218,9 @@
     <Compile Include="Shift.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="SupliedProduct.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="UsedCupsPerShift.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>

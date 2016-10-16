@@ -32,6 +32,9 @@
         <AssociationConnector Association="CoffeeRoomModel.FK__UsedProdu__Shift__5DCAEF64" />
         <EntityTypeShape EntityType="CoffeeRoomModel.Error" Width="1.5" PointX="10.375" PointY="0.75" />
         <EntityTypeShape EntityType="CoffeeRoomModel.AdminUser" Width="1.5" PointX="10.375" PointY="3.75" />
+        <EntityTypeShape EntityType="CoffeeRoomModel.SupliedProduct" Width="1.5" PointX="8.25" PointY="14.375" />
+        <AssociationConnector Association="CoffeeRoomModel.FK_SupliedProduct_ExpenseType" />
+        <AssociationConnector Association="CoffeeRoomModel.FK__SupliedPr__Produ__73BA3083" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

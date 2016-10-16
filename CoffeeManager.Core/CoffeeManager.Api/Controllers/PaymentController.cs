@@ -55,6 +55,13 @@ namespace CoffeeManager.Api.Controllers
 
             var entities = new  CoffeeRoomEntities();
             entities.Expenses.Add(DbMapper.Map(expense));
+            var suplyProduct =
+                entities.SupliedProducts.FirstOrDefault(
+                    s => s.ExprenseTypeId.HasValue && s.ExprenseTypeId.Value == expense.Id);
+            if (suplyProduct != null)
+            {
+                suplyProduct.Amount += expense.ItemCount;
+            }
             var currentShift = entities.Shifts.First(s => s.Id == expense.ShiftId);
             currentShift.TotalExprenses += expense.Amount;
             currentShift.TotalAmount -= expense.Amount;

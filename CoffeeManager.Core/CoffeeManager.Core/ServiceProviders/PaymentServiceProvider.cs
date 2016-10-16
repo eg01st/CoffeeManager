@@ -21,13 +21,14 @@ namespace CoffeeManager.Core.ServiceProviders
             return await Get<decimal>($"{Payment}/getentiremoney", null);
         }
 
-        public async Task AddExpense(int shiftId, int expenseId, decimal amount)
+        public async Task AddExpense(int shiftId, int expenseId, decimal amount, int itemCount)
         {
                 await
                     Put(Payment,
                         new Expense()
                         {
                             Amount = amount,
+                            ItemCount = itemCount,
                             ExpenseId = expenseId,
                             ShiftId = shiftId,
                             CoffeeRoomNo = CoffeeRoomNo

@@ -18,6 +18,7 @@ namespace CoffeeManager.Api
         public Product()
         {
             this.Sales = new HashSet<Sale>();
+            this.SupliedProducts = new HashSet<SupliedProduct>();
         }
     
         public int Id { get; set; }
@@ -27,10 +28,13 @@ namespace CoffeeManager.Api
         public decimal PolicePrice { get; set; }
         public Nullable<int> CoffeeRoomNo { get; set; }
         public Nullable<int> CupType { get; set; }
+        public Nullable<int> SuplyProductId { get; set; }
     
         public virtual CupType CupType1 { get; set; }
         public virtual ProductType ProductType1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Sale> Sales { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SupliedProduct> SupliedProducts { get; set; }
     }
 }

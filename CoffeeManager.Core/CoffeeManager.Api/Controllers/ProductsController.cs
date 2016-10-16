@@ -36,6 +36,13 @@ namespace CoffeeManager.Api.Controllers
                 var currentShift = entities.Shifts.First(s => s.Id == sale.ShiftId);
                 currentShift.CurrentAmount += sale.Amount;
                 currentShift.TotalAmount += sale.Amount;
+                var product = entities.Products.First(p => p.Id == sale.Product);
+                if (product.SuplyProductId.HasValue)
+                {
+                    var suplyProduct = entities.SupliedProducts.First(p => p.Id == product.SuplyProductId.Value);
+                    suplyProduct.Amount -= 1;
+                }
+
                 await entities.SaveChangesAsync();
                 return Request.CreateResponse(HttpStatusCode.OK);
             }
@@ -55,6 +62,14 @@ namespace CoffeeManager.Api.Controllers
             var entities = new  CoffeeRoomEntities();
             var saleDb = entities.Sales.First(s => s.CoffeeRoomNo == coffeeroomno && s.Id == sale.Id);
             saleDb.IsRejected = true;
+            
+            var product = entities.Products.First(p => p.Id == sale.Product);
+            if (product.SuplyProductId.HasValue)
+            {
+                var suplyProduct = entities.SupliedProducts.First(p => p.Id == product.SuplyProductId.Value);
+                suplyProduct.Amount += 1;
+            }
+
             await entities.SaveChangesAsync();
             return Request.CreateResponse(HttpStatusCode.OK);
         }
