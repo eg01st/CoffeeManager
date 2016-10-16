@@ -131,6 +131,7 @@
           <Property Name="Amount" Type="int" Nullable="false" />
           <Property Name="ProductId" Type="int" />
           <Property Name="ExprenseTypeId" Type="int" />
+          <Property Name="CoffeeRoomNo" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="UsedCupsPerShift">
           <Key>
@@ -816,6 +817,7 @@
           <Property Name="ExprenseTypeId" Type="Int32" />
           <NavigationProperty Name="ExpenseType" Relationship="CoffeeRoomModel.FK_SupliedProduct_ExpenseType" FromRole="SupliedProduct" ToRole="ExpenseType" />
           <NavigationProperty Name="Product" Relationship="CoffeeRoomModel.FK__SupliedPr__Produ__73BA3083" FromRole="SupliedProduct" ToRole="Product" />
+          <Property Name="CoffeeRoomNo" Type="Int32" Nullable="false" />
         </EntityType>
         <Association Name="FK_SupliedProduct_ExpenseType">
           <End Type="CoffeeRoomModel.ExpenseType" Role="ExpenseType" Multiplicity="0..1" />
@@ -1022,6 +1024,7 @@
           <EntitySetMapping Name="SupliedProducts">
             <EntityTypeMapping TypeName="CoffeeRoomModel.SupliedProduct">
               <MappingFragment StoreEntitySet="SupliedProduct">
+                <ScalarProperty Name="CoffeeRoomNo" ColumnName="CoffeeRoomNo" />
                 <ScalarProperty Name="ExprenseTypeId" ColumnName="ExprenseTypeId" />
                 <ScalarProperty Name="ProductId" ColumnName="ProductId" />
                 <ScalarProperty Name="Amount" ColumnName="Amount" />

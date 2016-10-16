@@ -165,6 +165,7 @@
     <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\ShiftController.cs" />
+    <Compile Include="Controllers\SuplyProductsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="CupSuply.cs">
       <DependentUpon>Model.tt</DependentUpon>
@@ -279,6 +280,7 @@
     <Content Include="Model.edmx.diagram">
       <DependentUpon>Model.edmx</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\dev.pubxml" />
     <None Include="Properties\PublishProfiles\local.pubxml" />
     <None Include="Properties\PublishProfiles\Prof.pubxml" />
   </ItemGroup>

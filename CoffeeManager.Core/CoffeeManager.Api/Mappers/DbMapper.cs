@@ -27,5 +27,10 @@ namespace CoffeeManager.Api.Mappers
         {
             return new Dept() { CoffeeRoomNo = dept.CoffeeRoomNo, ShiftId = dept.ShiftId, Amount = dept.Amount, IsPaid = dept.IsPaid};
         }
+
+        public static SupliedProduct Map(Models.SupliedProduct sProduct)
+        {
+            return new SupliedProduct() {Amount = 0, CoffeeRoomNo = sProduct.CoffeeRoomNo, Name = sProduct.Name, Price = sProduct.Price};
+        }
     }
 }

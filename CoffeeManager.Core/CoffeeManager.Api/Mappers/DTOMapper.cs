@@ -31,5 +31,10 @@ namespace CoffeeManager.Api.Mappers
         {
             return new Models.Sale() { Id = saleDb.Id, Product1 = new Models.Product() {Name = saleDb.Product1.Name, ProductType = saleDb.Product1.ProductType.Value}, CoffeeRoomNo = saleDb.CoffeeRoomNo, Amount = saleDb.Amount, ShiftId = saleDb.ShiftId, IsPoliceSale = saleDb.IsPoliceSale.Value, Time = saleDb.Time};
         }
+
+        public static Models.SupliedProduct ToDTO(this SupliedProduct productDb)
+        {
+            return new Models.SupliedProduct() { Id = productDb.Id, Name = productDb.Name, CoffeeRoomNo = productDb.CoffeeRoomNo, Amount = productDb.Amount, Price = productDb.Price};
+        }
     }
 }
