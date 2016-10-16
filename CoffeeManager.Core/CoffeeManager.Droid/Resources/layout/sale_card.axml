@@ -19,13 +19,13 @@
       android:orientation="horizontal">
     <TextView
       android:layout_marginLeft="20dp"
-      android:layout_width="wrap_content"
+      android:layout_width="300dp"
       android:layout_height="wrap_content"
       android:textSize="24dp"
       local:MvxBind="Text Name"/>
     <TextView
       android:layout_marginLeft="50dp"
-      android:layout_width="wrap_content"
+      android:layout_width="50dp"
       android:layout_height="wrap_content"
       android:textSize="24dp"
       local:MvxBind="Text DecimalToPrice(Amount)"/>
@@ -36,7 +36,7 @@
       android:text=" грн"/>
     <TextView
       android:layout_marginLeft="50dp"
-      android:layout_width="320dp"
+      android:layout_width="300dp"
       android:layout_height="wrap_content"
       android:textSize="24dp"
       local:MvxBind="Text Time"/>
