@@ -57,7 +57,7 @@ namespace CoffeeManager.Api.Controllers
             entities.Expenses.Add(DbMapper.Map(expense));
             var suplyProduct =
                 entities.SupliedProducts.FirstOrDefault(
-                    s => s.ExprenseTypeId.HasValue && s.ExprenseTypeId.Value == expense.Id);
+                    s => s.ExprenseTypeId.HasValue && s.ExprenseTypeId.Value == expense.ExpenseId);
             if (suplyProduct != null)
             {
                 suplyProduct.Amount += expense.ItemCount;

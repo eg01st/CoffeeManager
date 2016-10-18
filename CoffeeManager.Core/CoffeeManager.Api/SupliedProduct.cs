@@ -14,6 +14,12 @@ namespace CoffeeManager.Api
     
     public partial class SupliedProduct
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public SupliedProduct()
+        {
+            this.SuplyRequests = new HashSet<SuplyRequest>();
+        }
+    
         public int Id { get; set; }
         public string Name { get; set; }
         public decimal Price { get; set; }
@@ -24,5 +30,7 @@ namespace CoffeeManager.Api
     
         public virtual ExpenseType ExpenseType { get; set; }
         public virtual Product Product { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SuplyRequest> SuplyRequests { get; set; }
     }
 }

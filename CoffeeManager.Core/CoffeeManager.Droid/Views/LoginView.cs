@@ -1,3 +1,4 @@
+using Acr.UserDialogs;
 using Android.App;
 using Android.Content.PM;
 using Android.OS;
@@ -12,6 +13,7 @@ namespace CoffeeManager.Droid.Views
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.login);
+            UserDialogs.Init(this);
         }
 
         public override void OnBackPressed()

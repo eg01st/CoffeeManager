@@ -222,6 +222,9 @@
     <Compile Include="SupliedProduct.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="SuplyRequest.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="UsedCupsPerShift.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>

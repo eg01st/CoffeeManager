@@ -30,8 +30,6 @@ namespace CoffeeManager.Droid.Views
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.main);
 
-            UserDialogs.Init(this);
-
             viewPager = FindViewById<ViewPager>(Resource.Id.main_viewpager);
             tabLayout = FindViewById<TabLayout>(Resource.Id.main_tabs);
 
