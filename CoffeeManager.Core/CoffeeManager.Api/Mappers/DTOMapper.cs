@@ -36,5 +36,15 @@ namespace CoffeeManager.Api.Mappers
         {
             return new Models.SupliedProduct() { Id = productDb.Id, Name = productDb.Name, CoffeeRoomNo = productDb.CoffeeRoomNo, Amount = productDb.Amount, Price = productDb.Price};
         }
+
+        public static Models.Expense ToDTO(this Expense expenseDb)
+        {
+            return new Models.Expense() { Id = expenseDb.Id, Name = expenseDb.ExpenseType1.Name, CoffeeRoomNo = expenseDb.CoffeeRoomNo.Value, Amount = expenseDb.Amount };
+        }
+
+        public static Models.UsedCupPerShift ToDTO(this UsedCupsPerShift cupDb)
+        {
+            return new Models.UsedCupPerShift() { Id = cupDb.Id, CoffeeRoomNo = cupDb.CoffeeRoomNo, C110 = cupDb.C110, C170 = cupDb.C170, C250 = cupDb.C250, C400 = cupDb.C400, Plastic = cupDb.Plastic};
+        }
     }
 }
