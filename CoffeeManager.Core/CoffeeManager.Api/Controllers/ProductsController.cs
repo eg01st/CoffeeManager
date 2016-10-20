@@ -63,12 +63,16 @@ namespace CoffeeManager.Api.Controllers
             var saleDb = entities.Sales.First(s => s.CoffeeRoomNo == coffeeroomno && s.Id == sale.Id);
             saleDb.IsRejected = true;
             
-            var product = entities.Products.First(p => p.Id == sale.Product);
+            var product = entities.Products.First(p => p.Id == saleDb.Product);
             if (product.SuplyProductId.HasValue)
             {
                 var suplyProduct = entities.SupliedProducts.First(p => p.Id == product.SuplyProductId.Value);
                 suplyProduct.Amount += 1;
             }
+
+            var currentShift = entities.Shifts.First(s => s.Id == sale.ShiftId);
+            currentShift.CurrentAmount -= saleDb.Amount;
+            currentShift.TotalAmount -= saleDb.Amount;
 
             await entities.SaveChangesAsync();
             return Request.CreateResponse(HttpStatusCode.OK);
