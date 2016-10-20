@@ -171,5 +171,19 @@ namespace CoffeeManager.Api.Controllers
             var sales = entities.Sales.Where(s => s.CoffeeRoomNo == coffeeroomno && s.ShiftId == shift && !s.IsRejected).ToList().Select(s => s.ToDTO());
             return Request.CreateResponse(HttpStatusCode.OK, sales);
         }
+
+        [Route("api/shift/getShiftSalesById")]
+        [HttpGet]
+        public async Task<HttpResponseMessage> GetShiftSalesById([FromUri]int coffeeroomno, [FromUri]int id)
+        {
+            var entities = new CoffeeRoomEntities();
+            var shift = entities.Shifts.FirstOrDefault(s => s.Id == id && s.CoffeeRoomNo == coffeeroomno);
+            if (shift != null)
+            {
+                var sales = entities.Sales.Where(s => s.CoffeeRoomNo == coffeeroomno && s.ShiftId == id && !s.IsRejected).ToList().Select(s => s.ToDTO());
+                return Request.CreateResponse(HttpStatusCode.OK, sales);
+            }
+            return Request.CreateErrorResponse(HttpStatusCode.RequestedRangeNotSatisfiable, "Shift does not exists");
+        }
     }
 }

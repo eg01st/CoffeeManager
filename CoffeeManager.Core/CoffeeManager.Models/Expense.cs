@@ -10,6 +10,8 @@ namespace CoffeeManager.Models
     {
         public int ShiftId { get; set; }
         public int ExpenseId { get; set; }
+
+        public string ExpenseName { get; set; }
         public decimal Amount { get; set; }
 
         public int ItemCount { get; set; }

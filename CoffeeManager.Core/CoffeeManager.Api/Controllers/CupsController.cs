@@ -30,5 +30,14 @@ namespace CoffeeManager.Api.Controllers
 
             return Request.CreateResponse(HttpStatusCode.OK, types);
         }
+
+        [Route("api/cups/getshiftusedcups")]
+        [HttpGet]
+        public async Task<HttpResponseMessage> GetShiftUsedCups([FromUri]int coffeeroomno, [FromUri]int id)
+        {
+            var entities = new CoffeeRoomEntities();
+            var expenses = entities.UsedCupsPerShifts.Where(e => e.CoffeeRoomNo == coffeeroomno && e.ShiftId == id).Select(s => s.ToDTO());
+            return Request.CreateResponse(HttpStatusCode.OK, expenses);
+        }
     }
 }

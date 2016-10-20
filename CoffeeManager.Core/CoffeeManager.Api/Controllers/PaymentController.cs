@@ -81,5 +81,14 @@ namespace CoffeeManager.Api.Controllers
             return Request.CreateResponse(HttpStatusCode.OK);
         }
 
+        [Route("api/payment/getShiftExpenses")]
+        [HttpGet]
+        public async Task<HttpResponseMessage> Put([FromUri]int coffeeroomno, [FromUri]int shiftId)
+        {
+            var entities = new CoffeeRoomEntities();
+            var expenses = entities.Expenses.Include("ExpenseType").Where(e => e.CoffeeRoomNo == coffeeroomno && e.ShiftId.Value == shiftId).Select(s => s.ToDTO());
+            return Request.CreateResponse(HttpStatusCode.OK, expenses);
+        }
+
     }
 }
