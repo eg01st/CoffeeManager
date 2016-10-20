@@ -34,7 +34,7 @@ namespace CoffeeManager.Api.Mappers
 
         public static Models.SupliedProduct ToDTO(this SupliedProduct productDb)
         {
-            return new Models.SupliedProduct() { Id = productDb.Id, Name = productDb.Name, CoffeeRoomNo = productDb.CoffeeRoomNo, Amount = productDb.Amount, Price = productDb.Price};
+            return new Models.SupliedProduct() { Id = productDb.Id, Name = productDb.Name, CoffeeRoomNo = productDb.CoffeeRoomNo.Value, Amount = productDb.Amount, Price = productDb.Price};
         }
 
         public static Models.Expense ToDTO(this Expense expenseDb)

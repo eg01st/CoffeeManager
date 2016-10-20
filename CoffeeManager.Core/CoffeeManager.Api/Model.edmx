@@ -131,7 +131,7 @@
           <Property Name="Amount" Type="int" Nullable="false" />
           <Property Name="ProductId" Type="int" />
           <Property Name="ExprenseTypeId" Type="int" />
-          <Property Name="CoffeeRoomNo" Type="int" Nullable="false" />
+          <Property Name="CoffeeRoomNo" Type="int" />
         </EntityType>
         <EntityType Name="SuplyRequest">
           <Key>
@@ -849,7 +849,7 @@
           <Property Name="ExprenseTypeId" Type="Int32" />
           <NavigationProperty Name="ExpenseType" Relationship="CoffeeRoomModel.FK_SupliedProduct_ExpenseType" FromRole="SupliedProduct" ToRole="ExpenseType" />
           <NavigationProperty Name="Product" Relationship="CoffeeRoomModel.FK__SupliedPr__Produ__73BA3083" FromRole="SupliedProduct" ToRole="Product" />
-          <Property Name="CoffeeRoomNo" Type="Int32" Nullable="false" />
+          <Property Name="CoffeeRoomNo" Type="Int32" />
           <NavigationProperty Name="SuplyRequests" Relationship="CoffeeRoomModel.FK__SuplyRequ__Suply__5E8A0973" FromRole="SupliedProduct" ToRole="SuplyRequest" />
         </EntityType>
         <Association Name="FK_SupliedProduct_ExpenseType">

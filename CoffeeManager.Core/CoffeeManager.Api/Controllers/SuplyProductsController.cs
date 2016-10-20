@@ -123,9 +123,26 @@ namespace CoffeeManager.Api.Controllers
                 reqDb.SupliedProduct.Amount += req.Amount;
                 
                 await entites.SaveChangesAsync();
-            }
+            }         
+            return Request.CreateResponse(HttpStatusCode.OK);
+        }
 
-          
+        [Route("api/suplyproducts/deletesuplyrequest")]
+        [HttpDelete]
+        public async Task<HttpResponseMessage> DeleteSuplyRequest([FromUri] int coffeeroomno, [FromUri] int id, HttpRequestMessage message)
+        {
+            var token = message.Headers.GetValues("token").FirstOrDefault();
+            if (token == null || !UserSessions.Sessions.Contains(token))
+            {
+                return Request.CreateResponse(HttpStatusCode.Forbidden);
+            }
+            var entities = new CoffeeRoomEntities();
+            var request = entities.SuplyRequests.FirstOrDefault(r => r.Id == id);
+            if (request != null)
+            {
+                entities.SuplyRequests.Remove(request);
+                await entities.SaveChangesAsync();
+            }
             return Request.CreateResponse(HttpStatusCode.OK);
         }
     }
