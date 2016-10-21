@@ -8,12 +8,17 @@
 
         public Entity()
         {
-            
+
         }
 
         public Entity(int coffeeRoomNo)
         {
             CoffeeRoomNo = coffeeRoomNo;
+        }
+
+        public override string ToString()
+        {
+            return Name;
         }
     }
 }
