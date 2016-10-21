@@ -35,7 +35,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
-    <Compile Include="Bot.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="Managers\BaseManager.cs" />
     <Compile Include="Managers\CupManager.cs" />
@@ -139,9 +138,6 @@
     <Reference Include="System.Net.Http.Primitives, Version=4.2.22.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Net.Http.2.2.22\lib\portable-net45+win8+wpa81\System.Net.Http.Primitives.dll</HintPath>
       <Private>True</Private>
-    </Reference>
-    <Reference Include="Telegram.Bot">
-      <HintPath>..\..\..\..\..\Downloads\telegram.bot-master\telegram.bot-master\src\Telegram.Bot\bin\Debug\net46\Telegram.Bot.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
