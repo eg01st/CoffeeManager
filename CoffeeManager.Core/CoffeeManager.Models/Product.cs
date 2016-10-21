@@ -8,5 +8,6 @@
         public decimal Price { get; set; }
         public decimal PolicePrice { get; set; }
         public int CupType { get; set; }
+        public int CoffeeRoomNo { get; set; }
     }
 }

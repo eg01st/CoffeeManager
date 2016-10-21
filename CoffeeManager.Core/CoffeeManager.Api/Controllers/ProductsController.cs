@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
-using AttributeRouting.Helpers;
 using CoffeeManager.Api.Mappers;
-using CoffeeManager.Models;
 using Newtonsoft.Json;
 
 namespace CoffeeManager.Api.Controllers
@@ -21,6 +17,55 @@ namespace CoffeeManager.Api.Controllers
             var entities = new  CoffeeRoomEntities();
             var products = entities.Products.Where(p => p.CoffeeRoomNo == coffeeroomno && p.ProductType.Value == productType).ToList().Select(s => s.ToDTO());
             return Request.CreateResponse(HttpStatusCode.OK, products);
+        }
+
+        [Route("api/products/addproduct")]
+        [HttpPut]
+        public async Task<HttpResponseMessage> AddProduct([FromUri]int coffeeroomno, HttpRequestMessage message)
+        {
+            var token = message.Headers.GetValues("token").FirstOrDefault();
+            if (token == null || !UserSessions.Sessions.Contains(token))
+            {
+                return Request.CreateResponse(HttpStatusCode.Forbidden);
+            }
+            var request = await message.Content.ReadAsStringAsync();
+            var product = JsonConvert.DeserializeObject<Models.Product>(request);
+            try
+            {
+                var entities = new CoffeeRoomEntities();
+                entities.Products.Add(DbMapper.Map(product));
+                await entities.SaveChangesAsync();
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.ToString());
+            }
+        }
+
+        [Route("api/products/deleteproduct")]
+        [HttpDelete]
+        public async Task<HttpResponseMessage> DeleteProduct([FromUri]int coffeeroomno, [FromUri] int id, HttpRequestMessage message)
+        {
+            var token = message.Headers.GetValues("token").FirstOrDefault();
+            if (token == null || !UserSessions.Sessions.Contains(token))
+            {
+                return Request.CreateResponse(HttpStatusCode.Forbidden);
+            }
+            var request = await message.Content.ReadAsStringAsync();
+            var product = JsonConvert.DeserializeObject<Models.Product>(request);
+            try
+            {
+                var entities = new CoffeeRoomEntities();
+                entities.Products.Add(DbMapper.Map(product));
+                await entities.SaveChangesAsync();
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.ToString());
+            }
+
         }
 
         [Route("api/products/saleproduct")]
