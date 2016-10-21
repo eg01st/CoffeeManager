@@ -36,10 +36,10 @@ namespace CoffeeManager.Api.Controllers
         public async Task<HttpResponseMessage> GetShiftUsedCups([FromUri]int coffeeroomno, [FromUri]int id)
         {
             var entities = new CoffeeRoomEntities();
-            var cups = entities.UsedCupsPerShifts.FirstOrDefault(e => e.CoffeeRoomNo == coffeeroomno && e.ShiftId == id);
-            if (cups != null)
+            var cups = entities.UsedCupsPerShifts.Where(e => e.CoffeeRoomNo == coffeeroomno && e.ShiftId == id).ToList().Select( s=> s.ToDTO());
+            if (cups != null && cups.Any())
             {
-                return Request.CreateResponse(HttpStatusCode.OK, cups.ToDTO());
+                return Request.CreateResponse(HttpStatusCode.OK, cups.First());
             }
             return Request.CreateErrorResponse(HttpStatusCode.RequestedRangeNotSatisfiable,
                 $"Cannot find shift with id {id}");

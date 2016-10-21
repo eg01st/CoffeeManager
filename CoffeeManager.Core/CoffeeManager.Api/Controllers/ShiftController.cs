@@ -174,8 +174,13 @@ namespace CoffeeManager.Api.Controllers
 
         [Route("api/shift/getShiftSalesById")]
         [HttpGet]
-        public async Task<HttpResponseMessage> GetShiftSalesById([FromUri]int coffeeroomno, [FromUri]int id)
+        public async Task<HttpResponseMessage> GetShiftSalesById([FromUri]int coffeeroomno, [FromUri]int id, HttpRequestMessage message)
         {
+            var token = message.Headers.GetValues("token").FirstOrDefault();
+            if (token == null || !UserSessions.Sessions.Contains(token))
+            {
+                return Request.CreateResponse(HttpStatusCode.Forbidden);
+            }
             var entities = new CoffeeRoomEntities();
             var shift = entities.Shifts.FirstOrDefault(s => s.Id == id && s.CoffeeRoomNo == coffeeroomno);
             if (shift != null)

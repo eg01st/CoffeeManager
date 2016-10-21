@@ -83,10 +83,15 @@ namespace CoffeeManager.Api.Controllers
 
         [Route("api/payment/getShiftExpenses")]
         [HttpGet]
-        public async Task<HttpResponseMessage> Put([FromUri]int coffeeroomno, [FromUri]int shiftId)
+        public async Task<HttpResponseMessage> GetShiftExpenses([FromUri]int coffeeroomno, [FromUri]int id, HttpRequestMessage message)
         {
+            var token = message.Headers.GetValues("token").FirstOrDefault();
+            if (token == null || !UserSessions.Sessions.Contains(token))
+            {
+                return Request.CreateResponse(HttpStatusCode.Forbidden);
+            }
             var entities = new CoffeeRoomEntities();
-            var expenses = entities.Expenses.Include("ExpenseType").Where(e => e.CoffeeRoomNo == coffeeroomno && e.ShiftId.Value == shiftId).Select(s => s.ToDTO());
+            var expenses = entities.Expenses.Include("ExpenseType1").Where(e => e.CoffeeRoomNo == coffeeroomno && e.ShiftId.Value == id).ToList().Select(s => s.ToDTO());
             return Request.CreateResponse(HttpStatusCode.OK, expenses);
         }
 
