@@ -84,20 +84,19 @@ namespace CoffeeManager.Api.Controllers
 		public async Task<HttpResponseMessage> DeleteProduct ([FromUri]int coffeeroomno, [FromUri] int id, HttpRequestMessage message)
 		{
 			var token = message.Headers.GetValues ("token").FirstOrDefault ();
-			if (token == null || !UserSessions.Sessions.Contains (token)) {
+			if (token == null || !UserSessions.Sessions.Contains (token))
+            {
 				return Request.CreateResponse (HttpStatusCode.Forbidden);
 			}
-			var request = await message.Content.ReadAsStringAsync ();
-			var product = JsonConvert.DeserializeObject<Models.Product> (request);
-			try {
-				var entities = new CoffeeRoomEntities ();
-				entities.Products.Add (DbMapper.Map (product));
-				await entities.SaveChangesAsync ();
-				return Request.CreateResponse (HttpStatusCode.OK);
-			} catch (Exception ex) {
-				return Request.CreateErrorResponse (HttpStatusCode.BadRequest, ex.ToString ());
-			}
-
+			var entities = new CoffeeRoomEntities ();
+            var product = entities.Products.FirstOrDefault(p => p.Id == id);
+            if(product != null)
+            {
+                entities.Products.Remove(product);
+                await entities.SaveChangesAsync();
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            return Request.CreateErrorResponse(HttpStatusCode.RequestedRangeNotSatisfiable, $"No product with id  {id}");
 		}
 
 		[Route ("api/products/saleproduct")]
