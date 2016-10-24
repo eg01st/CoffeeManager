@@ -69,6 +69,9 @@ namespace CoffeeManager.Api.Controllers
 				prodDb.PolicePrice = product.PolicePrice;
 				prodDb.CupType = product.CupType;
 				prodDb.ProductType = product.ProductType;
+				if (product.SuplyId.HasValue) {
+					prodDb.SuplyProductId = product.SuplyId.Value;
+				}
 				await entities.SaveChangesAsync ();
 				return Request.CreateResponse (HttpStatusCode.OK);
 			} else {
