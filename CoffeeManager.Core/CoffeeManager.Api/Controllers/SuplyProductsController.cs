@@ -112,7 +112,7 @@ namespace CoffeeManager.Api.Controllers
                 var entites = new CoffeeRoomEntities();
                 var reqDb = entites.SuplyRequests.Include("SupliedProduct").First(s => s.Id == req.Id);
                 reqDb.SupliedProduct.Price = req.Price;
-                if (reqDb.ItemCount == req.Amount)
+                if (reqDb.ItemCount == req.Amount || reqDb.ItemCount < req.Amount)
                 {
                     reqDb.IsDone = true;
                 }
