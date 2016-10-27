@@ -25,7 +25,58 @@ namespace CoffeeManager.Api.Controllers
 			return Request.CreateResponse (HttpStatusCode.OK, items);
 		}
 
-		[Route ("api/suplyproducts/bindProductWithSuply")]
+        [Route("api/suplyproducts/getproduct")]
+        [HttpGet]
+        public async Task<HttpResponseMessage> GetSuplyProduct([FromUri] int coffeeroomno, [FromUri] int id, HttpRequestMessage message)
+        {
+            var token = message.Headers.GetValues("token").FirstOrDefault();
+            if (token == null || !UserSessions.Sessions.Contains(token))
+            {
+                return Request.CreateResponse(HttpStatusCode.Forbidden);
+            }
+            var entites = new CoffeeRoomEntities();
+            var item = entites.SupliedProducts.FirstOrDefault(p => p.Id == id);
+            if(item != null)
+            {
+                var suplyProduct = item.ToDTO();
+                var product = entites.Products.FirstOrDefault(p => p.SuplyProductId.HasValue && p.SuplyProductId.Value == id);
+                if(product != null)
+                {
+                    suplyProduct.SalePrice = product.Price;
+                }
+                return Request.CreateResponse(HttpStatusCode.OK, suplyProduct);
+
+            }
+            return Request.CreateErrorResponse(HttpStatusCode.RequestedRangeNotSatisfiable, $"Cannot find suplyId {id}");
+        }
+
+        [Route("api/suplyproducts/editSuplyProduct")]
+        [HttpPost]
+        public async Task<HttpResponseMessage> EditSuplyProduct([FromUri] int coffeeroomno, HttpRequestMessage message)
+        {
+            var token = message.Headers.GetValues("token").FirstOrDefault();
+            if (token == null || !UserSessions.Sessions.Contains(token))
+            {
+                return Request.CreateResponse(HttpStatusCode.Forbidden);
+            }
+
+            var request = await message.Content.ReadAsStringAsync();
+            var sProduct = JsonConvert.DeserializeObject<Models.SupliedProduct>(request);
+
+            var entites = new CoffeeRoomEntities();
+            var item = entites.SupliedProducts.FirstOrDefault(p => p.Id == sProduct.Id);
+            if (item != null)
+            {
+                item.Name = sProduct.Name;
+                item.Price = sProduct.Price;
+                item.Amount = sProduct.Amount;
+                await entites.SaveChangesAsync();
+                return Request.CreateResponse(HttpStatusCode.OK, item);
+            }
+            return Request.CreateErrorResponse(HttpStatusCode.RequestedRangeNotSatisfiable, $"Cannot find suplyId {sProduct.Id}");
+        }
+
+        [Route ("api/suplyproducts/bindProductWithSuply")]
 		[HttpPost]
 		public async Task<HttpResponseMessage> BindProductWithSuply ([FromUri] int coffeeroomno, [FromUri] int productId, [FromUri] int suplyId, HttpRequestMessage message)
 		{
@@ -140,7 +191,7 @@ namespace CoffeeManager.Api.Controllers
 				var entites = new CoffeeRoomEntities ();
 				var reqDb = entites.SuplyRequests.Include ("SupliedProduct").First (s => s.Id == req.Id);
 				reqDb.SupliedProduct.Price = req.Price;
-				if (reqDb.ItemCount == req.Amount) {
+				if (reqDb.ItemCount == req.Amount || req.Amount > reqDb.ItemCount) {
 					reqDb.IsDone = true;
 				} else {
 					reqDb.ItemCount -= req.Amount;
