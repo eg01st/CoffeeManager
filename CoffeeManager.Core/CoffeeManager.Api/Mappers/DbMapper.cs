@@ -31,8 +31,8 @@ namespace CoffeeManager.Api.Mappers
 				Price = product.Price,
 				ProductType = product.ProductType,
 			};
-			if (prod.SuplyProductId.HasValue) {
-				prod.SuplyProductId = prod.SuplyProductId;
+			if (product.SuplyId.HasValue) {
+				prod.SuplyProductId = product.SuplyId;
 			}
 			return prod;
 
