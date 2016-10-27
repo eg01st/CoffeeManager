@@ -219,5 +219,24 @@ namespace CoffeeManager.Api.Controllers
 			}
 			return Request.CreateResponse (HttpStatusCode.OK);
 		}
-	}
+
+        [Route("api/suplyproducts/deletesuplyproduct")]
+        [HttpDelete]
+        public async Task<HttpResponseMessage> DeleteSuplyProduct([FromUri] int coffeeroomno, [FromUri] int id, HttpRequestMessage message)
+        {
+            var token = message.Headers.GetValues("token").FirstOrDefault();
+            if (token == null || !UserSessions.Sessions.Contains(token))
+            {
+                return Request.CreateResponse(HttpStatusCode.Forbidden);
+            }
+            var entities = new CoffeeRoomEntities();
+            var request = entities.SupliedProducts.FirstOrDefault(r => r.Id == id);
+            if (request != null)
+            {
+                entities.SupliedProducts.Remove(request);
+                await entities.SaveChangesAsync();
+            }
+            return Request.CreateResponse(HttpStatusCode.OK);
+        }
+    }
 }
