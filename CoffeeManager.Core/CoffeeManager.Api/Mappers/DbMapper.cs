@@ -71,7 +71,7 @@ namespace CoffeeManager.Api.Mappers
 		public static SupliedProduct Map (Models.SupliedProduct sProduct)
 		{
 			return new SupliedProduct () {
-				Amount = 0,
+				Quantity = 0,
 				CoffeeRoomNo = sProduct.CoffeeRoomNo,
 				Name = sProduct.Name,
 				Price = sProduct.Price

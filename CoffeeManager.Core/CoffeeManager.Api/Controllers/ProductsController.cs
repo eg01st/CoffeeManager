@@ -105,19 +105,29 @@ namespace CoffeeManager.Api.Controllers
 		{
 			var request = await message.Content.ReadAsStringAsync ();
 			var sale = JsonConvert.DeserializeObject<Models.Sale> (request);
-			try {
+			try
+            {
 				var entities = new CoffeeRoomEntities ();
 				entities.Sales.Add (DbMapper.Map (sale));
 				var currentShift = entities.Shifts.First (s => s.Id == sale.ShiftId);
 				currentShift.CurrentAmount += sale.Amount;
 				currentShift.TotalAmount += sale.Amount;
-				var product = entities.Products.First (p => p.Id == sale.Product);
-				if (product.SuplyProductId.HasValue) {
-					var suplyProduct = entities.SupliedProducts.First (p => p.Id == product.SuplyProductId.Value);
-					suplyProduct.Amount -= 1;
-				}
-
-				await entities.SaveChangesAsync ();
+				
+                await Task.Run( async () =>  
+                {
+                    using (var sContext = new CoffeeRoomEntities())
+                    {
+                        var product = sContext.Products.First(p => p.Id == sale.Product);
+                        foreach (var productCalculation in product.ProductCalculations)
+                        {
+                            var supliedProduct =
+                                sContext.SupliedProducts.First(p => p.Id == productCalculation.SuplyProductId);
+                            supliedProduct.Quantity -= productCalculation.Quantity;
+                            await sContext.SaveChangesAsync();
+                        }
+                    }
+                });
+				await entities.SaveChangesAsync();
 				return Request.CreateResponse (HttpStatusCode.OK);
 			} catch (Exception ex) {
 				return Request.CreateErrorResponse (HttpStatusCode.BadRequest, ex.ToString ());
@@ -135,13 +145,22 @@ namespace CoffeeManager.Api.Controllers
 			var saleDb = entities.Sales.First (s => s.CoffeeRoomNo == coffeeroomno && s.Id == sale.Id);
 			saleDb.IsRejected = true;
 
-			var product = entities.Products.First (p => p.Id == saleDb.Product);
-			if (product.SuplyProductId.HasValue) {
-				var suplyProduct = entities.SupliedProducts.First (p => p.Id == product.SuplyProductId.Value);
-				suplyProduct.Amount += 1;
-			}
+            await Task.Run(async () =>
+            {
+                using (var sContext = new CoffeeRoomEntities())
+                {
+                    var product = sContext.Products.First(p => p.Id == sale.Product);
+                    foreach (var productCalculation in product.ProductCalculations)
+                    {
+                        var supliedProduct =
+                            sContext.SupliedProducts.First(p => p.Id == productCalculation.SuplyProductId);
+                        supliedProduct.Quantity += productCalculation.Quantity;
+                        await sContext.SaveChangesAsync();
+                    }
+                }
+            });
 
-			var currentShift = entities.Shifts.First (s => s.Id == sale.ShiftId);
+            var currentShift = entities.Shifts.First (s => s.Id == sale.ShiftId);
 			currentShift.CurrentAmount -= saleDb.Amount;
 			currentShift.TotalAmount -= saleDb.Amount;
 

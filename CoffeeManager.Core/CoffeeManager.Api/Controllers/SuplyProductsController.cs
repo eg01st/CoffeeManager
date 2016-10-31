@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using CoffeeManager.Api.Mappers;
+using CoffeeManager.Models;
 using Newtonsoft.Json;
 
 namespace CoffeeManager.Api.Controllers
@@ -69,7 +70,7 @@ namespace CoffeeManager.Api.Controllers
             {
                 item.Name = sProduct.Name;
                 item.Price = sProduct.Price;
-                item.Amount = sProduct.Amount;
+                item.Quantity = sProduct.Quatity;
                 await entites.SaveChangesAsync();
                 return Request.CreateResponse(HttpStatusCode.OK, item);
             }
@@ -147,7 +148,7 @@ namespace CoffeeManager.Api.Controllers
 			foreach (var supliedProduct in requests) {
 				entites.SuplyRequests.Add (new SuplyRequest () {
 					Date = DateTime.Now,
-					ItemCount = supliedProduct.Amount,
+					Quantity = supliedProduct.Quatity,
 					SuplyProductId = supliedProduct.Id
 				});
 			}
@@ -168,7 +169,7 @@ namespace CoffeeManager.Api.Controllers
 			var response = new List<Models.SupliedProduct> ();
 			foreach (var suplyRequest in items) {
 				response.Add (new Models.SupliedProduct () {
-					Amount = suplyRequest.ItemCount,
+					Quatity = suplyRequest.ItemCount,
 					Id = suplyRequest.Id,
 					Name = suplyRequest.SupliedProduct.Name,
 					Price = suplyRequest.SupliedProduct.Price
@@ -191,12 +192,15 @@ namespace CoffeeManager.Api.Controllers
 				var entites = new CoffeeRoomEntities ();
 				var reqDb = entites.SuplyRequests.Include ("SupliedProduct").First (s => s.Id == req.Id);
 				reqDb.SupliedProduct.Price = req.Price;
-				if (reqDb.ItemCount == req.Amount || req.Amount > reqDb.ItemCount) {
+				if (reqDb.Quantity == req.Quatity || req.Quatity > reqDb.Quantity)
+                {
 					reqDb.IsDone = true;
-				} else {
-					reqDb.ItemCount -= req.Amount;
 				}
-				reqDb.SupliedProduct.Amount += req.Amount;
+                else
+                {
+					reqDb.Quantity -= req.Quatity;
+				}
+				reqDb.SupliedProduct.Quantity += req.Quatity;
 
 				await entites.SaveChangesAsync ();
 			}
@@ -236,6 +240,94 @@ namespace CoffeeManager.Api.Controllers
                 entities.SupliedProducts.Remove(request);
                 await entities.SaveChangesAsync();
             }
+            return Request.CreateResponse(HttpStatusCode.OK);
+        }
+
+
+        [Route("api/suplyproducts/getproductcalculationitems")]
+        [HttpGet]
+        public async Task<HttpResponseMessage> GetProductCalculationItems([FromUri] int coffeeroomno, [FromUri] int productId, HttpRequestMessage message)
+        {
+            var token = message.Headers.GetValues("token").FirstOrDefault();
+            if (token == null || !UserSessions.Sessions.Contains(token))
+            {
+                return Request.CreateResponse(HttpStatusCode.Forbidden);
+            }
+            
+            var entites = new CoffeeRoomEntities();
+            var product = entites.Products.FirstOrDefault(p => p.Id == productId);
+            if (product == null)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.RequestedRangeNotSatisfiable,
+                    "Cannot find product with id " + productId);
+            }
+
+            var result = new ProductCalculationEntity();
+            result.ProductId = productId;
+            result.Name = product.Name;
+            var items = new List<CalculationItem>();
+            foreach (var productCalculation in product.ProductCalculations)
+            {
+                var suplyProduct = entites.SupliedProducts.First(p => p.Id == productCalculation.SuplyProductId);
+                items.Add(new CalculationItem()
+                {
+                    CoffeeRoomNo = suplyProduct.CoffeeRoomNo.Value,
+                    Id = productCalculation.Id,
+                    Name = suplyProduct.Name,
+                    Quantity = productCalculation.Quantity,
+                    SuplyProductId = suplyProduct.Id
+                });
+            }
+            result.SuplyProductInfo = items.ToArray();
+
+            return Request.CreateResponse(HttpStatusCode.OK, result);
+        }
+
+        [Route("api/suplyproducts/deleteproductcalculationitem")]
+        [HttpDelete]
+        public async Task<HttpResponseMessage> DeleteProductCalculationItem([FromUri] int coffeeroomno, [FromUri] int id, HttpRequestMessage message)
+        {
+            var token = message.Headers.GetValues("token").FirstOrDefault();
+            if (token == null || !UserSessions.Sessions.Contains(token))
+            {
+                return Request.CreateResponse(HttpStatusCode.Forbidden);
+            }
+            var entities = new CoffeeRoomEntities();
+            var productCalculationItem = entities.ProductCalculations.FirstOrDefault(r => r.Id == id);
+            if (productCalculationItem != null)
+            {
+                entities.ProductCalculations.Remove(productCalculationItem);
+                await entities.SaveChangesAsync();
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            return Request.CreateErrorResponse(HttpStatusCode.RequestedRangeNotSatisfiable,
+                "Cannot find product item id " + id);
+        }
+
+        [Route("api/suplyproducts/addproductcalculationitem")]
+        [HttpPut]
+        public async Task<HttpResponseMessage> AddProductCalculationItem([FromUri] int coffeeroomno, HttpRequestMessage message)
+        {
+            var token = message.Headers.GetValues("token").FirstOrDefault();
+            if (token == null || !UserSessions.Sessions.Contains(token))
+            {
+                return Request.CreateResponse(HttpStatusCode.Forbidden);
+            }
+
+            var request = await message.Content.ReadAsStringAsync();
+            var item = JsonConvert.DeserializeObject<Models.ProductCalculationEntity>(request);
+            var entites = new CoffeeRoomEntities();
+            foreach (var info in item.SuplyProductInfo)
+            {
+                entites.ProductCalculations.Add(new ProductCalculation()
+                {
+                   CoffeeRoomNo = coffeeroomno,
+                   ProductId = item.ProductId,
+                   Quantity = info.Quantity,
+                   SuplyProductId = info.SuplyProductId
+                });
+            }
+            await entites.SaveChangesAsync();
             return Request.CreateResponse(HttpStatusCode.OK);
         }
     }

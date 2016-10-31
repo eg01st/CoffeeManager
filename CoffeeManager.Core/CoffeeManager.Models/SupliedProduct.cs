@@ -3,7 +3,7 @@
     public class SupliedProduct : Entity
     {
         public decimal Price { get; set; }
-        public int Amount { get; set; }
+        public decimal Quatity { get; set; }
         public decimal? SalePrice { get; set; }
     }
 }
