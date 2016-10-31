@@ -1,5 +1,6 @@
 ﻿using System.Windows.Input;
 using CoffeeManager.Core.Managers;
+using CoffeeManager.Core.ServiceProviders;
 using MvvmCross.Core.ViewModels;
 
 namespace CoffeeManager.Core.ViewModels
@@ -56,9 +57,17 @@ namespace CoffeeManager.Core.ViewModels
             __finishShiftCommand  = new MvxCommand(DoFinishCommand);
         }
 
-        public void Init(int shiftId)
+        public async void Init(int shiftId)
         {
             _shiftId = shiftId;
+            var sales = await _shiftManager.GetCurrentShiftSales();
+            var count = sales.Length;
+            var internalCount = ProductProvider.GetSalesStorage().Id;
+
+            if (count != internalCount)
+            {
+                RequestExecutor.LogError($"Invalid count of sales: logged in tablet -> {internalCount}. Logged by service -> {count}");
+            }
         }
 
         private async void DoFinishCommand()
