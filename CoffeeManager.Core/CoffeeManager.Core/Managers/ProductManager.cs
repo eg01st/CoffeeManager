@@ -63,5 +63,10 @@ namespace CoffeeManager.Core.Managers
         {
             return await provider.GetProduct(ProductType.Adds);
         }
+
+        public async Task UtilizeSaleProduct(int id)
+        {
+            await provider.UtilizeSaleProduct(ShiftNo, id);
+        }
     }
 }

@@ -75,5 +75,10 @@ namespace CoffeeManager.Core.ServiceProviders
         {
             storage.WriteFile(Sales, JsonConvert.SerializeObject(requestStorage));
         }
+
+        public async Task UtilizeSaleProduct(int shiftId, int id)
+        {
+            await PostInternal($"{Products}/UtilizeSale", JsonConvert.SerializeObject(new Sale() { ShiftId = shiftId, Id = id }));
+        }
     }
 }

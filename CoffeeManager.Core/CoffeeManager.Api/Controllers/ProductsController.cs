@@ -167,5 +167,24 @@ namespace CoffeeManager.Api.Controllers
 			await entities.SaveChangesAsync ();
 			return Request.CreateResponse (HttpStatusCode.OK);
 		}
-	}
+
+
+        [Route("api/products/UtilizeSale")]
+        [HttpPost]
+        public async Task<HttpResponseMessage> UtilizeSale([FromUri]int coffeeroomno, HttpRequestMessage message)
+        {
+            var request = await message.Content.ReadAsStringAsync();
+            var sale = JsonConvert.DeserializeObject<Sale>(request);
+            var entities = new CoffeeRoomEntities();
+            var saleDb = entities.Sales.First(s => s.CoffeeRoomNo == coffeeroomno && s.Id == sale.Id);
+            saleDb.IsUtilized = true;
+
+            var currentShift = entities.Shifts.First(s => s.Id == sale.ShiftId);
+            currentShift.CurrentAmount -= saleDb.Amount;
+            currentShift.TotalAmount -= saleDb.Amount;
+
+            await entities.SaveChangesAsync();
+            return Request.CreateResponse(HttpStatusCode.OK);
+        }
+    }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Acr.UserDialogs;
@@ -31,24 +32,35 @@ namespace CoffeeManager.Core.ViewModels
         {
             return Task.Run(() =>
             {
-                UserDialogs.Confirm(new ConfirmConfig()
+                var deleteSaleOption = new ActionSheetOption($"Отменить продажу товара {Name}", RejectSale);
+                var utilizeSaleOption = new ActionSheetOption($"Списать продажу товара {Name}", UtilizeSale);
+                UserDialogs.ActionSheet(new ActionSheetConfig()
                 {
-                    Message = $"Отменить продажу товара {Name} ?",
-                    OnAction =
-                         async
-                         (confirm) =>
-                         {
-                             if (confirm)
-                             {
-                                 await ProductManager.DismisSaleProduct(_sale.Id);
-                                 Publish(new AmoutChangedMessage(new Tuple<decimal, bool>(_sale.Amount, false), this));
-                                 Publish(new SaleRemovedMessage(this));
-                                 ShowSuccessMessage($"Отменена продажа товара {Name} !");
-                             }
-                         }
+                    Options = new List<ActionSheetOption>() {deleteSaleOption, utilizeSaleOption}
                 });
             });
         }
 
+        private void UtilizeSale()
+        {
+            Task.Run(async () =>
+            {
+                await ProductManager.UtilizeSaleProduct(_sale.Id);
+                Publish(new AmoutChangedMessage(new Tuple<decimal, bool>(_sale.Amount, false), this));
+                Publish(new SaleRemovedMessage(this));
+                ShowSuccessMessage($"Списан товар {Name} !");
+            });
+        }
+
+        private void RejectSale()
+        {
+            Task.Run(async () =>
+            {
+                await ProductManager.DismisSaleProduct(_sale.Id);
+                Publish(new AmoutChangedMessage(new Tuple<decimal, bool>(_sale.Amount, false), this));
+                Publish(new SaleRemovedMessage(this));
+                ShowSuccessMessage($"Отменена продажа товара {Name} !");
+            });            
+        }
     }
 }
