@@ -22,6 +22,7 @@ namespace CoffeeManager.Api
         public System.DateTime Time { get; set; }
         public int CoffeeRoomNo { get; set; }
         public bool IsRejected { get; set; }
+        public bool IsUtilized { get; set; }
     
         public virtual Product Product1 { get; set; }
         public virtual Shift Shift { get; set; }

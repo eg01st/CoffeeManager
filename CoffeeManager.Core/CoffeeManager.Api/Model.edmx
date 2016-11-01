@@ -115,6 +115,7 @@
           <Property Name="Time" Type="datetime" Nullable="false" />
           <Property Name="CoffeeRoomNo" Type="int" Nullable="false" />
           <Property Name="IsRejected" Type="bit" Nullable="false" />
+          <Property Name="IsUtilized" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Shifts">
           <Key>
@@ -562,6 +563,7 @@
           <NavigationProperty Name="Product1" Relationship="Self.FK__Sale__Product__3B75D760" FromRole="Sale" ToRole="Product" />
           <NavigationProperty Name="Shift" Relationship="Self.FK__Sale__ShiftId__3C69FB99" FromRole="Sale" ToRole="Shifts" />
           <Property Name="IsRejected" Type="Boolean" Nullable="false" />
+          <Property Name="IsUtilized" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="Shift">
           <Key>
@@ -1068,6 +1070,7 @@
           <EntitySetMapping Name="Sales">
             <EntityTypeMapping TypeName="CoffeeRoomModel.Sale">
               <MappingFragment StoreEntitySet="Sale">
+                <ScalarProperty Name="IsUtilized" ColumnName="IsUtilized" />
                 <ScalarProperty Name="IsRejected" ColumnName="IsRejected" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Amount" ColumnName="Amount" />
