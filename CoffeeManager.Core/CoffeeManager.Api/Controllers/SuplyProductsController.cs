@@ -169,10 +169,11 @@ namespace CoffeeManager.Api.Controllers
 			var response = new List<Models.SupliedProduct> ();
 			foreach (var suplyRequest in items) {
 				response.Add (new Models.SupliedProduct () {
-					Quatity = suplyRequest.ItemCount,
+					Quatity = suplyRequest.Quantity,
 					Id = suplyRequest.Id,
 					Name = suplyRequest.SupliedProduct.Name,
-					Price = suplyRequest.SupliedProduct.Price
+					Price = suplyRequest.SupliedProduct.Price,
+                    
 				});
 			}
 			return Request.CreateResponse (HttpStatusCode.OK, response);
@@ -188,7 +189,8 @@ namespace CoffeeManager.Api.Controllers
 			}
 			var request = await message.Content.ReadAsStringAsync ();
 			var requests = JsonConvert.DeserializeObject<Models.SupliedProduct []> (request);
-			foreach (var req in requests) {
+			foreach (var req in requests)
+            {
 				var entites = new CoffeeRoomEntities ();
 				var reqDb = entites.SuplyRequests.Include ("SupliedProduct").First (s => s.Id == req.Id);
 				reqDb.SupliedProduct.Price = req.Price;
@@ -200,7 +202,14 @@ namespace CoffeeManager.Api.Controllers
                 {
 					reqDb.Quantity -= req.Quatity;
 				}
-				reqDb.SupliedProduct.Quantity += req.Quatity;
+                if (reqDb.SupliedProduct.Quantity.HasValue)
+                {
+                    reqDb.SupliedProduct.Quantity += req.Quatity;
+                }
+                else
+                {
+                    reqDb.SupliedProduct.Quantity = req.Quatity;
+                }
 
 				await entites.SaveChangesAsync ();
 			}
@@ -265,6 +274,7 @@ namespace CoffeeManager.Api.Controllers
             var result = new ProductCalculationEntity();
             result.ProductId = productId;
             result.Name = product.Name;
+            result.CoffeeRoomNo = product.CoffeeRoomNo.Value;
             var items = new List<CalculationItem>();
             foreach (var productCalculation in product.ProductCalculations)
             {
