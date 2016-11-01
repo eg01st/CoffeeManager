@@ -18,6 +18,7 @@ namespace CoffeeManager.Api
         public SupliedProduct()
         {
             this.SuplyRequests = new HashSet<SuplyRequest>();
+            this.ProductCalculations = new HashSet<ProductCalculation>();
         }
     
         public int Id { get; set; }
@@ -27,10 +28,13 @@ namespace CoffeeManager.Api
         public Nullable<int> ProductId { get; set; }
         public Nullable<int> ExprenseTypeId { get; set; }
         public Nullable<int> CoffeeRoomNo { get; set; }
+        public Nullable<decimal> Quantity { get; set; }
     
         public virtual ExpenseType ExpenseType { get; set; }
         public virtual Product Product { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SuplyRequest> SuplyRequests { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ProductCalculation> ProductCalculations { get; set; }
     }
 }

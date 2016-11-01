@@ -85,6 +85,16 @@
           <Property Name="CupType" Type="int" />
           <Property Name="SuplyProductId" Type="int" />
         </EntityType>
+        <EntityType Name="ProductCalculation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="SuplyProductId" Type="int" Nullable="false" />
+          <Property Name="Quantity" Type="money" Nullable="false" />
+          <Property Name="CoffeeRoomNo" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="ProductType">
           <Key>
             <PropertyRef Name="Id" />
@@ -132,6 +142,7 @@
           <Property Name="ProductId" Type="int" />
           <Property Name="ExprenseTypeId" Type="int" />
           <Property Name="CoffeeRoomNo" Type="int" />
+          <Property Name="Quantity" Type="money" />
         </EntityType>
         <EntityType Name="SuplyRequest">
           <Key>
@@ -142,6 +153,7 @@
           <Property Name="ItemCount" Type="int" Nullable="false" />
           <Property Name="Date" Type="datetime" />
           <Property Name="IsDone" Type="bit" Nullable="false" />
+          <Property Name="Quantity" Type="money" />
         </EntityType>
         <EntityType Name="UsedCupsPerShift">
           <Key>
@@ -241,6 +253,30 @@
             </Principal>
             <Dependent Role="Product">
               <PropertyRef Name="ProductType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProductCa__Produ__793DFFAF">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="ProductCalculation" Type="Self.ProductCalculation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductCalculation">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProductCa__Suply__7A3223E8">
+          <End Role="SupliedProduct" Type="Self.SupliedProduct" Multiplicity="1" />
+          <End Role="ProductCalculation" Type="Self.ProductCalculation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SupliedProduct">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductCalculation">
+              <PropertyRef Name="SuplyProductId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -361,6 +397,7 @@
           <EntitySet Name="Expense" EntityType="Self.Expense" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ExpenseType" EntityType="Self.ExpenseType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductCalculation" EntityType="Self.ProductCalculation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductType" EntityType="Self.ProductType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sale" EntityType="Self.Sale" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Shifts" EntityType="Self.Shifts" Schema="dbo" store:Type="Tables" />
@@ -389,6 +426,14 @@
           <AssociationSet Name="FK__Product__Product__33D4B598" Association="Self.FK__Product__Product__33D4B598">
             <End Role="ProductType" EntitySet="ProductType" />
             <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProductCa__Produ__793DFFAF" Association="Self.FK__ProductCa__Produ__793DFFAF">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="ProductCalculation" EntitySet="ProductCalculation" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProductCa__Suply__7A3223E8" Association="Self.FK__ProductCa__Suply__7A3223E8">
+            <End Role="SupliedProduct" EntitySet="SupliedProduct" />
+            <End Role="ProductCalculation" EntitySet="ProductCalculation" />
           </AssociationSet>
           <AssociationSet Name="FK__Sale__Product__3B75D760" Association="Self.FK__Sale__Product__3B75D760">
             <End Role="Product" EntitySet="Product" />
@@ -492,6 +537,7 @@
           <NavigationProperty Name="Sales" Relationship="Self.FK__Sale__Product__3B75D760" FromRole="Product" ToRole="Sale" />
           <Property Name="SuplyProductId" Type="Int32" />
           <NavigationProperty Name="SupliedProducts" Relationship="CoffeeRoomModel.FK__SupliedPr__Produ__73BA3083" FromRole="Product" ToRole="SupliedProduct" />
+          <NavigationProperty Name="ProductCalculations" Relationship="CoffeeRoomModel.FK__ProductCa__Produ__793DFFAF" FromRole="Product" ToRole="ProductCalculation" />
         </EntityType>
         <EntityType Name="ProductType">
           <Key>
@@ -772,6 +818,15 @@
             <End Role="SupliedProduct" EntitySet="SupliedProducts" />
             <End Role="SuplyRequest" EntitySet="SuplyRequests" />
           </AssociationSet>
+          <EntitySet Name="ProductCalculations" EntityType="CoffeeRoomModel.ProductCalculation" />
+          <AssociationSet Name="FK__ProductCa__Produ__793DFFAF" Association="CoffeeRoomModel.FK__ProductCa__Produ__793DFFAF">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="ProductCalculation" EntitySet="ProductCalculations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProductCa__Suply__7A3223E8" Association="CoffeeRoomModel.FK__ProductCa__Suply__7A3223E8">
+            <End Role="SupliedProduct" EntitySet="SupliedProducts" />
+            <End Role="ProductCalculation" EntitySet="ProductCalculations" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Dept">
           <Key>
@@ -851,6 +906,8 @@
           <NavigationProperty Name="Product" Relationship="CoffeeRoomModel.FK__SupliedPr__Produ__73BA3083" FromRole="SupliedProduct" ToRole="Product" />
           <Property Name="CoffeeRoomNo" Type="Int32" />
           <NavigationProperty Name="SuplyRequests" Relationship="CoffeeRoomModel.FK__SuplyRequ__Suply__5E8A0973" FromRole="SupliedProduct" ToRole="SuplyRequest" />
+          <NavigationProperty Name="ProductCalculations" Relationship="CoffeeRoomModel.FK__ProductCa__Suply__7A3223E8" FromRole="SupliedProduct" ToRole="ProductCalculation" />
+          <Property Name="Quantity" Type="Decimal" Precision="19" Scale="4" />
         </EntityType>
         <Association Name="FK_SupliedProduct_ExpenseType">
           <End Type="CoffeeRoomModel.ExpenseType" Role="ExpenseType" Multiplicity="0..1" />
@@ -886,6 +943,7 @@
           <Property Name="Date" Type="DateTime" Precision="3" />
           <NavigationProperty Name="SupliedProduct" Relationship="CoffeeRoomModel.FK__SuplyRequ__Suply__5E8A0973" FromRole="SuplyRequest" ToRole="SupliedProduct" />
           <Property Name="IsDone" Type="Boolean" Nullable="false" />
+          <Property Name="Quantity" Type="Decimal" Precision="19" Scale="4" />
         </EntityType>
         <Association Name="FK__SuplyRequ__Suply__5E8A0973">
           <End Type="CoffeeRoomModel.SupliedProduct" Role="SupliedProduct" Multiplicity="1" />
@@ -895,6 +953,42 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="SuplyRequest">
+              <PropertyRef Name="SuplyProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ProductCalculation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="SuplyProductId" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="CoffeeRoomNo" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Product" Relationship="CoffeeRoomModel.FK__ProductCa__Produ__793DFFAF" FromRole="ProductCalculation" ToRole="Product" />
+          <NavigationProperty Name="SupliedProduct" Relationship="CoffeeRoomModel.FK__ProductCa__Suply__7A3223E8" FromRole="ProductCalculation" ToRole="SupliedProduct" />
+        </EntityType>
+        <Association Name="FK__ProductCa__Produ__793DFFAF">
+          <End Type="CoffeeRoomModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="CoffeeRoomModel.ProductCalculation" Role="ProductCalculation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductCalculation">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProductCa__Suply__7A3223E8">
+          <End Type="CoffeeRoomModel.SupliedProduct" Role="SupliedProduct" Multiplicity="1" />
+          <End Type="CoffeeRoomModel.ProductCalculation" Role="ProductCalculation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SupliedProduct">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductCalculation">
               <PropertyRef Name="SuplyProductId" />
             </Dependent>
           </ReferentialConstraint>
@@ -1080,6 +1174,7 @@
           <EntitySetMapping Name="SupliedProducts">
             <EntityTypeMapping TypeName="CoffeeRoomModel.SupliedProduct">
               <MappingFragment StoreEntitySet="SupliedProduct">
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
                 <ScalarProperty Name="CoffeeRoomNo" ColumnName="CoffeeRoomNo" />
                 <ScalarProperty Name="ExprenseTypeId" ColumnName="ExprenseTypeId" />
                 <ScalarProperty Name="ProductId" ColumnName="ProductId" />
@@ -1093,10 +1188,22 @@
           <EntitySetMapping Name="SuplyRequests">
             <EntityTypeMapping TypeName="CoffeeRoomModel.SuplyRequest">
               <MappingFragment StoreEntitySet="SuplyRequest">
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
                 <ScalarProperty Name="IsDone" ColumnName="IsDone" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="ItemCount" ColumnName="ItemCount" />
                 <ScalarProperty Name="SuplyProductId" ColumnName="SuplyProductId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductCalculations">
+            <EntityTypeMapping TypeName="CoffeeRoomModel.ProductCalculation">
+              <MappingFragment StoreEntitySet="ProductCalculation">
+                <ScalarProperty Name="CoffeeRoomNo" ColumnName="CoffeeRoomNo" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="SuplyProductId" ColumnName="SuplyProductId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

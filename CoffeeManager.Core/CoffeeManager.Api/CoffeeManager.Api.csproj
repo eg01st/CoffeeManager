@@ -209,6 +209,9 @@
     <Compile Include="Product.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="ProductCalculation.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="ProductType.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
