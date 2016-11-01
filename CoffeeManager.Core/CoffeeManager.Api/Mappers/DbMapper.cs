@@ -20,7 +20,18 @@ namespace CoffeeManager.Api.Mappers
 
 		}
 
-		public static Product Map (Models.Product product)
+        public static User Map(Models.User user)
+        {
+            return new User()
+            {
+                Name = user.Name,
+                CoffeeRoomNo = user.CoffeeRoomNo,
+            };
+
+        }
+
+
+        public static Product Map (Models.Product product)
 		{
 
 			var prod = new Product () {

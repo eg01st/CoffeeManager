@@ -23,15 +23,20 @@ namespace CoffeeManager.Api.Controllers
         }
 
         [Route("api/users")]
-        [HttpPost]
+        [HttpPut]
         public async Task<HttpResponseMessage> Post([FromUri]int coffeeroomno, HttpRequestMessage message)
         {
+            var token = message.Headers.GetValues("token").FirstOrDefault();
+            if (token == null || !UserSessions.Sessions.Contains(token))
+            {
+                return Request.CreateResponse(HttpStatusCode.Forbidden);
+            }
             var request = await message.Content.ReadAsStringAsync();
-            var user = JsonConvert.DeserializeObject<User>(request);
+            var user = JsonConvert.DeserializeObject<Models.User>(request);
             var entites = new  CoffeeRoomEntities();
-            entites.Users.Add(user);
+            entites.Users.Add(DbMapper.Map(user));
             await entites.SaveChangesAsync();
-            return Request.CreateResponse<User>(HttpStatusCode.OK, user);
+            return Request.CreateResponse(HttpStatusCode.OK);
         }
 
         [Route("api/users/login")]
