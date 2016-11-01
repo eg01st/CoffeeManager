@@ -14,11 +14,11 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:src="@drawable/ic_power" />
-  <ImageView
+  <!--<ImageView
     android:id="@+id/delete_cup_icon"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:src="@drawable/ic_cup_delete" />
+    android:src="@drawable/ic_cup_delete" />-->
   <TextView
     android:layout_marginLeft="50dp"
     android:id="@+id/dept_icon"

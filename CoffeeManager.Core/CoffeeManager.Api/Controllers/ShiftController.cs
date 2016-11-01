@@ -168,7 +168,7 @@ namespace CoffeeManager.Api.Controllers
         {
             var entities = new  CoffeeRoomEntities();
             var shift = entities.Shifts.First(s => !s.IsFinished.Value && s.CoffeeRoomNo == coffeeroomno).Id;
-            var sales = entities.Sales.Where(s => s.CoffeeRoomNo == coffeeroomno && s.ShiftId == shift && !s.IsRejected).ToList().Select(s => s.ToDTO());
+            var sales = entities.Sales.Where(s => s.CoffeeRoomNo == coffeeroomno && s.ShiftId == shift).ToList().Select(s => s.ToDTO());
             return Request.CreateResponse(HttpStatusCode.OK, sales);
         }
 
@@ -185,7 +185,7 @@ namespace CoffeeManager.Api.Controllers
             var shift = entities.Shifts.FirstOrDefault(s => s.Id == id && s.CoffeeRoomNo == coffeeroomno);
             if (shift != null)
             {
-                var sales = entities.Sales.Where(s => s.CoffeeRoomNo == coffeeroomno && s.ShiftId == id && !s.IsRejected).ToList().Select(s => s.ToDTO());
+                var sales = entities.Sales.Where(s => s.CoffeeRoomNo == coffeeroomno && s.ShiftId == id).ToList().Select(s => s.ToDTO());
                 return Request.CreateResponse(HttpStatusCode.OK, sales);
             }
             return Request.CreateErrorResponse(HttpStatusCode.RequestedRangeNotSatisfiable, "Shift does not exists");

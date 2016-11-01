@@ -29,7 +29,18 @@ namespace CoffeeManager.Api.Mappers
 
 		public static Models.Sale ToDTO (this Sale saleDb)
 		{
-			return new Models.Sale () { Id = saleDb.Id, Product1 = new Models.Product () { Name = saleDb.Product1.Name, ProductType = saleDb.Product1.ProductType.Value }, CoffeeRoomNo = saleDb.CoffeeRoomNo, Amount = saleDb.Amount, ShiftId = saleDb.ShiftId, IsPoliceSale = saleDb.IsPoliceSale.Value, Time = saleDb.Time };
+		    return new Models.Sale()
+		    {
+		        Id = saleDb.Id,
+		        Product1 = new Models.Product() {Name = saleDb.Product1.Name, ProductType = saleDb.Product1.ProductType.Value},
+		        CoffeeRoomNo = saleDb.CoffeeRoomNo,
+		        Amount = saleDb.Amount,
+		        ShiftId = saleDb.ShiftId,
+		        IsPoliceSale = saleDb.IsPoliceSale.Value,
+                IsUtilized = saleDb.IsUtilized,
+                IsRejected = saleDb.IsRejected,
+		        Time = saleDb.Time
+		    };
 		}
 
 		public static Models.SupliedProduct ToDTO (this SupliedProduct productDb)

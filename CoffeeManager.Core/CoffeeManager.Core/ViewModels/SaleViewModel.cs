@@ -13,10 +13,29 @@ namespace CoffeeManager.Core.ViewModels
     {
         private ICommand _dismisItemCommand;
         private Sale _sale;
+        private string _status;
         public SaleViewModel(Sale sale)
         {
             _sale = sale;
             _dismisItemCommand = new MvxAsyncCommand(DoDismisItem);
+            if (_sale.IsRejected)
+            {
+                Status = "Отменена";
+            }
+            if (_sale.IsUtilized)
+            {
+                Status = "Списана";
+            }
+        }
+
+        public string Status
+        {
+            get { return _status; }
+            set
+            {
+                _status = value;
+                RaisePropertyChanged(nameof(Status));
+            }
         }
 
         public ICommand DismisItemCommand => _dismisItemCommand;

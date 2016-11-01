@@ -18,5 +18,9 @@ namespace CoffeeManager.Models
         public int Product { get; set; }
         public bool IsPoliceSale { get; set; }
         public DateTime Time { get; set; }
+
+        public bool IsRejected { get; set; }
+
+        public bool IsUtilized { get; set; }
     }
 }
