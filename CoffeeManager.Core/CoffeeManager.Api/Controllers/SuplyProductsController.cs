@@ -77,43 +77,6 @@ namespace CoffeeManager.Api.Controllers
             return Request.CreateErrorResponse(HttpStatusCode.RequestedRangeNotSatisfiable, $"Cannot find suplyId {sProduct.Id}");
         }
 
-        [Route ("api/suplyproducts/bindProductWithSuply")]
-		[HttpPost]
-		public async Task<HttpResponseMessage> BindProductWithSuply ([FromUri] int coffeeroomno, [FromUri] int productId, [FromUri] int suplyId, HttpRequestMessage message)
-		{
-			var token = message.Headers.GetValues ("token").FirstOrDefault ();
-			if (token == null || !UserSessions.Sessions.Contains (token)) {
-				return Request.CreateResponse (HttpStatusCode.Forbidden);
-			}
-			var entites = new CoffeeRoomEntities ();
-			var product = entites.Products.FirstOrDefault (p => p.Id == productId);
-			var suply = entites.SupliedProducts.FirstOrDefault (p => p.Id == suplyId);
-			if (product != null && suply != null) {
-				product.SuplyProductId = suplyId;
-				await entites.SaveChangesAsync ();
-				return Request.CreateResponse (HttpStatusCode.OK);
-			}
-			return Request.CreateErrorResponse (HttpStatusCode.RequestedRangeNotSatisfiable, $"Cannot find product id {productId} or suplyId {suplyId}");
-		}
-
-		[Route ("api/suplyproducts/bindExpenseWithSuply")]
-		[HttpPost]
-		public async Task<HttpResponseMessage> BindExpenseWithSuply ([FromUri] int coffeeroomno, [FromUri] int exprenseId, [FromUri] int suplyId, HttpRequestMessage message)
-		{
-			var token = message.Headers.GetValues ("token").FirstOrDefault ();
-			if (token == null || !UserSessions.Sessions.Contains (token)) {
-				return Request.CreateResponse (HttpStatusCode.Forbidden);
-			}
-			var entites = new CoffeeRoomEntities ();
-			var expense = entites.ExpenseTypes.FirstOrDefault (p => p.Id == exprenseId);
-			var suply = entites.SupliedProducts.FirstOrDefault (p => p.Id == suplyId);
-			if (expense != null && suply != null) {
-				suply.ExprenseTypeId = exprenseId;
-				await entites.SaveChangesAsync ();
-				return Request.CreateResponse (HttpStatusCode.OK);
-			}
-			return Request.CreateErrorResponse (HttpStatusCode.RequestedRangeNotSatisfiable, $"Cannot find expense id {exprenseId} or suplyId {suplyId}");
-		}
 
 		[Route ("api/suplyproducts/addproduct")]
 		[HttpPut]
@@ -127,6 +90,7 @@ namespace CoffeeManager.Api.Controllers
 			var request = await message.Content.ReadAsStringAsync ();
 			var sProduct = JsonConvert.DeserializeObject<Models.SupliedProduct> (request);
 			var prodDb = DbMapper.Map (sProduct);
+            prodDb.Priority = 100;
 			var entites = new CoffeeRoomEntities ();
 			entites.SupliedProducts.Add (prodDb);
 			await entites.SaveChangesAsync ();
