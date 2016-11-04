@@ -149,7 +149,7 @@ namespace CoffeeManager.Api.Controllers
             {
                 using (var sContext = new CoffeeRoomEntities())
                 {
-                    var product = sContext.Products.First(p => p.Id == sale.Product);
+                    var product = sContext.Products.First(p => p.Id == saleDb.Product);
                     foreach (var productCalculation in product.ProductCalculations)
                     {
                         var supliedProduct =
