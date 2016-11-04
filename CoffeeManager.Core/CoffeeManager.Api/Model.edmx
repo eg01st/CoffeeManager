@@ -147,6 +147,7 @@
           <Property Name="ExprenseTypeId" Type="int" />
           <Property Name="CoffeeRoomNo" Type="int" />
           <Property Name="Quantity" Type="money" />
+          <Property Name="Priority" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="SuplyRequest">
           <Key>
@@ -189,6 +190,7 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
           <Property Name="CoffeeRoomNo" Type="int" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="UtilizedCup">
           <Key>
@@ -615,6 +617,7 @@
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CoffeeRoomNo" Type="Int32" />
           <NavigationProperty Name="Shifts" Relationship="Self.FK__Shifts__UserId__22AA2996" FromRole="Users" ToRole="Shifts" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="UtilizedCup">
           <Key>
@@ -916,6 +919,7 @@
           <NavigationProperty Name="SuplyRequests" Relationship="CoffeeRoomModel.FK__SuplyRequ__Suply__5E8A0973" FromRole="SupliedProduct" ToRole="SuplyRequest" />
           <NavigationProperty Name="ProductCalculations" Relationship="CoffeeRoomModel.FK__ProductCa__Suply__7A3223E8" FromRole="SupliedProduct" ToRole="ProductCalculation" />
           <Property Name="Quantity" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Priority" Type="Int32" Nullable="false" />
         </EntityType>
         <Association Name="FK_SupliedProduct_ExpenseType">
           <End Type="CoffeeRoomModel.ExpenseType" Role="ExpenseType" Multiplicity="0..1" />
@@ -1124,6 +1128,7 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="CoffeeRoomModel.User">
               <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="CoffeeRoomNo" ColumnName="CoffeeRoomNo" />
@@ -1186,6 +1191,7 @@
           <EntitySetMapping Name="SupliedProducts">
             <EntityTypeMapping TypeName="CoffeeRoomModel.SupliedProduct">
               <MappingFragment StoreEntitySet="SupliedProduct">
+                <ScalarProperty Name="Priority" ColumnName="Priority" />
                 <ScalarProperty Name="Quantity" ColumnName="Quantity" />
                 <ScalarProperty Name="CoffeeRoomNo" ColumnName="CoffeeRoomNo" />
                 <ScalarProperty Name="ExprenseTypeId" ColumnName="ExprenseTypeId" />

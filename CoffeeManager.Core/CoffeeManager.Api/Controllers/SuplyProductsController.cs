@@ -22,7 +22,7 @@ namespace CoffeeManager.Api.Controllers
 				return Request.CreateResponse (HttpStatusCode.Forbidden);
 			}
 			var entites = new CoffeeRoomEntities ();
-			var items = entites.SupliedProducts.ToList ().Select (p => p.ToDTO ());
+			var items = entites.SupliedProducts.OrderBy(o => o.Priority).ToList ().Select (p => p.ToDTO ());
 			return Request.CreateResponse (HttpStatusCode.OK, items);
 		}
 

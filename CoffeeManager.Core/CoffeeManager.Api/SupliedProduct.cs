@@ -29,6 +29,7 @@ namespace CoffeeManager.Api
         public Nullable<int> ExprenseTypeId { get; set; }
         public Nullable<int> CoffeeRoomNo { get; set; }
         public Nullable<decimal> Quantity { get; set; }
+        public int Priority { get; set; }
     
         public virtual ExpenseType ExpenseType { get; set; }
         public virtual Product Product { get; set; }
