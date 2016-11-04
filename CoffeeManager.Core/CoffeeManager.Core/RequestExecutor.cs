@@ -98,14 +98,14 @@ namespace CoffeeManager.Core
             storage.WriteFile(RequestQueue, JsonConvert.SerializeObject(requestStorage));
         }
 
-        private static void RunInternal(Request request)
+        private static async void RunInternal(Request request)
         {
             var client = new HttpClient();
             string url = $"{_apiUrl}{request.Path}?coffeeroomno={CoffeeRoomNo}";
             if (request.Method == "PUT")
             {
-                var response = client.PutAsync(url, new StringContent(request.ObjectJson)).Result;
-                var res = response.Content.ReadAsStringAsync().Result;
+                var response = await client.PutAsync(url, new StringContent(request.ObjectJson));
+                var res = await response.Content.ReadAsStringAsync();
                 if (response.StatusCode != HttpStatusCode.OK)
                 {
                     throw new Exception(res);
@@ -113,8 +113,8 @@ namespace CoffeeManager.Core
             }
             else
             {
-                var response = client.PostAsync(url, new StringContent(request.ObjectJson)).Result;
-                var res = response.Content.ReadAsStringAsync().Result;
+                var response = await client.PostAsync(url, new StringContent(request.ObjectJson));
+                var res = await response.Content.ReadAsStringAsync();
                 if (response.StatusCode != HttpStatusCode.OK)
                 {
                     throw new Exception(res);

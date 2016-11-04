@@ -30,7 +30,7 @@ namespace CoffeeManager.Core.ServiceProviders
             {
                 return await Get<Shift>($"{Shift}/getCurrentShift");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return null;
             }
