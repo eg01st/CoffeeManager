@@ -44,33 +44,14 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:textSize="18dp"
-      android:text="Открыто пачек молока: "/>
+      android:text="Показания счетчика на кофемолке: "/>
     <EditText
       android:layout_marginLeft="30dp"
       android:layout_width="100dp"
       android:layout_height="wrap_content"
       android:inputType="numberDecimal"
       android:textSize="18dp"
-      local:MvxBind="Text MilkPack" />
-  </LinearLayout>
-
-  <LinearLayout
-     android:layout_width="match_parent"
-     android:layout_height="wrap_content"
-     android:gravity="center"
-     android:orientation="horizontal">
-    <TextView
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:textSize="18dp"
-      android:text="Открыто пачек кофе: "/>
-    <EditText
-      android:layout_marginLeft="30dp"
-      android:layout_width="100dp"
-      android:inputType="numberDecimal"
-      android:layout_height="wrap_content"
-      android:textSize="18dp"
-      local:MvxBind="Text CoffeePack" />
+      local:MvxBind="Text EndCounter" />
   </LinearLayout>
   </LinearLayout>
   <Button

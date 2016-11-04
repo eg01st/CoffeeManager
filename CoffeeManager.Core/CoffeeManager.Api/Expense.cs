@@ -19,6 +19,7 @@ namespace CoffeeManager.Api
         public Nullable<int> ShiftId { get; set; }
         public Nullable<int> ExpenseType { get; set; }
         public Nullable<int> CoffeeRoomNo { get; set; }
+        public Nullable<int> Quantity { get; set; }
     
         public virtual ExpenseType ExpenseType1 { get; set; }
         public virtual Shift Shift { get; set; }

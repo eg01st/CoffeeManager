@@ -15,7 +15,7 @@ namespace CoffeeManager.Api.Controllers
 {
     public class ShiftController : ApiController
     {
-        public async Task<HttpResponseMessage> Post([FromUri]int coffeeroomno, [FromUri]int userId)
+        public async Task<HttpResponseMessage> Post([FromUri]int coffeeroomno, [FromUri]int userId, [FromUri] int counter)
         {
             var shiftToReturn = new Models.Shift();
             var entities = new  CoffeeRoomEntities();
@@ -27,7 +27,8 @@ namespace CoffeeManager.Api.Controllers
                     CoffeeRoomNo = coffeeroomno,
                     IsFinished = false,
                     UserId = userId,
-                    Date = DateTime.Now
+                    Date = DateTime.Now,
+                    StartCounter = counter
                 };
                 var lastShift =
                     entities.Shifts.Where(s => s.CoffeeRoomNo == coffeeroomno).OrderByDescending(s => s.Id).First();
@@ -62,6 +63,7 @@ namespace CoffeeManager.Api.Controllers
                 var shift = enities.Shifts.First(s => s.Id == shiftId && s.CoffeeRoomNo == coffeeroomno);
                 shift.IsFinished = true;
                 shift.RealAmount = shiftInfo.RealAmount;
+                shift.EndCounter = shiftInfo.Counter;
                 var sales = enities.Sales.Where(s => s.ShiftId == shiftId && !s.IsRejected && s.Product1.CupType.HasValue);
                 var cup110 = sales.Count(s => s.Product1.CupType.Value == (int)CupTypeEnum.c110);
                 var cup170 = sales.Count(s => s.Product1.CupType.Value == (int)CupTypeEnum.c170);
@@ -88,23 +90,6 @@ namespace CoffeeManager.Api.Controllers
                     CoffeeRoomNo = coffeeroomno
                 };
                 enities.UsedCupsPerShifts.Add(usedCups);
-
-                var usedProducts = new UsedProductsPerShift()
-                {
-                    CoffeePacks = shiftInfo.CoffeePacks,
-                    MilkPacks = shiftInfo.MilkPacks,
-                    ShiftId = shiftId,
-                    CoffeeRoomNo = shiftInfo.CoffeeRoomNo
-                };
-                int coffeeId = (int) Models.ExpenseTypeEnum.Coffee;
-                var coffee = enities.SupliedProducts.First(e => e.ExprenseTypeId.HasValue && e.ExprenseTypeId.Value == coffeeId);
-                coffee.Amount -= shiftInfo.CoffeePacks;
-
-                int milkId = (int)Models.ExpenseTypeEnum.Milk;
-                var milk = enities.SupliedProducts.First(e => e.ExprenseTypeId.HasValue && e.ExprenseTypeId.Value == milkId);
-                milk.Amount -= shiftInfo.MilkPacks;
-
-                enities.UsedProductsPerShifts.Add(usedProducts);
 
                 await enities.SaveChangesAsync();
                 return new HttpResponseMessage() { StatusCode = HttpStatusCode.OK };
@@ -170,6 +155,33 @@ namespace CoffeeManager.Api.Controllers
             var shift = entities.Shifts.First(s => !s.IsFinished.Value && s.CoffeeRoomNo == coffeeroomno).Id;
             var sales = entities.Sales.Where(s => s.CoffeeRoomNo == coffeeroomno && s.ShiftId == shift).ToList().Select(s => s.ToDTO());
             return Request.CreateResponse(HttpStatusCode.OK, sales);
+        }
+
+        [Route("api/shift/getShiftInfo")]
+        [HttpGet]
+        public async Task<HttpResponseMessage> GetShiftInfo([FromUri]int coffeeroomno, [FromUri]int id)
+        {
+            var entities = new CoffeeRoomEntities();
+            var shift = entities.Shifts.FirstOrDefault(s => s.Id == id && s.CoffeeRoomNo == coffeeroomno);
+            if (shift != null)
+            {
+                var dto = new ShiftInfo()
+                {
+                    Id = shift.Id,
+                    Date = shift.Date.Value,
+                    RealAmount = shift.RealAmount,
+                    StartMoney = shift.StartAmount,
+                    UserName = shift.User.Name,
+                    TotalAmount = shift.TotalAmount,
+                    ExpenseAmount = shift.TotalExprenses,
+                    ShiftEarnedMoney = shift.CurrentAmount,
+                    StartCounter = shift.StartCounter,
+                    EndCounter = shift.EndCounter                
+                };
+                return Request.CreateResponse(HttpStatusCode.OK, dto);
+            }
+            return Request.CreateErrorResponse(HttpStatusCode.RequestedRangeNotSatisfiable, $"Cannot find shift with id {id}");
+
         }
 
         [Route("api/shift/getShiftSalesById")]

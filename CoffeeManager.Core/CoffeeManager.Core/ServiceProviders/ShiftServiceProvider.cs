@@ -10,9 +10,16 @@ namespace CoffeeManager.Core.ServiceProviders
     public class ShiftServiceProvider : BaseServiceProvider
     {
         private const string Shift = "shift";
-        public async Task<int> StartUserShift(int userId)
+        public async Task<int> StartUserShift(int userId, int counter)
         {
-            var result = await Post<Shift, object>(Shift, null, new Dictionary<string, string>() { {nameof(userId), userId.ToString()} });
+            var result =
+                await
+                    Post<Shift, object>(Shift, null,
+                        new Dictionary<string, string>()
+                        {
+                            {nameof(userId), userId.ToString()},
+                            {nameof(counter), counter.ToString()}
+                        });
             return result.Id;
         }
 
@@ -35,9 +42,17 @@ namespace CoffeeManager.Core.ServiceProviders
             return await Get<Sale[]>($"{Shift}/getShiftSales");
         }
 
-        public async Task EndShift(int shiftId, decimal realAmount, int coffeePacks, int milkPacks)
+        public async Task EndShift(int shiftId, decimal realAmount, int endCounter)
         {
-            await Put(Shift, new EndShiftDTO() {CoffeeRoomNo = CoffeeRoomNo, ShiftId = shiftId, CoffeePacks = coffeePacks, RealAmount = realAmount, MilkPacks = milkPacks});
+            await
+                Put(Shift,
+                    new EndShiftDTO()
+                    {
+                        CoffeeRoomNo = CoffeeRoomNo,
+                        ShiftId = shiftId,
+                        RealAmount = realAmount,
+                        Counter = endCounter
+                    });
         }
     }
 }

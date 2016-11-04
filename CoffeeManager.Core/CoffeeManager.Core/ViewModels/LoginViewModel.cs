@@ -1,4 +1,5 @@
 ﻿using System.Windows.Input;
+using Acr.UserDialogs;
 using CoffeeManager.Core.Managers;
 using CoffeeManager.Models;
 using MvvmCross.Core.ViewModels;
@@ -18,7 +19,6 @@ namespace CoffeeManager.Core.ViewModels
 
         public LoginViewModel()
         {
-            //executor.RunTimer();
             _userManager = new UserManager();
             _shiftManager = new ShiftManager();
             _selectUserCommand = new MvxCommand<User>(DoSelectUser);
@@ -26,8 +26,19 @@ namespace CoffeeManager.Core.ViewModels
 
         private async void DoSelectUser(User user)
         {
-            int shiftId = await _shiftManager.StartUserShift(user.Id);
-            ShowViewModel<MainViewModel>( new {userId = user.Id, shiftId = shiftId });
+            UserDialogs.Prompt(new PromptConfig()
+            {
+                Message = "Введите показание счетчика на кофемолке",
+                InputType = InputType.Number,
+                OnAction = async (obj) =>
+                {
+                    if (obj.Ok)
+                    {
+                        int shiftId = await _shiftManager.StartUserShift(user.Id, int.Parse(obj.Text));
+                        ShowViewModel<MainViewModel>(new {userId = user.Id, shiftId = shiftId});
+                    }
+                }
+            });
         }
 
         public User[] Users

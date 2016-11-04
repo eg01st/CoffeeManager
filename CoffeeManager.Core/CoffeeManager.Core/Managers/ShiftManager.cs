@@ -10,9 +10,9 @@ namespace CoffeeManager.Core.Managers
     public class ShiftManager : BaseManager
     {
         private ShiftServiceProvider provider = new ShiftServiceProvider();
-        public async Task<int> StartUserShift(int userId)
+        public async Task<int> StartUserShift(int userId, int counter)
         {
-            return await provider.StartUserShift(userId).ContinueWith((shiftId) =>
+            return await provider.StartUserShift(userId, counter).ContinueWith((shiftId) =>
             {
                 ShiftNo = shiftId.Result;
                 return ShiftNo;
@@ -20,9 +20,9 @@ namespace CoffeeManager.Core.Managers
 
         }
 
-        public async Task EndUserShift(int shiftId, decimal realAmount, int coffeePacks, int milkPacks)
+        public async Task EndUserShift(int shiftId, decimal realAmount, int endCounter)
         {
-            await provider.EndShift(shiftId, realAmount, coffeePacks, milkPacks);
+            await provider.EndShift(shiftId, realAmount, endCounter);
         }
 
         public async Task<Shift> GetCurrentShift()

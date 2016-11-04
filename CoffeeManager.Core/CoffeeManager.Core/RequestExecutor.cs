@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -104,12 +105,20 @@ namespace CoffeeManager.Core
             if (request.Method == "PUT")
             {
                 var response = client.PutAsync(url, new StringContent(request.ObjectJson)).Result;
-                response.Content.ReadAsStringAsync();
+                var res = response.Content.ReadAsStringAsync().Result;
+                if (response.StatusCode != HttpStatusCode.OK)
+                {
+                    throw new Exception(res);
+                }
             }
             else
             {
                 var response = client.PostAsync(url, new StringContent(request.ObjectJson)).Result;
-                response.Content.ReadAsStringAsync();
+                var res = response.Content.ReadAsStringAsync().Result;
+                if (response.StatusCode != HttpStatusCode.OK)
+                {
+                    throw new Exception(res);
+                }
             }
         }
 

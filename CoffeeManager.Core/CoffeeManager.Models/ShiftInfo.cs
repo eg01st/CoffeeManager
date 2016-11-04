@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CoffeeManager.Models
 {
@@ -18,6 +14,8 @@ namespace CoffeeManager.Models
         public decimal RealAmount { get; set; }
         public decimal ExpenseAmount { get; set; }
 
+        public int? StartCounter { get; set; }
 
+        public int? EndCounter { get; set; }
     }
 }

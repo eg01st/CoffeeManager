@@ -63,6 +63,7 @@
           <Property Name="ShiftId" Type="int" />
           <Property Name="ExpenseType" Type="int" />
           <Property Name="CoffeeRoomNo" Type="int" />
+          <Property Name="Quantity" Type="int" />
         </EntityType>
         <EntityType Name="ExpenseType">
           <Key>
@@ -131,6 +132,8 @@
           <Property Name="CoffeeRoomNo" Type="int" />
           <Property Name="TotalExprenses" Type="money" Nullable="false" />
           <Property Name="RealAmount" Type="money" Nullable="false" />
+          <Property Name="StartCounter" Type="int" />
+          <Property Name="EndCounter" Type="int" />
         </EntityType>
         <EntityType Name="SupliedProduct">
           <Key>
@@ -511,6 +514,7 @@
           <Property Name="CoffeeRoomNo" Type="Int32" />
           <NavigationProperty Name="ExpenseType1" Relationship="Self.FK__Expense__Expense__37A5467C" FromRole="Expense" ToRole="ExpenseType" />
           <NavigationProperty Name="Shift" Relationship="Self.FK__Expense__ShiftId__38996AB5" FromRole="Expense" ToRole="Shifts" />
+          <Property Name="Quantity" Type="Int32" />
         </EntityType>
         <EntityType Name="ExpenseType">
           <Key>
@@ -586,6 +590,8 @@
           <NavigationProperty Name="Depts" Relationship="CoffeeRoomModel.FK__Dept__ShiftId__49C3F6B7" FromRole="Shift" ToRole="Dept" />
           <NavigationProperty Name="UsedProductsPerShifts" Relationship="CoffeeRoomModel.FK__UsedProdu__Shift__5DCAEF64" FromRole="Shift" ToRole="UsedProductsPerShift" />
           <Property Name="RealAmount" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="StartCounter" Type="Int32" />
+          <Property Name="EndCounter" Type="Int32" />
         </EntityType>
         <EntityType Name="UsedCupsPerShift">
           <Key>
@@ -1027,6 +1033,7 @@
           <EntitySetMapping Name="Expenses">
             <EntityTypeMapping TypeName="CoffeeRoomModel.Expense">
               <MappingFragment StoreEntitySet="Expense">
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Amount" ColumnName="Amount" />
                 <ScalarProperty Name="ShiftId" ColumnName="ShiftId" />
@@ -1085,6 +1092,8 @@
           <EntitySetMapping Name="Shifts">
             <EntityTypeMapping TypeName="CoffeeRoomModel.Shift">
               <MappingFragment StoreEntitySet="Shifts">
+                <ScalarProperty Name="EndCounter" ColumnName="EndCounter" />
+                <ScalarProperty Name="StartCounter" ColumnName="StartCounter" />
                 <ScalarProperty Name="RealAmount" ColumnName="RealAmount" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />

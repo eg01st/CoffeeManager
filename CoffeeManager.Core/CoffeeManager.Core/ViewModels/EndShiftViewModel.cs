@@ -9,8 +9,7 @@ namespace CoffeeManager.Core.ViewModels
     {
         private ShiftManager _shiftManager = new ShiftManager();
         private string _realAmount;
-        private string _milkPack;
-        private string _coffeePack;
+        private string _endCounter;
         private ICommand __finishShiftCommand;
 
         private int _shiftId;
@@ -25,30 +24,20 @@ namespace CoffeeManager.Core.ViewModels
             }
         }
 
-        public bool EndShiftButtonEnabled
-            => !string.IsNullOrEmpty(RealAmount) && !string.IsNullOrEmpty(MilkPack) && !string.IsNullOrEmpty(CoffeePack)
-            ;
-        public string MilkPack
+        public string EndCounter
         {
-            get { return _milkPack; }
+            get { return _endCounter; }
             set
             {
-                _milkPack = value;
-                RaisePropertyChanged(nameof(MilkPack));
+                _endCounter = value;
+                RaisePropertyChanged(nameof(EndCounter));
                 RaisePropertyChanged(nameof(EndShiftButtonEnabled));
             }
         }
 
-        public string CoffeePack
-        {
-            get { return _coffeePack; }
-            set
-            {
-                _coffeePack = value;
-                RaisePropertyChanged(nameof(CoffeePack));
-                RaisePropertyChanged(nameof(EndShiftButtonEnabled));
-            }
-        }
+        public bool EndShiftButtonEnabled
+            => !string.IsNullOrEmpty(RealAmount) && !string.IsNullOrEmpty(EndCounter);
+
 
         public ICommand FinishShiftCommand => __finishShiftCommand;
 
@@ -72,7 +61,7 @@ namespace CoffeeManager.Core.ViewModels
 
         private async void DoFinishCommand()
         {
-            await _shiftManager.EndUserShift(_shiftId, decimal.Parse(RealAmount), int.Parse(CoffeePack), int.Parse(MilkPack));
+            await _shiftManager.EndUserShift(_shiftId, decimal.Parse(RealAmount), int.Parse(EndCounter));
             Close(this);
         }
     }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Acr.UserDialogs;
@@ -34,6 +35,7 @@ namespace CoffeeManager.Core.ServiceProviders
 
         protected async Task<T> Get<T>(string path, Dictionary<string, string> param = null)
         {
+            UserDialogs.ShowLoading("Loading", Acr.UserDialogs.MaskType.Black);
             string url = string.Empty;
             try
             {
@@ -48,8 +50,13 @@ namespace CoffeeManager.Core.ServiceProviders
                     }
                 }
                 var response = await client.GetAsync(url);
+          
                 string responseString = await response.Content.ReadAsStringAsync();
                 Debug.WriteLine(responseString);
+                if (response.StatusCode != HttpStatusCode.OK)
+                {
+                    throw new Exception(responseString);
+                }
                 var result = JsonConvert.DeserializeObject<T>(responseString);
                 return result;
 
@@ -60,10 +67,15 @@ namespace CoffeeManager.Core.ServiceProviders
                 UserDialogs.Alert("Произошла ошибка запроса к серверу");
                 throw;
             }
+            finally
+            {
+                UserDialogs.HideLoading();
+            }
         }
 
         protected async Task<T> Post<T, TY>(string path, TY obj, Dictionary<string, string> param = null)
         {
+            UserDialogs.ShowLoading("Loading", Acr.UserDialogs.MaskType.Black);
             string url = string.Empty;
             try
             {
@@ -78,6 +90,10 @@ namespace CoffeeManager.Core.ServiceProviders
                 }
                 var response = await client.PostAsync(url, new StringContent(JsonConvert.SerializeObject(obj)));
                 string responseString = await response.Content.ReadAsStringAsync();
+                if (response.StatusCode != HttpStatusCode.OK)
+                {
+                    throw new Exception(responseString);
+                }
                 var result = JsonConvert.DeserializeObject<T>(responseString);
                 return result;
             }
@@ -86,11 +102,16 @@ namespace CoffeeManager.Core.ServiceProviders
                 RequestExecutor.LogError($"Post {path} {ex}");
                 UserDialogs.Alert("Произошла ошибка запроса к серверу");
                 throw;
+            }
+            finally
+            {
+                UserDialogs.HideLoading();
             }
         }
 
         protected async Task<string> Post<T>(string path, T obj, Dictionary<string, string> param = null)
         {
+            UserDialogs.ShowLoading("Loading", Acr.UserDialogs.MaskType.Black);
             string url = string.Empty;
             try
             {
@@ -104,7 +125,12 @@ namespace CoffeeManager.Core.ServiceProviders
                     }
                 }
                 var response = await client.PostAsync(url, new StringContent(JsonConvert.SerializeObject(obj)));
-                return await response.Content.ReadAsStringAsync();
+                var responseString = await response.Content.ReadAsStringAsync();
+                if (response.StatusCode != HttpStatusCode.OK)
+                {
+                    throw new Exception(responseString);
+                }
+                return responseString;
             }
             catch (Exception ex)
             {
@@ -112,10 +138,15 @@ namespace CoffeeManager.Core.ServiceProviders
                 UserDialogs.Alert("Произошла ошибка запроса к серверу");
                 throw;
             }
+            finally
+            {
+                UserDialogs.HideLoading();
+            }
         }
 
         protected async Task<T> Put<T, TY>(string path, TY obj, Dictionary<string, string> param = null)
         {
+            UserDialogs.ShowLoading("Loading", Acr.UserDialogs.MaskType.Black);
             string url = string.Empty;
             try
             {
@@ -130,6 +161,10 @@ namespace CoffeeManager.Core.ServiceProviders
                 }
                 var response = await client.PutAsync(url, new StringContent(JsonConvert.SerializeObject(obj)));
                 string responseString = await response.Content.ReadAsStringAsync();
+                if (response.StatusCode != HttpStatusCode.OK)
+                {
+                    throw new Exception(responseString);
+                }
                 var result = JsonConvert.DeserializeObject<T>(responseString);
                 return result;
             }
@@ -139,10 +174,15 @@ namespace CoffeeManager.Core.ServiceProviders
                 UserDialogs.Alert("Произошла ошибка запроса к серверу");
                 throw;
             }
+            finally
+            {
+                UserDialogs.HideLoading();
+            }
         }
 
         protected async Task<string> Put<T>(string path, T obj, Dictionary<string, string> param = null)
         {
+            UserDialogs.ShowLoading("Loading", Acr.UserDialogs.MaskType.Black);
             string url = string.Empty;
             try
             {
@@ -156,7 +196,12 @@ namespace CoffeeManager.Core.ServiceProviders
                     }
                 }
                 var response = await client.PutAsync(url, new StringContent(JsonConvert.SerializeObject(obj)));
-                return await response.Content.ReadAsStringAsync();
+                var responseString = await response.Content.ReadAsStringAsync();
+                if (response.StatusCode != HttpStatusCode.OK)
+                {
+                    throw new Exception(responseString);
+                }
+                return responseString;
             }
             catch (Exception ex)
             {
@@ -164,10 +209,15 @@ namespace CoffeeManager.Core.ServiceProviders
                 UserDialogs.Alert("Произошла ошибка запроса к серверу");
                 throw;
             }
+            finally
+            {
+                UserDialogs.HideLoading();
+            }
         }
 
         protected async Task<string> Delete(string path, Dictionary<string, string> param = null)
         {
+            UserDialogs.ShowLoading("Loading", Acr.UserDialogs.MaskType.Black);
             string url = string.Empty;
             try
             {
@@ -181,13 +231,22 @@ namespace CoffeeManager.Core.ServiceProviders
                     }
                 }
                 var response = await client.DeleteAsync(url);
-                return await response.Content.ReadAsStringAsync();
+                var responseString = await response.Content.ReadAsStringAsync();
+                if (response.StatusCode != HttpStatusCode.OK)
+                {
+                    throw new Exception(responseString);
+                }
+                return responseString;
             }
             catch (Exception ex)
             {
                 RequestExecutor.LogError($"Delete {path} {ex}");
                 UserDialogs.Alert("Произошла ошибка запроса к серверу");
                 throw;
+            }
+            finally
+            {
+                UserDialogs.HideLoading();
             }
         }
     }
