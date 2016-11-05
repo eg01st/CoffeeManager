@@ -165,6 +165,22 @@ namespace CoffeeManager.Api.Controllers
             var shift = entities.Shifts.FirstOrDefault(s => s.Id == id && s.CoffeeRoomNo == coffeeroomno);
             if (shift != null)
             {
+
+                decimal usedCoffee = 0;
+                var sales = entities.Sales.Where(s => s.ShiftId == id);
+
+                var coffeeSales = sales.Where(s => s.Product1.ProductType == 1);
+                foreach (var item in coffeeSales)
+                {
+                    var coffeeUsage = item.Product1.ProductCalculations.FirstOrDefault(c => c.SuplyProductId == 2);
+                    if(coffeeUsage != null)
+                    {
+                        usedCoffee += coffeeUsage.Quantity;
+                    }
+                }
+
+                var usedPortions = usedCoffee / (decimal)0.0075;
+
                 var dto = new ShiftInfo()
                 {
                     Id = shift.Id,
@@ -176,7 +192,8 @@ namespace CoffeeManager.Api.Controllers
                     ExpenseAmount = shift.TotalExprenses,
                     ShiftEarnedMoney = shift.CurrentAmount,
                     StartCounter = shift.StartCounter,
-                    EndCounter = shift.EndCounter                
+                    EndCounter = shift.EndCounter,
+                    UsedPortions = usedPortions                
                 };
                 return Request.CreateResponse(HttpStatusCode.OK, dto);
             }
