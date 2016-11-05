@@ -60,7 +60,14 @@ namespace CoffeeManager.Api.Controllers
                     s => s.ExprenseTypeId.HasValue && s.ExprenseTypeId.Value == expense.ExpenseId);
             if (suplyProduct != null)
             {
-                suplyProduct.Quantity += expense.ItemCount;
+                if (suplyProduct.Quantity.HasValue)
+                {
+                    suplyProduct.Quantity += expense.ItemCount;
+                }
+                else
+                {
+                    suplyProduct.Quantity = expense.ItemCount;
+                }
             }
             var currentShift = entities.Shifts.First(s => s.Id == expense.ShiftId);
             currentShift.TotalExprenses += expense.Amount;
