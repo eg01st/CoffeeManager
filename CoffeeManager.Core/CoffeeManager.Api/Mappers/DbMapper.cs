@@ -55,7 +55,8 @@ namespace CoffeeManager.Api.Mappers
 				CoffeeRoomNo = expense.CoffeeRoomNo,
 				ShiftId = expense.ShiftId,
 				Amount = expense.Amount,
-				ExpenseType = expense.ExpenseId
+				ExpenseType = expense.ExpenseId,
+                Quantity = expense.ItemCount
 			};
 		}
 
