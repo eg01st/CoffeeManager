@@ -47,6 +47,8 @@
     <Compile Include="Expense.cs" />
     <Compile Include="ExpenseType.cs" />
     <Compile Include="ExpenseTypeEnum.cs" />
+    <Compile Include="Order.cs" />
+    <Compile Include="OrderItem.cs" />
     <Compile Include="Product.cs" />
     <Compile Include="ProductCalculationEntity.cs" />
     <Compile Include="ProductType.cs" />

@@ -152,6 +152,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\SuplyOrder\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdminUser.cs">
@@ -165,6 +166,7 @@
     <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\ShiftController.cs" />
+    <Compile Include="Controllers\SuplyOrderController.cs" />
     <Compile Include="Controllers\SuplyProductsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="CupSuply.cs">
@@ -223,6 +225,12 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="SupliedProduct.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SuplyOrder.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SuplyOrderItem.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="SuplyRequest.cs">

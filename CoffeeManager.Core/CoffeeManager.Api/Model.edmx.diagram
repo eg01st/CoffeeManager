@@ -40,6 +40,10 @@
         <EntityTypeShape EntityType="CoffeeRoomModel.ProductCalculation" Width="1.5" PointX="10.5" PointY="18.375" />
         <AssociationConnector Association="CoffeeRoomModel.FK__ProductCa__Produ__793DFFAF" />
         <AssociationConnector Association="CoffeeRoomModel.FK__ProductCa__Suply__7A3223E8" />
+        <EntityTypeShape EntityType="CoffeeRoomModel.SuplyOrder" Width="1.5" PointX="11.25" PointY="11.125" />
+        <EntityTypeShape EntityType="CoffeeRoomModel.SuplyOrderItem" Width="1.5" PointX="13.5" PointY="14.875" />
+        <AssociationConnector Association="CoffeeRoomModel.FK__SuplyOrde__Suply__0E391C95" />
+        <AssociationConnector Association="CoffeeRoomModel.FK__SuplyOrde__Suply__0D44F85C" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

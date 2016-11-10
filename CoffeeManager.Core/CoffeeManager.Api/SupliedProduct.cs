@@ -19,6 +19,7 @@ namespace CoffeeManager.Api
         {
             this.SuplyRequests = new HashSet<SuplyRequest>();
             this.ProductCalculations = new HashSet<ProductCalculation>();
+            this.SuplyOrderItems = new HashSet<SuplyOrderItem>();
         }
     
         public int Id { get; set; }
@@ -37,5 +38,7 @@ namespace CoffeeManager.Api
         public virtual ICollection<SuplyRequest> SuplyRequests { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductCalculation> ProductCalculations { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SuplyOrderItem> SuplyOrderItems { get; set; }
     }
 }
