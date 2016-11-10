@@ -77,6 +77,35 @@ namespace CoffeeManager.Api.Controllers
             return Request.CreateResponse(HttpStatusCode.OK);
         }
 
+        [Route("api/payment/deleteexpense")]
+        [HttpDelete]
+        public async Task<HttpResponseMessage> DeleteExpense([FromUri]int coffeeroomno, [FromUri]int id, HttpRequestMessage message)
+        {
+            var token = message.Headers.GetValues("token").FirstOrDefault();
+            if (token == null || !UserSessions.Sessions.Contains(token))
+            {
+                return Request.CreateResponse(HttpStatusCode.Forbidden);
+            }
+            var entities = new CoffeeRoomEntities();
+            var expense = entities.Expenses.First(e => e.Id == id && e.CoffeeRoomNo.Value == coffeeroomno);
+            var suplyProduct =
+                entities.SupliedProducts.FirstOrDefault(
+                    s => s.ExprenseTypeId.HasValue && s.ExprenseTypeId.Value == id);
+            if (suplyProduct != null)
+            {
+                suplyProduct.Quantity -= expense.Quantity;
+            }
+            var currentShift = entities.Shifts.First(s => s.Id == expense.ShiftId);
+            currentShift.TotalExprenses -= expense.Amount;
+            currentShift.TotalAmount += expense.Amount;
+
+            entities.Expenses.Remove(expense);
+
+            await entities.SaveChangesAsync();
+
+            return Request.CreateResponse(HttpStatusCode.OK);
+        }
+
         [Route("api/payment/addnewexpensetype")]
         [HttpPut]
         public async Task<HttpResponseMessage> Put([FromUri]int coffeeroomno, [FromUri]string typeName)
