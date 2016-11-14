@@ -38,7 +38,7 @@ namespace CoffeeManager.Api.Controllers
                 return Request.CreateResponse(HttpStatusCode.Forbidden);
             }
             var entities = new CoffeeRoomEntities();
-            var orders = entities.SuplyOrderItems.Where(o => o.SuplyOrderId == id).ToList().Select(s => s.ToDTO());
+            var orders = entities.SuplyOrderItems.Include("SupliedProduct").Where(o => o.SuplyOrderId == id).ToList().Select(s => s.ToDTO());
             return Request.CreateResponse(HttpStatusCode.OK, orders);
         }
 
@@ -60,6 +60,7 @@ namespace CoffeeManager.Api.Controllers
             orderItemDb.Quantity = orderItem.Quantity;
             orderItemDb.Price = orderItem.Price;
             orderItemDb.IsDone = orderItem.IsDone;
+            await entities.SaveChangesAsync();
             return Request.CreateResponse(HttpStatusCode.OK);
         }
 
@@ -115,23 +116,26 @@ namespace CoffeeManager.Api.Controllers
             entities.SuplyOrders.Add(orderDb);
             entities.SaveChanges();
 
-            entities = new CoffeeRoomEntities();
-            foreach (var orderItem in order.OrderItems)
+            if (order.OrderItems != null)
             {
-                var orderItemDb = new SuplyOrderItem()
+                entities = new CoffeeRoomEntities();
+                foreach (var orderItem in order.OrderItems)
                 {
-                    SuplyOrderId = orderDb.Id,
-                    SuplyProductId = orderItem.SuplyProductId,
-                    Quantity = orderItem.Quantity,
-                    Price = orderItem.Price,
-                    IsDone = orderItem.IsDone,
-                    CoffeeRoomNo = orderItem.CoffeeRoomNo
-                };
-                entities.SuplyOrderItems.Add(orderItemDb);
+                    var orderItemDb = new SuplyOrderItem()
+                    {
+                        SuplyOrderId = orderDb.Id,
+                        SuplyProductId = orderItem.SuplyProductId,
+                        Quantity = orderItem.Quantity,
+                        Price = orderItem.Price,
+                        IsDone = orderItem.IsDone,
+                        CoffeeRoomNo = orderItem.CoffeeRoomNo
+                    };
+                    entities.SuplyOrderItems.Add(orderItemDb);
+                }
+                await entities.SaveChangesAsync();
             }
-            await entities.SaveChangesAsync();
 
-            return Request.CreateResponse(HttpStatusCode.OK);
+            return Request.CreateResponse(HttpStatusCode.OK, orderDb.Id);
         }
 
         [Route("api/suplyorder/closeorder")]
@@ -151,6 +155,19 @@ namespace CoffeeManager.Api.Controllers
             orderDb.IsDone = true;
             orderDb.Price = order.Price;
 
+            foreach (var item in orderDb.SuplyOrderItems)
+            {
+                var prod = entities.SupliedProducts.First(s => s.Id == item.SuplyProductId);
+                if (prod.Quantity.HasValue)
+                {
+                    prod.Quantity += item.Quantity;
+                }
+                else
+                {
+                    prod.Quantity = item.Quantity;
+                }  
+            }
+
             int metroExpenseId = 6;
             var currentShift = entities.Shifts.First(s => !s.IsFinished.Value && s.CoffeeRoomNo == coffeeroomno);
 
@@ -159,10 +176,12 @@ namespace CoffeeManager.Api.Controllers
                 Amount = order.Price,
                 ExpenseType = metroExpenseId,
                 Quantity = 1,
-                ShiftId = currentShift.Id
+                ShiftId = currentShift.Id,
+                CoffeeRoomNo = coffeeroomno
             };
             entities.Expenses.Add(expense);
-
+            currentShift.TotalExprenses += order.Price;
+            currentShift.TotalAmount -= order.Price;
             await entities.SaveChangesAsync();
 
             return Request.CreateResponse(HttpStatusCode.OK);
