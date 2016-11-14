@@ -65,7 +65,12 @@ namespace CoffeeManager.Api.Mappers
 
         public static Models.OrderItem ToDTO(this SuplyOrderItem orderItemDb)
         {
-            return new Models.OrderItem() { Id = orderItemDb.Id, CoffeeRoomNo = orderItemDb.CoffeeRoomNo, Quantity = orderItemDb.Quantity, IsDone = orderItemDb.IsDone, Price = orderItemDb.Price, OrderId = orderItemDb.SuplyOrderId };
+            var item = new Models.OrderItem() { Id = orderItemDb.Id, CoffeeRoomNo = orderItemDb.CoffeeRoomNo, Quantity = orderItemDb.Quantity, IsDone = orderItemDb.IsDone, Price = orderItemDb.Price, OrderId = orderItemDb.SuplyOrderId };
+            if(orderItemDb.SupliedProduct != null)
+            {
+                item.SuplyProductName = orderItemDb.SupliedProduct.Name;
+            }
+            return item;
         }
     }
 }
