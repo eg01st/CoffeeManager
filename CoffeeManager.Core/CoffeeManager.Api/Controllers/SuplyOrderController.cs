@@ -111,6 +111,7 @@ namespace CoffeeManager.Api.Controllers
                 Date = DateTime.Now,
                 Price = order.Price,
                 IsDone = order.IsDone,
+                ExpenseTypeId = order.ExpenseTypeId,
                 CoffeeRoomNo = order.CoffeeRoomNo
             };
             entities.SuplyOrders.Add(orderDb);
@@ -154,10 +155,12 @@ namespace CoffeeManager.Api.Controllers
             var orderDb = entities.SuplyOrders.First(o => o.Id == order.Id);
             orderDb.IsDone = true;
             orderDb.Price = order.Price;
+            orderDb.ExpenseTypeId = order.ExpenseTypeId;
 
             foreach (var item in orderDb.SuplyOrderItems)
             {
                 var prod = entities.SupliedProducts.First(s => s.Id == item.SuplyProductId);
+                prod.Price = item.Price;
                 if (prod.Quantity.HasValue)
                 {
                     prod.Quantity += item.Quantity;
@@ -168,13 +171,12 @@ namespace CoffeeManager.Api.Controllers
                 }  
             }
 
-            int metroExpenseId = 6;
             var currentShift = entities.Shifts.First(s => !s.IsFinished.Value && s.CoffeeRoomNo == coffeeroomno);
 
             var expense = new Expense
             {
                 Amount = order.Price,
-                ExpenseType = metroExpenseId,
+                ExpenseType = order.ExpenseTypeId,
                 Quantity = 1,
                 ShiftId = currentShift.Id,
                 CoffeeRoomNo = coffeeroomno

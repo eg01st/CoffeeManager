@@ -25,8 +25,10 @@ namespace CoffeeManager.Api
         public decimal Price { get; set; }
         public bool IsDone { get; set; }
         public int CoffeeRoomNo { get; set; }
+        public Nullable<int> ExpenseTypeId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SuplyOrderItem> SuplyOrderItems { get; set; }
+        public virtual ExpenseType ExpenseType { get; set; }
     }
 }

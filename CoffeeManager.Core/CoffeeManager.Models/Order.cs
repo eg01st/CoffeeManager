@@ -8,7 +8,7 @@ namespace CoffeeManager.Models
         public DateTime Date { get; set; }
         public bool IsDone { get; set; }
         public decimal Price { get; set; }
-        public int ExpenseTypeId { get; set; }
+        public int? ExpenseTypeId { get; set; }
         public List<OrderItem> OrderItems { get; set; }
     }
 }
