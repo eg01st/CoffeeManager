@@ -72,7 +72,7 @@ namespace CoffeeManager.Api.Controllers
                 item.Price = sProduct.Price;
                 item.Quantity = sProduct.Quatity;
                 await entites.SaveChangesAsync();
-                return Request.CreateResponse(HttpStatusCode.OK, item);
+                return Request.CreateResponse(HttpStatusCode.OK, item.ToDTO());
             }
             return Request.CreateErrorResponse(HttpStatusCode.RequestedRangeNotSatisfiable, $"Cannot find suplyId {sProduct.Id}");
         }
