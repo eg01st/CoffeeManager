@@ -88,6 +88,11 @@ namespace CoffeeManager.Api.Controllers
                 CoffeeRoomNo = orderItem.CoffeeRoomNo
             };
             entities.SuplyOrderItems.Add(orderItemDb);
+
+            var price = orderItem.Price * orderItem.Quantity;
+            var orderDb = entities.SuplyOrders.First(o => o.Id == orderItem.OrderId);
+            orderDb.Price += price;
+
             await entities.SaveChangesAsync();
             return Request.CreateResponse(HttpStatusCode.OK);
         }
@@ -200,12 +205,6 @@ namespace CoffeeManager.Api.Controllers
             }    
             var entities = new CoffeeRoomEntities();
             var orderDb = entities.SuplyOrders.First(o => o.Id == id);
-
-            foreach (var suplyOrderItem in orderDb.SuplyOrderItems)
-            {
-                entities.SuplyOrderItems.Remove(suplyOrderItem);
-            }
-            entities.SaveChanges();
             entities.SuplyOrders.Remove(orderDb);
             await entities.SaveChangesAsync();
             return Request.CreateResponse(HttpStatusCode.OK);

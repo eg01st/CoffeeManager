@@ -358,7 +358,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__SuplyOrde__Suply__0D44F85C">
-          <End Role="SuplyOrder" Type="Self.SuplyOrder" Multiplicity="0..1" />
+          <End Role="SuplyOrder" Type="Self.SuplyOrder" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="SuplyOrderItem" Type="Self.SuplyOrderItem" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="SuplyOrder">
@@ -370,7 +372,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__SuplyOrde__Suply__0E391C95">
-          <End Role="SupliedProduct" Type="Self.SupliedProduct" Multiplicity="0..1" />
+          <End Role="SupliedProduct" Type="Self.SupliedProduct" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="SuplyOrderItem" Type="Self.SuplyOrderItem" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="SupliedProduct">
