@@ -90,7 +90,7 @@ namespace CoffeeManager.Api.Controllers
             var expense = entities.Expenses.First(e => e.Id == id && e.CoffeeRoomNo.Value == coffeeroomno);
             var suplyProduct =
                 entities.SupliedProducts.FirstOrDefault(
-                    s => s.ExprenseTypeId.HasValue && s.ExprenseTypeId.Value == id);
+                    s => s.ExprenseTypeId.HasValue && s.ExprenseTypeId.Value == expense.ExpenseType.Value);
             if (suplyProduct != null)
             {
                 suplyProduct.Quantity -= expense.Quantity;
