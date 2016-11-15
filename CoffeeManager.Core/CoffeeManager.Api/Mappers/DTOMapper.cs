@@ -50,7 +50,18 @@ namespace CoffeeManager.Api.Mappers
 
 		public static Models.Expense ToDTO (this Expense expenseDb)
 		{
-			return new Models.Expense () { Id = expenseDb.Id, Name = expenseDb.ExpenseType1.Name, CoffeeRoomNo = expenseDb.CoffeeRoomNo.Value, Amount = expenseDb.Amount };
+		    var item = new Models.Expense()
+		    {
+		        Id = expenseDb.Id,
+		        Name = expenseDb.ExpenseType1.Name,
+		        CoffeeRoomNo = expenseDb.CoffeeRoomNo.Value,
+		        Amount = expenseDb.Amount
+		    };
+		    if (expenseDb.Quantity.HasValue)
+		    {
+		        item.ItemCount = expenseDb.Quantity.Value;
+		    }
+		    return item;
 		}
 
 		public static Models.UsedCupPerShift ToDTO (this UsedCupsPerShift cupDb)

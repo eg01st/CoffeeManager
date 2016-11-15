@@ -81,11 +81,11 @@ namespace CoffeeManager.Api.Controllers
         [HttpDelete]
         public async Task<HttpResponseMessage> DeleteExpense([FromUri]int coffeeroomno, [FromUri]int id, HttpRequestMessage message)
         {
-            var token = message.Headers.GetValues("token").FirstOrDefault();
-            if (token == null || !UserSessions.Sessions.Contains(token))
-            {
-                return Request.CreateResponse(HttpStatusCode.Forbidden);
-            }
+            //var token = message.Headers.GetValues("token").FirstOrDefault();
+            //if (token == null || !UserSessions.Sessions.Contains(token))
+            //{
+            //    return Request.CreateResponse(HttpStatusCode.Forbidden);
+            //}
             var entities = new CoffeeRoomEntities();
             var expense = entities.Expenses.First(e => e.Id == id && e.CoffeeRoomNo.Value == coffeeroomno);
             var suplyProduct =
@@ -121,11 +121,11 @@ namespace CoffeeManager.Api.Controllers
         [HttpGet]
         public async Task<HttpResponseMessage> GetShiftExpenses([FromUri]int coffeeroomno, [FromUri]int id, HttpRequestMessage message)
         {
-            var token = message.Headers.GetValues("token").FirstOrDefault();
-            if (token == null || !UserSessions.Sessions.Contains(token))
-            {
-                return Request.CreateResponse(HttpStatusCode.Forbidden);
-            }
+            //var token = message.Headers.GetValues("token").FirstOrDefault();
+            //if (token == null || !UserSessions.Sessions.Contains(token))
+            //{
+            //    return Request.CreateResponse(HttpStatusCode.Forbidden);
+            //}
             var entities = new CoffeeRoomEntities();
             var expenses = entities.Expenses.Include("ExpenseType1").Where(e => e.CoffeeRoomNo == coffeeroomno && e.ShiftId.Value == id).ToList().Select(s => s.ToDTO());
             return Request.CreateResponse(HttpStatusCode.OK, expenses);

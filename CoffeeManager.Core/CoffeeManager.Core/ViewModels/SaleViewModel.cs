@@ -17,7 +17,7 @@ namespace CoffeeManager.Core.ViewModels
         public SaleViewModel(Sale sale)
         {
             _sale = sale;
-            _dismisItemCommand = new MvxAsyncCommand(DoDismisItem);
+            _dismisItemCommand = new MvxCommand(DoDismisItem);
             if (_sale.IsRejected)
             {
                 Status = "Отменена";
@@ -45,41 +45,32 @@ namespace CoffeeManager.Core.ViewModels
 
         public bool IsPoliceSale => _sale.IsPoliceSale;
 
-        public string Time => _sale.Time.ToString();
+        public string Time => _sale.Time.ToString("T");
 
-        private Task DoDismisItem()
+        private void DoDismisItem()
         {
-            return Task.Run(() =>
+            var deleteSaleOption = new ActionSheetOption($"Отменить продажу товара {Name}", RejectSale);
+            var utilizeSaleOption = new ActionSheetOption($"Списать продажу товара {Name}", UtilizeSale);
+            UserDialogs.ActionSheet(new ActionSheetConfig()
             {
-                var deleteSaleOption = new ActionSheetOption($"Отменить продажу товара {Name}", RejectSale);
-                var utilizeSaleOption = new ActionSheetOption($"Списать продажу товара {Name}", UtilizeSale);
-                UserDialogs.ActionSheet(new ActionSheetConfig()
-                {
-                    Options = new List<ActionSheetOption>() {deleteSaleOption, utilizeSaleOption}
-                });
+                Options = new List<ActionSheetOption>() {deleteSaleOption, utilizeSaleOption}
             });
         }
 
-        private void UtilizeSale()
-        {
-            Task.Run(async () =>
-            {
-                await ProductManager.UtilizeSaleProduct(_sale.Id);
-                Publish(new AmoutChangedMessage(new Tuple<decimal, bool>(_sale.Amount, false), this));
-                Publish(new SaleRemovedMessage(this));
-                ShowSuccessMessage($"Списан товар {Name} !");
-            });
+        private async void UtilizeSale()
+        {          
+            await ProductManager.UtilizeSaleProduct(_sale.Id);
+            Publish(new AmoutChangedMessage(new Tuple<decimal, bool>(_sale.Amount, false), this));
+            Publish(new SaleRemovedMessage(this));
+            ShowSuccessMessage($"Списан товар {Name} !");
         }
 
-        private void RejectSale()
+        private async void RejectSale()
         {
-            Task.Run(async () =>
-            {
-                await ProductManager.DismisSaleProduct(_sale.Id);
-                Publish(new AmoutChangedMessage(new Tuple<decimal, bool>(_sale.Amount, false), this));
-                Publish(new SaleRemovedMessage(this));
-                ShowSuccessMessage($"Отменена продажа товара {Name} !");
-            });            
+            await ProductManager.DismisSaleProduct(_sale.Id);
+            Publish(new AmoutChangedMessage(new Tuple<decimal, bool>(_sale.Amount, false), this));
+            Publish(new SaleRemovedMessage(this));
+            ShowSuccessMessage($"Отменена продажа товара {Name} !");           
         }
     }
 }

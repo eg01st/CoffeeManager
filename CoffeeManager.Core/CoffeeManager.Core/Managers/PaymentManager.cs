@@ -36,5 +36,15 @@ namespace CoffeeManager.Core.Managers
         {
             await provider.AddNewExpenseType(typeName);
         }
+
+        public async Task<Expense[]> GetShiftExpenses()
+        {
+            return await provider.GetShiftExpenses(ShiftNo);
+        }
+
+        public async Task DeleteExpenseItem(int id)
+        {
+            await provider.DeleteExpenseItem(id);
+        }
     }
 }

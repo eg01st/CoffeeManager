@@ -79,6 +79,8 @@ namespace CoffeeManager.Core.ViewModels
         public ICommand AddExpenseCommand => _addExpenseCommand;
         public ICommand SelectExpenseTypeCommand => _selectExpenseTypeCommand;
 
+        public ICommand ShowCurrentShiftExpensesCommand { get; set; }
+
         public bool IsAddNewExpenseTypeEnabled => !string.IsNullOrEmpty(NewExprenseType);
         public bool IsAddButtomEnabled => !string.IsNullOrEmpty(Amount) && !string.IsNullOrEmpty(SelectedExprense) && !string.IsNullOrEmpty(ItemCount);
         
@@ -88,6 +90,12 @@ namespace CoffeeManager.Core.ViewModels
              _addNewExprenseTypeCommand = new MvxCommand(DoAddNewExpenseType);
             _addExpenseCommand = new MvxCommand(DoAddExpense);
             _selectExpenseTypeCommand = new MvxCommand<BaseItemViewModel>(DoSelectExpenseType);
+            ShowCurrentShiftExpensesCommand = new MvxCommand(DoShowExpenses);
+        }
+
+        private void DoShowExpenses()
+        {
+            ShowViewModel<CurrentShiftExpensesViewModel>();
         }
 
         private void DoSelectExpenseType(BaseItemViewModel item)

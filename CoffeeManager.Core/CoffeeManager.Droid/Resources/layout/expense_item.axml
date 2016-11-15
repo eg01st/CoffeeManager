@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:local="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    local:MvxBind="LongPress DeleteItemCommand">
+  <CardView
+       android:layout_gravity="center"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:foreground="?android:selectableItemBackground"
+       local:cardElevation="4dp"
+       local:cardUseCompatPadding="true"
+       local:cardCornerRadius="5dp">
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:orientation="horizontal">
+      <TextView
+        android:layout_marginLeft="20dp"
+        android:layout_width="450dp"
+        android:layout_height="wrap_content"
+        android:textSize="24dp"
+        local:MvxBind="Text Name"/>
+      <TextView
+        android:layout_marginLeft="50dp"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:textSize="24dp"
+        android:gravity="right"
+        local:MvxBind="Text Amount"/>
+      <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="24dp"
+        android:text=" грн"/>
+      <TextView
+        android:layout_marginLeft="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="24dp"
+        local:MvxBind="Text Quantity"/>
+      <TextView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:textSize="24dp"
+        android:text=" штук"/>
+    </LinearLayout>
+  </CardView>
+</LinearLayout>

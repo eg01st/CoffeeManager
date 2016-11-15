@@ -19,7 +19,7 @@
       android:orientation="horizontal">
     <TextView
       android:layout_marginLeft="20dp"
-      android:layout_width="250dp"
+      android:layout_width="300dp"
       android:layout_height="wrap_content"
       android:textSize="24dp"
       local:MvxBind="Text Name"/>
@@ -39,12 +39,14 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:textSize="24dp"
+      android:lines="1"
       local:MvxBind="Text Time"/>
     <TextView
       android:layout_marginLeft="50dp"
-      android:layout_width="100dp"
+      android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:textSize="24dp"
+      android:lines="1"
       local:MvxBind="Text Status"/>
     </LinearLayout>
   </CardView>

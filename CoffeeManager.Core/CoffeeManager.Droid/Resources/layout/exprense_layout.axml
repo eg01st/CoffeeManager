@@ -79,12 +79,23 @@
         </LinearLayout>
       </LinearLayout>
     </LinearLayout>
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical">
     <Button
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:textSize="20dp"
-    android:text="Записать"
-    local:MvxBind="Click AddExpenseCommand; Enabled IsAddButtomEnabled"/>
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:textSize="20dp"
+      android:text="Записать"
+      local:MvxBind="Click AddExpenseCommand; Enabled IsAddButtomEnabled"/>
+    <Button
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:textSize="20dp"
+      android:text="Траты за смену"
+      local:MvxBind="Click ShowCurrentShiftExpensesCommand"/>
+    </LinearLayout>
   </LinearLayout>
   <LinearLayout
   android:layout_marginLeft="30dp"

@@ -47,6 +47,7 @@
     <Compile Include="Messages\BaseMessage.cs" />
     <Compile Include="Messages\DeptAddedMessage.cs" />
     <Compile Include="Messages\ExpenseAddedMessage.cs" />
+    <Compile Include="Messages\ExpenseDeletedMessage.cs" />
     <Compile Include="Messages\IsPoliceSaleMessage.cs" />
     <Compile Include="Messages\SaleRemovedMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -64,11 +65,13 @@
     <Compile Include="ViewModels\CoffeeViewModel.cs" />
     <Compile Include="ViewModels\ColdDrinksViewModel.cs" />
     <Compile Include="ViewModels\CupViewModel.cs" />
+    <Compile Include="ViewModels\CurrentShiftExpensesViewModel.cs" />
     <Compile Include="ViewModels\CurrentShiftSalesViewModel.cs" />
     <Compile Include="ViewModels\DeleteCupViewModel.cs" />
     <Compile Include="ViewModels\DeptViewModel.cs" />
     <Compile Include="ViewModels\EndShiftViewModel.cs" />
     <Compile Include="ViewModels\ErrorsViewModel.cs" />
+    <Compile Include="ViewModels\ExpenseItemViewModel.cs" />
     <Compile Include="ViewModels\ExpenseViewModel.cs" />
     <Compile Include="ViewModels\IceCreamViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />

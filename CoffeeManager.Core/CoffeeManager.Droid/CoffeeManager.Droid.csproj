@@ -182,6 +182,7 @@
     <Compile Include="TabFactory.cs" />
     <Compile Include="Views\Abstract\LazyViewModelLoadingFragment.cs" />
     <Compile Include="Views\ActivityBase.cs" />
+    <Compile Include="Views\CurrentShiftExpensesView.cs" />
     <Compile Include="Views\CurrentShiftSalesView.cs" />
     <Compile Include="Views\DeleteCupView.cs" />
     <Compile Include="Views\DeptView.cs" />
@@ -255,6 +256,12 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\request_card.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\shift_expenses.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\expense_item.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

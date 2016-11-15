@@ -44,5 +44,18 @@ namespace CoffeeManager.Core.ServiceProviders
         {
             await Put<object>($"{Payment}/addnewexpensetype", null, new Dictionary<string, string>() { {nameof(typeName), typeName} });
         }
+
+        public async Task<Expense[]> GetShiftExpenses(int id)
+        {
+            return
+                await
+                    Get<Expense[]>($"{Payment}/getShiftExpenses",
+                        new Dictionary<string, string>() {{nameof(id), id.ToString()}});
+        }
+
+        public async Task DeleteExpenseItem(int id)
+        {
+            await Delete($"{Payment}/deleteexpense", new Dictionary<string, string>() {{nameof(id), id.ToString()}});
+        }
     }
 }
