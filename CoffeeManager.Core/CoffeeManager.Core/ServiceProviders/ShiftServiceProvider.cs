@@ -54,5 +54,10 @@ namespace CoffeeManager.Core.ServiceProviders
                         Counter = endCounter
                     });
         }
+
+        public async Task AssertShiftSales(SaleStorage st)
+        {
+            await Post($"{Shift}/assertShiftSales", st);
+        }
     }
 }

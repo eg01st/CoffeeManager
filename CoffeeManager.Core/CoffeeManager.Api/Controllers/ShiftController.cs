@@ -219,5 +219,31 @@ namespace CoffeeManager.Api.Controllers
             }
             return Request.CreateErrorResponse(HttpStatusCode.RequestedRangeNotSatisfiable, "Shift does not exists");
         }
+
+        [Route("api/shift/assertShiftSales")]
+        [HttpPost]
+        public async Task<HttpResponseMessage> AssertShiftSales([FromUri]int coffeeroomno, HttpRequestMessage message)
+        {
+            var request = await message.Content.ReadAsStringAsync();
+            var saleInfo = JsonConvert.DeserializeObject<SaleStorage>(request);
+
+            var entities = new CoffeeRoomEntities();
+            var shift = entities.Shifts.First(s => !s.IsFinished.Value && s.CoffeeRoomNo == coffeeroomno);
+            var sales = entities.Sales.Where(s => s.ShiftId == shift.Id && s.CoffeeRoomNo == coffeeroomno);
+
+            var dismissedSalesCount = sales.Count(s => s.IsRejected);
+            var utilizedSalesCount = sales.Count(s => s.IsUtilized);
+            var allSales = sales.Count();
+            var ms = new Message
+            {
+                Type = "Info",
+                Message1 =
+                    $"Shift id: {shift.Id}; All sales: Tablet -  {saleInfo.Sales.Count}, DB - {allSales}; Dismissed: Tablet - {saleInfo.DismissedSales.Count}, DB - {dismissedSalesCount}; Utilized: Tablet - {saleInfo.UtilizedSales.Count}, DB - {utilizedSalesCount}"
+            };
+            entities.Messages.Add(ms);
+            await entities.SaveChangesAsync();
+            return Request.CreateResponse(HttpStatusCode.OK);
+
+        }
     }
 }

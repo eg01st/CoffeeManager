@@ -49,14 +49,9 @@ namespace CoffeeManager.Core.ViewModels
         public async void Init(int shiftId)
         {
             _shiftId = shiftId;
-            var sales = await _shiftManager.GetCurrentShiftSales();
-            var count = sales.Length;
-            var internalCount = ProductProvider.GetSalesStorage().Id;
-
-            if (count != internalCount)
-            {
-                RequestExecutor.LogError($"Invalid count of sales: logged in tablet -> {internalCount}. Logged by service -> {count}");
-            }
+            var sales = ProductManager.GetSalesStorage();
+            await _shiftManager.AssertShiftSales(sales);
+            ProductManager.ClearStorage();
         }
 
         private async void DoFinishCommand()

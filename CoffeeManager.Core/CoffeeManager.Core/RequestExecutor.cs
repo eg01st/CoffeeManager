@@ -17,7 +17,7 @@ namespace CoffeeManager.Core
     {
         protected static readonly int CoffeeRoomNo = Config.CoffeeRoomNo;
         private static readonly string _apiUrl = Config.ApiUrl;
-
+        private static readonly object sync = new object();
 
         private static IMvxFileStore storage = Mvx.Resolve<IMvxFileStore>();
         private const string RequestQueue = "RequestsQueue";
@@ -25,11 +25,14 @@ namespace CoffeeManager.Core
 
         public static void Run()
         {
+            lock (sync)
+            {
                 var requestStorage = GetStorage();
                 if (requestStorage.Requests.Any())
-                {
-                    foreach (var request in requestStorage.Requests)
+                {      
+                    while(requestStorage.Requests.Any())
                     {
+                        var request = requestStorage.Requests.First();
                         try
                         {
                             RunInternal(request);
@@ -47,6 +50,7 @@ namespace CoffeeManager.Core
                         }
                     }
                 }
+            }
         }
         private static RequestStorage GetStorage()
         {
@@ -70,7 +74,7 @@ namespace CoffeeManager.Core
             }
             else
             {
-                return new RequestStorage() { Requests = new List<Request>() };
+                return new RequestStorage() {Requests = new List<Request>()};
             }
         }
 

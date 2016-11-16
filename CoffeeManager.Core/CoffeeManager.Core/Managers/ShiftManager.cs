@@ -43,5 +43,10 @@ namespace CoffeeManager.Core.Managers
         {
             return await provider.GetCurrentShiftSales();
         }
+
+        public async Task AssertShiftSales(SaleStorage st)
+        {
+            await provider.AssertShiftSales(st);
+        }
     }
 }
