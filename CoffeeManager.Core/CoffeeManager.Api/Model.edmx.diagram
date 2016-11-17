@@ -46,6 +46,8 @@
         <AssociationConnector Association="CoffeeRoomModel.FK__SuplyOrde__Suply__0D44F85C" />
         <AssociationConnector Association="CoffeeRoomModel.FK_SuplyOrder_Expense" />
         <EntityTypeShape EntityType="CoffeeRoomModel.Message" Width="1.5" PointX="10.375" PointY="6.75" />
+        <EntityTypeShape EntityType="CoffeeRoomModel.Session" Width="1.5" PointX="12.625" PointY="3.75" />
+        <AssociationConnector Association="CoffeeRoomModel.FK__Session__UserId__2704CA5F" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

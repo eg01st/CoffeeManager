@@ -122,7 +122,7 @@ namespace CoffeeManager.Api.Controllers
         public async Task<HttpResponseMessage> GetShifts([FromUri]int coffeeroomno, HttpRequestMessage message)
         {
             var token = message.Headers.GetValues("token").FirstOrDefault();
-            if (token == null || !UserSessions.Sessions.Contains(token))
+            if (token == null || !UserSessions.Contains(token))
             {
                 return Request.CreateResponse(HttpStatusCode.Forbidden);
             }
@@ -206,7 +206,7 @@ namespace CoffeeManager.Api.Controllers
         public async Task<HttpResponseMessage> GetShiftSalesById([FromUri]int coffeeroomno, [FromUri]int id, HttpRequestMessage message)
         {
             var token = message.Headers.GetValues("token").FirstOrDefault();
-            if (token == null || !UserSessions.Sessions.Contains(token))
+            if (token == null || !UserSessions.Contains(token))
             {
                 return Request.CreateResponse(HttpStatusCode.Forbidden);
             }

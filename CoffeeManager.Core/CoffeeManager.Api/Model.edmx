@@ -126,6 +126,14 @@
           <Property Name="IsRejected" Type="bit" Nullable="false" />
           <Property Name="IsUtilized" Type="bit" Nullable="false" />
         </EntityType>
+        <EntityType Name="Session">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Guid" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserId" Type="int" />
+        </EntityType>
         <EntityType Name="Shifts">
           <Key>
             <PropertyRef Name="Id" />
@@ -341,6 +349,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Session__UserId__2704CA5F">
+          <End Role="AdminUser" Type="Self.AdminUser" Multiplicity="0..1" />
+          <End Role="Session" Type="Self.Session" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdminUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Session">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Shifts__UserId__22AA2996">
           <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
           <End Role="Shifts" Type="Self.Shifts" Multiplicity="*" />
@@ -478,6 +498,7 @@
           <EntitySet Name="ProductCalculation" EntityType="Self.ProductCalculation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductType" EntityType="Self.ProductType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sale" EntityType="Self.Sale" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Session" EntityType="Self.Session" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Shifts" EntityType="Self.Shifts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SupliedProduct" EntityType="Self.SupliedProduct" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SuplyOrder" EntityType="Self.SuplyOrder" Schema="dbo" store:Type="Tables" />
@@ -522,6 +543,10 @@
           <AssociationSet Name="FK__Sale__ShiftId__3C69FB99" Association="Self.FK__Sale__ShiftId__3C69FB99">
             <End Role="Shifts" EntitySet="Shifts" />
             <End Role="Sale" EntitySet="Sale" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Session__UserId__2704CA5F" Association="Self.FK__Session__UserId__2704CA5F">
+            <End Role="AdminUser" EntitySet="AdminUser" />
+            <End Role="Session" EntitySet="Session" />
           </AssociationSet>
           <AssociationSet Name="FK__Shifts__UserId__22AA2996" Association="Self.FK__Shifts__UserId__22AA2996">
             <End Role="Users" EntitySet="Users" />
@@ -940,6 +965,11 @@
             <End Role="SuplyOrder" EntitySet="SuplyOrders" />
           </AssociationSet>
           <EntitySet Name="Messages" EntityType="CoffeeRoomModel.Message" />
+          <EntitySet Name="Sessions" EntityType="CoffeeRoomModel.Session" />
+          <AssociationSet Name="FK__Session__UserId__2704CA5F" Association="CoffeeRoomModel.FK__Session__UserId__2704CA5F">
+            <End Role="AdminUser" EntitySet="AdminUsers" />
+            <End Role="Session" EntitySet="Sessions" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Dept">
           <Key>
@@ -1004,6 +1034,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Sessions" Relationship="CoffeeRoomModel.FK__Session__UserId__2704CA5F" FromRole="AdminUser" ToRole="Session" />
         </EntityType>
         <EntityType Name="SupliedProduct">
           <Key>
@@ -1179,6 +1210,27 @@
           <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Message1" Type="String" MaxLength="800" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="Session">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Guid" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="Int32" />
+          <NavigationProperty Name="AdminUser" Relationship="CoffeeRoomModel.FK__Session__UserId__2704CA5F" FromRole="Session" ToRole="AdminUser" />
+        </EntityType>
+        <Association Name="FK__Session__UserId__2704CA5F">
+          <End Type="CoffeeRoomModel.AdminUser" Role="AdminUser" Multiplicity="0..1" />
+          <End Type="CoffeeRoomModel.Session" Role="Session" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdminUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Session">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1430,6 +1482,15 @@
               <MappingFragment StoreEntitySet="Messages">
                 <ScalarProperty Name="Message1" ColumnName="Message" />
                 <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sessions">
+            <EntityTypeMapping TypeName="CoffeeRoomModel.Session">
+              <MappingFragment StoreEntitySet="Session">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Guid" ColumnName="Guid" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

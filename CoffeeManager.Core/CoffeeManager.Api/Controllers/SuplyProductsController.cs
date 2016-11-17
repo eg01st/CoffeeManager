@@ -18,7 +18,7 @@ namespace CoffeeManager.Api.Controllers
 		public async Task<HttpResponseMessage> GetSuplyProducts ([FromUri] int coffeeroomno, HttpRequestMessage message)
 		{
 			var token = message.Headers.GetValues ("token").FirstOrDefault ();
-			if (token == null || !UserSessions.Sessions.Contains (token)) {
+			if (token == null || !UserSessions.Contains (token)) {
 				return Request.CreateResponse (HttpStatusCode.Forbidden);
 			}
 			var entites = new CoffeeRoomEntities ();
@@ -31,7 +31,7 @@ namespace CoffeeManager.Api.Controllers
         public async Task<HttpResponseMessage> GetSuplyProduct([FromUri] int coffeeroomno, [FromUri] int id, HttpRequestMessage message)
         {
             var token = message.Headers.GetValues("token").FirstOrDefault();
-            if (token == null || !UserSessions.Sessions.Contains(token))
+            if (token == null || !UserSessions.Contains(token))
             {
                 return Request.CreateResponse(HttpStatusCode.Forbidden);
             }
@@ -56,7 +56,7 @@ namespace CoffeeManager.Api.Controllers
         public async Task<HttpResponseMessage> EditSuplyProduct([FromUri] int coffeeroomno, HttpRequestMessage message)
         {
             var token = message.Headers.GetValues("token").FirstOrDefault();
-            if (token == null || !UserSessions.Sessions.Contains(token))
+            if (token == null || !UserSessions.Contains(token))
             {
                 return Request.CreateResponse(HttpStatusCode.Forbidden);
             }
@@ -83,7 +83,7 @@ namespace CoffeeManager.Api.Controllers
 		public async Task<HttpResponseMessage> AddSuplyProduct ([FromUri] int coffeeroomno, HttpRequestMessage message)
 		{
 			var token = message.Headers.GetValues ("token").FirstOrDefault ();
-			if (token == null || !UserSessions.Sessions.Contains (token)) {
+			if (token == null || !UserSessions.Contains (token)) {
 				return Request.CreateResponse (HttpStatusCode.Forbidden);
 			}
 
@@ -102,7 +102,7 @@ namespace CoffeeManager.Api.Controllers
 		public async Task<HttpResponseMessage> AddSuplyRequest ([FromUri] int coffeeroomno, HttpRequestMessage message)
 		{
 			var token = message.Headers.GetValues ("token").FirstOrDefault ();
-			if (token == null || !UserSessions.Sessions.Contains (token)) {
+			if (token == null || !UserSessions.Contains (token)) {
 				return Request.CreateResponse (HttpStatusCode.Forbidden);
 			}
 
@@ -125,7 +125,7 @@ namespace CoffeeManager.Api.Controllers
 		public async Task<HttpResponseMessage> GetSuplyRequest ([FromUri] int coffeeroomno, HttpRequestMessage message)
 		{
 			var token = message.Headers.GetValues ("token").FirstOrDefault ();
-			if (token == null || !UserSessions.Sessions.Contains (token)) {
+			if (token == null || !UserSessions.Contains (token)) {
 				return Request.CreateResponse (HttpStatusCode.Forbidden);
 			}
 			var entites = new CoffeeRoomEntities ();
@@ -148,7 +148,7 @@ namespace CoffeeManager.Api.Controllers
 		public async Task<HttpResponseMessage> ProcessSuplyRequest ([FromUri] int coffeeroomno, HttpRequestMessage message)
 		{
 			var token = message.Headers.GetValues ("token").FirstOrDefault ();
-			if (token == null || !UserSessions.Sessions.Contains (token)) {
+			if (token == null || !UserSessions.Contains (token)) {
 				return Request.CreateResponse (HttpStatusCode.Forbidden);
 			}
 			var request = await message.Content.ReadAsStringAsync ();
@@ -185,7 +185,7 @@ namespace CoffeeManager.Api.Controllers
 		public async Task<HttpResponseMessage> DeleteSuplyRequest ([FromUri] int coffeeroomno, [FromUri] int id, HttpRequestMessage message)
 		{
 			var token = message.Headers.GetValues ("token").FirstOrDefault ();
-			if (token == null || !UserSessions.Sessions.Contains (token)) {
+			if (token == null || !UserSessions.Contains (token)) {
 				return Request.CreateResponse (HttpStatusCode.Forbidden);
 			}
 			var entities = new CoffeeRoomEntities ();
@@ -202,7 +202,7 @@ namespace CoffeeManager.Api.Controllers
         public async Task<HttpResponseMessage> DeleteSuplyProduct([FromUri] int coffeeroomno, [FromUri] int id, HttpRequestMessage message)
         {
             var token = message.Headers.GetValues("token").FirstOrDefault();
-            if (token == null || !UserSessions.Sessions.Contains(token))
+            if (token == null || !UserSessions.Contains(token))
             {
                 return Request.CreateResponse(HttpStatusCode.Forbidden);
             }
@@ -222,7 +222,7 @@ namespace CoffeeManager.Api.Controllers
         public async Task<HttpResponseMessage> GetProductCalculationItems([FromUri] int coffeeroomno, [FromUri] int productId, HttpRequestMessage message)
         {
             var token = message.Headers.GetValues("token").FirstOrDefault();
-            if (token == null || !UserSessions.Sessions.Contains(token))
+            if (token == null || !UserSessions.Contains(token))
             {
                 return Request.CreateResponse(HttpStatusCode.Forbidden);
             }
@@ -262,7 +262,7 @@ namespace CoffeeManager.Api.Controllers
         public async Task<HttpResponseMessage> DeleteProductCalculationItem([FromUri] int coffeeroomno, [FromUri] int id, HttpRequestMessage message)
         {
             var token = message.Headers.GetValues("token").FirstOrDefault();
-            if (token == null || !UserSessions.Sessions.Contains(token))
+            if (token == null || !UserSessions.Contains(token))
             {
                 return Request.CreateResponse(HttpStatusCode.Forbidden);
             }
@@ -283,7 +283,7 @@ namespace CoffeeManager.Api.Controllers
         public async Task<HttpResponseMessage> AddProductCalculationItem([FromUri] int coffeeroomno, HttpRequestMessage message)
         {
             var token = message.Headers.GetValues("token").FirstOrDefault();
-            if (token == null || !UserSessions.Sessions.Contains(token))
+            if (token == null || !UserSessions.Contains(token))
             {
                 return Request.CreateResponse(HttpStatusCode.Forbidden);
             }

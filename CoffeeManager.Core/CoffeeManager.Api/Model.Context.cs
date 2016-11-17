@@ -46,5 +46,6 @@ namespace CoffeeManager.Api
         public virtual DbSet<SuplyOrder> SuplyOrders { get; set; }
         public virtual DbSet<SuplyOrderItem> SuplyOrderItems { get; set; }
         public virtual DbSet<Message> Messages { get; set; }
+        public virtual DbSet<Session> Sessions { get; set; }
     }
 }

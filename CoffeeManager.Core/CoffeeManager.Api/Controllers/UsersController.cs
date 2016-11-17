@@ -27,7 +27,7 @@ namespace CoffeeManager.Api.Controllers
         public async Task<HttpResponseMessage> Post([FromUri]int coffeeroomno, HttpRequestMessage message)
         {
             var token = message.Headers.GetValues("token").FirstOrDefault();
-            if (token == null || !UserSessions.Sessions.Contains(token))
+            if (token == null || !UserSessions.Contains(token))
             {
                 return Request.CreateResponse(HttpStatusCode.Forbidden);
             }
@@ -51,7 +51,7 @@ namespace CoffeeManager.Api.Controllers
             if (user != null)
             {
                 var guid = Guid.NewGuid().ToString();
-                UserSessions.Sessions.Add(guid);
+                UserSessions.AddSession(user.Id, guid);
                 return Request.CreateResponse<string>(HttpStatusCode.OK, guid);
             }
             return Request.CreateErrorResponse(HttpStatusCode.Forbidden, "Invalid user name or password");

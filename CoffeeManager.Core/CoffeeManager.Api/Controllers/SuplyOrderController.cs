@@ -18,7 +18,7 @@ namespace CoffeeManager.Api.Controllers
         public async Task<HttpResponseMessage> GetOrders([FromUri]int coffeeroomno, HttpRequestMessage message)
         {
             var token = message.Headers.GetValues("token").FirstOrDefault();
-            if (token == null || !UserSessions.Sessions.Contains(token))
+            if (token == null || !UserSessions.Contains(token))
             {
                 return Request.CreateResponse(HttpStatusCode.Forbidden);
             }
@@ -33,7 +33,7 @@ namespace CoffeeManager.Api.Controllers
         public async Task<HttpResponseMessage> GetOrderItems([FromUri]int coffeeroomno, [FromUri] int id, HttpRequestMessage message)
         {
             var token = message.Headers.GetValues("token").FirstOrDefault();
-            if (token == null || !UserSessions.Sessions.Contains(token))
+            if (token == null || !UserSessions.Contains(token))
             {
                 return Request.CreateResponse(HttpStatusCode.Forbidden);
             }
@@ -47,7 +47,7 @@ namespace CoffeeManager.Api.Controllers
         public async Task<HttpResponseMessage> SaveOrderItem([FromUri]int coffeeroomno, HttpRequestMessage message)
         {
             var token = message.Headers.GetValues("token").FirstOrDefault();
-            if (token == null || !UserSessions.Sessions.Contains(token))
+            if (token == null || !UserSessions.Contains(token))
             {
                 return Request.CreateResponse(HttpStatusCode.Forbidden);
             }
@@ -69,7 +69,7 @@ namespace CoffeeManager.Api.Controllers
         public async Task<HttpResponseMessage> CreateOrderItem([FromUri]int coffeeroomno, HttpRequestMessage message)
         {
             var token = message.Headers.GetValues("token").FirstOrDefault();
-            if (token == null || !UserSessions.Sessions.Contains(token))
+            if (token == null || !UserSessions.Contains(token))
             {
                 return Request.CreateResponse(HttpStatusCode.Forbidden);
             }
@@ -102,7 +102,7 @@ namespace CoffeeManager.Api.Controllers
         public async Task<HttpResponseMessage> CreateOrder([FromUri]int coffeeroomno, HttpRequestMessage message)
         {
             var token = message.Headers.GetValues("token").FirstOrDefault();
-            if (token == null || !UserSessions.Sessions.Contains(token))
+            if (token == null || !UserSessions.Contains(token))
             {
                 return Request.CreateResponse(HttpStatusCode.Forbidden);
             }
@@ -149,7 +149,7 @@ namespace CoffeeManager.Api.Controllers
         public async Task<HttpResponseMessage> CloseOrder([FromUri]int coffeeroomno, HttpRequestMessage message)
         {
             var token = message.Headers.GetValues("token").FirstOrDefault();
-            if (token == null || !UserSessions.Sessions.Contains(token))
+            if (token == null || !UserSessions.Contains(token))
             {
                 return Request.CreateResponse(HttpStatusCode.Forbidden);
             }
@@ -199,7 +199,7 @@ namespace CoffeeManager.Api.Controllers
         public async Task<HttpResponseMessage> DeleteOrder([FromUri]int coffeeroomno, [FromUri]int id, HttpRequestMessage message)
         {
             var token = message.Headers.GetValues("token").FirstOrDefault();
-            if (token == null || !UserSessions.Sessions.Contains(token))
+            if (token == null || !UserSessions.Contains(token))
             {
                 return Request.CreateResponse(HttpStatusCode.Forbidden);
             }    
@@ -215,7 +215,7 @@ namespace CoffeeManager.Api.Controllers
         public async Task<HttpResponseMessage> DeleteOrderItem([FromUri]int coffeeroomno, [FromUri]int id, HttpRequestMessage message)
         {
             var token = message.Headers.GetValues("token").FirstOrDefault();
-            if (token == null || !UserSessions.Sessions.Contains(token))
+            if (token == null || !UserSessions.Contains(token))
             {
                 return Request.CreateResponse(HttpStatusCode.Forbidden);
             }
