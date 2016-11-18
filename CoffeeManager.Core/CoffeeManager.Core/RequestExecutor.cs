@@ -28,26 +28,43 @@ namespace CoffeeManager.Core
             lock (sync)
             {
                 var requestStorage = GetStorage();
-                if (requestStorage.Requests.Any())
-                {      
-                    while(requestStorage.Requests.Any())
+
+                while (requestStorage.Requests.Where(r => string.IsNullOrEmpty(r.ErrorMessage)).Any())
+                {
+                    var request = requestStorage.Requests.Where(r => string.IsNullOrEmpty(r.ErrorMessage)).First();
+                    try
                     {
-                        var request = requestStorage.Requests.First();
-                        try
-                        {
-                            RunInternal(request);
-                            Debug.WriteLine($"REQUESTEXECUTOR: {request.Method} {request.Path} {request.ObjectJson}");
-                            requestStorage.Requests.Remove(request);
-                        }
-                        catch (Exception ex)
-                        {
-                            request.ErrorMessage = $"{request.Method} {request.Path} {request.ObjectJson} {ex}";
-                            continue;
-                        }
-                        finally
-                        {
-                            SaveStorage(requestStorage);
-                        }
+                        RunInternal(request);
+                        Debug.WriteLine($"REQUESTEXECUTOR: {request.Method} {request.Path} {request.ObjectJson}");
+                        requestStorage.Requests.Remove(request);
+                    }
+                    catch (Exception ex)
+                    {
+                        request.ErrorMessage = $"{request.Method} {request.Path} {request.ObjectJson} {ex}";
+                        continue;
+                    }
+                    finally
+                    {
+                        SaveStorage(requestStorage);
+                    }
+                }
+                requestStorage = GetStorage();
+                foreach (var request in requestStorage.Requests)
+                {
+                    try
+                    {
+                        RunInternal(request);
+                        Debug.WriteLine($"REQUESTEXECUTOR: {request.Method} {request.Path} {request.ObjectJson}");
+                        requestStorage.Requests.Remove(request);
+                    }
+                    catch (Exception ex)
+                    {
+                        request.ErrorMessage = $"{request.Method} {request.Path} {request.ObjectJson} {ex}";
+                        continue;
+                    }
+                    finally
+                    {
+                        SaveStorage(requestStorage);
                     }
                 }
             }
