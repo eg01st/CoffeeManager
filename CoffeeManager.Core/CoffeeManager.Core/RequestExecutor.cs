@@ -29,9 +29,9 @@ namespace CoffeeManager.Core
             {
                 var requestStorage = GetStorage();
 
-                while (requestStorage.Requests.Where(r => string.IsNullOrEmpty(r.ErrorMessage)).Any())
+                while (requestStorage.Requests.Any(r => string.IsNullOrEmpty(r.ErrorMessage)))
                 {
-                    var request = requestStorage.Requests.Where(r => string.IsNullOrEmpty(r.ErrorMessage)).First();
+                    var request = requestStorage.Requests.First(r => string.IsNullOrEmpty(r.ErrorMessage));
                     try
                     {
                         RunInternal(request);
