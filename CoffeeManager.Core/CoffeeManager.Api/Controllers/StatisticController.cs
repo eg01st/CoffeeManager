@@ -11,9 +11,9 @@ namespace CoffeeManager.Api.Controllers
     public class StatisticController : ApiController
     {
 
-        public async Task<HttpResponseMessage> GetProfitExpense([FromUri] int coffeeroomno, HttpRequestMessage message)
-        {
+        //public async Task<HttpResponseMessage> GetProfitExpense([FromUri] int coffeeroomno, HttpRequestMessage message)
+        //{
             
-        }
+        //}
     }
 }

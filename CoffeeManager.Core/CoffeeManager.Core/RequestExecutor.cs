@@ -72,7 +72,7 @@ namespace CoffeeManager.Core
         private static RequestStorage GetStorage()
         {
             string storageJson;
-            if(storage.TryReadTextFile(RequestQueue, out storageJson))
+            if(storage.TryReadTextFile(RequestQueue, out storageJson) && !string.IsNullOrWhiteSpace(storageJson))
             {
                 return JsonConvert.DeserializeObject<RequestStorage>(storageJson);
             }
@@ -91,7 +91,7 @@ namespace CoffeeManager.Core
             }
             else
             {
-                return new RequestStorage() {Requests = new List<Request>()};
+                return new RequestStorage() {Requests = new List<Request>(), Errors = new List<string>()};
             }
         }
 
@@ -147,6 +147,13 @@ namespace CoffeeManager.Core
         {
             var st = GetErrorStorage();
             st.Errors.Add(message);
+            SaveErrorStorage(st);
+        }
+
+        public static void ClearErrors()
+        {
+            var st = GetErrorStorage();
+            st.Errors.Clear();
             SaveErrorStorage(st);
         }
 

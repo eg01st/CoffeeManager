@@ -20,6 +20,7 @@
     android:layout_height="wrap_content"
     android:src="@drawable/ic_cup_delete" />-->
   <TextView
+    android:background="?android:selectableItemBackground"
     android:layout_marginLeft="50dp"
     android:id="@+id/dept_icon"
     android:layout_width="wrap_content"
@@ -28,6 +29,7 @@
     android:textSize="24dp"
     android:text="Долги" />
   <TextView
+    android:background="?android:selectableItemBackground"
     android:layout_marginLeft="50dp"
     android:textSize="24dp"
     android:id="@+id/current_shift_sales"
@@ -36,6 +38,7 @@
     android:textColor="#000000"
     android:text="Продажи за смену" />
   <TextView
+    android:background="?android:selectableItemBackground"
     android:layout_marginLeft="50dp"
     android:textSize="24dp"
     android:id="@+id/exprense"
