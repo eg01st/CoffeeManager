@@ -2,5 +2,6 @@
 <resources>
   <color name="Orange">#ffc04d</color>
   <color name="Violet">#ee82ee</color>
+  <color name="LightGreen">#99ff99</color>
   <color name="Transparent">#FFFFFF</color>
 </resources>

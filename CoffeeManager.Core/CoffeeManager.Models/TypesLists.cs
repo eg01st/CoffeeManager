@@ -13,6 +13,7 @@ namespace CoffeeManager.Models
             new Entity { Name = "250", Id = (int)CupTypeEnum.c250},
             new Entity { Name = "400", Id = (int)CupTypeEnum.c400},
             new Entity { Name = "Пластик", Id = (int)CupTypeEnum.Plastic},
+            new Entity { Name = "500", Id = (int)CupTypeEnum.c500},
         };
 
         public static List<Entity> ProductTypesList => new List<Entity>()
