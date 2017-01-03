@@ -34,8 +34,12 @@ namespace CoffeeManager.Core
                     var request = requestStorage.Requests.First(r => string.IsNullOrEmpty(r.ErrorMessage));
                     try
                     {
-                        RunInternal(request);
+                        var ex = RunInternal(request).Result;
                         Debug.WriteLine($"REQUESTEXECUTOR: {request.Method} {request.Path} {request.ObjectJson}");
+                        if (ex != null)
+                        {
+                            throw ex;
+                        }
                         requestStorage.Requests.Remove(request);
                     }
                     catch (Exception ex)
@@ -53,8 +57,12 @@ namespace CoffeeManager.Core
                 {
                     try
                     {
-                        RunInternal(request);
+                        var ex = RunInternal(request).Result;
                         Debug.WriteLine($"REQUESTEXECUTOR: {request.Method} {request.Path} {request.ObjectJson}");
+                        if (ex != null)
+                        {
+                            throw ex;
+                        }
                         requestStorage.Requests.Remove(request);
                     }
                     catch (Exception ex)
@@ -119,28 +127,36 @@ namespace CoffeeManager.Core
             storage.WriteFile(RequestQueue, JsonConvert.SerializeObject(requestStorage));
         }
 
-        private static async void RunInternal(Request request)
+        private static async Task<Exception> RunInternal(Request request)
         {
             var client = new HttpClient();
             string url = $"{_apiUrl}{request.Path}?coffeeroomno={CoffeeRoomNo}";
-            if (request.Method == "PUT")
+            try
             {
-                var response = await client.PutAsync(url, new StringContent(request.ObjectJson));
-                var res = await response.Content.ReadAsStringAsync();
-                if (response.StatusCode != HttpStatusCode.OK)
+                if (request.Method == "PUT")
                 {
-                    throw new Exception(res);
+                    var response = await client.PutAsync(url, new StringContent(request.ObjectJson));
+                    var res = await response.Content.ReadAsStringAsync();
+                    if (response.StatusCode != HttpStatusCode.OK)
+                    {
+                        throw new Exception(res);
+                    }
+                }
+                else
+                {
+                    var response = await client.PostAsync(url, new StringContent(request.ObjectJson));
+                    var res = await response.Content.ReadAsStringAsync();
+                    if (response.StatusCode != HttpStatusCode.OK)
+                    {
+                        throw new Exception(res);
+                    }
                 }
             }
-            else
+            catch (Exception ex)
             {
-                var response = await client.PostAsync(url, new StringContent(request.ObjectJson));
-                var res = await response.Content.ReadAsStringAsync();
-                if (response.StatusCode != HttpStatusCode.OK)
-                {
-                    throw new Exception(res);
-                }
+                return ex;
             }
+            return null;
         }
 
         public static void LogError(string message)
