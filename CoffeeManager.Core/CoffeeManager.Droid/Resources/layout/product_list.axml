@@ -12,7 +12,7 @@
     android:layout_height="match_parent"
     android:orientation="horizontal"
     android:numColumns="3"
-    android:columnWidth="300dp"
+    android:columnWidth="250dp"
     local:MvxBind="ItemsSource Items"
     local:MvxItemTemplate="@layout/product_card" />
 

@@ -2165,9 +2165,6 @@ namespace CoffeeManager.Droid
 			// aapt resource value: 0x7f06004c
 			public const int contentPanel = 2131099724;
 			
-			// aapt resource value: 0x7f060081
-			public const int current_shift_money_label = 2131099777;
-			
 			// aapt resource value: 0x7f06006e
 			public const int current_shift_sales = 2131099758;
 			
@@ -2350,6 +2347,9 @@ namespace CoffeeManager.Droid
 			
 			// aapt resource value: 0x7f060032
 			public const int right = 2131099698;
+			
+			// aapt resource value: 0x7f060081
+			public const int sales_layout = 2131099777;
 			
 			// aapt resource value: 0x7f060019
 			public const int screen = 2131099673;
@@ -2747,16 +2747,19 @@ namespace CoffeeManager.Droid
 			public const int select_dialog_singlechoice_material = 2130903106;
 			
 			// aapt resource value: 0x7f030043
-			public const int shift_expenses = 2130903107;
+			public const int selected_product_card = 2130903107;
 			
 			// aapt resource value: 0x7f030044
-			public const int SplashScreen = 2130903108;
+			public const int shift_expenses = 2130903108;
 			
 			// aapt resource value: 0x7f030045
-			public const int support_simple_spinner_dropdown_item = 2130903109;
+			public const int SplashScreen = 2130903109;
 			
 			// aapt resource value: 0x7f030046
-			public const int user_card = 2130903110;
+			public const int support_simple_spinner_dropdown_item = 2130903110;
+			
+			// aapt resource value: 0x7f030047
+			public const int user_card = 2130903111;
 			
 			static Layout()
 			{

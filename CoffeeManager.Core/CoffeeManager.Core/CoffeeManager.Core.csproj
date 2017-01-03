@@ -49,6 +49,7 @@
     <Compile Include="Messages\ExpenseAddedMessage.cs" />
     <Compile Include="Messages\ExpenseDeletedMessage.cs" />
     <Compile Include="Messages\IsPoliceSaleMessage.cs" />
+    <Compile Include="Messages\ProductSelectedMessage.cs" />
     <Compile Include="Messages\SaleRemovedMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Managers\UserManager.cs" />

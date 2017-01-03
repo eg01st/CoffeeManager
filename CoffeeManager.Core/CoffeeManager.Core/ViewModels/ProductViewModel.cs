@@ -18,6 +18,7 @@ namespace CoffeeManager.Core.ViewModels
         private bool _isPoliceSale;
         private decimal _price;
         private bool _enabled = true;
+        private bool _isSelected;
 
         public bool IsPoliceSale
         {
@@ -38,6 +39,17 @@ namespace CoffeeManager.Core.ViewModels
                 _enabled = value;
                 
                 RaisePropertyChanged(nameof(Enabled));
+            }
+        }
+
+        public bool IsSelected
+        {
+            get { return _isSelected; }
+            set
+            {
+                _isSelected = value;
+
+                RaisePropertyChanged(nameof(IsSelected));
             }
         }
 
@@ -67,11 +79,19 @@ namespace CoffeeManager.Core.ViewModels
             Price = product.Price;
             _selectItemCommand = new MvxAsyncCommand(DoSelectItem);
             
-            token = Subscribe<IsPoliceSaleMessage>((arg) => IsPoliceSale = arg.Data);
-            //RaiseAllPropertiesChanged();
-
+            token = Subscribe<IsPoliceSaleMessage>((arg) =>
+            {
+                if (!IsSelected)
+                {
+                    IsPoliceSale = arg.Data;
+                }
+            });
         }
 
+        public ProductViewModel Clone()
+        {
+            return (ProductViewModel)this.MemberwiseClone();
+        }
 
         private async Task DoSelectItem()
         {
@@ -103,9 +123,10 @@ namespace CoffeeManager.Core.ViewModels
         private async Task Sale()
         {
             Enabled = false;
-            await ProductManager.SaleProduct(Id, Price, IsPoliceSale);
-            Publish(new AmoutChangedMessage(new Tuple<decimal, bool>(Price, true), this));
-            ShowSuccessMessage($"Продан товар {Name} !");
+            Publish(new ProductSelectedMessage(this));
+            //await ProductManager.SaleProduct(Id, Price, IsPoliceSale);
+            //Publish(new AmoutChangedMessage(new Tuple<decimal, bool>(Price, true), this));
+            //ShowSuccessMessage($"Продан товар {Name} !");
             Enabled = true;
         }
     }

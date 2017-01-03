@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Acr.UserDialogs;
 using CoffeeManager.Core.Managers;
 using CoffeeManager.Core.Messages;
+using CoffeeManager.Models;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Messenger;
 
@@ -13,10 +16,7 @@ namespace CoffeeManager.Core.ViewModels
         private int _userId;
         private int _shiftId;
 
-        private PaymentManager _paymentManager = new PaymentManager();
-        private readonly MvxSubscriptionToken token;
-        private readonly MvxSubscriptionToken expenseAddedToken;
-        private readonly MvxSubscriptionToken deptAddedToken;
+        private MvxSubscriptionToken _productSelectedToken;
         private ICommand _endShiftCommand;
         private ICommand _deleteCupCommand;
         private ICommand _showDeptsCommand;
@@ -24,30 +24,12 @@ namespace CoffeeManager.Core.ViewModels
         private ICommand _showExpenseCommand;
         private ICommand _enablePoliceSaleCommand;
         private ICommand _showErrorsCommand;
+        private ICommand _payCommand;
 
-        private decimal _currentShiftMoney;
-        private decimal _entireMoney;
+
         private bool _policeSaleEnabled;
-
-        public string CurrentShiftMoney
-        {
-            get { return _currentShiftMoney.ToString(); }
-            set
-            {
-                _currentShiftMoney = decimal.Parse(value);
-                RaisePropertyChanged(nameof(CurrentShiftMoney));
-            }
-        }
-
-        public string EntireMoney
-        {
-            get { return _entireMoney.ToString(); }
-            set
-            {
-                _entireMoney = decimal.Parse(value);
-                RaisePropertyChanged(nameof(EntireMoney));
-            }
-        }
+        private ObservableCollection<ProductViewModel> _selectedProducts = new ObservableCollection<ProductViewModel>();
+        private ICommand _itemSelectedCommand;
 
         public bool IsPoliceSaleEnabled
         {
@@ -59,6 +41,31 @@ namespace CoffeeManager.Core.ViewModels
             }
         }
 
+        private int _sum;
+        public int Sum
+        {
+            get { return _sum; }
+            set
+            {
+                _sum = value;
+                RaisePropertyChanged(nameof(Sum));
+            }
+        }
+
+        private string _sumButtonText;
+        public string SumButtonText
+        {
+            get { return $"Оплатить {Sum} Грн"; }
+            set
+            {
+                _sumButtonText = value;
+                RaisePropertyChanged(nameof(SumButtonText));
+            }
+        }
+
+
+        public bool PayEnabled => SelectedProducts.Count > 0;
+
         public ICommand EndShiftCommand => _endShiftCommand;
         public ICommand DeleteCupCommand => _deleteCupCommand;
         public ICommand ShowDeptsCommand => _showDeptsCommand;
@@ -67,12 +74,23 @@ namespace CoffeeManager.Core.ViewModels
         public ICommand EnablePoliceSaleCommand => _enablePoliceSaleCommand;
 
         public ICommand ShowErrorsCommand => _showErrorsCommand;
+        public ICommand PayCommand => _payCommand;
+        public ICommand ItemSelectedCommand => _itemSelectedCommand;
+
+
+        public ObservableCollection<ProductViewModel> SelectedProducts
+        {
+            get { return _selectedProducts; }
+            set
+            {
+                _selectedProducts = value;
+                RaisePropertyChanged(nameof(SelectedProducts));
+            }
+        }
 
         public MainViewModel()
         {
-            token = Subscribe<AmoutChangedMessage>(OnCallBackMessage);
-            expenseAddedToken = Subscribe<ExpenseAddedMessage>(OnExpenseAdded);
-            deptAddedToken = Subscribe<DeptAddedMessage>(OnDeptAdded);
+            _productSelectedToken = Subscribe<ProductSelectedMessage>(OnProductSelected);
             _endShiftCommand = new MvxCommand(DoEndShift);
             _deleteCupCommand = new MvxCommand(DoShowDeleteCup);
             _showDeptsCommand = new MvxCommand(DoShowDepts);
@@ -80,30 +98,46 @@ namespace CoffeeManager.Core.ViewModels
             _showExpenseCommand = new MvxCommand(DoShowExpense);
             _enablePoliceSaleCommand = new MvxCommand(DoEnablePoliceSale);
             _showErrorsCommand = new MvxCommand(DoShowErrors);
+            _payCommand = new MvxCommand(DoPay);
+            _itemSelectedCommand = new MvxCommand<ProductViewModel>(DoSelectItem);
+        }
+
+        private void DoSelectItem(ProductViewModel obj)
+        {
+            SelectedProducts.Remove(obj);
+            Sum -= (int)obj.Price;
+            RaisePropertyChanged(nameof(PayEnabled));
+            RaisePropertyChanged(nameof(SumButtonText));
+        }
+
+        private void OnProductSelected(ProductSelectedMessage obj)
+        {
+            var sender = (ProductViewModel)obj.Sender;
+            var prod = sender.Clone();
+            prod.IsSelected = true;
+            SelectedProducts.Add(prod);
+            Sum += (int)prod.Price;
+            RaisePropertyChanged(nameof(PayEnabled));
+            RaisePropertyChanged(nameof(SumButtonText));
+        }
+
+       
+
+        private async void DoPay()
+        {
+            foreach (var productViewModel in SelectedProducts)
+            {
+                await ProductManager.SaleProduct(productViewModel.Id, productViewModel.Price, productViewModel.IsPoliceSale);
+            }
+            SelectedProducts = new ObservableCollection<ProductViewModel>();
+            Sum = 0;
+            RaisePropertyChanged(nameof(PayEnabled));
+            RaisePropertyChanged(nameof(SumButtonText));
         }
 
         private void DoShowErrors()
         {
             ShowViewModel<ErrorsViewModel>();
-        }
-
-        private void OnDeptAdded(DeptAddedMessage obj)
-        {
-            if (obj.Data.Item2)
-            {
-                _entireMoney += obj.Data.Item1;
-            }
-            else
-            {
-                _entireMoney -= obj.Data.Item1;
-            }
-            RaisePropertyChanged(nameof(EntireMoney));
-        }
-
-        private void OnExpenseAdded(ExpenseAddedMessage obj)
-        {
-            _entireMoney -= obj.Data;
-            RaisePropertyChanged(nameof(EntireMoney));
         }
 
         private void DoEnablePoliceSale()
@@ -132,23 +166,10 @@ namespace CoffeeManager.Core.ViewModels
             ShowViewModel<DeleteCupViewModel>();
         }
 
-        public async void Init(int userId, int shiftId)
+        public void Init(int userId, int shiftId)
         {
             _userId = userId;
             _shiftId = shiftId;
-
-            await _paymentManager.GetCurrentShiftMoney().ContinueWith((amount) =>
-            {
-                _currentShiftMoney = amount.Result;
-                RaisePropertyChanged(nameof(CurrentShiftMoney));
-            });
-
-            await _paymentManager.GetEntireMoney().ContinueWith((amount) =>
-            {
-                _entireMoney = amount.Result;
-                RaisePropertyChanged(nameof(EntireMoney));
-            });
-
         }
 
         private void DoEndShift()
@@ -166,23 +187,6 @@ namespace CoffeeManager.Core.ViewModels
                                 }
                             }
             });
-        }
-
-        private void OnCallBackMessage(AmoutChangedMessage message)
-        {
-            if (message.Data.Item2)
-            {
-                _currentShiftMoney += message.Data.Item1;
-                _entireMoney += message.Data.Item1;
-            }
-            else
-            {
-                _currentShiftMoney -= message.Data.Item1;
-                _entireMoney -= message.Data.Item1;
-
-            }
-            RaisePropertyChanged(nameof(CurrentShiftMoney));
-            RaisePropertyChanged(nameof(EntireMoney));
         }
 
         public void HandleError(string toString)
