@@ -6,6 +6,6 @@ namespace CoffeeManager.Models
     {
         public List<Request> Requests { get; set; }
 
-        public List<string> Errors => new List<string>();
+        public List<string> Errors { get; set; }
     }
 }

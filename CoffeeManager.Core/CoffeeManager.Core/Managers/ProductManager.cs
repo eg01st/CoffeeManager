@@ -15,6 +15,7 @@ namespace CoffeeManager.Core.Managers
     {
         private ProductProvider provider = new ProductProvider();
         private static IMvxFileStore storage = Mvx.Resolve<IMvxFileStore>();
+        private static readonly object sync = new object();
         public async Task<Product[]> GetCoffeeProducts()
         {
             return await provider.GetProduct(ProductType.Coffee);
@@ -60,9 +61,12 @@ namespace CoffeeManager.Core.Managers
         {
             await Task.Run(() =>
             {
-                var st = GetSalesStorage();
-                st.Sales.Add(new Sale() { Product = id, Amount = price, IsPoliceSale = isPoliceSale});
-                SaveStorage(st);
+                lock (sync)
+                {
+                    var st = GetSalesStorage();
+                    st.Sales.Add(new Sale() {Product = id, Amount = price, IsPoliceSale = isPoliceSale});
+                    SaveStorage(st);
+                }
             });
             await provider.SaleProduct(ShiftNo, id, price, isPoliceSale);
         }
@@ -71,9 +75,12 @@ namespace CoffeeManager.Core.Managers
         {
             await Task.Run(() =>
             {
-                var st = GetSalesStorage();
-                st.DismissedSales.Add(new Sale() { Id = id,  });
-                SaveStorage(st);
+                lock (sync)
+                {
+                    var st = GetSalesStorage();
+                    st.DismissedSales.Add(new Sale() {Id = id,});
+                    SaveStorage(st);
+                }
             });
             await provider.DeleteSale(ShiftNo, id);
         }
@@ -81,9 +88,12 @@ namespace CoffeeManager.Core.Managers
         {
             await Task.Run(() =>
             {
-                var st = GetSalesStorage();
-                st.UtilizedSales.Add(new Sale() { Id = id, });
-                SaveStorage(st);
+                lock (sync)
+                {
+                    var st = GetSalesStorage();
+                    st.UtilizedSales.Add(new Sale() {Id = id,});
+                    SaveStorage(st);
+                }
             });
             await provider.UtilizeSaleProduct(ShiftNo, id);
         }

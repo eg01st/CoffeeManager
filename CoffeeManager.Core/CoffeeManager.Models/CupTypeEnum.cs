@@ -7,6 +7,7 @@
         c170,
         c250,
         c400,
-        Plastic
+        Plastic,
+        c500
     }
 }
