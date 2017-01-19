@@ -11,6 +11,8 @@ namespace CoffeeManager.Api.Controllers
 {
 	public class ProductsController : ApiController
 	{
+
+        private static readonly object _sync = new object();
 		// GET: api/Products
 		public async Task<HttpResponseMessage> Get ([FromUri]int coffeeroomno, [FromUri]int productType)
 		{
@@ -103,35 +105,38 @@ namespace CoffeeManager.Api.Controllers
 		[HttpPut]
 		public async Task<HttpResponseMessage> SaleProduct ([FromUri]int coffeeroomno, HttpRequestMessage message)
 		{
-			var request = await message.Content.ReadAsStringAsync ();
-			var sale = JsonConvert.DeserializeObject<Models.Sale> (request);
-			try
+                var request = await message.Content.ReadAsStringAsync();
+                var sale = JsonConvert.DeserializeObject<Models.Sale>(request);
+                var entities = new CoffeeRoomEntities();
+                entities.Sales.Add(DbMapper.Map(sale));
+
+            lock(_sync)
             {
-				var entities = new CoffeeRoomEntities ();
-				entities.Sales.Add (DbMapper.Map (sale));
-				var currentShift = entities.Shifts.First (s => s.Id == sale.ShiftId);
-				currentShift.CurrentAmount += sale.Amount;
-				currentShift.TotalAmount += sale.Amount;
-				
-                await Task.Run( async () =>  
-                {
-                    using (var sContext = new CoffeeRoomEntities())
-                    {
-                        var product = sContext.Products.First(p => p.Id == sale.Product);
-                        foreach (var productCalculation in product.ProductCalculations)
-                        {
-                            var supliedProduct =
-                                sContext.SupliedProducts.First(p => p.Id == productCalculation.SuplyProductId);
-                            supliedProduct.Quantity -= productCalculation.Quantity;
-                            await sContext.SaveChangesAsync();
-                        }
-                    }
-                });
-				await entities.SaveChangesAsync();
-				return Request.CreateResponse (HttpStatusCode.OK);
-			} catch (Exception ex) {
-				return Request.CreateErrorResponse (HttpStatusCode.BadRequest, ex.ToString ());
-			}
+                var ctx = new CoffeeRoomEntities();
+                var currentShift = ctx.Shifts.First(s => s.Id == sale.ShiftId);
+                currentShift.CurrentAmount += sale.Amount;
+                currentShift.TotalAmount += sale.Amount;
+                ctx.SaveChanges();
+            }
+  
+
+                await Task.Run(async () =>
+               {
+                   using (var sContext = new CoffeeRoomEntities())
+                   {
+                       var product = sContext.Products.First(p => p.Id == sale.Product);
+                       foreach (var productCalculation in product.ProductCalculations)
+                       {
+                           var supliedProduct =
+                               sContext.SupliedProducts.First(p => p.Id == productCalculation.SuplyProductId);
+                           supliedProduct.Quantity -= productCalculation.Quantity;
+                           await sContext.SaveChangesAsync();
+                       }
+                   }
+               });
+                await entities.SaveChangesAsync();
+            
+			return Request.CreateResponse (HttpStatusCode.OK);
 
 		}
 
@@ -160,9 +165,14 @@ namespace CoffeeManager.Api.Controllers
                 }
             });
 
-            var currentShift = entities.Shifts.First (s => s.Id == sale.ShiftId);
-			currentShift.CurrentAmount -= saleDb.Amount;
-			currentShift.TotalAmount -= saleDb.Amount;
+            lock (_sync)
+            {
+                var ctx = new CoffeeRoomEntities();
+                var currentShift = ctx.Shifts.First(s => s.Id == sale.ShiftId);
+                currentShift.CurrentAmount -= saleDb.Amount;
+                currentShift.TotalAmount -= saleDb.Amount;
+                ctx.SaveChanges();
+            }
 
 			await entities.SaveChangesAsync ();
 			return Request.CreateResponse (HttpStatusCode.OK);
@@ -178,10 +188,14 @@ namespace CoffeeManager.Api.Controllers
             var entities = new CoffeeRoomEntities();
             var saleDb = entities.Sales.First(s => s.CoffeeRoomNo == coffeeroomno && s.Id == sale.Id);
             saleDb.IsUtilized = true;
-
-            var currentShift = entities.Shifts.First(s => s.Id == sale.ShiftId);
-            currentShift.CurrentAmount -= saleDb.Amount;
-            currentShift.TotalAmount -= saleDb.Amount;
+            lock (_sync)
+            {
+                var ctx = new CoffeeRoomEntities();
+                var currentShift = ctx.Shifts.First(s => s.Id == sale.ShiftId);
+                currentShift.CurrentAmount -= saleDb.Amount;
+                currentShift.TotalAmount -= saleDb.Amount;
+                ctx.SaveChanges();
+            }
 
             await entities.SaveChangesAsync();
             return Request.CreateResponse(HttpStatusCode.OK);
