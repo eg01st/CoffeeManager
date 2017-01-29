@@ -57,18 +57,18 @@ namespace CoffeeManager.Core.Managers
         }
 
 
-        public async Task SaleProduct(int id, decimal price, bool isPoliceSale)
+        public async Task SaleProduct(int id, decimal price, bool isPoliceSale, bool isCreditCardSale)
         {
             await Task.Run(() =>
             {
                 lock (sync)
                 {
                     var st = GetSalesStorage();
-                    st.Sales.Add(new Sale() {Product = id, Amount = price, IsPoliceSale = isPoliceSale});
+                    st.Sales.Add(new Sale() {Product = id, Amount = price, IsPoliceSale = isPoliceSale, IsCreditCardSale = isCreditCardSale});
                     SaveStorage(st);
                 }
             });
-            await provider.SaleProduct(ShiftNo, id, price, isPoliceSale);
+            await provider.SaleProduct(ShiftNo, id, price, isPoliceSale, isCreditCardSale);
         }
 
         public async Task DismisSaleProduct(int id)

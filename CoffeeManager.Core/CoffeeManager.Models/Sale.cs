@@ -22,5 +22,7 @@ namespace CoffeeManager.Models
         public bool IsRejected { get; set; }
 
         public bool IsUtilized { get; set; }
+
+        public bool IsCreditCardSale { get; set; }
     }
 }

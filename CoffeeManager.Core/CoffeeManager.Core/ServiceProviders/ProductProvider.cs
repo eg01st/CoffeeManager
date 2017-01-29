@@ -23,7 +23,7 @@ namespace CoffeeManager.Core.ServiceProviders
                 });
         }
 
-        public async Task SaleProduct(int shiftId, int id, decimal price, bool isPoliceSale)
+        public async Task SaleProduct(int shiftId, int id, decimal price, bool isPoliceSale, bool isCreditCardSale)
         {
             var sale = new Sale()
             {
@@ -32,7 +32,8 @@ namespace CoffeeManager.Core.ServiceProviders
                 Product = id,
                 IsPoliceSale = isPoliceSale,
                 CoffeeRoomNo = CoffeeRoomNo,
-                Time = DateTime.Now
+                Time = DateTime.Now,
+                IsCreditCardSale = isCreditCardSale
             };
             await PutInternal($"{Products}/SaleProduct", JsonConvert.SerializeObject(sale));
         }

@@ -25,6 +25,7 @@ namespace CoffeeManager.Core.ViewModels
         private ICommand _enablePoliceSaleCommand;
         private ICommand _showErrorsCommand;
         private ICommand _payCommand;
+        private ICommand _enableCreditCardSaleCommand;
 
 
         private bool _policeSaleEnabled;
@@ -41,6 +42,16 @@ namespace CoffeeManager.Core.ViewModels
             }
         }
 
+        public bool IsCreditCardSaleEnabled
+        {
+            get { return _isCreditCardSaleEnabled; }
+            set
+            {
+                _isCreditCardSaleEnabled = value;
+                RaisePropertyChanged(nameof(IsCreditCardSaleEnabled));
+            }
+        }
+
         private int _sum;
         public int Sum
         {
@@ -53,6 +64,9 @@ namespace CoffeeManager.Core.ViewModels
         }
 
         private string _sumButtonText;
+        private bool _isCreditCardSaleEnabled;
+
+
         public string SumButtonText
         {
             get { return $"Оплатить {Sum} Грн"; }
@@ -72,6 +86,7 @@ namespace CoffeeManager.Core.ViewModels
         public ICommand ShowCurrentSalesCommand => _showCurrentSalesCommand;
         public ICommand ShowExpenseCommand => _showExpenseCommand;
         public ICommand EnablePoliceSaleCommand => _enablePoliceSaleCommand;
+        public ICommand EnableCreditCardSaleCommand => _enableCreditCardSaleCommand;
 
         public ICommand ShowErrorsCommand => _showErrorsCommand;
         public ICommand PayCommand => _payCommand;
@@ -100,6 +115,13 @@ namespace CoffeeManager.Core.ViewModels
             _showErrorsCommand = new MvxCommand(DoShowErrors);
             _payCommand = new MvxCommand(DoPay);
             _itemSelectedCommand = new MvxCommand<ProductViewModel>(DoSelectItem);
+            _enableCreditCardSaleCommand = new MvxCommand(DoEnableCreditCardPay);
+        }
+
+        private void DoEnableCreditCardPay()
+        {
+            IsCreditCardSaleEnabled = !IsCreditCardSaleEnabled;
+            Publish(new IsCreditCardSaleMessage(_isCreditCardSaleEnabled, this));
         }
 
         private void DoSelectItem(ProductViewModel obj)
@@ -127,12 +149,13 @@ namespace CoffeeManager.Core.ViewModels
         {
             foreach (var productViewModel in SelectedProducts)
             {
-                await ProductManager.SaleProduct(productViewModel.Id, productViewModel.Price, productViewModel.IsPoliceSale);
+                await ProductManager.SaleProduct(productViewModel.Id, productViewModel.Price, productViewModel.IsPoliceSale, productViewModel.IsCreditCardSale);
             }
             SelectedProducts = new ObservableCollection<ProductViewModel>();
             Sum = 0;
             RaisePropertyChanged(nameof(PayEnabled));
             RaisePropertyChanged(nameof(SumButtonText));
+  
         }
 
         private void DoShowErrors()

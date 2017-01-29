@@ -19,6 +19,8 @@ namespace CoffeeManager.Core.ViewModels
         private decimal _price;
         private bool _enabled = true;
         private bool _isSelected;
+        private bool _isCreditCardSale;
+        private MvxSubscriptionToken _creditCardSaletoken;
 
         public bool IsPoliceSale
         {
@@ -50,6 +52,18 @@ namespace CoffeeManager.Core.ViewModels
                 _isSelected = value;
 
                 RaisePropertyChanged(nameof(IsSelected));
+            }
+        }
+
+
+        public bool IsCreditCardSale
+        {
+            get { return _isCreditCardSale; }
+            set
+            {
+                _isCreditCardSale = value;
+
+                RaisePropertyChanged(nameof(IsCreditCardSale));
             }
         }
 
@@ -86,6 +100,14 @@ namespace CoffeeManager.Core.ViewModels
                     IsPoliceSale = arg.Data;
                 }
             });
+
+            _creditCardSaletoken = Subscribe<IsCreditCardSaleMessage>((arg) =>
+            {
+                if (!IsSelected)
+                {
+                    IsCreditCardSale = arg.Data;
+                }
+            });
         }
 
         public ProductViewModel Clone()
@@ -99,7 +121,23 @@ namespace CoffeeManager.Core.ViewModels
             {
                 return;
             }
-            if (IsPoliceSale)
+
+            if (IsPoliceSale && IsCreditCardSale)
+            {
+                UserDialogs.Confirm(new ConfirmConfig()
+                {
+                    Message = $"Продать товар {Name} полицейскому через терминал?",
+                    OnAction = async
+                        (confirm) =>
+                    {
+                        if (confirm)
+                        {
+                            await Sale();
+                        }
+                    }
+                });
+            }
+            else if (IsPoliceSale)
             {
                 UserDialogs.Confirm(new ConfirmConfig()
                 {
@@ -114,6 +152,21 @@ namespace CoffeeManager.Core.ViewModels
                         }
                 });
             }
+            else if (IsCreditCardSale)
+            {
+                UserDialogs.Confirm(new ConfirmConfig()
+                {
+                    Message = $"Оплата товара {Name} через терминал?",
+                    OnAction = async
+                        (confirm) =>
+                    {
+                        if (confirm)
+                        {
+                            await Sale();
+                        }
+                    }
+                });
+            }
             else
             {
                 await Sale();
@@ -124,9 +177,6 @@ namespace CoffeeManager.Core.ViewModels
         {
             Enabled = false;
             Publish(new ProductSelectedMessage(this));
-            //await ProductManager.SaleProduct(Id, Price, IsPoliceSale);
-            //Publish(new AmoutChangedMessage(new Tuple<decimal, bool>(Price, true), this));
-            //ShowSuccessMessage($"Продан товар {Name} !");
             Enabled = true;
         }
     }
