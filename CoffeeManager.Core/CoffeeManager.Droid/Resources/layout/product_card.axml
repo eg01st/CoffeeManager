@@ -28,6 +28,12 @@
         android:layout_gravity="top"      
         android:gravity="center"
         local:MvxBind="Background CupTypeToColor(CupType)">
+      <ImageView
+        android:layout_gravity="left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_credit_card_small"
+        local:MvxBind="Visibility BoolToVisibility(IsCreditCardSale)"/>
       <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
