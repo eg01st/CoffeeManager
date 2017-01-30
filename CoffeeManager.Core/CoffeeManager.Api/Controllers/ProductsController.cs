@@ -109,9 +109,16 @@ namespace CoffeeManager.Api.Controllers
             {
 				var entities = new CoffeeRoomEntities ();
 				entities.Sales.Add (DbMapper.Map (sale));
-				var currentShift = entities.Shifts.First (s => s.Id == sale.ShiftId);
-				currentShift.CurrentAmount += sale.Amount;
-				currentShift.TotalAmount += sale.Amount;
+                var currentShift = entities.Shifts.First(s => s.Id == sale.ShiftId);
+                if (sale.IsCreditCardSale)
+                {
+                    currentShift.CreditCardAmount += sale.Amount;
+                }
+                else
+                {
+                    currentShift.CurrentAmount += sale.Amount;
+                    currentShift.TotalAmount += sale.Amount;
+                }
 				
                 await Task.Run( async () =>  
                 {

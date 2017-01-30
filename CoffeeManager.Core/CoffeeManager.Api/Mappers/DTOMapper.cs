@@ -39,7 +39,8 @@ namespace CoffeeManager.Api.Mappers
 		        IsPoliceSale = saleDb.IsPoliceSale.Value,
                 IsUtilized = saleDb.IsUtilized,
                 IsRejected = saleDb.IsRejected,
-		        Time = saleDb.Time
+		        Time = saleDb.Time,
+                IsCreditCardSale = saleDb.IsCreditCardSale
 		    };
 		}
 

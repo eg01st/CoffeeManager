@@ -125,6 +125,7 @@
           <Property Name="CoffeeRoomNo" Type="int" Nullable="false" />
           <Property Name="IsRejected" Type="bit" Nullable="false" />
           <Property Name="IsUtilized" Type="bit" Nullable="false" />
+          <Property Name="IsCreditCardSale" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Session">
           <Key>
@@ -150,6 +151,7 @@
           <Property Name="RealAmount" Type="money" Nullable="false" />
           <Property Name="StartCounter" Type="int" />
           <Property Name="EndCounter" Type="int" />
+          <Property Name="CreditCardAmount" Type="money" />
         </EntityType>
         <EntityType Name="SupliedProduct">
           <Key>
@@ -671,6 +673,7 @@
           <NavigationProperty Name="Shift" Relationship="Self.FK__Sale__ShiftId__3C69FB99" FromRole="Sale" ToRole="Shifts" />
           <Property Name="IsRejected" Type="Boolean" Nullable="false" />
           <Property Name="IsUtilized" Type="Boolean" Nullable="false" />
+          <Property Name="IsCreditCardSale" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="Shift">
           <Key>
@@ -695,6 +698,7 @@
           <Property Name="RealAmount" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
           <Property Name="StartCounter" Type="Int32" />
           <Property Name="EndCounter" Type="Int32" />
+          <Property Name="CreditCardAmount" Type="Decimal" Precision="19" Scale="4" />
         </EntityType>
         <EntityType Name="UsedCupsPerShift">
           <Key>
@@ -1305,6 +1309,7 @@
           <EntitySetMapping Name="Sales">
             <EntityTypeMapping TypeName="CoffeeRoomModel.Sale">
               <MappingFragment StoreEntitySet="Sale">
+                <ScalarProperty Name="IsCreditCardSale" ColumnName="IsCreditCardSale" />
                 <ScalarProperty Name="IsUtilized" ColumnName="IsUtilized" />
                 <ScalarProperty Name="IsRejected" ColumnName="IsRejected" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -1320,6 +1325,7 @@
           <EntitySetMapping Name="Shifts">
             <EntityTypeMapping TypeName="CoffeeRoomModel.Shift">
               <MappingFragment StoreEntitySet="Shifts">
+                <ScalarProperty Name="CreditCardAmount" ColumnName="CreditCardAmount" />
                 <ScalarProperty Name="EndCounter" ColumnName="EndCounter" />
                 <ScalarProperty Name="StartCounter" ColumnName="StartCounter" />
                 <ScalarProperty Name="RealAmount" ColumnName="RealAmount" />

@@ -15,7 +15,8 @@ namespace CoffeeManager.Api.Mappers
 				IsPoliceSale = sale.IsPoliceSale,
 				Product = sale.Product,
 				ShiftId = sale.ShiftId,
-				Time = sale.Time
+				Time = sale.Time,
+                IsCreditCardSale = sale.IsCreditCardSale
 			};
 
 		}

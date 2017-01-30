@@ -14,6 +14,8 @@ namespace CoffeeManager.Models
         public decimal RealAmount { get; set; }
         public decimal ExpenseAmount { get; set; }
 
+        public decimal? CreditCardAmount { get; set; }
+
         public int? StartCounter { get; set; }
 
         public int? EndCounter { get; set; }
