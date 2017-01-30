@@ -48,6 +48,7 @@
     <Compile Include="Messages\DeptAddedMessage.cs" />
     <Compile Include="Messages\ExpenseAddedMessage.cs" />
     <Compile Include="Messages\ExpenseDeletedMessage.cs" />
+    <Compile Include="Messages\IsCreditCardSaleMessage.cs" />
     <Compile Include="Messages\IsPoliceSaleMessage.cs" />
     <Compile Include="Messages\ProductSelectedMessage.cs" />
     <Compile Include="Messages\SaleRemovedMessage.cs" />

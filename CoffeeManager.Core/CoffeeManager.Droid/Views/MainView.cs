@@ -21,6 +21,7 @@ namespace CoffeeManager.Droid.Views
         private ViewPager viewPager;
         private TabLayout tabLayout;
         private View _policeSaveView;
+        private View _creditCardView;
 
         private TabFactory tabFactory = new TabFactory();
 
@@ -68,7 +69,18 @@ namespace CoffeeManager.Droid.Views
             _policeSaveView = FindViewById<View>(Resource.Id.police_sale_enabled);
 
             var police = FindViewById<ImageView>(Resource.Id.police_sale);
-            police.Click += PoliceSale_Click; 
+            police.Click += PoliceSale_Click;
+
+            _creditCardView = FindViewById<View>(Resource.Id.credit_card_enabled);
+
+            var creditCard = FindViewById<ImageView>(Resource.Id.credit_card);
+            creditCard.Click += CreditCard_Click; 
+        }
+
+        private void CreditCard_Click(object sender, EventArgs e)
+        {
+            ViewModel.EnableCreditCardSaleCommand.Execute(null);
+            _creditCardView.Visibility = ViewModel.IsCreditCardSaleEnabled ? ViewStates.Visible : ViewStates.Invisible;
         }
 
         private void PoliceSale_Click(object sender, System.EventArgs e)
