@@ -10,17 +10,12 @@
 namespace CoffeeManager.Api
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class SuplyRequest
+    public partial class GetMetroExpenses_Result
     {
-        public int Id { get; set; }
-        public int SuplyProductId { get; set; }
-        public int ItemCount { get; set; }
-        public Nullable<System.DateTime> Date { get; set; }
-        public bool IsDone { get; set; }
-        public Nullable<decimal> Quantity { get; set; }
-    
-        public virtual SupliedProduct SupliedProduct { get; set; }
+        public Nullable<int> productid { get; set; }
+        public string name { get; set; }
+        public Nullable<decimal> price { get; set; }
+        public Nullable<decimal> quantity { get; set; }
     }
 }

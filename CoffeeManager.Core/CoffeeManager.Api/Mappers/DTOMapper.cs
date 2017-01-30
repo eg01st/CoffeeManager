@@ -83,5 +83,21 @@ namespace CoffeeManager.Api.Mappers
             }
             return item;
         }
+
+        public static IEnumerable<Models.MetroExpense> ToDTO(this List<GetMetroExpenses_Result> result)
+        {
+            foreach (var item in result)
+            {
+                yield return new Models.MetroExpense() { Productid = item.productid, Name = item.name, Price = item.price, Quantity = item.quantity };
+            }
+        }
+
+        public static IEnumerable<Models.Expense> ToDTO(this List<GetExpenses_Result> result)
+        {
+            foreach (var item in result)
+            {
+                yield return new Models.Expense() { Name = item.Name, Amount = item.amount ?? -1 };
+            }
+        }
     }
 }
