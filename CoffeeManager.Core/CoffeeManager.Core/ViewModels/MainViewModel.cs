@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Acr.UserDialogs;
 using CoffeeManager.Core.Managers;
 using CoffeeManager.Core.Messages;
-using CoffeeManager.Models;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Messenger;
-using System.Linq;
 using CoffeeManager.Core.ServiceProviders;
 
 namespace CoffeeManager.Core.ViewModels
@@ -123,6 +119,7 @@ namespace CoffeeManager.Core.ViewModels
             _enableCreditCardSaleCommand = new MvxCommand(DoEnableCreditCardPay);
         }
 
+        #region lost connection
 
         private void OnLostConnection(LostConnectionMessage obj)
         {
@@ -153,6 +150,8 @@ namespace CoffeeManager.Core.ViewModels
             }
         }
 
+        #endregion
+
         private void DoEnableCreditCardPay()
         {
             IsCreditCardSaleEnabled = !IsCreditCardSaleEnabled;
@@ -177,8 +176,6 @@ namespace CoffeeManager.Core.ViewModels
             RaisePropertyChanged(nameof(PayEnabled));
             RaisePropertyChanged(nameof(SumButtonText));
         }
-
-
 
         private async void DoPay()
         {
