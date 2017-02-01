@@ -37,7 +37,6 @@
     <Compile Include="App.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="Managers\BaseManager.cs" />
-    <Compile Include="Managers\CupManager.cs" />
     <Compile Include="Managers\DeptManager.cs" />
     <Compile Include="Managers\DeptProvider.cs" />
     <Compile Include="Managers\PaymentManager.cs" />
@@ -56,37 +55,35 @@
     <Compile Include="Managers\UserManager.cs" />
     <Compile Include="RequestExecutor.cs" />
     <Compile Include="ServiceProviders\BaseServiceProvider.cs" />
-    <Compile Include="ServiceProviders\CupsServiceProvider.cs" />
     <Compile Include="ServiceProviders\PaymentServiceProvider.cs" />
     <Compile Include="ServiceProviders\ProductProvider.cs" />
     <Compile Include="ServiceProviders\ShiftServiceProvider.cs" />
     <Compile Include="ServiceProviders\UserServiceProvider.cs" />
     <Compile Include="Timer.cs" />
-    <Compile Include="ViewModels\AddsViewModel.cs" />
     <Compile Include="ViewModels\BaseItemViewModel.cs" />
-    <Compile Include="ViewModels\CoffeeViewModel.cs" />
-    <Compile Include="ViewModels\ColdDrinksViewModel.cs" />
     <Compile Include="ViewModels\CupViewModel.cs" />
     <Compile Include="ViewModels\CurrentShiftExpensesViewModel.cs" />
     <Compile Include="ViewModels\CurrentShiftSalesViewModel.cs" />
-    <Compile Include="ViewModels\DeleteCupViewModel.cs" />
     <Compile Include="ViewModels\DeptViewModel.cs" />
     <Compile Include="ViewModels\EndShiftViewModel.cs" />
     <Compile Include="ViewModels\ErrorsViewModel.cs" />
     <Compile Include="ViewModels\ExpenseItemViewModel.cs" />
     <Compile Include="ViewModels\ExpenseViewModel.cs" />
-    <Compile Include="ViewModels\IceCreamViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
-    <Compile Include="ViewModels\MealsViewModel.cs" />
-    <Compile Include="ViewModels\ProductBaseViewModel.cs" />
     <Compile Include="ViewModels\ProductViewModel.cs" />
     <Compile Include="ViewModels\SaleViewModel.cs" />
-    <Compile Include="ViewModels\SweetsViewModel.cs" />
-    <Compile Include="ViewModels\TeaViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
-    <Compile Include="ViewModels\WaterViewModel.cs" />
     <Compile Include="Messages\LostConnectionMessage.cs" />
+    <Compile Include="ViewModels\Products\AddsViewModel.cs" />
+    <Compile Include="ViewModels\Products\CoffeeViewModel.cs" />
+    <Compile Include="ViewModels\Products\ColdDrinksViewModel.cs" />
+    <Compile Include="ViewModels\Products\IceCreamViewModel.cs" />
+    <Compile Include="ViewModels\Products\MealsViewModel.cs" />
+    <Compile Include="ViewModels\Products\SweetsViewModel.cs" />
+    <Compile Include="ViewModels\Products\TeaViewModel.cs" />
+    <Compile Include="ViewModels\Products\WaterViewModel.cs" />
+    <Compile Include="ViewModels\Products\ProductBaseViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Acr.UserDialogs, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -157,6 +154,9 @@
       <Project>{77e355cb-adf2-4617-ad95-59e1f4f8af17}</Project>
       <Name>CoffeeManager.Models</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ViewModels\Products\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />

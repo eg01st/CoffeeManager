@@ -182,7 +182,6 @@
     <Compile Include="Views\ActivityBase.cs" />
     <Compile Include="Views\CurrentShiftExpensesView.cs" />
     <Compile Include="Views\CurrentShiftSalesView.cs" />
-    <Compile Include="Views\DeleteCupView.cs" />
     <Compile Include="Views\DeptView.cs" />
     <Compile Include="Views\EndShiftView.cs" />
     <Compile Include="Views\ErrorsView.cs" />
