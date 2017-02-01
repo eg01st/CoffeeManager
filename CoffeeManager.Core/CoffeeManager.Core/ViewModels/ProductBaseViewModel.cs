@@ -36,8 +36,16 @@ namespace CoffeeManager.Core.ViewModels
 
         private async Task GetItems()
         {
-            var items = await GetProducts();
-            Items = items.Select(s => new ProductViewModel(s)).ToList();
+            try
+            {
+                var items = await GetProducts();
+                Items = items.Select(s => new ProductViewModel(s)).ToList();
+            }
+            catch (ArgumentNullException ex)
+            {
+
+            }
+
         }
     }
 }

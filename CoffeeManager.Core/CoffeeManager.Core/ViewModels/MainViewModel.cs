@@ -8,6 +8,8 @@ using CoffeeManager.Core.Messages;
 using CoffeeManager.Models;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Messenger;
+using System.Linq;
+using CoffeeManager.Core.ServiceProviders;
 
 namespace CoffeeManager.Core.ViewModels
 {
@@ -15,10 +17,14 @@ namespace CoffeeManager.Core.ViewModels
     {
         private int _userId;
         private int _shiftId;
+        private bool _connectionExists = true;
+
+        private Timer lostConnectionTimer;
 
         private MvxSubscriptionToken _productSelectedToken;
+        private MvxSubscriptionToken _lostConnectionToken;
+
         private ICommand _endShiftCommand;
-        private ICommand _deleteCupCommand;
         private ICommand _showDeptsCommand;
         private ICommand _showCurrentSalesCommand;
         private ICommand _showExpenseCommand;
@@ -81,7 +87,6 @@ namespace CoffeeManager.Core.ViewModels
         public bool PayEnabled => SelectedProducts.Count > 0;
 
         public ICommand EndShiftCommand => _endShiftCommand;
-        public ICommand DeleteCupCommand => _deleteCupCommand;
         public ICommand ShowDeptsCommand => _showDeptsCommand;
         public ICommand ShowCurrentSalesCommand => _showCurrentSalesCommand;
         public ICommand ShowExpenseCommand => _showExpenseCommand;
@@ -106,8 +111,8 @@ namespace CoffeeManager.Core.ViewModels
         public MainViewModel()
         {
             _productSelectedToken = Subscribe<ProductSelectedMessage>(OnProductSelected);
+            _lostConnectionToken = Subscribe<LostConnectionMessage>(OnLostConnection);
             _endShiftCommand = new MvxCommand(DoEndShift);
-            _deleteCupCommand = new MvxCommand(DoShowDeleteCup);
             _showDeptsCommand = new MvxCommand(DoShowDepts);
             _showCurrentSalesCommand = new MvxCommand(DoShowCurrentSales);
             _showExpenseCommand = new MvxCommand(DoShowExpense);
@@ -116,6 +121,36 @@ namespace CoffeeManager.Core.ViewModels
             _payCommand = new MvxCommand(DoPay);
             _itemSelectedCommand = new MvxCommand<ProductViewModel>(DoSelectItem);
             _enableCreditCardSaleCommand = new MvxCommand(DoEnableCreditCardPay);
+        }
+
+
+        private void OnLostConnection(LostConnectionMessage obj)
+        {
+            UserDialogs.Alert("Соединение с сервером прерванно, доступна только запись продаж");
+            _connectionExists = false;
+
+            lostConnectionTimer = new Timer(HandleTimerCallback, null, 0, 30000);
+        }
+
+        private async void HandleTimerCallback(object state)
+        {
+            bool _success;
+            try
+            {
+                _success = BaseServiceProvider.Ping();
+            }
+            catch
+            {
+                return;
+            }
+            if (_success)
+            {
+                lostConnectionTimer?.Dispose();
+                lostConnectionTimer = null;
+
+                UserDialogs.Alert("Соединение с сервером востановленно, доступна обычная работа");
+                _connectionExists = true;
+            }
         }
 
         private void DoEnableCreditCardPay()
@@ -143,7 +178,7 @@ namespace CoffeeManager.Core.ViewModels
             RaisePropertyChanged(nameof(SumButtonText));
         }
 
-       
+
 
         private async void DoPay()
         {
@@ -155,7 +190,7 @@ namespace CoffeeManager.Core.ViewModels
             Sum = 0;
             RaisePropertyChanged(nameof(PayEnabled));
             RaisePropertyChanged(nameof(SumButtonText));
-  
+
         }
 
         private void DoShowErrors()
@@ -171,23 +206,34 @@ namespace CoffeeManager.Core.ViewModels
 
         private void DoShowExpense()
         {
+            if (!_connectionExists)
+            {
+                UserDialogs.Alert("Соединение с сервером прерванно, доступна только запись продаж");
+                return;
+            }
             ShowViewModel<ExpenseViewModel>();
         }
 
         private void DoShowCurrentSales()
         {
+            if (!_connectionExists)
+            {
+                UserDialogs.Alert("Соединение с сервером прерванно, доступна только запись продаж");
+                return;
+            }
             ShowViewModel<CurrentShiftSalesViewModel>();
         }
 
         private void DoShowDepts()
         {
+            if (!_connectionExists)
+            {
+                UserDialogs.Alert("Соединение с сервером прерванно, доступна только запись продаж");
+                return;
+            }
             ShowViewModel<DeptViewModel>();
         }
 
-        private void DoShowDeleteCup()
-        {
-            ShowViewModel<DeleteCupViewModel>();
-        }
 
         public void Init(int userId, int shiftId)
         {
@@ -197,15 +243,20 @@ namespace CoffeeManager.Core.ViewModels
 
         private void DoEndShift()
         {
+            if (!_connectionExists)
+            {
+                UserDialogs.Alert("Соединение с сервером прерванно, доступна только запись продаж");
+                return;
+            }
             UserDialogs.Confirm(new ConfirmConfig()
             {
                 Message = "Завершить смену?",
                 OnAction =
-                            (confirm) =>    
+                            (confirm) =>
                             {
                                 if (confirm)
                                 {
-                                    ShowViewModel<EndShiftViewModel>(new { shiftId = _shiftId});
+                                    ShowViewModel<EndShiftViewModel>(new { shiftId = _shiftId });
                                     Close(this);
                                 }
                             }

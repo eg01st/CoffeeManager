@@ -86,6 +86,7 @@
     <Compile Include="ViewModels\TeaViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="ViewModels\WaterViewModel.cs" />
+    <Compile Include="Messages\LostConnectionMessage.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Acr.UserDialogs, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">

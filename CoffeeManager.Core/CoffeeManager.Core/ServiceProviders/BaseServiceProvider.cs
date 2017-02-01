@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Acr.UserDialogs;
 using MvvmCross.Platform;
 using Newtonsoft.Json;
+using MvvmCross.Plugins.Messenger;
 
 namespace CoffeeManager.Core.ServiceProviders
 {
@@ -20,8 +21,33 @@ namespace CoffeeManager.Core.ServiceProviders
             }
         }
 
-        protected readonly int CoffeeRoomNo = Config.CoffeeRoomNo;
-        private readonly string _apiUrl = Config.ApiUrl;
+        protected IMvxMessenger Messenger
+        {
+            get
+            {
+                return Mvx.Resolve<IMvxMessenger>();
+            }
+        }
+
+        public static bool Ping()
+        {
+            try
+            {
+                var client = new HttpClient();
+                var url = $"{_apiUrl}users?coffeeroomno={CoffeeRoomNo}";
+                var response = client.GetStringAsync(url);
+
+                string responseString = response.Result;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        protected static readonly int CoffeeRoomNo = Config.CoffeeRoomNo;
+        private static readonly string _apiUrl = Config.ApiUrl;
 
         protected async Task PutInternal(string path, string obj)
         {
@@ -50,7 +76,7 @@ namespace CoffeeManager.Core.ServiceProviders
                     }
                 }
                 var response = await client.GetAsync(url);
-          
+
                 string responseString = await response.Content.ReadAsStringAsync();
                 Debug.WriteLine(responseString);
                 if (response.StatusCode != HttpStatusCode.OK)
@@ -63,9 +89,11 @@ namespace CoffeeManager.Core.ServiceProviders
             }
             catch (Exception ex)
             {
-                RequestExecutor.LogError($"GET {path} {ex}");
+                RequestExecutor.LogError($"{DateTime.Now}: GET {path} Error: {ex}");
                 UserDialogs.Alert("Произошла ошибка запроса к серверу");
-                throw;
+                Messenger.Publish(new LostConnectionMessage(this));
+                return default(T);
+                //throw;
             }
             finally
             {
@@ -99,9 +127,11 @@ namespace CoffeeManager.Core.ServiceProviders
             }
             catch (Exception ex)
             {
-                RequestExecutor.LogError($"Post {path} {ex}");
+                RequestExecutor.LogError($"{DateTime.Now}: Post {path} Error: {ex}");
                 UserDialogs.Alert("Произошла ошибка запроса к серверу");
-                throw;
+                Messenger.Publish(new LostConnectionMessage(this));
+                return default(T);
+                //throw;
             }
             finally
             {
@@ -134,9 +164,11 @@ namespace CoffeeManager.Core.ServiceProviders
             }
             catch (Exception ex)
             {
-                RequestExecutor.LogError($"Post {path} {ex}");
+                RequestExecutor.LogError($"{DateTime.Now}: Post {path} Error: {ex}");
                 UserDialogs.Alert("Произошла ошибка запроса к серверу");
-                throw;
+                Messenger.Publish(new LostConnectionMessage(this));
+                return null;
+                //throw;
             }
             finally
             {
@@ -170,9 +202,11 @@ namespace CoffeeManager.Core.ServiceProviders
             }
             catch (Exception ex)
             {
-                RequestExecutor.LogError($"Put {path} {ex}");
+                RequestExecutor.LogError($"{DateTime.Now}: Put {path} Error: {ex}");
                 UserDialogs.Alert("Произошла ошибка запроса к серверу");
-                throw;
+                Messenger.Publish(new LostConnectionMessage(this));
+                return default(T);
+                //throw;
             }
             finally
             {
@@ -205,9 +239,11 @@ namespace CoffeeManager.Core.ServiceProviders
             }
             catch (Exception ex)
             {
-                RequestExecutor.LogError($"Put {path} {ex}");
+                RequestExecutor.LogError($"{DateTime.Now}: Put {path} Error: {ex}");
                 UserDialogs.Alert("Произошла ошибка запроса к серверу");
-                throw;
+                Messenger.Publish(new LostConnectionMessage(this));
+                return null;
+                // throw;
             }
             finally
             {
@@ -240,9 +276,11 @@ namespace CoffeeManager.Core.ServiceProviders
             }
             catch (Exception ex)
             {
-                RequestExecutor.LogError($"Delete {path} {ex}");
+                RequestExecutor.LogError($"{DateTime.Now}: Delete {path} Error: {ex}");
                 UserDialogs.Alert("Произошла ошибка запроса к серверу");
-                throw;
+                Messenger.Publish(new LostConnectionMessage(this));
+                return null;
+                //throw;
             }
             finally
             {

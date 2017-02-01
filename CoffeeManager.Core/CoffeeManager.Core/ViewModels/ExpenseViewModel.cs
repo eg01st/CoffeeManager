@@ -83,11 +83,11 @@ namespace CoffeeManager.Core.ViewModels
 
         public bool IsAddNewExpenseTypeEnabled => !string.IsNullOrEmpty(NewExprenseType);
         public bool IsAddButtomEnabled => !string.IsNullOrEmpty(Amount) && !string.IsNullOrEmpty(SelectedExprense) && !string.IsNullOrEmpty(ItemCount);
-        
+
 
         public ExpenseViewModel()
         {
-             _addNewExprenseTypeCommand = new MvxCommand(DoAddNewExpenseType);
+            _addNewExprenseTypeCommand = new MvxCommand(DoAddNewExpenseType);
             _addExpenseCommand = new MvxCommand(DoAddExpense);
             _selectExpenseTypeCommand = new MvxCommand<BaseItemViewModel>(DoSelectExpenseType);
             ShowCurrentShiftExpensesCommand = new MvxCommand(DoShowExpenses);
@@ -140,7 +140,7 @@ namespace CoffeeManager.Core.ViewModels
                 }
             });
 
-            
+
         }
 
         public void Init()
@@ -150,8 +150,16 @@ namespace CoffeeManager.Core.ViewModels
 
         private async void LoadTypes()
         {
-            var result = await _paymentManager.GetExpenseItems();
-            Items = result.Select(s => new BaseItemViewModel(s)).ToList();
+            try
+            {
+                var result = await _paymentManager.GetExpenseItems();
+                Items = result.Select(s => new BaseItemViewModel(s)).ToList();
+            }
+            catch (ArgumentNullException ex)
+            {
+                Close(this);
+            }
+
         }
     }
 }

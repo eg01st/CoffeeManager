@@ -74,7 +74,7 @@ namespace CoffeeManager.Droid.Views
             _creditCardView = FindViewById<View>(Resource.Id.credit_card_enabled);
 
             var creditCard = FindViewById<ImageView>(Resource.Id.credit_card);
-            creditCard.Click += CreditCard_Click; 
+            creditCard.Click += CreditCard_Click;
         }
 
         private void CreditCard_Click(object sender, EventArgs e)
@@ -104,10 +104,6 @@ namespace CoffeeManager.Droid.Views
             ViewModel.ShowDeptsCommand.Execute(null);
         }
 
-        private void DeleteCupImage_Click(object sender, System.EventArgs e)
-        {
-            ViewModel.DeleteCupCommand.Execute(null);
-        }
 
         private void Image_Click(object sender, System.EventArgs e)
         {
@@ -143,7 +139,7 @@ namespace CoffeeManager.Droid.Views
 
         public override void OnBackPressed()
         {
-            
+
         }
     }
 }

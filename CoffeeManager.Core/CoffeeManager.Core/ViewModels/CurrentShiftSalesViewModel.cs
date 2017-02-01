@@ -27,14 +27,21 @@ namespace CoffeeManager.Core.ViewModels
 
         public async void Init()
         {
-            token = Subscribe<SaleRemovedMessage>( (async message => { await LoadSales(); }));
+            token = Subscribe<SaleRemovedMessage>((async message => { await LoadSales(); }));
             await LoadSales();
         }
 
         private async Task LoadSales()
         {
-            var items = await _manager.GetCurrentShiftSales();
-            Items = items.Select(s => new SaleViewModel(s)).ToList();
+            try
+            {
+                var items = await _manager.GetCurrentShiftSales();
+                Items = items.Select(s => new SaleViewModel(s)).ToList();
+            }
+            catch (ArgumentNullException ex)
+            {
+                Close(this);
+            }
         }
     }
 }
