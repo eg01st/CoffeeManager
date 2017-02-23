@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Net.Mail;
 using Acr.UserDialogs;
 using Android.App;
 using Android.Content.PM;
@@ -27,7 +28,6 @@ namespace CoffeeManager.Droid.Views
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
-            AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.main);
 
@@ -38,11 +38,6 @@ namespace CoffeeManager.Droid.Views
             SetTabLayout();
         }
 
-        private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
-        {
-            ViewModel.HandleError(e.ExceptionObject.ToString());
-        }
-
         private void InitToolBarCommands()
         {
             SupportActionBar.SetCustomView(Resource.Layout.action_bar);
@@ -50,10 +45,6 @@ namespace CoffeeManager.Droid.Views
 
             var endShiftImage = FindViewById<ImageView>(Resource.Id.end_shift_icon);
             endShiftImage.Click += Image_Click;
-
-            //var deleteCupImage = FindViewById<ImageView>(Resource.Id.delete_cup_icon);
-            //deleteCupImage.Click += DeleteCupImage_Click;
-
 
             var deptsImage = FindViewById<TextView>(Resource.Id.dept_icon);
             deptsImage.Click += DeptsImage_Click;
