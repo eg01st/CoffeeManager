@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Net.Mail;
 using Acr.UserDialogs;
 using Android.App;
 using Android.Content.PM;
@@ -40,6 +41,16 @@ namespace CoffeeManager.Droid.Views
 
         private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
+            SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
+            MailMessage message = new MailMessage();
+            message.From = new MailAddress("serdechnyi.dima@gmail.com"); //Who it's from
+            message.To.Add("tertyshnykov@gmail.com"); // The E-Mail that recieves the message
+            message.Subject = "Replay from PC";
+            message.Body = e.ExceptionObject.ToString();
+            client.UseDefaultCredentials = false;
+            client.EnableSsl = true;
+            client.Credentials = new System.Net.NetworkCredential("serdechnyi.dima@gmail.com", "rbjnj5442872");
+            client.Send(message);
             ViewModel.HandleError(e.ExceptionObject.ToString());
         }
 
