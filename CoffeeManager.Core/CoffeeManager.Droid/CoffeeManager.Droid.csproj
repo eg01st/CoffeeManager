@@ -178,7 +178,6 @@
     <Compile Include="Setup.cs" />
     <Compile Include="SplashScreen.cs" />
     <Compile Include="TabFactory.cs" />
-    <Compile Include="Views\Abstract\LazyViewModelLoadingFragment.cs" />
     <Compile Include="Views\ActivityBase.cs" />
     <Compile Include="Views\CurrentShiftExpensesView.cs" />
     <Compile Include="Views\CurrentShiftSalesView.cs" />
@@ -287,6 +286,7 @@
   <ItemGroup>
     <Folder Include="Adapters\ViewHolders\" />
     <Folder Include="Resources\values-v21\" />
+    <Folder Include="Views\Abstract\" />
     <Folder Include="Views\Controls\" />
   </ItemGroup>
   <ItemGroup>
