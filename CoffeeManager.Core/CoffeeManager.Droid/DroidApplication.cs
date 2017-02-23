@@ -73,7 +73,7 @@ namespace CoffeeManager.Droid
             var message = new MimeMessage();
             message.From.Add(new MailboxAddress("Info", "serdechnyi.dima@gmail.com"));
             message.To.Add(new MailboxAddress("", "tertyshnykov@gmail.com"));
-            message.Subject = "test";
+            message.Subject = "Error";
 
             message.Body = new TextPart("plain")
             {

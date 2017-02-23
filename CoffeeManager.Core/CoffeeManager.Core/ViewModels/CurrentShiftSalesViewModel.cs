@@ -28,7 +28,6 @@ namespace CoffeeManager.Core.ViewModels
         public async void Init()
         {
             token = Subscribe<SaleRemovedMessage>((async message => { await LoadSales(); }));
-            throw new BadImageFormatException("test");
             await LoadSales();
         }
 
