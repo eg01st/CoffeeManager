@@ -1,10 +1,13 @@
 using System;
 using System.Globalization;
 using System.Threading.Tasks;
+using Acr.UserDialogs;
 using Android.App;
 using Android.Runtime;
+using Android.Widget;
 using MailKit.Net.Smtp;
 using MimeKit;
+using MvvmCross.Platform;
 
 namespace CoffeeManager.Droid
 {
@@ -65,7 +68,8 @@ namespace CoffeeManager.Droid
             {
                 return;
             }
-           SendMessage(e.ToString());
+            Mvx.Resolve<IUserDialogs>().Alert("Что-то пошло не так :( Ошибка отправлена и будет обработана.");
+            SendMessage(e.ToString());
         }
 
         public static void SendMessage(string mes)

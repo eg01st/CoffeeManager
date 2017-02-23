@@ -12,7 +12,6 @@ namespace CoffeeManager.Droid.Views
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
-            AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             UserDialogs.Init(this);
 
             base.OnCreate(savedInstanceState);
@@ -22,11 +21,6 @@ namespace CoffeeManager.Droid.Views
         public override void OnBackPressed()
         {
 
-        }
-
-        private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
-        {
-            ViewModel.HandleError(e.ExceptionObject.ToString());
         }
     }
 }

@@ -46,10 +46,6 @@ namespace CoffeeManager.Droid.Views
             var endShiftImage = FindViewById<ImageView>(Resource.Id.end_shift_icon);
             endShiftImage.Click += Image_Click;
 
-            //var deleteCupImage = FindViewById<ImageView>(Resource.Id.delete_cup_icon);
-            //deleteCupImage.Click += DeleteCupImage_Click;
-
-
             var deptsImage = FindViewById<TextView>(Resource.Id.dept_icon);
             deptsImage.Click += DeptsImage_Click;
 
