@@ -168,8 +168,16 @@ namespace CoffeeManager.Api.Controllers
             });
 
             var currentShift = entities.Shifts.First (s => s.Id == sale.ShiftId);
-			currentShift.CurrentAmount -= saleDb.Amount;
-			currentShift.TotalAmount -= saleDb.Amount;
+            if(saleDb.IsCreditCardSale)
+            {
+                currentShift.CreditCardAmount -= saleDb.Amount;
+            }
+            else
+            {
+                currentShift.CurrentAmount -= saleDb.Amount;
+                currentShift.TotalAmount -= saleDb.Amount;
+            }
+			
 
 			await entities.SaveChangesAsync ();
 			return Request.CreateResponse (HttpStatusCode.OK);
@@ -187,8 +195,15 @@ namespace CoffeeManager.Api.Controllers
             saleDb.IsUtilized = true;
 
             var currentShift = entities.Shifts.First(s => s.Id == sale.ShiftId);
-            currentShift.CurrentAmount -= saleDb.Amount;
-            currentShift.TotalAmount -= saleDb.Amount;
+            if (saleDb.IsCreditCardSale)
+            {
+                currentShift.CreditCardAmount -= saleDb.Amount;
+            }
+            else
+            {
+                currentShift.CurrentAmount -= saleDb.Amount;
+                currentShift.TotalAmount -= saleDb.Amount;
+            }
 
             await entities.SaveChangesAsync();
             return Request.CreateResponse(HttpStatusCode.OK);

@@ -57,6 +57,7 @@
     <Compile Include="Request.cs" />
     <Compile Include="RequestStorage.cs" />
     <Compile Include="Sale.cs" />
+    <Compile Include="SaleInfo.cs" />
     <Compile Include="SaleStorage.cs" />
     <Compile Include="Shift.cs" />
     <Compile Include="ShiftInfo.cs" />
