@@ -48,6 +48,18 @@
       android:textSize="24dp"
       android:lines="1"
       local:MvxBind="Text Status"/>
+      <ImageView
+        android:layout_marginLeft="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_star_small"
+        local:MvxBind="Visibility BoolToVisibility(IsPoliceSale)"/>
+      <ImageView
+        android:layout_marginLeft="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_credit_card_small"
+        local:MvxBind="Visibility BoolToVisibility(IsCreditCardSale)"/>
     </LinearLayout>
   </CardView>
 </LinearLayout>
