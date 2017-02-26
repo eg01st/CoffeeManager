@@ -53,7 +53,10 @@ namespace CoffeeManager.Core
                     }
                 }
                 requestStorage = GetStorage();
-                foreach (var request in requestStorage.Requests)
+
+                var errorRequests = new List<Request>(requestStorage.Requests);
+
+                foreach (var request in errorRequests)
                 {
                     try
                     {
