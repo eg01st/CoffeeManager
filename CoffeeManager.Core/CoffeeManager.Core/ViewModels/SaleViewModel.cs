@@ -45,6 +45,8 @@ namespace CoffeeManager.Core.ViewModels
 
         public bool IsPoliceSale => _sale.IsPoliceSale;
 
+        public bool IsCreditCardSale => _sale.IsCreditCardSale;
+
         public string Time => _sale.Time.ToString("T");
 
         private void DoDismisItem()

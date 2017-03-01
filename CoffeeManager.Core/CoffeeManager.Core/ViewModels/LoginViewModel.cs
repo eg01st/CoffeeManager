@@ -9,7 +9,6 @@ namespace CoffeeManager.Core.ViewModels
 {
     public class LoginViewModel : ViewModelBase
     {
-
         private readonly UserManager _userManager;
         private readonly ShiftManager _shiftManager;
         private readonly ICommand _selectUserCommand;
@@ -58,13 +57,7 @@ namespace CoffeeManager.Core.ViewModels
             {
                 ShowViewModel<MainViewModel>(new { userId = currentShift.UserId, shiftId = currentShift.Id });
             }
-
             Users = await _userManager.GetUsers();
-        }
-
-        public void HandleError(string toString)
-        {
-            RequestExecutor.LogError(toString);
         }
     }
 }
