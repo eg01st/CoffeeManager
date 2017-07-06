@@ -17,13 +17,16 @@ namespace CoffeeManager.Core.ViewModels
         private PaymentManager _paymentManager = new PaymentManager();
 
         protected List<BaseItemViewModel> _items;
+        protected List<BaseItemViewModel> _searchItems;
         private BaseItemViewModel _selectedExpence;
+        private string _searchString;
         private string _amount;
         private string _itemCount;
         private string _newExpenseType;
         private ICommand _addNewExprenseTypeCommand;
         private ICommand _addExpenseCommand;
         private ICommand _selectExpenseTypeCommand;
+        private ICommand _seachCommand;
 
         public List<BaseItemViewModel> Items
         {
@@ -34,6 +37,28 @@ namespace CoffeeManager.Core.ViewModels
                 RaisePropertyChanged(nameof(Items));
             }
         }
+
+        public List<BaseItemViewModel> SearchItems
+        {
+            get { return string.IsNullOrEmpty(SearchString) ? _items : _searchItems; }
+            set
+            {
+                _searchItems = value;
+                RaisePropertyChanged(nameof(SearchItems));
+            }
+        }
+
+        public string SearchString
+        {
+            get { return _searchString; }
+            set
+            {
+                _searchString = value;
+                RaisePropertyChanged(nameof(SearchString));
+                SearchCommand.Execute(null);
+            }
+        }
+
         public string SelectedExprense
         {
             get { return _selectedExpence.Name; }
@@ -78,6 +103,7 @@ namespace CoffeeManager.Core.ViewModels
         public ICommand AddNewExprenseTypeCommand => _addNewExprenseTypeCommand;
         public ICommand AddExpenseCommand => _addExpenseCommand;
         public ICommand SelectExpenseTypeCommand => _selectExpenseTypeCommand;
+        public ICommand SearchCommand => _seachCommand;
 
         public ICommand ShowCurrentShiftExpensesCommand { get; set; }
 
@@ -91,6 +117,19 @@ namespace CoffeeManager.Core.ViewModels
             _addExpenseCommand = new MvxCommand(DoAddExpense);
             _selectExpenseTypeCommand = new MvxCommand<BaseItemViewModel>(DoSelectExpenseType);
             ShowCurrentShiftExpensesCommand = new MvxCommand(DoShowExpenses);
+            _seachCommand = new MvxCommand(DoSearch);
+        }
+
+        private void DoSearch()
+        {
+            if (!string.IsNullOrEmpty(SearchString))
+            {
+                SearchItems = Items.Where(i => i.Name.ToUpper().StartsWith(SearchString.ToUpper())).ToList();
+            }
+            else
+            {
+                SearchItems = Items;
+            }
         }
 
         private void DoShowExpenses()
@@ -153,7 +192,7 @@ namespace CoffeeManager.Core.ViewModels
             try
             {
                 var result = await _paymentManager.GetExpenseItems();
-                Items = result.Select(s => new BaseItemViewModel(s)).ToList();
+                SearchItems = Items = result.Select(s => new BaseItemViewModel(s)).ToList();
             }
             catch (ArgumentNullException ex)
             {
