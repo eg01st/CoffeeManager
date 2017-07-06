@@ -96,7 +96,7 @@ namespace CoffeeManager.Droid
                 client.AuthenticationMechanisms.Remove("XOAUTH2");
 
                 // Note: only needed if the SMTP server requires authentication
-                client.Authenticate("serdechnyi.dima@gmail.com", "");
+                client.Authenticate("serdechnyi.dima@gmail.com", "rbjnj5442872");
 
                 client.Send(message);
                 client.Disconnect(true);

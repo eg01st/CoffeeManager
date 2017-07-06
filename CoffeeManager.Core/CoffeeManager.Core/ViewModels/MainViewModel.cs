@@ -1,4 +1,6 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Acr.UserDialogs;
 using CoffeeManager.Core.Managers;
@@ -177,12 +179,17 @@ namespace CoffeeManager.Core.ViewModels
             RaisePropertyChanged(nameof(SumButtonText));
         }
 
-        private async void DoPay()
+        private void DoPay()
         {
+            var tasks = new List<Task>();
             foreach (var productViewModel in SelectedProducts)
             {
-                await ProductManager.SaleProduct(productViewModel.Id, productViewModel.Price, productViewModel.IsPoliceSale, productViewModel.IsCreditCardSale);
+                var task = new Task(async () => await  ProductManager.SaleProduct(productViewModel.Id, productViewModel.Price, productViewModel.IsPoliceSale, productViewModel.IsCreditCardSale));
+                //await ProductManager.SaleProduct(productViewModel.Id, productViewModel.Price, productViewModel.IsPoliceSale, productViewModel.IsCreditCardSale);
+                tasks.Add(task);
+                task.Start();
             }
+            Task.WaitAll(tasks.ToArray());
             SelectedProducts = new ObservableCollection<ProductViewModel>();
             Sum = 0;
             RaisePropertyChanged(nameof(PayEnabled));

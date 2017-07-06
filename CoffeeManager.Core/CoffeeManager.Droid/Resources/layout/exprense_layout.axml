@@ -13,13 +13,33 @@
     android:orientation="horizontal"
     android:gravity="top"
     >
-
+    <LinearLayout
+           android:layout_width="300dp"
+           android:layout_height="300dp"
+           android:orientation="vertical">
+    <LinearLayout
+           android:layout_width="150dp"
+           android:layout_height="70dp"
+           android:orientation="horizontal">
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:textSize="20dp"
+          android:text="Поиск: "/>
+      <EditText
+ 
+          android:layout_width="150dp"
+          android:layout_height="wrap_content"
+          android:textSize="20dp"
+          local:MvxBind="Text SearchString"/>
+    </LinearLayout>
     <Mvx.MvxListView
       android:layout_width="300dp"
       android:layout_height="300dp"
       android:orientation="vertical"
-      local:MvxBind="ItemsSource Items; ItemClick SelectExpenseTypeCommand"
+      local:MvxBind="ItemsSource SearchItems; ItemClick SelectExpenseTypeCommand"
       local:MvxItemTemplate="@layout/exprense_card" />
+    </LinearLayout>
     <LinearLayout
     android:layout_margin="30dp"
     android:layout_width="300dp"
@@ -55,7 +75,7 @@
               android:textSize="20dp"
               android:text="Сумма: "/>
           <EditText
-              android:inputType="numberDecimal"
+                     android:inputType="numberDecimal"
               android:layout_width="50dp"
               android:layout_height="wrap_content"
               android:textSize="20dp"

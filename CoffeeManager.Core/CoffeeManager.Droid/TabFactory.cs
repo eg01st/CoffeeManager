@@ -15,6 +15,8 @@ namespace CoffeeManager.Droid
             var water = ProduceFragment<WaterFragment, WaterViewModel>();
             var adds = ProduceFragment<AddsFragment, AddsViewModel>();
             var meals = ProduceFragment<MealsFragment, MealsViewModel>();
+            var coldDrinks = ProduceFragment<ColdDrinksFragment, ColdDrinksViewModel>();
+            var iceCream = ProduceFragment<IceCreamFragment, IceCreamViewModel>();
 
             return new TabItem[]
             {
@@ -24,6 +26,8 @@ namespace CoffeeManager.Droid
                 new TabItem("Вода", water),
                 new TabItem("Добавки", adds),
                 new TabItem("Еда", meals),
+                new TabItem("Хол Напитки", coldDrinks),
+                new TabItem("Мороженое", iceCream),
             };
 
         }

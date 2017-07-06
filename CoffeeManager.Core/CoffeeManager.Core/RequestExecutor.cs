@@ -18,6 +18,7 @@ namespace CoffeeManager.Core
         protected static readonly int CoffeeRoomNo = Config.CoffeeRoomNo;
         private static readonly string _apiUrl = Config.ApiUrl;
         private static readonly object sync = new object();
+        private static readonly object writeSync = new object();
 
         private static IMvxFileStore storage = Mvx.Resolve<IMvxFileStore>();
         private const string RequestQueue = "RequestsQueue";
@@ -70,7 +71,6 @@ namespace CoffeeManager.Core
                     catch (Exception ex)
                     {
                         request.ErrorMessage = $"{request.Method} {request.Path} {request.ObjectJson} {ex}";
-                        continue;
                     }
                     finally
                     {
@@ -112,21 +112,30 @@ namespace CoffeeManager.Core
 
         private static void SaveErrorStorage(RequestStorage requestStorage)
         {
-            storage.WriteFile(ErrorsLog, JsonConvert.SerializeObject(requestStorage));
+            lock (writeSync)
+            {
+                storage.WriteFile(ErrorsLog, JsonConvert.SerializeObject(requestStorage));
+            }
         }
 
         public static void Post(string path, string obj)
         {
-            var requestStorage = GetStorage();
-            requestStorage.Requests.Add(new Request() {Method = "POST", Path = path, ObjectJson = obj});
-            storage.WriteFile(RequestQueue, JsonConvert.SerializeObject(requestStorage));
+            lock(writeSync)
+            {
+                var requestStorage = GetStorage();
+                requestStorage.Requests.Add(new Request() {Method = "POST", Path = path, ObjectJson = obj});
+                storage.WriteFile(RequestQueue, JsonConvert.SerializeObject(requestStorage));
+            }
         }
 
         public static void Put(string path, string obj)
         {
-            var requestStorage = GetStorage();
-            requestStorage.Requests.Add(new Request() { Method = "PUT", Path = path, ObjectJson = obj });
-            storage.WriteFile(RequestQueue, JsonConvert.SerializeObject(requestStorage));
+            lock (writeSync)
+            {
+                var requestStorage = GetStorage();
+                requestStorage.Requests.Add(new Request() {Method = "PUT", Path = path, ObjectJson = obj});
+                storage.WriteFile(RequestQueue, JsonConvert.SerializeObject(requestStorage));
+            }
         }
 
         private static async Task<Exception> RunInternal(Request request)
