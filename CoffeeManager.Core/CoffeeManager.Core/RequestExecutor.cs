@@ -54,10 +54,9 @@ namespace CoffeeManager.Core
                 }
                 requestStorage = GetStorage();
 
-                var errorRequests = new List<Request>(requestStorage.Requests);
-
-                foreach (var request in errorRequests)
+                for(int i = 0; i < requestStorage.Requests.Count; i++)
                 {
+                    var request = requestStorage.Requests[i];
                     try
                     {
                         var ex = RunInternal(request).Result;
