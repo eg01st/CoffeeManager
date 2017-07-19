@@ -45,7 +45,7 @@ namespace CoffeeManager.Core.ServiceProviders
         public async Task<EndShiftUserInfo> EndShift(int shiftId, decimal realAmount, int endCounter)
         {
            return await
-                Post<EndShiftUserInfo, EndShiftDTO>(Shift,
+                Post<EndShiftUserInfo, EndShiftDTO>($"{Shift}/endShift",
                     new EndShiftDTO()
                     {
                         CoffeeRoomNo = CoffeeRoomNo,

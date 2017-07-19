@@ -1,4 +1,5 @@
 ﻿using System.Windows.Input;
+using Acr.UserDialogs;
 using CoffeeManager.Core.Managers;
 using CoffeeManager.Core.ServiceProviders;
 using MvvmCross.Core.ViewModels;
@@ -57,8 +58,12 @@ namespace CoffeeManager.Core.ViewModels
         private async void DoFinishCommand()
         {
             var info = await _shiftManager.EndUserShift(_shiftId, decimal.Parse(RealAmount), int.Parse(EndCounter));
-            UserDialogs.Alert("Окончание смены", $"Касса за смену: {info.RealShitAmount} \n Заработано за смену: {info.EarnedAmount}");
-            Close(this);
+            UserDialogs.Alert( new AlertConfig()
+            {
+                Title = "Окончание смены",
+                Message = $"Касса за смену: {info.RealShitAmount:F}\nЗаработано за смену: {info.EarnedAmount:F}",
+                OnAction = () => Close(this)
+            });
         }
     }
 }
