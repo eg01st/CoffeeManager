@@ -56,7 +56,8 @@ namespace CoffeeManager.Core.ViewModels
 
         private async void DoFinishCommand()
         {
-            await _shiftManager.EndUserShift(_shiftId, decimal.Parse(RealAmount), int.Parse(EndCounter));
+            var info = await _shiftManager.EndUserShift(_shiftId, decimal.Parse(RealAmount), int.Parse(EndCounter));
+            UserDialogs.Alert("Окончание смены", $"Касса за смену: {info.RealShitAmount} \n Заработано за смену: {info.EarnedAmount}");
             Close(this);
         }
     }

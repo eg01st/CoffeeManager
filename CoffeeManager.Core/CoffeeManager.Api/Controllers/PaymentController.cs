@@ -8,6 +8,7 @@ using System.Web.Http;
 using CoffeeManager.Api.Mappers;
 using CoffeeManager.Models;
 using Newtonsoft.Json;
+using System.Data.Entity;
 
 namespace CoffeeManager.Api.Controllers
 {
@@ -129,6 +130,34 @@ namespace CoffeeManager.Api.Controllers
             var entities = new CoffeeRoomEntities();
             var expenses = entities.Expenses.Include("ExpenseType1").Where(e => e.CoffeeRoomNo == coffeeroomno && e.ShiftId.Value == id).ToList().Select(s => s.ToDTO());
             return Request.CreateResponse(HttpStatusCode.OK, expenses);
+        }
+
+        [Route("api/payment/getExpenses")]
+        [HttpGet]
+        public async Task<HttpResponseMessage> GetExpenses([FromUri]int coffeeroomno, [FromUri]DateTime from, [FromUri]DateTime to, HttpRequestMessage message)
+        {
+            //var token = message.Headers.GetValues("token").FirstOrDefault();
+            //if (token == null || !UserSessions.Sessions.Contains(token))
+            //{
+            //    return Request.CreateResponse(HttpStatusCode.Forbidden);
+            //}
+            var entities = new CoffeeRoomEntities();
+            var expenses = entities.Expenses.Include(i => i.ExpenseType1).Include(i => i.Shift).Where(e => e.CoffeeRoomNo == coffeeroomno && e.Shift.Date > from && e.Shift.Date < to).ToList().Select(s => s.ToDTO());
+            return Request.CreateResponse(HttpStatusCode.OK, expenses);
+        }
+
+        [Route("api/payment/getSalesByDateDate")]
+        [HttpGet]
+        public async Task<HttpResponseMessage> GetSalesByDate([FromUri]int coffeeroomno, [FromUri]DateTime from, [FromUri]DateTime to, HttpRequestMessage message)
+        {
+            var token = message.Headers.GetValues("token").FirstOrDefault();
+            if (token == null || !UserSessions.Contains(token))
+            {
+                return Request.CreateResponse(HttpStatusCode.Forbidden);
+            }
+            var entities = new CoffeeRoomEntities();
+            var sales = entities.Sales.Where(s => s.Time > from && s.Time < to && s.CoffeeRoomNo == coffeeroomno).Select(s => s.ToDTO());
+            return Request.CreateResponse(HttpStatusCode.OK, sales);           
         }
 
     }

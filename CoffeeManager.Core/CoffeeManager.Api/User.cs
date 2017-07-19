@@ -24,8 +24,16 @@ namespace CoffeeManager.Api
         public string Name { get; set; }
         public Nullable<int> CoffeeRoomNo { get; set; }
         public bool IsActive { get; set; }
+        public int DayShiftPersent { get; set; }
+        public int NightShiftPercent { get; set; }
+        public decimal CurrentEarnedAmount { get; set; }
+        public decimal EntireEarnedAmount { get; set; }
+        public Nullable<int> ExpenceId { get; set; }
+        public decimal SimplePayment { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Shift> Shifts { get; set; }
+        public virtual Expense Expense { get; set; }
+        public virtual ExpenseType ExpenseType { get; set; }
     }
 }

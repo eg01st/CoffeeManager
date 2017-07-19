@@ -43,6 +43,7 @@
     <Compile Include="CupTypeEnum.cs" />
     <Compile Include="Dept.cs" />
     <Compile Include="EndShiftDTO.cs" />
+    <Compile Include="EndShiftUserInfo.cs" />
     <Compile Include="Entity.cs" />
     <Compile Include="Expense.cs" />
     <Compile Include="ExpenseType.cs" />

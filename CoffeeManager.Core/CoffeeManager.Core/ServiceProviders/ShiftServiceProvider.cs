@@ -42,10 +42,10 @@ namespace CoffeeManager.Core.ServiceProviders
             return await Get<Sale[]>($"{Shift}/getShiftSales");
         }
 
-        public async Task EndShift(int shiftId, decimal realAmount, int endCounter)
+        public async Task<EndShiftUserInfo> EndShift(int shiftId, decimal realAmount, int endCounter)
         {
-            await
-                Put(Shift,
+           return await
+                Post<EndShiftUserInfo, EndShiftDTO>(Shift,
                     new EndShiftDTO()
                     {
                         CoffeeRoomNo = CoffeeRoomNo,

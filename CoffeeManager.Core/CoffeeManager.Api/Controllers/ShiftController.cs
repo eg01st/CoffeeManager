@@ -52,20 +52,30 @@ namespace CoffeeManager.Api.Controllers
             return Request.CreateResponse<Models.Shift>(HttpStatusCode.OK, shiftToReturn);
         }
 
-        public async Task<HttpResponseMessage> Put([FromUri]int coffeeroomno, HttpRequestMessage message)
+        [Route("api/shift/endShift")]
+        [HttpPost]
+        public async Task<HttpResponseMessage> EndShift([FromUri]int coffeeroomno, HttpRequestMessage message)
         {
             var request = await message.Content.ReadAsStringAsync();
             var shiftInfo = JsonConvert.DeserializeObject<EndShiftDTO>(request);
             int shiftId = shiftInfo.ShiftId;
                 
             var enities = new  CoffeeRoomEntities();
-            var shift = enities.Shifts.First(s => s.Id == shiftId && s.CoffeeRoomNo == coffeeroomno);
+            var shift = enities.Shifts.Include(s => s.User).First(s => s.Id == shiftId && s.CoffeeRoomNo == coffeeroomno);
             shift.IsFinished = true;
             shift.RealAmount = shiftInfo.RealAmount;
             shift.EndCounter = shiftInfo.Counter;
 
+            var diff = shift.RealAmount - shift.TotalAmount;
+            var realShiftAmount = shift.CurrentAmount + diff + shift.CreditCardAmount.Value;
+            bool isDayShift = shift.Date.Value.TimeOfDay.Hours < 12;
+
+            var user = shift.User;
+            var userEarnedAmount = user.SimplePayment + (realShiftAmount / 100 * (isDayShift ? user.DayShiftPersent : user.NightShiftPercent));
+            user.CurrentEarnedAmount += userEarnedAmount;
+
             await enities.SaveChangesAsync();
-            return new HttpResponseMessage() { StatusCode = HttpStatusCode.OK };
+            return Request.CreateResponse<Models.EndShiftUserInfo>(HttpStatusCode.OK, new EndShiftUserInfo() {EarnedAmount = userEarnedAmount, RealShitAmount = realShiftAmount });
         }
 
         [Route("api/shift/getCurrentShift")]

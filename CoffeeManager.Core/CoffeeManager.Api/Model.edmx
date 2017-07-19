@@ -221,6 +221,12 @@
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
           <Property Name="CoffeeRoomNo" Type="int" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="DayShiftPersent" Type="int" Nullable="false" />
+          <Property Name="NightShiftPercent" Type="int" Nullable="false" />
+          <Property Name="CurrentEarnedAmount" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="EntireEarnedAmount" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ExpenceId" Type="int" />
+          <Property Name="SimplePayment" Type="decimal" Precision="18" Scale="0" Nullable="false" />
         </EntityType>
         <EntityType Name="UtilizedCup">
           <Key>
@@ -464,6 +470,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Users_Expence">
+          <End Role="ExpenseType" Type="Self.ExpenseType" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ExpenseType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="ExpenceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Function Name="GetAllSales" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="from" Type="date" Mode="In" />
           <Parameter Name="to" Type="date" Mode="In" />
@@ -579,6 +597,10 @@
             <End Role="ExpenseType" EntitySet="ExpenseType" />
             <End Role="SuplyOrder" EntitySet="SuplyOrder" />
           </AssociationSet>
+          <AssociationSet Name="FK_Users_Expence" Association="Self.FK_Users_Expence">
+            <End Role="ExpenseType" EntitySet="ExpenseType" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -619,6 +641,7 @@
           <NavigationProperty Name="ExpenseType1" Relationship="Self.FK__Expense__Expense__37A5467C" FromRole="Expense" ToRole="ExpenseType" />
           <NavigationProperty Name="Shift" Relationship="Self.FK__Expense__ShiftId__38996AB5" FromRole="Expense" ToRole="Shifts" />
           <Property Name="Quantity" Type="Int32" />
+          <NavigationProperty Name="Users" Relationship="CoffeeRoomModel.FK_Users_Expence" FromRole="Expense" ToRole="User" />
         </EntityType>
         <EntityType Name="ExpenseType">
           <Key>
@@ -630,6 +653,7 @@
           <NavigationProperty Name="Expenses" Relationship="Self.FK__Expense__Expense__37A5467C" FromRole="ExpenseType" ToRole="Expense" />
           <NavigationProperty Name="SupliedProducts" Relationship="CoffeeRoomModel.FK_SupliedProduct_ExpenseType" FromRole="ExpenseType" ToRole="SupliedProduct" />
           <NavigationProperty Name="SuplyOrders" Relationship="CoffeeRoomModel.FK_SuplyOrder_Expense" FromRole="ExpenseType" ToRole="SuplyOrder" />
+          <NavigationProperty Name="Users" Relationship="CoffeeRoomModel.FK_Users_Expence1" FromRole="ExpenseType" ToRole="User" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
@@ -723,6 +747,14 @@
           <Property Name="CoffeeRoomNo" Type="Int32" />
           <NavigationProperty Name="Shifts" Relationship="Self.FK__Shifts__UserId__22AA2996" FromRole="Users" ToRole="Shifts" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="DayShiftPersent" Type="Int32" Nullable="false" />
+          <Property Name="NightShiftPercent" Type="Int32" Nullable="false" />
+          <Property Name="CurrentEarnedAmount" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="EntireEarnedAmount" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="ExpenceId" Type="Int32" />
+          <NavigationProperty Name="Expense" Relationship="CoffeeRoomModel.FK_Users_Expence" FromRole="User" ToRole="Expense" />
+          <Property Name="SimplePayment" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <NavigationProperty Name="ExpenseType" Relationship="CoffeeRoomModel.FK_Users_Expence1" FromRole="User" ToRole="ExpenseType" />
         </EntityType>
         <EntityType Name="UtilizedCup">
           <Key>
@@ -975,6 +1007,14 @@
             <Parameter Name="to" Mode="In" Type="DateTime" />
             <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
+          <AssociationSet Name="FK_Users_Expence" Association="CoffeeRoomModel.FK_Users_Expence">
+            <End Role="Expense" EntitySet="Expenses" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_Expence1" Association="CoffeeRoomModel.FK_Users_Expence1">
+            <End Role="ExpenseType" EntitySet="ExpenseTypes" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Dept">
           <Key>
@@ -1233,6 +1273,30 @@
           <Property Type="Int32" Name="quantity" Nullable="true" />
           <Property Type="Int32" Name="producttype" Nullable="true" />
         </ComplexType>
+        <Association Name="FK_Users_Expence">
+          <End Type="CoffeeRoomModel.Expense" Role="Expense" Multiplicity="0..1" />
+          <End Type="CoffeeRoomModel.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Expense">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="ExpenceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_Expence1">
+          <End Type="CoffeeRoomModel.ExpenseType" Role="ExpenseType" Multiplicity="0..1" />
+          <End Type="CoffeeRoomModel.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ExpenseType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="ExpenceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1358,6 +1422,12 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="CoffeeRoomModel.User">
               <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="SimplePayment" ColumnName="SimplePayment" />
+                <ScalarProperty Name="ExpenceId" ColumnName="ExpenceId" />
+                <ScalarProperty Name="EntireEarnedAmount" ColumnName="EntireEarnedAmount" />
+                <ScalarProperty Name="CurrentEarnedAmount" ColumnName="CurrentEarnedAmount" />
+                <ScalarProperty Name="NightShiftPercent" ColumnName="NightShiftPercent" />
+                <ScalarProperty Name="DayShiftPersent" ColumnName="DayShiftPersent" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />

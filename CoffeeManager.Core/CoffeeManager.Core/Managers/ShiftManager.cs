@@ -20,9 +20,9 @@ namespace CoffeeManager.Core.Managers
 
         }
 
-        public async Task EndUserShift(int shiftId, decimal realAmount, int endCounter)
+        public async Task<EndShiftUserInfo> EndUserShift(int shiftId, decimal realAmount, int endCounter)
         {
-            await provider.EndShift(shiftId, realAmount, endCounter);
+           return await provider.EndShift(shiftId, realAmount, endCounter);
         }
 
         public async Task<Shift> GetCurrentShift()

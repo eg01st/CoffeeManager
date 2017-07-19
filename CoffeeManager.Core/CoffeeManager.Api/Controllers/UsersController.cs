@@ -39,6 +39,58 @@ namespace CoffeeManager.Api.Controllers
             return Request.CreateResponse(HttpStatusCode.OK);
         }
 
+        [Route("api/users/paySalary")]
+        [HttpPut]
+        public async Task<HttpResponseMessage> PaySalary([FromUri]int coffeeroomno, [FromUri]int userId, [FromUri]int currentShifId, HttpRequestMessage message)
+        {
+            var token = message.Headers.GetValues("token").FirstOrDefault();
+            if (token == null || !UserSessions.Contains(token))
+            {
+                return Request.CreateResponse(HttpStatusCode.Forbidden);
+            }
+           
+            var entites = new CoffeeRoomEntities();
+            var user = entites.Users.FirstOrDefault(u => u.Id == userId && u.CoffeeRoomNo == coffeeroomno);
+            if(user != null)
+            {
+                var expense = new Expense();
+                expense.ExpenseType = user.ExpenceId;
+                expense.Amount = user.CurrentEarnedAmount;
+                expense.CoffeeRoomNo = coffeeroomno;
+                expense.Quantity = 1;
+                expense.ShiftId = currentShifId;
+                entites.Expenses.Add(expense);
+
+                user.EntireEarnedAmount += user.CurrentEarnedAmount;
+                user.CurrentEarnedAmount = 0;
+
+                await entites.SaveChangesAsync();
+            }
+            
+            return Request.CreateResponse(HttpStatusCode.OK);
+        }
+
+        [Route("api/users/disable")]
+        [HttpPost]
+        public async Task<HttpResponseMessage> DisableUser([FromUri]int coffeeroomno, [FromUri]int userId, HttpRequestMessage message)
+        {
+            var token = message.Headers.GetValues("token").FirstOrDefault();
+            if (token == null || !UserSessions.Contains(token))
+            {
+                return Request.CreateResponse(HttpStatusCode.Forbidden);
+            }
+           
+            var entites = new CoffeeRoomEntities();
+            var user = entites.Users.FirstOrDefault(u => u.CoffeeRoomNo == coffeeroomno && u.Id == userId);
+            if(user != null)
+            {
+                entites.Users.Remove(user);
+                await entites.SaveChangesAsync();
+            }
+            
+            return Request.CreateResponse(HttpStatusCode.OK);
+        }
+
         [Route("api/users/login")]
         [HttpPost]
         public async Task<HttpResponseMessage> Login([FromUri]int coffeeroomno, HttpRequestMessage message)

@@ -14,6 +14,12 @@ namespace CoffeeManager.Api
     
     public partial class Expense
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Expense()
+        {
+            this.Users = new HashSet<User>();
+        }
+    
         public int Id { get; set; }
         public decimal Amount { get; set; }
         public Nullable<int> ShiftId { get; set; }
@@ -23,5 +29,7 @@ namespace CoffeeManager.Api
     
         public virtual ExpenseType ExpenseType1 { get; set; }
         public virtual Shift Shift { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<User> Users { get; set; }
     }
 }
