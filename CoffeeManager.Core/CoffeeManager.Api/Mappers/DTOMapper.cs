@@ -9,7 +9,18 @@ namespace CoffeeManager.Api.Mappers
 	{
 		public static Models.User ToDTO (this User dbUser)
 		{
-			return new Models.User () { CoffeeRoomNo = dbUser.CoffeeRoomNo.Value, Name = dbUser.Name, Id = dbUser.Id };
+            return new Models.User()
+            {
+                CoffeeRoomNo = dbUser.CoffeeRoomNo.Value,
+                Name = dbUser.Name,
+                Id = dbUser.Id,
+                CurrentEarnedAmount = dbUser.CurrentEarnedAmount,
+                DayShiftPersent = dbUser.DayShiftPersent,
+                EntireEarnedAmount = dbUser.EntireEarnedAmount,
+                ExpenceId = dbUser.ExpenceId,
+                IsActive = dbUser.IsActive,
+                NightShiftPercent = dbUser.NightShiftPercent
+            };
 		}
 
 		public static Models.Product ToDTO (this Product prodDb)

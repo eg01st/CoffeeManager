@@ -31,6 +31,16 @@ namespace CoffeeManager.Api.Mappers
 
         }
 
+        public static User Update(Models.User user, User userDb)
+        {
+            userDb.Name = user.Name;
+            userDb.NightShiftPercent = user.NightShiftPercent;
+            userDb.DayShiftPersent = user.DayShiftPersent;
+            userDb.IsActive = user.IsActive;
+            userDb.ExpenceId= user.ExpenceId;
+            return userDb;
+        }
+
 
         public static Product Map (Models.Product product)
 		{
