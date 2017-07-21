@@ -1,13 +1,14 @@
 ﻿using System.Threading.Tasks;
 using CoffeeManager.Core.ServiceProviders;
 using CoffeeManager.Models;
+using System.Collections.Generic;
 
 namespace CoffeeManager.Core.Managers
 {
     public class UserManager : BaseManager
     {
         private UserServiceProvider provider = new UserServiceProvider();
-        public async Task<User[]> GetUsers()
+        public async Task<IEnumerable<User>> GetUsers()
         {
             return await provider.GetUsers();
         }

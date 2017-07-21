@@ -4,6 +4,7 @@ using Acr.UserDialogs;
 using CoffeeManager.Core.Managers;
 using CoffeeManager.Models;
 using MvvmCross.Core.ViewModels;
+using System.Linq;
 
 namespace CoffeeManager.Core.ViewModels
 {
@@ -57,7 +58,8 @@ namespace CoffeeManager.Core.ViewModels
             {
                 ShowViewModel<MainViewModel>(new { userId = currentShift.UserId, shiftId = currentShift.Id });
             }
-            Users = await _userManager.GetUsers();
+            var res = await _userManager.GetUsers();
+            Users = res.Where(u => u.IsActive).ToArray();
         }
     }
 }

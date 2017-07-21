@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 using CoffeeManager.Models;
-
+using System.Collections.Generic;
 
 namespace CoffeeManager.Core.ServiceProviders
 {
@@ -8,9 +8,9 @@ namespace CoffeeManager.Core.ServiceProviders
     {
         private const string Users = "Users";
 
-        public async Task<User[]> GetUsers()
+        public async Task<IEnumerable<User>> GetUsers()
         {
-            return await Get<User[]>(Users);
+            return await Get<IEnumerable<User>>(Users);
         }
 
         public async Task<User> AddUser(string userName)
