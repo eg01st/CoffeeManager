@@ -27,6 +27,12 @@ namespace CoffeeManager.Api.Mappers
             {
                 Name = user.Name,
                 CoffeeRoomNo = user.CoffeeRoomNo,
+                CurrentEarnedAmount = user.CurrentEarnedAmount,
+                DayShiftPersent = user.DayShiftPersent,
+                EntireEarnedAmount = user.EntireEarnedAmount,
+                ExpenceId = user.ExpenceId,
+                NightShiftPercent = user.NightShiftPercent,
+                IsActive = user.IsActive
             };
 
         }

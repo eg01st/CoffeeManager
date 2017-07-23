@@ -32,7 +32,7 @@ namespace CoffeeManager.Api.Controllers
 
         [Route("api/users/add")]
         [HttpPut]
-        public async Task<HttpResponseMessage> Add([FromUri]int coffeeroomno, [FromUri]string name, HttpRequestMessage message)
+        public async Task<HttpResponseMessage> Add([FromUri]int coffeeroomno, HttpRequestMessage message)
         {
             var token = message.Headers.GetValues("token").FirstOrDefault();
             if (token == null || !UserSessions.Contains(token))
@@ -42,9 +42,9 @@ namespace CoffeeManager.Api.Controllers
             var request = await message.Content.ReadAsStringAsync();
             var user = JsonConvert.DeserializeObject<Models.User>(request);
             var entites = new  CoffeeRoomEntities();
-            var userDb = new User() { CoffeeRoomNo = coffeeroomno, Name = name, SimplePayment = 100, DayShiftPersent = 4, NightShiftPercent = 6 };
+            var userDb = DbMapper.Map(user);
             entites.Users.Add(userDb);
-            await entites.SaveChangesAsync();
+            entites.SaveChanges();
             return Request.CreateResponse(HttpStatusCode.OK, userDb.Id);
         }
 
@@ -62,7 +62,7 @@ namespace CoffeeManager.Api.Controllers
             var entites = new CoffeeRoomEntities();
             var userDb = entites.Users.FirstOrDefault(u => u.CoffeeRoomNo == coffeeroomno && u.Id == user.Id);
             userDb =  DbMapper.Update(user, userDb);
-            await entites.SaveChangesAsync();
+            entites.SaveChanges();
             return Request.CreateResponse(HttpStatusCode.OK);
         }
 
@@ -92,6 +92,10 @@ namespace CoffeeManager.Api.Controllers
 
                 user.EntireEarnedAmount += user.CurrentEarnedAmount;
                 user.CurrentEarnedAmount = 0;
+
+                var currentShift = entites.Shifts.First(s => s.Id == currentShifId);
+                currentShift.TotalExprenses += expense.Amount;
+                currentShift.TotalAmount -= expense.Amount;
 
                 await entites.SaveChangesAsync();
             }

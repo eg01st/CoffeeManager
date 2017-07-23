@@ -2,7 +2,8 @@
 {
     public class EndShiftUserInfo
     {
-        public decimal RealShitAmount { get; set; }
+        public decimal RealShiftAmount { get; set; }
         public decimal EarnedAmount { get; set; }
+        public decimal CurrentUserAmount { get; set; }
     }
 }

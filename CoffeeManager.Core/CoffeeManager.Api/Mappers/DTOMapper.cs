@@ -111,5 +111,13 @@ namespace CoffeeManager.Api.Mappers
                 yield return new Models.Expense() { Name = item.Name, Amount = item.amount ?? -1 };
             }
         }
+
+        public static IEnumerable<Models.SaleInfo> ToDTO(this List<GetAllSales_Result> result)
+        {
+            foreach (var item in result)
+            {
+                yield return new Models.SaleInfo() { Name = item.name, Amount = item.amount, Quantity = item.quantity, Producttype = item.producttype };
+            }
+        }
     }
 }
