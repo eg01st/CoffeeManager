@@ -16,11 +16,12 @@ namespace CoffeeManager.Core.ServiceProviders
         private const string Products = "Products";
         public async Task<Product[]> GetProduct(ProductType type)
         {
-            return await Get<Product[]>(Products,
+            var prods = await Get<Product[]>(Products,
                 new Dictionary<string, string>()
                 {
                     {nameof(ProductType), ((int) type).ToString()},
                 });
+            return prods.Where(p => p.IsActive).ToArray();
         }
 
         public async Task SaleProduct(int shiftId, int id, decimal price, bool isPoliceSale, bool isCreditCardSale)

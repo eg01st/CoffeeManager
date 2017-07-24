@@ -1,4 +1,5 @@
 ﻿using CoffeeManager.Api.Mappers;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,6 +7,7 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Data.Entity;
 
 namespace CoffeeManager.Api.Controllers
 {
@@ -42,6 +44,17 @@ namespace CoffeeManager.Api.Controllers
         {
             var ctx = new CoffeeRoomEntities();
             var sales = ctx.Sales.Where(s => s.IsCreditCardSale && !s.IsRejected && !s.IsUtilized && s.Time > from && s.Time < to).ToList().Select(s => s.ToDTO());
+            return Request.CreateResponse(HttpStatusCode.OK, sales);
+        }
+
+        [Route("api/statistic/getSalesByName")]
+        [HttpPost]
+        public async Task<HttpResponseMessage> GetSalesByName([FromUri] int coffeeroomno, [FromUri] DateTime from, [FromUri] DateTime to, HttpRequestMessage message)
+        {
+            var request = await message.Content.ReadAsStringAsync();
+            var items = JsonConvert.DeserializeObject<List<string>>(request);
+            var ctx = new CoffeeRoomEntities();
+            var sales = ctx.Sales.Include(p => p.Product1).Where(s => items.Contains(s.Product1.Name) && !s.IsRejected && !s.IsUtilized && s.Time > from && s.Time < to).ToList().Select(s => s.ToDTO());
             return Request.CreateResponse(HttpStatusCode.OK, sales);
         }
 

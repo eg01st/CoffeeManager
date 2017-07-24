@@ -58,6 +58,7 @@ namespace CoffeeManager.Api.Mappers
 				PolicePrice = product.PolicePrice,
 				Price = product.Price,
 				ProductType = product.ProductType,
+                IsActive = product.IsActive
 			};
 			if (product.SuplyId.HasValue) {
 				prod.SuplyProductId = product.SuplyId;

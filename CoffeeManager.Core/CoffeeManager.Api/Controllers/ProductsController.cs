@@ -208,5 +208,24 @@ namespace CoffeeManager.Api.Controllers
             await entities.SaveChangesAsync();
             return Request.CreateResponse(HttpStatusCode.OK);
         }
+
+        [Route("api/products/toggleProductEnabled")]
+        [HttpPost]
+        public async Task<HttpResponseMessage> ToggleProductEnabled([FromUri]int coffeeroomno, [FromUri]int id, HttpRequestMessage message)
+        {
+            var token = message.Headers.GetValues("token").FirstOrDefault();
+            if (token == null || !UserSessions.Contains(token))
+            {
+                return Request.CreateResponse(HttpStatusCode.Forbidden);
+            }
+            var entities = new CoffeeRoomEntities();
+            var product = entities.Products.FirstOrDefault(t => t.CoffeeRoomNo == coffeeroomno && t.Id == id);
+            if (product != null)
+            {
+                product.IsActive = !product.IsActive;
+                entities.SaveChanges();
+            }
+            return Request.CreateResponse(HttpStatusCode.OK);
+        }
     }
 }

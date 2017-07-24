@@ -46,6 +46,25 @@ namespace CoffeeManager.Api.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, types);
         }
 
+        [Route("api/payment/toggleExpenseEnabled")]
+        [HttpPost]
+        public async Task<HttpResponseMessage> ToggleExpenseEnabled([FromUri]int coffeeroomno, [FromUri]int id, HttpRequestMessage message)
+        {
+            var token = message.Headers.GetValues("token").FirstOrDefault();
+            if (token == null || !UserSessions.Contains(token))
+            {
+                return Request.CreateResponse(HttpStatusCode.Forbidden);
+            }
+            var entities = new CoffeeRoomEntities();
+            var type = entities.ExpenseTypes.FirstOrDefault(t => t.CoffeeRoomNo == coffeeroomno && t.Id == id);
+            if(type != null)
+            {
+                type.IsActive = !type.IsActive;
+                entities.SaveChanges();
+            }
+            return Request.CreateResponse(HttpStatusCode.OK);
+        }
+
 
         [Route("api/payment")]
         [HttpPut]
