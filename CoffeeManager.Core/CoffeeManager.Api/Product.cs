@@ -30,6 +30,7 @@ namespace CoffeeManager.Api
         public Nullable<int> CoffeeRoomNo { get; set; }
         public Nullable<int> CupType { get; set; }
         public Nullable<int> SuplyProductId { get; set; }
+        public bool IsActive { get; set; }
     
         public virtual CupType CupType1 { get; set; }
         public virtual ProductType ProductType1 { get; set; }

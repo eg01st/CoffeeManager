@@ -10,5 +10,6 @@
         public int CupType { get; set; }
         public int CoffeeRoomNo { get; set; }
         public int? SuplyId { get; set; }
+        public bool IsActive { get; set; }
     }
 }

@@ -27,9 +27,10 @@ namespace CoffeeManager.Core.Managers
             await provider.AddExpense(ShiftNo, expenseId, amout, itemCount);
         }
 
-        public async Task<Entity[]> GetExpenseItems()
+        public async Task<ExpenseType[]> GetExpenseItems()
         {
-            return await provider.GetExpenseItems();
+            var expenses = await provider.GetExpenseItems();
+            return expenses.Where(e => e.IsActive).ToArray();
         }
 
         public async Task AddNewExpenseType(string typeName)

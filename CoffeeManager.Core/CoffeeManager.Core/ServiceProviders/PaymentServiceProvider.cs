@@ -35,9 +35,9 @@ namespace CoffeeManager.Core.ServiceProviders
                         });
         }
 
-        public async Task<Entity[]> GetExpenseItems()
+        public async Task<ExpenseType[]> GetExpenseItems()
         {
-            return await Get<Entity[]>($"{Payment}/getexpenseitems");
+            return await Get<ExpenseType[]>($"{Payment}/getexpenseitems");
         }
 
         public async Task AddNewExpenseType(string typeName)

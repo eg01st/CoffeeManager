@@ -61,7 +61,7 @@ namespace CoffeeManager.Core.ViewModels
             UserDialogs.Alert( new AlertConfig()
             {
                 Title = "Окончание смены",
-                Message = $"Касса за смену: {info.RealShitAmount:F}\nЗаработано за смену: {info.EarnedAmount:F}",
+                Message = $"Касса за смену: {info.RealShiftAmount:F}\nЗаработано за смену: {info.EarnedAmount:F}\nОбщая сумма зп: {info.CurrentUserAmount:F}",
                 OnAction = () => Close(this)
             });
         }

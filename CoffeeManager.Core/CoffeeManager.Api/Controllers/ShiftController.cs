@@ -75,7 +75,7 @@ namespace CoffeeManager.Api.Controllers
             user.CurrentEarnedAmount += userEarnedAmount;
 
             await enities.SaveChangesAsync();
-            return Request.CreateResponse<Models.EndShiftUserInfo>(HttpStatusCode.OK, new EndShiftUserInfo() {EarnedAmount = userEarnedAmount, RealShitAmount = realShiftAmount });
+            return Request.CreateResponse<Models.EndShiftUserInfo>(HttpStatusCode.OK, new EndShiftUserInfo() {EarnedAmount = userEarnedAmount, RealShiftAmount = realShiftAmount, CurrentUserAmount = user.CurrentEarnedAmount });
         }
 
         [Route("api/shift/getCurrentShift")]

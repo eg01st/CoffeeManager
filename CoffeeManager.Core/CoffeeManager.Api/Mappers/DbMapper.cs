@@ -27,8 +27,24 @@ namespace CoffeeManager.Api.Mappers
             {
                 Name = user.Name,
                 CoffeeRoomNo = user.CoffeeRoomNo,
+                CurrentEarnedAmount = user.CurrentEarnedAmount,
+                DayShiftPersent = user.DayShiftPersent,
+                EntireEarnedAmount = user.EntireEarnedAmount,
+                ExpenceId = user.ExpenceId,
+                NightShiftPercent = user.NightShiftPercent,
+                IsActive = user.IsActive
             };
 
+        }
+
+        public static User Update(Models.User user, User userDb)
+        {
+            userDb.Name = user.Name;
+            userDb.NightShiftPercent = user.NightShiftPercent;
+            userDb.DayShiftPersent = user.DayShiftPersent;
+            userDb.IsActive = user.IsActive;
+            userDb.ExpenceId= user.ExpenceId;
+            return userDb;
         }
 
 
@@ -42,6 +58,7 @@ namespace CoffeeManager.Api.Mappers
 				PolicePrice = product.PolicePrice,
 				Price = product.Price,
 				ProductType = product.ProductType,
+                IsActive = product.IsActive
 			};
 			if (product.SuplyId.HasValue) {
 				prod.SuplyProductId = product.SuplyId;

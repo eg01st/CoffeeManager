@@ -22,9 +22,17 @@ namespace CoffeeManager.Api.Controllers
             return new HttpResponseMessage() { Content = new ObjectContent<IEnumerable<Models.User>>(users, new JsonMediaTypeFormatter())};
         }
 
-        [Route("api/users")]
+        [Route("api/users/getUser")]
+        [HttpGet]
+        public HttpResponseMessage GetUser([FromUri]int coffeeroomno, [FromUri]int userId)
+        {
+            var user = new CoffeeRoomEntities().Users.FirstOrDefault(u => u.CoffeeRoomNo == coffeeroomno && u.Id == userId)?.ToDTO();
+            return new HttpResponseMessage() { Content = new ObjectContent<Models.User>(user, new JsonMediaTypeFormatter()) };
+        }
+
+        [Route("api/users/add")]
         [HttpPut]
-        public async Task<HttpResponseMessage> Post([FromUri]int coffeeroomno, HttpRequestMessage message)
+        public async Task<HttpResponseMessage> Add([FromUri]int coffeeroomno, HttpRequestMessage message)
         {
             var token = message.Headers.GetValues("token").FirstOrDefault();
             if (token == null || !UserSessions.Contains(token))
@@ -34,13 +42,34 @@ namespace CoffeeManager.Api.Controllers
             var request = await message.Content.ReadAsStringAsync();
             var user = JsonConvert.DeserializeObject<Models.User>(request);
             var entites = new  CoffeeRoomEntities();
-            entites.Users.Add(DbMapper.Map(user));
-            await entites.SaveChangesAsync();
+            var userDb = DbMapper.Map(user);
+            entites.Users.Add(userDb);
+            entites.SaveChanges();
+            return Request.CreateResponse(HttpStatusCode.OK, userDb.Id);
+        }
+
+        [Route("api/users/update")]
+        [HttpPost]
+        public async Task<HttpResponseMessage> Update([FromUri]int coffeeroomno, HttpRequestMessage message)
+        {
+            var token = message.Headers.GetValues("token").FirstOrDefault();
+            if (token == null || !UserSessions.Contains(token))
+            {
+                return Request.CreateResponse(HttpStatusCode.Forbidden);
+            }
+            var request = await message.Content.ReadAsStringAsync();
+            var user = JsonConvert.DeserializeObject<Models.User>(request);
+            var entites = new CoffeeRoomEntities();
+            var userDb = entites.Users.FirstOrDefault(u => u.CoffeeRoomNo == coffeeroomno && u.Id == user.Id);
+            userDb =  DbMapper.Update(user, userDb);
+            entites.SaveChanges();
             return Request.CreateResponse(HttpStatusCode.OK);
         }
 
+
+
         [Route("api/users/paySalary")]
-        [HttpPut]
+        [HttpPost]
         public async Task<HttpResponseMessage> PaySalary([FromUri]int coffeeroomno, [FromUri]int userId, [FromUri]int currentShifId, HttpRequestMessage message)
         {
             var token = message.Headers.GetValues("token").FirstOrDefault();
@@ -64,15 +93,19 @@ namespace CoffeeManager.Api.Controllers
                 user.EntireEarnedAmount += user.CurrentEarnedAmount;
                 user.CurrentEarnedAmount = 0;
 
+                var currentShift = entites.Shifts.First(s => s.Id == currentShifId);
+                currentShift.TotalExprenses += expense.Amount;
+                currentShift.TotalAmount -= expense.Amount;
+
                 await entites.SaveChangesAsync();
             }
             
             return Request.CreateResponse(HttpStatusCode.OK);
         }
 
-        [Route("api/users/disable")]
+        [Route("api/users/toggleEnabled")]
         [HttpPost]
-        public async Task<HttpResponseMessage> DisableUser([FromUri]int coffeeroomno, [FromUri]int userId, HttpRequestMessage message)
+        public async Task<HttpResponseMessage> ToggleEnabled([FromUri]int coffeeroomno, [FromUri]int userId, HttpRequestMessage message)
         {
             var token = message.Headers.GetValues("token").FirstOrDefault();
             if (token == null || !UserSessions.Contains(token))
@@ -84,7 +117,7 @@ namespace CoffeeManager.Api.Controllers
             var user = entites.Users.FirstOrDefault(u => u.CoffeeRoomNo == coffeeroomno && u.Id == userId);
             if(user != null)
             {
-                entites.Users.Remove(user);
+                user.IsActive = !user.IsActive;
                 await entites.SaveChangesAsync();
             }
             
