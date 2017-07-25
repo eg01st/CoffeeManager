@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using CoffeeManager.Core.ServiceProviders;
 using CoffeeManager.Models;
 
@@ -9,7 +10,8 @@ namespace CoffeeManager.Core.Managers
         private UserServiceProvider provider = new UserServiceProvider();
         public async Task<User[]> GetUsers()
         {
-            return await provider.GetUsers();
+            var users = await provider.GetUsers();
+            return users.Where(u => u.IsActive).ToArray();
         }
 
         public async Task<User> AddUser(string userName)
