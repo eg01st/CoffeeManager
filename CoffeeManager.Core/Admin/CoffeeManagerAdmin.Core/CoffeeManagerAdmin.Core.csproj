@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{31D7792C-8339-4C32-8C91-123C9B248B83}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CoffeeManagerAdmin.Core</RootNamespace>
+    <AssemblyName>CoffeeManagerAdmin.Core</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetFrameworkProfile>Profile111</TargetFrameworkProfile>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="App.cs" />
+    <Compile Include="LocalStorage.cs" />
+    <Compile Include="Managers\CupsManager.cs" />
+    <Compile Include="Managers\PaymentManager.cs" />
+    <Compile Include="Managers\ShiftManager.cs" />
+    <Compile Include="Managers\SuplyOrderManager.cs" />
+    <Compile Include="Messages\CalculationListChangedMessage.cs" />
+    <Compile Include="Messages\OrderItemChangedMessage.cs" />
+    <Compile Include="Messages\OrderItemsListChangedMessage.cs" />
+    <Compile Include="Messages\OrderListChangedMessage.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceProviders\CupsProvider.cs" />
+    <Compile Include="ServiceProviders\PaymentProvider.cs" />
+    <Compile Include="ServiceProviders\ShiftServiceProvider.cs" />
+    <Compile Include="ServiceProviders\SuplyOrderProvider.cs" />
+    <Compile Include="ViewModels\ItemViewModel.cs" />
+    <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\Orders\OrderItemsViewModel.cs" />
+    <Compile Include="ViewModels\Orders\OrderItemViewModel.cs" />
+    <Compile Include="ViewModels\Orders\OrdersViewModel.cs" />
+    <Compile Include="ViewModels\Orders\OrderViewModel.cs" />
+    <Compile Include="ViewModels\Orders\SelectOrderItemsViewModel.cs" />
+    <Compile Include="ViewModels\Orders\SelectOrderItemViewModel.cs" />
+    <Compile Include="ViewModels\ProductsCalculationViewModel.cs" />
+    <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="Config.cs" />
+    <Compile Include="Managers\UserManager.cs" />
+    <Compile Include="ServiceProviders\BaseServiceProvider.cs" />
+    <Compile Include="ServiceProviders\UserServiceProvider.cs" />
+    <Compile Include="Managers\BaseManager.cs" />
+    <Compile Include="ServiceProviders\SuplyProductsServiceProvider.cs" />
+    <Compile Include="Managers\SuplyProductsManager.cs" />
+    <Compile Include="ViewModels\ExpenseItemViewModel.cs" />
+    <Compile Include="ViewModels\SaleItemViewModel.cs" />
+    <Compile Include="Managers\ProductManager.cs" />
+    <Compile Include="ServiceProviders\ProductProvider.cs" />
+    <Compile Include="Messages\ProductSelectedMessage.cs" />
+    <Compile Include="Messages\BaseMessage.cs" />
+    <Compile Include="Messages\ProductListChangedMessage.cs" />
+    <Compile Include="Messages\SuplyListChangedMessage.cs" />
+    <Compile Include="Messages\ProcessRequestSuplyListChangedMessage.cs" />
+    <Compile Include="Messages\SuplyProductDeletedMessage.cs" />
+    <Compile Include="ViewModels\Users\UsersViewModel.cs" />
+    <Compile Include="ViewModels\Users\UserItemViewModel.cs" />
+    <Compile Include="ViewModels\Users\UserDetailsViewModel.cs" />
+    <Compile Include="ViewModels\SuplyProducts\SuplyProductDetailsViewModel.cs" />
+    <Compile Include="ViewModels\SuplyProducts\SuplyProductItemViewModel.cs" />
+    <Compile Include="ViewModels\SuplyProducts\SuplyProductsViewModel.cs" />
+    <Compile Include="ViewModels\Shifts\ShiftDetailsViewModel.cs" />
+    <Compile Include="ViewModels\Shifts\ShiftItemViewModel.cs" />
+    <Compile Include="ViewModels\Shifts\ShiftSalesViewModel.cs" />
+    <Compile Include="ViewModels\Shifts\ShiftsViewModel.cs" />
+    <Compile Include="ViewModels\Calculation\CalculationItemViewModel.cs" />
+    <Compile Include="ViewModels\Calculation\CalculationViewModel.cs" />
+    <Compile Include="ViewModels\Calculation\SelectCalculationItemViewModel.cs" />
+    <Compile Include="ViewModels\Calculation\SelectCalculationListViewModel.cs" />
+    <Compile Include="ViewModels\Statistic\StatisticViewModel.cs" />
+    <Compile Include="ViewModels\Statistic\SalesStatisticViewModel.cs" />
+    <Compile Include="ViewModels\Statistic\ExpensesStatisticViewModel.cs" />
+    <Compile Include="Managers\StatisticManager.cs" />
+    <Compile Include="ServiceProviders\StatisticProvider.cs" />
+    <Compile Include="Util\ParameterTransmitter.cs" />
+    <Compile Include="ViewModels\Statistic\SelectSaleItemViewModel.cs" />
+    <Compile Include="ViewModels\Statistic\SalesChartViewModel.cs" />
+    <Compile Include="ViewModels\Statistic\SelectSalesViewModel.cs" />
+    <Compile Include="ViewModels\Abstract\ViewModelBase.cs" />
+    <Compile Include="ViewModels\Abstract\ListItemViewModelBase.cs" />
+    <Compile Include="ViewModels\Statistic\CreditCardSalesViewModel.cs" />
+    <Compile Include="ViewModels\ManageExpenses\ManageExpensesViewModel.cs" />
+    <Compile Include="ViewModels\ManageExpenses\ManageExpenseItemViewModel.cs" />
+    <Compile Include="ViewModels\Products\ProductsViewModel.cs" />
+    <Compile Include="ViewModels\Products\ProductItemViewModel.cs" />
+    <Compile Include="ViewModels\Products\ProductDetailsViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Acr.UserDialogs, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Acr.UserDialogs.6.2.3\lib\portable-win+net45+wp8+win8+wpa81\Acr.UserDialogs.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Acr.UserDialogs.Interface, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Acr.UserDialogs.6.2.3\lib\portable-win+net45+wp8+win8+wpa81\Acr.UserDialogs.Interface.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MvvmCross.Binding, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\MvvmCross.Binding.4.2.0\lib\portable-net45+win+wpa81+wp80\MvvmCross.Binding.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MvvmCross.Core, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\MvvmCross.Core.4.2.0\lib\portable-net45+win+wpa81+wp80\MvvmCross.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MvvmCross.Localization, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\MvvmCross.Binding.4.2.0\lib\portable-net45+win+wpa81+wp80\MvvmCross.Localization.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MvvmCross.Plugins.File, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\MvvmCross.Plugin.File.4.3.0\lib\portable-net45+win+wpa81+wp80\MvvmCross.Plugins.File.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.9.0.1\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Splat, Version=1.6.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Splat.1.6.2\lib\Portable-net45+win+wpa81+wp80\Splat.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MvvmCross.Plugins.Messenger">
+      <HintPath>..\..\packages\MvvmCross.Plugin.Messenger.4.3.0\lib\portable-net45+win+wpa81+wp80\MvvmCross.Plugins.Messenger.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Platform">
+      <HintPath>..\..\packages\MvvmCross.Platform.4.4.0\lib\portable-net45+win+wpa81+wp80\MvvmCross.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Plugins.Visibility">
+      <HintPath>..\..\packages\MvvmCross.Plugin.Visibility.4.4.0\lib\portable-net45+win+wpa81+wp80\MvvmCross.Plugins.Visibility.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="ViewModels\Users\" />
+    <Folder Include="ViewModels\SuplyProducts\" />
+    <Folder Include="ViewModels\Shifts\" />
+    <Folder Include="ViewModels\Calculation\" />
+    <Folder Include="ViewModels\Statistic\" />
+    <Folder Include="Util\" />
+    <Folder Include="ViewModels\Abstract\" />
+    <Folder Include="ViewModels\ManageExpenses\" />
+    <Folder Include="ViewModels\Products\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\CoffeeManager.Models\CoffeeManager.Models.csproj">
+      <Project>{77E355CB-ADF2-4617-AD95-59E1F4F8AF17}</Project>
+      <Name>CoffeeManager.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

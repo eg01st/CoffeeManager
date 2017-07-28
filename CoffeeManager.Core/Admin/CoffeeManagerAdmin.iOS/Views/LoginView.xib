@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginView">
+            <connections>
+                <outlet property="LoginButton" destination="FGq-3B-KWU" id="Dok-vN-nPi"/>
+                <outlet property="LoginText" destination="Env-VX-Klu" id="doC-Op-G1p"/>
+                <outlet property="PasswordText" destination="3TJ-6T-oSW" id="6gD-mS-zaa"/>
+                <outlet property="view" destination="2" id="RRd-Eg-VrN"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="2">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jz9-sV-KGp">
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u3A-8y-8t2">
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lym-2h-FiB">
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Env-VX-Klu">
+                            <constraints>
+                                <constraint firstAttribute="width" constant="120" id="glY-ld-mYT"/>
+                            </constraints>
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3TJ-6T-oSW">
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                        </textField>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FGq-3B-KWU">
+                            <state key="normal" title="Login"/>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="Env-VX-Klu" firstAttribute="leading" secondItem="u3A-8y-8t2" secondAttribute="trailing" constant="49" id="2Iw-99-aBe"/>
+                        <constraint firstAttribute="trailing" secondItem="Env-VX-Klu" secondAttribute="trailing" constant="28" id="8NQ-0V-2yN"/>
+                        <constraint firstItem="FGq-3B-KWU" firstAttribute="top" secondItem="3TJ-6T-oSW" secondAttribute="bottom" constant="8" id="A6P-1d-vsv"/>
+                        <constraint firstItem="lym-2h-FiB" firstAttribute="top" secondItem="u3A-8y-8t2" secondAttribute="bottom" constant="21" id="Cel-Zw-2o0"/>
+                        <constraint firstItem="Env-VX-Klu" firstAttribute="top" secondItem="Jz9-sV-KGp" secondAttribute="top" constant="18" id="EQo-Mr-4Dq"/>
+                        <constraint firstItem="lym-2h-FiB" firstAttribute="leading" secondItem="Jz9-sV-KGp" secondAttribute="leading" constant="24" id="LT2-7V-SrV"/>
+                        <constraint firstAttribute="bottom" secondItem="lym-2h-FiB" secondAttribute="bottom" constant="47" id="MV5-v3-SdT"/>
+                        <constraint firstItem="3TJ-6T-oSW" firstAttribute="top" secondItem="Env-VX-Klu" secondAttribute="bottom" constant="7" id="R3m-qj-dOU"/>
+                        <constraint firstItem="lym-2h-FiB" firstAttribute="top" secondItem="u3A-8y-8t2" secondAttribute="bottom" constant="21" id="SKL-Wq-vqM"/>
+                        <constraint firstItem="Env-VX-Klu" firstAttribute="leading" secondItem="u3A-8y-8t2" secondAttribute="trailing" constant="49" id="Vi5-7n-mck"/>
+                        <constraint firstItem="3TJ-6T-oSW" firstAttribute="top" secondItem="Env-VX-Klu" secondAttribute="bottom" constant="7" id="ayP-j2-VH7"/>
+                        <constraint firstAttribute="trailing" secondItem="FGq-3B-KWU" secondAttribute="trailing" constant="28" id="b2t-tS-8UQ"/>
+                        <constraint firstItem="FGq-3B-KWU" firstAttribute="leading" secondItem="Jz9-sV-KGp" secondAttribute="leading" constant="24" id="bUd-pM-iH4"/>
+                        <constraint firstItem="3TJ-6T-oSW" firstAttribute="leading" secondItem="lym-2h-FiB" secondAttribute="trailing" constant="17" id="bfR-1F-FZP"/>
+                        <constraint firstAttribute="bottom" secondItem="FGq-3B-KWU" secondAttribute="bottom" constant="5" id="eby-Iq-oVV"/>
+                        <constraint firstAttribute="trailing" secondItem="3TJ-6T-oSW" secondAttribute="trailing" constant="28" id="ipV-43-eTh"/>
+                        <constraint firstItem="3TJ-6T-oSW" firstAttribute="leading" secondItem="lym-2h-FiB" secondAttribute="trailing" constant="17" id="mSO-xO-3bW"/>
+                        <constraint firstItem="u3A-8y-8t2" firstAttribute="top" secondItem="Jz9-sV-KGp" secondAttribute="top" constant="18" id="nIp-nZ-09b"/>
+                        <constraint firstAttribute="bottom" secondItem="3TJ-6T-oSW" secondAttribute="bottom" constant="43" id="vAW-QR-HkD"/>
+                        <constraint firstItem="u3A-8y-8t2" firstAttribute="leading" secondItem="Jz9-sV-KGp" secondAttribute="leading" constant="24" id="zjY-6x-k4g"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="Jz9-sV-KGp" firstAttribute="centerY" secondItem="2" secondAttribute="centerY" id="KxM-dO-eMR"/>
+                <constraint firstItem="Jz9-sV-KGp" firstAttribute="centerX" secondItem="2" secondAttribute="centerX" id="ZxH-Ng-z8o"/>
+            </constraints>
+            <point key="canvasLocation" x="-316.5" y="34.5"/>
+        </view>
+    </objects>
+</document>

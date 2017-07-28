@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SelectOrderItemsView">
+            <connections>
+                <outlet property="AddProdButton" destination="mYQ-3k-44o" id="IkW-o7-eaF"/>
+                <outlet property="NewProductText" destination="6J2-aw-HVO" id="hdG-Bq-14I"/>
+                <outlet property="ProductsTableView" destination="4fu-6w-ucq" id="ayU-ei-wri"/>
+                <outlet property="view" destination="2" id="RRd-Eg-VrN"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="2">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Новый товар: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iar-mJ-9Wg">
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6J2-aw-HVO">
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4fu-6w-ucq">
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mYQ-3k-44o">
+                    <state key="normal" title="Добавить"/>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="Iar-mJ-9Wg" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="16" id="DJp-lS-oHB"/>
+                <constraint firstItem="6J2-aw-HVO" firstAttribute="top" secondItem="2" secondAttribute="top" constant="67" id="EfR-xQ-vSJ"/>
+                <constraint firstItem="4fu-6w-ucq" firstAttribute="top" secondItem="Iar-mJ-9Wg" secondAttribute="bottom" constant="16" id="Gtq-M0-7gK"/>
+                <constraint firstItem="mYQ-3k-44o" firstAttribute="top" secondItem="2" secondAttribute="top" constant="65" id="OPZ-er-AOQ"/>
+                <constraint firstAttribute="trailing" secondItem="4fu-6w-ucq" secondAttribute="trailing" id="RpD-Uk-N3t"/>
+                <constraint firstAttribute="bottom" secondItem="4fu-6w-ucq" secondAttribute="bottom" id="ZwG-Wc-blA"/>
+                <constraint firstItem="Iar-mJ-9Wg" firstAttribute="top" secondItem="2" secondAttribute="top" constant="70" id="ZxR-ma-Q3a"/>
+                <constraint firstItem="4fu-6w-ucq" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="psP-pg-mT4"/>
+                <constraint firstItem="mYQ-3k-44o" firstAttribute="leading" secondItem="6J2-aw-HVO" secondAttribute="trailing" constant="8" id="t2Y-8p-mEL"/>
+                <constraint firstAttribute="trailing" secondItem="mYQ-3k-44o" secondAttribute="trailing" constant="16" id="tfF-TB-oxt"/>
+                <constraint firstItem="6J2-aw-HVO" firstAttribute="leading" secondItem="Iar-mJ-9Wg" secondAttribute="trailing" constant="8" id="umQ-dX-oOt"/>
+            </constraints>
+            <point key="canvasLocation" x="25.5" y="52.5"/>
+        </view>
+    </objects>
+</document>

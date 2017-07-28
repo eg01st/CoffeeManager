@@ -1,0 +1,409 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+    <ProjectGuid>{EB7592B4-6689-4D9D-8DC0-F42726B1271D}</ProjectGuid>
+    <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>CoffeeManagerAdmin.iOS</RootNamespace>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+    <AssemblyName>CoffeeManagerAdminiOS</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>i386</MtouchArch>
+    <MtouchLink>None</MtouchLink>
+    <MtouchDebug>true</MtouchDebug>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <MtouchLink>None</MtouchLink>
+    <MtouchArch>i386</MtouchArch>
+    <ConsolePause>false</ConsolePause>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Debug</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <CodesignKey>iPhone Developer: Dmytro Serdechnyi (L437EB49N2)</CodesignKey>
+    <MtouchDebug>true</MtouchDebug>
+    <CodesignProvision>d611088f-f8a0-4f9a-88e7-22a28ee1d7f2</CodesignProvision>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <ConsolePause>false</ConsolePause>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Ad-Hoc|iPhone' ">
+    <DebugType>none</DebugType>
+    <Optimize>True</Optimize>
+    <OutputPath>bin\iPhone\Ad-Hoc</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>False</ConsolePause>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <BuildIpa>True</BuildIpa>
+    <CodesignProvision>Automatic:AdHoc</CodesignProvision>
+    <CodesignKey>iPhone Distribution</CodesignKey>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'AppStore|iPhone' ">
+    <DebugType>none</DebugType>
+    <Optimize>True</Optimize>
+    <OutputPath>bin\iPhone\AppStore</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>False</ConsolePause>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <CodesignProvision>Automatic:AppStore</CodesignProvision>
+    <CodesignKey>iPhone Distribution</CodesignKey>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Bootstrap\FilePluginBootstrap.cs" />
+    <Compile Include="DebugTrace.cs" />
+    <Compile Include="LinkerPleaseInclude.cs" />
+    <Compile Include="Main.cs" />
+    <Compile Include="AppDelegate.cs" />
+    <None Include="Info.plist" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="packages.config" />
+    <Compile Include="Views\LoginView.cs" />
+    <Compile Include="Views\LoginView.designer.cs">
+      <DependentUpon>LoginView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainView.cs" />
+    <Compile Include="Views\MainView.designer.cs">
+      <DependentUpon>MainView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ShiftsView.cs" />
+    <Compile Include="Views\ShiftsView.designer.cs">
+      <DependentUpon>ShiftsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TableSources\ShiftInfoTableSource.cs" />
+    <Compile Include="Views\Cells\ShiftInfoCell.cs" />
+    <Compile Include="Views\Cells\ShiftInfoCell.designer.cs">
+      <DependentUpon>ShiftInfoCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SuplyProductsView.cs" />
+    <Compile Include="Views\SuplyProductsView.designer.cs">
+      <DependentUpon>SuplyProductsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TableSources\SuplyProductTableSource.cs" />
+    <Compile Include="Views\Cells\SuplyProductCell.cs" />
+    <Compile Include="Views\Cells\SuplyProductCell.designer.cs">
+      <DependentUpon>SuplyProductCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Converters\DecimalToStringConverter.cs" />
+    <Compile Include="Views\ShiftDetailsView.cs" />
+    <Compile Include="Views\ShiftDetailsView.designer.cs">
+      <DependentUpon>ShiftDetailsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Cells\ExpenseItemCell.cs" />
+    <Compile Include="Views\Cells\ExpenseItemCell.designer.cs">
+      <DependentUpon>ExpenseItemCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TableSources\ExpenseTableSource.cs" />
+    <Compile Include="Views\Cells\SaleItemCell.cs" />
+    <Compile Include="Views\Cells\SaleItemCell.designer.cs">
+      <DependentUpon>SaleItemCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TableSources\SaleTableSource.cs" />
+    <Compile Include="Bootstrap\MessengerPluginBootstrap.cs" />
+    <Compile Include="Converters\GenericConverter.cs" />
+    <Compile Include="Views\Cells\GroupedSaleCell.cs" />
+    <Compile Include="Views\Cells\GroupedSaleCell.designer.cs">
+      <DependentUpon>GroupedSaleCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SuplyProductDetailsView.cs" />
+    <Compile Include="Views\SuplyProductDetailsView.designer.cs">
+      <DependentUpon>SuplyProductDetailsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProductsCalculationView.cs" />
+    <Compile Include="Views\ProductsCalculationView.designer.cs">
+      <DependentUpon>ProductsCalculationView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Cells\ItemViewCell.cs" />
+    <Compile Include="Views\Cells\ItemViewCell.designer.cs">
+      <DependentUpon>ItemViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CalculationView.cs" />
+    <Compile Include="Views\CalculationView.designer.cs">
+      <DependentUpon>CalculationView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Cells\CalculationItemViewCell.cs" />
+    <Compile Include="Views\Cells\CalculationItemViewCell.designer.cs">
+      <DependentUpon>CalculationItemViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SelectCalculationListView.cs" />
+    <Compile Include="Views\SelectCalculationListView.designer.cs">
+      <DependentUpon>SelectCalculationListView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Cells\SelectCalculationItemViewCell.cs" />
+    <Compile Include="Views\Cells\SelectCalculationItemViewCell.designer.cs">
+      <DependentUpon>SelectCalculationItemViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Orders\OrdersView.cs" />
+    <Compile Include="Views\Orders\OrdersView.designer.cs">
+      <DependentUpon>OrdersView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Orders\OrderViewCell.cs" />
+    <Compile Include="Views\Orders\OrderViewCell.designer.cs">
+      <DependentUpon>OrderViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Orders\OrderItemViewCell.cs" />
+    <Compile Include="Views\Orders\OrderItemViewCell.designer.cs">
+      <DependentUpon>OrderItemViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Orders\SelectOrderItemViewCell.cs" />
+    <Compile Include="Views\Orders\SelectOrderItemViewCell.designer.cs">
+      <DependentUpon>SelectOrderItemViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Orders\SelectOrderItemsView.cs" />
+    <Compile Include="Views\Orders\SelectOrderItemsView.designer.cs">
+      <DependentUpon>SelectOrderItemsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Orders\OrderItemsView.cs" />
+    <Compile Include="Views\Orders\OrderItemsView.designer.cs">
+      <DependentUpon>OrderItemsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Bootstrap\VisibilityPluginBootstrap.cs" />
+    <Compile Include="Views\ShiftSalesView.cs" />
+    <Compile Include="Views\ShiftSalesView.designer.cs">
+      <DependentUpon>ShiftSalesView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Users\UsersView.cs" />
+    <Compile Include="Views\Users\UsersView.designer.cs">
+      <DependentUpon>UsersView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Users\UserDetailsView.cs" />
+    <Compile Include="Views\Users\UserDetailsView.designer.cs">
+      <DependentUpon>UserDetailsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Statistic\StatisticView.cs" />
+    <Compile Include="Views\Statistic\StatisticView.designer.cs">
+      <DependentUpon>StatisticView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Converters\DateToStringConverter.cs" />
+    <Compile Include="Views\Statistic\ExpensesStatisticView.cs" />
+    <Compile Include="Views\Statistic\ExpensesStatisticView.designer.cs">
+      <DependentUpon>ExpensesStatisticView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Statistic\SalesStatisticView.cs" />
+    <Compile Include="Views\Statistic\SalesStatisticView.designer.cs">
+      <DependentUpon>SalesStatisticView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Statistic\SaleStatisticViewCell.cs" />
+    <Compile Include="Views\Statistic\SaleStatisticViewCell.designer.cs">
+      <DependentUpon>SaleStatisticViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TableSources\BaseTableSource.cs" />
+    <Compile Include="Views\Statistic\CreditCardSalesView.cs" />
+    <Compile Include="Views\Statistic\CreditCardSalesView.designer.cs">
+      <DependentUpon>CreditCardSalesView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TableSources\SimpleTableSource.cs" />
+    <Compile Include="Views\Statistic\SelectSalesView.cs" />
+    <Compile Include="Views\Statistic\SelectSalesView.designer.cs">
+      <DependentUpon>SelectSalesView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Statistic\SelectSalesTableViewCell.cs" />
+    <Compile Include="Views\Statistic\SelectSalesTableViewCell.designer.cs">
+      <DependentUpon>SelectSalesTableViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Statistic\SalesChartView.cs" />
+    <Compile Include="Views\Statistic\SalesChartView.designer.cs">
+      <DependentUpon>SalesChartView.cs</DependentUpon>
+    </Compile>
+    <None Include="Lib\Alliance.Charts.dll" />
+    <Compile Include="Views\ManageExpenses\ManageExpensesView.cs" />
+    <Compile Include="Views\ManageExpenses\ManageExpensesView.designer.cs">
+      <DependentUpon>ManageExpensesView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ManageExpenses\ManageExpensesTableViewCell.cs" />
+    <Compile Include="Views\ManageExpenses\ManageExpensesTableViewCell.designer.cs">
+      <DependentUpon>ManageExpensesTableViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Products\ProductsView.cs" />
+    <Compile Include="Views\Products\ProductsView.designer.cs">
+      <DependentUpon>ProductsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Products\ProductItemCell.cs" />
+    <Compile Include="Views\Products\ProductItemCell.designer.cs">
+      <DependentUpon>ProductItemCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Products\ProductDetailsView.cs" />
+    <Compile Include="Views\Products\ProductDetailsView.designer.cs">
+      <DependentUpon>ProductDetailsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Users\UserTableViewCell.cs" />
+    <Compile Include="Views\Users\UserTableViewCell.designer.cs">
+      <DependentUpon>UserTableViewCell.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Setup.cs" />
+    <InterfaceDefinition Include="Resources\LaunchScreen.xib" />
+    <InterfaceDefinition Include="Views\LoginView.xib" />
+    <InterfaceDefinition Include="Views\MainView.xib" />
+    <InterfaceDefinition Include="Views\ShiftsView.xib" />
+    <InterfaceDefinition Include="Views\Cells\ShiftInfoCell.xib" />
+    <InterfaceDefinition Include="Views\SuplyProductsView.xib" />
+    <InterfaceDefinition Include="Views\Cells\SuplyProductCell.xib" />
+    <InterfaceDefinition Include="Views\ShiftDetailsView.xib" />
+    <InterfaceDefinition Include="Views\Cells\ExpenseItemCell.xib" />
+    <InterfaceDefinition Include="Views\Cells\SaleItemCell.xib" />
+    <InterfaceDefinition Include="Views\Cells\GroupedSaleCell.xib" />
+    <InterfaceDefinition Include="Views\SuplyProductDetailsView.xib" />
+    <InterfaceDefinition Include="Views\ProductsCalculationView.xib" />
+    <InterfaceDefinition Include="Views\Cells\ItemViewCell.xib" />
+    <InterfaceDefinition Include="Views\CalculationView.xib" />
+    <InterfaceDefinition Include="Views\Cells\CalculationItemViewCell.xib" />
+    <InterfaceDefinition Include="Views\SelectCalculationListView.xib" />
+    <InterfaceDefinition Include="Views\Cells\SelectCalculationItemViewCell.xib" />
+    <InterfaceDefinition Include="Views\Orders\OrdersView.xib" />
+    <InterfaceDefinition Include="Views\Orders\OrderViewCell.xib" />
+    <InterfaceDefinition Include="Views\Orders\OrderItemViewCell.xib" />
+    <InterfaceDefinition Include="Views\Orders\SelectOrderItemViewCell.xib" />
+    <InterfaceDefinition Include="Views\Orders\SelectOrderItemsView.xib" />
+    <InterfaceDefinition Include="Views\Orders\OrderItemsView.xib" />
+    <InterfaceDefinition Include="Views\ShiftSalesView.xib" />
+    <InterfaceDefinition Include="Views\Users\UsersView.xib" />
+    <InterfaceDefinition Include="Views\Users\UserDetailsView.xib" />
+    <InterfaceDefinition Include="Views\Statistic\StatisticView.xib" />
+    <InterfaceDefinition Include="Views\Statistic\ExpensesStatisticView.xib" />
+    <InterfaceDefinition Include="Views\Statistic\SalesStatisticView.xib" />
+    <InterfaceDefinition Include="Views\Statistic\SaleStatisticViewCell.xib" />
+    <InterfaceDefinition Include="Views\Statistic\CreditCardSalesView.xib" />
+    <InterfaceDefinition Include="Views\Statistic\SelectSalesView.xib" />
+    <InterfaceDefinition Include="Views\Statistic\SelectSalesTableViewCell.xib" />
+    <InterfaceDefinition Include="Views\Statistic\SalesChartView.xib" />
+    <InterfaceDefinition Include="Views\ManageExpenses\ManageExpensesView.xib" />
+    <InterfaceDefinition Include="Views\ManageExpenses\ManageExpensesTableViewCell.xib" />
+    <InterfaceDefinition Include="Views\Products\ProductsView.xib" />
+    <InterfaceDefinition Include="Views\Products\ProductItemCell.xib" />
+    <InterfaceDefinition Include="Views\Products\ProductDetailsView.xib" />
+    <InterfaceDefinition Include="Views\Users\UserTableViewCell.xib" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="MvvmCross.Binding, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\MvvmCross.Binding.4.2.0\lib\Xamarin.iOS10\MvvmCross.Binding.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MvvmCross.Binding.iOS, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\MvvmCross.Binding.4.2.0\lib\Xamarin.iOS10\MvvmCross.Binding.iOS.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MvvmCross.Core, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\MvvmCross.Core.4.2.0\lib\Xamarin.iOS10\MvvmCross.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MvvmCross.iOS, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\MvvmCross.Core.4.2.0\lib\Xamarin.iOS10\MvvmCross.iOS.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MvvmCross.Localization, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\MvvmCross.Binding.4.2.0\lib\Xamarin.iOS10\MvvmCross.Localization.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MvvmCross.Plugins.File, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\MvvmCross.Plugin.File.4.3.0\lib\Xamarin.iOS10\MvvmCross.Plugins.File.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MvvmCross.Plugins.File.iOS, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\MvvmCross.Plugin.File.4.3.0\lib\Xamarin.iOS10\MvvmCross.Plugins.File.iOS.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Xamarin.iOS" />
+    <Reference Include="Splat">
+      <HintPath>..\..\packages\Splat.1.6.2\lib\Xamarin.iOS10\Splat.dll</HintPath>
+    </Reference>
+    <Reference Include="Acr.Support.iOS">
+      <HintPath>..\..\packages\Acr.Support.2.1.0\lib\Xamarin.iOS10\Acr.Support.iOS.dll</HintPath>
+    </Reference>
+    <Reference Include="Acr.UserDialogs">
+      <HintPath>..\..\packages\Acr.UserDialogs.6.2.3\lib\Xamarin.iOS10\Acr.UserDialogs.dll</HintPath>
+    </Reference>
+    <Reference Include="Acr.UserDialogs.Interface">
+      <HintPath>..\..\packages\Acr.UserDialogs.6.2.3\lib\Xamarin.iOS10\Acr.UserDialogs.Interface.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Plugins.Messenger">
+      <HintPath>..\..\packages\MvvmCross.Plugin.Messenger.4.3.0\lib\Xamarin.iOS10\MvvmCross.Plugins.Messenger.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Platform">
+      <HintPath>..\..\packages\MvvmCross.Platform.4.4.0\lib\Xamarin.iOS10\MvvmCross.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Platform.iOS">
+      <HintPath>..\..\packages\MvvmCross.Platform.4.4.0\lib\Xamarin.iOS10\MvvmCross.Platform.iOS.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Plugins.Visibility">
+      <HintPath>..\..\packages\MvvmCross.Plugin.Visibility.4.4.0\lib\Xamarin.iOS10\MvvmCross.Plugins.Visibility.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Plugins.Visibility.iOS">
+      <HintPath>..\..\packages\MvvmCross.Plugin.Visibility.4.4.0\lib\Xamarin.iOS10\MvvmCross.Plugins.Visibility.iOS.dll</HintPath>
+    </Reference>
+    <Reference Include="Alliance.Charts">
+      <HintPath>Lib\Alliance.Charts.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Entitlements.plist" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CoffeeManagerAdmin.Core\CoffeeManagerAdmin.Core.csproj">
+      <Project>{31d7792c-8339-4c32-8c91-123c9b248b83}</Project>
+      <Name>CoffeeManagerAdmin.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\CoffeeManager\CoffeeManager.Core\CoffeeManager.Models\CoffeeManager.Models.csproj">
+      <Project>{77E355CB-ADF2-4617-AD95-59E1F4F8AF17}</Project>
+      <Name>CoffeeManager.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\Orders\" />
+    <Folder Include="Views\Users\" />
+    <Folder Include="Views\Statistic\" />
+    <Folder Include="Lib\" />
+    <Folder Include="Views\ManageExpenses\" />
+    <Folder Include="Views\Products\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_check.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+</Project>
