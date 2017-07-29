@@ -1,5 +1,5 @@
 ﻿using CoffeeManager.Models;
-
+using CoffeManager.Common;
 namespace CoffeeManagerAdmin.Core.ViewModels
 {
     public class ItemViewModel : ListItemViewModelBase

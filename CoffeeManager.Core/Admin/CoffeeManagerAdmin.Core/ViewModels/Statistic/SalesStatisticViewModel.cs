@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows.Input;
 using MvvmCross.Core.ViewModels;
 using CoffeeManagerAdmin.Core.Util;
+using CoffeManager.Common;
 
 namespace CoffeeManagerAdmin.Core.ViewModels.Statistic
 {

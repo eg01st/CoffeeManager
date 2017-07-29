@@ -12,17 +12,60 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="CupTypeToColorConverter.cs" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CupTypeToColorConverter.cs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Client/CoffeeManager.Droid/Converters/CupTypeToColorConverter.cs">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="165">
               <caret line="11" column="67" lean-forward="false" selection-start-line="11" selection-start-column="67" selection-end-line="11" selection-end-column="67" />
               <folding>
-                <marker date="1501262910000" expanded="true" signature="6:191" ph="..." />
-                <marker date="1501262910000" expanded="true" signature="234:1414" ph="{...}" />
-                <marker date="1501262910000" expanded="true" signature="325:1412" ph="{...}" />
-                <marker date="1501262910000" expanded="true" signature="957:1406" ph="{...}" />
-                <marker date="1501262910000" expanded="true" signature="994:1396" ph="{...}" />
+                <marker date="1501277562000" expanded="true" signature="6:191" ph="..." />
+                <marker date="1501277562000" expanded="true" signature="234:1414" ph="{...}" />
+                <marker date="1501277562000" expanded="true" signature="325:1412" ph="{...}" />
+                <marker date="1501277562000" expanded="true" signature="957:1406" ph="{...}" />
+                <marker date="1501277562000" expanded="true" signature="994:1396" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MainView.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Client/CoffeeManager.Droid/Views/MainView.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1136">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding>
+                <marker date="1501262910000" expanded="false" signature="6:427" ph="..." />
+                <marker date="1501262910000" expanded="true" signature="464:4435" ph="{...}" />
+                <marker date="1501262910000" expanded="true" signature="626:4433" ph="{...}" />
+                <marker date="1501262910000" expanded="true" signature="910:1241" ph="{...}" />
+                <marker date="1501262910000" expanded="true" signature="1285:2384" ph="{...}" />
+                <marker date="1501262910000" expanded="true" signature="2451:2656" ph="{...}" />
+                <marker date="1501262910000" expanded="true" signature="2730:2927" ph="{...}" />
+                <marker date="1501262910000" expanded="true" signature="2998:3074" ph="{...}" />
+                <marker date="1501262910000" expanded="true" signature="3150:3231" ph="{...}" />
+                <marker date="1501262910000" expanded="true" signature="3305:3379" ph="{...}" />
+                <marker date="1501262910000" expanded="true" signature="3449:3522" ph="{...}" />
+                <marker date="1501262910000" expanded="true" signature="3559:3938" ph="{...}" />
+                <marker date="1501262910000" expanded="true" signature="3764:3928" ph="{...}" />
+                <marker date="1501262910000" expanded="true" signature="4006:4360" ph="{...}" />
+                <marker date="1501262910000" expanded="true" signature="4134:4308" ph="{...}" />
+                <marker date="1501262910000" expanded="true" signature="4406:4427" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LoginView.cs" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Client/CoffeeManager.Droid/Views/LoginView.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="270">
+              <caret line="23" column="9" lean-forward="true" selection-start-line="23" selection-start-column="9" selection-end-line="23" selection-end-column="9" />
+              <folding>
+                <marker date="1501277548000" expanded="false" signature="6:136" ph="..." />
+                <marker date="1501277548000" expanded="true" signature="173:653" ph="{...}" />
+                <marker date="1501277548000" expanded="true" signature="349:651" ph="{...}" />
+                <marker date="1501277548000" expanded="true" signature="423:578" ph="{...}" />
+                <marker date="1501277548000" expanded="true" signature="624:645" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -31,9 +74,18 @@
     </leaf>
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Client/CoffeeManager.Droid/Views/LoginView.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Client/CoffeeManager.Droid/Converters/CupTypeToColorConverter.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CoffeeManager.Models/CupPerShift.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Client/CoffeeManager.Droid/Views/MainView.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CoffeeManager.Models/CupTypeEnum.cs" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/Client/CoffeeManager.Droid/Converters/CupTypeToColorConverter.cs" />
+      </list>
+    </option>
   </component>
   <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
@@ -69,7 +121,17 @@
               <option name="myItemType" value="com.jetbrains.rider.projectView.solutionExplorer.SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="CoffeeManager.Core (7 projects)" />
+              <option name="myItemId" value="CoffeeManager.Core (8 projects)" />
+              <option name="myItemType" value="com.jetbrains.rider.projectView.solutionExplorer.SolutionExplorerNodeRider" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" />
+              <option name="myItemType" value="com.jetbrains.rider.projectView.solutionExplorer.SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CoffeeManager.Core (8 projects)" />
               <option name="myItemType" value="com.jetbrains.rider.projectView.solutionExplorer.SolutionExplorerNodeRider" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -83,17 +145,7 @@
               <option name="myItemType" value="com.jetbrains.rider.projectView.solutionExplorer.SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="CoffeeManager.Core (7 projects)" />
-              <option name="myItemType" value="com.jetbrains.rider.projectView.solutionExplorer.SolutionExplorerNodeRider" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" />
-              <option name="myItemType" value="com.jetbrains.rider.projectView.solutionExplorer.SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CoffeeManager.Core (7 projects)" />
+              <option name="myItemId" value="CoffeeManager.Core (8 projects)" />
               <option name="myItemType" value="com.jetbrains.rider.projectView.solutionExplorer.SolutionExplorerNodeRider" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -111,7 +163,29 @@
               <option name="myItemType" value="com.jetbrains.rider.projectView.solutionExplorer.SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="CoffeeManager.Core (7 projects)" />
+              <option name="myItemId" value="CoffeeManager.Core (8 projects)" />
+              <option name="myItemType" value="com.jetbrains.rider.projectView.solutionExplorer.SolutionExplorerNodeRider" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Client" />
+              <option name="myItemType" value="com.jetbrains.rider.projectView.solutionExplorer.SolutionExplorerNodeRider" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CoffeeManager.Droid" />
+              <option name="myItemType" value="com.jetbrains.rider.projectView.solutionExplorer.SolutionExplorerNodeRider" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Views" />
+              <option name="myItemType" value="com.jetbrains.rider.projectView.solutionExplorer.SolutionExplorerNodeRider" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" />
+              <option name="myItemType" value="com.jetbrains.rider.projectView.solutionExplorer.SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CoffeeManager.Core (8 projects)" />
               <option name="myItemType" value="com.jetbrains.rider.projectView.solutionExplorer.SolutionExplorerNodeRider" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -133,7 +207,7 @@
               <option name="myItemType" value="com.jetbrains.rider.projectView.solutionExplorer.SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="CoffeeManager.Core (7 projects)" />
+              <option name="myItemId" value="CoffeeManager.Core (8 projects)" />
               <option name="myItemType" value="com.jetbrains.rider.projectView.solutionExplorer.SolutionExplorerNodeRider" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -276,12 +350,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1501276141590</updated>
-      <workItem from="1501276143885" duration="291000" />
+      <workItem from="1501276143885" duration="1814000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="291000" />
+    <option name="totallyTimeSpent" value="1814000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -300,15 +374,15 @@
       <window_info id="Errors In Solution" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Unit Tests" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32920793" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="NuGet" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32920793" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.36448598" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Build" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32920793" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Build" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32920793" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39975247" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -326,7 +400,22 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Client/CoffeeManager.Droid/Views/MainView.cs</url>
+          <line>122</line>
+          <properties startOffset="4165" endOffset="4197" documentPath="$PROJECT_DIR$/Client/CoffeeManager.Droid/Views/MainView.cs" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Client/CoffeeManager.Droid/Views/MainView.cs</url>
+          <line>111</line>
+          <properties startOffset="3795" endOffset="3827" documentPath="$PROJECT_DIR$/Client/CoffeeManager.Droid/Views/MainView.cs" />
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="2" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
@@ -357,11 +446,50 @@
         <state relative-caret-position="165">
           <caret line="11" column="67" lean-forward="false" selection-start-line="11" selection-start-column="67" selection-end-line="11" selection-end-column="67" />
           <folding>
-            <marker date="1501262910000" expanded="true" signature="6:191" ph="..." />
-            <marker date="1501262910000" expanded="true" signature="234:1414" ph="{...}" />
-            <marker date="1501262910000" expanded="true" signature="325:1412" ph="{...}" />
-            <marker date="1501262910000" expanded="true" signature="957:1406" ph="{...}" />
-            <marker date="1501262910000" expanded="true" signature="994:1396" ph="{...}" />
+            <marker date="1501277562000" expanded="true" signature="6:191" ph="..." />
+            <marker date="1501277562000" expanded="true" signature="234:1414" ph="{...}" />
+            <marker date="1501277562000" expanded="true" signature="325:1412" ph="{...}" />
+            <marker date="1501277562000" expanded="true" signature="957:1406" ph="{...}" />
+            <marker date="1501277562000" expanded="true" signature="994:1396" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/CoffeeManager.Droid/Views/MainView.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1136">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1501262910000" expanded="false" signature="6:427" ph="..." />
+            <marker date="1501262910000" expanded="true" signature="464:4435" ph="{...}" />
+            <marker date="1501262910000" expanded="true" signature="626:4433" ph="{...}" />
+            <marker date="1501262910000" expanded="true" signature="910:1241" ph="{...}" />
+            <marker date="1501262910000" expanded="true" signature="1285:2384" ph="{...}" />
+            <marker date="1501262910000" expanded="true" signature="2451:2656" ph="{...}" />
+            <marker date="1501262910000" expanded="true" signature="2730:2927" ph="{...}" />
+            <marker date="1501262910000" expanded="true" signature="2998:3074" ph="{...}" />
+            <marker date="1501262910000" expanded="true" signature="3150:3231" ph="{...}" />
+            <marker date="1501262910000" expanded="true" signature="3305:3379" ph="{...}" />
+            <marker date="1501262910000" expanded="true" signature="3449:3522" ph="{...}" />
+            <marker date="1501262910000" expanded="true" signature="3559:3938" ph="{...}" />
+            <marker date="1501262910000" expanded="true" signature="3764:3928" ph="{...}" />
+            <marker date="1501262910000" expanded="true" signature="4006:4360" ph="{...}" />
+            <marker date="1501262910000" expanded="true" signature="4134:4308" ph="{...}" />
+            <marker date="1501262910000" expanded="true" signature="4406:4427" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/CoffeeManager.Droid/Views/LoginView.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="23" column="9" lean-forward="true" selection-start-line="23" selection-start-column="9" selection-end-line="23" selection-end-column="9" />
+          <folding>
+            <marker date="1501277548000" expanded="false" signature="6:136" ph="..." />
+            <marker date="1501277548000" expanded="true" signature="173:653" ph="{...}" />
+            <marker date="1501277548000" expanded="true" signature="349:651" ph="{...}" />
+            <marker date="1501277548000" expanded="true" signature="423:578" ph="{...}" />
+            <marker date="1501277548000" expanded="true" signature="624:645" ph="{...}" />
           </folding>
         </state>
       </provider>

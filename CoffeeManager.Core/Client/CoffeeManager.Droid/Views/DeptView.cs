@@ -5,7 +5,7 @@ using CoffeeManager.Core.ViewModels;
 
 namespace CoffeeManager.Droid.Views
 {
-    [Activity(Theme = "@style/Theme.AppCompat.Light", Label = "Долги", ScreenOrientation = ScreenOrientation.Landscape)]
+    [Activity(Theme = "@style/Theme.AppCompat.Light", ScreenOrientation = ScreenOrientation.Landscape)]
     public class DeptView : ActivityBase<DeptViewModel>
     {
         protected override void OnCreate(Bundle savedInstanceState)

@@ -20,14 +20,14 @@ namespace CoffeeManager.Droid
 
             return new TabItem[]
             {
-                new TabItem("Кофе", coffee),
-                new TabItem("Чай", tea),
-                new TabItem("Сладости", sweets),
-                new TabItem("Вода", water),
-                new TabItem("Добавки", adds),
-                new TabItem("Еда", meals),
-                new TabItem("Хол Напитки", coldDrinks),
-                new TabItem("Мороженое", iceCream),
+                new TabItem("РљРѕС„Рµ", coffee),
+                new TabItem("Р§Р°Р№", tea),
+                new TabItem("РЎР»Р°РґРѕСЃС‚Рё", sweets),
+                new TabItem("Р’РѕРґР°", water),
+                new TabItem("Р”РѕР±Р°РІРєРё", adds),
+                new TabItem("Р•РґР°", meals),
+                new TabItem("РҐРѕР» РЅР°РїРёС‚РєРё", coldDrinks),
+                new TabItem("РњРѕСЂРѕР¶РµРЅРѕРµ", iceCream),
             };
 
         }

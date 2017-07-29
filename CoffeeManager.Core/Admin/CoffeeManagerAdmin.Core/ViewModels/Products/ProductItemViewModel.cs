@@ -5,6 +5,7 @@ using MvvmCross.Core.ViewModels;
 using CoffeeManagerAdmin.Core.ViewModels;
 using System.Linq;
 using CoffeeManagerAdmin.Core.Util;
+using CoffeManager.Common;
 
 namespace CoffeeManagerAdmin.Core
 {
@@ -19,7 +20,6 @@ namespace CoffeeManagerAdmin.Core
 
         private bool _isTapped;
 
-        public string Name {get;set;}
         public string Category {get;set;}
         public bool IsActive {get;set;}
 

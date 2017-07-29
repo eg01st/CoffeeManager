@@ -151,9 +151,6 @@
       <DependentUpon>SuplyProductDetailsView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\ProductsCalculationView.cs" />
-    <Compile Include="Views\ProductsCalculationView.designer.cs">
-      <DependentUpon>ProductsCalculationView.cs</DependentUpon>
-    </Compile>
     <Compile Include="Views\Cells\ItemViewCell.cs" />
     <Compile Include="Views\Cells\ItemViewCell.designer.cs">
       <DependentUpon>ItemViewCell.cs</DependentUpon>
@@ -248,17 +245,11 @@
     </Compile>
     <None Include="Lib\Alliance.Charts.dll" />
     <Compile Include="Views\ManageExpenses\ManageExpensesView.cs" />
-    <Compile Include="Views\ManageExpenses\ManageExpensesView.designer.cs">
-      <DependentUpon>ManageExpensesView.cs</DependentUpon>
-    </Compile>
     <Compile Include="Views\ManageExpenses\ManageExpensesTableViewCell.cs" />
     <Compile Include="Views\ManageExpenses\ManageExpensesTableViewCell.designer.cs">
       <DependentUpon>ManageExpensesTableViewCell.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Products\ProductsView.cs" />
-    <Compile Include="Views\Products\ProductsView.designer.cs">
-      <DependentUpon>ProductsView.cs</DependentUpon>
-    </Compile>
     <Compile Include="Views\Products\ProductItemCell.cs" />
     <Compile Include="Views\Products\ProductItemCell.designer.cs">
       <DependentUpon>ProductItemCell.cs</DependentUpon>
@@ -271,6 +262,12 @@
     <Compile Include="Views\Users\UserTableViewCell.designer.cs">
       <DependentUpon>UserTableViewCell.cs</DependentUpon>
     </Compile>
+    <Compile Include="TableSources\SalesStatisticTableSource.cs" />
+    <Compile Include="Views\Abstract\SearchViewController.cs" />
+    <Compile Include="Views\Abstract\SearchViewController.designer.cs">
+      <DependentUpon>SearchViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Abstract\ViewControllerBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Setup.cs" />
@@ -286,7 +283,6 @@
     <InterfaceDefinition Include="Views\Cells\SaleItemCell.xib" />
     <InterfaceDefinition Include="Views\Cells\GroupedSaleCell.xib" />
     <InterfaceDefinition Include="Views\SuplyProductDetailsView.xib" />
-    <InterfaceDefinition Include="Views\ProductsCalculationView.xib" />
     <InterfaceDefinition Include="Views\Cells\ItemViewCell.xib" />
     <InterfaceDefinition Include="Views\CalculationView.xib" />
     <InterfaceDefinition Include="Views\Cells\CalculationItemViewCell.xib" />
@@ -309,12 +305,11 @@
     <InterfaceDefinition Include="Views\Statistic\SelectSalesView.xib" />
     <InterfaceDefinition Include="Views\Statistic\SelectSalesTableViewCell.xib" />
     <InterfaceDefinition Include="Views\Statistic\SalesChartView.xib" />
-    <InterfaceDefinition Include="Views\ManageExpenses\ManageExpensesView.xib" />
     <InterfaceDefinition Include="Views\ManageExpenses\ManageExpensesTableViewCell.xib" />
-    <InterfaceDefinition Include="Views\Products\ProductsView.xib" />
     <InterfaceDefinition Include="Views\Products\ProductItemCell.xib" />
     <InterfaceDefinition Include="Views\Products\ProductDetailsView.xib" />
     <InterfaceDefinition Include="Views\Users\UserTableViewCell.xib" />
+    <InterfaceDefinition Include="Views\Abstract\SearchViewController.xib" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MvvmCross.Binding, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -395,6 +390,10 @@
       <Project>{77E355CB-ADF2-4617-AD95-59E1F4F8AF17}</Project>
       <Name>CoffeeManager.Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\CoffeManager.Common\CoffeManager.Common.csproj">
+      <Project>{F630255E-C4A6-4DC6-ACC2-D9DE1E3D06F0}</Project>
+      <Name>CoffeManager.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -404,6 +403,7 @@
     <Folder Include="Lib\" />
     <Folder Include="Views\ManageExpenses\" />
     <Folder Include="Views\Products\" />
+    <Folder Include="Views\Abstract\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\ic_check.png" />

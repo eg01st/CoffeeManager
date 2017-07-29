@@ -5,6 +5,7 @@ using MvvmCross.Core.ViewModels;
 using System.Threading.Tasks;
 using CoffeeManagerAdmin.Core.ViewModels.Orders;
 using System.Diagnostics;
+using CoffeManager.Common;
 
 namespace CoffeeManagerAdmin.Core.ViewModels
 {

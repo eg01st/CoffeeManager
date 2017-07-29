@@ -4,9 +4,9 @@ using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
 using MvvmCross.Plugins.Messenger;
 
-namespace CoffeeManagerAdmin.Core
+namespace CoffeManager.Common
 {
-    public abstract class ViewModelBase : MvxViewModel
+      public abstract class ViewModelBase : MvxViewModel
     {
         protected IUserDialogs UserDialogs
         {

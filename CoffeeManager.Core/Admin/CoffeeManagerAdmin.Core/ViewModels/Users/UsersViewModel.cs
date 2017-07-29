@@ -5,6 +5,8 @@ using CoffeeManagerAdmin.Core.Managers;
 using System.Collections.Generic;
 using CoffeeManager.Models;
 using System.Linq;
+using CoffeManager.Common;
+
 namespace CoffeeManagerAdmin.Core
 {
     public class UsersViewModel : ViewModelBase

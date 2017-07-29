@@ -1,4 +1,4 @@
-﻿// WARNING
+// WARNING
 //
 // This file has been generated automatically by Xamarin Studio from the outlets and
 // actions declared in your storyboard file.
@@ -11,10 +11,10 @@ using UIKit;
 
 namespace CoffeeManagerAdmin.iOS
 {
-    [Register("SalesChartView")]
+    [Register ("SalesChartView")]
     partial class SalesChartView
     {
-        void ReleaseDesignerOutlets()
+        void ReleaseDesignerOutlets ()
         {
         }
     }

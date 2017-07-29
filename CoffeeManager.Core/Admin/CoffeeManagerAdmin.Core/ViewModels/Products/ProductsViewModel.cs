@@ -7,54 +7,36 @@ using MvvmCross.Plugins.Messenger;
 using System.Linq;
 using System.Threading.Tasks;
 using CoffeeManagerAdmin.Core.ViewModels;
+using CoffeManager.Common;
 
 namespace CoffeeManagerAdmin.Core
 {
-    public class ProductsViewModel : ViewModelBase
+    public class ProductsViewModel : BaseSearchViewModel<ProductItemViewModel>
     {
         private ProductManager manager = new ProductManager();
         private MvxSubscriptionToken _productListChangedToken;
 
         private ICommand _addProductCommand;
 
-        private List<ProductItemViewModel> _items = new List<ProductItemViewModel>();
-
-      
-
-        public List<ProductItemViewModel> Items
-        {
-            get { return _items; }
-            set
-            {
-                _items = value;
-                RaisePropertyChanged(nameof(Items));
-            }
-        }
-
-
         public ProductsViewModel()
         {
             _addProductCommand = new MvxCommand(DoAddProduct);
-            _productListChangedToken = Subscribe<ProductListChangedMessage>(async (obj) =>
+            _productListChangedToken = Subscribe<ProductListChangedMessage>((obj) =>
             {
-                await LoadProducts();
+                Init();
             });
         }
 
-        public async void Init()
-        {
-            await LoadProducts();
-        }
-
-        private async Task LoadProducts()
-        {
-            var items = await manager.GetProducts();
-            Items = items.Select(s => new ProductItemViewModel(s)).ToList();
-        }
 
         private void DoAddProduct()
         {
             ShowViewModel<ProductDetailsViewModel>();
+        }
+
+        public async override Task<List<ProductItemViewModel>> LoadData()
+        {
+            var items = await manager.GetProducts();
+            return items.Select(s => new ProductItemViewModel(s)).ToList();
         }
 
         public ICommand AddProductCommand => _addProductCommand;

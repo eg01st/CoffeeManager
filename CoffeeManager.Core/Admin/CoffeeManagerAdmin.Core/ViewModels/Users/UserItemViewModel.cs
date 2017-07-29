@@ -2,6 +2,7 @@
 using System.Windows.Input;
 using MvvmCross.Core.ViewModels;
 using CoffeeManagerAdmin.Core.Managers;
+using CoffeManager.Common;
 namespace CoffeeManagerAdmin.Core
 {
     public class UserItemViewModel : ListItemViewModelBase

@@ -14,7 +14,7 @@ using CoffeeManager.Core.ViewModels;
 
 namespace CoffeeManager.Droid.Views
 {
-    [Activity(Theme = "@style/Theme.AppCompat.Light", Label = "Траты за смену", ScreenOrientation = ScreenOrientation.Landscape)]
+    [Activity(Theme = "@style/Theme.AppCompat.Light",  ScreenOrientation = ScreenOrientation.Landscape)]
 
     public class CurrentShiftExpensesView : ActivityBase<CurrentShiftExpensesViewModel>
     {

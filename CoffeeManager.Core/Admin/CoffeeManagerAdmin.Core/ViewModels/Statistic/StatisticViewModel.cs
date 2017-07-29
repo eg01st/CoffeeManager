@@ -6,6 +6,7 @@ using CoffeeManagerAdmin.Core.Managers;
 using CoffeeManagerAdmin.Core.Util;
 using CoffeeManagerAdmin.Core.ViewModels.Statistic;
 using MvvmCross.Core.ViewModels;
+using CoffeManager.Common;
 
 namespace CoffeeManagerAdmin.Core
 {

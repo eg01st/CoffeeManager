@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 using MvvmCross.Core.ViewModels;
+using CoffeManager.Common;
 namespace CoffeeManagerAdmin.Core
 {
     public class SuplyProductDetailsViewModel : ViewModelBase

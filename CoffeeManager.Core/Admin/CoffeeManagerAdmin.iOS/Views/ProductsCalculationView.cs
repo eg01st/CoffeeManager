@@ -7,24 +7,20 @@ using CoffeeManagerAdmin.Core.ViewModels;
 
 namespace CoffeeManagerAdmin.iOS
 {
-    public partial class ProductsCalculationView : MvxViewController
+    public partial class ProductsCalculationView : SearchViewController<ProductsCalculationView, ProductsCalculationViewModel, ItemViewModel>
     {
-        public ProductsCalculationView() : base("ProductsCalculationView", null)
-        {
-        }
+        protected override SimpleTableSource TableSource => new SimpleTableSource(TableView, ItemViewCell.Key, ItemViewCell.Nib);
 
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-
-            var source = new SimpleTableSource(ProductsTableView, ItemViewCell.Key, ItemViewCell.Nib);
-            ProductsTableView.Source = source;
-
-            var set = this.CreateBindingSet<ProductsCalculationView, ProductsCalculationViewModel>();
-            set.Bind(source).To(vm => vm.Items);
-            set.Apply();
+            Title = "Калькуляция продуктов";
         }
 
+        protected override MvxFluentBindingDescriptionSet<ProductsCalculationView, ProductsCalculationViewModel> CreateBindingSet()
+        {
+            return this.CreateBindingSet<ProductsCalculationView, ProductsCalculationViewModel>();
+        }
     }
 }
 

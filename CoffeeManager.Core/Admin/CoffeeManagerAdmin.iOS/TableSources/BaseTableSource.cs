@@ -4,6 +4,7 @@ using CoffeeManagerAdmin.Core;
 using Foundation;
 using System.Collections.Generic;
 using UIKit;
+using CoffeManager.Common;
 
 namespace CoffeeManagerAdmin.iOS
 {

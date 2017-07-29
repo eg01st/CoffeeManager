@@ -57,7 +57,6 @@
     <Compile Include="ViewModels\Orders\OrderViewModel.cs" />
     <Compile Include="ViewModels\Orders\SelectOrderItemsViewModel.cs" />
     <Compile Include="ViewModels\Orders\SelectOrderItemViewModel.cs" />
-    <Compile Include="ViewModels\ProductsCalculationViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="Managers\UserManager.cs" />
@@ -99,14 +98,13 @@
     <Compile Include="ViewModels\Statistic\SelectSaleItemViewModel.cs" />
     <Compile Include="ViewModels\Statistic\SalesChartViewModel.cs" />
     <Compile Include="ViewModels\Statistic\SelectSalesViewModel.cs" />
-    <Compile Include="ViewModels\Abstract\ViewModelBase.cs" />
-    <Compile Include="ViewModels\Abstract\ListItemViewModelBase.cs" />
     <Compile Include="ViewModels\Statistic\CreditCardSalesViewModel.cs" />
     <Compile Include="ViewModels\ManageExpenses\ManageExpensesViewModel.cs" />
     <Compile Include="ViewModels\ManageExpenses\ManageExpenseItemViewModel.cs" />
     <Compile Include="ViewModels\Products\ProductsViewModel.cs" />
     <Compile Include="ViewModels\Products\ProductItemViewModel.cs" />
     <Compile Include="ViewModels\Products\ProductDetailsViewModel.cs" />
+    <Compile Include="ViewModels\Calculation\ProductsCalculationViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">
@@ -161,7 +159,6 @@
     <Folder Include="ViewModels\Calculation\" />
     <Folder Include="ViewModels\Statistic\" />
     <Folder Include="Util\" />
-    <Folder Include="ViewModels\Abstract\" />
     <Folder Include="ViewModels\ManageExpenses\" />
     <Folder Include="ViewModels\Products\" />
   </ItemGroup>
@@ -169,6 +166,14 @@
     <ProjectReference Include="..\..\CoffeeManager.Models\CoffeeManager.Models.csproj">
       <Project>{77E355CB-ADF2-4617-AD95-59E1F4F8AF17}</Project>
       <Name>CoffeeManager.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Client\CoffeeManager.Core\CoffeeManager.Core.csproj">
+      <Project>{8E7D0DE1-C5BE-4435-B79B-7BC76768705D}</Project>
+      <Name>CoffeeManager.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\CoffeManager.Common\CoffeManager.Common.csproj">
+      <Project>{F630255E-C4A6-4DC6-ACC2-D9DE1E3D06F0}</Project>
+      <Name>CoffeManager.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />

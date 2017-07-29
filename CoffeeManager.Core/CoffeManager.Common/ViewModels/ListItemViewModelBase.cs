@@ -2,11 +2,13 @@
 using System.Windows.Input;
 using MvvmCross.Core.ViewModels;
 
-namespace CoffeeManagerAdmin.Core
+namespace CoffeManager.Common
 {
     public abstract class ListItemViewModelBase : ViewModelBase
     {
         public ICommand GoToDetailsCommand {get;set;}
+
+        public virtual string Name {get;set;}
 
         public ListItemViewModelBase()
         {

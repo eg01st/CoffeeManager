@@ -2,15 +2,16 @@
 using CoffeeManager.Models;
 using System.Windows.Input;
 using MvvmCross.Core.ViewModels;
+using CoffeManager.Common;
+using CoffeeManagerAdmin.Core.Managers;
+
 namespace CoffeeManagerAdmin.Core
 {
-  using CoffeeManagerAdmin.Core.Managers;
   public class ManageExpenseItemViewModel : ListItemViewModelBase
     {
         PaymentManager pm = new PaymentManager();
 
         public int Id {get;set;}
-        public string Name {get;set;}
         public bool IsActive {get;set;}
 
         public ICommand ToggleIsActiveCommand {get;set;}

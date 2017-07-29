@@ -1,5 +1,7 @@
 ﻿using System;
 using CoffeeManager.Models;
+using CoffeManager.Common;
+
 namespace CoffeeManagerAdmin.Core
 {
     public class SaleItemViewModel : ListItemViewModelBase

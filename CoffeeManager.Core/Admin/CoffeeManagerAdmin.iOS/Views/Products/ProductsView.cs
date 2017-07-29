@@ -4,15 +4,14 @@ using MvvmCross.iOS.Views;
 using MvvmCross.Binding.BindingContext;
 using CoffeeManagerAdmin.Core;
 using System.Collections.Generic;
+using System;
 
 namespace CoffeeManagerAdmin.iOS
 {
-    public partial class ProductsView : MvxViewController
+    public partial class ProductsView : SearchViewController<ProductsView, ProductsViewModel, ProductItemViewModel>
     {
-        public ProductsView() : base("ProductsView", null)
-        {
-        }
-
+        protected override SimpleTableSource TableSource => new SimpleTableSource(TableView, ProductItemCell.Key, ProductItemCell.Nib);
+        
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
@@ -27,14 +26,11 @@ namespace CoffeeManagerAdmin.iOS
             {
                 {btn, "Clicked AddProductCommand"},
             });
+        }
 
-            var source = new SimpleTableSource(ProductsTableView, ProductItemCell.Key, ProductItemCell.Nib);
-            ProductsTableView.Source = source;
-
-            var set = this.CreateBindingSet<ProductsView, ProductsViewModel>();
-            set.Bind(source).To(vm => vm.Items);
-            set.Apply();
-
+        protected override MvxFluentBindingDescriptionSet<ProductsView, ProductsViewModel> CreateBindingSet()
+        {
+            return this.CreateBindingSet<ProductsView, ProductsViewModel>();
         }
     }
 }

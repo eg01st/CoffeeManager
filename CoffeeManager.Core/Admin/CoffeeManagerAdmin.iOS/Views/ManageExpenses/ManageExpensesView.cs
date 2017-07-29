@@ -7,23 +7,20 @@ using CoffeeManagerAdmin.Core;
 
 namespace CoffeeManagerAdmin.iOS
 {
-    public partial class ManageExpensesView : MvxViewController
+    public class ManageExpensesView : SearchViewController<ManageExpensesView, ManageExpensesViewModel, ManageExpenseItemViewModel>
     {
-        public ManageExpensesView() : base("ManageExpensesView", null)
+        protected override SimpleTableSource TableSource => new SimpleTableSource(TableView, ManageExpensesTableViewCell.Key, ManageExpensesTableViewCell.Nib);
+
+
+        protected override MvxFluentBindingDescriptionSet<ManageExpensesView, ManageExpensesViewModel> CreateBindingSet()
         {
+            return this.CreateBindingSet<ManageExpensesView, ManageExpensesViewModel>();
         }
 
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
             Title = "Траты";
-
-            var source = new SimpleTableSource(TableView, ManageExpensesTableViewCell.Key, ManageExpensesTableViewCell.Nib);
-            TableView.Source = source;
-
-            var set = this.CreateBindingSet<ManageExpensesView, ManageExpensesViewModel>();
-            set.Bind(source).To(vm => vm.Items);
-            set.Apply();
         }
 
     }

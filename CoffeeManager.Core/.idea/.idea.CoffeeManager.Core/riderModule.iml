@@ -8,6 +8,7 @@
       <sourceFolder url="file://$MODULE_DIR$/../../Client/CoffeeManager.Core" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/../../Client/CoffeeManager.Droid" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/../../CoffeeManager.Models" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../CoffeManager.Common" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/../../Web/CoffeeManager.Api" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/../../Admin/CoffeeManagerAdmin.Core/bin" />
       <excludeFolder url="file://$MODULE_DIR$/../../Admin/CoffeeManagerAdmin.Core/obj" />
@@ -19,6 +20,8 @@
       <excludeFolder url="file://$MODULE_DIR$/../../Client/CoffeeManager.Core/obj" />
       <excludeFolder url="file://$MODULE_DIR$/../../Client/CoffeeManager.Droid/bin" />
       <excludeFolder url="file://$MODULE_DIR$/../../Client/CoffeeManager.Droid/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../CoffeManager.Common/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../CoffeManager.Common/obj" />
       <excludeFolder url="file://$MODULE_DIR$/../../CoffeeManager.Models/bin" />
       <excludeFolder url="file://$MODULE_DIR$/../../CoffeeManager.Models/obj" />
       <excludeFolder url="file://$MODULE_DIR$/../../Web/CoffeeManager.Api/bin" />
