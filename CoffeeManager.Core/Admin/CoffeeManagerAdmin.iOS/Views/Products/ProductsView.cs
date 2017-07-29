@@ -10,7 +10,7 @@ namespace CoffeeManagerAdmin.iOS
     {
         protected override SimpleTableSource TableSource => new SimpleTableSource(TableView, ProductItemCell.Key, ProductItemCell.Nib);
 
-        protected override UIView TableViewContainer => this.View;
+        protected override UIView TableViewContainer => this.ContainerView;
 
         public override void ViewDidLoad()
         {
