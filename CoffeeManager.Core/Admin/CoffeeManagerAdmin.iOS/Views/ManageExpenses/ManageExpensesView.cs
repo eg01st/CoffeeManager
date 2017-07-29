@@ -1,16 +1,15 @@
 ﻿using System;
-
-using UIKit;
-using MvvmCross.iOS.Views;
-using MvvmCross.Binding.BindingContext;
 using CoffeeManagerAdmin.Core;
+using MvvmCross.Binding.BindingContext;
+using UIKit;
 
 namespace CoffeeManagerAdmin.iOS
 {
-    public class ManageExpensesView : SearchViewController<ManageExpensesView, ManageExpensesViewModel, ManageExpenseItemViewModel>
+    public partial class ManageExpensesView : SearchViewController<ManageExpensesView, ManageExpensesViewModel, ManageExpenseItemViewModel>
     {
         protected override SimpleTableSource TableSource => new SimpleTableSource(TableView, ManageExpensesTableViewCell.Key, ManageExpensesTableViewCell.Nib);
 
+        protected override UIView TableViewContainer => this.ContainerView;
 
         protected override MvxFluentBindingDescriptionSet<ManageExpensesView, ManageExpensesViewModel> CreateBindingSet()
         {

@@ -29,12 +29,17 @@ namespace CoffeeManagerAdmin.iOS
         {
   
             base.ViewDidLoad();
+            InitStylesAndContent();
             DoBind();
         }
 
         protected virtual void DoBind()
         {
         
+        }
+
+        protected virtual void InitStylesAndContent()
+        {
         }
     }
 }

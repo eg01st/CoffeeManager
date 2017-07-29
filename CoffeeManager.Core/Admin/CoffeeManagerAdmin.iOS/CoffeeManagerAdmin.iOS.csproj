@@ -150,7 +150,6 @@
     <Compile Include="Views\SuplyProductDetailsView.designer.cs">
       <DependentUpon>SuplyProductDetailsView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\ProductsCalculationView.cs" />
     <Compile Include="Views\Cells\ItemViewCell.cs" />
     <Compile Include="Views\Cells\ItemViewCell.designer.cs">
       <DependentUpon>ItemViewCell.cs</DependentUpon>
@@ -244,12 +243,10 @@
       <DependentUpon>SalesChartView.cs</DependentUpon>
     </Compile>
     <None Include="Lib\Alliance.Charts.dll" />
-    <Compile Include="Views\ManageExpenses\ManageExpensesView.cs" />
     <Compile Include="Views\ManageExpenses\ManageExpensesTableViewCell.cs" />
     <Compile Include="Views\ManageExpenses\ManageExpensesTableViewCell.designer.cs">
       <DependentUpon>ManageExpensesTableViewCell.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Products\ProductsView.cs" />
     <Compile Include="Views\Products\ProductItemCell.cs" />
     <Compile Include="Views\Products\ProductItemCell.designer.cs">
       <DependentUpon>ProductItemCell.cs</DependentUpon>
@@ -264,10 +261,19 @@
     </Compile>
     <Compile Include="TableSources\SalesStatisticTableSource.cs" />
     <Compile Include="Views\Abstract\SearchViewController.cs" />
-    <Compile Include="Views\Abstract\SearchViewController.designer.cs">
-      <DependentUpon>SearchViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="Views\Abstract\ViewControllerBase.cs" />
+    <Compile Include="Views\Products\ProductsView.cs" />
+    <Compile Include="Views\Products\ProductsView.designer.cs">
+      <DependentUpon>ProductsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ManageExpenses\ManageExpensesView.cs" />
+    <Compile Include="Views\ManageExpenses\ManageExpensesView.designer.cs">
+      <DependentUpon>ManageExpensesView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProductsCalculationView.cs" />
+    <Compile Include="Views\ProductsCalculationView.designer.cs">
+      <DependentUpon>ProductsCalculationView.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Setup.cs" />
@@ -309,7 +315,9 @@
     <InterfaceDefinition Include="Views\Products\ProductItemCell.xib" />
     <InterfaceDefinition Include="Views\Products\ProductDetailsView.xib" />
     <InterfaceDefinition Include="Views\Users\UserTableViewCell.xib" />
-    <InterfaceDefinition Include="Views\Abstract\SearchViewController.xib" />
+    <InterfaceDefinition Include="Views\Products\ProductsView.xib" />
+    <InterfaceDefinition Include="Views\ManageExpenses\ManageExpensesView.xib" />
+    <InterfaceDefinition Include="Views\ProductsCalculationView.xib" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MvvmCross.Binding, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -404,6 +412,7 @@
     <Folder Include="Views\ManageExpenses\" />
     <Folder Include="Views\Products\" />
     <Folder Include="Views\Abstract\" />
+    <Folder Include="Extensions\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\ic_check.png" />

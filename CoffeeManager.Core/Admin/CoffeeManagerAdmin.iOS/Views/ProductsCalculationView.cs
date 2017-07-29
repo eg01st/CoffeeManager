@@ -1,16 +1,15 @@
 ﻿using System;
-
-using UIKit;
-using MvvmCross.iOS.Views;
-using MvvmCross.Binding.BindingContext;
 using CoffeeManagerAdmin.Core.ViewModels;
+using MvvmCross.Binding.BindingContext;
+using UIKit;
 
 namespace CoffeeManagerAdmin.iOS
 {
-    public partial class ProductsCalculationView : SearchViewController<ProductsCalculationView, ProductsCalculationViewModel, ItemViewModel>
+   public partial class ProductsCalculationView : SearchViewController<ProductsCalculationView, ProductsCalculationViewModel, ItemViewModel>
     {
         protected override SimpleTableSource TableSource => new SimpleTableSource(TableView, ItemViewCell.Key, ItemViewCell.Nib);
 
+        protected override UIView TableViewContainer => ContainerView;
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();

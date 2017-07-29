@@ -1,17 +1,17 @@
-﻿
-using UIKit;
-using MvvmCross.iOS.Views;
-using MvvmCross.Binding.BindingContext;
-using CoffeeManagerAdmin.Core;
+﻿using System;
 using System.Collections.Generic;
-using System;
+using CoffeeManagerAdmin.Core;
+using MvvmCross.Binding.BindingContext;
+using UIKit;
 
 namespace CoffeeManagerAdmin.iOS
 {
     public partial class ProductsView : SearchViewController<ProductsView, ProductsViewModel, ProductItemViewModel>
     {
         protected override SimpleTableSource TableSource => new SimpleTableSource(TableView, ProductItemCell.Key, ProductItemCell.Nib);
-        
+
+        protected override UIView TableViewContainer => this.View;
+
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();

@@ -4,6 +4,7 @@ using UIKit;
 using CoffeManager.Common;
 using MvvmCross.Binding.BindingContext;
 using System.Drawing;
+using Foundation;
 
 namespace CoffeeManagerAdmin.iOS
 {
@@ -12,35 +13,54 @@ namespace CoffeeManagerAdmin.iOS
         where TItemViewModel : ListItemViewModelBase
         where TViewModel : BaseSearchViewModel<TItemViewModel> 
     {
-        public SearchViewController() : base("SearchViewController", null)
-        {
-        }
-
-        protected UITableView TableView => SearchTableView;
+        protected UITableView TableView {get;set;}
         private UISearchBar _searchBar;
 
 
         protected abstract MvxFluentBindingDescriptionSet<TView, TViewModel> CreateBindingSet();
 
         protected abstract SimpleTableSource TableSource {get;}
+
+        protected abstract UIView TableViewContainer {get;}
         
-        public override void ViewDidLoad()
+        protected SearchViewController()
+            :base()
         {
-  
-  
-          base.ViewDidLoad();
         }
 
-        protected override void DoBind()
+        protected SearchViewController(string nibName)
+            : base(nibName, null)
         {
+        }
+
+        protected SearchViewController(string nibName, NSBundle bundle)
+            : base(nibName, bundle)
+        {
+        }
+
+        protected SearchViewController(IntPtr ptr)
+            : base(ptr)
+        {
+        }
+
+
+        protected override void InitStylesAndContent()
+        {
+            TableView = new UITableView(TableViewContainer.Frame);
+            TableViewContainer.TranslatesAutoresizingMaskIntoConstraints = false;
+            TableViewContainer.AddSubview(TableView);
+
             _searchBar = new UISearchBar(new RectangleF(0, 0, (float)View.Frame.Width, 44))
             {
                 AutocorrectionType = UITextAutocorrectionType.No
             };
-            SearchTableView.TableHeaderView = _searchBar;
-            var tableSource = TableSource;
-            SearchTableView.Source = tableSource;
+            TableView.TableHeaderView = _searchBar;
+        }
 
+        protected override void DoBind()
+        {
+            var tableSource = TableSource;
+            TableView.Source = tableSource;
             var set = CreateBindingSet();
             set.Bind(tableSource).To(vm => vm.Items);
             set.Bind(_searchBar).For(v => v.Text).To(vm => vm.SearchString);
