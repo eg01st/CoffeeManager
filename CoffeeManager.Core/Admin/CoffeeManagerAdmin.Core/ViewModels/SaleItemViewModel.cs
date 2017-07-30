@@ -29,7 +29,6 @@ namespace CoffeeManagerAdmin.Core
         public bool IsRejected {get;set;}
         public bool IsUtilized {get;set;}
 
-        public string Name  {get;set;}
         public string Amount {get;set;}
         public string Time {get;set;}
         public string Quantity {get;set;}

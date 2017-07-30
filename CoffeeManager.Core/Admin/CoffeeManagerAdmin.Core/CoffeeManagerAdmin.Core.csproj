@@ -66,7 +66,6 @@
     <Compile Include="ServiceProviders\SuplyProductsServiceProvider.cs" />
     <Compile Include="Managers\SuplyProductsManager.cs" />
     <Compile Include="ViewModels\ExpenseItemViewModel.cs" />
-    <Compile Include="ViewModels\SaleItemViewModel.cs" />
     <Compile Include="Managers\ProductManager.cs" />
     <Compile Include="ServiceProviders\ProductProvider.cs" />
     <Compile Include="Messages\ProductSelectedMessage.cs" />
@@ -105,6 +104,8 @@
     <Compile Include="ViewModels\Products\ProductItemViewModel.cs" />
     <Compile Include="ViewModels\Products\ProductDetailsViewModel.cs" />
     <Compile Include="ViewModels\Calculation\ProductsCalculationViewModel.cs" />
+    <Compile Include="ViewModels\SaleItemViewModel.cs" />
+    <Compile Include="ViewModels\Statistic\StatisticSaleItemViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">

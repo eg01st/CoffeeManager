@@ -17,9 +17,8 @@ namespace CoffeeManagerAdmin.iOS
         {
             base.ViewDidLoad();
             Title = "Продажи по кредитке";
-            var salesTableSource = new SaleTableSource(TableView);
+            var salesTableSource = new SimpleTableSource(TableView, StatisticSaleItemViewCell.Key, StatisticSaleItemViewCell.Nib);
             TableView.Source = salesTableSource;
-            TableView.RegisterNibForCellReuse(SaleItemCell.Nib, SaleItemCell.Key);
 
             var set = this.CreateBindingSet<CreditCardSalesView, CreditCardSalesViewModel>();
             set.Bind(EntireAmountLabel).To(vm => vm.EntireSaleAmount).WithConversion(new DecimalToStringConverter());

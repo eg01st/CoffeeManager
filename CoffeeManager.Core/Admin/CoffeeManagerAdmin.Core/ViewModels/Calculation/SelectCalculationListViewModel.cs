@@ -7,24 +7,20 @@ using CoffeManager.Common;
 
 namespace CoffeeManagerAdmin.Core.ViewModels
 {
-    public class SelectCalculationListViewModel : ViewModelBase
+    public class SelectCalculationListViewModel : BaseSearchViewModel<SelectCalculationItemViewModel>
     {
+        private int productId;
+
         private SuplyProductsManager manager = new SuplyProductsManager();
-        public async void Init(int productId)
+        public void Init(int productId)
+        {
+            this.productId = productId;
+        }
+
+        public async override Task<List<SelectCalculationItemViewModel>> LoadData()
         {
             var items = await manager.GetSupliedProducts();
-            Items = items.Select(s => new SelectCalculationItemViewModel(productId, s)).ToList();
-        }
-        private List<SelectCalculationItemViewModel> _items;
-
-        public List<SelectCalculationItemViewModel> Items
-        {
-            get { return _items; }
-            set
-            {
-                _items = value;
-                RaisePropertyChanged(nameof(Items));
-            }
+            return items.Select(s => new SelectCalculationItemViewModel(productId, s)).ToList();
         }
     }
 }

@@ -17,7 +17,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels
         private int _productId;
         private SupliedProduct _prod;
 
-        public string Name => _prod.Name;
+        public override string Name => _prod.Name;
 
         public SelectCalculationItemViewModel(int productId, SupliedProduct prod)
         {

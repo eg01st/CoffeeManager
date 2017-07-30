@@ -10,7 +10,7 @@ namespace CoffeeManagerAdmin.Core
 {
     public class CreditCardSalesViewModel : ViewModelBase
     {
-        public List<SaleItemViewModel> Sales {get;set;}
+        public List<StatisticSaleItemViewModel> Sales {get;set;}
         public decimal EntireSaleAmount {get;set;}
 
         public CreditCardSalesViewModel()
@@ -21,7 +21,7 @@ namespace CoffeeManagerAdmin.Core
         {
             IEnumerable<Sale> sales;
             ParameterTransmitter.TryGetParameter(id, out sales);
-            Sales = sales.Select(s => new SaleItemViewModel(s)).ToList();
+            Sales = sales.Select(s => new StatisticSaleItemViewModel(s)).ToList();
             EntireSaleAmount = sales.Sum(s => s.Amount);
             RaiseAllPropertiesChanged();
         }

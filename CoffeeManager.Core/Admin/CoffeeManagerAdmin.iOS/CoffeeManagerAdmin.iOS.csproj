@@ -274,6 +274,10 @@
     <Compile Include="Views\ProductsCalculationView.designer.cs">
       <DependentUpon>ProductsCalculationView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Statistic\StatisticSaleItemViewCell.cs" />
+    <Compile Include="Views\Statistic\StatisticSaleItemViewCell.designer.cs">
+      <DependentUpon>StatisticSaleItemViewCell.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Setup.cs" />
@@ -318,6 +322,7 @@
     <InterfaceDefinition Include="Views\Products\ProductsView.xib" />
     <InterfaceDefinition Include="Views\ManageExpenses\ManageExpensesView.xib" />
     <InterfaceDefinition Include="Views\ProductsCalculationView.xib" />
+    <InterfaceDefinition Include="Views\Statistic\StatisticSaleItemViewCell.xib" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MvvmCross.Binding, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">

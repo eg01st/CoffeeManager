@@ -1,33 +1,23 @@
-﻿using System;
-
+﻿
 using UIKit;
-using MvvmCross.iOS.Views;
 using MvvmCross.Binding.BindingContext;
 using CoffeeManagerAdmin.Core.ViewModels;
 
 namespace CoffeeManagerAdmin.iOS
 {
-    public partial class SelectCalculationListView : MvxViewController
+    public partial class SelectCalculationListView : SearchViewController<SelectCalculationListView, SelectCalculationListViewModel, SelectCalculationItemViewModel>
     {
+        protected override SimpleTableSource TableSource => new SimpleTableSource(TableView, SelectCalculationItemViewCell.Key, SelectCalculationItemViewCell.Nib);
+
+        protected override UIView TableViewContainer => ContainerView;
+
         public SelectCalculationListView() : base("SelectCalculationListView", null)
         {
         }
 
-        public override void ViewDidLoad()
+        protected override MvxFluentBindingDescriptionSet<SelectCalculationListView, SelectCalculationListViewModel> CreateBindingSet()
         {
-            base.ViewDidLoad();
-            // Perform any additional setup after loading the view, typically from a nib.
-            var source = new SimpleTableSource(TableView, SelectCalculationItemViewCell.Key, SelectCalculationItemViewCell.Nib);
-            TableView.Source = source;
-            var set = this.CreateBindingSet<SelectCalculationListView, SelectCalculationListViewModel>();
-            set.Bind(source).To(vm => vm.Items);
-            set.Apply();
-        }
-
-        public override void DidReceiveMemoryWarning()
-        {
-            base.DidReceiveMemoryWarning();
-            // Release any cached data, images, etc that aren't in use.
+            return this.CreateBindingSet<SelectCalculationListView, SelectCalculationListViewModel>();
         }
     }
 }
