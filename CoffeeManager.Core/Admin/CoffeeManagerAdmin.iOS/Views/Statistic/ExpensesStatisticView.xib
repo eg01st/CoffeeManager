@@ -5,13 +5,13 @@
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12121"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ExpensesStatisticView">
             <connections>
-                <outlet property="TableView" destination="KFZ-Fp-Ils" id="vsP-WK-frP"/>
+                <outlet property="ContainerView" destination="Ebn-8b-Vij" id="0k6-YE-rgM"/>
                 <outlet property="view" destination="2" id="RRd-Eg-VrN"/>
             </connections>
         </placeholder>
@@ -20,17 +20,17 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="KFZ-Fp-Ils">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ebn-8b-Vij">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                </tableView>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="KFZ-Fp-Ils" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="J3H-Dn-DVk"/>
-                <constraint firstItem="KFZ-Fp-Ils" firstAttribute="top" secondItem="2" secondAttribute="top" id="WZr-qg-zG1"/>
-                <constraint firstAttribute="trailing" secondItem="KFZ-Fp-Ils" secondAttribute="trailing" id="eOl-jB-s1j"/>
-                <constraint firstAttribute="bottom" secondItem="KFZ-Fp-Ils" secondAttribute="bottom" id="vsT-Bk-rVc"/>
+                <constraint firstAttribute="bottom" secondItem="Ebn-8b-Vij" secondAttribute="bottom" id="0kB-S6-9OW"/>
+                <constraint firstItem="Ebn-8b-Vij" firstAttribute="top" secondItem="2" secondAttribute="top" id="BMt-ze-Zk3"/>
+                <constraint firstAttribute="trailing" secondItem="Ebn-8b-Vij" secondAttribute="trailing" id="Np4-uI-sYf"/>
+                <constraint firstItem="Ebn-8b-Vij" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="fZK-de-9sb"/>
             </constraints>
         </view>
     </objects>

@@ -3,7 +3,7 @@ using CoffeeManager.Models;
 using CoffeManager.Common;
 namespace CoffeeManagerAdmin.Core
 {
-    public class ExpenseItemViewModel : ViewModelBase
+    public class ExpenseItemViewModel : ListItemViewModelBase
     {
         private Expense _item;
         public ExpenseItemViewModel(Expense item)
@@ -11,7 +11,7 @@ namespace CoffeeManagerAdmin.Core
             _item = item;
         }
 
-        public string Name => _item.Name;
+        public override string Name => _item.Name;
 
         public string Amount => _item.Amount.ToString("F");
 

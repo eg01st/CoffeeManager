@@ -10,7 +10,7 @@ namespace CoffeeManagerAdmin.iOS
 {
     public class BaseTableSource<T> : MvxTableViewSource where T: ListItemViewModelBase
     {
-        private readonly NSString reuseIdentifier;
+        protected readonly NSString reuseIdentifier;
         private List<ListItemViewModelBase> Source => ItemsSource as List<ListItemViewModelBase>;
 
         public BaseTableSource(UITableView tableView, NSString reuseIdentifier, UINib cellNib) : base(tableView)
@@ -21,10 +21,10 @@ namespace CoffeeManagerAdmin.iOS
         public override void RowSelected(UITableView tableView, Foundation.NSIndexPath indexPath)
         {
             var item = GetItemAt(indexPath);
-            var user = item as ListItemViewModelBase;
-            if(user != null)
+            var vm = item as ListItemViewModelBase;
+            if(vm != null)
             {
-                user.GoToDetailsCommand.Execute(null);
+                vm.GoToDetailsCommand.Execute(null);
             }
         }
 

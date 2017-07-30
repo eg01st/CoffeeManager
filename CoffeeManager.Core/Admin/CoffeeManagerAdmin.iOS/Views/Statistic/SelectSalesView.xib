@@ -5,13 +5,13 @@
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12121"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SelectSalesView">
             <connections>
-                <outlet property="TableView" destination="Tqy-o8-jg9" id="TBm-El-7Fu"/>
+                <outlet property="ContainerView" destination="VQh-JV-tLw" id="7P1-6n-GNb"/>
                 <outlet property="view" destination="2" id="RRd-Eg-VrN"/>
             </connections>
         </placeholder>
@@ -20,17 +20,17 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Tqy-o8-jg9">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VQh-JV-tLw">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                </tableView>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="Tqy-o8-jg9" secondAttribute="trailing" id="0ai-Mf-f3V"/>
-                <constraint firstItem="Tqy-o8-jg9" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="Qyo-YP-uEQ"/>
-                <constraint firstItem="Tqy-o8-jg9" firstAttribute="top" secondItem="2" secondAttribute="top" id="UNV-Rp-WhK"/>
-                <constraint firstAttribute="bottom" secondItem="Tqy-o8-jg9" secondAttribute="bottom" id="mhR-i7-28c"/>
+                <constraint firstItem="VQh-JV-tLw" firstAttribute="top" secondItem="2" secondAttribute="top" id="3mu-ws-qsb"/>
+                <constraint firstAttribute="trailing" secondItem="VQh-JV-tLw" secondAttribute="trailing" id="4N2-9Y-Vv3"/>
+                <constraint firstItem="VQh-JV-tLw" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="EWa-kV-e3E"/>
+                <constraint firstAttribute="bottom" secondItem="VQh-JV-tLw" secondAttribute="bottom" id="Miw-AX-xOf"/>
             </constraints>
         </view>
     </objects>

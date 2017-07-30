@@ -1,9 +1,7 @@
-﻿using System;
-using CoffeeManager.Models;
-using CoffeManager.Common;
+﻿using CoffeeManager.Models;
 namespace CoffeeManagerAdmin.Core
 {
-    public class StatisticSaleItemViewModel : ListItemViewModelBase
+    public class StatisticSaleItemViewModel : BaseStatisticSaleItemViewModel
     {
         public StatisticSaleItemViewModel(SaleInfo sale)
         {
@@ -13,15 +11,15 @@ namespace CoffeeManagerAdmin.Core
         }
 
         public StatisticSaleItemViewModel(Sale sale)
-        {          
+        {
 
             Name = sale.Product1.Name;
             Amount = sale.Amount.ToString("F");
             Time = sale.Time.ToString("HH:mm:ss");
         }
 
-        public string Amount {get;set;}
-        public string Time {get;set;}
-        public string Quantity {get;set;}
+        public string Amount { get; set; }
+        public string Time { get; set; }
+        public string Quantity { get; set; }
     }
 }

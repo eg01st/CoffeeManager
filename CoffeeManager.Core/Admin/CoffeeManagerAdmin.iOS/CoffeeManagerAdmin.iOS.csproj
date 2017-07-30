@@ -134,7 +134,6 @@
     <Compile Include="Views\Cells\ExpenseItemCell.designer.cs">
       <DependentUpon>ExpenseItemCell.cs</DependentUpon>
     </Compile>
-    <Compile Include="TableSources\ExpenseTableSource.cs" />
     <Compile Include="Views\Cells\SaleItemCell.cs" />
     <Compile Include="Views\Cells\SaleItemCell.designer.cs">
       <DependentUpon>SaleItemCell.cs</DependentUpon>
@@ -278,6 +277,10 @@
     <Compile Include="Views\Statistic\StatisticSaleItemViewCell.designer.cs">
       <DependentUpon>StatisticSaleItemViewCell.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Statistic\SaleStatisticHeaderViewCell.cs" />
+    <Compile Include="Views\Statistic\SaleStatisticHeaderViewCell.designer.cs">
+      <DependentUpon>SaleStatisticHeaderViewCell.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Setup.cs" />
@@ -323,6 +326,7 @@
     <InterfaceDefinition Include="Views\ManageExpenses\ManageExpensesView.xib" />
     <InterfaceDefinition Include="Views\ProductsCalculationView.xib" />
     <InterfaceDefinition Include="Views\Statistic\StatisticSaleItemViewCell.xib" />
+    <InterfaceDefinition Include="Views\Statistic\SaleStatisticHeaderViewCell.xib" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MvvmCross.Binding, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">

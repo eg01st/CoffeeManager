@@ -6,13 +6,13 @@ using CoffeeManager.Models;
 using CoffeeManagerAdmin.Core.Util;
 using MvvmCross.Core.ViewModels;
 using CoffeManager.Common;
+using System.Threading.Tasks;
 
 namespace CoffeeManagerAdmin.Core
 {
-    public class SelectSalesViewModel : ViewModelBase
+    public class SelectSalesViewModel : BaseSearchViewModel<SelectSaleItemViewModel>
     {
-        public List<SelectSaleItemViewModel> Items { get { return items;} set { items = value; RaisePropertyChanged(nameof(Items));}}
-        List<SelectSaleItemViewModel> items;
+        Guid id;
         IEnumerable<SaleInfo> saleItems;
         DateTime from, to;
         public SelectSalesViewModel()
@@ -26,16 +26,21 @@ namespace CoffeeManagerAdmin.Core
         {
             this.from = from;
             this.to = to;
-            ParameterTransmitter.TryGetParameter(id, out saleItems);
-            var groupedSales = saleItems.GroupBy(g => g.Name).Select(s => new SelectSaleItemViewModel(s.Key));
-            Items = groupedSales.ToList();
+            this.id = id;
         }
 
         private void DoShowChart()
         {
             var selectedItems = Items.Where(i => i.IsSelected).Select(s => s.Name);
-            var id = ParameterTransmitter.PutParameter(selectedItems);
-            ShowViewModel<SalesChartViewModel>(new {id, from, to});
+            var paramId = ParameterTransmitter.PutParameter(selectedItems);
+            ShowViewModel<SalesChartViewModel>(new {id = paramId, from, to});
+        }
+
+        public override Task<List<SelectSaleItemViewModel>> LoadData()
+        {
+            ParameterTransmitter.TryGetParameter(id, out saleItems);
+            var items = saleItems.GroupBy(g => g.Name).Select(s => new SelectSaleItemViewModel(s.Key)).ToList();
+            return Task.FromResult(items);
         }
     }
 }

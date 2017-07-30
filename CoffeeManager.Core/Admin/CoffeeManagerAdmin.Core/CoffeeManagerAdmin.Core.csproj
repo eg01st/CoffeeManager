@@ -106,6 +106,8 @@
     <Compile Include="ViewModels\Calculation\ProductsCalculationViewModel.cs" />
     <Compile Include="ViewModels\SaleItemViewModel.cs" />
     <Compile Include="ViewModels\Statistic\StatisticSaleItemViewModel.cs" />
+    <Compile Include="ViewModels\Statistic\BaseStatisticSaleItemViewModel.cs" />
+    <Compile Include="ViewModels\Statistic\StatisticSaleHeaderViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">

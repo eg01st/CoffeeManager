@@ -14,7 +14,7 @@ namespace CoffeeManagerAdmin.iOS
             base.ViewDidLoad();
 
             Title = "Детали смены";
-            var source = new ExpenseTableSource(ExpenseTableView);
+            var source = new SimpleTableSource(ExpenseTableView, ExpenseItemCell.Key, ExpenseItemCell.Nib);
             ExpenseTableView.Source = source;
        
             var set = this.CreateBindingSet<ShiftDetailsView, ShiftDetailsViewModel>();

@@ -9,17 +9,25 @@ using System.CodeDom.Compiler;
 
 namespace CoffeeManagerAdmin.iOS
 {
-	[Register ("SelectSalesView")]
-	partial class SelectSalesView
+	[Register ("SaleStatisticHeaderViewCell")]
+	partial class SaleStatisticHeaderViewCell
 	{
 		[Outlet]
-		UIKit.UIView ContainerView { get; set; }
+		UIKit.UILabel AmountLabel { get; set; }
+
+		[Outlet]
+		UIKit.UILabel NameLabel { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (ContainerView != null) {
-				ContainerView.Dispose ();
-				ContainerView = null;
+			if (NameLabel != null) {
+				NameLabel.Dispose ();
+				NameLabel = null;
+			}
+
+			if (AmountLabel != null) {
+				AmountLabel.Dispose ();
+				AmountLabel = null;
 			}
 		}
 	}

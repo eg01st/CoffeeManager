@@ -4,20 +4,24 @@ using CoffeeManager.Models;
 using System.Linq;
 using CoffeeManagerAdmin.Core.Util;
 using CoffeManager.Common;
+using System.Threading.Tasks;
 
 namespace CoffeeManagerAdmin.Core.ViewModels.Statistic
 {
-    public class ExpensesStatisticViewModel : ViewModelBase
+    public class ExpensesStatisticViewModel : BaseSearchViewModel<ExpenseItemViewModel>
     {
-        public IEnumerable<ExpenseItemViewModel> Items { get { return items;} set { items = value; RaisePropertyChanged(nameof(Items));}}
-
-        private IEnumerable<ExpenseItemViewModel> items;
-
+        private Guid id;
         public void Init(Guid id)
+        {
+            this.id = id;
+        }
+
+        public override Task<List<ExpenseItemViewModel>> LoadData()
         {
             IEnumerable<Expense> expenses;
             ParameterTransmitter.TryGetParameter(id, out expenses);
-            Items = expenses.Select(s=> new ExpenseItemViewModel(s));
+            var resutl = expenses.Select(s=> new ExpenseItemViewModel(s)).ToList();
+            return Task.FromResult(resutl);
         }
     }
 }

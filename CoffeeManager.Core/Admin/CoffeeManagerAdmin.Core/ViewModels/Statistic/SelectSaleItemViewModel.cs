@@ -5,9 +5,8 @@ using CoffeManager.Common;
 
 namespace CoffeeManagerAdmin.Core
 {
-    public class SelectSaleItemViewModel : ViewModelBase
+    public class SelectSaleItemViewModel : ListItemViewModelBase
     {
-        public string Name {get;set;}
         public bool IsSelected {get;set;}
 
         public ICommand ToggleIsSelectedCommand {get;set;}
