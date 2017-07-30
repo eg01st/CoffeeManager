@@ -7,45 +7,21 @@ using CoffeManager.Common;
 
 namespace CoffeeManagerAdmin.Core.ViewModels
 {
-    public class SuplyProductsViewModel : ViewModelBase
+    public class SuplyProductsViewModel : BaseSearchViewModel<SuplyProductItemViewModel>
     {
         private MvxSubscriptionToken _listChanged;
 
         private SuplyProductsManager manager = new SuplyProductsManager();
-        private List<SuplyProductItemViewModel> _items;
-
-        public List<SuplyProductItemViewModel> Items
-        {
-            get { return _items; }
-            set
-            {
-                _items = value;
-                RaisePropertyChanged(nameof(Items));
-            }
-        }
 
         public SuplyProductsViewModel()
         {
-            _listChanged = Subscribe<SuplyListChangedMessage>(async (obj) => await LoadList());
+            _listChanged = Subscribe<SuplyListChangedMessage>((obj) => Init());
         }
 
-        public async void Init()
-        {
-            try
-            {
-                await LoadList();
-            }
-            catch (Exception ex)
-            {
-                UserDialogs.Alert(ex.ToString());
-            }
-        }
-
-        private async Task LoadList()
+        public async override Task<List<SuplyProductItemViewModel>> LoadData()
         {
             var items = await manager.GetSupliedProducts();
-            Items = items.Select(s => new SuplyProductItemViewModel(s)).ToList();
+            return items.Select(s => new SuplyProductItemViewModel(s)).ToList();
         }
-
     }
 }

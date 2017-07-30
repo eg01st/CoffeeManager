@@ -1,14 +1,15 @@
-﻿using System;
-using CoffeeManagerAdmin.Core;
-using CoffeeManagerAdmin.Core.ViewModels;
-using MvvmCross.iOS.Views;
+﻿using CoffeeManagerAdmin.Core.ViewModels;
 using UIKit;
 using MvvmCross.Binding.BindingContext;
 
 namespace CoffeeManagerAdmin.iOS
 {
-    public partial class SuplyProductsView : MvxViewController
+    public partial class SuplyProductsView : SearchViewController<SuplyProductsView, SuplyProductsViewModel, SuplyProductItemViewModel>
     {
+        protected override SimpleTableSource TableSource => new SimpleTableSource(TableView, SuplyProductCell.Key, SuplyProductCell.Nib);
+
+        protected override UIView TableViewContainer => ContainerView;
+
         public SuplyProductsView() : base("SuplyProductsView", null)
         {
         }
@@ -17,19 +18,12 @@ namespace CoffeeManagerAdmin.iOS
         {
             base.ViewDidLoad();
             Title = "Баланс товара";
-            var g = new UITapGestureRecognizer(() => View.EndEditing(true));
-            View.AddGestureRecognizer(g);
-            var source = new SuplyProductTableSource(TableView);
-            TableView.Source = source;
-            var set = this.CreateBindingSet<SuplyProductsView, SuplyProductsViewModel>();
-            set.Bind(source).To(vm => vm.Items);
-            set.Apply();
         }
 
-        public override void DidReceiveMemoryWarning()
+
+        protected override MvxFluentBindingDescriptionSet<SuplyProductsView, SuplyProductsViewModel> CreateBindingSet()
         {
-            base.DidReceiveMemoryWarning();
-            // Release any cached data, images, etc that aren't in use.
+            return this.CreateBindingSet<SuplyProductsView, SuplyProductsViewModel>();
         }
     }
 }
