@@ -118,7 +118,7 @@ namespace CoffeeManager.Api.Mappers
         {
             foreach (var item in result)
             {
-                yield return new Models.Expense() { Name = item.Name, Amount = item.amount ?? -1 };
+                yield return new Models.Expense() { Name = item.Name, Amount = item.amount ?? -1, ItemCount = item.quantity ?? -1 };
             }
         }
 

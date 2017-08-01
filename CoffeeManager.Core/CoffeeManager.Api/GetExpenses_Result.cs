@@ -15,5 +15,6 @@ namespace CoffeeManager.Api
     {
         public Nullable<decimal> amount { get; set; }
         public string Name { get; set; }
+        public Nullable<int> quantity { get; set; }
     }
 }
