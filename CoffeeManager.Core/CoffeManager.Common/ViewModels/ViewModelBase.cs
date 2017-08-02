@@ -63,15 +63,15 @@ namespace CoffeManager.Common
         }   
 
 
-        protected async Task TryCatchSpecifics(Func<Task> functionToRun, string globalExceptionMessage = null)
+        protected async Task ExecuteSafe(Func<Task> functionToRun, string globalExceptionMessage = null)
         {
             Func<Task<bool>> runDelegate = async () => { await functionToRun(); return true; };
 
-            await TryCatchSpecifics(functionToRun: runDelegate, 
+            await ExecuteSafe(functionToRun: runDelegate, 
                                     globalExceptionMessage: globalExceptionMessage);
         }
 
-        protected async Task<T> TryCatchSpecifics<T>(Func<Task<T>> functionToRun, string globalExceptionMessage = null, T valueToReturnForError = default(T))
+        protected async Task<T> ExecuteSafe<T>(Func<Task<T>> functionToRun, string globalExceptionMessage = null, T valueToReturnForError = default(T))
         {
             try
             {

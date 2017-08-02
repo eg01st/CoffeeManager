@@ -45,7 +45,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels
 
         private async void DoLogin()
         {
-            await TryCatchSpecifics(async () => 
+            await ExecuteSafe(async () => 
             {           
                 string accessToken = await manager.Login(Name, Password);
                 accessToken = accessToken.Substring(1);

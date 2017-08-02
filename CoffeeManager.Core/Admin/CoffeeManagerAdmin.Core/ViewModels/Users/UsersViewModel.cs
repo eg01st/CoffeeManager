@@ -29,7 +29,7 @@ namespace CoffeeManagerAdmin.Core
 
         public async void Init()
         {
-            await TryCatchSpecifics(async () => 
+            await ExecuteSafe(async () => 
             {
                 var items = await manager.GetUsers();
                 Users = items.Select(s => new UserItemViewModel{UserName = s.Name, IsActive = s.IsActive, Id = s.Id})

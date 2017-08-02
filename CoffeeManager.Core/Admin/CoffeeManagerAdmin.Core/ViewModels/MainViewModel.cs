@@ -114,7 +114,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels
 
         private async Task GetEntireMoney()
         {
-            await TryCatchSpecifics(async () =>
+            await ExecuteSafe(async () =>
             {
                 var currentBalance = await _shiftManager.GetEntireMoney();
                 CurrentBalance = currentBalance.ToString("F1");

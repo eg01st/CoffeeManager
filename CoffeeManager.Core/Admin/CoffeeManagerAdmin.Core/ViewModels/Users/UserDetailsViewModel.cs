@@ -127,7 +127,7 @@ namespace CoffeeManagerAdmin.Core
             {
                 return;
             }
-            await TryCatchSpecifics(async () => 
+            await ExecuteSafe(async () => 
             {
                 user = await um.GetUser(useridParameter);
                 UserName = user.Name;
@@ -154,7 +154,7 @@ namespace CoffeeManagerAdmin.Core
 
         private async Task InitTypes()
         {
-            await TryCatchSpecifics(async () => 
+            await ExecuteSafe(async () => 
             {
                 var types = await pm.GetExpenseItems();
                 ExpenseItems = types.Select(s => new Entity { Id = s.Id, Name = s.Name }).ToList();
@@ -193,7 +193,7 @@ namespace CoffeeManagerAdmin.Core
                 UserDialogs.Alert("Пустой баланс!");
                 return;
             }
-            await TryCatchSpecifics(async () => 
+            await ExecuteSafe(async () => 
             {
                 var sm = new ShiftManager();
                 var shift = await sm.GetCurrentShift();
