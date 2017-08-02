@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Acr.UserDialogs;
-using MvvmCross.Platform;
 using Newtonsoft.Json;
 
 namespace CoffeeManagerAdmin.Core.ServiceProviders
@@ -12,234 +10,116 @@ namespace CoffeeManagerAdmin.Core.ServiceProviders
     public class BaseServiceProvider
     {
         public static string AccessToken = "";
-        protected IUserDialogs UserDialogs
-        {
-            get
-            {
-                return Mvx.Resolve<IUserDialogs>();
-            }
-        }
 
         protected readonly int CoffeeRoomNo = Config.CoffeeRoomNo;
         private readonly string _apiUrl = Config.ApiUrl;
 
         protected async Task<T> Get<T>(string path, Dictionary<string, string> param = null)
         {
-            UserDialogs.ShowLoading("Loading", Acr.UserDialogs.MaskType.Black);
-            string url = string.Empty;
-            try
+            string url = GetUrl(path, param);
+            var client = new HttpClient();
+            client.DefaultRequestHeaders.Add("token", AccessToken);
+            var response = await client.GetAsync(url);
+            string responseString = await response.Content.ReadAsStringAsync();
+            Debug.WriteLine(responseString);
+            if (response.StatusCode != System.Net.HttpStatusCode.OK)
             {
-                var client = new HttpClient();
-                client.DefaultRequestHeaders.Add("token", AccessToken);
-                url = $"{_apiUrl}{path}?coffeeroomno={CoffeeRoomNo}";
-                if (param != null && param.Count > 0)
-                {
-                    foreach (var parameter in param)
-                    {
-                        url += $"&{parameter.Key}={parameter.Value}";
-                    }
-                }
-                var response = await client.GetAsync(url);
-                string responseString = await response.Content.ReadAsStringAsync();
-                Debug.WriteLine(responseString);
-                if (response.StatusCode != System.Net.HttpStatusCode.OK)
-                {
-                    throw new Exception(response.ToString() + responseString);
-                }
-                var result = JsonConvert.DeserializeObject<T>(responseString);
-                return result;
-
+                throw new Exception(response.ToString() + responseString);
             }
-            catch (Exception ex)
-            {
-
-                UserDialogs.Alert(ex.ToString());
-                throw;
-            }
-            finally
-            {
-                UserDialogs.HideLoading();
-            }
+            var result = JsonConvert.DeserializeObject<T>(responseString);
+            return result;
         }
 
         protected async Task<T> Post<T, TY>(string path, TY obj, Dictionary<string, string> param = null)
         {
-            UserDialogs.ShowLoading("Loading", Acr.UserDialogs.MaskType.Black);
-            string url = string.Empty;
-            try
-            {
-                var client = new HttpClient();
-                client.DefaultRequestHeaders.Add("token", AccessToken);
-                url = $"{_apiUrl}{path}?coffeeroomno={CoffeeRoomNo}";
-                if (param != null && param.Count > 0)
-                {
-                    foreach (var parameter in param)
-                    {
-                        url += $"&{parameter.Key}={parameter.Value}";
-                    }
-                }
-                var response = await client.PostAsync(url, new StringContent(JsonConvert.SerializeObject(obj)));
-                string responseString = await response.Content.ReadAsStringAsync();
-                if (response.StatusCode != System.Net.HttpStatusCode.OK)
-                {
-                    throw new Exception(response.ToString() + responseString);
-                }
-                var result = JsonConvert.DeserializeObject<T>(responseString);
-                return result;
-            }
-            catch (Exception ex)
-            {
+            string url = GetUrl(path, param);
+            var client = new HttpClient();
+            client.DefaultRequestHeaders.Add("token", AccessToken);
 
-                UserDialogs.Alert(ex.ToString());
-                throw;
-            }
-            finally
+            var response = await client.PostAsync(url, new StringContent(JsonConvert.SerializeObject(obj)));
+            string responseString = await response.Content.ReadAsStringAsync();
+            if (response.StatusCode != System.Net.HttpStatusCode.OK)
             {
-                UserDialogs.HideLoading();
+                throw new Exception(response.ToString() + responseString);
             }
+            var result = JsonConvert.DeserializeObject<T>(responseString);
+            return result;
+
         }
 
         protected async Task<string> Post<T>(string path, T obj, Dictionary<string, string> param = null)
         {
-            UserDialogs.ShowLoading("Loading", Acr.UserDialogs.MaskType.Black);
-            string url = string.Empty;
-            try
+            string url = GetUrl(path, param);
+            var client = new HttpClient();
+            client.DefaultRequestHeaders.Add("token", AccessToken);
+
+            var response = await client.PostAsync(url, new StringContent(JsonConvert.SerializeObject(obj)));
+            var responseString = await response.Content.ReadAsStringAsync();
+            if (response.StatusCode != System.Net.HttpStatusCode.OK)
             {
-                var client = new HttpClient();
-                client.DefaultRequestHeaders.Add("token", AccessToken);
-                url = $"{_apiUrl}{path}?coffeeroomno={CoffeeRoomNo}";
-                if (param != null && param.Count > 0)
-                {
-                    foreach (var parameter in param)
-                    {
-                        url += $"&{parameter.Key}={parameter.Value}";
-                    }
-                }
-                var response = await client.PostAsync(url, new StringContent(JsonConvert.SerializeObject(obj)));
-                var responseString = await response.Content.ReadAsStringAsync();
-                if (response.StatusCode != System.Net.HttpStatusCode.OK)
-                {
-                    throw new Exception(response.ToString() + responseString);
-                }
-                return responseString;
+                throw new Exception(response.ToString() + responseString);
             }
-            catch (Exception ex)
-            {
-                UserDialogs.Alert(ex.ToString());
-                throw;
-            }
-            finally
-            {
-                UserDialogs.HideLoading();
-            }
+            return responseString;
         }
 
         protected async Task<T> Put<T, TY>(string path, TY obj, Dictionary<string, string> param = null)
         {
-            UserDialogs.ShowLoading("Loading", Acr.UserDialogs.MaskType.Black);
-            string url = string.Empty;
-            try
-            {
-                var client = new HttpClient();
-                client.DefaultRequestHeaders.Add("token", AccessToken);
-                url = $"{_apiUrl}{path}?coffeeroomno={CoffeeRoomNo}";
-                if (param != null && param.Count > 0)
-                {
-                    foreach (var parameter in param)
-                    {
-                        url += $"&{parameter.Key}={parameter.Value}";
-                    }
-                }
-                var response = await client.PutAsync(url, new StringContent(JsonConvert.SerializeObject(obj)));
-                string responseString = await response.Content.ReadAsStringAsync();
-                if (response.StatusCode != System.Net.HttpStatusCode.OK)
-                {
-                    throw new Exception(response.ToString() + responseString);
-                }
-                var result = JsonConvert.DeserializeObject<T>(responseString);
-                return result;
-            }
-            catch (Exception ex)
-            {
+            string url = GetUrl(path, param);
+            var client = new HttpClient();
+            client.DefaultRequestHeaders.Add("token", AccessToken);
 
-                UserDialogs.Alert(ex.ToString());
-                throw;
-            }
-            finally
+            var response = await client.PutAsync(url, new StringContent(JsonConvert.SerializeObject(obj)));
+            string responseString = await response.Content.ReadAsStringAsync();
+            if (response.StatusCode != System.Net.HttpStatusCode.OK)
             {
-                UserDialogs.HideLoading();
+                throw new Exception(response.ToString() + responseString);
             }
+            var result = JsonConvert.DeserializeObject<T>(responseString);
+            return result;
+
         }
 
         protected async Task<string> Put<T>(string path, T obj, Dictionary<string, string> param = null)
         {
-            UserDialogs.ShowLoading("Loading", Acr.UserDialogs.MaskType.Black);
-            string url = string.Empty;
-            try
+            string url = GetUrl(path, param);
+            var client = new HttpClient();
+            client.DefaultRequestHeaders.Add("token", AccessToken);
+
+            var response = await client.PutAsync(url, new StringContent(JsonConvert.SerializeObject(obj)));
+            var responseString = await response.Content.ReadAsStringAsync();
+            if (response.StatusCode != System.Net.HttpStatusCode.OK)
             {
-                var client = new HttpClient();
-                client.DefaultRequestHeaders.Add("token", AccessToken);
-                url = $"{_apiUrl}{path}?coffeeroomno={CoffeeRoomNo}";
-                if (param != null && param.Count > 0)
-                {
-                    foreach (var parameter in param)
-                    {
-                        url += $"&{parameter.Key}={parameter.Value}";
-                    }
-                }
-                var response = await client.PutAsync(url, new StringContent(JsonConvert.SerializeObject(obj)));
-                var responseString = await response.Content.ReadAsStringAsync();
-                if (response.StatusCode != System.Net.HttpStatusCode.OK)
-                {
-                    throw new Exception(response.ToString() + responseString);
-                }
-                return responseString;
+                throw new Exception(response.ToString() + responseString);
             }
-            catch (Exception ex)
-            {
-                UserDialogs.Alert(ex.ToString());
-                throw;
-            }
-            finally
-            {
-                UserDialogs.HideLoading();
-            }
+            return responseString;
         }
 
         protected async Task<string> Delete(string path, Dictionary<string, string> param = null)
         {
-            UserDialogs.ShowLoading("Loading", Acr.UserDialogs.MaskType.Black);
-            string url = string.Empty;
-            try
-            {
-                var client = new HttpClient();
-                client.DefaultRequestHeaders.Add("token", AccessToken);
-                url = $"{_apiUrl}{path}?coffeeroomno={CoffeeRoomNo}";
-                if (param != null && param.Count > 0)
-                {
-                    foreach (var parameter in param)
-                    {
-                        url += $"&{parameter.Key}={parameter.Value}";
-                    }
-                }
-                var response = await client.DeleteAsync(url);
-                var responseString = await response.Content.ReadAsStringAsync();
-                if (response.StatusCode != System.Net.HttpStatusCode.OK)
-                {
-                    throw new Exception(response.ToString() + responseString);
-                }
-                return responseString;
-            }
-            catch (Exception ex)
-            {
+            string url = GetUrl(path, param);
+            var client = new HttpClient();
+            client.DefaultRequestHeaders.Add("token", AccessToken);
 
-                UserDialogs.Alert(ex.ToString());
-                throw;
-            }
-            finally
+            var response = await client.DeleteAsync(url);
+            var responseString = await response.Content.ReadAsStringAsync();
+            if (response.StatusCode != System.Net.HttpStatusCode.OK)
             {
-                UserDialogs.HideLoading();
+                throw new Exception(response.ToString() + responseString);
             }
+            return responseString;
+        }
+
+        private string GetUrl(string path, Dictionary<string, string> param = null)
+        {
+            string url = $"{_apiUrl}{path}?coffeeroomno={CoffeeRoomNo}";
+            if (param != null && param.Count > 0)
+            {
+                foreach (var parameter in param)
+                {
+                    url += $"&{parameter.Key}={parameter.Value}";
+                }
+            }
+            return url;
         }
     }
 }

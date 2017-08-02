@@ -22,7 +22,7 @@ namespace CoffeeManagerAdmin.Core
         private async void DoToggleIsActive()
         {
             var um = new UserManager();
-            await um.ToggleEnabled(Id);
+            await TryCatchSpecifics(async () => await um.ToggleEnabled(Id));
         }
 
         protected override void DoGoToDetails()

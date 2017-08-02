@@ -45,19 +45,16 @@ namespace CoffeeManagerAdmin.Core.ViewModels
 
         private async void DoLogin()
         {
-            try
-            {
+            await TryCatchSpecifics(async () => 
+            {           
                 string accessToken = await manager.Login(Name, Password);
                 accessToken = accessToken.Substring(1);
                 accessToken = accessToken.Substring(0, accessToken.Length - 1);
                 LocalStorage.SetUserInfo(new UserInfo() { Login = Name, Password = Password });
                 BaseServiceProvider.AccessToken = accessToken;
                 ShowViewModel<MainViewModel>();
-            }
-            catch (Exception ex)
-            {
-                UserDialogs.Alert(ex.ToString());
-            }
+            });
+
         }
     }
 }

@@ -17,7 +17,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels
 
         public int Id => _prod.Id;
 
-        public string Name => _prod.Name + " : " + _prod.Price.ToString("F1");
+        public override string Name => _prod.Name + " : " + _prod.Price.ToString("F1");
 
 
     }

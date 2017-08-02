@@ -1,10 +1,8 @@
-﻿using System;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using CoffeeManagerAdmin.Core.Managers;
 using MvvmCross.Core.ViewModels;
 using System.Threading.Tasks;
 using CoffeeManagerAdmin.Core.ViewModels.Orders;
-using System.Diagnostics;
 using CoffeManager.Common;
 
 namespace CoffeeManagerAdmin.Core.ViewModels
@@ -40,7 +38,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels
         public ICommand EditUsersCommand => _editUsersCommand;
         public ICommand EditProductCalculation => _editProductCalculation;
         public ICommand ShowStatiscticCommand => _showStatiscticCommand;
-        public ICommand ShowExpensesCommand {get;set;} 
+        public ICommand ShowExpensesCommand { get; set; }
 
         public string CurrentBalance
         {
@@ -116,12 +114,13 @@ namespace CoffeeManagerAdmin.Core.ViewModels
 
         private async Task GetEntireMoney()
         {
-            var currentBalance = await _shiftManager.GetEntireMoney();
-            Debug.WriteLine("currentBalance "+ currentBalance);
-            CurrentBalance = currentBalance.ToString("F1");
-            var shiftBalance = await _shiftManager.GetCurrentShiftMoney();
-            Debug.WriteLine("shiftBalance "+ shiftBalance);
-            CurrentShiftBalance = shiftBalance.ToString("F1");
+            await TryCatchSpecifics(async () =>
+            {
+                var currentBalance = await _shiftManager.GetEntireMoney();
+                CurrentBalance = currentBalance.ToString("F1");
+                var shiftBalance = await _shiftManager.GetCurrentShiftMoney();
+                CurrentShiftBalance = shiftBalance.ToString("F1");
+            });
         }
     }
 }

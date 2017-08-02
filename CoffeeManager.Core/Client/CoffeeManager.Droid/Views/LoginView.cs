@@ -4,7 +4,7 @@ using Android.App;
 using Android.Content.PM;
 using Android.OS;
 using CoffeeManager.Core.ViewModels;
-
+    
 namespace CoffeeManager.Droid.Views
 {
     [Activity(Label = "", Theme = "@style/Theme.AppCompat.Light", ScreenOrientation = ScreenOrientation.Landscape)]

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Acr.UserDialogs;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
@@ -6,8 +7,27 @@ using MvvmCross.Plugins.Messenger;
 
 namespace CoffeManager.Common
 {
-      public abstract class ViewModelBase : MvxViewModel
+    public abstract class ViewModelBase : MvxViewModel
     {
+        private bool isLoading;
+        public bool IsLoading
+        {
+            get { return isLoading;}
+            set 
+            {
+                isLoading = value;
+                if(isLoading)
+                {
+                    this.UserDialogs.ShowLoading("Loading", Acr.UserDialogs.MaskType.Black) ;
+                }
+                else
+                {
+                    UserDialogs.HideLoading();
+                }
+                RaisePropertyChanged(nameof(IsLoading));
+            }
+        }
+        
         protected IUserDialogs UserDialogs
         {
             get
@@ -40,10 +60,36 @@ namespace CoffeManager.Common
         protected void Publish<T>(T message) where T : MvxMessage
         {
             MvxMessenger.Publish(message);
+        }   
+
+
+        protected async Task TryCatchSpecifics(Func<Task> functionToRun, string globalExceptionMessage = null)
+        {
+            Func<Task<bool>> runDelegate = async () => { await functionToRun(); return true; };
+
+            await TryCatchSpecifics(functionToRun: runDelegate, 
+                                    globalExceptionMessage: globalExceptionMessage);
         }
 
-        public ViewModelBase()
+        protected async Task<T> TryCatchSpecifics<T>(Func<Task<T>> functionToRun, string globalExceptionMessage = null, T valueToReturnForError = default(T))
         {
+            try
+            {
+                IsLoading = true;
+
+                var result = await functionToRun();
+                return result;
+            }
+            catch (Exception e)
+            {
+                UserDialogs.Alert(e.ToString());
+            }
+            finally
+            {
+
+                IsLoading = false;                
+            }
+            return valueToReturnForError;
         }
     }
 }

@@ -12,7 +12,7 @@ namespace CoffeeManagerAdmin.Core
     public class UsersViewModel : ViewModelBase
     {
         UserManager manager = new UserManager();
-        private string _name;
+       
         private List<UserItemViewModel> users;
         private ICommand _addUserCommand;
 
@@ -29,9 +29,12 @@ namespace CoffeeManagerAdmin.Core
 
         public async void Init()
         {
-            var items = await manager.GetUsers();
-            Users = items.Select(s => new UserItemViewModel{UserName = s.Name, IsActive = s.IsActive, Id = s.Id})
+            await TryCatchSpecifics(async () => 
+            {
+                var items = await manager.GetUsers();
+                Users = items.Select(s => new UserItemViewModel{UserName = s.Name, IsActive = s.IsActive, Id = s.Id})
                     .OrderByDescending(o => o.IsActive).ToList();
+            });
         }
 
         public ICommand AddUserCommand => _addUserCommand;

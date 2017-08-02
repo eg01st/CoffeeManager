@@ -127,14 +127,17 @@ namespace CoffeeManagerAdmin.Core
             {
                 return;
             }
-            user = await um.GetUser(useridParameter);
-            UserName = user.Name;
-            DayShiftPersent = user.DayShiftPersent;
-            NightShiftPercent = user.NightShiftPercent;
-            
-            await InitTypes();
-
-            RaiseAllPropertiesChanged();
+            await TryCatchSpecifics(async () => 
+            {
+                user = await um.GetUser(useridParameter);
+                UserName = user.Name;
+                DayShiftPersent = user.DayShiftPersent;
+                NightShiftPercent = user.NightShiftPercent;
+                
+                await InitTypes();
+    
+                RaiseAllPropertiesChanged();
+            });
         }
 
         public async void Init()
@@ -151,18 +154,21 @@ namespace CoffeeManagerAdmin.Core
 
         private async Task InitTypes()
         {
-            var types = await pm.GetExpenseItems();
-            ExpenseItems = types.Select(s => new Entity { Id = s.Id, Name = s.Name }).ToList();
-            if (user.ExpenceId > 0)
+            await TryCatchSpecifics(async () => 
             {
-                var item = ExpenseItems.First(i => i.Id == user.ExpenceId);
-                SelectedExpenseType = item;
-            }
+                var types = await pm.GetExpenseItems();
+                ExpenseItems = types.Select(s => new Entity { Id = s.Id, Name = s.Name }).ToList();
+                if (user.ExpenceId > 0)
+                {
+                    var item = ExpenseItems.First(i => i.Id == user.ExpenceId);
+                    SelectedExpenseType = item;
+                }
+            });
         }
 
         private void DoPaySalary()
         {
-             UserDialogs.Confirm(new Acr.UserDialogs.ConfirmConfig() 
+            UserDialogs.Confirm(new Acr.UserDialogs.ConfirmConfig() 
             {
                 Message = "Выдать зарплату?",
                 OnAction = async (bool obj) => 
@@ -187,18 +193,20 @@ namespace CoffeeManagerAdmin.Core
                 UserDialogs.Alert("Пустой баланс!");
                 return;
             }
-            
-            var sm = new ShiftManager();
-            var shift = await sm.GetCurrentShift();
-            if(shift == null)
+            await TryCatchSpecifics(async () => 
             {
-                UserDialogs.Alert("Запустите новую смену!");
-                return;
-            }
-            await um.PaySalary(UserId, shift.Id);
-            user.EntireEarnedAmount += CurrentEarnedAmount;
-            user.CurrentEarnedAmount = 0;
-            Close(this);
+                var sm = new ShiftManager();
+                var shift = await sm.GetCurrentShift();
+                if(shift == null)
+                {
+                    UserDialogs.Alert("Запустите новую смену!");
+                    return;
+                }
+                await um.PaySalary(UserId, shift.Id);
+                user.EntireEarnedAmount += CurrentEarnedAmount;
+                user.CurrentEarnedAmount = 0;
+                Close(this);
+            });
         }
    }
 }
