@@ -1,18 +1,20 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CoffeeManager.Core.Managers;
 using CoffeeManager.Models;
+using CoffeManager.Common;
 using MvvmCross.Plugins.Messenger;
 
 namespace CoffeeManager.Core.ViewModels.Products
 {
     public abstract class ProductBaseViewModel : ViewModelBase
     {
-        private readonly MvxSubscriptionToken token;
+        protected ProductManager ProductManager = new ProductManager();
 
-        protected List<ProductViewModel> _items;
+        protected ProductItemViewModel[] _items;
 
-        public List<ProductViewModel> Items
+        public ProductItemViewModel[] Items
         {
             get { return _items; }
             set
@@ -25,7 +27,7 @@ namespace CoffeeManager.Core.ViewModels.Products
         protected abstract Task<Product[]> GetProducts();
 
 
-        public async void Init()
+        public async Task InitViewModel()
         {
             await GetItems();
         }
@@ -33,7 +35,7 @@ namespace CoffeeManager.Core.ViewModels.Products
         private async Task GetItems()
         {
             var items = await GetProducts();
-            Items = items.Select(s => new ProductViewModel(s)).ToList();
+            Items = items.Select(s => new ProductItemViewModel(s)).ToArray();
         }
     }
 }

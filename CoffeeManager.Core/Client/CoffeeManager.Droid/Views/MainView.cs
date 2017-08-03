@@ -12,6 +12,8 @@ using Android.Views;
 using Android.Widget;
 using CoffeeManager.Core.ViewModels;
 using CoffeeManager.Droid.Adapters;
+using CoffeeManager.Droid.Views.Fragments;
+using MvvmCross.Binding.BindingContext;
 using TabItem = CoffeeManager.Droid.Entities.TabItem;
 
 namespace CoffeeManager.Droid.Views
@@ -24,7 +26,15 @@ namespace CoffeeManager.Droid.Views
         private View _policeSaveView;
         private View _creditCardView;
 
-        private TabFactory tabFactory = new TabFactory();
+        private CoffeeFragment coffeeFragment;
+        private TeaFragment teaFragment;
+        private SweetsFragment sweetsFragment;
+        private WaterFragment waterFragment;
+        private AddsFragment addsFragment;
+        private MealsFragment mealsFragment;
+        private ColdDrinksFragment coldDrinksFragment;
+        private IceCreamFragment iceCreamFragment;
+
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -36,6 +46,23 @@ namespace CoffeeManager.Droid.Views
 
             InitToolBarCommands();
             SetTabLayout();
+
+            DoBind();
+        }
+
+        private void DoBind()
+        {
+            var set = this.CreateBindingSet<MainView, MainViewModel>();
+
+            set.Bind(coffeeFragment).For(v => v.ViewModel).To(vm => vm.CoffeeProducts).OneWay();
+            set.Bind(teaFragment).For(v => v.ViewModel).To(vm => vm.TeaProducts).OneWay();
+            set.Bind(sweetsFragment).For(v => v.ViewModel).To(vm => vm.SweetsProducts).OneWay();
+            set.Bind(waterFragment).For(v => v.ViewModel).To(vm => vm.WaterProducts).OneWay();
+            set.Bind(addsFragment).For(v => v.ViewModel).To(vm => vm.AddsProducts).OneWay();
+            set.Bind(mealsFragment).For(v => v.ViewModel).To(vm => vm.MealsProducts).OneWay();
+            set.Bind(coldDrinksFragment).For(v => v.ViewModel).To(vm => vm.ColdDrinksProducts).OneWay();
+            set.Bind(iceCreamFragment).For(v => v.ViewModel).To(vm => vm.IceCreamProducts).OneWay();
+            set.Apply();
         }
 
         private void InitToolBarCommands()
@@ -103,7 +130,7 @@ namespace CoffeeManager.Droid.Views
 
         private void SetTabLayout()
         {
-            var tabItems = tabFactory.Produce();
+            var tabItems = ProduceTabItems();
             SetupViewPager(tabItems);
             tabLayout.SetupWithViewPager(viewPager);
 
@@ -126,6 +153,30 @@ namespace CoffeeManager.Droid.Views
             }
 
             viewPager.Adapter = adapter;
+        }
+
+        private TabItem[] ProduceTabItems()
+        {
+            coffeeFragment = new CoffeeFragment();
+	        teaFragment = new TeaFragment();
+	        sweetsFragment = new SweetsFragment();
+	        waterFragment = new WaterFragment();
+	        addsFragment = new AddsFragment();
+	        mealsFragment = new MealsFragment();
+	        coldDrinksFragment= new ColdDrinksFragment();
+	        iceCreamFragment = new IceCreamFragment();
+
+            return new TabItem[]
+            {
+                new TabItem("Кофе", coffeeFragment),
+                new TabItem("Чай", teaFragment),
+                new TabItem("Сладости", sweetsFragment),
+                new TabItem("Вода", waterFragment),
+                new TabItem("Добавки", addsFragment),
+                new TabItem("Еда", mealsFragment),
+                new TabItem("Хол напитки", coldDrinksFragment),
+                new TabItem("Мороженое", iceCreamFragment),
+            };
         }
 
         public override void OnBackPressed()

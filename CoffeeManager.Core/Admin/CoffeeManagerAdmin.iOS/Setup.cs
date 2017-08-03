@@ -32,7 +32,6 @@ namespace CoffeeManagerAdmin.iOS
 
         protected override void InitializeLastChance()
         {
-            bool can = Mvx.CanResolve<IUserDialogs>();
             Mvx.RegisterSingleton<IUserDialogs>(new UserDialogsImpl());
             base.InitializeLastChance();
         }

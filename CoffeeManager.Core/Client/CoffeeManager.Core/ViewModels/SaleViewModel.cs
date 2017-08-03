@@ -3,14 +3,18 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Acr.UserDialogs;
+using CoffeeManager.Core.Managers;
 using CoffeeManager.Core.Messages;
 using CoffeeManager.Models;
+using CoffeManager.Common;
 using MvvmCross.Core.ViewModels;
 
 namespace CoffeeManager.Core.ViewModels
 {
     public class SaleViewModel : ViewModelBase
     {
+        ProductManager ProductManager = new ProductManager();
+
         private ICommand _dismisItemCommand;
         private Sale _sale;
         private string _status;

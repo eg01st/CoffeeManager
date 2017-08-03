@@ -1,6 +1,7 @@
 using Android.OS;
 using Android.Views;
 using CoffeeManager.Core.ViewModels;
+using CoffeManager.Common;
 using MvvmCross.Binding.Droid.BindingContext;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Droid.Support.V4;

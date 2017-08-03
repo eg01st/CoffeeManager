@@ -8,6 +8,7 @@ using Acr.UserDialogs;
 using CoffeeManager.Core.Managers;
 using CoffeeManager.Core.Messages;
 using CoffeeManager.Models;
+using CoffeManager.Common;
 using MvvmCross.Core.ViewModels;
 
 namespace CoffeeManager.Core.ViewModels

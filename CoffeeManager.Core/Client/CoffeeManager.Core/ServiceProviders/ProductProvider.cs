@@ -24,7 +24,7 @@ namespace CoffeeManager.Core.ServiceProviders
             return prods.Where(p => p.IsActive).ToArray();
         }
 
-        public async Task SaleProduct(int shiftId, int id, decimal price, bool isPoliceSale, bool isCreditCardSale)
+        public async Task SaleProduct(int shiftId, int id, decimal price, bool isPoliceSale, bool isCreditCardSale, bool isSaleByWeight, decimal? weight)
         {
             var sale = new Sale()
             {
@@ -34,7 +34,10 @@ namespace CoffeeManager.Core.ServiceProviders
                 IsPoliceSale = isPoliceSale,
                 CoffeeRoomNo = CoffeeRoomNo,
                 Time = DateTime.Now,
-                IsCreditCardSale = isCreditCardSale
+                IsCreditCardSale = isCreditCardSale,
+                IsSaleByWeight = isSaleByWeight,
+                Weight = weight
+
             };
             await PutInternal($"{Products}/SaleProduct", JsonConvert.SerializeObject(sale));
         }

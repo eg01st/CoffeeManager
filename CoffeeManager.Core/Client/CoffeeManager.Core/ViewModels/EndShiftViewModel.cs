@@ -2,6 +2,7 @@
 using Acr.UserDialogs;
 using CoffeeManager.Core.Managers;
 using CoffeeManager.Core.ServiceProviders;
+using CoffeManager.Common;
 using MvvmCross.Core.ViewModels;
 
 namespace CoffeeManager.Core.ViewModels

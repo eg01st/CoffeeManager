@@ -33,6 +33,7 @@
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="ViewModels\ListItemViewModelBase.cs" />
     <Compile Include="Extensions\ExceptionExtensions.cs" />
+    <Compile Include="CoffeManagerApp.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Providers\" />

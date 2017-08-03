@@ -1,4 +1,5 @@
 ﻿using CoffeeManager.Models;
+using CoffeManager.Common;
 
 namespace CoffeeManager.Core.ViewModels
 {

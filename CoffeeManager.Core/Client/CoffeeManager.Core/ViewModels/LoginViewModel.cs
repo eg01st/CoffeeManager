@@ -5,6 +5,7 @@ using CoffeeManager.Core.Managers;
 using CoffeeManager.Models;
 using MvvmCross.Core.ViewModels;
 using System.Linq;
+using CoffeManager.Common;
 
 namespace CoffeeManager.Core.ViewModels
 {

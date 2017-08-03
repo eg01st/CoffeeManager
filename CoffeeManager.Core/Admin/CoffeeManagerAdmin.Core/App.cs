@@ -1,4 +1,4 @@
-using MvvmCross.Platform.IoC;
+    using MvvmCross.Platform.IoC;
 
 namespace CoffeeManagerAdmin.Core
 {

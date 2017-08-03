@@ -21,5 +21,6 @@ namespace CoffeeManager.Core
 
             Mvx.RegisterSingleton<IUserDialogs>(() => UserDialogs.Instance);
         }
+
     }
 }

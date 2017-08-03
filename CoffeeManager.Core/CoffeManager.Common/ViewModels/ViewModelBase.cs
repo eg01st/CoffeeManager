@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using System.Threading.Tasks;
 using Acr.UserDialogs;
 using MvvmCross.Core.ViewModels;
@@ -90,6 +90,47 @@ namespace CoffeManager.Common
                 IsLoading = false;                
             }
             return valueToReturnForError;
+        }
+
+        public void ShowSuccessMessage(string message)
+        {
+            UserDialogs.ShowSuccess(message, 300);
+        }
+
+        public void Alert(string message)
+        {
+            UserDialogs.Alert(message);
+        }
+
+        public void Confirm(string message, Action action)
+        {
+             UserDialogs.Confirm(new ConfirmConfig()
+                {
+                    Message = message,
+                    OnAction = async
+                        (confirm) =>
+                        {
+                            if (confirm)
+                            {
+                                await ExecuteSafe(async () => action());
+                            }
+                        }
+                });
+        }
+
+        public async Task<int?> PromtAsync(string message)
+        {
+           var result = await UserDialogs.PromptAsync(new PromptConfig()
+                {
+                    Message = message, 
+                    InputType = InputType.Number
+                    
+                });
+            if(string.IsNullOrWhiteSpace(result.Value))
+            {
+                return null;
+            }
+            return int.Parse(result.Value);
         }
     }
 }

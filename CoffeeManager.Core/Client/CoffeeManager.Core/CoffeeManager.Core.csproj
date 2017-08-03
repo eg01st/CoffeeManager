@@ -71,9 +71,7 @@
     <Compile Include="ViewModels\ExpenseViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
-    <Compile Include="ViewModels\ProductViewModel.cs" />
     <Compile Include="ViewModels\SaleViewModel.cs" />
-    <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Messages\LostConnectionMessage.cs" />
     <Compile Include="ViewModels\Products\AddsViewModel.cs" />
     <Compile Include="ViewModels\Products\CoffeeViewModel.cs" />
@@ -84,6 +82,9 @@
     <Compile Include="ViewModels\Products\TeaViewModel.cs" />
     <Compile Include="ViewModels\Products\WaterViewModel.cs" />
     <Compile Include="ViewModels\Products\ProductBaseViewModel.cs" />
+    <Compile Include="ViewModels\Products\ProductItemViewModel.cs" />
+    <Compile Include="ViewModels\Products\SelectedProductViewModel.cs" />
+    <Compile Include="EventArgs\SaleItemEventArgs.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Cheesebaron.MvxPlugins.SMS, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -156,6 +157,9 @@
       <Project>{F630255E-C4A6-4DC6-ACC2-D9DE1E3D06F0}</Project>
       <Name>CoffeManager.Common</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="EventArgs\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
