@@ -52,15 +52,18 @@ namespace CoffeeManagerAdmin.iOS
             set.Bind(NameText).To(vm => vm.Name);
             set.Bind(PriceText).To(vm => vm.Price);
             set.Bind(PolicePriceText).To(vm => vm.PolicePrice);
+            set.Bind(PriceTitleLabel).To(vm => vm.PriceTitle);
+            set.Bind(PolicePriceTitleLabel).To(vm => vm.PolicePriceTitle);
             set.Bind(CupTypeCategoryText).To(vm => vm.CupTypeName);
             set.Bind(ProductTypeText).To(vm => vm.ProductTypeName);
             set.Bind(AddProductButton).To(vm => vm.AddProductCommand);
             set.Bind(AddProductButton).For(b => b.Enabled).To(vm => vm.IsAddEnabled);
-             set.Bind(AddProductButton).For("Title").To(vm => vm.ButtonTitle);
+            set.Bind(AddProductButton).For("Title").To(vm => vm.ButtonTitle);
             set.Bind(cupPickerViewModel).For(p => p.ItemsSource).To(vm => vm.CupTypesList);
             set.Bind(cupPickerViewModel).For(p => p.SelectedItem).To(vm => vm.SelectedCupType);
             set.Bind(productTypePickerViewModel).For(p => p.ItemsSource).To(vm => vm.ProductTypesList);
             set.Bind(productTypePickerViewModel).For(p => p.SelectedItem).To(vm => vm.SelectedProductType);
+            set.Bind(IsSaleByWeightSwitch).For(s => s.On).To(vm => vm.IsSaleByWeight);
             set.Apply();
 
         }

@@ -14,102 +14,23 @@ namespace CoffeeManagerAdmin.Core.ViewModels
         private ProductManager manager = new ProductManager();
 
         private int _id;
-
         private string _name;
-
         private string _price;
-
         private string _policePrice;
-
         private int _cupType;
-
         private string _cupTypeName;
-
         private int _productType;
-
         private string _productTypeName;
-
         private ICommand _addProductCommand;
-
         private Entity _selectedCupType;
         private Entity _selectedProductType;
+        private bool isSaleByWeight;
 
-
+        #region Properties
         public List<Entity> CupTypesList => TypesLists.CupTypesList;
-
         public List<Entity> ProductTypesList => TypesLists.ProductTypesList;
-
         public ICommand AddProductCommand => _addProductCommand;
-
-        public ProductDetailsViewModel()
-        {
-            _addProductCommand = new MvxCommand(DoAddProduct);
-        }
-
-        public void Init(Guid id)
-        {
-            if(id != Guid.Empty)
-            {
-                _addProductCommand = new MvxCommand(DoEditProduct);
-                
-                Product product;
-                ParameterTransmitter.TryGetParameter(id, out product);
-                _id = product.Id;
-                Name = product.Name;
-                Price = product.Price.ToString("F");
-                PolicePrice = product.PolicePrice.ToString("F");
-                
-                var cupType = CupTypesList.FirstOrDefault(t => t.Id == product.CupType);
-                if(cupType != null)
-                {
-                    SelectedCupType = cupType;
-                }
-                var productType = ProductTypesList.FirstOrDefault(t => t.Id == product.ProductType);
-                if(productType != null)
-                {
-                    SelectedProductType = productType;
-                }
-                ButtonTitle = "Сохранить изменения";
-                RaisePropertyChanged(nameof(ButtonTitle));
-            }
-        }
-
-        private void DoAddProduct()
-        {
-            UserDialogs.Confirm(new Acr.UserDialogs.ConfirmConfig()
-            {
-                Message = $"Добавить продукт \"{Name}\"?",
-                OnAction = async (obj) =>
-                {
-                    if (obj)
-                    {
-                        await manager.AddProduct(Name, Price, PolicePrice, CupType, ProductTypeId);
-                        Publish(new ProductListChangedMessage(this));
-                        Close(this);
-                    }
-                }
-            });
-        }
-
-        private void DoEditProduct()
-        {
-            UserDialogs.Confirm(new Acr.UserDialogs.ConfirmConfig()
-            {
-                Message = $"Сохранить изменения в продукте \"{Name}\"?",
-                OnAction = async (obj) =>
-                {
-                    if (obj)
-                    {
-                        await manager.EditProduct(_id, Name, Price, PolicePrice, CupType, ProductTypeId);
-                        Publish(new ProductListChangedMessage(this));
-                        Close(this);
-                    }
-                }
-            });
-        }
-
         public bool IsAddEnabled => !string.IsNullOrEmpty(Name) && !string.IsNullOrEmpty(Price) && !string.IsNullOrEmpty(PolicePrice) && !string.IsNullOrEmpty(CupTypeName) && !string.IsNullOrEmpty(ProductTypeName);
-
 
         public Entity SelectedCupType
         {
@@ -144,6 +65,23 @@ namespace CoffeeManagerAdmin.Core.ViewModels
         }
 
         public string ButtonTitle {get;set;} = "Добавить продукт";
+        public string PriceTitle {get;set;} = "Цена: ";
+        public string PolicePriceTitle {get;set;} = "Цена для копов: ";        
+
+        public bool IsSaleByWeight
+        {
+            get { return isSaleByWeight;}
+            set
+            {
+                isSaleByWeight = value;
+                PriceTitle = isSaleByWeight ? "Цена за 100 грамм: " : "Цена: ";
+                PolicePriceTitle = isSaleByWeight ? "Цена для копов за 100 грамм: " : "Цена для копов:";
+                RaisePropertyChanged(nameof(IsSaleByWeight));
+                RaisePropertyChanged(nameof(PriceTitle));
+                RaisePropertyChanged(nameof(PolicePriceTitle));
+                
+            }
+        }
 
         public string Name
         {
@@ -219,6 +157,77 @@ namespace CoffeeManagerAdmin.Core.ViewModels
                 RaisePropertyChanged(nameof(ProductTypeName));
             }
         }
+#endregion
 
+
+        public ProductDetailsViewModel()
+        {
+            _addProductCommand = new MvxCommand(DoAddProduct);
+        }
+
+        public void Init(Guid id)
+        {
+            if(id != Guid.Empty)
+            {
+                _addProductCommand = new MvxCommand(DoEditProduct);
+                
+                Product product;
+                ParameterTransmitter.TryGetParameter(id, out product);
+                _id = product.Id;
+                Name = product.Name;
+                Price = product.Price.ToString("F");
+                PolicePrice = product.PolicePrice.ToString("F");
+                IsSaleByWeight = product.IsSaleByWeight;
+                
+                var cupType = CupTypesList.FirstOrDefault(t => t.Id == product.CupType);
+                if(cupType != null)
+                {
+                    SelectedCupType = cupType;
+                }
+                var productType = ProductTypesList.FirstOrDefault(t => t.Id == product.ProductType);
+                if(productType != null)
+                {
+                    SelectedProductType = productType;
+                }
+                ButtonTitle = "Сохранить изменения";
+                RaisePropertyChanged(nameof(ButtonTitle));
+            }
+        }
+
+        private void DoAddProduct()
+        {
+            UserDialogs.Confirm(new Acr.UserDialogs.ConfirmConfig()
+            {
+                Message = $"Добавить продукт \"{Name}\"?",
+                OnAction = async (obj) =>
+                {
+                    if (obj)
+                    {
+                        await manager.AddProduct(Name, Price, PolicePrice, CupType, ProductTypeId, IsSaleByWeight);
+                        Publish(new ProductListChangedMessage(this));
+                        Close(this);
+                    }
+                }
+            });
+        }
+
+        private void DoEditProduct()
+        {
+            UserDialogs.Confirm(new Acr.UserDialogs.ConfirmConfig()
+            {
+                Message = $"Сохранить изменения в продукте \"{Name}\"?",
+                OnAction = async (obj) =>
+                {
+                    if (obj)
+                    {
+                        await manager.EditProduct(_id, Name, Price, PolicePrice, CupType, ProductTypeId, IsSaleByWeight);
+                        Publish(new ProductListChangedMessage(this));
+                        Close(this);
+                    }
+                }
+            });
+        }
+
+     
     }
 }

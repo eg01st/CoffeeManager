@@ -12,9 +12,9 @@ namespace CoffeeManagerAdmin.Core
         {
         }
 
-        public async Task AddProduct(string name, string price, string policePrice, int cupType, int productTypeId)
+        public async Task AddProduct(string name, string price, string policePrice, int cupType, int productTypeId, bool isSaleByWeight)
         {
-            await provider.AddProduct(new Product { Name = name, Price = decimal.Parse(price), PolicePrice = decimal.Parse(policePrice), ProductType = productTypeId, CupType = cupType, CoffeeRoomNo = Config.CoffeeRoomNo });
+            await provider.AddProduct(new Product { Name = name, Price = decimal.Parse(price), PolicePrice = decimal.Parse(policePrice), ProductType = productTypeId, CupType = cupType, CoffeeRoomNo = Config.CoffeeRoomNo, IsSaleByWeight = isSaleByWeight });
         }
 
         public async Task DeleteProduct(int id)
@@ -22,9 +22,9 @@ namespace CoffeeManagerAdmin.Core
             await provider.DeleteProduct(id);
         }
 
-        public async Task EditProduct(int id, string name, string price, string policePrice, int cupType, int productTypeId)
+        public async Task EditProduct(int id, string name, string price, string policePrice, int cupType, int productTypeId, bool isSaleByWeight)
         {
-            await provider.EditProduct(new Product { Id = id, Name = name, Price = decimal.Parse(price), PolicePrice = decimal.Parse(policePrice), ProductType = productTypeId, CupType = cupType, CoffeeRoomNo = Config.CoffeeRoomNo });
+            await provider.EditProduct(new Product { Id = id, Name = name, Price = decimal.Parse(price), PolicePrice = decimal.Parse(policePrice), ProductType = productTypeId, CupType = cupType, CoffeeRoomNo = Config.CoffeeRoomNo, IsSaleByWeight = isSaleByWeight });
         }
 
         public async Task<Product[]> GetProducts()
