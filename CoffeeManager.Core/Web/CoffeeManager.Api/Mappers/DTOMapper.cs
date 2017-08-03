@@ -34,7 +34,8 @@ namespace CoffeeManager.Api.Mappers
                 ProductType = prodDb.ProductType.Value,
                 CupType = prodDb.CupType.Value,
                 SuplyId = prodDb.SuplyProductId,
-                IsActive = prodDb.IsActive
+                IsActive = prodDb.IsActive,
+                IsSaleByWeight = prodDb.IsSaleByWeight
             };
         }
 
@@ -61,7 +62,9 @@ namespace CoffeeManager.Api.Mappers
                 IsUtilized = saleDb.IsUtilized,
                 IsRejected = saleDb.IsRejected,
                 Time = saleDb.Time,
-                IsCreditCardSale = saleDb.IsCreditCardSale
+                IsCreditCardSale = saleDb.IsCreditCardSale,
+                IsSaleByWeight = saleDb.IsSaleByWeight,
+                Weight = saleDb.Weight
             };
         }
 
