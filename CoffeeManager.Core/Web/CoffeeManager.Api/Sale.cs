@@ -24,6 +24,8 @@ namespace CoffeeManager.Api
         public bool IsRejected { get; set; }
         public bool IsUtilized { get; set; }
         public bool IsCreditCardSale { get; set; }
+        public bool IsSaleByWeight { get; set; }
+        public Nullable<decimal> Weight { get; set; }
     
         public virtual Product Product1 { get; set; }
         public virtual Shift Shift { get; set; }

@@ -16,7 +16,9 @@ namespace CoffeeManager.Api.Mappers
 				Product = sale.Product,
 				ShiftId = sale.ShiftId,
 				Time = sale.Time,
-                IsCreditCardSale = sale.IsCreditCardSale
+                IsCreditCardSale = sale.IsCreditCardSale,
+                IsSaleByWeight = sale.IsSaleByWeight,
+                Weight = sale.Weight
 			};
 
 		}
@@ -58,7 +60,8 @@ namespace CoffeeManager.Api.Mappers
 				PolicePrice = product.PolicePrice,
 				Price = product.Price,
 				ProductType = product.ProductType,
-                IsActive = product.IsActive
+                IsActive = product.IsActive,
+                IsSaleByWeight = product.IsSaleByWeight
 			};
 			if (product.SuplyId.HasValue) {
 				prod.SuplyProductId = product.SuplyId;

@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\Dima\Source\Repos\CoffeeManager\CoffeeManager.Core\CoffeeManager.Api\Model.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\Dima\Source\Repos\CoffeeManager\CoffeeManager.Core\Web\CoffeeManager.Api\Model.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

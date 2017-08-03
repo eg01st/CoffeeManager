@@ -24,5 +24,8 @@ namespace CoffeeManager.Models
         public bool IsUtilized { get; set; }
 
         public bool IsCreditCardSale { get; set; }
+
+        public bool IsSaleByWeight { get; set; }
+        public decimal? Weight { get; set; }
     }
 }

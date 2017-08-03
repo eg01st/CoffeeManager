@@ -95,6 +95,7 @@
           <Property Name="CupType" Type="int" />
           <Property Name="SuplyProductId" Type="int" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsSaleByWeight" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="ProductCalculation">
           <Key>
@@ -128,6 +129,8 @@
           <Property Name="IsRejected" Type="bit" Nullable="false" />
           <Property Name="IsUtilized" Type="bit" Nullable="false" />
           <Property Name="IsCreditCardSale" Type="bit" Nullable="false" />
+          <Property Name="IsSaleByWeight" Type="bit" Nullable="false" />
+          <Property Name="Weight" Type="decimal" Precision="18" Scale="0" />
         </EntityType>
         <EntityType Name="Session">
           <Key>
@@ -676,6 +679,7 @@
           <NavigationProperty Name="SupliedProducts" Relationship="CoffeeRoomModel.FK__SupliedPr__Produ__73BA3083" FromRole="Product" ToRole="SupliedProduct" />
           <NavigationProperty Name="ProductCalculations" Relationship="CoffeeRoomModel.FK__ProductCa__Produ__793DFFAF" FromRole="Product" ToRole="ProductCalculation" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsSaleByWeight" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="ProductType">
           <Key>
@@ -702,6 +706,8 @@
           <Property Name="IsRejected" Type="Boolean" Nullable="false" />
           <Property Name="IsUtilized" Type="Boolean" Nullable="false" />
           <Property Name="IsCreditCardSale" Type="Boolean" Nullable="false" />
+          <Property Name="IsSaleByWeight" Type="Boolean" Nullable="false" />
+          <Property Name="Weight" Type="Decimal" Precision="18" Scale="0" />
         </EntityType>
         <EntityType Name="Shift">
           <Key>
@@ -1355,6 +1361,7 @@
           <EntitySetMapping Name="Products">
             <EntityTypeMapping TypeName="CoffeeRoomModel.Product">
               <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="IsSaleByWeight" ColumnName="IsSaleByWeight" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="SuplyProductId" ColumnName="SuplyProductId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -1379,6 +1386,8 @@
           <EntitySetMapping Name="Sales">
             <EntityTypeMapping TypeName="CoffeeRoomModel.Sale">
               <MappingFragment StoreEntitySet="Sale">
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="IsSaleByWeight" ColumnName="IsSaleByWeight" />
                 <ScalarProperty Name="IsCreditCardSale" ColumnName="IsCreditCardSale" />
                 <ScalarProperty Name="IsUtilized" ColumnName="IsUtilized" />
                 <ScalarProperty Name="IsRejected" ColumnName="IsRejected" />

@@ -11,5 +11,6 @@
         public int CoffeeRoomNo { get; set; }
         public int? SuplyId { get; set; }
         public bool IsActive { get; set; }
+        public bool IsSaleByWeight { get; set; }
     }
 }
