@@ -1,7 +1,6 @@
-﻿using System;
-using MvvmCross.Core.ViewModels;
+﻿using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
-using MvvmCross.Platform.IoC;
+using MvvmCross.Plugins.Sqlite;
 
 namespace CoffeManager.Common
 {
@@ -25,11 +24,10 @@ namespace CoffeManager.Common
             Mvx.RegisterSingleton<IShiftServiceProvider>(new ShiftServiceProvider());
             Mvx.RegisterSingleton<IPaymentServiceProvider>(new PaymentServiceProvider());
             Mvx.RegisterSingleton<IProductProvider>(new ProductProvider());
-            //CreatableTypes()
-                //.EndingWith("Provider")
-                //.AsInterfaces()
-                //.RegisterAsLazySingleton();
-    
+            Mvx.RegisterSingleton<IStatisticProvider>(new StatisticProvider());
+            Mvx.RegisterSingleton<ISuplyOrderProvider>(new SuplyOrderProvider());
+            Mvx.RegisterSingleton<ISuplyProductsProvider>(new SuplyProductsProvider());
+            Mvx.RegisterSingleton<IDataBaseProvider>(new DataBaseProvider(Mvx.Resolve<IMvxSqliteConnectionFactory>()));
         }
 
         public virtual void RegisterManagers()
@@ -38,10 +36,9 @@ namespace CoffeManager.Common
             Mvx.RegisterSingleton<IShiftManager>(new ShiftManager(Mvx.Resolve<IShiftServiceProvider>()));
             Mvx.RegisterSingleton<IPaymentManager>(new PaymentManager(Mvx.Resolve<IPaymentServiceProvider>()));
             Mvx.RegisterSingleton<IProductManager>(new ProductManager(Mvx.Resolve<IProductProvider>()));
-            //CreatableTypes()
-            //.EndingWith("Manager")
-            //.AsInterfaces()
-            //.RegisterAsLazySingleton();
+            Mvx.RegisterSingleton<IStatisticManager>(new StatisticManager(Mvx.Resolve<IStatisticProvider>()));
+            Mvx.RegisterSingleton<ISuplyOrderManager>(new SuplyOrderManager(Mvx.Resolve<ISuplyOrderProvider>()));
+            Mvx.RegisterSingleton<ISuplyProductsManager>(new SuplyProductsManager(Mvx.Resolve<ISuplyProductsProvider>()));
         }
     }
 }

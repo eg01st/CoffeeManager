@@ -81,16 +81,6 @@ namespace CoffeeManager.Api.Mappers
 			};
 		}
 
-		public static UtilizedCup Map (Models.UtilizedCup cup)
-		{
-			return new UtilizedCup () {
-				CoffeeRoomNo = cup.CoffeeRoomNo,
-				ShiftId = cup.ShiftId,
-				CupTypeId = cup.CupTypeId,
-				DateTime = cup.DateTime
-			};
-		}
-
 		public static Dept Map (Models.Dept dept)
 		{
 			return new Dept () {

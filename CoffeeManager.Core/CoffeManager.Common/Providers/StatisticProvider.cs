@@ -5,7 +5,7 @@ using CoffeeManager.Models;
 
 namespace CoffeManager.Common
 {
-    public class StatisticProvider : BaseServiceProvider
+    public class StatisticProvider : BaseServiceProvider, IStatisticProvider
     {
         public async Task<IEnumerable<Expense>> GetExpenses(DateTime from, DateTime to)
         {

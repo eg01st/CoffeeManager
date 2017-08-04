@@ -89,11 +89,6 @@ namespace CoffeeManager.Api.Mappers
             return item;
         }
 
-        public static Models.UsedCupPerShift ToDTO(this UsedCupsPerShift cupDb)
-        {
-            return new Models.UsedCupPerShift() { Id = cupDb.Id, CoffeeRoomNo = cupDb.CoffeeRoomNo, C110 = cupDb.C110, C170 = cupDb.C170, C250 = cupDb.C250, C400 = cupDb.C400, Plastic = cupDb.Plastic };
-        }
-
         public static Models.Order ToDTO(this SuplyOrder orderDb)
         {
             return new Models.Order() { Id = orderDb.Id, CoffeeRoomNo = orderDb.CoffeeRoomNo, Date = orderDb.Date, IsDone = orderDb.IsDone, Price = orderDb.Price, ExpenseTypeId = orderDb.ExpenseTypeId };

@@ -38,16 +38,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CalculationItem.cs" />
-    <Compile Include="CupPerShift.cs" />
     <Compile Include="CupType.cs" />
     <Compile Include="CupTypeEnum.cs" />
-    <Compile Include="Dept.cs" />
     <Compile Include="EndShiftDTO.cs" />
     <Compile Include="EndShiftUserInfo.cs" />
     <Compile Include="Entity.cs" />
     <Compile Include="Expense.cs" />
     <Compile Include="ExpenseType.cs" />
-    <Compile Include="ExpenseTypeEnum.cs" />
     <Compile Include="MetroExpense.cs" />
     <Compile Include="Order.cs" />
     <Compile Include="OrderItem.cs" />
@@ -55,17 +52,13 @@
     <Compile Include="ProductCalculationEntity.cs" />
     <Compile Include="ProductType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Request.cs" />
-    <Compile Include="RequestStorage.cs" />
     <Compile Include="Sale.cs" />
     <Compile Include="SaleInfo.cs" />
-    <Compile Include="SaleStorage.cs" />
     <Compile Include="Shift.cs" />
     <Compile Include="ShiftInfo.cs" />
     <Compile Include="SupliedProduct.cs" />
     <Compile Include="User.cs" />
     <Compile Include="UserInfo.cs" />
-    <Compile Include="UtilizedCup.cs" />
     <Compile Include="TypesLists.cs" />
     <Compile Include="RoutesConstants.cs" />
   </ItemGroup>

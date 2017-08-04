@@ -136,7 +136,7 @@ namespace CoffeeManager.Core.ViewModels
             EnableCreditCardSaleCommand = new MvxCommand(() => IsCreditCardSaleEnabled = !IsCreditCardSaleEnabled);
             ShowErrorsCommand = new MvxCommand(() => ShowViewModel<ErrorsViewModel>());
             ItemSelectedCommand = new MvxCommand<SelectedProductViewModel>(DoSelectItem);
-            PayCommand = new MvxCommand(DoPay);
+            PayCommand = new MvxAsyncCommand(DoPay);
         }
 
         public async void Init(int userId, int shiftId)
@@ -202,7 +202,7 @@ namespace CoffeeManager.Core.ViewModels
             RaisePropertyChanged(nameof(SumButtonText));
         }
 
-        private void DoPay()
+        private async Task DoPay()
         {
             var tasks = new List<Task>();
             foreach (var productViewModel in SelectedProducts)
@@ -215,9 +215,8 @@ namespace CoffeeManager.Core.ViewModels
                     productViewModel.IsSaleByWeight,
                     productViewModel.Weight));
                 tasks.Add(task);
-                task.Start();
             }
-            Task.WaitAll(tasks.ToArray());
+            await Task.WhenAll(tasks);
             SelectedProducts.Clear();
             Sum = 0;
             RaisePropertyChanged(nameof(PayEnabled));
