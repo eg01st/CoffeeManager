@@ -11,7 +11,6 @@ namespace CoffeeManagerAdmin.Core
 {
     public class ProductItemViewModel : ListItemViewModelBase
     {
-        ProductManager manager = new ProductManager();
 
         private Product _prod;
         private ICommand _deleteProductCommand;
@@ -23,8 +22,11 @@ namespace CoffeeManagerAdmin.Core
         public string Category {get;set;}
         public bool IsActive {get;set;}
 
-        public ProductItemViewModel(Product prod)
+        private readonly IProductManager manager;
+
+        public ProductItemViewModel(IProductManager manager, Product prod)
         {
+            this.manager = manager;
             _prod = prod;
             Name = prod.Name;
             IsActive = prod.IsActive;

@@ -14,7 +14,7 @@ namespace CoffeeManager.Api.Controllers
 {
     public class PaymentController : ApiController
     {
-        [Route("api/payment/getcurrentshiftmoney")]
+        [Route(RoutesConstants.GetCurrentShiftMoney)]
         [HttpGet]
         public async Task<HttpResponseMessage> GetCurrentShiftMoney([FromUri]int coffeeroomno, HttpRequestMessage message)
         {
@@ -28,7 +28,7 @@ namespace CoffeeManager.Api.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, 0);
         }
 
-        [Route("api/payment/getentiremoney")]
+        [Route(RoutesConstants.GetEntireMoney)]
         [HttpGet]
         public async Task<HttpResponseMessage> GetEntireMoney([FromUri]int coffeeroomno, HttpRequestMessage message)
         {
@@ -37,7 +37,7 @@ namespace CoffeeManager.Api.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, shift.TotalAmount);
         }
 
-        [Route("api/payment/getexpenseitems")]
+        [Route(RoutesConstants.GetExpenseItems)]
         [HttpGet]
         public async Task<HttpResponseMessage> GetExpenseItems([FromUri]int coffeeroomno, HttpRequestMessage message)
         {
@@ -46,7 +46,7 @@ namespace CoffeeManager.Api.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, types);
         }
 
-        [Route("api/payment/toggleExpenseEnabled")]
+        [Route(RoutesConstants.ToggleExpenseEnabled)]
         [HttpPost]
         public async Task<HttpResponseMessage> ToggleExpenseEnabled([FromUri]int coffeeroomno, [FromUri]int id, HttpRequestMessage message)
         {
@@ -66,7 +66,7 @@ namespace CoffeeManager.Api.Controllers
         }
 
 
-        [Route("api/payment")]
+        [Route(RoutesConstants.Payment)]
         [HttpPut]
         public async Task<HttpResponseMessage> Put([FromUri]int coffeeroomno, HttpRequestMessage message)
         {
@@ -97,7 +97,7 @@ namespace CoffeeManager.Api.Controllers
             return Request.CreateResponse(HttpStatusCode.OK);
         }
 
-        [Route("api/payment/deleteexpense")]
+        [Route(RoutesConstants.DeleteExpenseItem)]
         [HttpDelete]
         public async Task<HttpResponseMessage> DeleteExpense([FromUri]int coffeeroomno, [FromUri]int id, HttpRequestMessage message)
         {
@@ -126,9 +126,9 @@ namespace CoffeeManager.Api.Controllers
             return Request.CreateResponse(HttpStatusCode.OK);
         }
 
-        [Route("api/payment/addnewexpensetype")]
+        [Route(RoutesConstants.AddNewExpenseType)]
         [HttpPut]
-        public async Task<HttpResponseMessage> Put([FromUri]int coffeeroomno, [FromUri]string typeName)
+        public async Task<HttpResponseMessage> AddNewExpenseType([FromUri]int coffeeroomno, [FromUri]string typeName)
         {
             var entities = new  CoffeeRoomEntities();
             var type = new ExpenseType() {CoffeeRoomNo = coffeeroomno, Name = typeName};
@@ -137,7 +137,7 @@ namespace CoffeeManager.Api.Controllers
             return Request.CreateResponse(HttpStatusCode.OK);
         }
 
-        [Route("api/payment/getShiftExpenses")]
+        [Route(RoutesConstants.GetShiftExpenses)]
         [HttpGet]
         public async Task<HttpResponseMessage> GetShiftExpenses([FromUri]int coffeeroomno, [FromUri]int id, HttpRequestMessage message)
         {
@@ -151,7 +151,7 @@ namespace CoffeeManager.Api.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, expenses);
         }
 
-        [Route("api/payment/getExpenses")]
+        [Route(RoutesConstants.GetExpenses)]
         [HttpGet]
         public async Task<HttpResponseMessage> GetExpenses([FromUri]int coffeeroomno, [FromUri]DateTime from, [FromUri]DateTime to, HttpRequestMessage message)
         {
@@ -165,7 +165,7 @@ namespace CoffeeManager.Api.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, expenses);
         }
 
-        [Route("api/payment/getSalesByDateDate")]
+        [Route(RoutesConstants.GetSalesByDate)]
         [HttpGet]
         public async Task<HttpResponseMessage> GetSalesByDate([FromUri]int coffeeroomno, [FromUri]DateTime from, [FromUri]DateTime to, HttpRequestMessage message)
         {

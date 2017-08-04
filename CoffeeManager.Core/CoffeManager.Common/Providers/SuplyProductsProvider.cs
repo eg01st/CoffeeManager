@@ -1,0 +1,57 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using CoffeeManager.Models;
+
+namespace CoffeManager.Common
+{
+    public class SuplyProductsProvider : BaseServiceProvider, ISuplyProductsProvider
+    {
+        public async Task<SupliedProduct[]> GetSuplyProducts()
+        {
+            return await Get<SupliedProduct[]>(RoutesConstants.GetSuplyProducts);
+        }
+
+        public async Task<SupliedProduct> GetSuplyProduct(int id)
+        {
+            return await Get<SupliedProduct>(RoutesConstants.GetSuplyProduct, new Dictionary<string, string>() { { nameof(id), id.ToString() } });
+        }
+
+        public async Task EditSuplyProduct(SupliedProduct supliedProduct)
+        {
+            await Post(RoutesConstants.EditSuplyProduct, supliedProduct);
+        }
+
+        public async Task AddSuplyProduct(string newProduct)
+        {
+            await
+            Put(RoutesConstants.AddSuplyProduct,
+                    new SupliedProduct() { CoffeeRoomNo = CoffeeRoomNo, Quatity = 0, Price = 0, Name = newProduct });
+        }
+
+        public async Task DeleteSuplyProduct(int id)
+        {
+            await Delete(RoutesConstants.DeleteSuplyProduct, new Dictionary<string, string>() { { nameof(id), id.ToString() } });
+        }
+
+        public async Task<ProductCalculationEntity> GetProductCalculationItems(int productId)
+        {
+            return await
+                Get<ProductCalculationEntity>(RoutesConstants.GetProductCalculationItems,
+                    new Dictionary<string, string>() { { nameof(productId), productId.ToString() } });
+        }
+
+        public async Task DeleteProductCalculationItem(int id)
+        {
+            await
+            Delete(RoutesConstants.DeleteProductCalculationItem,
+                    new Dictionary<string, string>() { { nameof(id), id.ToString() } });
+        }
+
+        public async Task AddProductCalculationItem(ProductCalculationEntity productCalculationEntity)
+        {
+            await Put(RoutesConstants.AddProductCalculationItem, productCalculationEntity);
+        }
+       
+    }
+}

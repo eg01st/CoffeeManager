@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using Acr.UserDialogs;
+﻿using Acr.UserDialogs;
 using CoffeeManager.Models;
 using CoffeeManagerAdmin.Core.Messages;
-using MvvmCross.Core.ViewModels;
 using CoffeManager.Common;
 
 namespace CoffeeManagerAdmin.Core.ViewModels
@@ -19,8 +12,11 @@ namespace CoffeeManagerAdmin.Core.ViewModels
 
         public override string Name => _prod.Name;
 
-        public SelectCalculationItemViewModel(int productId, SupliedProduct prod)
+        readonly ISuplyProductsManager manager;
+
+        public SelectCalculationItemViewModel(ISuplyProductsManager manager, int productId, SupliedProduct prod)
         {
+            this.manager = manager;
             _prod = prod;
             _productId = productId;
         }
@@ -45,7 +41,6 @@ namespace CoffeeManagerAdmin.Core.ViewModels
         {
             if (obj.Ok)
             {
-                var manager = new SuplyProductsManager();
                 await manager.AddProductCalculationItem(_productId, _prod.Id, decimal.Parse(obj.Text));
                 Publish(new CalculationListChangedMessage(this));
             }

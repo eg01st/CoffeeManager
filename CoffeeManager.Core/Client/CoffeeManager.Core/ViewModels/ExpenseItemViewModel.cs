@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using Acr.UserDialogs;
-using CoffeeManager.Core.Managers;
 using CoffeeManager.Core.Messages;
 using CoffeeManager.Models;
 using CoffeManager.Common;
@@ -17,8 +11,11 @@ namespace CoffeeManager.Core.ViewModels
     {
         private Expense _item;
         private bool _isPromt;
-        public ExpenseItemViewModel(Expense item)
+        private readonly IPaymentManager manager;
+
+        public ExpenseItemViewModel(IPaymentManager manager, Expense item)
         {
+            this.manager = manager;
             _item = item;
             DeleteItemCommand = new MvxCommand(DoDeleteItem);
         }
@@ -40,7 +37,6 @@ namespace CoffeeManager.Core.ViewModels
         {
             if (ok)
             {
-                var manager = new PaymentManager();
                 await manager.DeleteExpenseItem(_item.Id);
                 Publish(new ExpenseDeletedMessage(this));
             }

@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using CoffeeManager.Models;
-using CoffeeManagerAdmin.Core.Managers;
 using MvvmCross.Core.ViewModels;
 using CoffeManager.Common;
 
@@ -13,9 +9,10 @@ namespace CoffeeManagerAdmin.Core.ViewModels
 {
     public class ShiftDetailsViewModel : ViewModelBase
     {
+        private readonly IShiftManager shiftManager;
+        private readonly IPaymentManager paymentManager;
+        
         private int _shiftId;
-        private ShiftManager shiftManager = new ShiftManager();
-        private PaymentManager paymentManager = new PaymentManager();
         private string _date;
         private string _name;
         private int? _usedCoffee;
@@ -26,8 +23,11 @@ namespace CoffeeManagerAdmin.Core.ViewModels
 
         private float _copSalePercentage;
 
-        public ShiftDetailsViewModel()
+
+        public ShiftDetailsViewModel(IShiftManager shiftManager, IPaymentManager paymentManager)
         {
+            this.paymentManager = paymentManager;
+            this.shiftManager = shiftManager;
             ShowSalesCommand = new MvxCommand(DoShowSales);
         }
 

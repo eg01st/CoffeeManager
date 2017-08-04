@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using Acr.UserDialogs;
 using CoffeeManager.Models;
-using CoffeeManagerAdmin.Core.Managers;
-using CoffeeManagerAdmin.Core.Messages;
 using MvvmCross.Core.ViewModels;
 using CoffeManager.Common;
-
+using CoffeeManager.Common;
 
 namespace CoffeeManagerAdmin.Core.ViewModels.Orders
 {
@@ -22,9 +15,13 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Orders
         private bool _isSelected;
 
         private bool _isPromt;
+        private readonly ISuplyProductsManager manager;
+        readonly ISuplyOrderManager orderManager;
 
-        public SelectOrderItemViewModel(int orderId, SupliedProduct prod)
+        public SelectOrderItemViewModel(ISuplyProductsManager manager, ISuplyOrderManager orderManager, int orderId, SupliedProduct prod)
         {
+            this.orderManager = orderManager;
+            this.manager = manager;
             _prod = prod;
             _orderId = orderId;
             AddRequestItemCommand = new MvxCommand(DoAddRequestItem);
@@ -48,8 +45,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Orders
         {
             if (ok)
             {
-                var suplyManager = new SuplyProductsManager();
-                await suplyManager.DeleteSuplyProduct(_prod.Id);
+                await manager.DeleteSuplyProduct(_prod.Id);
                 Publish(new SuplyProductDeletedMessage(this));
             }
             _isPromt = false;
@@ -78,8 +74,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Orders
         {
             if (obj.Ok)
             {
-                var manager = new SuplyOrderManager();
-                await manager.CreateOrderItem(new OrderItem
+                await orderManager.CreateOrderItem(new OrderItem
                 {
                     CoffeeRoomNo = Config.CoffeeRoomNo,
                     IsDone = false,
@@ -99,7 +94,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Orders
         public ICommand DeleteItemCommand { get; set; }
 
 
-        public string Name => _prod.Name;
+        public override string Name => _prod.Name;
 
         public decimal Price => _prod.Price;
 

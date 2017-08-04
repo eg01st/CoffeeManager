@@ -1,13 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using Acr.UserDialogs;
-using CoffeeManager.Core.Managers;
 using CoffeeManager.Core.Messages;
-using CoffeeManager.Models;
 using CoffeManager.Common;
 using MvvmCross.Core.ViewModels;
 
@@ -15,7 +11,7 @@ namespace CoffeeManager.Core.ViewModels
 {
     public class ExpenseViewModel : ViewModelBase
     {
-        private PaymentManager _paymentManager = new PaymentManager();
+        private readonly IPaymentManager manager;
 
         protected List<BaseItemViewModel> _items;
         protected List<BaseItemViewModel> _searchItems;
@@ -111,9 +107,11 @@ namespace CoffeeManager.Core.ViewModels
         public bool IsAddNewExpenseTypeEnabled => !string.IsNullOrEmpty(NewExprenseType);
         public bool IsAddButtomEnabled => !string.IsNullOrEmpty(Amount) && !string.IsNullOrEmpty(SelectedExprense) && !string.IsNullOrEmpty(ItemCount);
 
+   
 
-        public ExpenseViewModel()
+        public ExpenseViewModel(IPaymentManager manager)
         {
+            this.manager = manager;
             _addNewExprenseTypeCommand = new MvxCommand(DoAddNewExpenseType);
             _addExpenseCommand = new MvxCommand(DoAddExpense);
             _selectExpenseTypeCommand = new MvxCommand<BaseItemViewModel>(DoSelectExpenseType);
@@ -155,7 +153,7 @@ namespace CoffeeManager.Core.ViewModels
                     if (ok)
                     {
                         var amount = decimal.Parse(Amount);
-                        await _paymentManager.AddExpense(_selectedExpence.Id, amount, int.Parse(ItemCount));
+                        await manager.AddExpense(_selectedExpence.Id, amount, int.Parse(ItemCount));
                         Publish(new ExpenseAddedMessage(amount, this));
                         Close(this);
                     }
@@ -172,7 +170,7 @@ namespace CoffeeManager.Core.ViewModels
                 {
                     if (ok)
                     {
-                        await _paymentManager.AddNewExpenseType(NewExprenseType);
+                        await manager.AddNewExpenseType(NewExprenseType);
                         LoadTypes();
                         ShowSuccessMessage($"{NewExprenseType} добавлен и находится в списке.");
                         NewExprenseType = string.Empty;
@@ -192,7 +190,7 @@ namespace CoffeeManager.Core.ViewModels
         {
             try
             {
-                var result = await _paymentManager.GetExpenseItems();
+                var result = await manager.GetActiveExpenseItems();
                 SearchItems = Items = result.Select(s => new BaseItemViewModel(s)).ToList();
             }
             catch (ArgumentNullException ex)

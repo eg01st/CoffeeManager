@@ -73,9 +73,6 @@ namespace CoffeeManager.Droid.Views
             var endShiftImage = FindViewById<ImageView>(Resource.Id.end_shift_icon);
             endShiftImage.Click += Image_Click;
 
-            var deptsImage = FindViewById<TextView>(Resource.Id.dept_icon);
-            deptsImage.Click += DeptsImage_Click;
-
             var currentSales = FindViewById<TextView>(Resource.Id.current_shift_sales);
             currentSales.Click += CurrentSales_Click;
 
@@ -115,11 +112,6 @@ namespace CoffeeManager.Droid.Views
         private void CurrentSales_Click(object sender, System.EventArgs e)
         {
             ViewModel.ShowCurrentSalesCommand.Execute(null);
-        }
-
-        private void DeptsImage_Click(object sender, System.EventArgs e)
-        {
-            ViewModel.ShowDeptsCommand.Execute(null);
         }
 
 

@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using CoffeeManager.Core.Managers;
 using CoffeeManager.Core.Messages;
 using CoffeManager.Common;
 using MvvmCross.Plugins.Messenger;
@@ -12,11 +10,13 @@ namespace CoffeeManager.Core.ViewModels
 {
     public class CurrentShiftSalesViewModel : ViewModelBase
     {
-        private MvxSubscriptionToken token;
-        private ShiftManager _manager = new ShiftManager();
-        protected List<SaleViewModel> _items;
+        private readonly IShiftManager shiftManager;
+        private readonly IProductManager productManager;
 
-        public List<SaleViewModel> Items
+        private MvxSubscriptionToken token;
+        protected List<SaleItemViewModel> _items;
+
+        public List<SaleItemViewModel> Items
         {
             get { return _items; }
             set
@@ -26,18 +26,26 @@ namespace CoffeeManager.Core.ViewModels
             }
         }
 
+
+
+        public CurrentShiftSalesViewModel(IShiftManager shiftManager, IProductManager productManager)
+        {
+            this.productManager = productManager;
+            this.shiftManager = shiftManager;
+            token = Subscribe<SaleRemovedMessage>((async message => { await LoadSales(); }));
+        }
+
         public async void Init()
         {
-            token = Subscribe<SaleRemovedMessage>((async message => { await LoadSales(); }));
-            await LoadSales();
+            await ExecuteSafe(LoadSales);
         }
 
         private async Task LoadSales()
         {
             try
             {
-                var items = await _manager.GetCurrentShiftSales();
-                Items = items.Select(s => new SaleViewModel(s)).ToList();
+                var items = await shiftManager.GetCurrentShiftSales();
+                Items = items.Select(s => new SaleItemViewModel(productManager, s)).ToList();
             }
             catch (ArgumentNullException ex)
             {

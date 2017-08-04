@@ -34,6 +34,37 @@
     <Compile Include="ViewModels\ListItemViewModelBase.cs" />
     <Compile Include="Extensions\ExceptionExtensions.cs" />
     <Compile Include="CoffeManagerApp.cs" />
+    <Compile Include="Providers\BaseServiceProvider.cs" />
+    <Compile Include="Config.cs" />
+    <Compile Include="Providers\PaymentServiceProvider.cs" />
+    <Compile Include="Providers\IPaymentServiceProvider.cs" />
+    <Compile Include="Providers\ProductProvider.cs" />
+    <Compile Include="Providers\IProductProvider.cs" />
+    <Compile Include="Providers\ShiftServiceProvider.cs" />
+    <Compile Include="Providers\IShiftServiceProvider.cs" />
+    <Compile Include="Providers\UserServiceProvider.cs" />
+    <Compile Include="Providers\IUserServiceProvider.cs" />
+    <Compile Include="Providers\StatisticProvider.cs" />
+    <Compile Include="Providers\IStatisticProvider.cs" />
+    <Compile Include="Providers\SuplyOrderProvider.cs" />
+    <Compile Include="Providers\ISuplyOrderProvider.cs" />
+    <Compile Include="Providers\SuplyProductsProvider.cs" />
+    <Compile Include="Providers\ISuplyProductsProvider.cs" />
+    <Compile Include="Managers\BaseManager.cs" />
+    <Compile Include="Managers\UserManager.cs" />
+    <Compile Include="Managers\IUserManager.cs" />
+    <Compile Include="Managers\IProductManager.cs" />
+    <Compile Include="Managers\ProductManager.cs" />
+    <Compile Include="Managers\ShiftManager.cs" />
+    <Compile Include="Managers\PaymentManager.cs" />
+    <Compile Include="Managers\IPaymentManager.cs" />
+    <Compile Include="Managers\StatisticManager.cs" />
+    <Compile Include="Managers\IStatisticManager.cs" />
+    <Compile Include="Managers\SuplyOrderManager.cs" />
+    <Compile Include="Managers\ISuplyOrderManager.cs" />
+    <Compile Include="Managers\SuplyProductsManager.cs" />
+    <Compile Include="Managers\ISuplyProductsManager.cs" />
+    <Compile Include="Managers\IShiftManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Providers\" />
@@ -66,9 +97,18 @@
     <Reference Include="MvvmCross.Plugins.Messenger">
       <HintPath>..\packages\MvvmCross.Plugin.Messenger.4.3.0\lib\portable-net45+win+wpa81+wp80\MvvmCross.Plugins.Messenger.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\portable-net45+win8+wp8+wpa81\Newtonsoft.Json.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CoffeeManager.Models\CoffeeManager.Models.csproj">
+      <Project>{77E355CB-ADF2-4617-AD95-59E1F4F8AF17}</Project>
+      <Name>CoffeeManager.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
 </Project>

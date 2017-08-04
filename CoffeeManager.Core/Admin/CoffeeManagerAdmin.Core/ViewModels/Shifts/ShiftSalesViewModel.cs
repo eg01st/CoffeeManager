@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using CoffeeManager.Models;
-using CoffeeManagerAdmin.Core.Managers;
 using CoffeManager.Common;
 
 namespace CoffeeManagerAdmin.Core
 {
     public class ShiftSalesViewModel : ViewModelBase
     {
-        private ShiftManager shiftManager = new ShiftManager();
+        private readonly IShiftManager manager;
+
         private List<SaleItemViewModel> _saleItems = new List<SaleItemViewModel>();
 
         private List<Entity> _groupedSaleItems = new List<Entity>();
@@ -35,15 +34,17 @@ namespace CoffeeManagerAdmin.Core
             }
         }
 
-        public ShiftSalesViewModel()
+
+        public ShiftSalesViewModel(IShiftManager manager)
         {
+            this.manager = manager;
         }
 
         public async void Init(int id)
         {
             _shiftId = id;
 
-            var saleItems = await shiftManager.GetShiftSales(_shiftId);
+            var saleItems = await manager.GetShiftSales(_shiftId);
             SaleItems = saleItems.Select(s => new SaleItemViewModel(s)).ToList();
             GroupedSaleItems = SaleItems.GroupBy(g => g.Name).Select(s => new Entity() { Name = s.Key, Id = s.Count() }).OrderByDescending(o => o.Id).ToList();
         }

@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Windows.Input;
 using CoffeeManager.Models;
-using CoffeeManagerAdmin.Core.Managers;
-using CoffeeManagerAdmin.Core.ServiceProviders;
 using MvvmCross.Core.ViewModels;
 using CoffeManager.Common;
 
@@ -10,7 +8,8 @@ namespace CoffeeManagerAdmin.Core.ViewModels
 {
     public class LoginViewModel : ViewModelBase
     {
-        private UserManager manager = new UserManager();
+        private readonly IUserManager manager;
+
         private string _name;
         private string _password;
         private ICommand _loginCommand;
@@ -32,8 +31,11 @@ namespace CoffeeManagerAdmin.Core.ViewModels
                 RaisePropertyChanged(nameof(Password));
             }
         }
-        public LoginViewModel()
+
+
+        public LoginViewModel(IUserManager manager)
         {
+            this.manager = manager;
             _loginCommand = new MvxCommand(DoLogin);
 
             var userinfo = LocalStorage.GetUserInfo();

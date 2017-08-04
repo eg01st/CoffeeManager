@@ -11,15 +11,17 @@ namespace CoffeeManagerAdmin.Core.ViewModels
         private ICommand _deleteCommand;
 
         private CalculationItem _item;
-        public CalculationItemViewModel(CalculationItem item)
+        readonly ISuplyProductsManager manager;
+
+        public CalculationItemViewModel(ISuplyProductsManager manager, CalculationItem item)
         {
+            this.manager = manager;
             _item = item;
             _deleteCommand = new MvxCommand(DoDelete);
         }
 
         private async void DoDelete()
         {
-            var manager= new SuplyProductsManager();
             await manager.DeleteProductCalculationItem(_item.Id);
             Publish(new CalculationListChangedMessage(this));
         }
@@ -27,7 +29,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels
         public ICommand DeleteCommand => _deleteCommand;
         public int Id => _item.Id;
 
-        public string Name => _item.Name;
+        public override string Name => _item.Name;
 
         public decimal Quantity => _item.Quantity;
     }

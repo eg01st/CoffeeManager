@@ -52,7 +52,7 @@ namespace CoffeeManager.Api.Controllers
             return Request.CreateResponse<Models.Shift>(HttpStatusCode.OK, shiftToReturn);
         }
 
-        [Route("api/shift/endShift")]
+        [Route(RoutesConstants.EndShift)]
         [HttpPost]
         public async Task<HttpResponseMessage> EndShift([FromUri]int coffeeroomno, HttpRequestMessage message)
         {
@@ -78,7 +78,7 @@ namespace CoffeeManager.Api.Controllers
             return Request.CreateResponse<Models.EndShiftUserInfo>(HttpStatusCode.OK, new EndShiftUserInfo() {EarnedAmount = userEarnedAmount, RealShiftAmount = realShiftAmount, CurrentUserAmount = user.CurrentEarnedAmount });
         }
 
-        [Route("api/shift/getCurrentShift")]
+        [Route(RoutesConstants.GetCurrentShift)]
         [HttpGet]
         public async Task<HttpResponseMessage> GetCurrentShift([FromUri]int coffeeroomno, HttpRequestMessage message)
         {
@@ -95,7 +95,7 @@ namespace CoffeeManager.Api.Controllers
             }
         }
 
-        [Route("api/shift/getShifts")]
+        [Route(RoutesConstants.GetShifts)]
         [HttpGet]
         public async Task<HttpResponseMessage> GetShifts([FromUri]int coffeeroomno, HttpRequestMessage message)
         {
@@ -126,7 +126,7 @@ namespace CoffeeManager.Api.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, response);
         }
 
-        [Route("api/shift/getShiftSales")]
+        [Route(RoutesConstants.GetShiftSales)]
         [HttpGet]
         public async Task<HttpResponseMessage> GetShiftSales([FromUri]int coffeeroomno)
         {
@@ -137,7 +137,7 @@ namespace CoffeeManager.Api.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, sales);
         }
 
-        [Route("api/shift/getShiftInfo")]
+        [Route(RoutesConstants.GetShiftInfo)]
         [HttpGet]
         public async Task<HttpResponseMessage> GetShiftInfo([FromUri]int coffeeroomno, [FromUri]int id)
         {
@@ -181,7 +181,7 @@ namespace CoffeeManager.Api.Controllers
 
         }
 
-        [Route("api/shift/getShiftSalesById")]
+        [Route(RoutesConstants.GetShiftSalesById)]
         [HttpGet]
         public async Task<HttpResponseMessage> GetShiftSalesById([FromUri]int coffeeroomno, [FromUri]int id, HttpRequestMessage message)
         {
@@ -200,30 +200,5 @@ namespace CoffeeManager.Api.Controllers
             return Request.CreateErrorResponse(HttpStatusCode.RequestedRangeNotSatisfiable, "Shift does not exists");
         }
 
-        [Route("api/shift/assertShiftSales")]
-        [HttpPost]
-        public async Task<HttpResponseMessage> AssertShiftSales([FromUri]int coffeeroomno, HttpRequestMessage message)
-        {
-            var request = await message.Content.ReadAsStringAsync();
-            var saleInfo = JsonConvert.DeserializeObject<SaleStorage>(request);
-
-            var entities = new CoffeeRoomEntities();
-            var shift = entities.Shifts.First(s => !s.IsFinished.Value && s.CoffeeRoomNo == coffeeroomno);
-            var sales = entities.Sales.Where(s => s.ShiftId == shift.Id && s.CoffeeRoomNo == coffeeroomno);
-
-            var dismissedSalesCount = sales.Count(s => s.IsRejected);
-            var utilizedSalesCount = sales.Count(s => s.IsUtilized);
-            var allSales = sales.Count();
-            var ms = new Message
-            {
-                Type = "Info",
-                Message1 =
-                    $"Shift id: {shift.Id}; All sales: Tablet -  {saleInfo.Sales.Count}, DB - {allSales}; Dismissed: Tablet - {saleInfo.DismissedSales.Count}, DB - {dismissedSalesCount}; Utilized: Tablet - {saleInfo.UtilizedSales.Count}, DB - {utilizedSalesCount}"
-            };
-            entities.Messages.Add(ms);
-            await entities.SaveChangesAsync();
-            return Request.CreateResponse(HttpStatusCode.OK);
-
-        }
     }
 }

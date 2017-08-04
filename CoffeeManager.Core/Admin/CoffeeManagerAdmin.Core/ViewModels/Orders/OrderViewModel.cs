@@ -1,7 +1,6 @@
 ﻿using System.Windows.Input;
 using Acr.UserDialogs;
 using CoffeeManager.Models;
-using CoffeeManagerAdmin.Core.Managers;
 using CoffeeManagerAdmin.Core.Messages;
 using CoffeeManagerAdmin.Core.Util;
 using MvvmCross.Core.ViewModels;
@@ -11,13 +10,14 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Orders
 {
     public class OrderViewModel : ListItemViewModelBase
     {
-        private SuplyOrderManager _manager = new SuplyOrderManager();
         private Order _order;
 
-
         private bool _isPromt;
-        public OrderViewModel(Order order)
+        private readonly ISuplyOrderManager manager;
+
+        public OrderViewModel(ISuplyOrderManager manager, Order order)
         {
+            this.manager = manager;
             _order = order;
             DeleteOrderCommand = new MvxCommand(DoDeleteOrder);
         }
@@ -46,7 +46,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Orders
         {
             if (ok)
             {
-                await _manager.DeleteOrder(_order.Id);
+                await manager.DeleteOrder(_order.Id);
                 Publish(new OrderListChangedMessage(this));
             }
             _isPromt = false;

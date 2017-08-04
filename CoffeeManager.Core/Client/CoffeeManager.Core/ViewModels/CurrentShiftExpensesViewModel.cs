@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CoffeeManager.Core.Managers;
 using CoffeeManager.Core.Messages;
 using CoffeManager.Common;
 using MvvmCross.Plugins.Messenger;
@@ -12,6 +11,7 @@ namespace CoffeeManager.Core.ViewModels
 {
     public class CurrentShiftExpensesViewModel : ViewModelBase
     {
+        private readonly IPaymentManager manager;
         private List<ExpenseItemViewModel> _items = new List<ExpenseItemViewModel>();
         private MvxSubscriptionToken _token;
         public List<ExpenseItemViewModel> Items
@@ -24,8 +24,11 @@ namespace CoffeeManager.Core.ViewModels
             }
         }
 
-        public CurrentShiftExpensesViewModel()
+   
+
+        public CurrentShiftExpensesViewModel(IPaymentManager manager)
         {
+            this.manager = manager;
             _token = Subscribe<ExpenseDeletedMessage>(async (obj) => await LoadData());
         }
 
@@ -36,9 +39,8 @@ namespace CoffeeManager.Core.ViewModels
 
         private async Task LoadData()
         {
-            var manager = new PaymentManager();
             var items = await manager.GetShiftExpenses();
-            Items = items.Select(s => new ExpenseItemViewModel(s)).ToList();
+            Items = items.Select(s => new ExpenseItemViewModel(manager, s)).ToList();
         }
     }
 }

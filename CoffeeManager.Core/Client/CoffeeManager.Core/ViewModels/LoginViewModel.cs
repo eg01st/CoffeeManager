@@ -1,7 +1,4 @@
-﻿using System;
-using System.Windows.Input;
-using Acr.UserDialogs;
-using CoffeeManager.Core.Managers;
+﻿using System.Windows.Input;
 using CoffeeManager.Models;
 using MvvmCross.Core.ViewModels;
 using System.Linq;
@@ -11,34 +8,32 @@ namespace CoffeeManager.Core.ViewModels
 {
     public class LoginViewModel : ViewModelBase
     {
-        private readonly UserManager _userManager;
-        private readonly ShiftManager _shiftManager;
+        private readonly IUserManager _userManager;
+        private readonly IShiftManager _shiftManager;
         private readonly ICommand _selectUserCommand;
         private User[] _users;
 
         public ICommand SelectUserCommand => _selectUserCommand;
 
-        public LoginViewModel()
+        public LoginViewModel(IShiftManager shiftManager, IUserManager userManager)
         {
-            _userManager = new UserManager();
-            _shiftManager = new ShiftManager();
+            _userManager = userManager;
+            _shiftManager = shiftManager;
             _selectUserCommand = new MvxCommand<User>(DoSelectUser);
         }
 
         private async void DoSelectUser(User user)
         {
-            UserDialogs.Prompt(new PromptConfig()
+            var counter = await PromtAsync("Введите показание счетчика на кофемолке");
+            if(!counter.HasValue)
             {
-                Message = "Введите показание счетчика на кофемолке",
-                InputType = InputType.Number,
-                OnAction = async (obj) =>
-                {
-                    if (obj.Ok)
-                    {
-                        int shiftId = await _shiftManager.StartUserShift(user.Id, int.Parse(obj.Text));
-                        ShowViewModel<MainViewModel>(new { userId = user.Id, shiftId = shiftId });
-                    }
-                }
+                return;
+            }
+
+            await ExecuteSafe(async () =>
+            {
+                int shiftId = await _shiftManager.StartUserShift(user.Id, counter.Value);
+                ShowViewModel<MainViewModel>(new { userId = user.Id, shiftId = shiftId });
             });
         }
 
@@ -54,13 +49,16 @@ namespace CoffeeManager.Core.ViewModels
 
         public async void Init()
         {
-            Shift currentShift = await _shiftManager.GetCurrentShift();
-            if (currentShift != null)
+            await ExecuteSafe(async () =>
             {
-                ShowViewModel<MainViewModel>(new { userId = currentShift.UserId, shiftId = currentShift.Id });
-            }
-            var res = await _userManager.GetUsers();
-            Users = res.Where(u => u.IsActive).ToArray();
+                Shift currentShift = await _shiftManager.GetCurrentShift();
+                if (currentShift != null)
+                {
+                    ShowViewModel<MainViewModel>(new { userId = currentShift.UserId, shiftId = currentShift.Id });
+                }
+                var res = await _userManager.GetUsers();
+                Users = res.Where(u => u.IsActive).ToArray();
+            });
         }
     }
 }

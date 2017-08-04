@@ -36,19 +36,11 @@
   <ItemGroup>
     <Compile Include="App.cs" />
     <Compile Include="LocalStorage.cs" />
-    <Compile Include="Managers\CupsManager.cs" />
-    <Compile Include="Managers\PaymentManager.cs" />
-    <Compile Include="Managers\ShiftManager.cs" />
-    <Compile Include="Managers\SuplyOrderManager.cs" />
     <Compile Include="Messages\CalculationListChangedMessage.cs" />
     <Compile Include="Messages\OrderItemChangedMessage.cs" />
     <Compile Include="Messages\OrderItemsListChangedMessage.cs" />
     <Compile Include="Messages\OrderListChangedMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ServiceProviders\CupsProvider.cs" />
-    <Compile Include="ServiceProviders\PaymentProvider.cs" />
-    <Compile Include="ServiceProviders\ShiftServiceProvider.cs" />
-    <Compile Include="ServiceProviders\SuplyOrderProvider.cs" />
     <Compile Include="ViewModels\ItemViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\Orders\OrderItemsViewModel.cs" />
@@ -58,16 +50,7 @@
     <Compile Include="ViewModels\Orders\SelectOrderItemsViewModel.cs" />
     <Compile Include="ViewModels\Orders\SelectOrderItemViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
-    <Compile Include="Config.cs" />
-    <Compile Include="Managers\UserManager.cs" />
-    <Compile Include="ServiceProviders\BaseServiceProvider.cs" />
-    <Compile Include="ServiceProviders\UserServiceProvider.cs" />
-    <Compile Include="Managers\BaseManager.cs" />
-    <Compile Include="ServiceProviders\SuplyProductsServiceProvider.cs" />
-    <Compile Include="Managers\SuplyProductsManager.cs" />
     <Compile Include="ViewModels\ExpenseItemViewModel.cs" />
-    <Compile Include="Managers\ProductManager.cs" />
-    <Compile Include="ServiceProviders\ProductProvider.cs" />
     <Compile Include="Messages\ProductSelectedMessage.cs" />
     <Compile Include="Messages\BaseMessage.cs" />
     <Compile Include="Messages\ProductListChangedMessage.cs" />
@@ -91,8 +74,6 @@
     <Compile Include="ViewModels\Statistic\StatisticViewModel.cs" />
     <Compile Include="ViewModels\Statistic\SalesStatisticViewModel.cs" />
     <Compile Include="ViewModels\Statistic\ExpensesStatisticViewModel.cs" />
-    <Compile Include="Managers\StatisticManager.cs" />
-    <Compile Include="ServiceProviders\StatisticProvider.cs" />
     <Compile Include="Util\ParameterTransmitter.cs" />
     <Compile Include="ViewModels\Statistic\SelectSaleItemViewModel.cs" />
     <Compile Include="ViewModels\Statistic\SalesChartViewModel.cs" />
@@ -164,6 +145,8 @@
     <Folder Include="Util\" />
     <Folder Include="ViewModels\ManageExpenses\" />
     <Folder Include="ViewModels\Products\" />
+    <Folder Include="ServiceProviders\" />
+    <Folder Include="Managers\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\CoffeeManager.Models\CoffeeManager.Models.csproj">

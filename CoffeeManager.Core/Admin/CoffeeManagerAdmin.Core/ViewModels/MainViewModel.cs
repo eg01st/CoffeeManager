@@ -1,5 +1,4 @@
 ﻿using System.Windows.Input;
-using CoffeeManagerAdmin.Core.Managers;
 using MvvmCross.Core.ViewModels;
 using System.Threading.Tasks;
 using CoffeeManagerAdmin.Core.ViewModels.Orders;
@@ -9,8 +8,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
-        private ShiftManager _shiftManager = new ShiftManager();
-
+        private readonly IShiftManager shiftManager;
 
         private ICommand _showShiftsCommand;
         private ICommand _showSupliedProductsCommand;
@@ -59,8 +57,12 @@ namespace CoffeeManagerAdmin.Core.ViewModels
                 RaisePropertyChanged(nameof(CurrentShiftBalance));
             }
         }
-        public MainViewModel()
+
+       
+
+        public MainViewModel(IShiftManager shiftManager)
         {
+            this.shiftManager = shiftManager;
             _showShiftsCommand = new MvxCommand(DoShowShifts);
             _showSupliedProductsCommand = new MvxCommand(DoShowSupliedProducts);
             _updateEntireMoneyCommand = new MvxCommand(DoGetEntireMoney);
@@ -116,9 +118,9 @@ namespace CoffeeManagerAdmin.Core.ViewModels
         {
             await ExecuteSafe(async () =>
             {
-                var currentBalance = await _shiftManager.GetEntireMoney();
+                var currentBalance = await shiftManager.GetEntireMoney();
                 CurrentBalance = currentBalance.ToString("F1");
-                var shiftBalance = await _shiftManager.GetCurrentShiftMoney();
+                var shiftBalance = await shiftManager.GetCurrentShiftMoney();
                 CurrentShiftBalance = shiftBalance.ToString("F1");
             });
         }

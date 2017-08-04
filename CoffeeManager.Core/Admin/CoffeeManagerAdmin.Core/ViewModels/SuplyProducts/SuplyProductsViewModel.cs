@@ -11,16 +11,17 @@ namespace CoffeeManagerAdmin.Core.ViewModels
     {
         private MvxSubscriptionToken _listChanged;
 
-        private SuplyProductsManager manager = new SuplyProductsManager();
+        readonly ISuplyProductsManager manager;
 
-        public SuplyProductsViewModel()
+        public SuplyProductsViewModel(ISuplyProductsManager manager)
         {
+            this.manager = manager;
             _listChanged = Subscribe<SuplyListChangedMessage>((obj) => Init());
         }
 
         public async override Task<List<SuplyProductItemViewModel>> LoadData()
         {
-            var items = await manager.GetSupliedProducts();
+            var items = await manager.GetSuplyProducts();
             return items.Select(s => new SuplyProductItemViewModel(s)).ToList();
         }
     }

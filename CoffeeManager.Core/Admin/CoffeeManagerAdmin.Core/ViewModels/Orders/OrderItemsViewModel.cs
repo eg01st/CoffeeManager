@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Acr.UserDialogs;
 using CoffeeManager.Models;
-using CoffeeManagerAdmin.Core.Managers;
 using CoffeeManagerAdmin.Core.Messages;
 using CoffeeManagerAdmin.Core.Util;
 using MvvmCross.Core.ViewModels;
@@ -17,8 +15,6 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Orders
 {
     public class OrderItemsViewModel : ViewModelBase
     {
-        private SuplyOrderManager _manager = new SuplyOrderManager();
-        private PaymentManager _paymentManager = new PaymentManager();
         private MvxSubscriptionToken _token;
         private MvxSubscriptionToken _itemsSelectedtoken;
 
@@ -32,10 +28,13 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Orders
 
         private List<OrderItemViewModel> _items = new List<OrderItemViewModel>();
         private List<Entity> _expenseItems = new List<Entity>();
+        private readonly IPaymentManager paymentManager;
+        private readonly ISuplyOrderManager suplyOrderManager;
 
-
-        public OrderItemsViewModel()
+        public OrderItemsViewModel(IPaymentManager paymentManager, ISuplyOrderManager suplyOrderManager)
         {
+            this.suplyOrderManager = suplyOrderManager;
+            this.paymentManager = paymentManager;
             _token = Subscribe<OrderItemChangedMessage>(async (a) => await LoadData());
             _itemsSelectedtoken = Subscribe<OrderItemsListChangedMessage>(async (s) => await LoadData());
             CloseOrderCommand = new MvxCommand(DoCloseOrder);
@@ -80,7 +79,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Orders
         {
             if (ok)
             {
-                await _manager.CloseOrder(new Order
+                await suplyOrderManager.CloseOrder(new Order
                 {
                     Id = _order.Id,
                     Price = Price,
@@ -107,7 +106,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Orders
             {
                 await LoadData();
             }
-            var types = await _paymentManager.GetExpenseItems();
+            var types = await paymentManager.GetExpenseItems();
             ExpenseItems = types.Select(s => new Entity { Id = s.Id, Name = s.Name }).ToList();
             if (ExpenseTypeId > 0)
             {
@@ -129,8 +128,8 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Orders
 
         private async Task LoadData()
         {
-            var items = await _manager.GetOrderItems(_order.Id);
-            Items = items.Select(s => new OrderItemViewModel(s)).ToList();
+            var items = await suplyOrderManager.GetOrderItems(_order.Id);
+            Items = items.Select(s => new OrderItemViewModel(suplyOrderManager, s)).ToList();
             ReloadPrice();
         }
 

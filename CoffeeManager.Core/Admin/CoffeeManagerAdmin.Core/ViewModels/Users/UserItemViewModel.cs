@@ -1,28 +1,28 @@
-﻿using System;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using MvvmCross.Core.ViewModels;
-using CoffeeManagerAdmin.Core.Managers;
 using CoffeManager.Common;
 namespace CoffeeManagerAdmin.Core
 {
     public class UserItemViewModel : ListItemViewModelBase
     {
+        private readonly IUserManager manager;
+
         public int Id {get;set;}
         public string UserName {get;set;}
         public bool IsActive {get;set;}
 
         public ICommand ToggleIsActiveCommand {get;set;}
-        
-        public UserItemViewModel()
+
+        public UserItemViewModel(IUserManager manager)
         {
+            this.manager = manager;
             ToggleIsActiveCommand = new MvxCommand(DoToggleIsActive);
 
         }
 
         private async void DoToggleIsActive()
         {
-            var um = new UserManager();
-            await ExecuteSafe(async () => await um.ToggleEnabled(Id));
+            await ExecuteSafe(async () => await manager.ToggleEnabled(Id));
         }
 
         protected override void DoGoToDetails()

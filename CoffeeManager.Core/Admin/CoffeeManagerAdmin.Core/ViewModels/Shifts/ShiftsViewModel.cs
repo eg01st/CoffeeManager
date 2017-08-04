@@ -1,16 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CoffeeManagerAdmin.Core.Managers;
 using CoffeManager.Common;
 
 namespace CoffeeManagerAdmin.Core.ViewModels
 {
     public class ShiftsViewModel : ViewModelBase
     {
-        private ShiftManager manager = new ShiftManager();
+        private readonly IShiftManager manager;
+        
         private List<ShiftItemViewModel> _items = new List<ShiftItemViewModel>();
         public List<ShiftItemViewModel> Items
         {
@@ -20,6 +18,12 @@ namespace CoffeeManagerAdmin.Core.ViewModels
                 _items = value;
                 RaisePropertyChanged(nameof(Items));
             }
+        }
+
+
+        public ShiftsViewModel(IShiftManager manager)
+        {
+            this.manager = manager;
         }
 
         public async void Init()

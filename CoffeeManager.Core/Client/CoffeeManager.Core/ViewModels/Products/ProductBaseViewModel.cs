@@ -1,16 +1,13 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
-using CoffeeManager.Core.Managers;
 using CoffeeManager.Models;
 using CoffeManager.Common;
-using MvvmCross.Plugins.Messenger;
 
 namespace CoffeeManager.Core.ViewModels.Products
 {
     public abstract class ProductBaseViewModel : ViewModelBase
     {
-        protected ProductManager ProductManager = new ProductManager();
+        protected readonly IProductManager ProductManager;
 
         protected ProductItemViewModel[] _items;
 
@@ -22,6 +19,11 @@ namespace CoffeeManager.Core.ViewModels.Products
                 _items = value;
                 RaisePropertyChanged(nameof(Items));
             }
+        }
+
+        public ProductBaseViewModel(IProductManager productManager)
+        {
+            this.ProductManager = productManager;
         }
 
         protected abstract Task<Product[]> GetProducts();

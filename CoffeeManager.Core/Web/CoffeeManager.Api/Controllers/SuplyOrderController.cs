@@ -7,13 +7,14 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using CoffeeManager.Api.Mappers;
+using CoffeeManager.Models;
 using Newtonsoft.Json;
 
 namespace CoffeeManager.Api.Controllers
 {
     public class SuplyOrderController : ApiController
     {
-        [Route("api/suplyorder/getorders")]
+        [Route(RoutesConstants.GetOrders)]
         [HttpGet]
         public async Task<HttpResponseMessage> GetOrders([FromUri]int coffeeroomno, HttpRequestMessage message)
         {
@@ -28,7 +29,7 @@ namespace CoffeeManager.Api.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, orders);            
         }
 
-        [Route("api/suplyorder/getorderitems")]
+        [Route(RoutesConstants.GetOrderItems)]
         [HttpGet]
         public async Task<HttpResponseMessage> GetOrderItems([FromUri]int coffeeroomno, [FromUri] int id, HttpRequestMessage message)
         {
@@ -42,7 +43,7 @@ namespace CoffeeManager.Api.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, orders);
         }
 
-        [Route("api/suplyorder/saveorderitem")]
+        [Route(RoutesConstants.SaveOrderItem)]
         [HttpPost]
         public async Task<HttpResponseMessage> SaveOrderItem([FromUri]int coffeeroomno, HttpRequestMessage message)
         {
@@ -56,7 +57,7 @@ namespace CoffeeManager.Api.Controllers
             var orderItem = JsonConvert.DeserializeObject<Models.OrderItem>(request);
 
             var entities = new CoffeeRoomEntities();
-            var orderItemDb = entities.SuplyOrderItems.First(o => o.Id == orderItem.Id);
+            var orderItemDb = entities.SuplyOrderItems.First(o => o.Id == orderItem.Id && o.CoffeeRoomNo == coffeeroomno);
             orderItemDb.Quantity = orderItem.Quantity;
             orderItemDb.Price = orderItem.Price;
             orderItemDb.IsDone = orderItem.IsDone;
@@ -64,7 +65,7 @@ namespace CoffeeManager.Api.Controllers
             return Request.CreateResponse(HttpStatusCode.OK);
         }
 
-        [Route("api/suplyorder/createorderitem")]
+        [Route(RoutesConstants.CreateOrderItem)]
         [HttpPut]
         public async Task<HttpResponseMessage> CreateOrderItem([FromUri]int coffeeroomno, HttpRequestMessage message)
         {
@@ -97,7 +98,7 @@ namespace CoffeeManager.Api.Controllers
             return Request.CreateResponse(HttpStatusCode.OK);
         }
 
-        [Route("api/suplyorder/createorder")]
+        [Route(RoutesConstants.CreateOrder)]
         [HttpPut]
         public async Task<HttpResponseMessage> CreateOrder([FromUri]int coffeeroomno, HttpRequestMessage message)
         {
@@ -144,7 +145,7 @@ namespace CoffeeManager.Api.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, orderDb.Id);
         }
 
-        [Route("api/suplyorder/closeorder")]
+        [Route(RoutesConstants.CloseOrder)]
         [HttpPost]
         public async Task<HttpResponseMessage> CloseOrder([FromUri]int coffeeroomno, HttpRequestMessage message)
         {
@@ -194,7 +195,7 @@ namespace CoffeeManager.Api.Controllers
             return Request.CreateResponse(HttpStatusCode.OK);
         }
 
-        [Route("api/suplyorder/deleteorder")]
+        [Route(RoutesConstants.DeleteOrder)]
         [HttpDelete]
         public async Task<HttpResponseMessage> DeleteOrder([FromUri]int coffeeroomno, [FromUri]int id, HttpRequestMessage message)
         {
@@ -204,13 +205,13 @@ namespace CoffeeManager.Api.Controllers
                 return Request.CreateResponse(HttpStatusCode.Forbidden);
             }    
             var entities = new CoffeeRoomEntities();
-            var orderDb = entities.SuplyOrders.First(o => o.Id == id);
+            var orderDb = entities.SuplyOrders.First(o => o.Id == id && o.CoffeeRoomNo == coffeeroomno);
             entities.SuplyOrders.Remove(orderDb);
             await entities.SaveChangesAsync();
             return Request.CreateResponse(HttpStatusCode.OK);
         }
 
-        [Route("api/suplyorder/deleteorderitem")]
+        [Route(RoutesConstants.DeleteOrderItem)]
         [HttpDelete]
         public async Task<HttpResponseMessage> DeleteOrderItem([FromUri]int coffeeroomno, [FromUri]int id, HttpRequestMessage message)
         {
@@ -220,7 +221,7 @@ namespace CoffeeManager.Api.Controllers
                 return Request.CreateResponse(HttpStatusCode.Forbidden);
             }
             var entities = new CoffeeRoomEntities();
-            var orderDb = entities.SuplyOrderItems.First(o => o.Id == id);
+            var orderDb = entities.SuplyOrderItems.First(o => o.Id == id && o.CoffeeRoomNo == coffeeroomno);
             entities.SuplyOrderItems.Remove(orderDb);
             await entities.SaveChangesAsync();
             return Request.CreateResponse(HttpStatusCode.OK);

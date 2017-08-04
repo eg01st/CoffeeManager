@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Windows.Input;
 using Acr.UserDialogs;
-using CoffeeManagerAdmin.Core.Managers;
 using CoffeeManagerAdmin.Core.Util;
 using CoffeeManagerAdmin.Core.ViewModels.Statistic;
 using MvvmCross.Core.ViewModels;
@@ -12,7 +11,7 @@ namespace CoffeeManagerAdmin.Core
 {
     public class StatisticViewModel : ViewModelBase
     {
-        StatisticManager sm = new StatisticManager();
+        private readonly IStatisticManager manager;
 
         private DateTime from = DateTime.Now.Date.AddMonths(-1);
         private DateTime to = DateTime.Now.Date;
@@ -26,8 +25,11 @@ namespace CoffeeManagerAdmin.Core
         public DateTime From { get { return from; }  set { from = value;  RaisePropertyChanged(nameof(From));} }
         public DateTime To { get { return to; } set { to = value; RaisePropertyChanged(nameof(To)); } }
 
-        public StatisticViewModel()
+
+
+        public StatisticViewModel(IStatisticManager manager)
         {
+            this.manager = manager;
             ShowExpensesCommand = new MvxCommand(DoShowExpenses);
             ShowSalesCommand = new MvxCommand(DoShowSales);
             ShowCreditCardInfoCommand = new MvxCommand(DoShowCreditCardInfo);
@@ -37,7 +39,7 @@ namespace CoffeeManagerAdmin.Core
         public async void DoShowCreditCardInfo()
         {
             var toDate = To.AddDays(1);
-            var sales = await sm.GetCreditCardSales(From, toDate);
+            var sales = await manager.GetCreditCardSales(From, toDate);
             var id = ParameterTransmitter.PutParameter(sales);
             ShowViewModel<CreditCardSalesViewModel>(new {id = id});
         }
@@ -45,7 +47,7 @@ namespace CoffeeManagerAdmin.Core
         private async void DoShowSales()
         {
             var toDate = To.AddDays(1);
-            var sales = await sm.GetSales(From, toDate);
+            var sales = await manager.GetSales(From, toDate);
             var id = ParameterTransmitter.PutParameter(sales);
             ShowViewModel<SalesStatisticViewModel>(new {id = id, from, to = toDate});
         }
@@ -53,7 +55,7 @@ namespace CoffeeManagerAdmin.Core
         private async void DoShowExpenses()
         {
             var toDate = To.AddDays(1);
-            var expenses = await sm.GetExpenses(From, toDate);
+            var expenses = await manager.GetExpenses(From, toDate);
             var id = ParameterTransmitter.PutParameter(expenses);
             ShowViewModel<ExpensesStatisticViewModel>(new { id = id });
         }

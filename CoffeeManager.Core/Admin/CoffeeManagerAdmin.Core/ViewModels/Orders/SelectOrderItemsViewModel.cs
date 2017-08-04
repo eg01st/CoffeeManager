@@ -13,17 +13,19 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Orders
 {
     public class SelectOrderItemsViewModel : ViewModelBase
     {
-        private SuplyProductsManager _manager = new SuplyProductsManager();
-
         private string _newProductName;
         private int _orderId;
 
         private string _searchString;
 
         private MvxSubscriptionToken _token;
+        readonly ISuplyProductsManager manager;
+        readonly ISuplyOrderManager orderManager;
 
-        public SelectOrderItemsViewModel()
+        public SelectOrderItemsViewModel(ISuplyProductsManager manager, ISuplyOrderManager orderManager)
         {
+            this.orderManager = orderManager;
+            this.manager = manager;
             DoneCommand = new MvxCommand(DoDoneCommand);
             AddNewProductCommand = new MvxCommand(DoAddNewProduct);
             _token = Subscribe<SuplyProductDeletedMessage>(async (obj) => await LoadData());
@@ -37,14 +39,13 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Orders
 
         private async Task LoadData()
         {
-            var items = await _manager.GetSupliedProducts();
-            _orginalItems = Items = items.Select(s => new SelectOrderItemViewModel(_orderId, s)).ToList();
+            var items = await manager.GetSuplyProducts();
+            _orginalItems = Items = items.Select(s => new SelectOrderItemViewModel(manager, orderManager, _orderId, s)).ToList();
         }
 
         private async void DoAddNewProduct()
         {
-            var manager = new SuplyProductsManager();
-            await manager.AddNewProduct(NewProductName);
+            await manager.AddSuplyProduct(NewProductName);
             NewProductName = string.Empty;
             await LoadData();
         }

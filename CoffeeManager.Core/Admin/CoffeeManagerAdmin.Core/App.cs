@@ -1,15 +1,13 @@
-    using MvvmCross.Platform.IoC;
+using CoffeManager.Common;
+using MvvmCross.Platform.IoC;
 
 namespace CoffeeManagerAdmin.Core
 {
-    public class App : MvvmCross.Core.ViewModels.MvxApplication
+    public class App : CoffeManagerApp
     {
         public override void Initialize()
         {
-            //CreatableTypes()
-            //    .EndingWith("Service")
-            //    .AsInterfaces()
-            //    .RegisterAsLazySingleton();
+            base.Initialize();
 
             RegisterAppStart<ViewModels.LoginViewModel>();
         }

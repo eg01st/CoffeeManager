@@ -1,22 +1,22 @@
-﻿using System;
-using CoffeeManager.Models;
+﻿using CoffeeManager.Models;
 using System.Windows.Input;
 using MvvmCross.Core.ViewModels;
 using CoffeManager.Common;
-using CoffeeManagerAdmin.Core.Managers;
 
 namespace CoffeeManagerAdmin.Core
 {
-  public class ManageExpenseItemViewModel : ListItemViewModelBase
+    public class ManageExpenseItemViewModel : ListItemViewModelBase
     {
-        PaymentManager pm = new PaymentManager();
 
         public int Id {get;set;}
         public bool IsActive {get;set;}
 
         public ICommand ToggleIsActiveCommand {get;set;}
-        public ManageExpenseItemViewModel(ExpenseType e)
+        private readonly IPaymentManager manager;
+
+        public ManageExpenseItemViewModel(IPaymentManager manager, ExpenseType e)
         {
+            this.manager = manager;
             ToggleIsActiveCommand = new MvxCommand(DoToggleIsActive);
             Id = e.Id;
             Name = e.Name;
@@ -26,7 +26,7 @@ namespace CoffeeManagerAdmin.Core
 
         private async void DoToggleIsActive()
         {
-            await pm.ToggleIsActiveExpense(Id);
+            await manager.ToggleIsActiveExpense(Id);
         }
    }
 }

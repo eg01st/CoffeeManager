@@ -97,9 +97,19 @@ namespace CoffeManager.Common
             UserDialogs.ShowSuccess(message, 300);
         }
 
-        public void Alert(string message)
+        public void Alert(string message, string title = null)
         {
-            UserDialogs.Alert(message);
+            UserDialogs.Alert(message, title);
+        }
+
+        public void Alert(string message, Action action, string title = null)
+        {
+            UserDialogs.Alert(new AlertConfig()
+            {
+                Message = message,
+                Title = title,
+                OnAction = async () => await ExecuteSafe(async () => action())
+            });
         }
 
         public void Confirm(string message, Action action)

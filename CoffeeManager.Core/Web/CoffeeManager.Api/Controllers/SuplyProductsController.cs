@@ -13,7 +13,7 @@ namespace CoffeeManager.Api.Controllers
 {
 	public class SuplyProductsController : ApiController
 	{
-		[Route ("api/suplyproducts/getproducts")]
+        [Route(RoutesConstants.GetSuplyProducts)]
 		[HttpGet]
 		public async Task<HttpResponseMessage> GetSuplyProducts ([FromUri] int coffeeroomno, HttpRequestMessage message)
 		{
@@ -22,11 +22,11 @@ namespace CoffeeManager.Api.Controllers
 				return Request.CreateResponse (HttpStatusCode.Forbidden);
 			}
 			var entites = new CoffeeRoomEntities ();
-			var items = entites.SupliedProducts.OrderBy(o => o.Priority).ToList ().Select (p => p.ToDTO ());
+            var items = entites.SupliedProducts.Where(s => s.CoffeeRoomNo == coffeeroomno).OrderBy(o => o.Priority).ToList ().Select (p => p.ToDTO ());
 			return Request.CreateResponse (HttpStatusCode.OK, items);
 		}
 
-        [Route("api/suplyproducts/getproduct")]
+        [Route(RoutesConstants.GetSuplyProduct)]
         [HttpGet]
         public async Task<HttpResponseMessage> GetSuplyProduct([FromUri] int coffeeroomno, [FromUri] int id, HttpRequestMessage message)
         {
@@ -36,7 +36,7 @@ namespace CoffeeManager.Api.Controllers
                 return Request.CreateResponse(HttpStatusCode.Forbidden);
             }
             var entites = new CoffeeRoomEntities();
-            var item = entites.SupliedProducts.FirstOrDefault(p => p.Id == id);
+            var item = entites.SupliedProducts.FirstOrDefault(p => p.Id == id && p.CoffeeRoomNo == coffeeroomno);
             if(item != null)
             {
                 var suplyProduct = item.ToDTO();
@@ -51,7 +51,7 @@ namespace CoffeeManager.Api.Controllers
             return Request.CreateErrorResponse(HttpStatusCode.RequestedRangeNotSatisfiable, $"Cannot find suplyId {id}");
         }
 
-        [Route("api/suplyproducts/editSuplyProduct")]
+        [Route(RoutesConstants.EditSuplyProduct)]
         [HttpPost]
         public async Task<HttpResponseMessage> EditSuplyProduct([FromUri] int coffeeroomno, HttpRequestMessage message)
         {
@@ -65,7 +65,7 @@ namespace CoffeeManager.Api.Controllers
             var sProduct = JsonConvert.DeserializeObject<Models.SupliedProduct>(request);
 
             var entites = new CoffeeRoomEntities();
-            var item = entites.SupliedProducts.FirstOrDefault(p => p.Id == sProduct.Id);
+            var item = entites.SupliedProducts.FirstOrDefault(p => p.Id == sProduct.Id && p.CoffeeRoomNo == coffeeroomno);
             if (item != null)
             {
                 item.Name = sProduct.Name;
@@ -78,7 +78,7 @@ namespace CoffeeManager.Api.Controllers
         }
 
 
-		[Route ("api/suplyproducts/addproduct")]
+		[Route(RoutesConstants.AddSuplyProduct)]
 		[HttpPut]
 		public async Task<HttpResponseMessage> AddSuplyProduct ([FromUri] int coffeeroomno, HttpRequestMessage message)
 		{
@@ -97,7 +97,7 @@ namespace CoffeeManager.Api.Controllers
 			return Request.CreateResponse (HttpStatusCode.OK);
 		}
 
-        [Route("api/suplyproducts/deletesuplyproduct")]
+        [Route(RoutesConstants.DeleteSuplyProduct)]
         [HttpDelete]
         public async Task<HttpResponseMessage> DeleteSuplyProduct([FromUri] int coffeeroomno, [FromUri] int id, HttpRequestMessage message)
         {
@@ -107,7 +107,7 @@ namespace CoffeeManager.Api.Controllers
                 return Request.CreateResponse(HttpStatusCode.Forbidden);
             }
             var entities = new CoffeeRoomEntities();
-            var request = entities.SupliedProducts.FirstOrDefault(r => r.Id == id);
+            var request = entities.SupliedProducts.FirstOrDefault(r => r.Id == id && r.CoffeeRoomNo == coffeeroomno);
             if (request != null)
             {
                 entities.SupliedProducts.Remove(request);
@@ -117,7 +117,7 @@ namespace CoffeeManager.Api.Controllers
         }
 
 
-        [Route("api/suplyproducts/getproductcalculationitems")]
+        [Route(RoutesConstants.GetProductCalculationItems)]
         [HttpGet]
         public async Task<HttpResponseMessage> GetProductCalculationItems([FromUri] int coffeeroomno, [FromUri] int productId, HttpRequestMessage message)
         {
@@ -128,7 +128,7 @@ namespace CoffeeManager.Api.Controllers
             }
             
             var entites = new CoffeeRoomEntities();
-            var product = entites.Products.FirstOrDefault(p => p.Id == productId);
+            var product = entites.Products.FirstOrDefault(p => p.Id == productId && p.CoffeeRoomNo == coffeeroomno);
             if (product == null)
             {
                 return Request.CreateErrorResponse(HttpStatusCode.RequestedRangeNotSatisfiable,
@@ -157,7 +157,7 @@ namespace CoffeeManager.Api.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, result);
         }
 
-        [Route("api/suplyproducts/deleteproductcalculationitem")]
+       [Route(RoutesConstants.DeleteProductCalculationItem)]
         [HttpDelete]
         public async Task<HttpResponseMessage> DeleteProductCalculationItem([FromUri] int coffeeroomno, [FromUri] int id, HttpRequestMessage message)
         {
@@ -167,7 +167,7 @@ namespace CoffeeManager.Api.Controllers
                 return Request.CreateResponse(HttpStatusCode.Forbidden);
             }
             var entities = new CoffeeRoomEntities();
-            var productCalculationItem = entities.ProductCalculations.FirstOrDefault(r => r.Id == id);
+            var productCalculationItem = entities.ProductCalculations.FirstOrDefault(r => r.Id == id && r.CoffeeRoomNo == coffeeroomno);
             if (productCalculationItem != null)
             {
                 entities.ProductCalculations.Remove(productCalculationItem);
@@ -178,7 +178,7 @@ namespace CoffeeManager.Api.Controllers
                 "Cannot find product item id " + id);
         }
 
-        [Route("api/suplyproducts/addproductcalculationitem")]
+       [Route(RoutesConstants.AddProductCalculationItem)]
         [HttpPut]
         public async Task<HttpResponseMessage> AddProductCalculationItem([FromUri] int coffeeroomno, HttpRequestMessage message)
         {

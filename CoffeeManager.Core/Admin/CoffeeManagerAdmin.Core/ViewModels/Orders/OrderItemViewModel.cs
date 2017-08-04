@@ -1,7 +1,6 @@
 ﻿using System.Windows.Input;
 using Acr.UserDialogs;
 using CoffeeManager.Models;
-using CoffeeManagerAdmin.Core.Managers;
 using CoffeeManagerAdmin.Core.Messages;
 using MvvmCross.Core.ViewModels;
 using CoffeManager.Common;
@@ -10,7 +9,6 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Orders
 {
     public class OrderItemViewModel : ViewModelBase
     {
-        private SuplyOrderManager _manager = new SuplyOrderManager();
         private OrderItem _item;
 
         private decimal _price;
@@ -19,8 +17,11 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Orders
         private string _suplyProductName;
 
         private bool _isPromt;
-        public OrderItemViewModel(OrderItem item)
+        private readonly ISuplyOrderManager suplyOrderManager;
+
+        public OrderItemViewModel(ISuplyOrderManager suplyOrderManager, OrderItem item)
         {
+            this.suplyOrderManager = suplyOrderManager;
             _item = item;
             IsDone = item.IsDone;
             Price = item.Price;
@@ -48,7 +49,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Orders
         {
             if (ok)
             {
-                await _manager.DeleteOrderItem(_item.Id);
+                await suplyOrderManager.DeleteOrderItem(_item.Id);
                 Publish(new OrderItemChangedMessage(this));
             }
             _isPromt = false;
@@ -79,7 +80,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Orders
                 if (decimal.TryParse(obj.Text, out price))
                 {
                     IsDone = !IsDone;
-                    await _manager.SaveOrderItem(new OrderItem
+                    await suplyOrderManager.SaveOrderItem(new OrderItem
                     {
                         Id = _item.Id,
                         IsDone = IsDone,

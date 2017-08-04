@@ -1,0 +1,25 @@
+﻿using System;
+using System.Threading.Tasks;
+using CoffeeManager.Models;
+
+namespace CoffeManager.Common
+{
+    public interface IPaymentServiceProvider
+    {
+        Task<decimal> GetCurrentShiftMoney();
+
+        Task<decimal> GetEntireMoney();
+
+        Task AddExpense(int shiftId, int expenseId, decimal amount, int itemCount);
+
+        Task<ExpenseType[]> GetExpenseItems();
+
+        Task AddNewExpenseType(string typeName);
+
+        Task DeleteExpenseItem(int id);
+
+        Task<Expense[]> GetShiftExpenses(int id);
+
+        Task ToggleIsActiveExpense(int id);
+    }
+}

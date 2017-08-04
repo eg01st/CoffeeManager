@@ -14,7 +14,7 @@ namespace CoffeeManager.Api.Controllers
 {
     public class UsersController : ApiController
     {
-        [Route("api/users")]
+        [Route(RoutesConstants.GetUsers)]
         [HttpGet]
         public HttpResponseMessage Get([FromUri]int coffeeroomno)
         {
@@ -22,7 +22,7 @@ namespace CoffeeManager.Api.Controllers
             return new HttpResponseMessage() { Content = new ObjectContent<IEnumerable<Models.User>>(users, new JsonMediaTypeFormatter())};
         }
 
-        [Route("api/users/getUser")]
+        [Route(RoutesConstants.GetUser)]
         [HttpGet]
         public HttpResponseMessage GetUser([FromUri]int coffeeroomno, [FromUri]int userId)
         {
@@ -30,9 +30,9 @@ namespace CoffeeManager.Api.Controllers
             return new HttpResponseMessage() { Content = new ObjectContent<Models.User>(user, new JsonMediaTypeFormatter()) };
         }
 
-        [Route("api/users/add")]
+        [Route(RoutesConstants.AddUser)]
         [HttpPut]
-        public async Task<HttpResponseMessage> Add([FromUri]int coffeeroomno, HttpRequestMessage message)
+        public async Task<HttpResponseMessage> AddUser([FromUri]int coffeeroomno, HttpRequestMessage message)
         {
             var token = message.Headers.GetValues("token").FirstOrDefault();
             if (token == null || !UserSessions.Contains(token))
@@ -48,9 +48,9 @@ namespace CoffeeManager.Api.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, userDb.Id);
         }
 
-        [Route("api/users/update")]
+        [Route(RoutesConstants.UpdateUser)]
         [HttpPost]
-        public async Task<HttpResponseMessage> Update([FromUri]int coffeeroomno, HttpRequestMessage message)
+        public async Task<HttpResponseMessage> UpdateUser([FromUri]int coffeeroomno, HttpRequestMessage message)
         {
             var token = message.Headers.GetValues("token").FirstOrDefault();
             if (token == null || !UserSessions.Contains(token))
@@ -68,7 +68,7 @@ namespace CoffeeManager.Api.Controllers
 
 
 
-        [Route("api/users/paySalary")]
+        [Route(RoutesConstants.PaySalary)]
         [HttpPost]
         public async Task<HttpResponseMessage> PaySalary([FromUri]int coffeeroomno, [FromUri]int userId, [FromUri]int currentShifId, HttpRequestMessage message)
         {
@@ -103,9 +103,9 @@ namespace CoffeeManager.Api.Controllers
             return Request.CreateResponse(HttpStatusCode.OK);
         }
 
-        [Route("api/users/toggleEnabled")]
+        [Route(RoutesConstants.ToggleUserEnabled)]
         [HttpPost]
-        public async Task<HttpResponseMessage> ToggleEnabled([FromUri]int coffeeroomno, [FromUri]int userId, HttpRequestMessage message)
+        public async Task<HttpResponseMessage> ToggleUserEnabled([FromUri]int coffeeroomno, [FromUri]int userId, HttpRequestMessage message)
         {
             var token = message.Headers.GetValues("token").FirstOrDefault();
             if (token == null || !UserSessions.Contains(token))
@@ -124,7 +124,7 @@ namespace CoffeeManager.Api.Controllers
             return Request.CreateResponse(HttpStatusCode.OK);
         }
 
-        [Route("api/users/login")]
+        [Route(RoutesConstants.Login)]
         [HttpPost]
         public async Task<HttpResponseMessage> Login([FromUri]int coffeeroomno, HttpRequestMessage message)
         {
@@ -143,19 +143,19 @@ namespace CoffeeManager.Api.Controllers
         }
 
 
-        [Route("api/users")]
+        [Route(RoutesConstants.DeleteUser)]
         [HttpDelete]
-        public async Task<HttpResponseMessage> Delete([FromUri]int coffeeroomno, [FromUri]int id)
+        public async Task<HttpResponseMessage> Delete([FromUri]int coffeeroomno, [FromUri]int userId)
         {
             var entities = new  CoffeeRoomEntities();
-            var user = entities.Users.FirstOrDefault(u => u.Id == id && u.CoffeeRoomNo == coffeeroomno);
+            var user = entities.Users.FirstOrDefault(u => u.Id == userId && u.CoffeeRoomNo == coffeeroomno);
             if (user != null)
             {
                 entities.Users.Remove(user);
                 await entities.SaveChangesAsync();
                 return Request.CreateResponse(HttpStatusCode.OK);
             }
-            return Request.CreateErrorResponse(HttpStatusCode.BadRequest, $"No user with such id '{id}'");
+            return Request.CreateErrorResponse(HttpStatusCode.BadRequest, $"No user with such id '{userId}'");
         }
     }
 }

@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using CoffeManager.Common;
 
@@ -9,7 +7,12 @@ namespace CoffeeManagerAdmin.Core.ViewModels
 {
     public class ProductsCalculationViewModel : BaseSearchViewModel<ItemViewModel>
     {
-        private ProductManager manager = new ProductManager();
+        private readonly IProductManager manager;
+
+        public ProductsCalculationViewModel(IProductManager manager)
+        {
+            this.manager = manager;
+        }
 
         public async override Task<List<ItemViewModel>> LoadData()
         {

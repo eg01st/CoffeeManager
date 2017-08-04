@@ -13,13 +13,14 @@ namespace CoffeeManagerAdmin.Core
 {
     public class ProductsViewModel : BaseSearchViewModel<ProductItemViewModel>
     {
-        private ProductManager manager = new ProductManager();
         private MvxSubscriptionToken _productListChangedToken;
 
         private ICommand _addProductCommand;
+        readonly IProductManager manager;
 
-        public ProductsViewModel()
+        public ProductsViewModel(IProductManager manager)
         {
+            this.manager = manager;
             _addProductCommand = new MvxCommand(DoAddProduct);
             _productListChangedToken = Subscribe<ProductListChangedMessage>((obj) =>
             {
@@ -36,7 +37,7 @@ namespace CoffeeManagerAdmin.Core
         public async override Task<List<ProductItemViewModel>> LoadData()
         {
             var items = await manager.GetProducts();
-            return items.Select(s => new ProductItemViewModel(s)).ToList();
+            return items.Select(s => new ProductItemViewModel(manager, s)).ToList();
         }
 
         public ICommand AddProductCommand => _addProductCommand;

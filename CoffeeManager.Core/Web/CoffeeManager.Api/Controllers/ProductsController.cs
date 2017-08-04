@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using CoffeeManager.Api.Mappers;
+using CoffeeManager.Models;
 using Newtonsoft.Json;
 
 namespace CoffeeManager.Api.Controllers
@@ -19,9 +20,9 @@ namespace CoffeeManager.Api.Controllers
 			return Request.CreateResponse (HttpStatusCode.OK, products);
 		}
 
-		[Route ("api/products/getAll")]
+        [Route (RoutesConstants.GetAllProducts)]
 		[HttpGet]
-		public async Task<HttpResponseMessage> Get ([FromUri]int coffeeroomno, HttpRequestMessage message)
+		public async Task<HttpResponseMessage> GetAll ([FromUri]int coffeeroomno, HttpRequestMessage message)
 		{
 			var token = message.Headers.GetValues ("token").FirstOrDefault ();
 			if (token == null || !UserSessions.Contains (token)) {
@@ -32,7 +33,7 @@ namespace CoffeeManager.Api.Controllers
 			return Request.CreateResponse (HttpStatusCode.OK, products);
 		}
 
-		[Route ("api/products/addproduct")]
+        [Route(RoutesConstants.AddProduct)]
 		[HttpPut]
 		public async Task<HttpResponseMessage> AddProduct ([FromUri]int coffeeroomno, HttpRequestMessage message)
 		{
@@ -49,7 +50,7 @@ namespace CoffeeManager.Api.Controllers
 			return Request.CreateResponse (HttpStatusCode.OK);
 		}
 
-		[Route ("api/products/editproduct")]
+        [Route(RoutesConstants.EditProduct)]
 		[HttpPost]
 		public async Task<HttpResponseMessage> EditProduct ([FromUri]int coffeeroomno, HttpRequestMessage message)
 		{
@@ -62,7 +63,7 @@ namespace CoffeeManager.Api.Controllers
 
 			var entities = new CoffeeRoomEntities ();
 
-			var prodDb = entities.Products.FirstOrDefault (p => p.Id == product.Id);
+			var prodDb = entities.Products.FirstOrDefault (p => p.Id == product.Id && p.CoffeeRoomNo == coffeeroomno);
 			if (prodDb != null) {
 				prodDb.Name = product.Name;
 				prodDb.Price = product.Price;
@@ -80,7 +81,7 @@ namespace CoffeeManager.Api.Controllers
 			}
 		}
 
-		[Route ("api/products/deleteproduct")]
+        [Route (RoutesConstants.DeleteProduct)]
 		[HttpDelete]
 		public async Task<HttpResponseMessage> DeleteProduct ([FromUri]int coffeeroomno, [FromUri] int id, HttpRequestMessage message)
 		{
@@ -90,7 +91,7 @@ namespace CoffeeManager.Api.Controllers
 				return Request.CreateResponse (HttpStatusCode.Forbidden);
 			}
 			var entities = new CoffeeRoomEntities ();
-            var product = entities.Products.FirstOrDefault(p => p.Id == id);
+            var product = entities.Products.FirstOrDefault(p => p.Id == id && p.CoffeeRoomNo == coffeeroomno);
             if(product != null)
             {
                 entities.Products.Remove(product);
@@ -100,7 +101,7 @@ namespace CoffeeManager.Api.Controllers
             return Request.CreateErrorResponse(HttpStatusCode.RequestedRangeNotSatisfiable, $"No product with id  {id}");
 		}
 
-		[Route ("api/products/saleproduct")]
+        [Route (RoutesConstants.SaleProduct)]
 		[HttpPut]
 		public async Task<HttpResponseMessage> SaleProduct ([FromUri]int coffeeroomno, HttpRequestMessage message)
 		{
@@ -143,7 +144,7 @@ namespace CoffeeManager.Api.Controllers
 
 		}
 
-		[Route ("api/products/deletesale")]
+        [Route (RoutesConstants.DeleteSale)]
 		[HttpPost]
 		public async Task<HttpResponseMessage> DeleteSale ([FromUri]int coffeeroomno, HttpRequestMessage message)
 		{
@@ -185,7 +186,7 @@ namespace CoffeeManager.Api.Controllers
 		}
 
 
-        [Route("api/products/UtilizeSale")]
+        [Route(RoutesConstants.UtilizeSale)]
         [HttpPost]
         public async Task<HttpResponseMessage> UtilizeSale([FromUri]int coffeeroomno, HttpRequestMessage message)
         {
@@ -210,7 +211,7 @@ namespace CoffeeManager.Api.Controllers
             return Request.CreateResponse(HttpStatusCode.OK);
         }
 
-        [Route("api/products/toggleProductEnabled")]
+        [Route(RoutesConstants.ToggleProductEnabled)]
         [HttpPost]
         public async Task<HttpResponseMessage> ToggleProductEnabled([FromUri]int coffeeroomno, [FromUri]int id, HttpRequestMessage message)
         {

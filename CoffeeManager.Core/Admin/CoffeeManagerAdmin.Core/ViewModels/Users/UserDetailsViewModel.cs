@@ -1,19 +1,19 @@
-﻿using System;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using MvvmCross.Core.ViewModels;
-using CoffeeManagerAdmin.Core.Managers;
 using CoffeeManager.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CoffeManager.Common;
+using CoffeeManager.Common;
 
 namespace CoffeeManagerAdmin.Core
 {
     public class UserDetailsViewModel : ViewModelBase
     {
-        UserManager um = new UserManager();
-        PaymentManager pm = new PaymentManager();
+        private readonly IShiftManager shiftManager;
+        private readonly IUserManager userManager;
+        private readonly IPaymentManager paymentManager;
 
         private List<Entity> _expenseItems = new List<Entity>();
         private Entity _selectedExpenseType;
@@ -77,9 +77,11 @@ namespace CoffeeManagerAdmin.Core
             }
         }
 
-
-        public UserDetailsViewModel()
+        public UserDetailsViewModel(IUserManager userManager, IPaymentManager paymentManager, IShiftManager shiftManager)
         {
+            this.shiftManager = shiftManager;
+            this.paymentManager = paymentManager;
+            this.userManager = userManager;
             PaySalaryCommand = new MvxCommand(DoPaySalary);
             UpdateCommand = new MvxCommand(DoUpdateUser);
         }
@@ -104,7 +106,7 @@ namespace CoffeeManagerAdmin.Core
             user.DayShiftPersent = DayShiftPersent;
             user.NightShiftPercent = NightShiftPercent;
             user.ExpenceId = SelectedExpenseType?.Id;
-            await um.UpdateUser(user);
+            await userManager.UpdateUser(user);
             Close(this);        
         }
 
@@ -116,7 +118,7 @@ namespace CoffeeManagerAdmin.Core
             user.ExpenceId = SelectedExpenseType?.Id;
             user.CoffeeRoomNo = Config.CoffeeRoomNo;
             user.IsActive = true;
-            await um.AddUser(user);
+            await userManager.AddUser(user);
             Close(this);        
         }
 
@@ -129,7 +131,7 @@ namespace CoffeeManagerAdmin.Core
             }
             await ExecuteSafe(async () => 
             {
-                user = await um.GetUser(useridParameter);
+                user = await userManager.GetUser(useridParameter);
                 UserName = user.Name;
                 DayShiftPersent = user.DayShiftPersent;
                 NightShiftPercent = user.NightShiftPercent;
@@ -156,7 +158,7 @@ namespace CoffeeManagerAdmin.Core
         {
             await ExecuteSafe(async () => 
             {
-                var types = await pm.GetExpenseItems();
+                var types = await paymentManager.GetExpenseItems();
                 ExpenseItems = types.Select(s => new Entity { Id = s.Id, Name = s.Name }).ToList();
                 if (user.ExpenceId > 0)
                 {
@@ -195,14 +197,13 @@ namespace CoffeeManagerAdmin.Core
             }
             await ExecuteSafe(async () => 
             {
-                var sm = new ShiftManager();
-                var shift = await sm.GetCurrentShift();
+                var shift = await shiftManager.GetCurrentShift();
                 if(shift == null)
                 {
                     UserDialogs.Alert("Запустите новую смену!");
                     return;
                 }
-                await um.PaySalary(UserId, shift.Id);
+                await userManager.PaySalary(UserId, shift.Id);
                 user.EntireEarnedAmount += CurrentEarnedAmount;
                 user.CurrentEarnedAmount = 0;
                 Close(this);

@@ -6,8 +6,6 @@ namespace CoffeeManagerAdmin.Core
 {
     public class SuplyProductDetailsViewModel : ViewModelBase
     {
-        private SuplyProductsManager manager = new SuplyProductsManager();
-
         private int _id;
         private string _name;
         private decimal _supliedPrice;
@@ -61,8 +59,11 @@ namespace CoffeeManagerAdmin.Core
             }
         }
 
-        public SuplyProductDetailsViewModel()
+        readonly ISuplyProductsManager manager;
+
+        public SuplyProductDetailsViewModel(ISuplyProductsManager manager)
         {
+            this.manager = manager;
             _saveCommand = new MvxCommand(DoSaveProduct);
             _deleteCommand = new MvxCommand(DoDeleteProduct);
         }
@@ -87,7 +88,7 @@ namespace CoffeeManagerAdmin.Core
 
         private async void DoSaveProduct()
         {
-            await manager.SaveSuplyProduct(_id, Name, SupliedPrice, ItemCount);
+            await manager.EditSuplyProduct(_id, Name, SupliedPrice, ItemCount);
             Publish(new SuplyListChangedMessage(this));
             Close(this);
         }
@@ -95,7 +96,7 @@ namespace CoffeeManagerAdmin.Core
         public async void Init(int id)
         {
             _id = id;
-            var product = await manager.GetSupliedProduct(id);
+            var product = await manager.GetSuplyProduct(id);
             Name = product.Name;
             SupliedPrice = product.Price;
             SalePrice = product.SalePrice;

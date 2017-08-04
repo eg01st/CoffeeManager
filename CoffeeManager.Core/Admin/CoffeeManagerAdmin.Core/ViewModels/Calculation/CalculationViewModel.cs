@@ -14,14 +14,15 @@ namespace CoffeeManagerAdmin.Core.ViewModels
     public class CalculationViewModel : ViewModelBase
     {
         private MvxSubscriptionToken _listChangedToken;
-        SuplyProductsManager suplyProductsManager = new SuplyProductsManager();
-        private string _name;
+     private string _name;
         private List<CalculationItemViewModel> _items;
         private ICommand _addItemCommand;
         private int _productId;
+        readonly ISuplyProductsManager manager;
 
-        public CalculationViewModel()
+        public CalculationViewModel(ISuplyProductsManager manager)
         {
+            this.manager = manager;
             _addItemCommand = new MvxCommand(DoAddItem);
             _listChangedToken = Subscribe<CalculationListChangedMessage>(async (obj) => await LoadData());
         }
@@ -39,10 +40,10 @@ namespace CoffeeManagerAdmin.Core.ViewModels
 
         private async Task LoadData()
         {
-            var info = await suplyProductsManager.GetProductCalculationItems(_productId);
+            var info = await manager.GetProductCalculationItems(_productId);
             _productId = info.ProductId;
             Name = info.Name;
-            Items = info.SuplyProductInfo.Select(s => new CalculationItemViewModel(s)).ToList();
+            Items = info.SuplyProductInfo.Select(s => new CalculationItemViewModel(manager, s)).ToList();
         }
 
         public ICommand AddItemCommand => _addItemCommand;

@@ -1,27 +1,27 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using CoffeeManagerAdmin.Core.Managers;
 using CoffeeManagerAdmin.Core.Messages;
 using System.Windows.Input;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Messenger;
 using CoffeeManager.Models;
-using System;
 using CoffeeManagerAdmin.Core.Util;
 using CoffeManager.Common;
+using CoffeeManager.Common;
 
 namespace CoffeeManagerAdmin.Core.ViewModels.Orders
 {
     public class OrdersViewModel : ViewModelBase
     {
-        private SuplyOrderManager _manager = new SuplyOrderManager();
         private MvxSubscriptionToken _token;
 
         private List<OrderViewModel> _items = new List<OrderViewModel>();
+        private readonly ISuplyOrderManager manager;
 
-        public OrdersViewModel()
+        public OrdersViewModel(ISuplyOrderManager manager)
         {
+            this.manager = manager;
             _token = Subscribe<OrderListChangedMessage>(async (a) => await LoadData());
             CreateOrderCommand = new MvxCommand(DoCreateOrder);
         }
@@ -34,7 +34,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Orders
                 CoffeeRoomNo = Config.CoffeeRoomNo
             };
 
-            int orderId = await _manager.CreateOrder(order);
+            int orderId = await manager.CreateOrder(order);
             order.Id = orderId;
             await LoadData();
             var id = ParameterTransmitter.PutParameter(order);
@@ -60,8 +60,8 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Orders
 
         private async Task LoadData()
         {
-            var items = await _manager.GetOrders();
-            Items = items.Select(s => new OrderViewModel(s)).OrderByDescending(o => o.Id).ToList();
+            var items = await manager.GetOrders();
+            Items = items.Select(s => new OrderViewModel(manager, s)).OrderByDescending(o => o.Id).ToList();
         }
     }
 }

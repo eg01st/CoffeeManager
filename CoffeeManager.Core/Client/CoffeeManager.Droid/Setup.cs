@@ -43,5 +43,6 @@ namespace CoffeeManager.Droid
             base.FillTargetFactories(registry);
             registry.RegisterFactory(new MvxCustomBindingFactory<View>("LongPress", view => new LongPressEventBinding(view)));
         }
+
     }
 }

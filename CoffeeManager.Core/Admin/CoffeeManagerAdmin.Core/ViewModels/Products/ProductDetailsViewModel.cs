@@ -11,8 +11,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels
 {
     public class ProductDetailsViewModel : ViewModelBase
     {
-        private ProductManager manager = new ProductManager();
-
+   
         private int _id;
         private string _name;
         private string _price;
@@ -157,11 +156,14 @@ namespace CoffeeManagerAdmin.Core.ViewModels
                 RaisePropertyChanged(nameof(ProductTypeName));
             }
         }
-#endregion
+
+        readonly IProductManager manager;
+        #endregion
 
 
-        public ProductDetailsViewModel()
+        public ProductDetailsViewModel(IProductManager manager)
         {
+            this.manager = manager;
             _addProductCommand = new MvxCommand(DoAddProduct);
         }
 

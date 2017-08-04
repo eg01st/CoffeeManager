@@ -11,7 +11,12 @@ namespace CoffeeManagerAdmin.Core.ViewModels
     {
         private int productId;
 
-        private SuplyProductsManager manager = new SuplyProductsManager();
+        readonly ISuplyProductsManager manager;
+
+        public SelectCalculationListViewModel(ISuplyProductsManager manager)
+        {
+            this.manager = manager;
+        }
         public void Init(int productId)
         {
             this.productId = productId;
@@ -19,8 +24,8 @@ namespace CoffeeManagerAdmin.Core.ViewModels
 
         public async override Task<List<SelectCalculationItemViewModel>> LoadData()
         {
-            var items = await manager.GetSupliedProducts();
-            return items.Select(s => new SelectCalculationItemViewModel(productId, s)).ToList();
+            var items = await manager.GetSuplyProducts();
+            return items.Select(s => new SelectCalculationItemViewModel(manager, productId, s)).ToList();
         }
     }
 }
