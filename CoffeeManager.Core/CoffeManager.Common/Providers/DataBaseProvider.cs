@@ -6,7 +6,7 @@ using SQLite;
 
 namespace CoffeManager.Common
 {
-    public class DataBaseProvider
+    public class DataBaseProvider : IDataBaseProvider
     {
         private readonly SQLiteConnection connection;
 

@@ -22,7 +22,7 @@ namespace CoffeManager.Common
 
         Task<Product[]> GetAddsProducts();
 
-        Task SaleProduct(int id, decimal price, bool isPoliceSale, bool isCreditCardSale, bool isSaleByWeight, decimal? weight);
+        Task SaleProduct(int shiftId, int id, decimal price, bool isPoliceSale, bool isCreditCardSale, bool isSaleByWeight, decimal? weight);
         Task DismisSaleProduct(int id);
         Task UtilizeSaleProduct(int id);
 

@@ -42,7 +42,7 @@ namespace CoffeeManager.Core.ViewModels
         }
 
         public ICommand DismisItemCommand => _dismisItemCommand;
-        public string Name => _sale.Product1.Name;
+        public string Name => _sale.ProductName;
 
         public decimal Amount => _sale.Amount;
 

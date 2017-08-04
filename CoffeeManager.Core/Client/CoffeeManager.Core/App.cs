@@ -1,5 +1,6 @@
 ﻿using Acr.UserDialogs;
 using CoffeeManager.Core.ViewModels;
+using CoffeeManager.Models;
 using CoffeManager.Common;
 using MvvmCross.Platform;
 
@@ -14,6 +15,14 @@ namespace CoffeeManager.Core
             RegisterAppStart<LoginViewModel>();
 
             Mvx.RegisterSingleton<IUserDialogs>(() => UserDialogs.Instance);
+
+            InitDataBase();
+        }
+
+        private void InitDataBase()
+        {
+            var database = Mvx.Resolve<IDataBaseProvider>();
+            database.CreateTableIfNotExists(typeof(Sale));
         }
 
     }

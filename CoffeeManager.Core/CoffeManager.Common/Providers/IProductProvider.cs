@@ -18,7 +18,7 @@ namespace CoffeManager.Common
 
         Task<Product[]> GetProduct(ProductType type);
 
-        Task SaleProduct(int shiftId, int id, decimal price, bool isPoliceSale, bool isCreditCardSale, bool isSaleByWeight, decimal? weight);
+        Task SaleProduct(Sale sale);
 
         Task DeleteSale(int shiftId, int id);
 

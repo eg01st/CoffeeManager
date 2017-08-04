@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
+using Cheesebaron.MvxPlugins.Connectivity;
 using CoffeeManager.Common;
 using CoffeeManager.Models;
 
@@ -8,9 +10,13 @@ namespace CoffeManager.Common
     public class ProductManager : BaseManager, IProductManager
     {
         readonly IProductProvider productProvider;
+        readonly IDataBaseProvider databaseProvider;
+        readonly IConnectivity connectivity;
 
-        public ProductManager(IProductProvider productProvider)
+        public ProductManager(IProductProvider productProvider, IDataBaseProvider databaseProvider, IConnectivity connectivity)
         {
+            this.connectivity = connectivity;
+            this.databaseProvider = databaseProvider;
             this.productProvider = productProvider;
         }
 
@@ -55,9 +61,36 @@ namespace CoffeManager.Common
         }
 
 
-        public async Task SaleProduct(int id, decimal price, bool isPoliceSale, bool isCreditCardSale, bool isSaleByWeight, decimal? weight)
+        public async Task SaleProduct(int shiftId, int id, decimal price, bool isPoliceSale, bool isCreditCardSale, bool isSaleByWeight, decimal? weight)
         {
-            await productProvider.SaleProduct(ShiftNo, id, price, isPoliceSale, isCreditCardSale, isSaleByWeight, weight);
+            var sale = new Sale()
+            {
+                ShiftId = shiftId,
+                Amount = price,
+                ProductId = id,
+                IsPoliceSale = isPoliceSale,
+                CoffeeRoomNo = Config.CoffeeRoomNo,
+                Time = DateTime.Now,
+                IsCreditCardSale = isCreditCardSale,
+                IsSaleByWeight = isSaleByWeight,
+                Weight = weight
+            };
+            if(!connectivity.IsConnected)
+            {
+                databaseProvider.Add(sale);
+                return;
+            }
+            try
+            {
+                await productProvider.SaleProduct(sale);
+                await SendStoredSalesIfExist();
+            }
+            catch(Exception ex)
+            {
+                Debug.WriteLine(ex.ToDiagnosticString());
+                //Email ex
+                databaseProvider.Add(sale);
+            }
         }
 
         public async Task DismisSaleProduct(int id)
@@ -94,5 +127,21 @@ namespace CoffeManager.Common
             await productProvider.ToggleIsActiveProduct(id);
         }
 
+        private async Task SendStoredSalesIfExist()
+        {
+            var storedItems = databaseProvider.Get<Sale>();
+            foreach (var item in storedItems)
+            {
+                try
+                {
+                    await productProvider.SaleProduct(item);
+                    databaseProvider.Remove(item);
+                }
+                catch
+                {
+                    continue;
+                }
+            }
+        }
     }
 }

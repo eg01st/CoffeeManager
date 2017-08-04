@@ -43,21 +43,8 @@ namespace CoffeManager.Common
             return prods.Where(p => p.IsActive).ToArray();
         }
 
-        public async Task SaleProduct(int shiftId, int id, decimal price, bool isPoliceSale, bool isCreditCardSale, bool isSaleByWeight, decimal? weight)
-        {
-            var sale = new Sale()
-            {
-                ShiftId = shiftId,
-                Amount = price,
-                Product = id,
-                IsPoliceSale = isPoliceSale,
-                CoffeeRoomNo = CoffeeRoomNo,
-                Time = DateTime.Now,
-                IsCreditCardSale = isCreditCardSale,
-                IsSaleByWeight = isSaleByWeight,
-                Weight = weight
-
-            };
+        public async Task SaleProduct(Sale sale)
+        {         
             await Put(RoutesConstants.SaleProduct, sale);
         }
 

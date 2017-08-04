@@ -54,7 +54,8 @@ namespace CoffeeManager.Api.Mappers
             return new Models.Sale()
             {
                 Id = saleDb.Id,
-                Product1 = new Models.Product() { Name = saleDb.Product1.Name, ProductType = saleDb.Product1.ProductType.Value },
+                ProductTypeId = saleDb.Product1.ProductType.Value,
+                ProductName = saleDb.Product1.Name,
                 CoffeeRoomNo = saleDb.CoffeeRoomNo,
                 Amount = saleDb.Amount,
                 ShiftId = saleDb.ShiftId,

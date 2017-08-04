@@ -208,12 +208,14 @@ namespace CoffeeManager.Core.ViewModels
             foreach (var productViewModel in SelectedProducts)
             {
                 var task = new Task(async () => await productManager.SaleProduct(
+                    _shiftId,
                     productViewModel.ProductId,
                     productViewModel.Price,
                     productViewModel.IsPoliceSale,
                     productViewModel.IsCreditCardSale,
                     productViewModel.IsSaleByWeight,
                     productViewModel.Weight));
+                task.Start();
                 tasks.Add(task);
             }
             await Task.WhenAll(tasks);

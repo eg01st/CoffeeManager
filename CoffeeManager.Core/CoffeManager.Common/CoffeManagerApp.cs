@@ -1,4 +1,5 @@
-﻿using MvvmCross.Core.ViewModels;
+﻿using Cheesebaron.MvxPlugins.Connectivity;
+using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
 using MvvmCross.Plugins.Sqlite;
 
@@ -35,7 +36,7 @@ namespace CoffeManager.Common
             Mvx.RegisterSingleton<IUserManager>(new UserManager(Mvx.Resolve<IUserServiceProvider>()));
             Mvx.RegisterSingleton<IShiftManager>(new ShiftManager(Mvx.Resolve<IShiftServiceProvider>()));
             Mvx.RegisterSingleton<IPaymentManager>(new PaymentManager(Mvx.Resolve<IPaymentServiceProvider>()));
-            Mvx.RegisterSingleton<IProductManager>(new ProductManager(Mvx.Resolve<IProductProvider>()));
+            Mvx.RegisterSingleton<IProductManager>(new ProductManager(Mvx.Resolve<IProductProvider>(), Mvx.Resolve<IDataBaseProvider>(), Mvx.Resolve<IConnectivity>()));
             Mvx.RegisterSingleton<IStatisticManager>(new StatisticManager(Mvx.Resolve<IStatisticProvider>()));
             Mvx.RegisterSingleton<ISuplyOrderManager>(new SuplyOrderManager(Mvx.Resolve<ISuplyOrderProvider>()));
             Mvx.RegisterSingleton<ISuplyProductsManager>(new SuplyProductsManager(Mvx.Resolve<ISuplyProductsProvider>()));

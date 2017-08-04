@@ -13,7 +13,7 @@ namespace CoffeeManager.Api.Mappers
 				Amount = sale.Amount,
 				CoffeeRoomNo = sale.CoffeeRoomNo,
 				IsPoliceSale = sale.IsPoliceSale,
-				Product = sale.Product,
+				Product = sale.ProductId,
 				ShiftId = sale.ShiftId,
 				Time = sale.Time,
                 IsCreditCardSale = sale.IsCreditCardSale,
@@ -81,15 +81,6 @@ namespace CoffeeManager.Api.Mappers
 			};
 		}
 
-		public static Dept Map (Models.Dept dept)
-		{
-			return new Dept () {
-				CoffeeRoomNo = dept.CoffeeRoomNo,
-				ShiftId = dept.ShiftId,
-				Amount = dept.Amount,
-				IsPaid = dept.IsPaid
-			};
-		}
 
 		public static SupliedProduct Map (Models.SupliedProduct sProduct)
 		{

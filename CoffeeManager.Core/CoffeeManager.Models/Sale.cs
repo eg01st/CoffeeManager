@@ -7,11 +7,13 @@ namespace CoffeeManager.Models
         public int Id { get; set; }
         public decimal Amount { get; set; }
         public int ShiftId { get; set; }
-        public Product Product1 { get; set; }
+
+        public string ProductName { get; set; }
+        public int ProductTypeId { get; set; }
 
         public int CoffeeRoomNo { get; set; }
 
-        public int Product { get; set; }
+        public int ProductId { get; set; }
         public bool IsPoliceSale { get; set; }
         public DateTime Time { get; set; }
 
