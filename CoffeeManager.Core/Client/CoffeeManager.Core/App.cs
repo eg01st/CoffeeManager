@@ -1,8 +1,10 @@
 ﻿using Acr.UserDialogs;
+using CoffeeManager.Common;
 using CoffeeManager.Core.ViewModels;
 using CoffeeManager.Models;
 using CoffeManager.Common;
 using MvvmCross.Platform;
+using MvvmCross.Plugins.Sqlite;
 
 namespace CoffeeManager.Core
 {
@@ -21,8 +23,9 @@ namespace CoffeeManager.Core
 
         private void InitDataBase()
         {
-            var database = Mvx.Resolve<IDataBaseProvider>();
-            database.CreateTableIfNotExists(typeof(Sale));
+            var manager = Mvx.Resolve<ISyncManager>();
+            manager.InitDataBaseConnection();
+            manager.CreateSyncTables();
         }
 
     }

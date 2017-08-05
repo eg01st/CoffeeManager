@@ -1,11 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace CoffeManager.Common
 {
     public interface IDataBaseProvider
     {
-        void CreateTableIfNotExists(Type type);
+        void InitConnection();
+
+        void CreateTableIfNotExists<T>();
 
         int Add<T>(T item) where T : new();
 
@@ -14,5 +15,7 @@ namespace CoffeManager.Common
         IEnumerable<T> Get<T>() where T : new();
 
         void Update<T>(T item) where T : new();
+
+        void ClearTable<T>() where T : new();
     }
 }

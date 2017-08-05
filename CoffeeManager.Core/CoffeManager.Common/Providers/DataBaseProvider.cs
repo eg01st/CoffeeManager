@@ -8,39 +8,32 @@ namespace CoffeManager.Common
 {
     public class DataBaseProvider : IDataBaseProvider
     {
-        private readonly SQLiteConnection connection;
+        private SQLiteConnection connection;
+        readonly IMvxSqliteConnectionFactory factory;
 
         public DataBaseProvider(IMvxSqliteConnectionFactory factory)
+        {
+            this.factory = factory;
+        }
+
+        public void InitConnection()
         {
             connection = factory.GetConnection("data.dat");
         }
 
-        public void CreateTableIfNotExists(Type type)
+        public void CreateTableIfNotExists<T>()
         {
-            bool tableExists = connection.TableMappings.Any(t => t.MappedType == type);
-            if(tableExists)
-            {
-                return;
-            }
-            else
-            {
-                connection.CreateTable(type, CreateFlags.AllImplicit);
-            }
+            connection.CreateTable(typeof(T), CreateFlags.AutoIncPK);
         }
 
         public int Add<T>(T item) where T : new()
         {
-            connection.BeginTransaction();
-            var id = connection.Insert(item, typeof(T));
-            connection.Commit();
-            return id;
+            return connection.Insert(item, typeof(T));
         }
 
         public void Remove<T>(T item) where T : new()
         {
-            connection.BeginTransaction();
             connection.Delete(item);
-            connection.Commit();
         }
 
         public IEnumerable<T> Get<T>() where T : new()
@@ -54,6 +47,11 @@ namespace CoffeManager.Common
             connection.BeginTransaction();
             connection.Update(item, typeof(T));
             connection.Commit();
+        }
+
+        public void ClearTable<T>() where T : new()
+        {
+            connection.DeleteAll<T>();
         }
     }
 }

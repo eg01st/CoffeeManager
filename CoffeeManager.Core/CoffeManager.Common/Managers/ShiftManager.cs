@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Diagnostics;
+using System.Net.Http;
 using System.Threading.Tasks;
 using CoffeeManager.Models;
 
@@ -7,9 +9,11 @@ namespace CoffeManager.Common
     public class ShiftManager : BaseManager, IShiftManager
     {
         private readonly IShiftServiceProvider shiftProvider;
+        readonly ISyncManager syncManager;
 
-        public ShiftManager(IShiftServiceProvider provider)
+        public ShiftManager(IShiftServiceProvider provider, ISyncManager syncManager)
         {
+            this.syncManager = syncManager;
             this.shiftProvider = provider;
         }
 
@@ -41,31 +45,47 @@ namespace CoffeManager.Common
 
         public async Task<int> StartUserShift(int userId, int counter)
         {
-            return await shiftProvider.StartUserShift(userId, counter).ContinueWith((shiftId) =>
-            {
-                ShiftNo = shiftId.Result;
-                return ShiftNo;
-            });
+            var shiftId = await shiftProvider.StartUserShift(userId, counter);
+            syncManager.AddCurrentShift(new ShiftEntity() { Id = shiftId, UserId = userId });
+            ShiftNo = shiftId;
+            return shiftId;
 
         }
 
         public async Task<EndShiftUserInfo> EndUserShift(int shiftId, decimal realAmount, int endCounter)
         {
+            syncManager.ClearCurrentShift();
             return await shiftProvider.EndShift(shiftId, realAmount, endCounter);
         }
 
         public async Task<Shift> GetCurrentShift()
         {
-            var task = await shiftProvider.GetCurrentShift().ContinueWith(async shift =>
+            try
             {
-                var res = await shift;
-                if (res != null)
+                var shift = await shiftProvider.GetCurrentShift();
+                if (shift != null)
                 {
-                    ShiftNo = res.Id;
+                    ShiftNo = shift.Id;
                 }
-                return res;
-            });
-            return await task;
+                return shift;
+            }
+            catch(HttpRequestException wex)
+            {
+                var shiftDb = syncManager.GetCurrentShift();
+                if(shiftDb != null)
+                {
+                    return (Shift)shiftDb;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch(Exception ex)
+            {
+                Debug.WriteLine(ex.ToDiagnosticString());
+                return null;
+            }
         }
 
         public async Task<Sale[]> GetCurrentShiftSales()

@@ -12,7 +12,7 @@ namespace CoffeeManagerAdmin.Core
             IsRejected = sale.IsRejected;
             IsUtilized = sale.IsUtilized;
 
-            Name = sale.Product1.Name;
+            Name = sale.ProductName;
             Amount = sale.Amount.ToString("F");
             Time = sale.Time.ToString("HH:mm:ss");
             RaiseAllPropertiesChanged();

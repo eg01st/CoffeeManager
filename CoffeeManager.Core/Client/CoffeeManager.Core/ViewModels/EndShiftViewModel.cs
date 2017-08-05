@@ -52,17 +52,17 @@ namespace CoffeeManager.Core.ViewModels
         public void Init(int shiftId)
         {
             _shiftId = shiftId;
-            //var sales = ProductManager.GetSalesStorage();
-            //await _shiftManager.AssertShiftSales(sales);
-            //ProductManager.ClearStorage();
         }
 
         private async void DoFinishCommand()
         {
-            var info = await shiftManager.EndUserShift(_shiftId, decimal.Parse(RealAmount), int.Parse(EndCounter));
-            Alert($"Касса за смену: {info.RealShiftAmount:F}\nЗаработано за смену: {info.EarnedAmount:F}\nОбщая сумма зп: {info.CurrentUserAmount:F}",
-                    () => Close(this),
-                    "Окончание смены");
+            await ExecuteSafe(async () =>
+           {
+               var info = await shiftManager.EndUserShift(_shiftId, decimal.Parse(RealAmount), int.Parse(EndCounter));
+               Alert($"Касса за смену: {info.RealShiftAmount:F}\nЗаработано за смену: {info.EarnedAmount:F}\nОбщая сумма зп: {info.CurrentUserAmount:F}",
+                       () => Close(this),
+                       "Окончание смены");
+           });
         }
     }
 }

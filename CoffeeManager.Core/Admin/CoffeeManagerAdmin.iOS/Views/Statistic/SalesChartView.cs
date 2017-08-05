@@ -73,7 +73,7 @@ namespace CoffeeManagerAdmin.iOS
             List<ChartComponent> components = new List<ChartComponent>();
 
             var random = new Random();
-            var groupedByName = sales.GroupBy(g => g.Product1.Name);
+            var groupedByName = sales.GroupBy(g => g.ProductName);
             foreach (var item in groupedByName)
             {
                 var groupedByDate = item.GroupBy(g => new {g.Time.Date});

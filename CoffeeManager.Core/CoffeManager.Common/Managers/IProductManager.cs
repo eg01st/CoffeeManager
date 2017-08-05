@@ -35,6 +35,5 @@ namespace CoffeManager.Common
         Task<Product[]> GetProducts();
 
         Task ToggleIsActiveProduct(int id);
-
     }
 }

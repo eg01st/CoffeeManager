@@ -1,4 +1,6 @@
 ﻿﻿using System;
+using System.Diagnostics;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Acr.UserDialogs;
 using MvvmCross.Core.ViewModels;
@@ -36,7 +38,7 @@ namespace CoffeManager.Common
             }
         }
 
-        protected IMvxMessenger MvxMessenger
+        private IMvxMessenger MvxMessenger
         {
             get
             {
@@ -60,7 +62,7 @@ namespace CoffeManager.Common
         protected void Publish<T>(T message) where T : MvxMessage
         {
             MvxMessenger.Publish(message);
-        }   
+        }
 
 
         protected async Task ExecuteSafe(Func<Task> functionToRun, string globalExceptionMessage = null)
@@ -80,13 +82,19 @@ namespace CoffeManager.Common
                 var result = await functionToRun();
                 return result;
             }
+            catch (HttpRequestException hrex)
+            {
+                Debug.WriteLine(hrex.ToDiagnosticString());
+                UserDialogs.Alert("Нет подключения к интернету, доступно только добавление продаж");
+            }
             catch (Exception e)
             {
+                Debug.WriteLine(e.ToDiagnosticString());
                 UserDialogs.Alert(e.ToString());
+                // send email here
             }
             finally
             {
-
                 IsLoading = false;                
             }
             return valueToReturnForError;

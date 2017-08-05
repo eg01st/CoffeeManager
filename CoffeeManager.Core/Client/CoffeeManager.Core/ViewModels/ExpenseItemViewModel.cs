@@ -1,5 +1,4 @@
 ﻿using System.Windows.Input;
-using Acr.UserDialogs;
 using CoffeeManager.Core.Messages;
 using CoffeeManager.Models;
 using CoffeManager.Common;
@@ -25,22 +24,15 @@ namespace CoffeeManager.Core.ViewModels
             if (!_isPromt)
             {
                 _isPromt = true;
-                UserDialogs.Confirm(new ConfirmConfig()
-                {
-                    Message = "Удалить трату?",
-                    OnAction = OnDelete
-                });
+                Confirm("Удалить трату?", () => OnDelete());
+                _isPromt = false;              
             }
         }
 
-        private async void OnDelete(bool ok)
+        private async void OnDelete()
         {
-            if (ok)
-            {
-                await manager.DeleteExpenseItem(_item.Id);
-                Publish(new ExpenseDeletedMessage(this));
-            }
-            _isPromt = false;
+            await manager.DeleteExpenseItem(_item.Id);
+            Publish(new ExpenseDeletedMessage(this));
         }
 
         public string Name => _item.Name;

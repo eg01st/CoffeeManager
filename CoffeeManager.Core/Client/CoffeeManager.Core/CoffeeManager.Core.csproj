@@ -46,7 +46,6 @@
     <Compile Include="ViewModels\CurrentShiftExpensesViewModel.cs" />
     <Compile Include="ViewModels\CurrentShiftSalesViewModel.cs" />
     <Compile Include="ViewModels\EndShiftViewModel.cs" />
-    <Compile Include="ViewModels\ErrorsViewModel.cs" />
     <Compile Include="ViewModels\ExpenseItemViewModel.cs" />
     <Compile Include="ViewModels\ExpenseViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />

@@ -26,8 +26,6 @@ namespace CoffeeManager.Core.ViewModels
             }
         }
 
-
-
         public CurrentShiftSalesViewModel(IShiftManager shiftManager, IProductManager productManager)
         {
             this.productManager = productManager;
@@ -37,20 +35,16 @@ namespace CoffeeManager.Core.ViewModels
 
         public async void Init()
         {
-            await ExecuteSafe(LoadSales);
+            await LoadSales();
         }
 
         private async Task LoadSales()
         {
-            try
+            await ExecuteSafe(async () =>
             {
                 var items = await shiftManager.GetCurrentShiftSales();
                 Items = items.Select(s => new SaleItemViewModel(productManager, s)).ToList();
-            }
-            catch (ArgumentNullException ex)
-            {
-                Close(this);
-            }
+            });
         }
     }
 }

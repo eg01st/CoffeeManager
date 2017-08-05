@@ -18,8 +18,8 @@ namespace CoffeeManager.Core.ViewModels
         private bool _policeSaleEnabled;
         private bool _isCreditCardSaleEnabled;
         private string _sumButtonText;
+        private int _sum;
         private ObservableCollection<SelectedProductViewModel> _selectedProducts = new ObservableCollection<SelectedProductViewModel>();
-        private ICommand _itemSelectedCommand;
 
         public bool IsPoliceSaleEnabled
         {
@@ -49,7 +49,7 @@ namespace CoffeeManager.Core.ViewModels
             }
         }
 
-        private int _sum;
+
         public int Sum
         {
             get { return _sum; }
@@ -80,8 +80,6 @@ namespace CoffeeManager.Core.ViewModels
         public ICommand ShowExpenseCommand { get; }
         public ICommand EnablePoliceSaleCommand { get; }
         public ICommand EnableCreditCardSaleCommand { get; }
-
-        public ICommand ShowErrorsCommand { get; }
         public ICommand PayCommand {get;}
         public ICommand ItemSelectedCommand { get; }
 
@@ -106,9 +104,11 @@ namespace CoffeeManager.Core.ViewModels
         public IceCreamViewModel IceCreamProducts {get;}
 
         private IEnumerable<ProductItemViewModel> allProducts;
+        readonly ISyncManager syncManager;
 
-        public MainViewModel(IMvxViewModelLoader mvxViewModelLoader, IProductManager productManager)
+        public MainViewModel(IMvxViewModelLoader mvxViewModelLoader, IProductManager productManager, ISyncManager syncManager)
         {
+            this.syncManager = syncManager;
             this.productManager = productManager;
 
             var request = new MvxViewModelRequest(typeof(CoffeeViewModel), null, null, MvxRequestedBy.Unknown);
@@ -134,7 +134,6 @@ namespace CoffeeManager.Core.ViewModels
             ShowExpenseCommand = new MvxCommand(() => ShowViewModel<ExpenseViewModel>());
             EnablePoliceSaleCommand = new MvxCommand(() => IsPoliceSaleEnabled = !IsPoliceSaleEnabled);
             EnableCreditCardSaleCommand = new MvxCommand(() => IsCreditCardSaleEnabled = !IsCreditCardSaleEnabled);
-            ShowErrorsCommand = new MvxCommand(() => ShowViewModel<ErrorsViewModel>());
             ItemSelectedCommand = new MvxCommand<SelectedProductViewModel>(DoSelectItem);
             PayCommand = new MvxAsyncCommand(DoPay);
         }
@@ -207,18 +206,16 @@ namespace CoffeeManager.Core.ViewModels
             var tasks = new List<Task>();
             foreach (var productViewModel in SelectedProducts)
             {
-                var task = new Task(async () => await productManager.SaleProduct(
-                    _shiftId,
-                    productViewModel.ProductId,
-                    productViewModel.Price,
-                    productViewModel.IsPoliceSale,
-                    productViewModel.IsCreditCardSale,
-                    productViewModel.IsSaleByWeight,
-                    productViewModel.Weight));
-                task.Start();
-                tasks.Add(task);
+                await ExecuteSafe(async () => 
+                                  await productManager.SaleProduct(
+			                    _shiftId,
+			                    productViewModel.ProductId,
+			                    productViewModel.Price,
+			                    productViewModel.IsPoliceSale,
+			                    productViewModel.IsCreditCardSale,
+			                    productViewModel.IsSaleByWeight,
+			                        productViewModel.Weight));
             }
-            await Task.WhenAll(tasks);
             SelectedProducts.Clear();
             Sum = 0;
             RaisePropertyChanged(nameof(PayEnabled));
@@ -227,8 +224,14 @@ namespace CoffeeManager.Core.ViewModels
         }
 
 
-        private void DoEndShift()
+        private async void DoEndShift()
         {
+            bool isAllSalesSynced = await ExecuteSafe( async () => await syncManager.SyncSales());
+            if(!isAllSalesSynced)
+            {
+                Alert("Невозможно закрыть смену, продажи не синхронизированы");
+                return;
+            }
             Confirm("Завершить смену?", () => 
             {
                 ShowViewModel<EndShiftViewModel>(new { shiftId = _shiftId });

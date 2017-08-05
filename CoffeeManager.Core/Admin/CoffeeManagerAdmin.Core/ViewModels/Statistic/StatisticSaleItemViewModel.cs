@@ -12,8 +12,7 @@ namespace CoffeeManagerAdmin.Core
 
         public StatisticSaleItemViewModel(Sale sale)
         {
-
-            Name = sale.Product1.Name;
+            Name = sale.ProductName;
             Amount = sale.Amount.ToString("F");
             Time = sale.Time.ToString("HH:mm:ss");
         }

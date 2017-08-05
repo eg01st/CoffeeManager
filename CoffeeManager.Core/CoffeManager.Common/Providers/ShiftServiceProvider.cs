@@ -23,15 +23,7 @@ namespace CoffeManager.Common
 
         public async Task<Shift> GetCurrentShift()
         {
-            try
-            {
-                return await Get<Shift>(RoutesConstants.GetCurrentShift);
-            }
-            catch (Exception ex)
-            {
-                return null;
-            }
-
+            return await Get<Shift>(RoutesConstants.GetCurrentShift);
         }
 
         public async Task<Sale[]> GetCurrentShiftSales()

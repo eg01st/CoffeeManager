@@ -67,12 +67,18 @@
     <Compile Include="Managers\IShiftManager.cs" />
     <Compile Include="Providers\DataBaseProvider.cs" />
     <Compile Include="Providers\IDataBaseProvider.cs" />
+    <Compile Include="Database\SaleEntity.cs" />
+    <Compile Include="Managers\ISyncManager.cs" />
+    <Compile Include="Database\ProductEntity.cs" />
+    <Compile Include="Managers\SyncManager.cs" />
+    <Compile Include="Database\ShiftEntity.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Providers\" />
     <Folder Include="Managers\" />
     <Folder Include="ViewModels\" />
     <Folder Include="Extensions\" />
+    <Folder Include="Database\" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MvvmCross.Core">

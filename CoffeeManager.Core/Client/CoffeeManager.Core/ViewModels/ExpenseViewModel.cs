@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Acr.UserDialogs;
 using CoffeeManager.Core.Messages;
@@ -145,59 +146,42 @@ namespace CoffeeManager.Core.ViewModels
 
         private void DoAddExpense()
         {
-            UserDialogs.Confirm(new ConfirmConfig()
-            {
-                Message = $"Добавить сумму {Amount} как трату за {SelectedExprense}?",
-                OnAction = async (ok) =>
-                {
-                    if (ok)
-                    {
-                        var amount = decimal.Parse(Amount);
-                        await manager.AddExpense(_selectedExpence.Id, amount, int.Parse(ItemCount));
-                        Publish(new ExpenseAddedMessage(amount, this));
-                        Close(this);
-                    }
-                }
-            });
+            Confirm($"Добавить сумму {Amount} как трату за {SelectedExprense}?", () => AddExpense());
+        }
+
+        private async void AddExpense()
+        {
+            var amount = decimal.Parse(Amount);
+            await manager.AddExpense(_selectedExpence.Id, amount, int.Parse(ItemCount));
+            Publish(new ExpenseAddedMessage(amount, this));
+            Close(this);
         }
 
         private void DoAddNewExpenseType()
         {
-            UserDialogs.Confirm(new ConfirmConfig()
-            {
-                Message = $"Добавить {NewExprenseType} как новый тип расходов?",
-                OnAction = async (ok) =>
-                {
-                    if (ok)
-                    {
-                        await manager.AddNewExpenseType(NewExprenseType);
-                        LoadTypes();
-                        ShowSuccessMessage($"{NewExprenseType} добавлен и находится в списке.");
-                        NewExprenseType = string.Empty;
-                    }
-                }
-            });
-
-
+            Confirm($"Добавить {NewExprenseType} как новый тип расходов?", () => AddNewExpenseType());
         }
 
-        public void Init()
+        private async void AddNewExpenseType()
         {
-            LoadTypes();
+            await manager.AddNewExpenseType(NewExprenseType);
+            await LoadTypes();
+            ShowSuccessMessage($"{NewExprenseType} добавлен и находится в списке.");
+            NewExprenseType = string.Empty;
         }
 
-        private async void LoadTypes()
+        public async void Init()
         {
-            try
+            await LoadTypes();
+        }
+
+        private async Task LoadTypes()
+        {
+            await ExecuteSafe(async () =>
             {
                 var result = await manager.GetActiveExpenseItems();
                 SearchItems = Items = result.Select(s => new BaseItemViewModel(s)).ToList();
-            }
-            catch (ArgumentNullException ex)
-            {
-                Close(this);
-            }
-
+            });
         }
     }
 }

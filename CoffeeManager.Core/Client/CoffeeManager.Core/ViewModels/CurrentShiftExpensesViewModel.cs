@@ -23,8 +23,7 @@ namespace CoffeeManager.Core.ViewModels
                 RaisePropertyChanged(nameof(Items));
             }
         }
-
-   
+          
 
         public CurrentShiftExpensesViewModel(IPaymentManager manager)
         {
@@ -39,8 +38,12 @@ namespace CoffeeManager.Core.ViewModels
 
         private async Task LoadData()
         {
-            var items = await manager.GetShiftExpenses();
-            Items = items.Select(s => new ExpenseItemViewModel(manager, s)).ToList();
+            await ExecuteSafe(async () =>
+           {
+               var items = await manager.GetShiftExpenses();
+               Items = items.Select(s => new ExpenseItemViewModel(manager, s)).ToList();
+           });
+
         }
     }
 }

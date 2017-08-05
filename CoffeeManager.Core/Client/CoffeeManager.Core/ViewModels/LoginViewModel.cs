@@ -3,6 +3,8 @@ using CoffeeManager.Models;
 using MvvmCross.Core.ViewModels;
 using System.Linq;
 using CoffeManager.Common;
+using System;
+using System.Threading.Tasks;
 
 namespace CoffeeManager.Core.ViewModels
 {
@@ -10,16 +12,26 @@ namespace CoffeeManager.Core.ViewModels
     {
         private readonly IUserManager _userManager;
         private readonly IShiftManager _shiftManager;
-        private readonly ICommand _selectUserCommand;
         private User[] _users;
 
-        public ICommand SelectUserCommand => _selectUserCommand;
+        public ICommand SelectUserCommand { get; }
+        public ICommand RefreshCommand { get; }
 
         public LoginViewModel(IShiftManager shiftManager, IUserManager userManager)
         {
             _userManager = userManager;
             _shiftManager = shiftManager;
-            _selectUserCommand = new MvxCommand<User>(DoSelectUser);
+            SelectUserCommand = new MvxCommand<User>(DoSelectUser);
+            RefreshCommand = new MvxAsyncCommand(DoRefresh);
+        }
+
+        private async Task DoRefresh()
+        {
+            await ExecuteSafe(async () =>
+            {
+                var res = await _userManager.GetUsers();
+                Users = res.Where(u => u.IsActive).ToArray();
+            });
         }
 
         private async void DoSelectUser(User user)

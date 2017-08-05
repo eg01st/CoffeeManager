@@ -33,9 +33,9 @@ namespace CoffeManager.Common
             await Post<Object>(RoutesConstants.ToggleProductEnabled, null, new Dictionary<string, string>() { { nameof(id), id.ToString() } });
         }
 
-        public async Task<Product[]> GetProduct(ProductType type)
+        public async Task<ProductEntity[]> GetProduct(ProductType type)
         {
-            var prods = await Get<Product[]>(RoutesConstants.Products,
+            var prods = await Get<ProductEntity[]>(RoutesConstants.Products,
                 new Dictionary<string, string>()
                 {
                     {nameof(ProductType), ((int) type).ToString()},

@@ -16,7 +16,7 @@ namespace CoffeManager.Common
 
         Task ToggleIsActiveProduct(int id);
 
-        Task<Product[]> GetProduct(ProductType type);
+        Task<ProductEntity[]> GetProduct(ProductType type);
 
         Task SaleProduct(Sale sale);
 
