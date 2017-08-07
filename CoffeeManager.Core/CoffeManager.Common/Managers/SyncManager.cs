@@ -42,8 +42,9 @@ namespace CoffeManager.Common
             });
         }
 
-        public void AddSaleToSync(SaleEntity item)
+        public void AddSaleToSync(SaleEntity item, SaleAction action)
         {
+            item.Action = action;
             provider.Add(item);
         }
 
@@ -81,7 +82,19 @@ namespace CoffeManager.Common
             {
                 try
                 {
-                    await productProiver.SaleProduct((Sale)item);
+                    switch(item.Action)
+                    {
+                        case SaleAction.Add:
+                            await productProiver.SaleProduct((Sale)item);
+                            break;
+                        case SaleAction.Dismiss:
+                            await productProiver.DeleteSale(item.ShiftId, item.Id);
+                            break;
+                        case SaleAction.Utilize:
+                            await productProiver.UtilizeSaleProduct(item.ShiftId, item.Id);
+                            break;
+                    }
+                   
                     provider.Remove(item);
                 }
                 catch (HttpRequestException hrex)

@@ -63,19 +63,25 @@ namespace CoffeeManager.Core.ViewModels
         }
 
         private async void UtilizeSale()
-        {          
-            await productManager.UtilizeSaleProduct(_sale.Id);
-            Publish(new AmoutChangedMessage(new Tuple<decimal, bool>(_sale.Amount, false), this));
-            Publish(new SaleRemovedMessage(this));
-            ShowSuccessMessage($"Списан товар {Name} !");
+        {
+            await ExecuteSafe(async () =>
+            {
+                await productManager.UtilizeSaleProduct(_sale.Id);
+                Publish(new AmoutChangedMessage(new Tuple<decimal, bool>(_sale.Amount, false), this));
+                Publish(new SaleRemovedMessage(this));
+                ShowSuccessMessage($"Списан товар {Name} !");
+            });
         }
 
         private async void RejectSale()
         {
-            await productManager.DismisSaleProduct(_sale.Id);
-            Publish(new AmoutChangedMessage(new Tuple<decimal, bool>(_sale.Amount, false), this));
-            Publish(new SaleRemovedMessage(this));
-            ShowSuccessMessage($"Отменена продажа товара {Name} !");           
+            await ExecuteSafe(async () =>
+            {
+                await productManager.DismisSaleProduct(_sale.Id);
+                Publish(new AmoutChangedMessage(new Tuple<decimal, bool>(_sale.Amount, false), this));
+                Publish(new SaleRemovedMessage(this));
+                ShowSuccessMessage($"Отменена продажа товара {Name} !");
+            });
         }
     }
 }

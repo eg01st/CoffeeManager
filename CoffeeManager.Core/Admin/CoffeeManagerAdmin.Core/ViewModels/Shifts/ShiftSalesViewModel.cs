@@ -43,10 +43,12 @@ namespace CoffeeManagerAdmin.Core
         public async void Init(int id)
         {
             _shiftId = id;
-
-            var saleItems = await manager.GetShiftSales(_shiftId);
-            SaleItems = saleItems.Select(s => new SaleItemViewModel(s)).ToList();
-            GroupedSaleItems = SaleItems.GroupBy(g => g.Name).Select(s => new Entity() { Name = s.Key, Id = s.Count() }).OrderByDescending(o => o.Id).ToList();
+            await ExecuteSafe(async () =>
+            {
+                var saleItems = await manager.GetShiftSales(_shiftId);
+                SaleItems = saleItems.Select(s => new SaleItemViewModel(s)).ToList();
+                GroupedSaleItems = SaleItems.GroupBy(g => g.Name).Select(s => new Entity() { Name = s.Key, Id = s.Count() }).OrderByDescending(o => o.Id).ToList();
+            });
         }
     }
 }

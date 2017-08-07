@@ -7,7 +7,7 @@ namespace CoffeManager.Common
 {
     public interface ISyncManager
     {
-        void AddSaleToSync(SaleEntity item);
+        void AddSaleToSync(SaleEntity item, SaleAction action);
         Task<bool> SyncSales();
 
         Task AddProductsToSync(IEnumerable<ProductEntity> products, ProductType type);

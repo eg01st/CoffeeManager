@@ -1,5 +1,4 @@
 using Android.App;
-using CoffeeManager.Core.ViewModels;
 using CoffeManager.Common;
 using MvvmCross.Droid.Support.V7.AppCompat;
 

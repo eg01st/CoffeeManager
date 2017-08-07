@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Acr.UserDialogs;
 using CoffeeManager.Core.Messages;
 using CoffeManager.Common;
 using MvvmCross.Core.ViewModels;
@@ -21,10 +19,6 @@ namespace CoffeeManager.Core.ViewModels
         private string _amount;
         private string _itemCount;
         private string _newExpenseType;
-        private ICommand _addNewExprenseTypeCommand;
-        private ICommand _addExpenseCommand;
-        private ICommand _selectExpenseTypeCommand;
-        private ICommand _seachCommand;
 
         public List<BaseItemViewModel> Items
         {
@@ -98,10 +92,10 @@ namespace CoffeeManager.Core.ViewModels
             }
         }
 
-        public ICommand AddNewExprenseTypeCommand => _addNewExprenseTypeCommand;
-        public ICommand AddExpenseCommand => _addExpenseCommand;
-        public ICommand SelectExpenseTypeCommand => _selectExpenseTypeCommand;
-        public ICommand SearchCommand => _seachCommand;
+        public ICommand AddNewExprenseTypeCommand { get; }
+        public ICommand AddExpenseCommand { get; }
+        public ICommand SelectExpenseTypeCommand { get; }
+        public ICommand SearchCommand { get; }
 
         public ICommand ShowCurrentShiftExpensesCommand { get; set; }
 
@@ -113,11 +107,11 @@ namespace CoffeeManager.Core.ViewModels
         public ExpenseViewModel(IPaymentManager manager)
         {
             this.manager = manager;
-            _addNewExprenseTypeCommand = new MvxCommand(DoAddNewExpenseType);
-            _addExpenseCommand = new MvxCommand(DoAddExpense);
-            _selectExpenseTypeCommand = new MvxCommand<BaseItemViewModel>(DoSelectExpenseType);
-            ShowCurrentShiftExpensesCommand = new MvxCommand(DoShowExpenses);
-            _seachCommand = new MvxCommand(DoSearch);
+            AddNewExprenseTypeCommand = new MvxCommand(DoAddNewExpenseType);
+            AddExpenseCommand = new MvxCommand(DoAddExpense);
+            SelectExpenseTypeCommand = new MvxCommand<BaseItemViewModel>(DoSelectExpenseType);
+            ShowCurrentShiftExpensesCommand = new MvxCommand(() => ShowViewModel<CurrentShiftExpensesViewModel>());
+            SearchCommand = new MvxCommand(DoSearch);
         }
 
         private void DoSearch()
@@ -132,10 +126,6 @@ namespace CoffeeManager.Core.ViewModels
             }
         }
 
-        private void DoShowExpenses()
-        {
-            ShowViewModel<CurrentShiftExpensesViewModel>();
-        }
 
         private void DoSelectExpenseType(BaseItemViewModel item)
         {

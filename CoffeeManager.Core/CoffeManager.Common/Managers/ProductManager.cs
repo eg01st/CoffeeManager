@@ -84,17 +84,38 @@ namespace CoffeManager.Common
             {
                 Debug.WriteLine(ex.ToDiagnosticString());
                 //Email ex
-                syncManager.AddSaleToSync(sale);
+                syncManager.AddSaleToSync(sale, SaleAction.Add);
             }
         }
 
         public async Task DismisSaleProduct(int id)
         {
-            await productProvider.DeleteSale(ShiftNo, id);
+            try
+            {
+                await productProvider.DeleteSale(ShiftNo, id);
+                await syncManager.SyncSales();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.ToDiagnosticString());
+                //Email ex
+                syncManager.AddSaleToSync(new SaleEntity() { Id = id, ShiftId = ShiftNo}, SaleAction.Dismiss);
+            }
+
         }
         public async Task UtilizeSaleProduct(int id)
         {
-            await productProvider.UtilizeSaleProduct(ShiftNo, id);
+            try
+            {
+                await productProvider.UtilizeSaleProduct(ShiftNo, id);
+                await syncManager.SyncSales();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.ToDiagnosticString());
+                //Email ex
+                syncManager.AddSaleToSync(new SaleEntity() { Id = id, ShiftId = ShiftNo }, SaleAction.Utilize);
+            }
         }
 
         public async Task AddProduct(string name, string price, string policePrice, int cupType, int productTypeId, bool isSaleByWeight)

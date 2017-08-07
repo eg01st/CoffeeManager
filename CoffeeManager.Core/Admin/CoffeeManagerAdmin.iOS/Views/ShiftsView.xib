@@ -24,7 +24,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vA9-y1-T9F">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="750"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="730"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SNl-Dk-ebF">
                                     <rect key="frame" x="33" y="0.0" width="322" height="60"/>
@@ -128,17 +128,17 @@
                                     </constraints>
                                 </view>
                                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Rwp-HT-BN9">
-                                    <rect key="frame" x="20" y="63" width="375" height="667"/>
+                                    <rect key="frame" x="0.0" y="63" width="375" height="667"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </tableView>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
-                                <constraint firstItem="Rwp-HT-BN9" firstAttribute="leading" secondItem="vA9-y1-T9F" secondAttribute="leading" constant="20" id="4vG-eB-6Cp"/>
+                                <constraint firstItem="Rwp-HT-BN9" firstAttribute="leading" secondItem="vA9-y1-T9F" secondAttribute="leading" id="4vG-eB-6Cp"/>
                                 <constraint firstItem="Rwp-HT-BN9" firstAttribute="top" secondItem="SNl-Dk-ebF" secondAttribute="bottom" constant="3" id="GB2-8t-d0r"/>
                                 <constraint firstItem="SNl-Dk-ebF" firstAttribute="top" secondItem="vA9-y1-T9F" secondAttribute="top" id="lFV-3F-55b"/>
                                 <constraint firstAttribute="trailing" secondItem="SNl-Dk-ebF" secondAttribute="trailing" constant="20" id="uWY-8p-9P7"/>
-                                <constraint firstAttribute="bottom" secondItem="Rwp-HT-BN9" secondAttribute="bottom" constant="20" id="zCv-15-m7s"/>
+                                <constraint firstAttribute="bottom" secondItem="Rwp-HT-BN9" secondAttribute="bottom" id="zCv-15-m7s"/>
                                 <constraint firstItem="SNl-Dk-ebF" firstAttribute="leading" secondItem="vA9-y1-T9F" secondAttribute="leading" constant="33" id="zwW-KJ-mzu"/>
                             </constraints>
                         </view>

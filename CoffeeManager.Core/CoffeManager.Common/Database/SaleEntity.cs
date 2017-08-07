@@ -8,5 +8,7 @@ namespace CoffeeManager.Common
     {
         [PrimaryKey, AutoIncrement]
         public int DatabaseId { get; set; }
+
+        public SaleAction Action { get; set; }
     }
 }

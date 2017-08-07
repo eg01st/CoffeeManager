@@ -1,8 +1,5 @@
-﻿﻿using System;
-using System.Threading.Tasks;
+﻿using System;
 using System.Windows.Input;
-using Acr.UserDialogs;
-using CoffeeManager.Core.Messages;
 using CoffeeManager.Models;
 using CoffeManager.Common;
 using MvvmCross.Core.ViewModels;

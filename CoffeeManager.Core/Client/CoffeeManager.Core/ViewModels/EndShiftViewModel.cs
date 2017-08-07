@@ -10,8 +10,6 @@ namespace CoffeeManager.Core.ViewModels
 
         private string _realAmount;
         private string _endCounter;
-        private ICommand __finishShiftCommand;
-
         private int _shiftId;
         public string RealAmount
         {
@@ -39,14 +37,13 @@ namespace CoffeeManager.Core.ViewModels
             => !string.IsNullOrEmpty(RealAmount) && !string.IsNullOrEmpty(EndCounter);
 
 
-        public ICommand FinishShiftCommand => __finishShiftCommand;
-
+        public ICommand FinishShiftCommand {get;}
 
 
         public EndShiftViewModel(IShiftManager shiftManager)
         {
             this.shiftManager = shiftManager;
-            __finishShiftCommand  = new MvxCommand(DoFinishCommand);
+            FinishShiftCommand  = new MvxCommand(DoFinishCommand);
         }
 
         public void Init(int shiftId)
