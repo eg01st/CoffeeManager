@@ -6,13 +6,14 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using CoffeeManager.Common;
 using CoffeeManager.Models;
+using MvvmCross.Platform;
 
 namespace CoffeManager.Common
 {
     public class ProductManager : BaseManager, IProductManager
     {
-        readonly IProductProvider productProvider;
-        readonly ISyncManager syncManager;
+        private readonly IProductProvider productProvider;
+        private readonly ISyncManager syncManager;
 
         public ProductManager(IProductProvider productProvider, ISyncManager syncManager)
         {
@@ -83,7 +84,7 @@ namespace CoffeManager.Common
             catch(Exception ex)
             {
                 Debug.WriteLine(ex.ToDiagnosticString());
-                //Email ex
+                EmailService?.SendErrorEmail(ex.ToDiagnosticString());
                 syncManager.AddSaleToSync(sale, SaleAction.Add);
             }
         }
@@ -98,7 +99,7 @@ namespace CoffeManager.Common
             catch (Exception ex)
             {
                 Debug.WriteLine(ex.ToDiagnosticString());
-                //Email ex
+                EmailService?.SendErrorEmail(ex.ToDiagnosticString());
                 syncManager.AddSaleToSync(new SaleEntity() { Id = id, ShiftId = ShiftNo}, SaleAction.Dismiss);
             }
 
@@ -113,7 +114,7 @@ namespace CoffeManager.Common
             catch (Exception ex)
             {
                 Debug.WriteLine(ex.ToDiagnosticString());
-                //Email ex
+                EmailService?.SendErrorEmail(ex.ToDiagnosticString());
                 syncManager.AddSaleToSync(new SaleEntity() { Id = id, ShiftId = ShiftNo }, SaleAction.Utilize);
             }
         }
@@ -159,6 +160,7 @@ namespace CoffeManager.Common
             catch(Exception ex)
             {
                 Debug.WriteLine(ex.ToDiagnosticString());
+                EmailService?.SendErrorEmail(ex.ToDiagnosticString());
                 throw;
             }
             return products.ToArray();

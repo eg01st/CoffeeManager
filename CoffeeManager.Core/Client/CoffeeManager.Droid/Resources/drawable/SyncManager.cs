@@ -87,7 +87,7 @@ namespace CoffeManager.Common
             {
                 try
                 {
-                    switch (item.Action)
+                    switch(item.Action)
                     {
                         case SaleAction.Add:
                             await productProiver.SaleProduct((Sale)item);
@@ -99,7 +99,7 @@ namespace CoffeManager.Common
                             await productProiver.UtilizeSaleProduct(item.ShiftId, item.Id);
                             break;
                     }
-
+                   
                     provider.Remove(item);
                 }
                 catch (HttpRequestException hrex)

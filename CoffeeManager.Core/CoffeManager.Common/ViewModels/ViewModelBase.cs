@@ -47,6 +47,18 @@ namespace CoffeManager.Common
         }
 
 
+        private IEmailService EmailService
+        {
+            get
+            {
+                if(Mvx.CanResolve<IEmailService>())
+                {
+                    return Mvx.Resolve<IEmailService>();
+                }
+                return null;
+            }
+        }
+
         protected MvxSubscriptionToken Subscribe<TMessage>(Action<TMessage> action)
             where TMessage : MvxMessage
         {
@@ -86,12 +98,14 @@ namespace CoffeManager.Common
             {
                 Debug.WriteLine(hrex.ToDiagnosticString());
                 UserDialogs.Alert("Нет подключения к интернету, доступно только добавление продаж");
+                EmailService?.SendErrorEmail(hrex.ToDiagnosticString());
             }
             catch (Exception e)
             {
                 Debug.WriteLine(e.ToDiagnosticString());
                 UserDialogs.Alert(e.ToString());
                 // send email here
+                EmailService?.SendErrorEmail(e.ToDiagnosticString());
             }
             finally
             {

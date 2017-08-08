@@ -1,7 +1,9 @@
 using System;
 using Android.Content;
 using Android.Runtime;
+using CoffeManager.Common;
 using Java.Lang;
+using MvvmCross.Platform;
 using StringBuilder = System.Text.StringBuilder;
 
 namespace CoffeeManager.Droid
@@ -30,7 +32,7 @@ namespace CoffeeManager.Droid
             var message = stringBuilder.ToString();
             var exceptionTolog = new System.Exception(message, ex);
 
-            DroidApplication.SendMessage(exceptionTolog.ToString());
+            Mvx.Resolve<IEmailService>().SendErrorEmail(exceptionTolog.ToDiagnosticString());
         }
     }
 }

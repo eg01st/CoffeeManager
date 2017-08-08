@@ -38,26 +38,32 @@ namespace CoffeeManagerAdmin.Core
 
         public async void DoShowCreditCardInfo()
         {
-            var toDate = To.AddDays(1);
-            var sales = await manager.GetCreditCardSales(From, toDate);
-            var id = ParameterTransmitter.PutParameter(sales);
-            ShowViewModel<CreditCardSalesViewModel>(new {id = id});
+            await ExecuteSafe(async () =>
+            {
+			    var sales = await manager.GetCreditCardSales(From, To);
+			    var id = ParameterTransmitter.PutParameter(sales);
+			    ShowViewModel<CreditCardSalesViewModel>(new { id = id });
+            });
         }
 
         private async void DoShowSales()
         {
-            var toDate = To.AddDays(1);
-            var sales = await manager.GetSales(From, toDate);
-            var id = ParameterTransmitter.PutParameter(sales);
-            ShowViewModel<SalesStatisticViewModel>(new {id = id, from, to = toDate});
+            await ExecuteSafe(async () =>
+            {
+			    var sales = await manager.GetSales(From, To);
+			    var id = ParameterTransmitter.PutParameter(sales);
+			    ShowViewModel<SalesStatisticViewModel>(new { id = id, from, to = To });
+            });
         }
 
         private async void DoShowExpenses()
         {
-            var toDate = To.AddDays(1);
-            var expenses = await manager.GetExpenses(From, toDate);
-            var id = ParameterTransmitter.PutParameter(expenses);
-            ShowViewModel<ExpensesStatisticViewModel>(new { id = id });
+            await ExecuteSafe(async () =>
+            {
+                var expenses = await manager.GetExpenses(From, To);
+                var id = ParameterTransmitter.PutParameter(expenses);
+                ShowViewModel<ExpensesStatisticViewModel>(new { id = id });
+            });
         }
 
         private void DoGetData()

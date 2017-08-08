@@ -28,7 +28,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels
 
         public async void Init()
         {
-            try
+            await ExecuteSafe(async () =>
             {
                 var items = await manager.GetShifts();
                 if (items != null)
@@ -39,11 +39,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels
                 {
                     UserDialogs.Alert("Empty list from server");
                 }
-            }
-            catch (Exception ex)
-            {
-                UserDialogs.Alert(ex.ToString());
-            }
+            });
         }
     }
 }

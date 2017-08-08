@@ -17,5 +17,7 @@ namespace CoffeManager.Common
         void Update<T>(T item) where T : new();
 
         void ClearTable<T>() where T : new();
+
+        void DeleteTable<T>() where T : new();
     }
 }

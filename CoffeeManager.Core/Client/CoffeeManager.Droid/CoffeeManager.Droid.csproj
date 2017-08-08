@@ -223,6 +223,7 @@
     <Compile Include="Bootstrap\SqlitePluginBootstrap.cs" />
     <Compile Include="Bootstrap\MessengerPluginBootstrap.cs" />
     <Compile Include="Bootstrap\ConnectivityPluginBootstrap.cs" />
+    <Compile Include="Platform\EmailService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -310,6 +311,7 @@
     <Folder Include="Resources\values-v21\" />
     <Folder Include="Views\Abstract\" />
     <Folder Include="Views\Controls\" />
+    <Folder Include="Platform\" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\styles.xml" />

@@ -282,6 +282,7 @@
       <DependentUpon>SaleStatisticHeaderViewCell.cs</DependentUpon>
     </Compile>
     <Compile Include="Bootstrap\SqlitePluginBootstrap.cs" />
+    <Compile Include="Platform\EmailService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Setup.cs" />
@@ -438,6 +439,7 @@
     <Folder Include="Views\Products\" />
     <Folder Include="Views\Abstract\" />
     <Folder Include="Extensions\" />
+    <Folder Include="Platform\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\ic_check.png" />

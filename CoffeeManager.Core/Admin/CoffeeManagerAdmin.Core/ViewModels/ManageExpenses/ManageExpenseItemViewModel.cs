@@ -26,7 +26,10 @@ namespace CoffeeManagerAdmin.Core
 
         private async void DoToggleIsActive()
         {
-            await manager.ToggleIsActiveExpense(Id);
+            await ExecuteSafe(async () =>
+            {
+                await manager.ToggleIsActiveExpense(Id);
+            });
         }
    }
 }

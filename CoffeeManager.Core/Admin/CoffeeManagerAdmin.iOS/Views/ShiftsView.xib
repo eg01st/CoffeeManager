@@ -27,7 +27,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="375" height="730"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SNl-Dk-ebF">
-                                    <rect key="frame" x="33" y="0.0" width="322" height="60"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Дата" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Jv-92-EZX">
                                             <rect key="frame" x="4" y="5" width="40" height="51"/>
@@ -137,9 +137,9 @@
                                 <constraint firstItem="Rwp-HT-BN9" firstAttribute="leading" secondItem="vA9-y1-T9F" secondAttribute="leading" id="4vG-eB-6Cp"/>
                                 <constraint firstItem="Rwp-HT-BN9" firstAttribute="top" secondItem="SNl-Dk-ebF" secondAttribute="bottom" constant="3" id="GB2-8t-d0r"/>
                                 <constraint firstItem="SNl-Dk-ebF" firstAttribute="top" secondItem="vA9-y1-T9F" secondAttribute="top" id="lFV-3F-55b"/>
-                                <constraint firstAttribute="trailing" secondItem="SNl-Dk-ebF" secondAttribute="trailing" constant="20" id="uWY-8p-9P7"/>
+                                <constraint firstAttribute="trailing" secondItem="SNl-Dk-ebF" secondAttribute="trailing" id="uWY-8p-9P7"/>
                                 <constraint firstAttribute="bottom" secondItem="Rwp-HT-BN9" secondAttribute="bottom" id="zCv-15-m7s"/>
-                                <constraint firstItem="SNl-Dk-ebF" firstAttribute="leading" secondItem="vA9-y1-T9F" secondAttribute="leading" constant="33" id="zwW-KJ-mzu"/>
+                                <constraint firstItem="SNl-Dk-ebF" firstAttribute="leading" secondItem="vA9-y1-T9F" secondAttribute="leading" id="zwW-KJ-mzu"/>
                             </constraints>
                         </view>
                     </subviews>

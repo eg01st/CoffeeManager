@@ -84,6 +84,7 @@ namespace CoffeManager.Common
             catch(Exception ex)
             {
                 Debug.WriteLine(ex.ToDiagnosticString());
+                EmailService?.SendErrorEmail(ex.ToDiagnosticString());
                 return null;
             }
         }

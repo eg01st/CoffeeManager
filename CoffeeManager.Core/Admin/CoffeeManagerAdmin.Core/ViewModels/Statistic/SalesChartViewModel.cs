@@ -21,11 +21,14 @@ namespace CoffeeManagerAdmin.Core
 
         public async void Init(Guid id, DateTime from, DateTime to)
         {
-            IEnumerable<string> itemsNames;
-            ParameterTransmitter.TryGetParameter(id, out itemsNames);
-            var sales = await manager.GetSalesByNames(itemsNames, from, to);  
-            Sales = sales.ToList();
-            RaisePropertyChanged(nameof(Sales));         
+            await ExecuteSafe(async () =>
+            {
+                IEnumerable<string> itemsNames;
+                ParameterTransmitter.TryGetParameter(id, out itemsNames);
+                var sales = await manager.GetSalesByNames(itemsNames, from, to);
+                Sales = sales.ToList();
+                RaisePropertyChanged(nameof(Sales));
+            });
         }
     }
 }

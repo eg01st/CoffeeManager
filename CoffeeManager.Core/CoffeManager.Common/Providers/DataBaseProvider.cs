@@ -53,5 +53,10 @@ namespace CoffeManager.Common
         {
             connection.DeleteAll<T>();
         }
+
+        public void DeleteTable<T>() where T : new()
+        {
+            connection.DropTable<T>();
+        }
     }
 }

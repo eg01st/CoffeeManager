@@ -5,9 +5,11 @@ using Android.Content;
 using Android.Views;
 using CoffeeManager.Core;
 using CoffeeManager.Droid.Bindings;
+using CoffeManager.Common;
 using MvvmCross.Binding.Bindings.Target.Construction;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Droid.Platform;
+using MvvmCross.Platform;
 
 namespace CoffeeManager.Droid
 {
@@ -16,6 +18,13 @@ namespace CoffeeManager.Droid
         public Setup(Context applicationContext) : base(applicationContext)
         {
         }
+
+        protected override void InitializeLastChance()
+        {
+            base.InitializeLastChance();
+            Mvx.RegisterSingleton<IEmailService>(new EmailService());
+        }
+
 
         protected override IMvxApplication CreateApp()
         {

@@ -70,8 +70,9 @@
     <Compile Include="Database\SaleEntity.cs" />
     <Compile Include="Managers\ISyncManager.cs" />
     <Compile Include="Database\ProductEntity.cs" />
-    <Compile Include="Managers\SyncManager.cs" />
     <Compile Include="Database\ShiftEntity.cs" />
+    <Compile Include="Platform\IEmailService.cs" />
+    <Compile Include="Managers\SyncManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Providers\" />
@@ -79,6 +80,7 @@
     <Folder Include="ViewModels\" />
     <Folder Include="Extensions\" />
     <Folder Include="Database\" />
+    <Folder Include="Platform\" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MvvmCross.Core">

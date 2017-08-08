@@ -5,6 +5,7 @@ using MvvmCross.Platform.Platform;
 using UIKit;
 using MvvmCross.Platform;
 using Acr.UserDialogs;
+using CoffeManager.Common;
 
 namespace CoffeeManagerAdmin.iOS
 {
@@ -30,10 +31,13 @@ namespace CoffeeManagerAdmin.iOS
             return new DebugTrace();
         }
 
+
         protected override void InitializeLastChance()
         {
             Mvx.RegisterSingleton<IUserDialogs>(new UserDialogsImpl());
+            Mvx.RegisterSingleton<IEmailService>(new EmailService());
             base.InitializeLastChance();
+
         }
     }
 }

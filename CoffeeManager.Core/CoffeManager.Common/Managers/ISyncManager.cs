@@ -18,5 +18,7 @@ namespace CoffeManager.Common
 
         void CreateSyncTables();
         void InitDataBaseConnection();
+
+        void DeleteTable<T>() where T : new();
     }
 }

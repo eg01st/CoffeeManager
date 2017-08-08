@@ -16,8 +16,11 @@ namespace CoffeeManagerAdmin.Core
 
         public async override Task<List<ManageExpenseItemViewModel>> LoadData()
         {
-            var items = await manager.GetExpenseItems();
-            return items.Select(s => new ManageExpenseItemViewModel(manager, s)).ToList();
+            return await ExecuteSafe(async () =>
+            {
+                var items = await manager.GetExpenseItems();
+                return items.Select(s => new ManageExpenseItemViewModel(manager, s)).ToList();
+            });
         }
     }
 }

@@ -44,7 +44,7 @@ namespace CoffeManager.Common
         }
 
         public async Task SaleProduct(Sale sale)
-        {         
+        {
             await Put(RoutesConstants.SaleProduct, sale);
         }
 
