@@ -38,6 +38,7 @@ namespace CoffeeManagerAdmin.iOS
                 set.Bind(TimeLabel).To(vm => vm.Time);
                 set.Bind(RejectedLabel).For(h => h.Hidden).To(vm => vm.IsRejected).WithConversion(conv);
                 set.Bind(UtilizedLabel).For(h => h.Hidden).To(vm => vm.IsUtilized).WithConversion(conv);
+                set.Bind(PoliceLabel).For(h => h.Hidden).To(vm => vm.IsCopSale).WithConversion(conv);
                 set.Apply();
             });
         }

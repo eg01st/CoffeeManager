@@ -49,13 +49,21 @@
                         <color key="textColor" red="0.10161062414255528" green="0.73145323991775513" blue="0.15934990793454276" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="копы" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f61-gS-Al3">
+                        <rect key="frame" x="60" y="12" width="40" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.8210065038071066" green="0.066204784016149529" blue="0.22570313486125609" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="u40-k3-tDx" firstAttribute="centerY" secondItem="YTl-1W-gDM" secondAttribute="centerY" id="4Gm-yk-ZCH"/>
                     <constraint firstItem="Qxo-fV-AJO" firstAttribute="leading" secondItem="Oov-sp-mgq" secondAttribute="trailing" constant="20" id="9gt-zS-NgM"/>
+                    <constraint firstItem="f61-gS-Al3" firstAttribute="centerY" secondItem="YTl-1W-gDM" secondAttribute="centerY" id="DBn-ZW-uNm"/>
                     <constraint firstItem="Oov-sp-mgq" firstAttribute="centerY" secondItem="YTl-1W-gDM" secondAttribute="centerY" id="Ek3-XD-hlV"/>
                     <constraint firstAttribute="trailingMargin" secondItem="u40-k3-tDx" secondAttribute="trailing" id="LTy-lP-XVK"/>
                     <constraint firstItem="u40-k3-tDx" firstAttribute="leading" secondItem="ivH-Nb-QBd" secondAttribute="trailing" constant="21" id="PQM-7D-lk8"/>
+                    <constraint firstItem="Oov-sp-mgq" firstAttribute="leading" secondItem="f61-gS-Al3" secondAttribute="trailing" constant="4" id="QfC-RI-f4g"/>
                     <constraint firstItem="Qxo-fV-AJO" firstAttribute="centerY" secondItem="YTl-1W-gDM" secondAttribute="centerY" id="QzT-71-aNw"/>
                     <constraint firstItem="ivH-Nb-QBd" firstAttribute="leading" secondItem="Qxo-fV-AJO" secondAttribute="trailing" constant="14" id="a9d-yC-syy"/>
                     <constraint firstItem="Eet-tQ-za1" firstAttribute="leading" secondItem="YTl-1W-gDM" secondAttribute="leadingMargin" constant="9" id="haZ-sV-q3Y"/>
@@ -66,6 +74,7 @@
             <connections>
                 <outlet property="AmountLabel" destination="ivH-Nb-QBd" id="6cE-YJ-nQm"/>
                 <outlet property="NameLabel" destination="Eet-tQ-za1" id="ZcK-b6-IRK"/>
+                <outlet property="PoliceLabel" destination="f61-gS-Al3" id="iiX-dt-abR"/>
                 <outlet property="RejectedLabel" destination="Oov-sp-mgq" id="uLj-KH-9x3"/>
                 <outlet property="TimeLabel" destination="u40-k3-tDx" id="7dS-Lk-FQJ"/>
                 <outlet property="UtilizedLabel" destination="Qxo-fV-AJO" id="LH9-gX-A1h"/>
