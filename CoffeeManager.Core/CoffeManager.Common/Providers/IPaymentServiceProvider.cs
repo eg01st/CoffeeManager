@@ -21,5 +21,7 @@ namespace CoffeManager.Common
         Task<Expense[]> GetShiftExpenses(int id);
 
         Task ToggleIsActiveExpense(int id);
+
+        Task MapExpenseToSuplyProduct(int expenseTypeId, int suplyProductId);
     }
 }

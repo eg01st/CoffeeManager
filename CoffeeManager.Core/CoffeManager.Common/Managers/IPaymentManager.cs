@@ -25,5 +25,7 @@ namespace CoffeManager.Common
         Task<Expense[]> GetShiftExpenses();
 
         Task DeleteExpenseItem(int id);
+
+        Task MapExpenseToSuplyProduct(int expenseTypeId, int suplyProductId);
     }
 }

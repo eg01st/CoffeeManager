@@ -64,5 +64,10 @@ namespace CoffeManager.Common
         {
             await paymentProvider.DeleteExpenseItem(id);
         }
+
+        public async Task MapExpenseToSuplyProduct(int expenseTypeId, int suplyProductId)
+        {
+            await paymentProvider.MapExpenseToSuplyProduct(expenseTypeId, suplyProductId);
+        }
     }
 }

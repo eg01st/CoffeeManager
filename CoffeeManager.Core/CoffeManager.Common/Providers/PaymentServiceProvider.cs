@@ -59,5 +59,14 @@ namespace CoffeManager.Common
                 { nameof(id), id.ToString()}
             });
         }
+
+        public async Task MapExpenseToSuplyProduct(int expenseTypeId, int suplyProductId)
+        {
+            await Post<object> (RoutesConstants.MapExpenseToSuplyProduct, null, new Dictionary<string, string>()
+            {
+                { nameof(expenseTypeId), expenseTypeId.ToString()},
+                 { nameof(suplyProductId), suplyProductId.ToString()},
+            });
+        }
     }
 }

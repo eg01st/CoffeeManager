@@ -66,6 +66,26 @@ namespace CoffeeManager.Api.Controllers
         }
 
 
+        [Route(RoutesConstants.MapExpenseToSuplyProduct)]
+        [HttpPost]
+        public async Task<HttpResponseMessage> MapExpenseToSuplyProduct([FromUri]int coffeeroomno, [FromUri]int expenseTypeId, [FromUri]int suplyProductId, HttpRequestMessage message)
+        {
+            var token = message.Headers.GetValues("token").FirstOrDefault();
+            if (token == null || !UserSessions.Contains(token))
+            {
+                return Request.CreateResponse(HttpStatusCode.Forbidden);
+            }
+            var entities = new CoffeeRoomEntities();
+            var sp = entities.SupliedProducts.FirstOrDefault(t => t.CoffeeRoomNo == coffeeroomno && t.Id == suplyProductId);
+            if (sp != null)
+            {
+                sp.ExprenseTypeId = expenseTypeId;
+                entities.SaveChanges();
+            }
+            return Request.CreateResponse(HttpStatusCode.OK);
+        }
+
+
         [Route(RoutesConstants.Payment)]
         [HttpPut]
         public async Task<HttpResponseMessage> Put([FromUri]int coffeeroomno, HttpRequestMessage message)
