@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ExpenseTypeDetailsView">
+            <connections>
+                <outlet property="ExpenseTypeNameLabel" destination="kkv-dC-sKR" id="C3N-fq-Oee"/>
+                <outlet property="MapSuplyProductButton" destination="KI0-u3-RBn" id="3GZ-pX-Ee3"/>
+                <outlet property="MappedSuplyProductsTableView" destination="IeP-X3-ZAS" id="mhS-2p-I7X"/>
+                <outlet property="view" destination="2" id="RRd-Eg-VrN"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="2">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6EL-ka-yTw">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Трата:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S4o-Lc-rZj">
+                            <rect key="frame" x="32" y="42" width="51" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kkv-dC-sKR">
+                            <rect key="frame" x="99" y="42" width="42" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Связанные товары" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PEe-WS-Qnr">
+                            <rect key="frame" x="112.5" y="125" width="150" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="IeP-X3-ZAS">
+                            <rect key="frame" x="0.0" y="162" width="375" height="505"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </tableView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KI0-u3-RBn">
+                            <rect key="frame" x="136.5" y="79" width="103" height="30"/>
+                            <state key="normal" title="Связать товар"/>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="IeP-X3-ZAS" firstAttribute="top" secondItem="PEe-WS-Qnr" secondAttribute="bottom" constant="16" id="7My-WL-ty2"/>
+                        <constraint firstItem="kkv-dC-sKR" firstAttribute="centerY" secondItem="S4o-Lc-rZj" secondAttribute="centerY" id="Aia-Dj-Kg6"/>
+                        <constraint firstItem="KI0-u3-RBn" firstAttribute="top" secondItem="S4o-Lc-rZj" secondAttribute="bottom" constant="16" id="Dmv-AJ-TEq"/>
+                        <constraint firstAttribute="trailing" secondItem="IeP-X3-ZAS" secondAttribute="trailing" id="OlL-rI-dml"/>
+                        <constraint firstItem="PEe-WS-Qnr" firstAttribute="centerX" secondItem="6EL-ka-yTw" secondAttribute="centerX" id="ZO8-QD-Mu2"/>
+                        <constraint firstItem="PEe-WS-Qnr" firstAttribute="top" secondItem="KI0-u3-RBn" secondAttribute="bottom" constant="16" id="aWN-Zc-Og5"/>
+                        <constraint firstItem="KI0-u3-RBn" firstAttribute="centerX" secondItem="6EL-ka-yTw" secondAttribute="centerX" id="dAQ-Ab-iCN"/>
+                        <constraint firstItem="IeP-X3-ZAS" firstAttribute="leading" secondItem="6EL-ka-yTw" secondAttribute="leading" id="hJK-DA-ThZ"/>
+                        <constraint firstAttribute="bottom" secondItem="IeP-X3-ZAS" secondAttribute="bottom" id="hXE-NA-8vv"/>
+                        <constraint firstItem="S4o-Lc-rZj" firstAttribute="top" secondItem="6EL-ka-yTw" secondAttribute="top" constant="42" id="oD2-dj-iSf"/>
+                        <constraint firstItem="kkv-dC-sKR" firstAttribute="leading" secondItem="S4o-Lc-rZj" secondAttribute="trailing" constant="16" id="oDH-ZI-IYi"/>
+                        <constraint firstItem="S4o-Lc-rZj" firstAttribute="leading" secondItem="6EL-ka-yTw" secondAttribute="leading" constant="32" id="wI5-PY-tQU"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="6EL-ka-yTw" firstAttribute="top" secondItem="2" secondAttribute="top" id="N2S-TM-SUC"/>
+                <constraint firstAttribute="trailing" secondItem="6EL-ka-yTw" secondAttribute="trailing" id="o6O-kF-CG8"/>
+                <constraint firstItem="6EL-ka-yTw" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="q7a-7K-5zR"/>
+                <constraint firstAttribute="bottom" secondItem="6EL-ka-yTw" secondAttribute="bottom" id="y3c-Rz-PRI"/>
+            </constraints>
+        </view>
+    </objects>
+</document>

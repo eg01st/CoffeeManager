@@ -13,10 +13,12 @@ namespace CoffeeManagerAdmin.Core
 
         public ICommand ToggleIsActiveCommand {get;set;}
         private readonly IPaymentManager manager;
+        private readonly ExpenseType expenseType;
 
         public ManageExpenseItemViewModel(IPaymentManager manager, ExpenseType e)
         {
             this.manager = manager;
+            expenseType = e;
             ToggleIsActiveCommand = new MvxCommand(DoToggleIsActive);
             Id = e.Id;
             Name = e.Name;
@@ -30,6 +32,12 @@ namespace CoffeeManagerAdmin.Core
             {
                 await manager.ToggleIsActiveExpense(Id);
             });
+        }
+
+        protected override void DoGoToDetails()
+        {
+            var id = Util.ParameterTransmitter.PutParameter(expenseType);
+            ShowViewModel<ExpenseTypeDetailsViewModel>(new {id});
         }
    }
 }

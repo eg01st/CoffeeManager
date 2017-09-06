@@ -6,6 +6,7 @@ using MvvmCross.Binding.iOS.Views;
 using MvvmCross.Binding.BindingContext;
 using CoffeeManagerAdmin.Core.ViewModels;
 using CoreGraphics;
+using System.Collections.Generic;
 
 namespace CoffeeManagerAdmin.iOS
 {
@@ -65,6 +66,19 @@ namespace CoffeeManagerAdmin.iOS
             set.Bind(productTypePickerViewModel).For(p => p.SelectedItem).To(vm => vm.SelectedProductType);
             set.Bind(IsSaleByWeightSwitch).For(s => s.On).To(vm => vm.IsSaleByWeight);
             set.Apply();
+
+            var btn = new UIBarButtonItem()
+            {
+                Title = "Калькуляция"
+            };
+
+
+            NavigationItem.SetRightBarButtonItem(btn, false);
+            this.AddBindings(new Dictionary<object, string>
+            {
+                {btn, "Clicked SelectCalculationItemsCommand"},
+
+            });
 
         }
     }

@@ -41,7 +41,6 @@
     <Compile Include="Messages\OrderItemsListChangedMessage.cs" />
     <Compile Include="Messages\OrderListChangedMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\ItemViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\Orders\OrderItemsViewModel.cs" />
     <Compile Include="ViewModels\Orders\OrderItemViewModel.cs" />
@@ -84,11 +83,18 @@
     <Compile Include="ViewModels\Products\ProductsViewModel.cs" />
     <Compile Include="ViewModels\Products\ProductItemViewModel.cs" />
     <Compile Include="ViewModels\Products\ProductDetailsViewModel.cs" />
-    <Compile Include="ViewModels\Calculation\ProductsCalculationViewModel.cs" />
     <Compile Include="ViewModels\SaleItemViewModel.cs" />
     <Compile Include="ViewModels\Statistic\StatisticSaleItemViewModel.cs" />
     <Compile Include="ViewModels\Statistic\BaseStatisticSaleItemViewModel.cs" />
     <Compile Include="ViewModels\Statistic\StatisticSaleHeaderViewModel.cs" />
+    <Compile Include="ViewModels\ManageExpenses\AddExpenseTypeViewModel.cs" />
+    <Compile Include="Messages\ExpenseAddedMessage.cs" />
+    <Compile Include="ViewModels\ManageExpenses\ExpenseTypeDetailsViewModel.cs" />
+    <Compile Include="ViewModels\ManageExpenses\MappedSuplyProductItemViewModel.cs" />
+    <Compile Include="ViewModels\ManageExpenses\MapExpenseToSuplyProductViewModel.cs" />
+    <Compile Include="Messages\MappedSuplyProductChangedMessage.cs" />
+    <Compile Include="ViewModels\ManageExpenses\SelectMappedSuplyProductItemViewModel.cs" />
+    <Compile Include="ViewModels\SuplyProducts\AddSuplyProductViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">

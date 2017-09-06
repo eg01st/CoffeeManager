@@ -1,6 +1,7 @@
 ﻿using CoffeeManagerAdmin.Core.ViewModels;
 using UIKit;
 using MvvmCross.Binding.BindingContext;
+using System.Collections.Generic;
 
 namespace CoffeeManagerAdmin.iOS
 {
@@ -18,6 +19,19 @@ namespace CoffeeManagerAdmin.iOS
         {
             base.ViewDidLoad();
             Title = "Баланс товара";
+
+            var btn = new UIBarButtonItem()
+            {
+                Title = "Добавить товар"
+            };
+
+
+            NavigationItem.SetRightBarButtonItem(btn, false);
+            this.AddBindings(new Dictionary<object, string>
+            {
+                {btn, "Clicked AddNewSuplyProductCommand"},
+
+            });
         }
 
 

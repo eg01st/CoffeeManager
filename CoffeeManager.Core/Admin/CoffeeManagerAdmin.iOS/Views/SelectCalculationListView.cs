@@ -2,6 +2,7 @@
 using UIKit;
 using MvvmCross.Binding.BindingContext;
 using CoffeeManagerAdmin.Core.ViewModels;
+using System.Collections.Generic;
 
 namespace CoffeeManagerAdmin.iOS
 {
@@ -18,6 +19,24 @@ namespace CoffeeManagerAdmin.iOS
         protected override MvxFluentBindingDescriptionSet<SelectCalculationListView, SelectCalculationListViewModel> CreateBindingSet()
         {
             return this.CreateBindingSet<SelectCalculationListView, SelectCalculationListViewModel>();
+        }
+
+        public override void ViewDidLoad()
+        {
+            base.ViewDidLoad();
+
+            var btn = new UIBarButtonItem()
+            {
+                Title = "Добавить товар"
+            };
+
+
+            NavigationItem.SetRightBarButtonItem(btn, false);
+            this.AddBindings(new Dictionary<object, string>
+            {
+                {btn, "Clicked AddNewSuplyProductCommand"},
+
+            });
         }
     }
 }

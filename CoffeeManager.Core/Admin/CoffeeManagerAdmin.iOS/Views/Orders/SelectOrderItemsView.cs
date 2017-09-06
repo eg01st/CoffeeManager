@@ -26,10 +26,23 @@ namespace CoffeeManagerAdmin.iOS
                 Title = "Готово"
             };
 
-            NavigationItem.SetRightBarButtonItem(btn, false);
+            NavigationItem.SetLeftBarButtonItem(btn, false);
             this.AddBindings(new Dictionary<object, string>
             {
                 {btn, "Clicked DoneCommand"}
+
+            });
+
+            var btn1 = new UIBarButtonItem()
+            {
+                Title = "Добавить товар"
+            };
+
+
+            NavigationItem.SetRightBarButtonItem(btn1, false);
+            this.AddBindings(new Dictionary<object, string>
+            {
+                {btn1, "Clicked AddNewSuplyProductCommand"},
 
             });
 
@@ -45,8 +58,7 @@ namespace CoffeeManagerAdmin.iOS
 
             var set = this.CreateBindingSet<SelectOrderItemsView, SelectOrderItemsViewModel>();
             set.Bind(source).To(vm => vm.Items);
-            set.Bind(NewProductText).To(vm => vm.NewProductName);
-            set.Bind(AddProdButton).To(vm => vm.AddNewProductCommand);
+            set.Bind(AddProdButton).To(vm => vm.AddNewSuplyProductCommand);
             set.Bind(_searchBar).For(v => v.Text).To(vm => vm.SearchString);
             set.Apply();
         }

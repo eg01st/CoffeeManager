@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using CoffeeManagerAdmin.Core;
 using MvvmCross.Binding.BindingContext;
 using UIKit;
@@ -20,6 +21,19 @@ namespace CoffeeManagerAdmin.iOS
         {
             base.ViewDidLoad();
             Title = "Траты";
+
+            var btn = new UIBarButtonItem()
+            {
+                Title = "Добавить трату"
+            };
+
+
+            NavigationItem.SetRightBarButtonItem(btn, false);
+            this.AddBindings(new Dictionary<object, string>
+            {
+                {btn, "Clicked AddExpenseTypeCommand"},
+
+            });
         }
 
     }

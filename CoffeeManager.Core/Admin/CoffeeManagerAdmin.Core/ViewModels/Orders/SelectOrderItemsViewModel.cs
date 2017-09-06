@@ -27,8 +27,8 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Orders
             this.orderManager = orderManager;
             this.manager = manager;
             DoneCommand = new MvxCommand(DoDoneCommand);
-            AddNewProductCommand = new MvxCommand(DoAddNewProduct);
-            _token = Subscribe<SuplyProductDeletedMessage>(async (obj) => await LoadData());
+            AddNewSuplyProductCommand = new MvxCommand(() => ShowViewModel<AddSuplyProductViewModel>());
+            _token = Subscribe<SuplyListChangedMessage>(async (obj) => await LoadData());
         }
 
         public async void Init(int id)
@@ -41,13 +41,6 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Orders
         {
             var items = await manager.GetSuplyProducts();
             _orginalItems = Items = items.Select(s => new SelectOrderItemViewModel(manager, orderManager, _orderId, s)).ToList();
-        }
-
-        private async void DoAddNewProduct()
-        {
-            await manager.AddSuplyProduct(NewProductName);
-            NewProductName = string.Empty;
-            await LoadData();
         }
 
         private void DoDoneCommand()
@@ -100,6 +93,6 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Orders
 
         public ICommand DoneCommand { get; set; }
 
-        public ICommand AddNewProductCommand { get; set; }
+        public ICommand AddNewSuplyProductCommand { get; }
     }
 }

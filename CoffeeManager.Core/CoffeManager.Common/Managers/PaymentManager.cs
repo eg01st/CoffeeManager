@@ -1,4 +1,5 @@
-﻿using System;
+﻿﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CoffeeManager.Models;
@@ -68,6 +69,16 @@ namespace CoffeManager.Common
         public async Task MapExpenseToSuplyProduct(int expenseTypeId, int suplyProductId)
         {
             await paymentProvider.MapExpenseToSuplyProduct(expenseTypeId, suplyProductId);
+        }
+
+        public async Task RemoveMappedSuplyProductsToExpense(int expenseTypeId, int suplyProductId)
+        {
+            await paymentProvider.RemoveMappedSuplyProductsToExpense(expenseTypeId, suplyProductId);
+        }
+
+        public async Task<IEnumerable<SupliedProduct>> GetMappedSuplyProductsToExpense(int expenseTypeId)
+        {
+            return await paymentProvider.GetMappedSuplyProductsToExpense(expenseTypeId);
         }
     }
 }

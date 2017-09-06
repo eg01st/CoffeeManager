@@ -9,9 +9,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProductsCalculationView">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MapExpenseToSuplyProductView">
             <connections>
-                <outlet property="ContainerView" destination="EL7-4R-oWy" id="wY9-G2-3fy"/>
+                <outlet property="ContainerView" destination="tri-JR-8Cq" id="SKL-31-d2c"/>
                 <outlet property="view" destination="2" id="RRd-Eg-VrN"/>
             </connections>
         </placeholder>
@@ -20,17 +20,17 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EL7-4R-oWy">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tri-JR-8Cq">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="EL7-4R-oWy" secondAttribute="bottom" id="XSn-vs-xoh"/>
-                <constraint firstAttribute="trailing" secondItem="EL7-4R-oWy" secondAttribute="trailing" id="hXa-pZ-gcy"/>
-                <constraint firstItem="EL7-4R-oWy" firstAttribute="top" secondItem="2" secondAttribute="top" id="tl8-Rc-XYF"/>
-                <constraint firstItem="EL7-4R-oWy" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="uwy-oP-MPx"/>
+                <constraint firstAttribute="trailing" secondItem="tri-JR-8Cq" secondAttribute="trailing" id="1YG-yP-6bn"/>
+                <constraint firstItem="tri-JR-8Cq" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="BXB-F8-Ia0"/>
+                <constraint firstAttribute="bottom" secondItem="tri-JR-8Cq" secondAttribute="bottom" id="Yhz-TJ-NGU"/>
+                <constraint firstItem="tri-JR-8Cq" firstAttribute="top" secondItem="2" secondAttribute="top" id="ucC-nK-o4X"/>
             </constraints>
         </view>
     </objects>

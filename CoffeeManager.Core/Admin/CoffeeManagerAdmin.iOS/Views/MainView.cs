@@ -33,7 +33,6 @@ namespace CoffeeManagerAdmin.iOS
             set.Bind(OrdersButton).To(vm => vm.ShowOrdersCommand);
             set.Bind(ProductsButton).To(vm => vm.EditProductsCommand);
             set.Bind(UsersButton).To(vm => vm.EditUsersCommand);
-            set.Bind(ProductCalculationButton).To(vm => vm.EditProductCalculation);
             set.Bind(StatisticButton).To(vm => vm.ShowStatiscticCommand);
             set.Bind(ExpensesButton).To(vm => vm.ShowExpensesCommand);
             set.Apply();
