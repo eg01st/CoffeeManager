@@ -85,6 +85,40 @@ namespace CoffeeManager.Api.Controllers
             return Request.CreateResponse(HttpStatusCode.OK);
         }
 
+        [Route(RoutesConstants.GetMappedSuplyProductsToExpense)]
+        [HttpGet]
+        public async Task<HttpResponseMessage> GetMappedSuplyProductsToExpense([FromUri]int coffeeroomno, [FromUri]int expenseTypeId, HttpRequestMessage message)
+        {
+            var token = message.Headers.GetValues("token").FirstOrDefault();
+            if (token == null || !UserSessions.Contains(token))
+            {
+                return Request.CreateResponse(HttpStatusCode.Forbidden);
+            }
+            var entities = new CoffeeRoomEntities();
+            var sp = entities.SupliedProducts.Where(t => t.CoffeeRoomNo == coffeeroomno && t.ExprenseTypeId == expenseTypeId).ToList().Select(s => s.ToDTO());
+
+            return Request.CreateResponse(HttpStatusCode.OK, sp);
+        }
+
+        [Route(RoutesConstants.RemoveMappedSuplyProductsToExpense)]
+        [HttpDelete]
+        public async Task<HttpResponseMessage> RemoveMappedSuplyProductsToExpense([FromUri]int coffeeroomno, [FromUri]int expenseTypeId, [FromUri]int suplyProductId, HttpRequestMessage message)
+        {
+            var token = message.Headers.GetValues("token").FirstOrDefault();
+            if (token == null || !UserSessions.Contains(token))
+            {
+                return Request.CreateResponse(HttpStatusCode.Forbidden);
+            }
+            var entities = new CoffeeRoomEntities();
+            var sp = entities.SupliedProducts.FirstOrDefault(t => t.CoffeeRoomNo == coffeeroomno && t.Id == suplyProductId);
+            if (sp != null)
+            {
+                sp.ExprenseTypeId = null;
+                entities.SaveChanges();
+            }
+            return Request.CreateResponse(HttpStatusCode.OK, sp);
+        }
+
 
         [Route(RoutesConstants.Payment)]
         [HttpPut]

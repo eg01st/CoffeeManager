@@ -11,6 +11,9 @@ namespace CoffeeManager.Models
         public const string GetExpenseItems = Payment + "/getexpenseitems";
         public const string ToggleExpenseEnabled = Payment + "/toggleExpenseEnabled";
         public const string MapExpenseToSuplyProduct = Payment + "/mapExpenseToSuplyProduct";
+        public const string GetMappedSuplyProductsToExpense = Payment + "/getMappedSuplyProductsToExpense";
+        public const string RemoveMappedSuplyProductsToExpense = Payment + "/removeMappedSuplyProductsToExpense";
+        
         public const string DeleteExpenseItem = Payment + "/deleteexpenseItem";
         public const string AddNewExpenseType = Payment + "/addnewexpensetype";
         public const string GetShiftExpenses = Payment + "/getShiftExpenses";
