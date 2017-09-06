@@ -116,7 +116,7 @@ namespace CoffeeManager.Api.Controllers
                 sp.ExprenseTypeId = null;
                 entities.SaveChanges();
             }
-            return Request.CreateResponse(HttpStatusCode.OK, sp);
+            return Request.CreateResponse(HttpStatusCode.OK);
         }
 
 

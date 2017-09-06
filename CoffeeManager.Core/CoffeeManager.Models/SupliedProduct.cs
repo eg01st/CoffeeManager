@@ -5,5 +5,7 @@
         public decimal Price { get; set; }
         public decimal? Quatity { get; set; }
         public decimal? SalePrice { get; set; }
+
+        public int? ExpenseTypeId { get; set; }
     }
 }
