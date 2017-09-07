@@ -152,6 +152,45 @@ namespace CoffeeManager.Api.Controllers
             return Request.CreateResponse(HttpStatusCode.OK);
         }
 
+        [Route(RoutesConstants.AddExpenseExtended)]
+        [HttpPost]
+        public async Task<HttpResponseMessage> AddExpenseExtende([FromUri]int coffeeroomno, [FromUri]int shiftId, HttpRequestMessage message)
+        {
+            var request = await message.Content.ReadAsStringAsync();
+            var expenseEx = JsonConvert.DeserializeObject<Models.ExpenseType>(request);
+
+            var entities = new CoffeeRoomEntities();
+            var expense = new Expense();
+            expense.Amount = expenseEx.SuplyProducts.Sum(s => s.Price);
+            expense.Quantity = expenseEx.SuplyProducts.Sum(s => (int?)s.Quatity ?? 0);
+            expense.ExpenseType = expenseEx.Id;
+            expense.CoffeeRoomNo = expenseEx.CoffeeRoomNo;
+            expense.ShiftId = shiftId;
+            entities.Expenses.Add(expense);
+
+            foreach (var suplyProduct in expenseEx.SuplyProducts)
+            {
+                var suplyProductDb = entities.SupliedProducts.First(s => s.Id == suplyProduct.Id);
+    
+                if (suplyProductDb.Quantity.HasValue)
+                {
+                    suplyProductDb.Quantity += suplyProduct.Quatity;
+                }
+                else
+                {
+                    suplyProductDb.Quantity = suplyProduct.Quatity;
+                }
+                
+            }
+           
+            var currentShift = entities.Shifts.First(s => s.Id == expense.ShiftId);
+            currentShift.TotalExprenses += expense.Amount;
+            currentShift.TotalAmount -= expense.Amount;
+            await entities.SaveChangesAsync();
+
+            return Request.CreateResponse(HttpStatusCode.OK);
+        }
+
         [Route(RoutesConstants.DeleteExpenseItem)]
         [HttpDelete]
         public async Task<HttpResponseMessage> DeleteExpense([FromUri]int coffeeroomno, [FromUri]int id, HttpRequestMessage message)
