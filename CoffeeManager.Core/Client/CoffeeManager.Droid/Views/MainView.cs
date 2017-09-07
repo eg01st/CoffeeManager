@@ -12,10 +12,12 @@ using CoffeeManager.Droid.Adapters;
 using CoffeeManager.Droid.Views.Fragments;
 using MvvmCross.Binding.BindingContext;
 using TabItem = CoffeeManager.Droid.Entities.TabItem;
+using Android.Content;
+using Android.Util;
 
 namespace CoffeeManager.Droid.Views
 {
-    [Activity(Theme = "@style/Theme.AppCompat.Light", ScreenOrientation = ScreenOrientation.Landscape)]
+    [Activity(Theme = "@style/Theme.AppCompat.Light", ScreenOrientation = ScreenOrientation.Portrait)]
     public class MainView : ActivityBase<MainViewModel>
     {
         private ViewPager viewPager;
@@ -127,7 +129,18 @@ namespace CoffeeManager.Droid.Views
             {
                 var tab = tabLayout.GetTabAt(i);
                 var tabItem = tabItems[i];
-                tab.SetText(tabItem.Title);
+                var view = new LinearLayout(this.BaseContext);
+                view.SetGravity(GravityFlags.Center);
+                var param = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.MatchParent);
+                param.Gravity = GravityFlags.Left;
+                view.LayoutParameters = param;
+                var textView = new TextView(this.BaseContext);
+                textView.TextSize = 20;
+                textView.SetTextColor(Android.Graphics.Color.Black);
+                textView.LayoutParameters = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WrapContent, ViewGroup.LayoutParams.WrapContent); ;
+                textView.Text = tabItem.Title;
+                view.AddView(textView);
+                tab.SetCustomView(view);
             }
         }
 
