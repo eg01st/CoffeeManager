@@ -22,6 +22,8 @@ namespace CoffeeManagerAdmin.Core.ViewModels
 
         public decimal Price => _item.Price;
 
+        public int Id => _item.Id;
+
         public string Quatity => _item.Quatity?.ToString("F");
     }
 }

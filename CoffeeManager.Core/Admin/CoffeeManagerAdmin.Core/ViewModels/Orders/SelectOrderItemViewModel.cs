@@ -74,18 +74,26 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Orders
         {
             if (obj.Ok)
             {
-                await orderManager.CreateOrderItem(new OrderItem
+                int quantity;
+                if (int.TryParse(obj.Text, out quantity))
                 {
-                    CoffeeRoomNo = Config.CoffeeRoomNo,
-                    IsDone = false,
-                    OrderId = _orderId,
-                    Price = Price,
-                    Quantity = int.Parse(obj.Text),
-                    SuplyProductId = _prod.Id
-                });
+                    await orderManager.CreateOrderItem(new OrderItem
+                    {
+                        CoffeeRoomNo = Config.CoffeeRoomNo,
+                        IsDone = false,
+                        OrderId = _orderId,
+                        Price = Price,
+                        Quantity = quantity,
+                        SuplyProductId = _prod.Id
+                    });
 
-                IsSelected = true;
-                Quantity = int.Parse(obj.Text);
+                    IsSelected = true;
+                    Quantity = int.Parse(obj.Text);
+                }
+                else
+                {
+                    Alert("Неверно указано количество");
+                }
             }
             _isPromt = false;
         }

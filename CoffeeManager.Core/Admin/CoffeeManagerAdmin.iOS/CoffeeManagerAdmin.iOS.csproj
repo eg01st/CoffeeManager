@@ -149,10 +149,6 @@
     <Compile Include="Views\SuplyProductDetailsView.designer.cs">
       <DependentUpon>SuplyProductDetailsView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Cells\ItemViewCell.cs" />
-    <Compile Include="Views\Cells\ItemViewCell.designer.cs">
-      <DependentUpon>ItemViewCell.cs</DependentUpon>
-    </Compile>
     <Compile Include="Views\CalculationView.cs" />
     <Compile Include="Views\CalculationView.designer.cs">
       <DependentUpon>CalculationView.cs</DependentUpon>
@@ -269,10 +265,6 @@
     <Compile Include="Views\ManageExpenses\ManageExpensesView.designer.cs">
       <DependentUpon>ManageExpensesView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\ProductsCalculationView.cs" />
-    <Compile Include="Views\ProductsCalculationView.designer.cs">
-      <DependentUpon>ProductsCalculationView.cs</DependentUpon>
-    </Compile>
     <Compile Include="Views\Statistic\StatisticSaleItemViewCell.cs" />
     <Compile Include="Views\Statistic\StatisticSaleItemViewCell.designer.cs">
       <DependentUpon>StatisticSaleItemViewCell.cs</DependentUpon>
@@ -283,6 +275,26 @@
     </Compile>
     <Compile Include="Bootstrap\SqlitePluginBootstrap.cs" />
     <Compile Include="Platform\EmailService.cs" />
+    <Compile Include="Views\ManageExpenses\ExpenseTypeDetailsView.cs" />
+    <Compile Include="Views\ManageExpenses\ExpenseTypeDetailsView.designer.cs">
+      <DependentUpon>ExpenseTypeDetailsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ManageExpenses\MappedSuplyProductsTableViewCell.cs" />
+    <Compile Include="Views\ManageExpenses\MappedSuplyProductsTableViewCell.designer.cs">
+      <DependentUpon>MappedSuplyProductsTableViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ManageExpenses\MapExpenseToSuplyProductView.cs" />
+    <Compile Include="Views\ManageExpenses\MapExpenseToSuplyProductView.designer.cs">
+      <DependentUpon>MapExpenseToSuplyProductView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ManageExpenses\AddExpenseTypeView.cs" />
+    <Compile Include="Views\ManageExpenses\AddExpenseTypeView.designer.cs">
+      <DependentUpon>AddExpenseTypeView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddSuplyProductView.cs" />
+    <Compile Include="Views\AddSuplyProductView.designer.cs">
+      <DependentUpon>AddSuplyProductView.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Setup.cs" />
@@ -298,7 +310,6 @@
     <InterfaceDefinition Include="Views\Cells\SaleItemCell.xib" />
     <InterfaceDefinition Include="Views\Cells\GroupedSaleCell.xib" />
     <InterfaceDefinition Include="Views\SuplyProductDetailsView.xib" />
-    <InterfaceDefinition Include="Views\Cells\ItemViewCell.xib" />
     <InterfaceDefinition Include="Views\CalculationView.xib" />
     <InterfaceDefinition Include="Views\Cells\CalculationItemViewCell.xib" />
     <InterfaceDefinition Include="Views\SelectCalculationListView.xib" />
@@ -326,9 +337,13 @@
     <InterfaceDefinition Include="Views\Users\UserTableViewCell.xib" />
     <InterfaceDefinition Include="Views\Products\ProductsView.xib" />
     <InterfaceDefinition Include="Views\ManageExpenses\ManageExpensesView.xib" />
-    <InterfaceDefinition Include="Views\ProductsCalculationView.xib" />
     <InterfaceDefinition Include="Views\Statistic\StatisticSaleItemViewCell.xib" />
     <InterfaceDefinition Include="Views\Statistic\SaleStatisticHeaderViewCell.xib" />
+    <InterfaceDefinition Include="Views\ManageExpenses\ExpenseTypeDetailsView.xib" />
+    <InterfaceDefinition Include="Views\ManageExpenses\MappedSuplyProductsTableViewCell.xib" />
+    <InterfaceDefinition Include="Views\ManageExpenses\MapExpenseToSuplyProductView.xib" />
+    <InterfaceDefinition Include="Views\ManageExpenses\AddExpenseTypeView.xib" />
+    <InterfaceDefinition Include="Views\AddSuplyProductView.xib" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MvvmCross.Binding, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">

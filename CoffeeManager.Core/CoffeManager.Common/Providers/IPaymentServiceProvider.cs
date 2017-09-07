@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using CoffeeManager.Models;
 
@@ -23,5 +24,7 @@ namespace CoffeManager.Common
         Task ToggleIsActiveExpense(int id);
 
         Task MapExpenseToSuplyProduct(int expenseTypeId, int suplyProductId);
+        Task RemoveMappedSuplyProductsToExpense(int expenseTypeId, int suplyProductId);
+        Task<IEnumerable<SupliedProduct>> GetMappedSuplyProductsToExpense(int expenseTypeId);
     }
 }

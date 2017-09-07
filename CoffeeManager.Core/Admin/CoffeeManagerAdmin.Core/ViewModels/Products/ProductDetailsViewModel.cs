@@ -158,6 +158,9 @@ namespace CoffeeManagerAdmin.Core.ViewModels
         }
 
         readonly IProductManager manager;
+
+        public ICommand SelectCalculationItemsCommand { get; }
+
         #endregion
 
 
@@ -165,6 +168,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels
         {
             this.manager = manager;
             _addProductCommand = new MvxCommand(DoAddProduct);
+            SelectCalculationItemsCommand = new MvxCommand(DoSelectCalculationItems);
         }
 
         public void Init(Guid id)
@@ -230,6 +234,10 @@ namespace CoffeeManagerAdmin.Core.ViewModels
             });
         }
 
+        private void DoSelectCalculationItems()
+        {
+            ShowViewModel<CalculationViewModel>(new { id = _id });
+        }
      
     }
 }

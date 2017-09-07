@@ -14,7 +14,7 @@ namespace CoffeManager.Common
 
         public async void Init()
         {
-            var loadedItems = await LoadData();
+            var loadedItems = await ExecuteSafe(LoadData);
             _orginalItems = Items = loadedItems;
             
         }

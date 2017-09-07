@@ -10,7 +10,7 @@ using CoreGraphics;
 
 namespace CoffeeManagerAdmin.iOS
 {
-    public partial class OrderItemsView : MvxViewController
+    public partial class OrderItemsView : ViewControllerBase
     {
         public OrderItemsView() : base("OrderItemsView", null)
         {
@@ -70,11 +70,18 @@ namespace CoffeeManagerAdmin.iOS
             set.Apply();
         }
 
-        public override void DidReceiveMemoryWarning()
+        public override void ViewWillAppear(bool animated)
         {
-            base.DidReceiveMemoryWarning();
-            // Release any cached data, images, etc that aren't in use.
+            base.ViewWillAppear(animated);
+            StickBottomButtonToKeyboard(AddSuplyProductBottomHeightConstraint);
         }
+
+        public override void ViewWillDisappear(bool animated)
+        {
+            base.ViewWillDisappear(animated);
+            UnSubscribeKeyboardEvents();
+        }
+
     }
 }
 

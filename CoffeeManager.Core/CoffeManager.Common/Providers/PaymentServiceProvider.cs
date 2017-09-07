@@ -68,5 +68,22 @@ namespace CoffeManager.Common
                  { nameof(suplyProductId), suplyProductId.ToString()},
             });
         }
+
+        public async Task RemoveMappedSuplyProductsToExpense(int expenseTypeId, int suplyProductId)
+        {
+            await Delete(RoutesConstants.RemoveMappedSuplyProductsToExpense, new Dictionary<string, string>()
+            {
+                { nameof(expenseTypeId), expenseTypeId.ToString()},
+                 { nameof(suplyProductId), suplyProductId.ToString()},
+            });
+        }
+
+        public async Task<IEnumerable<SupliedProduct>> GetMappedSuplyProductsToExpense(int expenseTypeId)
+        {
+            return await Get<IEnumerable<SupliedProduct>>(RoutesConstants.GetMappedSuplyProductsToExpense, new Dictionary<string, string>()
+            {
+                { nameof(expenseTypeId), expenseTypeId.ToString()},
+            });
+        }
     }
 }

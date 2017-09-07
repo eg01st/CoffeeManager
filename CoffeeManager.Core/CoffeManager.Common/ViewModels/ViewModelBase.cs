@@ -77,6 +77,7 @@ namespace CoffeManager.Common
         }
 
 
+
         protected async Task ExecuteSafe(Func<Task> functionToRun, string globalExceptionMessage = null)
         {
             Func<Task<bool>> runDelegate = async () => { await functionToRun(); return true; };

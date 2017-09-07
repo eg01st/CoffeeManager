@@ -2,16 +2,24 @@
 using System.Linq;
 using CoffeManager.Common;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using MvvmCross.Core.ViewModels;
+using MvvmCross.Plugins.Messenger;
 
 namespace CoffeeManagerAdmin.Core
 {
     public class ManageExpensesViewModel : BaseSearchViewModel<ManageExpenseItemViewModel>
     {
         private readonly IPaymentManager manager;
+        private readonly MvxSubscriptionToken reloadListToken;
+
+        public ICommand AddExpenseTypeCommand { get; set; }
 
         public ManageExpensesViewModel(IPaymentManager manager)
         {
             this.manager = manager;
+            AddExpenseTypeCommand = new MvxCommand(() => ShowViewModel<AddExpenseTypeViewModel>());
+            reloadListToken = Subscribe<ExpenseAddedMessage>(async (obj) => await LoadData());
         }
 
         public async override Task<List<ManageExpenseItemViewModel>> LoadData()
@@ -22,5 +30,6 @@ namespace CoffeeManagerAdmin.Core
                 return items.Select(s => new ManageExpenseItemViewModel(manager, s)).ToList();
             });
         }
+
     }
 }
