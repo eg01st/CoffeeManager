@@ -226,6 +226,7 @@
     <Compile Include="Platform\EmailService.cs" />
     <Compile Include="Extensions\ViewListenersExtensions.cs" />
     <Compile Include="Listeners\ViewOnClickListener.cs" />
+    <Compile Include="Converters\InvertedBoolToVisibilityConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

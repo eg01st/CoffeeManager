@@ -17,6 +17,9 @@ namespace CoffeeManager.Core.ViewModels
         protected List<ExpenseItemExtendedViewModel> _searchItems;
         private ExpenseItemExtendedViewModel _selectedExpence;
         private string _searchString;
+        private string _amount;
+        private string _itemCount;
+
 
         public ExpenseItemExtendedViewModel SelectedExpense
         {
@@ -25,6 +28,7 @@ namespace CoffeeManager.Core.ViewModels
             {
                 _selectedExpence = value;
                 RaisePropertyChanged(nameof(SelectedExpense));
+                RaisePropertyChanged(nameof(IsSimpleExpense));
                 RaisePropertyChanged(nameof(IsAddButtomEnabled));
             }
         }
@@ -59,13 +63,37 @@ namespace CoffeeManager.Core.ViewModels
                 SearchCommand.Execute(null);
             }
         }
-  
+
+        public string Amount
+        {
+            get { return _amount; }
+            set
+            {
+                _amount = value;
+                RaisePropertyChanged(nameof(Amount));
+                RaisePropertyChanged(nameof(IsAddButtomEnabled));
+            }
+        }
+
+        public string ItemCount
+        {
+            get { return _itemCount; }
+            set
+            {
+                _itemCount = value;
+                RaisePropertyChanged(nameof(ItemCount));
+                RaisePropertyChanged(nameof(IsAddButtomEnabled));
+            }
+        }
+
 
         public ICommand AddExpenseCommand { get; }
         public ICommand SearchCommand { get; }
 
 
-        public bool IsAddButtomEnabled =>  SelectedExpense != null;
+        public bool IsAddButtomEnabled => IsSimpleExpense ? (!string.IsNullOrEmpty(Amount) && !string.IsNullOrEmpty(ItemCount)) :  SelectedExpense != null;
+
+        public bool IsSimpleExpense => SelectedExpense?.ExpenseSuplyProducts == null || SelectedExpense?.ExpenseSuplyProducts?.Count < 1;
 
         public ExpenseViewModel(IPaymentManager manager)
         {
@@ -88,38 +116,52 @@ namespace CoffeeManager.Core.ViewModels
 
         private void DoAddExpense()
         {
-            if(SelectedExpense.ExpenseSuplyProducts.Count < 1
-               || SelectedExpense.ExpenseSuplyProducts.All(e => e.Amount <= 0 && e.ItemCount <= 0))
+            if (IsSimpleExpense)
             {
-                Alert("Не вписаны детали поставки");
-                return;
+                Confirm($"Добавить сумму {Amount} как трату за {SelectedExpense.Name}?", () => AddExpense());
             }
-
-            if (SelectedExpense.ExpenseSuplyProducts.Any(e => (e.Amount > 0 && e.ItemCount <=0) || (e.Amount <= 0 && e.ItemCount > 0)))
+            else
             {
-                Alert("Неверно вписаны детали поставки");
-                return;
-            }
+                if (SelectedExpense.ExpenseSuplyProducts.Count < 1
+                   || SelectedExpense.ExpenseSuplyProducts.All(e => e.Amount <= 0 && e.ItemCount <= 0))
+                {
+                    Alert("Не вписаны детали поставки");
+                    return;
+                }
 
-            var sum = SelectedExpense.ExpenseSuplyProducts.Sum(s => s.Amount);
-            Confirm($"Добавить сумму {sum} как трату за {SelectedExpense.Name}?", () => AddExpense());
+                if (SelectedExpense.ExpenseSuplyProducts.Any(e => (e.Amount > 0 && e.ItemCount <= 0) || (e.Amount <= 0 && e.ItemCount > 0)))
+                {
+                    Alert("Неверно вписаны детали поставки");
+                    return;
+                }
+
+                var sum = SelectedExpense.ExpenseSuplyProducts.Sum(s => s.Amount);
+                Confirm($"Добавить сумму {sum} как трату за {SelectedExpense.Name}?", () => AddExpense());
+            }
         }
 
         private async void AddExpense()
         {
-            var type = new ExpenseType();
-            type.Id = SelectedExpense.Id;
-            type.CoffeeRoomNo = SelectedExpense.CoffeeRoomNo;
-            type.SuplyProducts = SelectedExpense.ExpenseSuplyProducts.Where(e => e.Amount > 0 && e.ItemCount > 0)
-                .Select(s => new SupliedProduct()
-                {
-                    Id = s.Id,
-                    Price = s.Amount,
-                    Quatity = s.ItemCount,
-                    CoffeeRoomNo = SelectedExpense.CoffeeRoomNo
-                })
-                .ToArray();
-            await manager.AddExpense(type);
+            if (IsSimpleExpense)
+            {
+                await manager.AddExpense(SelectedExpense.Id, decimal.Parse(Amount), int.Parse(ItemCount));
+            }
+            else
+            {
+                var type = new ExpenseType();
+                type.Id = SelectedExpense.Id;
+                type.CoffeeRoomNo = SelectedExpense.CoffeeRoomNo;
+                type.SuplyProducts = SelectedExpense.ExpenseSuplyProducts.Where(e => e.Amount > 0 && e.ItemCount > 0)
+                    .Select(s => new SupliedProduct()
+                    {
+                        Id = s.Id,
+                        Price = s.Amount,
+                        Quatity = s.ItemCount,
+                        CoffeeRoomNo = SelectedExpense.CoffeeRoomNo
+                    })
+                    .ToArray();
+                await manager.AddExpense(type);
+            }
             Close(this);
         }
 
