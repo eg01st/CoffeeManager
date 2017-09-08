@@ -18,6 +18,7 @@ namespace CoffeeManager.Api
         public Expense()
         {
             this.Users = new HashSet<User>();
+            this.ExpenseSuplyProducts = new HashSet<ExpenseSuplyProduct>();
         }
     
         public int Id { get; set; }
@@ -31,5 +32,7 @@ namespace CoffeeManager.Api
         public virtual Shift Shift { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<User> Users { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ExpenseSuplyProduct> ExpenseSuplyProducts { get; set; }
     }
 }

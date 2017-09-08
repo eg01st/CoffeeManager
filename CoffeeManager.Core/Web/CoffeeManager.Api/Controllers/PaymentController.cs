@@ -42,9 +42,25 @@ namespace CoffeeManager.Api.Controllers
         public async Task<HttpResponseMessage> GetExpenseItems([FromUri]int coffeeroomno, HttpRequestMessage message)
         {
             var entities = new  CoffeeRoomEntities();
-            var types = entities.ExpenseTypes.Include(i => i.SupliedProducts)
+            var types = entities.ExpenseTypes.Where(t => !t.IsRemoved).Include(i => i.SupliedProducts.Where(sp => !sp.Removed))
                 .Where(t => t.CoffeeRoomNo == coffeeroomno).ToList().Select(s => s.ToDTO());
             return Request.CreateResponse(HttpStatusCode.OK, types);
+        }
+
+        [Route(RoutesConstants.RemoveExpenseType)]
+        [HttpDelete]
+        public async Task<HttpResponseMessage> RemoveExpenseType([FromUri]int coffeeroomno, [FromUri] int expenseTypeId, HttpRequestMessage message)
+        {
+            var token = message.Headers.GetValues("token").FirstOrDefault();
+            if (token == null || !UserSessions.Contains(token))
+            {
+                return Request.CreateResponse(HttpStatusCode.Forbidden);
+            }
+            var entities = new CoffeeRoomEntities();
+            var type = entities.ExpenseTypes.FirstOrDefault(t => t.Id == expenseTypeId && t.CoffeeRoomNo == coffeeroomno);
+            type.IsRemoved = true;
+            await entities.SaveChangesAsync();
+            return Request.CreateResponse(HttpStatusCode.OK);
         }
 
         [Route(RoutesConstants.ToggleExpenseEnabled)]
@@ -154,7 +170,7 @@ namespace CoffeeManager.Api.Controllers
 
         [Route(RoutesConstants.AddExpenseExtended)]
         [HttpPost]
-        public async Task<HttpResponseMessage> AddExpenseExtende([FromUri]int coffeeroomno, [FromUri]int shiftId, HttpRequestMessage message)
+        public async Task<HttpResponseMessage> AddExpenseExtended([FromUri]int coffeeroomno, [FromUri]int shiftId, HttpRequestMessage message)
         {
             var request = await message.Content.ReadAsStringAsync();
             var expenseEx = JsonConvert.DeserializeObject<Models.ExpenseType>(request);
@@ -164,8 +180,24 @@ namespace CoffeeManager.Api.Controllers
             expense.Amount = expenseEx.SuplyProducts.Sum(s => s.Price);
             expense.Quantity = expenseEx.SuplyProducts.Sum(s => (int?)s.Quatity ?? 0);
             expense.ExpenseType = expenseEx.Id;
-            expense.CoffeeRoomNo = expenseEx.CoffeeRoomNo;
+            expense.CoffeeRoomNo = coffeeroomno;
             expense.ShiftId = shiftId;
+            expense.ExpenseSuplyProducts = new List<ExpenseSuplyProduct>();
+            foreach (var suplyProduct in expenseEx.SuplyProducts)
+            {
+                if(!suplyProduct.Quatity.HasValue || suplyProduct.Quatity <=0 || suplyProduct.Price <= 0)
+                {
+                    continue;
+                }
+                expense.ExpenseSuplyProducts.Add(new ExpenseSuplyProduct()
+                {
+                     CoffeeRoonNo = coffeeroomno,
+                     Amount = suplyProduct.Price,
+                     Quantity = suplyProduct.Quatity.Value,
+                     SuplyProductId = suplyProduct.Id       
+                });
+            }
+
             entities.Expenses.Add(expense);
 
             foreach (var suplyProduct in expenseEx.SuplyProducts)
@@ -202,12 +234,14 @@ namespace CoffeeManager.Api.Controllers
             //}
             var entities = new CoffeeRoomEntities();
             var expense = entities.Expenses.First(e => e.Id == id && e.CoffeeRoomNo.Value == coffeeroomno);
-            var suplyProduct =
-                entities.SupliedProducts.FirstOrDefault(
-                    s => s.ExprenseTypeId.HasValue && s.ExprenseTypeId.Value == expense.ExpenseType.Value);
-            if (suplyProduct != null)
+
+            var suplyProducts = entities.ExpenseSuplyProducts.Where(p => p.ExpenseId == id && p.CoffeeRoonNo == coffeeroomno);
+
+            foreach (var sp in suplyProducts)
             {
-                suplyProduct.Quantity -= expense.Quantity;
+                var suplyProduct = entities.SupliedProducts.First(s => s.Id == sp.SuplyProductId);
+                suplyProduct.Quantity -= sp.Quantity;
+                entities.ExpenseSuplyProducts.Remove(sp);
             }
             var currentShift = entities.Shifts.First(s => s.Id == expense.ShiftId);
             currentShift.TotalExprenses -= expense.Amount;

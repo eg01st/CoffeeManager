@@ -187,6 +187,9 @@
     <Compile Include="Expense.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="ExpenseSuplyProduct.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="ExpenseType.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
