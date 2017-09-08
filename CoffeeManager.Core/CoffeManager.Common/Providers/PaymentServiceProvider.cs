@@ -93,5 +93,13 @@ namespace CoffeManager.Common
                 { nameof(shiftId), shiftId.ToString()},
             });
         }
+
+        public async Task RemoveExpenseType(int expenseTypeId)
+        {
+            await Delete(RoutesConstants.RemoveExpenseType, new Dictionary<string, string>()
+            {
+                { nameof(expenseTypeId), expenseTypeId.ToString()},
+            });
+        }
     }
 }

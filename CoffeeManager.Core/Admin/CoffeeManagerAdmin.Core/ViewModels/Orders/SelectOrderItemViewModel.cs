@@ -46,7 +46,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Orders
             if (ok)
             {
                 await manager.DeleteSuplyProduct(_prod.Id);
-                Publish(new SuplyProductDeletedMessage(this));
+                Publish(new SuplyListChangedMessage(this));
             }
             _isPromt = false;
         }

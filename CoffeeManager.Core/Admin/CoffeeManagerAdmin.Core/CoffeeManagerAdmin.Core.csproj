@@ -55,7 +55,6 @@
     <Compile Include="Messages\ProductListChangedMessage.cs" />
     <Compile Include="Messages\SuplyListChangedMessage.cs" />
     <Compile Include="Messages\ProcessRequestSuplyListChangedMessage.cs" />
-    <Compile Include="Messages\SuplyProductDeletedMessage.cs" />
     <Compile Include="ViewModels\Users\UsersViewModel.cs" />
     <Compile Include="ViewModels\Users\UserItemViewModel.cs" />
     <Compile Include="ViewModels\Users\UserDetailsViewModel.cs" />
@@ -88,7 +87,7 @@
     <Compile Include="ViewModels\Statistic\BaseStatisticSaleItemViewModel.cs" />
     <Compile Include="ViewModels\Statistic\StatisticSaleHeaderViewModel.cs" />
     <Compile Include="ViewModels\ManageExpenses\AddExpenseTypeViewModel.cs" />
-    <Compile Include="Messages\ExpenseAddedMessage.cs" />
+    <Compile Include="Messages\ExpenseListChangedMessage.cs" />
     <Compile Include="ViewModels\ManageExpenses\ExpenseTypeDetailsViewModel.cs" />
     <Compile Include="ViewModels\ManageExpenses\MappedSuplyProductItemViewModel.cs" />
     <Compile Include="ViewModels\ManageExpenses\MapExpenseToSuplyProductViewModel.cs" />

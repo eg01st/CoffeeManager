@@ -85,5 +85,10 @@ namespace CoffeManager.Common
         {
             await paymentProvider.AddExpense(type, ShiftNo);
         }
+
+        public async Task RemoveExpenseType(int expenseTypeId)
+        {
+            await paymentProvider.RemoveExpenseType(expenseTypeId);
+        }
     }
 }

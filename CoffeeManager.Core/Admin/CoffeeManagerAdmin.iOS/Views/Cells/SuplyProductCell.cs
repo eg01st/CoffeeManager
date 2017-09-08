@@ -17,13 +17,13 @@ namespace CoffeeManagerAdmin.iOS
         public static readonly NSString Key = new NSString("SuplyProductCell");
         public static readonly UINib Nib;
 
-        private ICommand _longPressCommand;
-        public ICommand RequestSuplyCommand
+        private ICommand deleteCommand;
+        public ICommand DeleteCommand
         {
-            get { return _longPressCommand; }
+            get { return deleteCommand; }
             set
             {
-                _longPressCommand = value;
+                deleteCommand = value;
 
             }
         }
@@ -35,8 +35,8 @@ namespace CoffeeManagerAdmin.iOS
 
         protected SuplyProductCell(IntPtr handle) : base(handle)
         {
-            // Note: this .ctor should not contain any initialization logic.
-
+            var longPressGesture = new UILongPressGestureRecognizer(() => DeleteCommand?.Execute(null));
+            AddGestureRecognizer(longPressGesture);
         }
 
         public override void AwakeFromNib()
@@ -49,6 +49,7 @@ namespace CoffeeManagerAdmin.iOS
                 var set = this.CreateBindingSet<SuplyProductCell, SuplyProductItemViewModel>();
                 set.Bind(NameLabel).To(vm => vm.Name);
                 set.Bind(AmountLabel).To(vm => vm.Quatity);
+                set.Bind(this).For(t => t.DeleteCommand).To(vm => vm.DeleteItemCommand);
                 set.Apply();
 
             });

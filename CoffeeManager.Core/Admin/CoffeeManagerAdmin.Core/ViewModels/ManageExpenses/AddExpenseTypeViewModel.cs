@@ -34,7 +34,7 @@ namespace CoffeeManagerAdmin.Core
             if(!string.IsNullOrEmpty(ExpenseName))
             {
                 await paymentManager.AddNewExpenseType(ExpenseName);
-                Publish(new ExpenseAddedMessage(this));
+                Publish(new ExpenseListChangedMessage(this));
                 Close(this);
             }
         }

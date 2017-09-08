@@ -30,9 +30,27 @@ namespace CoffeeManagerAdmin.iOS
             }
         }
 
+        private ICommand deleteExpenseTypeCommand;
+        public ICommand DeleteExpenseTypeCommand
+        {
+            get { return deleteExpenseTypeCommand; }
+            set
+            {
+                deleteExpenseTypeCommand = value;
+
+            }
+        }
+
         protected ManageExpensesTableViewCell(IntPtr handle) : base(handle)
         {
-            // Note: this .ctor should not contain any initialization logic.
+            var longPressGesture = new UILongPressGestureRecognizer((sender) =>
+            {
+                if(sender.State == UIGestureRecognizerState.Began)
+                {
+                    DeleteExpenseTypeCommand?.Execute(null);
+                }
+            });
+            AddGestureRecognizer(longPressGesture);
         }
 
         public override void AwakeFromNib()
@@ -44,6 +62,7 @@ namespace CoffeeManagerAdmin.iOS
                 set.Bind(NameLabel).To(vm => vm.Name);
                 set.Bind(IsActiveSwitch).For(s => s.On).To(vm => vm.IsActive);
                 set.Bind(this).For(t => t.ToggleIsActiveCommand).To(vm => vm.ToggleIsActiveCommand);
+                set.Bind(this).For(t => t.DeleteExpenseTypeCommand).To(vm => vm.DeleteExpenseTypeCommand);
                 set.Apply();    
                 IsActiveSwitch.ValueChanged += (sender, e) => 
                 {

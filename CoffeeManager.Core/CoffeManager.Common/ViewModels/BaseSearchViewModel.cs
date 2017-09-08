@@ -12,7 +12,7 @@ namespace CoffeManager.Common
 
         private string _searchString;
 
-        public async void Init()
+        public async Task Init()
         {
             var loadedItems = await ExecuteSafe(LoadData);
             _orginalItems = Items = loadedItems;
