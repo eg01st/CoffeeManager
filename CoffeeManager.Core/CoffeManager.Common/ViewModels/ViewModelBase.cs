@@ -6,6 +6,7 @@ using Acr.UserDialogs;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
 using MvvmCross.Plugins.Messenger;
+using System.Windows.Input;
 
 namespace CoffeManager.Common
 {
@@ -29,7 +30,9 @@ namespace CoffeManager.Common
                 RaisePropertyChanged(nameof(IsLoading));
             }
         }
-        
+
+        #region IOC
+
         protected IUserDialogs UserDialogs
         {
             get
@@ -57,6 +60,31 @@ namespace CoffeManager.Common
                 }
                 return null;
             }
+        }
+        #endregion
+        public ICommand CloseCommand { get; }
+
+
+
+        public ViewModelBase()
+        {
+            CloseCommand = new MvxCommand(DoClose);
+        }
+
+        private void DoClose()
+        {
+            OnClose();
+            DoUnsubscribe();
+            Close(this);
+        }
+
+
+        protected virtual void OnClose()
+        {
+        }
+
+        protected virtual void DoUnsubscribe()
+        {
         }
 
         protected MvxSubscriptionToken Subscribe<TMessage>(Action<TMessage> action)

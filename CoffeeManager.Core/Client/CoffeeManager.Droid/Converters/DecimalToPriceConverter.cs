@@ -10,5 +10,10 @@ namespace CoffeeManager.Droid.Converters
         {
             return value.ToString("####");
         }
+
+        protected override decimal ConvertBack(string value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return decimal.Parse(value);
+        }
     }
 }

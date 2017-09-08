@@ -1,65 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:local="http://schemas.android.com/apk/res-auto"
+    xmlns:local="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="60dp"
+    android:layout_height="match_parent"
     local:MvxBind="LongPress DismisItemCommand">
-  <CardView
-      android:layout_gravity="center"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:foreground="?android:selectableItemBackground"
-      local:cardElevation="4dp"
-      local:cardUseCompatPadding="true"
-      local:cardCornerRadius="5dp">
-    <LinearLayout
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:orientation="horizontal">
-    <TextView
-      android:layout_marginLeft="20dp"
-      android:layout_width="300dp"
-      android:layout_height="wrap_content"
-      android:textSize="24dp"
-      local:MvxBind="Text Name"/>
-    <TextView
-      android:layout_marginLeft="50dp"
-      android:layout_width="50dp"
-      android:layout_height="wrap_content"
-      android:textSize="24dp"
-      local:MvxBind="Text DecimalToPrice(Amount)"/>
-    <TextView  
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:textSize="24dp"
-      android:text=" грн"/>
-    <TextView
-      android:layout_marginLeft="50dp"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:textSize="24dp"
-      android:lines="1"
-      local:MvxBind="Text Time"/>
-    <TextView
-      android:layout_marginLeft="50dp"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:textSize="24dp"
-      android:lines="1"
-      local:MvxBind="Text Status"/>
-      <ImageView
-        android:layout_marginLeft="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_star_small"
-        local:MvxBind="Visibility BoolToVisibility(IsPoliceSale)"/>
-      <ImageView
-        android:layout_marginLeft="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_credit_card_small"
-        local:MvxBind="Visibility BoolToVisibility(IsCreditCardSale)"/>
-    </LinearLayout>
-  </CardView>
+    <CardView
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:foreground="?android:selectableItemBackground"
+        local:cardElevation="4dp"
+        local:cardUseCompatPadding="true"
+        local:cardCornerRadius="5dp">
+        <LinearLayout
+            android:layout_marginLeft="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="100">
+            <TextView
+                android:layout_weight="35"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="24dp"
+                local:MvxBind="Text Name" />
+            <LinearLayout
+                android:layout_weight="5"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="24dp"
+                    local:MvxBind="Text DecimalToPrice(Amount)" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="24dp"
+                    android:text=" грн" />
+            </LinearLayout>
+            <TextView
+                android:layout_weight="20"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="24dp"
+                android:lines="1"
+                local:MvxBind="Text Time" />
+            <TextView
+                android:layout_weight="20"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="24dp"
+                android:lines="1"
+                local:MvxBind="Text Status" />
+            <ImageView
+                android:gravity="center"
+                android:layout_weight="10"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_star_small"
+                local:MvxBind="Visibility BoolToVisibility(IsPoliceSale)" />
+            <ImageView
+                android:gravity="center"
+                android:layout_weight="10"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_credit_card_small"
+                local:MvxBind="Visibility BoolToVisibility(IsCreditCardSale)" />
+        </LinearLayout>
+    </CardView>
 </LinearLayout>

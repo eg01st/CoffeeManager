@@ -1,13 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:local="http://schemas.android.com/apk/res-auto"
+    xmlns:local="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-  <Mvx.MvxListView
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:orientation="vertical"
-      local:MvxBind="ItemsSource Items"
-      local:MvxItemTemplate="@layout/expense_item" />
+    <LinearLayout
+        android:layout_marginLeft="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="100">
+        <TextView
+            android:layout_weight="40"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="24dp"
+            android:textColor="#000000"
+            android:text="Наименование" />
+        <TextView
+            android:layout_weight="30"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="24dp"
+            android:textColor="#000000"
+            android:text="Сумма" />
+        <TextView
+            android:layout_weight="30"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="24dp"
+            android:textColor="#000000"
+            android:text="Количество" />
+    </LinearLayout>
+    <Mvx.MvxListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        local:MvxBind="ItemsSource Items"
+        local:MvxItemTemplate="@layout/expense_item" />
 </LinearLayout>

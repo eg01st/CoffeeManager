@@ -6,7 +6,7 @@ using CoffeeManager.Core.ViewModels;
 
 namespace CoffeeManager.Droid.Views
 {
-    [Activity(Theme = "@style/Theme.AppCompat.Light", Label = "Расходы", WindowSoftInputMode = SoftInput.AdjustPan, ScreenOrientation = ScreenOrientation.Landscape)]
+    [Activity(Theme = "@style/Theme.AppCompat.Light", Label = "Расходы", WindowSoftInputMode = SoftInput.AdjustPan, ScreenOrientation = ScreenOrientation.Portrait)]
     public class ExpenseView : ActivityBase<ExpenseViewModel>
     {
         protected override void OnCreate(Bundle savedInstanceState)

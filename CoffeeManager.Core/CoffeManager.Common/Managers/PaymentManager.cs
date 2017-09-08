@@ -80,5 +80,10 @@ namespace CoffeManager.Common
         {
             return await paymentProvider.GetMappedSuplyProductsToExpense(expenseTypeId);
         }
+
+        public async Task AddExpense(ExpenseType type)
+        {
+            await paymentProvider.AddExpense(type, ShiftNo);
+        }
     }
 }
