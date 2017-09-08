@@ -224,6 +224,8 @@
     <Compile Include="Bootstrap\MessengerPluginBootstrap.cs" />
     <Compile Include="Bootstrap\ConnectivityPluginBootstrap.cs" />
     <Compile Include="Platform\EmailService.cs" />
+    <Compile Include="Extensions\ViewListenersExtensions.cs" />
+    <Compile Include="Listeners\ViewOnClickListener.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -240,7 +242,7 @@
     <AndroidResource Include="Resources\layout\user_card.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\main.axml">
+    <AndroidResource Include="Resources\layout\main_content.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\product_list.axml">
@@ -282,6 +284,19 @@
     <AndroidResource Include="Resources\layout\selected_product_card.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\suply_product_card.axml" />
+    <AndroidResource Include="Resources\layout\main.axml" />
+    <AndroidResource Include="Resources\layout\main_side_menu.axml" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_menu_black_24dp.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_menu_black_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_menu_black_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_menu_black_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_menu_black_24dp.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_keyboard_backspace_black_24dp.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_keyboard_backspace_black_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_keyboard_backspace_black_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_keyboard_backspace_black_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_keyboard_backspace_black_24dp.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
@@ -312,6 +327,13 @@
     <Folder Include="Views\Abstract\" />
     <Folder Include="Views\Controls\" />
     <Folder Include="Platform\" />
+    <Folder Include="Extensions\" />
+    <Folder Include="Listeners\" />
+    <Folder Include="Resources\drawable-hdpi\" />
+    <Folder Include="Resources\drawable-mdpi\" />
+    <Folder Include="Resources\drawable-xhdpi\" />
+    <Folder Include="Resources\drawable-xxhdpi\" />
+    <Folder Include="Resources\drawable-xxxhdpi\" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\styles.xml" />

@@ -85,5 +85,13 @@ namespace CoffeManager.Common
                 { nameof(expenseTypeId), expenseTypeId.ToString()},
             });
         }
+
+        public async Task AddExpense(ExpenseType type, int shiftId)
+        {
+            await Post(RoutesConstants.AddExpenseExtended, type, new Dictionary<string, string>()
+            {
+                { nameof(shiftId), shiftId.ToString()},
+            });
+        }
     }
 }

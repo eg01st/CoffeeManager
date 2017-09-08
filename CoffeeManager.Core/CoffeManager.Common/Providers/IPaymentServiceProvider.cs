@@ -26,5 +26,7 @@ namespace CoffeManager.Common
         Task MapExpenseToSuplyProduct(int expenseTypeId, int suplyProductId);
         Task RemoveMappedSuplyProductsToExpense(int expenseTypeId, int suplyProductId);
         Task<IEnumerable<SupliedProduct>> GetMappedSuplyProductsToExpense(int expenseTypeId);
+
+        Task AddExpense(ExpenseType type, int shiftId);
     }
 }

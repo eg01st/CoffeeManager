@@ -5,6 +5,7 @@ using System.Windows.Input;
 using CoffeeManager.Core.Messages;
 using CoffeManager.Common;
 using MvvmCross.Core.ViewModels;
+using CoffeeManager.Models;
 
 namespace CoffeeManager.Core.ViewModels
 {
@@ -12,15 +13,23 @@ namespace CoffeeManager.Core.ViewModels
     {
         private readonly IPaymentManager manager;
 
-        protected List<BaseItemViewModel> _items;
-        protected List<BaseItemViewModel> _searchItems;
-        private BaseItemViewModel _selectedExpence;
+        protected List<ExpenseItemExtendedViewModel> _items;
+        protected List<ExpenseItemExtendedViewModel> _searchItems;
+        private ExpenseItemExtendedViewModel _selectedExpence;
         private string _searchString;
-        private string _amount;
-        private string _itemCount;
-        private string _newExpenseType;
 
-        public List<BaseItemViewModel> Items
+        public ExpenseItemExtendedViewModel SelectedExpense
+        {
+            get { return _selectedExpence; }
+            set
+            {
+                _selectedExpence = value;
+                RaisePropertyChanged(nameof(SelectedExpense));
+                RaisePropertyChanged(nameof(IsAddButtomEnabled));
+            }
+        }
+
+        public List<ExpenseItemExtendedViewModel> Items
         {
             get { return _items; }
             set
@@ -30,7 +39,7 @@ namespace CoffeeManager.Core.ViewModels
             }
         }
 
-        public List<BaseItemViewModel> SearchItems
+        public List<ExpenseItemExtendedViewModel> SearchItems
         {
             get { return string.IsNullOrEmpty(SearchString) ? _items : _searchItems; }
             set
@@ -50,67 +59,18 @@ namespace CoffeeManager.Core.ViewModels
                 SearchCommand.Execute(null);
             }
         }
+  
 
-        public string SelectedExprense
-        {
-            get { return _selectedExpence.Name; }
-            set
-            {
-                _selectedExpence.Name = value;
-                RaisePropertyChanged(nameof(SelectedExprense));
-            }
-        }
-        public string Amount
-        {
-            get { return _amount; }
-            set
-            {
-                _amount = value;
-                RaisePropertyChanged(nameof(Amount));
-                RaisePropertyChanged(nameof(IsAddButtomEnabled));
-            }
-        }
-
-        public string ItemCount
-        {
-            get { return _itemCount; }
-            set
-            {
-                _itemCount = value;
-                RaisePropertyChanged(nameof(ItemCount));
-                RaisePropertyChanged(nameof(IsAddButtomEnabled));
-            }
-        }
-        public string NewExprenseType
-        {
-            get { return _newExpenseType; }
-            set
-            {
-                _newExpenseType = value;
-                RaisePropertyChanged(nameof(NewExprenseType));
-                RaisePropertyChanged(nameof(IsAddNewExpenseTypeEnabled));
-            }
-        }
-
-        public ICommand AddNewExprenseTypeCommand { get; }
         public ICommand AddExpenseCommand { get; }
-        public ICommand SelectExpenseTypeCommand { get; }
         public ICommand SearchCommand { get; }
 
-        public ICommand ShowCurrentShiftExpensesCommand { get; set; }
 
-        public bool IsAddNewExpenseTypeEnabled => !string.IsNullOrEmpty(NewExprenseType);
-        public bool IsAddButtomEnabled => !string.IsNullOrEmpty(Amount) && !string.IsNullOrEmpty(SelectedExprense) && !string.IsNullOrEmpty(ItemCount);
-
-   
+        public bool IsAddButtomEnabled =>  SelectedExpense != null;
 
         public ExpenseViewModel(IPaymentManager manager)
         {
             this.manager = manager;
-            AddNewExprenseTypeCommand = new MvxCommand(DoAddNewExpenseType);
             AddExpenseCommand = new MvxCommand(DoAddExpense);
-            SelectExpenseTypeCommand = new MvxCommand<BaseItemViewModel>(DoSelectExpenseType);
-            ShowCurrentShiftExpensesCommand = new MvxCommand(() => ShowViewModel<CurrentShiftExpensesViewModel>());
             SearchCommand = new MvxCommand(DoSearch);
         }
 
@@ -126,39 +86,43 @@ namespace CoffeeManager.Core.ViewModels
             }
         }
 
-
-        private void DoSelectExpenseType(BaseItemViewModel item)
-        {
-            _selectedExpence = item;
-            RaisePropertyChanged(nameof(SelectedExprense));
-            RaisePropertyChanged(nameof(IsAddButtomEnabled));
-        }
-
         private void DoAddExpense()
         {
-            Confirm($"Добавить сумму {Amount} как трату за {SelectedExprense}?", () => AddExpense());
+            if(SelectedExpense.ExpenseSuplyProducts.Count < 1
+               || SelectedExpense.ExpenseSuplyProducts.All(e => e.Amount <= 0 && e.ItemCount <= 0))
+            {
+                Alert("Не вписаны детали поставки");
+                return;
+            }
+
+            if (SelectedExpense.ExpenseSuplyProducts.Any(e => (e.Amount > 0 && e.ItemCount <=0) || (e.Amount <= 0 && e.ItemCount > 0)))
+            {
+                Alert("Неверно вписаны детали поставки");
+                return;
+            }
+
+            var sum = SelectedExpense.ExpenseSuplyProducts.Sum(s => s.Amount);
+            Confirm($"Добавить сумму {sum} как трату за {SelectedExpense.Name}?", () => AddExpense());
         }
 
         private async void AddExpense()
         {
-            var amount = decimal.Parse(Amount);
-            await manager.AddExpense(_selectedExpence.Id, amount, int.Parse(ItemCount));
-            Publish(new ExpenseAddedMessage(amount, this));
+            var type = new ExpenseType();
+            type.Id = SelectedExpense.Id;
+            type.CoffeeRoomNo = SelectedExpense.CoffeeRoomNo;
+            type.SuplyProducts = SelectedExpense.ExpenseSuplyProducts.Where(e => e.Amount > 0 && e.ItemCount > 0)
+                .Select(s => new SupliedProduct()
+                {
+                    Id = s.Id,
+                    Price = s.Amount,
+                    Quatity = s.ItemCount,
+                    CoffeeRoomNo = SelectedExpense.CoffeeRoomNo
+                })
+                .ToArray();
+            await manager.AddExpense(type);
             Close(this);
         }
 
-        private void DoAddNewExpenseType()
-        {
-            Confirm($"Добавить {NewExprenseType} как новый тип расходов?", () => AddNewExpenseType());
-        }
-
-        private async void AddNewExpenseType()
-        {
-            await manager.AddNewExpenseType(NewExprenseType);
-            await LoadTypes();
-            ShowSuccessMessage($"{NewExprenseType} добавлен и находится в списке.");
-            NewExprenseType = string.Empty;
-        }
 
         public async void Init()
         {
@@ -170,7 +134,7 @@ namespace CoffeeManager.Core.ViewModels
             await ExecuteSafe(async () =>
             {
                 var result = await manager.GetActiveExpenseItems();
-                SearchItems = Items = result.Select(s => new BaseItemViewModel(s)).ToList();
+                SearchItems = Items = result.Select(s => new ExpenseItemExtendedViewModel(s)).ToList();
             });
         }
     }

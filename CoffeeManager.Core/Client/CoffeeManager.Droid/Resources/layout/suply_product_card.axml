@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:local="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:foreground="?android:selectableItemBackground"
+        local:cardElevation="4dp"
+        local:cardUseCompatPadding="true"
+        local:cardCornerRadius="5dp">
+        <LinearLayout
+            android:layout_marginLeft="4dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="100"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:baselineAligned="false">
+            <TextView
+                android:gravity="center_vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="40"
+                android:textSize="20dp"
+                local:MvxBind="Text Name" />
+            <EditText
+                android:inputType="numberDecimal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="30"
+                android:textSize="20dp"
+                local:MvxBind="Text DecimalToPrice(Amount)" />
+            <EditText
+                android:inputType="numberDecimal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="30"
+                android:textSize="20dp"
+                local:MvxBind="Text DecimalToPrice(ItemCount)" />
+        </LinearLayout>
+    </CardView>
+</LinearLayout>

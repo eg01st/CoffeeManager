@@ -37,7 +37,6 @@
     <Compile Include="App.cs" />
     <Compile Include="Messages\AmoutChangedMessage.cs" />
     <Compile Include="Messages\BaseMessage.cs" />
-    <Compile Include="Messages\ExpenseAddedMessage.cs" />
     <Compile Include="Messages\ExpenseDeletedMessage.cs" />
     <Compile Include="Messages\SaleRemovedMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -63,6 +62,8 @@
     <Compile Include="ViewModels\Products\ProductItemViewModel.cs" />
     <Compile Include="ViewModels\Products\SelectedProductViewModel.cs" />
     <Compile Include="EventArgs\SaleItemEventArgs.cs" />
+    <Compile Include="ViewModels\SuplyProductViewModel.cs" />
+    <Compile Include="ViewModels\ExpenseItemExtendedViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Cheesebaron.MvxPlugins.SMS, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">

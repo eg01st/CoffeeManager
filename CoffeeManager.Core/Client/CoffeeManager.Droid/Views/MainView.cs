@@ -14,12 +14,17 @@ using MvvmCross.Binding.BindingContext;
 using TabItem = CoffeeManager.Droid.Entities.TabItem;
 using Android.Content;
 using Android.Util;
+using Android.Support.V4.Widget;
+using Android.Support.V7.App;
 
 namespace CoffeeManager.Droid.Views
 {
     [Activity(Theme = "@style/Theme.AppCompat.Light", ScreenOrientation = ScreenOrientation.Portrait)]
     public class MainView : ActivityBase<MainViewModel>
     {
+        private readonly int drawerGravity = GravityCompat.Start;
+
+        private DrawerLayout drawerLayout;
         private ViewPager viewPager;
         private TabLayout tabLayout;
         private View _policeSaveView;
@@ -46,7 +51,63 @@ namespace CoffeeManager.Droid.Views
             InitToolBarCommands();
             SetTabLayout();
 
+            InitLeftMenu();
+
             DoBind();
+        }
+
+        private void InitLeftMenu()
+        {
+            drawerLayout = FindViewById<DrawerLayout>(Resource.Id.main_drawer);
+            var drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, Resource.Drawable.ic_menu_black_24dp, Resource.Drawable.ic_keyboard_backspace_black_24dp);
+            drawerLayout.SetDrawerListener(drawerToggle);
+            drawerToggle.SyncState();
+            var ids = GetMenuItemIds();
+            foreach (var id in ids)
+            {
+                var view = FindViewById(id);
+                view.SetOnClickListener(OnMenuitemClicked);
+            }
+        }
+
+        private int[] GetMenuItemIds()
+        {
+            return
+                new[]
+                {
+                    Resource.Id.add_expense,
+                    Resource.Id.shift_expenses,
+                    Resource.Id.shift_sales,
+                    Resource.Id.end_shift,
+                };
+        }
+
+        private void OnMenuitemClicked(View view)
+        {
+            OnMenuItemClicked(view.Id);
+
+            drawerLayout.CloseDrawers();
+        }
+
+        private void OnMenuItemClicked(int viewId)
+        {
+            switch (viewId)
+            {
+                case Resource.Id.shift_expenses:
+                    ViewModel.ShowCurrentShiftExpensesCommand.Execute(null);
+                    break;
+                case Resource.Id.shift_sales:
+                    ViewModel.ShowCurrentSalesCommand.Execute(null);
+                    break;
+                case Resource.Id.end_shift:
+                    ViewModel.EndShiftCommand.Execute(null);
+                    break;
+                case Resource.Id.add_expense:
+                    ViewModel.ShowExpenseCommand.Execute(null);
+                    break;
+                default:
+                    break;
+            }
         }
 
         private void DoBind()
@@ -69,17 +130,6 @@ namespace CoffeeManager.Droid.Views
             SupportActionBar.SetCustomView(Resource.Layout.action_bar);
             SupportActionBar.SetDisplayShowCustomEnabled(true);
 
-            var endShiftImage = FindViewById<ImageView>(Resource.Id.end_shift_icon);
-            endShiftImage.Click += Image_Click;
-
-            var currentSales = FindViewById<TextView>(Resource.Id.current_shift_sales);
-            currentSales.Click += CurrentSales_Click;
-
-
-            var expense = FindViewById<TextView>(Resource.Id.exprense);
-            expense.Click += Expense_Click;
-
-
             _policeSaveView = FindViewById<View>(Resource.Id.police_sale_enabled);
 
             var police = FindViewById<ImageView>(Resource.Id.police_sale);
@@ -101,22 +151,6 @@ namespace CoffeeManager.Droid.Views
         {
             ViewModel.EnablePoliceSaleCommand.Execute(null);
             _policeSaveView.Visibility = ViewModel.IsPoliceSaleEnabled ? ViewStates.Visible : ViewStates.Invisible;
-        }
-
-        private void Expense_Click(object sender, System.EventArgs e)
-        {
-            ViewModel.ShowExpenseCommand.Execute(null);
-        }
-
-        private void CurrentSales_Click(object sender, System.EventArgs e)
-        {
-            ViewModel.ShowCurrentSalesCommand.Execute(null);
-        }
-
-
-        private void Image_Click(object sender, System.EventArgs e)
-        {
-            ViewModel.EndShiftCommand.Execute(null);
         }
 
         private void SetTabLayout()
@@ -183,7 +217,35 @@ namespace CoffeeManager.Droid.Views
 
         public override void OnBackPressed()
         {
-
+            if (drawerLayout.IsDrawerOpen(drawerGravity) == true)
+            {
+                drawerLayout.CloseDrawer(drawerGravity);
+            }
         }
+
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            var itemId = item.ItemId;
+            if (itemId == Android.Resource.Id.Home)
+            {
+                if (drawerLayout.IsDrawerOpen(drawerGravity) == true)
+                {
+                    drawerLayout.CloseDrawer(drawerGravity);
+                }
+                else
+                {
+                    drawerLayout.OpenDrawer(drawerGravity);
+                }
+                return true;
+            }
+
+            return false;
+        }
+
+        private void OpenDrawer()
+        {
+            drawerLayout.OpenDrawer(drawerGravity);
+        }
+
     }
 }

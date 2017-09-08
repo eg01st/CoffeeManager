@@ -3,6 +3,7 @@ using MvvmCross.Core.ViewModels;
 using System.Threading.Tasks;
 using CoffeeManagerAdmin.Core.ViewModels.Orders;
 using CoffeManager.Common;
+using CoffeeManager.Core.ViewModels;
 
 namespace CoffeeManagerAdmin.Core.ViewModels
 {
@@ -36,6 +37,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels
         public ICommand EditUsersCommand => _editUsersCommand;
         public ICommand ShowStatiscticCommand => _showStatiscticCommand;
         public ICommand ShowExpensesCommand { get; set; }
+
 
         public string CurrentBalance
         {

@@ -7,6 +7,7 @@ namespace CoffeeManager.Core.ViewModels
     {
         private int _id;
         private string _name;
+        private int coffeeroomNo;
 
         public int Id
         {
@@ -15,6 +16,16 @@ namespace CoffeeManager.Core.ViewModels
             {
                 _id = value;
                 RaisePropertyChanged(nameof(Id));
+            }
+        }
+
+        public int CoffeeRoomNo
+        {
+            get { return coffeeroomNo; }
+            set
+            {
+                coffeeroomNo = value;
+                RaisePropertyChanged(nameof(CoffeeRoomNo));
             }
         }
 
@@ -32,6 +43,7 @@ namespace CoffeeManager.Core.ViewModels
         {
             Id = item.Id;
             Name = item.Name;
+            CoffeeRoomNo = item.CoffeeRoomNo;
         }
 
         public BaseItemViewModel()

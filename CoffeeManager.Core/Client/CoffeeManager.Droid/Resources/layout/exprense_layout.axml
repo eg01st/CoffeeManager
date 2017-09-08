@@ -1,142 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:local="http://schemas.android.com/apk/res-auto"
+    xmlns:local="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-  android:keepScreenOn="true">
-
-  <LinearLayout
-    android:layout_margin="30dp"
-    android:layout_width="900dp"
-    android:layout_height="300dp"
-    android:orientation="horizontal"
-    android:gravity="top"
-    >
+    android:keepScreenOn="true">
     <LinearLayout
-           android:layout_width="300dp"
-           android:layout_height="300dp"
-           android:orientation="vertical">
-    <LinearLayout
-           android:layout_width="150dp"
-           android:layout_height="70dp"
-           android:orientation="horizontal">
-      <TextView
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:textSize="20dp"
-          android:text="Поиск: "/>
-      <EditText
- 
-          android:layout_width="150dp"
-          android:layout_height="wrap_content"
-          android:textSize="20dp"
-          local:MvxBind="Text SearchString"/>
-    </LinearLayout>
-    <Mvx.MvxListView
-      android:layout_width="300dp"
-      android:layout_height="300dp"
-      android:orientation="vertical"
-      local:MvxBind="ItemsSource SearchItems; ItemClick SelectExpenseTypeCommand"
-      local:MvxItemTemplate="@layout/exprense_card" />
-    </LinearLayout>
-    <LinearLayout
-    android:layout_margin="30dp"
-    android:layout_width="300dp"
-    android:layout_height="400dp"
-    android:orientation="vertical">
-      <LinearLayout
-          android:layout_width="300dp"
-          android:layout_height="70dp"
-          android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="20dp"
-            android:text="Выбраное: "/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#000000"
-            android:textSize="20dp"
-            local:MvxBind="Text SelectedExprense"/>
-      </LinearLayout>
-      <LinearLayout
-        android:layout_width="300dp"
-        android:layout_height="400dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="100"
         android:orientation="horizontal">
         <LinearLayout
-          android:layout_width="150dp"
-          android:layout_height="70dp"
-          android:orientation="horizontal">
-          <TextView
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:textSize="20dp"
-              android:text="Сумма: "/>
-          <EditText
-                     android:inputType="numberDecimal"
-              android:layout_width="50dp"
-              android:layout_height="wrap_content"
-              android:textSize="20dp"
-              local:MvxBind="Text Amount"/>
+            android:layout_margin="16dp"
+            android:layout_width="0dp"
+            android:layout_weight="30"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    android:text="Поиск: " />
+                <EditText
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    local:MvxBind="Text SearchString" />
+            </LinearLayout>
+            <Mvx.MvxListView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                local:MvxBind="ItemsSource SearchItems; SelectedItem SelectedExpense"
+                local:MvxItemTemplate="@layout/exprense_card" />
         </LinearLayout>
         <LinearLayout
-           android:layout_width="150dp"
-           android:layout_height="70dp"
-           android:orientation="horizontal">
-          <TextView
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:textSize="20dp"
-              android:text="Количество: "/>
-          <EditText
-              android:inputType="numberDecimal"
-              android:layout_width="50dp"
-              android:layout_height="wrap_content"
-              android:textSize="20dp"
-              local:MvxBind="Text ItemCount"/>
+            android:layout_width="0dp"
+            android:layout_weight="70"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:text="Записать"
+                local:MvxBind="Click AddExpenseCommand; Enabled IsAddButtomEnabled" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    android:text="Выбраное: " />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000000"
+                    android:textSize="20dp"
+                    local:MvxBind="Text SelectedExpense.Name" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="100"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="40"
+                    android:textSize="20dp"
+                    android:text="Товар" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="30"
+                    android:textSize="20dp"
+                    android:text="Сумма" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="30"
+                    android:textSize="20dp"
+                    android:text="Количество" />
+            </LinearLayout>
+            <Mvx.MvxListView
+                android:gravity="top"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                local:MvxBind="ItemsSource SelectedExpense.ExpenseSuplyProducts"
+                local:MvxItemTemplate="@layout/suply_product_card" />
         </LinearLayout>
-      </LinearLayout>
     </LinearLayout>
-    <LinearLayout
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:orientation="vertical">
-    <Button
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:textSize="20dp"
-      android:text="Записать"
-      local:MvxBind="Click AddExpenseCommand; Enabled IsAddButtomEnabled"/>
-    <Button
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:textSize="20dp"
-      android:text="Траты за смену"
-      local:MvxBind="Click ShowCurrentShiftExpensesCommand"/>
-    </LinearLayout>
-  </LinearLayout>
-  <LinearLayout
-  android:layout_marginLeft="30dp"
-  android:layout_width="match_parent"
-  android:layout_height="70dp"
-  android:orientation="horizontal">
-    <TextView
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:textSize="20dp"
-      android:text="Добавить другой расход: "/>
-    <EditText
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:textSize="20dp"
-        local:MvxBind="Text NewExprenseType" />
-    <Button
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:textSize="20dp"
-      android:text="Добавить"
-      local:MvxBind="Click AddNewExprenseTypeCommand; Enabled IsAddNewExpenseTypeEnabled"/>
-  </LinearLayout>
 </LinearLayout>

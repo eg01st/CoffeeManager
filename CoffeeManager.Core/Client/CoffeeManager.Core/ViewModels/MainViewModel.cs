@@ -82,6 +82,7 @@ namespace CoffeeManager.Core.ViewModels
         public ICommand EnableCreditCardSaleCommand { get; }
         public ICommand PayCommand {get;}
         public ICommand ItemSelectedCommand { get; }
+        public ICommand ShowCurrentShiftExpensesCommand { get; set; }
 
 
         public ObservableCollection<SelectedProductViewModel> SelectedProducts
@@ -136,6 +137,7 @@ namespace CoffeeManager.Core.ViewModels
             EnableCreditCardSaleCommand = new MvxCommand(() => IsCreditCardSaleEnabled = !IsCreditCardSaleEnabled);
             ItemSelectedCommand = new MvxCommand<SelectedProductViewModel>(DoSelectItem);
             PayCommand = new MvxAsyncCommand(DoPay);
+            ShowCurrentShiftExpensesCommand = new MvxCommand(() => ShowViewModel<CurrentShiftExpensesViewModel>());
         }
 
         public async void Init(int userId, int shiftId)
@@ -223,6 +225,13 @@ namespace CoffeeManager.Core.ViewModels
 
         }
 
+        protected override void DoUnsubscribe()
+        {
+            foreach (var item in allProducts)
+            {
+                item.ProductSelected -= OnProductSelected;
+            }
+        }
 
         private async void DoEndShift()
         {
@@ -235,7 +244,7 @@ namespace CoffeeManager.Core.ViewModels
             Confirm("Завершить смену?", () => 
             {
                 ShowViewModel<EndShiftViewModel>(new { shiftId = _shiftId });
-                Close(this);
+                CloseCommand.Execute(null);
             });
         }
 
