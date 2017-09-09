@@ -35,7 +35,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
-    <Compile Include="Messages\AmoutChangedMessage.cs" />
     <Compile Include="Messages\BaseMessage.cs" />
     <Compile Include="Messages\ExpenseDeletedMessage.cs" />
     <Compile Include="Messages\SaleRemovedMessage.cs" />

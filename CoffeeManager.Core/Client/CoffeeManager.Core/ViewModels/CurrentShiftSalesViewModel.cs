@@ -46,5 +46,10 @@ namespace CoffeeManager.Core.ViewModels
                 Items = items.Select(s => new SaleItemViewModel(productManager, s)).ToList();
             });
         }
+
+        protected override void DoUnsubscribe()
+        {
+            Unsubscribe<SaleRemovedMessage>(token);
+        }
     }
 }

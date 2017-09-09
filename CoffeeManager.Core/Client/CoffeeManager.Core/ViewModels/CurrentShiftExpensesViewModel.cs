@@ -41,7 +41,10 @@ namespace CoffeeManager.Core.ViewModels
                var items = await manager.GetShiftExpenses();
                Items = items.Select(s => new ExpenseItemViewModel(manager, s)).ToList();
            });
-
+        }
+        protected override void DoUnsubscribe()
+        {
+            Unsubscribe<ExpenseDeletedMessage>(_token);
         }
     }
 }

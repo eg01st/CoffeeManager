@@ -67,7 +67,6 @@ namespace CoffeeManager.Core.ViewModels
             await ExecuteSafe(async () =>
             {
                 await productManager.UtilizeSaleProduct(_sale.Id);
-                Publish(new AmoutChangedMessage(new Tuple<decimal, bool>(_sale.Amount, false), this));
                 Publish(new SaleRemovedMessage(this));
                 ShowSuccessMessage($"Списан товар {Name} !");
             });
@@ -78,7 +77,6 @@ namespace CoffeeManager.Core.ViewModels
             await ExecuteSafe(async () =>
             {
                 await productManager.DismisSaleProduct(_sale.Id);
-                Publish(new AmoutChangedMessage(new Tuple<decimal, bool>(_sale.Amount, false), this));
                 Publish(new SaleRemovedMessage(this));
                 ShowSuccessMessage($"Отменена продажа товара {Name} !");
             });

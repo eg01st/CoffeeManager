@@ -29,5 +29,10 @@ namespace CoffeeManager.Droid.Views
             }
             return false;
         }
+
+        public override void OnBackPressed()
+        {
+            ViewModel.CloseCommand.Execute(null);
+        }
     }
 }
