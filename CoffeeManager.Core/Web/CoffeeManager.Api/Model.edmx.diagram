@@ -51,6 +51,10 @@
         <EntityTypeShape EntityType="CoffeeRoomModel.ExpenseSuplyProduct" Width="1.5" PointX="13.5" PointY="11" />
         <AssociationConnector Association="CoffeeRoomModel.FK__ExpenseSu__Expen__67DE6983" />
         <AssociationConnector Association="CoffeeRoomModel.FK__ExpenseSu__Suply__68D28DBC" />
+        <EntityTypeShape EntityType="CoffeeRoomModel.InventoryReport" Width="1.5" PointX="11.25" PointY="21.5" />
+        <EntityTypeShape EntityType="CoffeeRoomModel.InventoryReportItem" Width="1.5" PointX="13.5" PointY="19" />
+        <AssociationConnector Association="CoffeeRoomModel.FK__Inventory__Inven__73501C2F" />
+        <AssociationConnector Association="CoffeeRoomModel.FK__Inventory__Suply__74444068" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

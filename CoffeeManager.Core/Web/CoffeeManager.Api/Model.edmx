@@ -86,6 +86,26 @@
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="IsRemoved" Type="bit" Nullable="false" />
         </EntityType>
+        <EntityType Name="InventoryReport">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CoffeeRoomNo" Type="int" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="InventoryReportItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CoffeeRoomNo" Type="int" Nullable="false" />
+          <Property Name="InventoryReportId" Type="int" Nullable="false" />
+          <Property Name="SuplyProductId" Type="int" Nullable="false" />
+          <Property Name="QuantityBefore" Type="money" Nullable="false" />
+          <Property Name="QuantityAfter" Type="money" Nullable="false" />
+          <Property Name="QuantityDiff" Type="money" Nullable="false" />
+        </EntityType>
         <EntityType Name="Messages">
           <Key>
             <PropertyRef Name="Id" />
@@ -181,8 +201,8 @@
           <Property Name="ExprenseTypeId" Type="int" />
           <Property Name="CoffeeRoomNo" Type="int" />
           <Property Name="Quantity" Type="money" />
-          <Property Name="Priority" Type="int" Nullable="false" />
           <Property Name="Removed" Type="bit" Nullable="false" />
+          <Property Name="InventoryEnabled" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="SuplyOrder">
           <Key>
@@ -311,6 +331,30 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="ExpenseSuplyProduct">
+              <PropertyRef Name="SuplyProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Inventory__Inven__73501C2F">
+          <End Role="InventoryReport" Type="Self.InventoryReport" Multiplicity="1" />
+          <End Role="InventoryReportItem" Type="Self.InventoryReportItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InventoryReport">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InventoryReportItem">
+              <PropertyRef Name="InventoryReportId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Inventory__Suply__74444068">
+          <End Role="SupliedProduct" Type="Self.SupliedProduct" Multiplicity="1" />
+          <End Role="InventoryReportItem" Type="Self.InventoryReportItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SupliedProduct">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InventoryReportItem">
               <PropertyRef Name="SuplyProductId" />
             </Dependent>
           </ReferentialConstraint>
@@ -549,6 +593,8 @@
           <EntitySet Name="Expense" EntityType="Self.Expense" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ExpenseSuplyProduct" EntityType="Self.ExpenseSuplyProduct" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ExpenseType" EntityType="Self.ExpenseType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InventoryReport" EntityType="Self.InventoryReport" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InventoryReportItem" EntityType="Self.InventoryReportItem" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Messages" EntityType="Self.Messages" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductCalculation" EntityType="Self.ProductCalculation" Schema="dbo" store:Type="Tables" />
@@ -582,6 +628,14 @@
           <AssociationSet Name="FK__ExpenseSu__Suply__6CA31EA0" Association="Self.FK__ExpenseSu__Suply__6CA31EA0">
             <End Role="SupliedProduct" EntitySet="SupliedProduct" />
             <End Role="ExpenseSuplyProduct" EntitySet="ExpenseSuplyProduct" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Inventory__Inven__73501C2F" Association="Self.FK__Inventory__Inven__73501C2F">
+            <End Role="InventoryReport" EntitySet="InventoryReport" />
+            <End Role="InventoryReportItem" EntitySet="InventoryReportItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Inventory__Suply__74444068" Association="Self.FK__Inventory__Suply__74444068">
+            <End Role="SupliedProduct" EntitySet="SupliedProduct" />
+            <End Role="InventoryReportItem" EntitySet="InventoryReportItem" />
           </AssociationSet>
           <AssociationSet Name="FK__Product__CupType__32E0915F" Association="Self.FK__Product__CupType__32E0915F">
             <End Role="CupType" EntitySet="CupType" />
@@ -1081,6 +1135,16 @@
             <End Role="SupliedProduct" EntitySet="SupliedProducts" />
             <End Role="ExpenseSuplyProduct" EntitySet="ExpenseSuplyProducts" />
           </AssociationSet>
+          <EntitySet Name="InventoryReports" EntityType="CoffeeRoomModel.InventoryReport" />
+          <EntitySet Name="InventoryReportItems" EntityType="CoffeeRoomModel.InventoryReportItem" />
+          <AssociationSet Name="FK__Inventory__Inven__73501C2F" Association="CoffeeRoomModel.FK__Inventory__Inven__73501C2F">
+            <End Role="InventoryReport" EntitySet="InventoryReports" />
+            <End Role="InventoryReportItem" EntitySet="InventoryReportItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Inventory__Suply__74444068" Association="CoffeeRoomModel.FK__Inventory__Suply__74444068">
+            <End Role="SupliedProduct" EntitySet="SupliedProducts" />
+            <End Role="InventoryReportItem" EntitySet="InventoryReportItems" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Dept">
           <Key>
@@ -1161,10 +1225,11 @@
           <Property Name="CoffeeRoomNo" Type="Int32" />
           <NavigationProperty Name="ProductCalculations" Relationship="CoffeeRoomModel.FK__ProductCa__Suply__7A3223E8" FromRole="SupliedProduct" ToRole="ProductCalculation" />
           <Property Name="Quantity" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="Priority" Type="Int32" Nullable="false" />
           <NavigationProperty Name="SuplyOrderItems" Relationship="CoffeeRoomModel.FK__SuplyOrde__Suply__0E391C95" FromRole="SupliedProduct" ToRole="SuplyOrderItem" />
           <NavigationProperty Name="ExpenseSuplyProducts" Relationship="CoffeeRoomModel.FK__ExpenseSu__Suply__68D28DBC" FromRole="SupliedProduct" ToRole="ExpenseSuplyProduct" />
           <Property Name="Removed" Type="Boolean" Nullable="false" />
+          <Property Name="InventoryEnabled" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="InventoryReportItems" Relationship="CoffeeRoomModel.FK__Inventory__Suply__74444068" FromRole="SupliedProduct" ToRole="InventoryReportItem" />
         </EntityType>
         <Association Name="FK_SupliedProduct_ExpenseType">
           <End Type="CoffeeRoomModel.ExpenseType" Role="ExpenseType" Multiplicity="0..1" />
@@ -1401,6 +1466,53 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="InventoryReport">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CoffeeRoomNo" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="InventoryReportItems" Relationship="CoffeeRoomModel.FK__Inventory__Inven__73501C2F" FromRole="InventoryReport" ToRole="InventoryReportItem" />
+        </EntityType>
+        <EntityType Name="InventoryReportItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CoffeeRoomNo" Type="Int32" Nullable="false" />
+          <Property Name="InventoryReportId" Type="Int32" Nullable="false" />
+          <Property Name="SuplyProductId" Type="Int32" Nullable="false" />
+          <Property Name="QuantityBefore" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="QuantityAfter" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="QuantityDiff" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <NavigationProperty Name="InventoryReport" Relationship="CoffeeRoomModel.FK__Inventory__Inven__73501C2F" FromRole="InventoryReportItem" ToRole="InventoryReport" />
+          <NavigationProperty Name="SupliedProduct" Relationship="CoffeeRoomModel.FK__Inventory__Suply__74444068" FromRole="InventoryReportItem" ToRole="SupliedProduct" />
+        </EntityType>
+        <Association Name="FK__Inventory__Inven__73501C2F">
+          <End Type="CoffeeRoomModel.InventoryReport" Role="InventoryReport" Multiplicity="1" />
+          <End Type="CoffeeRoomModel.InventoryReportItem" Role="InventoryReportItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InventoryReport">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InventoryReportItem">
+              <PropertyRef Name="InventoryReportId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Inventory__Suply__74444068">
+          <End Type="CoffeeRoomModel.SupliedProduct" Role="SupliedProduct" Multiplicity="1" />
+          <End Type="CoffeeRoomModel.InventoryReportItem" Role="InventoryReportItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SupliedProduct">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InventoryReportItem">
+              <PropertyRef Name="SuplyProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1601,8 +1713,8 @@
           <EntitySetMapping Name="SupliedProducts">
             <EntityTypeMapping TypeName="CoffeeRoomModel.SupliedProduct">
               <MappingFragment StoreEntitySet="SupliedProduct">
+                <ScalarProperty Name="InventoryEnabled" ColumnName="InventoryEnabled" />
                 <ScalarProperty Name="Removed" ColumnName="Removed" />
-                <ScalarProperty Name="Priority" ColumnName="Priority" />
                 <ScalarProperty Name="Quantity" ColumnName="Quantity" />
                 <ScalarProperty Name="CoffeeRoomNo" ColumnName="CoffeeRoomNo" />
                 <ScalarProperty Name="ExprenseTypeId" ColumnName="ExprenseTypeId" />
@@ -1713,6 +1825,28 @@
                 <ScalarProperty Name="Amount" ColumnName="Amount" />
                 <ScalarProperty Name="SuplyProductId" ColumnName="SuplyProductId" />
                 <ScalarProperty Name="ExpenseId" ColumnName="ExpenseId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InventoryReports">
+            <EntityTypeMapping TypeName="CoffeeRoomModel.InventoryReport">
+              <MappingFragment StoreEntitySet="InventoryReport">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="CoffeeRoomNo" ColumnName="CoffeeRoomNo" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InventoryReportItems">
+            <EntityTypeMapping TypeName="CoffeeRoomModel.InventoryReportItem">
+              <MappingFragment StoreEntitySet="InventoryReportItem">
+                <ScalarProperty Name="QuantityDiff" ColumnName="QuantityDiff" />
+                <ScalarProperty Name="QuantityAfter" ColumnName="QuantityAfter" />
+                <ScalarProperty Name="QuantityBefore" ColumnName="QuantityBefore" />
+                <ScalarProperty Name="SuplyProductId" ColumnName="SuplyProductId" />
+                <ScalarProperty Name="InventoryReportId" ColumnName="InventoryReportId" />
+                <ScalarProperty Name="CoffeeRoomNo" ColumnName="CoffeeRoomNo" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

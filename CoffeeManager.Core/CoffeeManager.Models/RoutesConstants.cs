@@ -76,5 +76,13 @@ namespace CoffeeManager.Models
         public const string Login = Users + "/login";
         public const string DeleteUser = Users + "/deleteUser";
 
+        public const string Inventory = Api + "/inventory";
+        public const string GetInventoryItems = Inventory + "/getInventoryItems";
+        public const string SentInventoryInfo = Inventory + "/sentInventoryInfo";
+        public const string ToggleItemInventoryEnabled = Inventory + "/toggleItemInventoryEnabled";
+        public const string GetInventoryReports = Inventory + "/getInventoryReports";
+        public const string GetInventoryReportDetails = Inventory + "/getInventoryReportDetails";
+       
+
     }
 }

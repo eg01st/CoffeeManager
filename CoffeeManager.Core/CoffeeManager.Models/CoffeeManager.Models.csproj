@@ -45,6 +45,8 @@
     <Compile Include="Entity.cs" />
     <Compile Include="Expense.cs" />
     <Compile Include="ExpenseType.cs" />
+    <Compile Include="InventoryItem.cs" />
+    <Compile Include="InventoryReport.cs" />
     <Compile Include="MetroExpense.cs" />
     <Compile Include="Order.cs" />
     <Compile Include="OrderItem.cs" />

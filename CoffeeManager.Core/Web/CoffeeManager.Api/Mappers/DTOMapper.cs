@@ -85,7 +85,8 @@ namespace CoffeeManager.Api.Mappers
                 CoffeeRoomNo = productDb.CoffeeRoomNo.Value,
                 Quatity = productDb.Quantity,
                 Price = productDb.Price,
-                ExpenseTypeId = productDb.ExprenseTypeId
+                ExpenseTypeId = productDb.ExprenseTypeId,
+                InventoryEnabled = productDb.InventoryEnabled
             };
         }
 
@@ -118,6 +119,16 @@ namespace CoffeeManager.Api.Mappers
                 item.SuplyProductName = orderItemDb.SupliedProduct.Name;
             }
             return item;
+        }
+
+        public static Models.InventoryReport ToDTO(this InventoryReport report)
+        {
+            return new Models.InventoryReport() { Id = report.Id,CoffeeRoomNo  = report.CoffeeRoomNo, Date = report.Date };
+        }
+
+        public static Models.InventoryItem ToDTO(this InventoryReportItem item)
+        {
+            return new Models.InventoryItem() { Id = item.Id, CoffeeRoomNo = item.CoffeeRoomNo, QuantityAfer = item.QuantityAfter, QuantityBefore = item.QuantityBefore, QuantityDiff = item.QuantityDiff, SuplyProductId = item.SuplyProductId, SuplyProductName = item.SupliedProduct.Name };
         }
 
         public static IEnumerable<Models.MetroExpense> ToDTO(this List<GetMetroExpenses_Result> result)

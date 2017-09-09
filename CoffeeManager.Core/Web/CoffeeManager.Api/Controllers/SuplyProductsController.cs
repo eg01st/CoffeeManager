@@ -22,7 +22,7 @@ namespace CoffeeManager.Api.Controllers
 				return Request.CreateResponse (HttpStatusCode.Forbidden);
 			}
 			var entites = new CoffeeRoomEntities ();
-            var items = entites.SupliedProducts.Where(s => s.CoffeeRoomNo == coffeeroomno && !s.Removed).OrderBy(o => o.Priority).ToList ().Select (p => p.ToDTO ());
+            var items = entites.SupliedProducts.Where(s => s.CoffeeRoomNo == coffeeroomno && !s.Removed).ToList ().Select (p => p.ToDTO ());
 			return Request.CreateResponse (HttpStatusCode.OK, items);
 		}
 
@@ -90,7 +90,6 @@ namespace CoffeeManager.Api.Controllers
 			var request = await message.Content.ReadAsStringAsync ();
 			var sProduct = JsonConvert.DeserializeObject<Models.SupliedProduct> (request);
 			var prodDb = DbMapper.Map (sProduct);
-            prodDb.Priority = 100;
 			var entites = new CoffeeRoomEntities ();
 			entites.SupliedProducts.Add (prodDb);
 			await entites.SaveChangesAsync ();

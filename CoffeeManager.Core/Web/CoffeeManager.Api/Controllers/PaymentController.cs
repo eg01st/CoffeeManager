@@ -42,7 +42,7 @@ namespace CoffeeManager.Api.Controllers
         public async Task<HttpResponseMessage> GetExpenseItems([FromUri]int coffeeroomno, HttpRequestMessage message)
         {
             var entities = new  CoffeeRoomEntities();
-            var types = entities.ExpenseTypes.Where(t => !t.IsRemoved).Include(i => i.SupliedProducts.Where(sp => !sp.Removed))
+            var types = entities.ExpenseTypes.Where(t => !t.IsRemoved).Include(i => i.SupliedProducts)
                 .Where(t => t.CoffeeRoomNo == coffeeroomno).ToList().Select(s => s.ToDTO());
             return Request.CreateResponse(HttpStatusCode.OK, types);
         }
