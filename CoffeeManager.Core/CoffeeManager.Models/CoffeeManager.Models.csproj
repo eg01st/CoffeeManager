@@ -64,6 +64,7 @@
     <Compile Include="TypesLists.cs" />
     <Compile Include="RoutesConstants.cs" />
     <Compile Include="SaleAction.cs" />
+    <Compile Include="UserPenalty.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -13,5 +13,7 @@ namespace CoffeeManager.Models
         public decimal CurrentEarnedAmount { get; set; }
         public decimal EntireEarnedAmount { get; set; }
         public Nullable<int> ExpenceId { get; set; }
+
+        public UserPenalty[] Penalties { get; set; }
     }
 }

@@ -9,7 +9,7 @@ namespace CoffeeManager.Api.Mappers
     {
         public static Models.User ToDTO(this User dbUser)
         {
-            return new Models.User()
+            var user = new Models.User()
             {
                 CoffeeRoomNo = dbUser.CoffeeRoomNo.Value,
                 Name = dbUser.Name,
@@ -21,6 +21,23 @@ namespace CoffeeManager.Api.Mappers
                 IsActive = dbUser.IsActive,
                 NightShiftPercent = dbUser.NightShiftPercent
             };
+            if(dbUser.UserPenalties != null && dbUser.UserPenalties.Any())
+            {
+                var penalties = new List<Models.UserPenalty>();
+                foreach (var penalty in dbUser.UserPenalties)
+                {
+                    penalties.Add(new Models.UserPenalty()
+                    {
+                        Amount = penalty.Amount,
+                        Date = penalty.Date,
+                        Reason = penalty.Reason,
+                        Id = penalty.Id,
+                        UserId = penalty.UserId
+                    });
+                }
+                user.Penalties = penalties.ToArray();
+            }
+            return user;
         }
 
         public static Models.Product ToDTO(this Product prodDb)
