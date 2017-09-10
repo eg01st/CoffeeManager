@@ -14,7 +14,7 @@
             android:layout_margin="16dp"
             android:layout_width="0dp"
             android:layout_weight="30"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
             <LinearLayout
                 android:layout_width="match_parent"
@@ -24,6 +24,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="20dp"
+                    android:textColor="#000000"
                     android:text="Поиск: " />
                 <EditText
                     android:layout_width="150dp"
@@ -41,7 +42,7 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_weight="70"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical"
             android:gravity="center_horizontal">
             <Button
@@ -109,37 +110,45 @@
             <LinearLayout
                 android:id="@+id/expense_with_suply_products_template"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:weightSum="100"
-                android:visibility="gone"
-                android:orientation="horizontal"
-                local:MvxBind="Visibility InvertedBoolToVisibility(IsSimpleExpense)">
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="40"
-                    android:textSize="20dp"
-                    android:text="Товар" />
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="30"
-                    android:textSize="20dp"
-                    android:text="Сумма" />
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="30"
-                    android:textSize="20dp"
-                    android:text="Количество" />
-            </LinearLayout>
-            <Mvx.MvxListView
-                android:gravity="top"
-                android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:visibility="gone"
                 android:orientation="vertical"
-                local:MvxBind="ItemsSource SelectedExpense.ExpenseSuplyProducts"
-                local:MvxItemTemplate="@layout/suply_product_card" />
+                local:MvxBind="Visibility InvertedBoolToVisibility(IsSimpleExpense)">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="100"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="40"
+                        android:textSize="20dp"
+                        android:text="Товар" />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="30"
+                        android:textColor="#000000"
+                        android:textSize="20dp"
+                        android:text="Сумма" />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="30"
+                        android:textColor="#000000"
+                        android:textSize="20dp"
+                        android:text="Количество" />
+                </LinearLayout>
+                <Mvx.MvxListView
+                    android:gravity="top"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    local:MvxBind="ItemsSource SelectedExpense.ExpenseSuplyProducts"
+                    local:MvxItemTemplate="@layout/suply_product_card" />
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

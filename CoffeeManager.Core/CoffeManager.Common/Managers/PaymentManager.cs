@@ -90,5 +90,10 @@ namespace CoffeManager.Common
         {
             await paymentProvider.RemoveExpenseType(expenseTypeId);
         }
+
+        public async Task<IEnumerable<SupliedProduct>> GetExpenseDetails(int expenseId)
+        {
+            return await paymentProvider.GetExpenseDetails(expenseId);
+        }
     }
 }

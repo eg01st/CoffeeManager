@@ -101,5 +101,13 @@ namespace CoffeManager.Common
                 { nameof(expenseTypeId), expenseTypeId.ToString()},
             });
         }
+
+        public async Task<IEnumerable<SupliedProduct>> GetExpenseDetails(int expenseId)
+        {
+            return await Get<IEnumerable<SupliedProduct>>(RoutesConstants.GetExpenseDetails, new Dictionary<string, string>()
+            {
+                { nameof(expenseId), expenseId.ToString()},
+            });
+        }
     }
 }

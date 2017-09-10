@@ -22,7 +22,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dp8-K9-3BD">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <rect key="frame" x="0.0" y="65" width="375" height="602"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Имя:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Fg-e0-4uK">
                             <rect key="frame" x="16" y="16" width="39" height="21"/>
@@ -58,7 +58,7 @@
                 <constraint firstAttribute="trailing" secondItem="dp8-K9-3BD" secondAttribute="trailing" id="IQY-1V-pPg"/>
                 <constraint firstAttribute="bottom" secondItem="dp8-K9-3BD" secondAttribute="bottom" id="bcN-l4-Phs"/>
                 <constraint firstItem="dp8-K9-3BD" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="gWJ-RW-CzX"/>
-                <constraint firstItem="dp8-K9-3BD" firstAttribute="top" secondItem="2" secondAttribute="top" id="oOc-HH-a7g"/>
+                <constraint firstItem="dp8-K9-3BD" firstAttribute="top" secondItem="2" secondAttribute="top" constant="65" id="oOc-HH-a7g"/>
             </constraints>
         </view>
     </objects>

@@ -28,8 +28,7 @@ namespace CoffeeManager.Core.ViewModels
         {
             await ExecuteSafe(async () =>
             {
-                var res = await _userManager.GetUsers();
-                Users = res.Where(u => u.IsActive).ToArray();
+                await Init();
             });
         }
 
@@ -58,7 +57,7 @@ namespace CoffeeManager.Core.ViewModels
             }
         }
 
-        public async void Init()
+        public async Task Init()
         {
             await ExecuteSafe(async () =>
             {

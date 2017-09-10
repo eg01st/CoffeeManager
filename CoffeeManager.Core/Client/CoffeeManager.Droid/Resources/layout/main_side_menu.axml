@@ -30,6 +30,13 @@
         </LinearLayout>
         <LinearLayout
             style="@style/left_menu_button_layout"
+            android:id="@+id/inventory">
+            <TextView
+                style="@style/left_menu_button_text"
+                android:text="Переучет" />
+        </LinearLayout>
+        <LinearLayout
+            style="@style/left_menu_button_layout"
             android:id="@+id/end_shift">
             <TextView
                 style="@style/left_menu_button_text"

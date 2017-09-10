@@ -193,5 +193,20 @@ namespace CoffeManager.Common
             }
             return int.Parse(result.Value);
         }
+
+        public async Task<decimal?> PromtDecimalAsync(string message)
+        {
+            var result = await UserDialogs.PromptAsync(new PromptConfig()
+            {
+                Message = message,
+                InputType = InputType.DecimalNumber
+
+            });
+            if (string.IsNullOrWhiteSpace(result.Value))
+            {
+                return null;
+            }
+            return decimal.Parse(result.Value);
+        }
     }
 }

@@ -107,15 +107,7 @@
     <Compile Include="Views\MainView.designer.cs">
       <DependentUpon>MainView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\ShiftsView.cs" />
-    <Compile Include="Views\ShiftsView.designer.cs">
-      <DependentUpon>ShiftsView.cs</DependentUpon>
-    </Compile>
     <Compile Include="TableSources\ShiftInfoTableSource.cs" />
-    <Compile Include="Views\Cells\ShiftInfoCell.cs" />
-    <Compile Include="Views\Cells\ShiftInfoCell.designer.cs">
-      <DependentUpon>ShiftInfoCell.cs</DependentUpon>
-    </Compile>
     <Compile Include="Views\SuplyProductsView.cs" />
     <Compile Include="Views\SuplyProductsView.designer.cs">
       <DependentUpon>SuplyProductsView.cs</DependentUpon>
@@ -126,25 +118,9 @@
       <DependentUpon>SuplyProductCell.cs</DependentUpon>
     </Compile>
     <Compile Include="Converters\DecimalToStringConverter.cs" />
-    <Compile Include="Views\ShiftDetailsView.cs" />
-    <Compile Include="Views\ShiftDetailsView.designer.cs">
-      <DependentUpon>ShiftDetailsView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Cells\ExpenseItemCell.cs" />
-    <Compile Include="Views\Cells\ExpenseItemCell.designer.cs">
-      <DependentUpon>ExpenseItemCell.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Cells\SaleItemCell.cs" />
-    <Compile Include="Views\Cells\SaleItemCell.designer.cs">
-      <DependentUpon>SaleItemCell.cs</DependentUpon>
-    </Compile>
     <Compile Include="TableSources\SaleTableSource.cs" />
     <Compile Include="Bootstrap\MessengerPluginBootstrap.cs" />
     <Compile Include="Converters\GenericConverter.cs" />
-    <Compile Include="Views\Cells\GroupedSaleCell.cs" />
-    <Compile Include="Views\Cells\GroupedSaleCell.designer.cs">
-      <DependentUpon>GroupedSaleCell.cs</DependentUpon>
-    </Compile>
     <Compile Include="Views\SuplyProductDetailsView.cs" />
     <Compile Include="Views\SuplyProductDetailsView.designer.cs">
       <DependentUpon>SuplyProductDetailsView.cs</DependentUpon>
@@ -190,10 +166,6 @@
       <DependentUpon>OrderItemsView.cs</DependentUpon>
     </Compile>
     <Compile Include="Bootstrap\VisibilityPluginBootstrap.cs" />
-    <Compile Include="Views\ShiftSalesView.cs" />
-    <Compile Include="Views\ShiftSalesView.designer.cs">
-      <DependentUpon>ShiftSalesView.cs</DependentUpon>
-    </Compile>
     <Compile Include="Views\Users\UsersView.cs" />
     <Compile Include="Views\Users\UsersView.designer.cs">
       <DependentUpon>UsersView.cs</DependentUpon>
@@ -295,20 +267,55 @@
     <Compile Include="Views\AddSuplyProductView.designer.cs">
       <DependentUpon>AddSuplyProductView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Shifts\ShiftDetailsView.cs" />
+    <Compile Include="Views\Shifts\ShiftDetailsView.designer.cs">
+      <DependentUpon>ShiftDetailsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Shifts\ShiftSalesView.cs" />
+    <Compile Include="Views\Shifts\ShiftSalesView.designer.cs">
+      <DependentUpon>ShiftSalesView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Shifts\ShiftsView.cs" />
+    <Compile Include="Views\Shifts\ShiftsView.designer.cs">
+      <DependentUpon>ShiftsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Shifts\ShiftInfoCell.cs" />
+    <Compile Include="Views\Shifts\ShiftInfoCell.designer.cs">
+      <DependentUpon>ShiftInfoCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Shifts\ExpenseItemCell.cs" />
+    <Compile Include="Views\Shifts\ExpenseItemCell.designer.cs">
+      <DependentUpon>ExpenseItemCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Shifts\GroupedSaleCell.cs" />
+    <Compile Include="Views\Shifts\GroupedSaleCell.designer.cs">
+      <DependentUpon>GroupedSaleCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Shifts\SaleItemCell.cs" />
+    <Compile Include="Views\Shifts\SaleItemCell.designer.cs">
+      <DependentUpon>SaleItemCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Shifts\ShiftExpenseDetailsView.cs" />
+    <Compile Include="Views\Shifts\ShiftExpenseDetailsView.designer.cs">
+      <DependentUpon>ShiftExpenseDetailsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Shifts\ShiftExpenseTableViewCell.cs" />
+    <Compile Include="Views\Shifts\ShiftExpenseTableViewCell.designer.cs">
+      <DependentUpon>ShiftExpenseTableViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Shifts\ShiftExpenseTableHeader.cs" />
+    <Compile Include="Views\Shifts\ShiftExpenseTableHeader.designer.cs">
+      <DependentUpon>ShiftExpenseTableHeader.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TableSources\ShiftExpensesTableSource.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Setup.cs" />
     <InterfaceDefinition Include="Resources\LaunchScreen.xib" />
     <InterfaceDefinition Include="Views\LoginView.xib" />
     <InterfaceDefinition Include="Views\MainView.xib" />
-    <InterfaceDefinition Include="Views\ShiftsView.xib" />
-    <InterfaceDefinition Include="Views\Cells\ShiftInfoCell.xib" />
     <InterfaceDefinition Include="Views\SuplyProductsView.xib" />
     <InterfaceDefinition Include="Views\Cells\SuplyProductCell.xib" />
-    <InterfaceDefinition Include="Views\ShiftDetailsView.xib" />
-    <InterfaceDefinition Include="Views\Cells\ExpenseItemCell.xib" />
-    <InterfaceDefinition Include="Views\Cells\SaleItemCell.xib" />
-    <InterfaceDefinition Include="Views\Cells\GroupedSaleCell.xib" />
     <InterfaceDefinition Include="Views\SuplyProductDetailsView.xib" />
     <InterfaceDefinition Include="Views\CalculationView.xib" />
     <InterfaceDefinition Include="Views\Cells\CalculationItemViewCell.xib" />
@@ -320,7 +327,6 @@
     <InterfaceDefinition Include="Views\Orders\SelectOrderItemViewCell.xib" />
     <InterfaceDefinition Include="Views\Orders\SelectOrderItemsView.xib" />
     <InterfaceDefinition Include="Views\Orders\OrderItemsView.xib" />
-    <InterfaceDefinition Include="Views\ShiftSalesView.xib" />
     <InterfaceDefinition Include="Views\Users\UsersView.xib" />
     <InterfaceDefinition Include="Views\Users\UserDetailsView.xib" />
     <InterfaceDefinition Include="Views\Statistic\StatisticView.xib" />
@@ -344,6 +350,16 @@
     <InterfaceDefinition Include="Views\ManageExpenses\MapExpenseToSuplyProductView.xib" />
     <InterfaceDefinition Include="Views\ManageExpenses\AddExpenseTypeView.xib" />
     <InterfaceDefinition Include="Views\AddSuplyProductView.xib" />
+    <InterfaceDefinition Include="Views\Shifts\ShiftDetailsView.xib" />
+    <InterfaceDefinition Include="Views\Shifts\ShiftSalesView.xib" />
+    <InterfaceDefinition Include="Views\Shifts\ShiftsView.xib" />
+    <InterfaceDefinition Include="Views\Shifts\ShiftInfoCell.xib" />
+    <InterfaceDefinition Include="Views\Shifts\ExpenseItemCell.xib" />
+    <InterfaceDefinition Include="Views\Shifts\GroupedSaleCell.xib" />
+    <InterfaceDefinition Include="Views\Shifts\SaleItemCell.xib" />
+    <InterfaceDefinition Include="Views\Shifts\ShiftExpenseDetailsView.xib" />
+    <InterfaceDefinition Include="Views\Shifts\ShiftExpenseTableViewCell.xib" />
+    <InterfaceDefinition Include="Views\Shifts\ShiftExpenseTableHeader.xib" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MvvmCross.Binding, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -455,6 +471,7 @@
     <Folder Include="Views\Abstract\" />
     <Folder Include="Extensions\" />
     <Folder Include="Platform\" />
+    <Folder Include="Views\Shifts\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\ic_check.png" />

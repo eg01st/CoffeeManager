@@ -73,6 +73,10 @@
     <Compile Include="Database\ShiftEntity.cs" />
     <Compile Include="Platform\IEmailService.cs" />
     <Compile Include="Managers\SyncManager.cs" />
+    <Compile Include="Providers\InventoryProvider.cs" />
+    <Compile Include="Providers\IInventoryProvider.cs" />
+    <Compile Include="Managers\IInventoryManager.cs" />
+    <Compile Include="Managers\InventoryManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Providers\" />
