@@ -18,7 +18,7 @@ namespace CoffeeManager.Api.Controllers
         public async Task<HttpResponseMessage> GetInventoryItems([FromUri]int coffeeroomno, HttpRequestMessage message)
         {
             var entities = new CoffeeRoomEntities();
-            var items = entities.SupliedProducts.Where(s => s.CoffeeRoomNo == coffeeroomno && !s.InventoryEnabled);
+            var items = entities.SupliedProducts.Where(s => s.CoffeeRoomNo == coffeeroomno && s.InventoryEnabled).ToList().Select(s => s.ToDTO());
 
             return Request.CreateResponse(HttpStatusCode.OK, items);
         }
@@ -55,6 +55,15 @@ namespace CoffeeManager.Api.Controllers
 
             await entities.SaveChangesAsync();
 
+            entities = new CoffeeRoomEntities();
+
+            foreach (var inv in inventoryItems)
+            {
+                var suplyProduct = entities.SupliedProducts.First(p => p.Id == inv.SuplyProductId);
+                suplyProduct.Quantity = inv.QuantityAfer;
+            }
+            await entities.SaveChangesAsync();
+
             return Request.CreateResponse(HttpStatusCode.OK);
         }
 
@@ -75,7 +84,7 @@ namespace CoffeeManager.Api.Controllers
         public async Task<HttpResponseMessage> GetInventoryReports([FromUri]int coffeeroomno, HttpRequestMessage message)
         {
             var entities = new CoffeeRoomEntities();
-            var reports = entities.InventoryReports.Where(s => s.CoffeeRoomNo == coffeeroomno).Select(s => s.ToDTO());
+            var reports = entities.InventoryReports.Where(s => s.CoffeeRoomNo == coffeeroomno).ToList().Select(s => s.ToDTO());
             return Request.CreateResponse(HttpStatusCode.OK, reports);
         }
 
@@ -84,7 +93,7 @@ namespace CoffeeManager.Api.Controllers
         public async Task<HttpResponseMessage> GetInventoryReportDetails([FromUri]int coffeeroomno, [FromUri]int reportId, HttpRequestMessage message)
         {
             var entities = new CoffeeRoomEntities();
-            var items = entities.InventoryReportItems.Where(s => s.InventoryReportId == reportId && s.CoffeeRoomNo == coffeeroomno).Select(s => s.ToDTO());
+            var items = entities.InventoryReportItems.Where(s => s.InventoryReportId == reportId && s.CoffeeRoomNo == coffeeroomno).ToList().Select(s => s.ToDTO());
             return Request.CreateResponse(HttpStatusCode.OK, items);
         }
     }

@@ -15,6 +15,7 @@ namespace CoffeeManager.Models
         public const string GetMappedSuplyProductsToExpense = Payment + "/getMappedSuplyProductsToExpense";
         public const string RemoveMappedSuplyProductsToExpense = Payment + "/removeMappedSuplyProductsToExpense";
         public const string AddExpenseExtended = Payment + "/addExpenseExtended";
+        public const string GetExpenseDetails = Payment + "/getExpenseDetails";
 
         public const string DeleteExpenseItem = Payment + "/deleteexpenseItem";
         public const string AddNewExpenseType = Payment + "/addnewexpensetype";
