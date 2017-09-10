@@ -66,6 +66,27 @@ namespace CoffeeManager.Api.Controllers
             return Request.CreateResponse(HttpStatusCode.OK);
         }
 
+        [Route(RoutesConstants.PenaltyUser)]
+        [HttpPost]
+        public async Task<HttpResponseMessage> PenaltyUser([FromUri]int coffeeroomno, [FromUri]int userId, [FromUri]decimal amount, [FromUri]string reason, HttpRequestMessage message)
+        {
+            var token = message.Headers.GetValues("token").FirstOrDefault();
+            if (token == null || !UserSessions.Contains(token))
+            {
+                return Request.CreateResponse(HttpStatusCode.Forbidden);
+            }
+         
+            var entites = new CoffeeRoomEntities();
+            var userDb = entites.Users.First(u => u.CoffeeRoomNo == coffeeroomno && u.Id == userId);
+            userDb.CurrentEarnedAmount -= amount;
+            var penalty = new UserPenalty();
+            penalty.Date = DateTime.Now;
+            penalty.Amount = amount;
+            penalty.Reason = reason;
+            userDb.UserPenalties.Add(penalty);
+            entites.SaveChanges();
+            return Request.CreateResponse(HttpStatusCode.OK);
+        }
 
 
         [Route(RoutesConstants.PaySalary)]

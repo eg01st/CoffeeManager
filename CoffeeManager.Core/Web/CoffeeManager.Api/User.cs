@@ -18,6 +18,7 @@ namespace CoffeeManager.Api
         public User()
         {
             this.Shifts = new HashSet<Shift>();
+            this.UserPenalties = new HashSet<UserPenalty>();
         }
     
         public int Id { get; set; }
@@ -35,5 +36,7 @@ namespace CoffeeManager.Api
         public virtual ICollection<Shift> Shifts { get; set; }
         public virtual Expense Expense { get; set; }
         public virtual ExpenseType ExpenseType { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UserPenalty> UserPenalties { get; set; }
     }
 }

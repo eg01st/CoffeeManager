@@ -251,6 +251,16 @@
           <Property Name="MilkPacks" Type="int" Nullable="false" />
           <Property Name="CoffeeRoomNo" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="UserPenalty">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="Amount" Type="money" Nullable="false" />
+          <Property Name="Reason" Type="nvarchar" MaxLength="500" />
+        </EntityType>
         <EntityType Name="Users">
           <Key>
             <PropertyRef Name="Id" />
@@ -520,6 +530,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__UserPenal__UserI__1C873BEC">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="UserPenalty" Type="Self.UserPenalty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserPenalty">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__UtilizedC__Shift__46E78A0C">
           <End Role="Shifts" Type="Self.Shifts" Multiplicity="1" />
           <End Role="UtilizedCup" Type="Self.UtilizedCup" Multiplicity="*" />
@@ -608,6 +630,7 @@
           <EntitySet Name="SuplyOrderItem" EntityType="Self.SuplyOrderItem" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UsedCupsPerShift" EntityType="Self.UsedCupsPerShift" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UsedProductsPerShift" EntityType="Self.UsedProductsPerShift" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserPenalty" EntityType="Self.UserPenalty" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UtilizedCup" EntityType="Self.UtilizedCup" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__Dept__ShiftId__4E88ABD4" Association="Self.FK__Dept__ShiftId__4E88ABD4">
@@ -689,6 +712,10 @@
           <AssociationSet Name="FK__UsedProdu__Shift__628FA481" Association="Self.FK__UsedProdu__Shift__628FA481">
             <End Role="Shifts" EntitySet="Shifts" />
             <End Role="UsedProductsPerShift" EntitySet="UsedProductsPerShift" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserPenal__UserI__1C873BEC" Association="Self.FK__UserPenal__UserI__1C873BEC">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserPenalty" EntitySet="UserPenalty" />
           </AssociationSet>
           <AssociationSet Name="FK__UtilizedC__Shift__46E78A0C" Association="Self.FK__UtilizedC__Shift__46E78A0C">
             <End Role="Shifts" EntitySet="Shifts" />
@@ -868,6 +895,7 @@
           <NavigationProperty Name="Expense" Relationship="CoffeeRoomModel.FK_Users_Expence" FromRole="User" ToRole="Expense" />
           <Property Name="SimplePayment" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
           <NavigationProperty Name="ExpenseType" Relationship="CoffeeRoomModel.FK_Users_Expence1" FromRole="User" ToRole="ExpenseType" />
+          <NavigationProperty Name="UserPenalties" Relationship="CoffeeRoomModel.FK__UserPenal__UserI__1C873BEC" FromRole="User" ToRole="UserPenalty" />
         </EntityType>
         <EntityType Name="UtilizedCup">
           <Key>
@@ -1146,6 +1174,11 @@
           <AssociationSet Name="FK__Inventory__Suply__74444068" Association="CoffeeRoomModel.FK__Inventory__Suply__74444068">
             <End Role="SupliedProduct" EntitySet="SupliedProducts" />
             <End Role="InventoryReportItem" EntitySet="InventoryReportItems" />
+          </AssociationSet>
+          <EntitySet Name="UserPenalties" EntityType="CoffeeRoomModel.UserPenalty" />
+          <AssociationSet Name="FK__UserPenal__UserI__1C873BEC" Association="CoffeeRoomModel.FK__UserPenal__UserI__1C873BEC">
+            <End Role="User" EntitySet="Users" />
+            <End Role="UserPenalty" EntitySet="UserPenalties" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Dept">
@@ -1515,6 +1548,29 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="UserPenalty">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Amount" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="Reason" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="User" Relationship="CoffeeRoomModel.FK__UserPenal__UserI__1C873BEC" FromRole="UserPenalty" ToRole="User" />
+        </EntityType>
+        <Association Name="FK__UserPenal__UserI__1C873BEC">
+          <End Type="CoffeeRoomModel.User" Role="User" Multiplicity="1" />
+          <End Type="CoffeeRoomModel.UserPenalty" Role="UserPenalty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserPenalty">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1850,6 +1906,17 @@
                 <ScalarProperty Name="SuplyProductId" ColumnName="SuplyProductId" />
                 <ScalarProperty Name="InventoryReportId" ColumnName="InventoryReportId" />
                 <ScalarProperty Name="CoffeeRoomNo" ColumnName="CoffeeRoomNo" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserPenalties">
+            <EntityTypeMapping TypeName="CoffeeRoomModel.UserPenalty">
+              <MappingFragment StoreEntitySet="UserPenalty">
+                <ScalarProperty Name="Reason" ColumnName="Reason" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -272,6 +272,9 @@
     <Compile Include="User.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="UserPenalty.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="UserSessions.cs" />
     <Compile Include="UtilizedCup.cs">
       <DependentUpon>Model.tt</DependentUpon>
