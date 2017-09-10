@@ -131,6 +131,18 @@ namespace CoffeeManager.Api.Mappers
             return new Models.InventoryItem() { Id = item.Id, CoffeeRoomNo = item.CoffeeRoomNo, QuantityAfer = item.QuantityAfter, QuantityBefore = item.QuantityBefore, QuantityDiff = item.QuantityDiff, SuplyProductId = item.SuplyProductId, SuplyProductName = item.SupliedProduct.Name };
         }
 
+        public static Models.SupliedProduct ToDTO(this ExpenseSuplyProduct item)
+        {
+            return new Models.SupliedProduct()
+            {
+                Id = item.Id,
+                CoffeeRoomNo = item.CoffeeRoonNo,
+                Quatity = item.Quantity,
+                Price = item.Amount,
+                Name = item.SupliedProduct.Name
+            };
+        }
+
         public static IEnumerable<Models.MetroExpense> ToDTO(this List<GetMetroExpenses_Result> result)
         {
             foreach (var item in result)

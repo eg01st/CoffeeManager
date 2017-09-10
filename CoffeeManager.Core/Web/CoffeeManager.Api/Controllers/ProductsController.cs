@@ -16,7 +16,7 @@ namespace CoffeeManager.Api.Controllers
 		public async Task<HttpResponseMessage> Get ([FromUri]int coffeeroomno, [FromUri]int productType)
 		{
 			var entities = new CoffeeRoomEntities ();
-			var products = entities.Products.Where (p => p.CoffeeRoomNo == coffeeroomno && p.ProductType.Value == productType).ToList ().Select (s => s.ToDTO ());
+			var products = entities.Products.Where (p => p.CoffeeRoomNo == coffeeroomno && p.ProductType.Value == productType && !p.Removed).ToList ().Select (s => s.ToDTO ());
 			return Request.CreateResponse (HttpStatusCode.OK, products);
 		}
 
@@ -29,7 +29,7 @@ namespace CoffeeManager.Api.Controllers
 				return Request.CreateResponse (HttpStatusCode.Forbidden);
 			}
 			var entities = new CoffeeRoomEntities ();
-			var products = entities.Products.Where (p => p.CoffeeRoomNo == coffeeroomno).ToList ().Select (s => s.ToDTO ());
+			var products = entities.Products.Where (p => p.CoffeeRoomNo == coffeeroomno && !p.Removed).ToList ().Select (s => s.ToDTO ());
 			return Request.CreateResponse (HttpStatusCode.OK, products);
 		}
 
@@ -94,7 +94,7 @@ namespace CoffeeManager.Api.Controllers
             var product = entities.Products.FirstOrDefault(p => p.Id == id && p.CoffeeRoomNo == coffeeroomno);
             if(product != null)
             {
-                entities.Products.Remove(product);
+                product.Removed = true;
                 await entities.SaveChangesAsync();
                 return Request.CreateResponse(HttpStatusCode.OK);
             }
@@ -127,6 +127,10 @@ namespace CoffeeManager.Api.Controllers
                     using (var sContext = new CoffeeRoomEntities())
                     {
                         var product = sContext.Products.First(p => p.Id == sale.ProductId);
+                        if(product.IsSaleByWeight)
+                        {
+
+                        }
                         foreach (var productCalculation in product.ProductCalculations)
                         {
                             var supliedProduct =

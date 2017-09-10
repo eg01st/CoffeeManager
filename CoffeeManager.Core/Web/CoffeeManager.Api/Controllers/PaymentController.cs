@@ -223,6 +223,21 @@ namespace CoffeeManager.Api.Controllers
             return Request.CreateResponse(HttpStatusCode.OK);
         }
 
+        [Route(RoutesConstants.GetExpenseDetails)]
+        [HttpGet]
+        public async Task<HttpResponseMessage> GetExpenseDetails([FromUri]int coffeeroomno, [FromUri]int expenseId, HttpRequestMessage message)
+        {
+            var token = message.Headers.GetValues("token").FirstOrDefault();
+            if (token == null || !UserSessions.Contains(token))
+            {
+                return Request.CreateResponse(HttpStatusCode.Forbidden);
+            }
+            var entities = new CoffeeRoomEntities();
+            var sp = entities.ExpenseSuplyProducts.Include(e => e.SupliedProduct).Where(t => t.CoffeeRoonNo == coffeeroomno && t.ExpenseId == expenseId).ToList().Select(s => s.ToDTO());
+
+            return Request.CreateResponse(HttpStatusCode.OK, sp);
+        }
+
         [Route(RoutesConstants.DeleteExpenseItem)]
         [HttpDelete]
         public async Task<HttpResponseMessage> DeleteExpense([FromUri]int coffeeroomno, [FromUri]int id, HttpRequestMessage message)
