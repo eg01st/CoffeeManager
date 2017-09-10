@@ -94,6 +94,7 @@
     <Compile Include="Messages\MappedSuplyProductChangedMessage.cs" />
     <Compile Include="ViewModels\ManageExpenses\SelectMappedSuplyProductItemViewModel.cs" />
     <Compile Include="ViewModels\SuplyProducts\AddSuplyProductViewModel.cs" />
+    <Compile Include="ViewModels\Shifts\ShiftExpenseDetailsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">
