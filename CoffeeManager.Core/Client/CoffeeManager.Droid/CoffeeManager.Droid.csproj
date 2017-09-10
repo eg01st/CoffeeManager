@@ -227,6 +227,8 @@
     <Compile Include="Extensions\ViewListenersExtensions.cs" />
     <Compile Include="Listeners\ViewOnClickListener.cs" />
     <Compile Include="Converters\InvertedBoolToVisibilityConverter.cs" />
+    <Compile Include="Views\InventoryView.cs" />
+    <Compile Include="Converters\DecimalToQuantityConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -298,6 +300,13 @@
     <AndroidResource Include="Resources\drawable-xhdpi\ic_keyboard_backspace_black_24dp.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\ic_keyboard_backspace_black_24dp.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_keyboard_backspace_black_24dp.png" />
+    <AndroidResource Include="Resources\layout\inventory.axml" />
+    <AndroidResource Include="Resources\layout\inventory_item.axml" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_done_black_24dp.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_done_black_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_done_black_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_done_black_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_done_black_24dp.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />

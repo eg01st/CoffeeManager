@@ -63,6 +63,8 @@
     <Compile Include="EventArgs\SaleItemEventArgs.cs" />
     <Compile Include="ViewModels\SuplyProductViewModel.cs" />
     <Compile Include="ViewModels\ExpenseItemExtendedViewModel.cs" />
+    <Compile Include="ViewModels\Inventory\InventoryViewModel.cs" />
+    <Compile Include="ViewModels\Inventory\InventoryItemViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Cheesebaron.MvxPlugins.SMS, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -152,6 +154,7 @@
     <Folder Include="EventArgs\" />
     <Folder Include="ServiceProviders\" />
     <Folder Include="Managers\" />
+    <Folder Include="ViewModels\Inventory\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />

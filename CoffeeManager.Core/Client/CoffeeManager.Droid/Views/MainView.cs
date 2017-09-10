@@ -12,8 +12,6 @@ using CoffeeManager.Droid.Adapters;
 using CoffeeManager.Droid.Views.Fragments;
 using MvvmCross.Binding.BindingContext;
 using TabItem = CoffeeManager.Droid.Entities.TabItem;
-using Android.Content;
-using Android.Util;
 using Android.Support.V4.Widget;
 using Android.Support.V7.App;
 
@@ -79,6 +77,7 @@ namespace CoffeeManager.Droid.Views
                     Resource.Id.shift_expenses,
                     Resource.Id.shift_sales,
                     Resource.Id.end_shift,
+                    Resource.Id.inventory
                 };
         }
 
@@ -104,6 +103,9 @@ namespace CoffeeManager.Droid.Views
                     break;
                 case Resource.Id.add_expense:
                     ViewModel.ShowExpenseCommand.Execute(null);
+                    break;
+                case Resource.Id.inventory:
+                    ViewModel.ShowInventoryCommand.Execute(null);
                     break;
                 default:
                     break;
