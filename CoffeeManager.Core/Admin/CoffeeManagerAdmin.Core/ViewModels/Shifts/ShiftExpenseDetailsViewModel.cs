@@ -19,9 +19,12 @@ namespace CoffeeManagerAdmin.Core
 
         public async Task Init(int id)
         {
-            var items = await manager.GetExpenseDetails(id);
-            Items = items.ToList();
-            RaisePropertyChanged(nameof(Items));
+            await ExecuteSafe(async () =>
+            {
+                var items = await manager.GetExpenseDetails(id);
+                Items = items.ToList();
+                RaisePropertyChanged(nameof(Items));
+            });
         }
     }
 }

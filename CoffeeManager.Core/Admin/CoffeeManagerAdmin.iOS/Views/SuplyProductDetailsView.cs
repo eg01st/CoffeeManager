@@ -24,6 +24,7 @@ namespace CoffeeManagerAdmin.iOS
             set.Bind(ItemCountText).To(vm => vm.ItemCount).WithConversion(new DecimalToStringConverter());
             set.Bind(SaveButton).To(vm => vm.SaveCommand);
             set.Bind(DeleteButton).To(vm => vm.DeleteCommand);
+            set.Bind(InventoryNeededSwitch).For(s => s.On).To(vm => vm.InventoryEnabled);
             set.Apply();
         }
 

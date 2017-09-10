@@ -11,6 +11,7 @@ namespace CoffeeManagerAdmin.Core
         private decimal _supliedPrice;
         private decimal? _salePrice;
         private decimal? _itemCount;
+        private bool inventoryEnabled;
         private ICommand _saveCommand;
 
         private ICommand _deleteCommand;
@@ -59,10 +60,24 @@ namespace CoffeeManagerAdmin.Core
             }
         }
 
-        readonly ISuplyProductsManager manager;
-
-        public SuplyProductDetailsViewModel(ISuplyProductsManager manager)
+        public bool InventoryEnabled
         {
+            get { return inventoryEnabled; }
+            set
+            {
+                inventoryEnabled = value;
+                RaisePropertyChanged(nameof(InventoryEnabled));
+                ExecuteSafe(() => inventoryManager.ToggleItemInventoryEnabled(_id));
+
+            }
+        }
+
+        readonly ISuplyProductsManager manager;
+        readonly IInventoryManager inventoryManager;
+
+        public SuplyProductDetailsViewModel(ISuplyProductsManager manager, IInventoryManager inventoryManager)
+        {
+            this.inventoryManager = inventoryManager;
             this.manager = manager;
             _saveCommand = new MvxCommand(DoSaveProduct);
             _deleteCommand = new MvxCommand(DoDeleteProduct);
@@ -101,6 +116,8 @@ namespace CoffeeManagerAdmin.Core
             SupliedPrice = product.Price;
             SalePrice = product.SalePrice;
             ItemCount = product.Quatity;
+            inventoryEnabled = product.InventoryEnabled;
+            RaisePropertyChanged(nameof(InventoryEnabled));
         }
     }
 }
