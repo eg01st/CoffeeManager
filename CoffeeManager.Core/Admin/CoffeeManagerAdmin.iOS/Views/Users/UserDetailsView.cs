@@ -51,8 +51,9 @@ namespace CoffeeManagerAdmin.iOS
             ExpenseTypeTextField.InputAccessoryView = toolbar;
 
 
-            var source = new SimpleTableSource(PenaltyTableView, UserPenaltyItemCell.Key, UserPenaltyItemCell.Nib);
+            var source = new SimpleTableSourceWithHeader(PenaltyTableView, UserPenaltyItemCell.Key, UserPenaltyItemCell.Nib, UserPenaltyTableHeaderView.Key);
             PenaltyTableView.Source = source;
+            PenaltyTableView.RegisterNibForHeaderFooterViewReuse(UserPenaltyTableHeaderView.Nib, UserPenaltyTableHeaderView.Key);
 
             var set = this.CreateBindingSet<UserDetailsView, UserDetailsViewModel>();
             set.Bind(NameTextField).To(vm => vm.UserName);

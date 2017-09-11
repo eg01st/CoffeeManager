@@ -11,19 +11,6 @@ namespace CoffeeManagerAdmin.iOS
 {
     public partial class UsersView : MvxViewController
     {
-        private UITapGestureRecognizer addUserRegognizer;
-
-        private ICommand _addUserCommand;
-        public ICommand AddUserCommand
-        {
-            get { return _addUserCommand; }
-            set
-            {
-                _addUserCommand = value;
-
-            }
-        }
-
         public UsersView() : base("UsersView", null)
         {
         }

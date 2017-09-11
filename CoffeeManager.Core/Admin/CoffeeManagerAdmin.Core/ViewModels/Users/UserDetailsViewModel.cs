@@ -194,7 +194,12 @@ namespace CoffeeManagerAdmin.Core
                 ExpenseItems = types.Select(s => new Entity { Id = s.Id, Name = s.Name }).ToList();
                 if (user.ExpenceId > 0)
                 {
-                    var item = ExpenseItems.First(i => i.Id == user.ExpenceId);
+                    var item = ExpenseItems.FirstOrDefault(i => i.Id == user.ExpenceId);
+                    if(item == null)
+                    {
+                        Alert("Расход связанный с зарплатой сотрудника удалена, выберите новый расход");
+                        return;
+                    }
                     SelectedExpenseType = item;
                 }
             });
