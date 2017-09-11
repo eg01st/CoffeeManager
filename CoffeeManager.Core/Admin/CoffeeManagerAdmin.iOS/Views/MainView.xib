@@ -14,6 +14,7 @@
                 <outlet property="CurrentAmountLabel" destination="xWM-em-lxK" id="pxx-KU-8wv"/>
                 <outlet property="CurrentShiftAmountLabel" destination="ycJ-p5-eWj" id="1sX-PQ-9f8"/>
                 <outlet property="ExpensesButton" destination="NTu-F5-vSy" id="iu7-gB-2i5"/>
+                <outlet property="InventoryButton" destination="TZH-yp-llI" id="eCH-S6-X8W"/>
                 <outlet property="OrdersButton" destination="510-wl-31F" id="Y6z-KC-OEH"/>
                 <outlet property="ProductsButton" destination="BLn-MY-6qN" id="ZOk-Sy-nIa"/>
                 <outlet property="ShiftButton" destination="ho5-eG-NZS" id="j0W-vS-wIu"/>
@@ -104,8 +105,12 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NTu-F5-vSy">
-                            <rect key="frame" x="110" y="368" width="155" height="30"/>
-                            <state key="normal" title="Редактирование трат"/>
+                            <rect key="frame" x="93" y="368" width="190" height="30"/>
+                            <state key="normal" title="Редактирование расходов"/>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TZH-yp-llI">
+                            <rect key="frame" x="122" y="398" width="131" height="30"/>
+                            <state key="normal" title="Отчеты переучета"/>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -118,6 +123,7 @@
                         <constraint firstItem="mJ4-rp-f1g" firstAttribute="leading" secondItem="nw2-pP-fuX" secondAttribute="leading" id="DlG-fi-nj4"/>
                         <constraint firstItem="BLn-MY-6qN" firstAttribute="centerX" secondItem="nw2-pP-fuX" secondAttribute="centerX" id="J2J-4q-TO1"/>
                         <constraint firstItem="ljL-ig-Bk5" firstAttribute="top" secondItem="BLn-MY-6qN" secondAttribute="bottom" id="MIk-V8-ca4"/>
+                        <constraint firstItem="TZH-yp-llI" firstAttribute="centerX" secondItem="nw2-pP-fuX" secondAttribute="centerX" id="MZ7-8G-yvd"/>
                         <constraint firstItem="ycJ-p5-eWj" firstAttribute="leading" secondItem="4eu-9a-SXF" secondAttribute="trailing" constant="8" id="NCJ-pc-jtj"/>
                         <constraint firstItem="6pf-lb-OPA" firstAttribute="leading" secondItem="nw2-pP-fuX" secondAttribute="leading" id="Ps8-tv-f19"/>
                         <constraint firstItem="xWM-em-lxK" firstAttribute="top" secondItem="ycJ-p5-eWj" secondAttribute="bottom" constant="20" id="VSx-7t-qYu"/>
@@ -135,6 +141,7 @@
                         <constraint firstItem="4eu-9a-SXF" firstAttribute="leading" secondItem="nw2-pP-fuX" secondAttribute="leading" constant="14" id="nUW-25-71r"/>
                         <constraint firstAttribute="trailing" secondItem="ho5-eG-NZS" secondAttribute="trailing" id="vGM-rQ-Uku"/>
                         <constraint firstItem="ho5-eG-NZS" firstAttribute="leading" secondItem="nw2-pP-fuX" secondAttribute="leading" id="yi0-dM-Jf9"/>
+                        <constraint firstItem="TZH-yp-llI" firstAttribute="top" secondItem="NTu-F5-vSy" secondAttribute="bottom" id="zA6-z3-VFY"/>
                     </constraints>
                 </view>
             </subviews>

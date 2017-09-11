@@ -14,7 +14,11 @@ namespace CoffeManager.Common
 
         public async Task<IEnumerable<InventoryItem>> GetInventoryReportDetails(int reportId)
         {
-            return await Get<IEnumerable<InventoryItem>>(RoutesConstants.GetInventoryReportDetails);
+            return await Get<IEnumerable<InventoryItem>>(RoutesConstants.GetInventoryReportDetails,
+                new Dictionary<string, string>()
+                {
+                    {nameof(reportId), reportId.ToString()},
+                });
         }
 
         public async Task<IEnumerable<InventoryReport>> GetInventoryReports()

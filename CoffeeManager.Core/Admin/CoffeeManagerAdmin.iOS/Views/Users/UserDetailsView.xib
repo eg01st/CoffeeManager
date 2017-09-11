@@ -18,6 +18,8 @@
                 <outlet property="NameTextField" destination="5Om-gl-Dhz" id="phd-dC-Qss"/>
                 <outlet property="NightPercentageTextField" destination="yDU-5g-eLB" id="UvV-ws-L2f"/>
                 <outlet property="PaySalaryButton" destination="osM-ou-IvM" id="ilI-VY-YeR"/>
+                <outlet property="PenaltyButton" destination="Am3-Qq-JPL" id="0uM-Cw-x5k"/>
+                <outlet property="PenaltyTableView" destination="lxB-bV-VnX" id="oeZ-Su-J2U"/>
                 <outlet property="view" destination="2" id="RRd-Eg-VrN"/>
             </connections>
         </placeholder>
@@ -102,7 +104,7 @@
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="osM-ou-IvM">
-                    <rect key="frame" x="151" y="303" width="73" height="30"/>
+                    <rect key="frame" x="286" y="303" width="73" height="30"/>
                     <state key="normal" title="Выдать зп"/>
                 </button>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5Om-gl-Dhz">
@@ -114,20 +116,42 @@
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Am3-Qq-JPL">
+                    <rect key="frame" x="16" y="303" width="99" height="30"/>
+                    <state key="normal" title="Оштрафовать"/>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Штрафы" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mQm-cC-sQ3">
+                    <rect key="frame" x="150" y="354" width="68" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lxB-bV-VnX">
+                    <rect key="frame" x="0.0" y="386" width="375" height="281"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="xZT-YJ-kI2" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="16" id="1bn-xd-oGy"/>
+                <constraint firstItem="Am3-Qq-JPL" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="16" id="1yV-k5-gzz"/>
+                <constraint firstAttribute="trailing" secondItem="osM-ou-IvM" secondAttribute="trailing" constant="16" id="2G0-aG-JVG"/>
                 <constraint firstItem="yDU-5g-eLB" firstAttribute="centerY" secondItem="pMt-Yo-d0w" secondAttribute="centerY" id="58Z-22-oBi"/>
                 <constraint firstItem="pMt-Yo-d0w" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="16" id="5RV-e9-95W"/>
                 <constraint firstItem="DIb-7P-yaQ" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="16" id="6I5-Dp-UYe"/>
                 <constraint firstItem="BRL-sk-0hQ" firstAttribute="top" secondItem="UmY-tt-qms" secondAttribute="bottom" constant="16" id="8ek-hR-VCI"/>
                 <constraint firstItem="5Om-gl-Dhz" firstAttribute="centerY" secondItem="CX7-yu-psO" secondAttribute="centerY" id="9Dr-4q-iUP"/>
                 <constraint firstItem="brU-dU-A59" firstAttribute="leading" secondItem="UmY-tt-qms" secondAttribute="trailing" constant="16" id="BD7-lp-DOf"/>
+                <constraint firstItem="lxB-bV-VnX" firstAttribute="top" secondItem="mQm-cC-sQ3" secondAttribute="bottom" constant="16" id="Chs-ui-7lG"/>
                 <constraint firstItem="osM-ou-IvM" firstAttribute="top" secondItem="xZT-YJ-kI2" secondAttribute="bottom" constant="25" id="DOQ-uH-Xs7"/>
                 <constraint firstItem="CPg-kC-fXr" firstAttribute="leading" secondItem="xZT-YJ-kI2" secondAttribute="trailing" constant="16" id="L3y-kV-3Iu"/>
+                <constraint firstItem="lxB-bV-VnX" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="LbF-hJ-EjK"/>
+                <constraint firstItem="mQm-cC-sQ3" firstAttribute="centerX" secondItem="2" secondAttribute="centerX" id="LjV-p4-umN"/>
+                <constraint firstAttribute="trailing" secondItem="lxB-bV-VnX" secondAttribute="trailing" id="MDK-48-T6p"/>
                 <constraint firstItem="xZT-YJ-kI2" firstAttribute="top" secondItem="pMt-Yo-d0w" secondAttribute="bottom" constant="16" id="Mcu-jV-kSM"/>
                 <constraint firstItem="yDU-5g-eLB" firstAttribute="leading" secondItem="pMt-Yo-d0w" secondAttribute="trailing" constant="16" id="PxS-8P-pqb"/>
+                <constraint firstItem="Am3-Qq-JPL" firstAttribute="centerY" secondItem="osM-ou-IvM" secondAttribute="centerY" id="VYU-wY-A1b"/>
+                <constraint firstItem="mQm-cC-sQ3" firstAttribute="top" secondItem="Am3-Qq-JPL" secondAttribute="bottom" constant="16" id="WOU-q6-Nki"/>
                 <constraint firstItem="CX7-yu-psO" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="16" id="X07-6W-Svc"/>
                 <constraint firstItem="5Om-gl-Dhz" firstAttribute="leading" secondItem="CX7-yu-psO" secondAttribute="trailing" constant="16" id="XRJ-52-dXg"/>
                 <constraint firstItem="r6v-0x-r0m" firstAttribute="leading" secondItem="BRL-sk-0hQ" secondAttribute="trailing" constant="16" id="Zte-Dn-gUc"/>
@@ -139,9 +163,9 @@
                 <constraint firstItem="DIb-7P-yaQ" firstAttribute="top" secondItem="CX7-yu-psO" secondAttribute="bottom" constant="16" id="grk-SK-ktU"/>
                 <constraint firstItem="UmY-tt-qms" firstAttribute="top" secondItem="DIb-7P-yaQ" secondAttribute="bottom" constant="16" id="hox-9n-x3j"/>
                 <constraint firstItem="BRL-sk-0hQ" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="16" id="jev-Mq-dZ8"/>
-                <constraint firstItem="osM-ou-IvM" firstAttribute="centerX" secondItem="2" secondAttribute="centerX" id="lFO-4Q-aOt"/>
                 <constraint firstItem="brU-dU-A59" firstAttribute="centerY" secondItem="UmY-tt-qms" secondAttribute="centerY" id="mut-Sa-bKm"/>
                 <constraint firstItem="CPg-kC-fXr" firstAttribute="centerY" secondItem="xZT-YJ-kI2" secondAttribute="centerY" id="o7I-bQ-w3y"/>
+                <constraint firstAttribute="bottom" secondItem="lxB-bV-VnX" secondAttribute="bottom" id="xSC-cL-bIN"/>
                 <constraint firstItem="YtU-ld-wax" firstAttribute="centerY" secondItem="DIb-7P-yaQ" secondAttribute="centerY" id="yuu-Y0-TMg"/>
             </constraints>
             <point key="canvasLocation" x="25.5" y="51.5"/>

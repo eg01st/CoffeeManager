@@ -4,11 +4,11 @@ using UIKit;
 
 namespace CoffeeManagerAdmin.iOS
 {
-    public class ShiftExpensesTableSource : SimpleTableSource
+    public class SimpleTableSourceWithHeader : SimpleTableSource
     {
         readonly NSString headerReuseIdentifier;
 
-        public ShiftExpensesTableSource(UITableView tableView, NSString reuseIdentifier, UINib cellNib, NSString headerReuseIdentifier) : base(tableView, reuseIdentifier, cellNib)
+        public SimpleTableSourceWithHeader(UITableView tableView, NSString reuseIdentifier, UINib cellNib, NSString headerReuseIdentifier) : base(tableView, reuseIdentifier, cellNib)
         {
             this.headerReuseIdentifier = headerReuseIdentifier;
         }

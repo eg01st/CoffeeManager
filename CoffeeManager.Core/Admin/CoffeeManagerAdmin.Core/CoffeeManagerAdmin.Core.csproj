@@ -95,6 +95,12 @@
     <Compile Include="ViewModels\ManageExpenses\SelectMappedSuplyProductItemViewModel.cs" />
     <Compile Include="ViewModels\SuplyProducts\AddSuplyProductViewModel.cs" />
     <Compile Include="ViewModels\Shifts\ShiftExpenseDetailsViewModel.cs" />
+    <Compile Include="ViewModels\Users\UserPenaltyItemViewModel.cs" />
+    <Compile Include="Messages\UserAmountChangedMessage.cs" />
+    <Compile Include="ViewModels\Inventory\InventoryViewModel.cs" />
+    <Compile Include="ViewModels\Inventory\InventoryItemViewModel.cs" />
+    <Compile Include="ViewModels\Inventory\InventoryReportDetailsViewModel.cs" />
+    <Compile Include="ViewModels\Inventory\InventoryReportDetailsItemViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">
@@ -165,6 +171,7 @@
     <Folder Include="ViewModels\Products\" />
     <Folder Include="ServiceProviders\" />
     <Folder Include="Managers\" />
+    <Folder Include="ViewModels\Inventory\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\CoffeeManager.Models\CoffeeManager.Models.csproj">

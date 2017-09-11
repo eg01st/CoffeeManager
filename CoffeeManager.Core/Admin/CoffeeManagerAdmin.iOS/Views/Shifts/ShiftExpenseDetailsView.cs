@@ -16,7 +16,7 @@ namespace CoffeeManagerAdmin.iOS
             base.ViewDidLoad();
 
             Title = "Детали расхода";
-            var source = new ShiftExpensesTableSource(ExpensesTableView, ShiftExpenseTableViewCell.Key, ShiftExpenseTableViewCell.Nib, ShiftExpenseTableHeader.Key);
+            var source = new SimpleTableSourceWithHeader(ExpensesTableView, ShiftExpenseTableViewCell.Key, ShiftExpenseTableViewCell.Nib, ShiftExpenseTableHeader.Key);
             ExpensesTableView.Source = source;
             ExpensesTableView.RegisterNibForHeaderFooterViewReuse(ShiftExpenseTableHeader.Nib, ShiftExpenseTableHeader.Key);
 

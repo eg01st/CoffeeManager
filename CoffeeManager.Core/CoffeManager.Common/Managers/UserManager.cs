@@ -48,5 +48,15 @@ namespace CoffeManager.Common
         {
             await provider.UpdateUser(user);
         }
+
+        public async Task PenaltyUser(int userId, decimal amount, string reason)
+        {
+            await provider.PenaltyUser(userId, amount, reason);
+        }
+
+        public async Task DismissPenalty(int id)
+        {
+            await provider.DismissPenalty(id);
+        }
     }
 }

@@ -63,5 +63,25 @@ namespace CoffeManager.Common
                 }
             );
         }
+
+        public async Task PenaltyUser(int userId, decimal amount, string reason)
+        {
+            await Post<object>(RoutesConstants.PenaltyUser, null, new Dictionary<string, string>()
+                {
+                    {nameof(userId), userId.ToString()},
+                    {nameof(amount), amount.ToString()},
+                    {nameof(reason), reason.ToString()},
+                }
+            );
+        }
+
+        public async Task DismissPenalty(int id)
+        {
+            await Post<object>(RoutesConstants.DismisPenalty, null, new Dictionary<string, string>()
+                {
+                    {nameof(id), id.ToString()},
+                }
+            );
+        }
     }
 }
