@@ -316,6 +316,26 @@
     <Compile Include="Views\Users\UserPenaltyTableHeaderView.designer.cs">
       <DependentUpon>UserPenaltyTableHeaderView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Inventory\InventoryView.cs" />
+    <Compile Include="Views\Inventory\InventoryView.designer.cs">
+      <DependentUpon>InventoryView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Inventory\InventoryReportCell.cs" />
+    <Compile Include="Views\Inventory\InventoryReportCell.designer.cs">
+      <DependentUpon>InventoryReportCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Inventory\InventoryReportDetailsView.cs" />
+    <Compile Include="Views\Inventory\InventoryReportDetailsView.designer.cs">
+      <DependentUpon>InventoryReportDetailsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Inventory\InventoryDetailsItemCell.cs" />
+    <Compile Include="Views\Inventory\InventoryDetailsItemCell.designer.cs">
+      <DependentUpon>InventoryDetailsItemCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Inventory\InventoryDetailsItemHeader.cs" />
+    <Compile Include="Views\Inventory\InventoryDetailsItemHeader.designer.cs">
+      <DependentUpon>InventoryDetailsItemHeader.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Setup.cs" />
@@ -370,6 +390,11 @@
     <InterfaceDefinition Include="Views\Shifts\ShiftExpenseTableHeader.xib" />
     <InterfaceDefinition Include="Views\Users\UserPenaltyItemCell.xib" />
     <InterfaceDefinition Include="Views\Users\UserPenaltyTableHeaderView.xib" />
+    <InterfaceDefinition Include="Views\Inventory\InventoryView.xib" />
+    <InterfaceDefinition Include="Views\Inventory\InventoryReportCell.xib" />
+    <InterfaceDefinition Include="Views\Inventory\InventoryReportDetailsView.xib" />
+    <InterfaceDefinition Include="Views\Inventory\InventoryDetailsItemCell.xib" />
+    <InterfaceDefinition Include="Views\Inventory\InventoryDetailsItemHeader.xib" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MvvmCross.Binding, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -482,6 +507,7 @@
     <Folder Include="Extensions\" />
     <Folder Include="Platform\" />
     <Folder Include="Views\Shifts\" />
+    <Folder Include="Views\Inventory\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\ic_check.png" />
