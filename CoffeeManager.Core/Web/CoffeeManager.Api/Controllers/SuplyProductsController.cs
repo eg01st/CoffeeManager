@@ -8,6 +8,7 @@ using System.Web.Http;
 using CoffeeManager.Api.Mappers;
 using CoffeeManager.Models;
 using Newtonsoft.Json;
+using System.Data.Entity;
 
 namespace CoffeeManager.Api.Controllers
 {
@@ -22,7 +23,7 @@ namespace CoffeeManager.Api.Controllers
 				return Request.CreateResponse (HttpStatusCode.Forbidden);
 			}
 			var entites = new CoffeeRoomEntities ();
-            var items = entites.SupliedProducts.Where(s => s.CoffeeRoomNo == coffeeroomno && !s.Removed).ToList ().Select (p => p.ToDTO ());
+            var items = entites.SupliedProducts.Include(s => s.ExpenseType).Where(s => s.CoffeeRoomNo == coffeeroomno && !s.Removed).ToList ().Select (p => p.ToDTO ());
 			return Request.CreateResponse (HttpStatusCode.OK, items);
 		}
 

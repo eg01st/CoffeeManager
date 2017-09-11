@@ -7,7 +7,7 @@
         public decimal? SalePrice { get; set; }
 
         public int? ExpenseTypeId { get; set; }
-
+        public string ExpenseTypeName { get; set; }
         public bool InventoryEnabled { get; set; }
     }
 }

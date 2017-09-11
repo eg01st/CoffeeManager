@@ -103,6 +103,7 @@ namespace CoffeeManager.Api.Mappers
                 Quatity = productDb.Quantity,
                 Price = productDb.Price,
                 ExpenseTypeId = productDb.ExprenseTypeId,
+                ExpenseTypeName = productDb.ExpenseType?.Name,
                 InventoryEnabled = productDb.InventoryEnabled
             };
         }
