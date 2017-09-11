@@ -308,6 +308,10 @@
       <DependentUpon>ShiftExpenseTableHeader.cs</DependentUpon>
     </Compile>
     <Compile Include="TableSources\ShiftExpensesTableSource.cs" />
+    <Compile Include="Views\Users\UserPenaltyItemCell.cs" />
+    <Compile Include="Views\Users\UserPenaltyItemCell.designer.cs">
+      <DependentUpon>UserPenaltyItemCell.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Setup.cs" />
@@ -360,6 +364,7 @@
     <InterfaceDefinition Include="Views\Shifts\ShiftExpenseDetailsView.xib" />
     <InterfaceDefinition Include="Views\Shifts\ShiftExpenseTableViewCell.xib" />
     <InterfaceDefinition Include="Views\Shifts\ShiftExpenseTableHeader.xib" />
+    <InterfaceDefinition Include="Views\Users\UserPenaltyItemCell.xib" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MvvmCross.Binding, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">

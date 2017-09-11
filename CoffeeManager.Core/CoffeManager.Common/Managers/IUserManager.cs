@@ -20,5 +20,9 @@ namespace CoffeManager.Common
         Task PaySalary(int userId, int currentShifId);
 
         Task UpdateUser(User user);
+
+        Task PenaltyUser(int userId, decimal amount, string reason);
+
+        Task DismissPenalty(int id);
     }
 }

@@ -6,11 +6,15 @@ using System.Linq;
 using System.Threading.Tasks;
 using CoffeManager.Common;
 using CoffeeManager.Common;
+using System;
+using MvvmCross.Plugins.Messenger;
 
 namespace CoffeeManagerAdmin.Core
 {
     public class UserDetailsViewModel : ViewModelBase
     {
+        private readonly MvxSubscriptionToken token;
+
         private readonly IShiftManager shiftManager;
         private readonly IUserManager userManager;
         private readonly IPaymentManager paymentManager;
@@ -31,6 +35,9 @@ namespace CoffeeManagerAdmin.Core
 
         public ICommand PaySalaryCommand {get;set;}
         public ICommand UpdateCommand {get;set;}
+        public ICommand PenaltyCommand { get; set; }
+
+        public List<UserPenaltyItemViewModel> Penalties { get; set; } = new List<UserPenaltyItemViewModel>();
 
         public List<Entity> ExpenseItems
         {
@@ -84,6 +91,29 @@ namespace CoffeeManagerAdmin.Core
             this.userManager = userManager;
             PaySalaryCommand = new MvxCommand(DoPaySalary);
             UpdateCommand = new MvxCommand(DoUpdateUser);
+            PenaltyCommand = new MvxCommand(DoPenalty);
+
+            token = Subscribe<UserAmountChangedMessage>(async (obj) => await Init(useridParameter));
+        }
+
+        private async void DoPenalty()
+        {
+            var amount = await PromtDecimalAsync("Введите сумму штрафа");
+            if(!amount.HasValue)
+            {
+                return;
+            }
+            var reason = await PromtStringAsync("Причина штрафа?");
+            if (string.IsNullOrWhiteSpace(reason))
+            {
+                return;
+            }
+            await ExecuteSafe(async () =>
+            {
+                await userManager.PenaltyUser(UserId, amount.Value, reason);
+                await Init(useridParameter);
+            });
+
         }
 
         private void DoUpdateUser()
@@ -122,7 +152,7 @@ namespace CoffeeManagerAdmin.Core
             Close(this);        
         }
 
-        public async void Init(int id)
+        public async Task Init(int id)
         {
             useridParameter = id;
             if(useridParameter == 0)
@@ -135,14 +165,16 @@ namespace CoffeeManagerAdmin.Core
                 UserName = user.Name;
                 DayShiftPersent = user.DayShiftPersent;
                 NightShiftPercent = user.NightShiftPercent;
-                
+
+                Penalties = user.Penalties?.Select(s => new UserPenaltyItemViewModel(s)).ToList();
+
                 await InitTypes();
     
                 RaiseAllPropertiesChanged();
             });
         }
 
-        public async void Init()
+        public async Task Init()
         {
             if(useridParameter == 0)
             {
@@ -208,6 +240,11 @@ namespace CoffeeManagerAdmin.Core
                 user.CurrentEarnedAmount = 0;
                 Close(this);
             });
+        }
+
+        protected override void DoUnsubscribe()
+        {
+            Unsubscribe<UserAmountChangedMessage>(token);
         }
    }
 }

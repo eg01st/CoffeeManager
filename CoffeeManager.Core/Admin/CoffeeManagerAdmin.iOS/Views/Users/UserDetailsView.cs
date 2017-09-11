@@ -48,12 +48,17 @@ namespace CoffeeManagerAdmin.iOS
                 View.EndEditing(true);
             };
             toolbar.SetItems(new [] { doneButton}, false);
-            ExpenseTypeTextField.InputAccessoryView = toolbar;    
-    
+            ExpenseTypeTextField.InputAccessoryView = toolbar;
+
+
+            var source = new SimpleTableSource(PenaltyTableView, UserPenaltyItemCell.Key, UserPenaltyItemCell.Nib);
+            PenaltyTableView.Source = source;
+
             var set = this.CreateBindingSet<UserDetailsView, UserDetailsViewModel>();
             set.Bind(NameTextField).To(vm => vm.UserName);
             set.Bind(NameTextField).For(e => e.Enabled).To(vm => vm.UserId).WithConversion(new GenericConverter<int, bool>((arg) => arg < 1));
             set.Bind(PaySalaryButton).To(vm => vm.PaySalaryCommand);
+            set.Bind(PenaltyButton).To(vm => vm.PenaltyCommand);
             set.Bind(EntireSalaryLabel).To(vm => vm.EntireEarnedAmount).WithConversion(new DecimalToStringConverter());
             set.Bind(CurrentSalaryLabel).To(vm => vm.CurrentEarnedAmount).WithConversion(new DecimalToStringConverter());
             set.Bind(DayPercentageTextField).To(vm => vm.DayShiftPersent);
@@ -61,6 +66,7 @@ namespace CoffeeManagerAdmin.iOS
             set.Bind(ExpenseTypeTextField).To(vm => vm.ExpenseTypeName);
             set.Bind(expensePickerViewModel).For(p => p.ItemsSource).To(vm => vm.ExpenseItems);
             set.Bind(expensePickerViewModel).For(p => p.SelectedItem).To(vm => vm.SelectedExpenseType);
+            set.Bind(source).To(vm => vm.Penalties);
             set.Apply();
         }
     }
