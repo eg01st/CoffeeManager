@@ -1,4 +1,5 @@
 ﻿using System;
+using CoffeeManager.Core.Messages;
 using CoffeeManager.Models;
 using CoffeManager.Common;
 namespace CoffeeManager.Core
@@ -13,17 +14,17 @@ namespace CoffeeManager.Core
 
         public int SuplyProductId { get; set; }
 
+        public int CoffeeRoomNo { get; set; }
+
         public bool IsProceeded { get; set; }
 
         public InventoryItemViewModel(SupliedProduct item)
         {
-            this.item = item;
             Name = item.Name;
             SuplyProductId = item.Id;
             QuantityBefore = item.Quatity ?? 0;
+            CoffeeRoomNo = item.CoffeeRoomNo;
         }
-
-      
 
         protected async override void DoGoToDetails()
         {
@@ -34,6 +35,7 @@ namespace CoffeeManager.Core
                 QuantityAfter = result.Value;
                 RaisePropertyChanged(nameof(IsProceeded));
                 RaisePropertyChanged(nameof(QuantityAfter));
+                Publish(new InventoryItemChangedMessage(this));
             }
         }
     }

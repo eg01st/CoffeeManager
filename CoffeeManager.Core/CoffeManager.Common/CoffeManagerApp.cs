@@ -41,7 +41,7 @@ namespace CoffeManager.Common
             Mvx.RegisterSingleton<IStatisticManager>(new StatisticManager(Mvx.Resolve<IStatisticProvider>()));
             Mvx.RegisterSingleton<ISuplyOrderManager>(new SuplyOrderManager(Mvx.Resolve<ISuplyOrderProvider>()));
             Mvx.RegisterSingleton<ISuplyProductsManager>(new SuplyProductsManager(Mvx.Resolve<ISuplyProductsProvider>()));
-            Mvx.RegisterSingleton<IInventoryManager>(new InventoryManager(Mvx.Resolve<IInventoryProvider>()));
+            Mvx.RegisterSingleton<IInventoryManager>(new InventoryManager(Mvx.Resolve<IInventoryProvider>(), Mvx.Resolve<IDataBaseProvider>()));
         }
     }
 }
