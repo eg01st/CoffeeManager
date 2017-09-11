@@ -9,6 +9,7 @@ using System.Web.Http;
 using CoffeeManager.Api.Mappers;
 using CoffeeManager.Models;
 using Newtonsoft.Json;
+using System.Data.Entity;
 
 namespace CoffeeManager.Api.Controllers
 {
@@ -85,6 +86,29 @@ namespace CoffeeManager.Api.Controllers
             penalty.Reason = reason;
             userDb.UserPenalties.Add(penalty);
             entites.SaveChanges();
+            return Request.CreateResponse(HttpStatusCode.OK);
+        }
+
+
+        [Route(RoutesConstants.DismisPenalty)]
+        [HttpPost]
+        public async Task<HttpResponseMessage> DismisPenalty([FromUri]int coffeeroomno, [FromUri]int id, HttpRequestMessage message)
+        {
+            var token = message.Headers.GetValues("token").FirstOrDefault();
+            if (token == null || !UserSessions.Contains(token))
+            {
+                return Request.CreateResponse(HttpStatusCode.Forbidden);
+            }
+
+            var entites = new CoffeeRoomEntities();
+            var penalty = entites.UserPenalties.Include(u => u.User).First(u => u.Id == id);
+            penalty.User.CurrentEarnedAmount += penalty.Amount;
+            await entites.SaveChangesAsync();
+
+            entites = new CoffeeRoomEntities();
+            penalty = entites.UserPenalties.Include(u => u.User).First(u => u.Id == id);
+            entites.UserPenalties.Remove(penalty);
+            await entites.SaveChangesAsync();
             return Request.CreateResponse(HttpStatusCode.OK);
         }
 
