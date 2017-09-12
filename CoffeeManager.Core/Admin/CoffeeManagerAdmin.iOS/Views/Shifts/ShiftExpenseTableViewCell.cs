@@ -32,7 +32,7 @@ namespace CoffeeManagerAdmin.iOS
                 var set = this.CreateBindingSet<ShiftExpenseTableViewCell, SupliedProduct>();
                 set.Bind(NameLabel).To(vm => vm.Name);
                 set.Bind(QuantityLabel).To(vm=> vm.Quatity);
-                set.Bind(PriceLabel).To(vm => vm.Price);
+                set.Bind(PriceLabel).To(vm => vm.Price).WithConversion(new DecimalToStringConverter());
                 set.Apply();
             });
         }
