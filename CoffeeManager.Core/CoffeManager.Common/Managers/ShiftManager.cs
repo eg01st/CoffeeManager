@@ -66,6 +66,8 @@ namespace CoffeManager.Common
                 if (shift != null)
                 {
                     ShiftNo = shift.Id;
+                    syncManager.ClearCurrentShift();
+                    syncManager.AddCurrentShift(new ShiftEntity() { Id = shift.Id, UserId = shift.UserId });
                 }
                 return shift;
             }

@@ -111,13 +111,16 @@ namespace CoffeeManagerAdmin.Core
         public async void Init(int id)
         {
             _id = id;
-            var product = await manager.GetSuplyProduct(id);
-            Name = product.Name;
-            SupliedPrice = product.Price;
-            SalePrice = product.SalePrice;
-            ItemCount = product.Quatity;
-            inventoryEnabled = product.InventoryEnabled;
-            RaisePropertyChanged(nameof(InventoryEnabled));
+            await ExecuteSafe(async () =>
+           {
+               var product = await manager.GetSuplyProduct(id);
+               Name = product.Name;
+               SupliedPrice = product.Price;
+               SalePrice = product.SalePrice;
+               ItemCount = product.Quatity;
+               inventoryEnabled = product.InventoryEnabled;
+               RaisePropertyChanged(nameof(InventoryEnabled));
+           });
         }
     }
 }

@@ -25,6 +25,7 @@ namespace CoffeeManagerAdmin.iOS
             if(vm != null)
             {
                 vm.GoToDetailsCommand.Execute(null);
+                tableView.DeselectRow(indexPath, true);
             }
         }
 

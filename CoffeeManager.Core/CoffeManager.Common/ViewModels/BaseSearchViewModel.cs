@@ -40,7 +40,7 @@ namespace CoffeManager.Common
                 RaisePropertyChanged(nameof(SearchString));
                 if (!string.IsNullOrWhiteSpace(SearchString))
                 {
-                    Items = Items.Where(i => i.Name.StartsWith(SearchString, StringComparison.OrdinalIgnoreCase)).ToList();
+                    Items = Items.Where(i => i.Name != null && i.Name.StartsWith(SearchString, StringComparison.OrdinalIgnoreCase)).ToList();
                 }
                 else
                 {

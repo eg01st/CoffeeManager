@@ -23,12 +23,6 @@ namespace CoffeeManagerAdmin.iOS
             set.Bind(source).To(vm => vm.Items);
             set.Apply();
         }
-
-        public override void DidReceiveMemoryWarning()
-        {
-            base.DidReceiveMemoryWarning();
-            // Release any cached data, images, etc that aren't in use.
-        }
     }
 }
 

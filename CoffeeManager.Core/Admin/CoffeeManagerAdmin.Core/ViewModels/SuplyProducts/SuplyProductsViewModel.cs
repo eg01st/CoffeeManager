@@ -9,7 +9,7 @@ using MvvmCross.Core.ViewModels;
 
 namespace CoffeeManagerAdmin.Core.ViewModels
 {
-    public class SuplyProductsViewModel : BaseSearchViewModel<SuplyProductItemViewModel>
+    public class SuplyProductsViewModel : BaseSearchViewModel<ListItemViewModelBase>
     {
         private MvxSubscriptionToken _listChanged;
 
@@ -25,10 +25,19 @@ namespace CoffeeManagerAdmin.Core.ViewModels
             AddNewSuplyProductCommand = new MvxCommand(() => ShowViewModel<AddSuplyProductViewModel>());
         }
 
-        public async override Task<List<SuplyProductItemViewModel>> LoadData()
+        public async override Task<List<ListItemViewModelBase>> LoadData()
         {
             var items = await manager.GetSuplyProducts();
-            return items.Select(s => new SuplyProductItemViewModel(s)).ToList();
+            var result = new List<ListItemViewModelBase>();
+
+
+            var vms = items.Select(s => new SuplyProductItemViewModel(s)).GroupBy(g => g.ExpenseTypeName).OrderByDescending(o => o.Key);
+            foreach (var item in vms)
+            {
+                result.Add(new ExpenseTypeHeaderViewModel(item.Key));
+                result.AddRange(item);
+            }
+            return result;
         }
     }
 }

@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using CoffeeManager.Common;
 using CoffeeManager.Models;
+using CoffeManager.Common.Database;
 
 namespace CoffeManager.Common
 {
@@ -58,6 +59,7 @@ namespace CoffeManager.Common
             provider.CreateTableIfNotExists<SaleEntity>();
             provider.CreateTableIfNotExists<ShiftEntity>();
             provider.CreateTableIfNotExists<ProductEntity>();
+            provider.CreateTableIfNotExists<InventoryItemEntity>();
         }
 
         public void DeleteTable<T>() where T : new()
