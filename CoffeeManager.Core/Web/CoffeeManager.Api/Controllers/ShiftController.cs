@@ -130,10 +130,9 @@ namespace CoffeeManager.Api.Controllers
         [HttpGet]
         public async Task<HttpResponseMessage> GetShiftSales([FromUri]int coffeeroomno)
         {
-            var currentTime = DateTime.Now.AddMinutes(-10);
             var entities = new  CoffeeRoomEntities();
             var shift = entities.Shifts.First(s => !s.IsFinished.Value && s.CoffeeRoomNo == coffeeroomno).Id;
-            var sales = entities.Sales.Where(s => s.CoffeeRoomNo == coffeeroomno && s.ShiftId == shift && s.Time > currentTime ).ToList().Select(s => s.ToDTO());
+            var sales = entities.Sales.Where(s => s.CoffeeRoomNo == coffeeroomno && s.ShiftId == shift).OrderByDescending(s => s.Id).Take(10).ToList().Select(s => s.ToDTO());
             return Request.CreateResponse(HttpStatusCode.OK, sales);
         }
 

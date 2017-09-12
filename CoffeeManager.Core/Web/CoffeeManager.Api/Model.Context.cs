@@ -52,6 +52,7 @@ namespace CoffeeManager.Api
         public virtual DbSet<InventoryReport> InventoryReports { get; set; }
         public virtual DbSet<InventoryReportItem> InventoryReportItems { get; set; }
         public virtual DbSet<UserPenalty> UserPenalties { get; set; }
+        public virtual DbSet<UtilizedSuplyProduct> UtilizedSuplyProducts { get; set; }
     
         public virtual ObjectResult<GetAllSales_Result> GetAllSales(Nullable<System.DateTime> from, Nullable<System.DateTime> to)
         {

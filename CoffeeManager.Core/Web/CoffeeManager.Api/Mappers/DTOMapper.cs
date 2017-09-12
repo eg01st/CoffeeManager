@@ -124,6 +124,21 @@ namespace CoffeeManager.Api.Mappers
             return item;
         }
 
+        public static Models.UtilizedSuplyProduct ToDTO(this UtilizedSuplyProduct product)
+        {
+            return new Models.UtilizedSuplyProduct()
+            {
+                Id = product.Id,
+                SuplyProductId = product.SuplyProductId,
+                SuplyProductName = product.SupliedProduct.Name,
+                Quantity = product.Quantity,
+                Reason = product.Reason,
+                CoffeeRoomNo = product.CoffeeRoomNo,
+                ShiftId = product.ShiftId,
+                Date = product.Date
+            };       
+        }
+
         public static Models.Order ToDTO(this SuplyOrder orderDb)
         {
             return new Models.Order() { Id = orderDb.Id, CoffeeRoomNo = orderDb.CoffeeRoomNo, Date = orderDb.Date, IsDone = orderDb.IsDone, Price = orderDb.Price, ExpenseTypeId = orderDb.ExpenseTypeId };

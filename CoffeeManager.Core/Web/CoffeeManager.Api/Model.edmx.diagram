@@ -57,6 +57,9 @@
         <AssociationConnector Association="CoffeeRoomModel.FK__Inventory__Suply__74444068" />
         <EntityTypeShape EntityType="CoffeeRoomModel.UserPenalty" Width="1.5" PointX="3" PointY="14.5" />
         <AssociationConnector Association="CoffeeRoomModel.FK__UserPenal__UserI__1C873BEC" />
+        <EntityTypeShape EntityType="CoffeeRoomModel.UtilizedSuplyProduct" Width="1.5" PointX="10.5" PointY="14.75" />
+        <AssociationConnector Association="CoffeeRoomModel.FK__UtilizedS__Shift__0662F0A3" />
+        <AssociationConnector Association="CoffeeRoomModel.FK__UtilizedS__Suply__056ECC6A" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

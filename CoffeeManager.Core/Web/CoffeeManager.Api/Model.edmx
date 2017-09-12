@@ -286,6 +286,18 @@
           <Property Name="DateTime" Type="datetime" Nullable="false" />
           <Property Name="CoffeeRoomNo" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="UtilizedSuplyProduct">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SuplyProductId" Type="int" Nullable="false" />
+          <Property Name="ShiftId" Type="int" Nullable="false" />
+          <Property Name="Quantity" Type="money" Nullable="false" />
+          <Property Name="Reason" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="CoffeeRoomNo" Type="int" Nullable="false" />
+        </EntityType>
         <Association Name="FK__Dept__ShiftId__4E88ABD4">
           <End Role="Shifts" Type="Self.Shifts" Multiplicity="1" />
           <End Role="Dept" Type="Self.Dept" Multiplicity="*" />
@@ -554,6 +566,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__UtilizedS__Shift__0662F0A3">
+          <End Role="Shifts" Type="Self.Shifts" Multiplicity="1" />
+          <End Role="UtilizedSuplyProduct" Type="Self.UtilizedSuplyProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shifts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UtilizedSuplyProduct">
+              <PropertyRef Name="ShiftId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UtilizedS__Suply__056ECC6A">
+          <End Role="SupliedProduct" Type="Self.SupliedProduct" Multiplicity="1" />
+          <End Role="UtilizedSuplyProduct" Type="Self.UtilizedSuplyProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SupliedProduct">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UtilizedSuplyProduct">
+              <PropertyRef Name="SuplyProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_SupliedProduct_ExpenseType">
           <End Role="ExpenseType" Type="Self.ExpenseType" Multiplicity="0..1" />
           <End Role="SupliedProduct" Type="Self.SupliedProduct" Multiplicity="*" />
@@ -633,6 +669,7 @@
           <EntitySet Name="UserPenalty" EntityType="Self.UserPenalty" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UtilizedCup" EntityType="Self.UtilizedCup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UtilizedSuplyProduct" EntityType="Self.UtilizedSuplyProduct" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__Dept__ShiftId__4E88ABD4" Association="Self.FK__Dept__ShiftId__4E88ABD4">
             <End Role="Shifts" EntitySet="Shifts" />
             <End Role="Dept" EntitySet="Dept" />
@@ -720,6 +757,14 @@
           <AssociationSet Name="FK__UtilizedC__Shift__46E78A0C" Association="Self.FK__UtilizedC__Shift__46E78A0C">
             <End Role="Shifts" EntitySet="Shifts" />
             <End Role="UtilizedCup" EntitySet="UtilizedCup" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UtilizedS__Shift__0662F0A3" Association="Self.FK__UtilizedS__Shift__0662F0A3">
+            <End Role="Shifts" EntitySet="Shifts" />
+            <End Role="UtilizedSuplyProduct" EntitySet="UtilizedSuplyProduct" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UtilizedS__Suply__056ECC6A" Association="Self.FK__UtilizedS__Suply__056ECC6A">
+            <End Role="SupliedProduct" EntitySet="SupliedProduct" />
+            <End Role="UtilizedSuplyProduct" EntitySet="UtilizedSuplyProduct" />
           </AssociationSet>
           <AssociationSet Name="FK_SupliedProduct_ExpenseType" Association="Self.FK_SupliedProduct_ExpenseType">
             <End Role="ExpenseType" EntitySet="ExpenseType" />
@@ -863,6 +908,7 @@
           <Property Name="StartCounter" Type="Int32" />
           <Property Name="EndCounter" Type="Int32" />
           <Property Name="CreditCardAmount" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="UtilizedSuplyProducts" Relationship="CoffeeRoomModel.FK__UtilizedS__Shift__0662F0A3" FromRole="Shift" ToRole="UtilizedSuplyProduct" />
         </EntityType>
         <EntityType Name="UsedCupsPerShift">
           <Key>
@@ -1180,6 +1226,15 @@
             <End Role="User" EntitySet="Users" />
             <End Role="UserPenalty" EntitySet="UserPenalties" />
           </AssociationSet>
+          <EntitySet Name="UtilizedSuplyProducts" EntityType="CoffeeRoomModel.UtilizedSuplyProduct" />
+          <AssociationSet Name="FK__UtilizedS__Shift__0662F0A3" Association="CoffeeRoomModel.FK__UtilizedS__Shift__0662F0A3">
+            <End Role="Shift" EntitySet="Shifts" />
+            <End Role="UtilizedSuplyProduct" EntitySet="UtilizedSuplyProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UtilizedS__Suply__056ECC6A" Association="CoffeeRoomModel.FK__UtilizedS__Suply__056ECC6A">
+            <End Role="SupliedProduct" EntitySet="SupliedProducts" />
+            <End Role="UtilizedSuplyProduct" EntitySet="UtilizedSuplyProducts" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Dept">
           <Key>
@@ -1265,6 +1320,7 @@
           <Property Name="Removed" Type="Boolean" Nullable="false" />
           <Property Name="InventoryEnabled" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="InventoryReportItems" Relationship="CoffeeRoomModel.FK__Inventory__Suply__74444068" FromRole="SupliedProduct" ToRole="InventoryReportItem" />
+          <NavigationProperty Name="UtilizedSuplyProducts" Relationship="CoffeeRoomModel.FK__UtilizedS__Suply__056ECC6A" FromRole="SupliedProduct" ToRole="UtilizedSuplyProduct" />
         </EntityType>
         <Association Name="FK_SupliedProduct_ExpenseType">
           <End Type="CoffeeRoomModel.ExpenseType" Role="ExpenseType" Multiplicity="0..1" />
@@ -1568,6 +1624,44 @@
             </Principal>
             <Dependent Role="UserPenalty">
               <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="UtilizedSuplyProduct">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SuplyProductId" Type="Int32" Nullable="false" />
+          <Property Name="ShiftId" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="Reason" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CoffeeRoomNo" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Shift" Relationship="CoffeeRoomModel.FK__UtilizedS__Shift__0662F0A3" FromRole="UtilizedSuplyProduct" ToRole="Shift" />
+          <NavigationProperty Name="SupliedProduct" Relationship="CoffeeRoomModel.FK__UtilizedS__Suply__056ECC6A" FromRole="UtilizedSuplyProduct" ToRole="SupliedProduct" />
+        </EntityType>
+        <Association Name="FK__UtilizedS__Shift__0662F0A3">
+          <End Type="CoffeeRoomModel.Shift" Role="Shift" Multiplicity="1" />
+          <End Type="CoffeeRoomModel.UtilizedSuplyProduct" Role="UtilizedSuplyProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shift">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UtilizedSuplyProduct">
+              <PropertyRef Name="ShiftId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UtilizedS__Suply__056ECC6A">
+          <End Type="CoffeeRoomModel.SupliedProduct" Role="SupliedProduct" Multiplicity="1" />
+          <End Type="CoffeeRoomModel.UtilizedSuplyProduct" Role="UtilizedSuplyProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SupliedProduct">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UtilizedSuplyProduct">
+              <PropertyRef Name="SuplyProductId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1917,6 +2011,19 @@
                 <ScalarProperty Name="Amount" ColumnName="Amount" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UtilizedSuplyProducts">
+            <EntityTypeMapping TypeName="CoffeeRoomModel.UtilizedSuplyProduct">
+              <MappingFragment StoreEntitySet="UtilizedSuplyProduct">
+                <ScalarProperty Name="CoffeeRoomNo" ColumnName="CoffeeRoomNo" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Reason" ColumnName="Reason" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="ShiftId" ColumnName="ShiftId" />
+                <ScalarProperty Name="SuplyProductId" ColumnName="SuplyProductId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -91,5 +91,19 @@ namespace CoffeeManager.Api.Mappers
 				Price = sProduct.Price
 			};
 		}
-	}
+
+        public static UtilizedSuplyProduct Map(this Models.UtilizedSuplyProduct product)
+        {
+            return new UtilizedSuplyProduct()
+            {
+                Id = product.Id,
+                SuplyProductId = product.SuplyProductId,
+                Quantity = product.Quantity,
+                Reason = product.Reason,
+                CoffeeRoomNo = product.CoffeeRoomNo,
+                ShiftId = product.ShiftId,
+                Date = product.Date
+            };
+        }
+    }
 }

@@ -21,6 +21,7 @@ namespace CoffeeManager.Api
             this.SuplyOrderItems = new HashSet<SuplyOrderItem>();
             this.ExpenseSuplyProducts = new HashSet<ExpenseSuplyProduct>();
             this.InventoryReportItems = new HashSet<InventoryReportItem>();
+            this.UtilizedSuplyProducts = new HashSet<UtilizedSuplyProduct>();
         }
     
         public int Id { get; set; }
@@ -43,5 +44,7 @@ namespace CoffeeManager.Api
         public virtual ICollection<ExpenseSuplyProduct> ExpenseSuplyProducts { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<InventoryReportItem> InventoryReportItems { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UtilizedSuplyProduct> UtilizedSuplyProducts { get; set; }
     }
 }
