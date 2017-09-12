@@ -12,5 +12,8 @@ namespace CoffeManager.Common
         Task ToggleItemInventoryEnabled(int suplyProductId);
         Task<IEnumerable<InventoryReport>> GetInventoryReports();
         Task<IEnumerable<InventoryItem>> GetInventoryReportDetails(int reportId);
+        void SaveReportItem(InventoryItem item);
+        IEnumerable<InventoryItem> GetSavedItems();
+        void RemoveSavedItems();
     }
 }

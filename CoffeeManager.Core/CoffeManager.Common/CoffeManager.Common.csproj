@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -28,6 +28,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Database\InventoryItemEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\BaseSearchViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
@@ -78,14 +79,7 @@
     <Compile Include="Managers\IInventoryManager.cs" />
     <Compile Include="Managers\InventoryManager.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Providers\" />
-    <Folder Include="Managers\" />
-    <Folder Include="ViewModels\" />
-    <Folder Include="Extensions\" />
-    <Folder Include="Database\" />
-    <Folder Include="Platform\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Reference Include="MvvmCross.Core">
       <HintPath>..\packages\MvvmCross.Core.4.2.0\lib\portable-net45+win+wpa81+wp80\MvvmCross.Core.dll</HintPath>
