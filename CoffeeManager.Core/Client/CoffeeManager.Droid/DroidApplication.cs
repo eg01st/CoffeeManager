@@ -8,6 +8,7 @@ using Android.Widget;
 using MailKit.Net.Smtp;
 using MimeKit;
 using MvvmCross.Platform;
+using CoffeManager.Common;
 
 namespace CoffeeManager.Droid
 {
@@ -41,7 +42,7 @@ namespace CoffeeManager.Droid
             }
             else
             {
-                SendMessage(exceptionObject.ToString());
+                Mvx.Resolve<IEmailService>().SendErrorEmail(exceptionObject.ToString());
             }
         }
 
@@ -68,39 +69,8 @@ namespace CoffeeManager.Droid
             {
                 return;
             }
-            Mvx.Resolve<IUserDialogs>().Alert("Что-то пошло не так :( Ошибка отправлена и будет обработана.");
-            SendMessage(e.ToString());
-        }
-
-        public static void SendMessage(string mes)
-        {
-            var message = new MimeMessage();
-            message.From.Add(new MailboxAddress("Info", "serdechnyi.dima@gmail.com"));
-            message.To.Add(new MailboxAddress("", "tertyshnykov@gmail.com"));
-            message.Subject = "Error";
-
-            message.Body = new TextPart("plain")
-            {
-                Text = mes
-            };
-
-            using (var client = new SmtpClient())
-            {
-                // For demo-purposes, accept all SSL certificates (in case the server supports STARTTLS)
-                client.ServerCertificateValidationCallback = (s, c, h, e) => true;
-
-                client.Connect("smtp.gmail.com", 587, false);
-
-                // Note: since we don't have an OAuth2 token, disable
-                // the XOAUTH2 authentication mechanism.
-                client.AuthenticationMechanisms.Remove("XOAUTH2");
-
-                // Note: only needed if the SMTP server requires authentication
-                client.Authenticate("serdechnyi.dima@gmail.com", "rbjnj5442872");
-
-                client.Send(message);
-                client.Disconnect(true);
-            }
+            Mvx.Resolve<IUserDialogs>().Alert("Р§С‚Рѕ-С‚Рѕ РїРѕС€Р»Рѕ РЅРµ С‚Р°Рє :(");
+            Mvx.Resolve<IEmailService>().SendErrorEmail(e.ToDiagnosticString());
         }
     }
 }
