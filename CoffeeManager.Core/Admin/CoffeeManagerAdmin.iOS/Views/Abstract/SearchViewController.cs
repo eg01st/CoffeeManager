@@ -5,6 +5,7 @@ using CoffeManager.Common;
 using MvvmCross.Binding.BindingContext;
 using System.Drawing;
 using Foundation;
+using CoreGraphics;
 
 namespace CoffeeManagerAdmin.iOS
 {
@@ -46,15 +47,17 @@ namespace CoffeeManagerAdmin.iOS
 
         protected override void InitStylesAndContent()
         {
-            TableView = new UITableView(TableViewContainer.Frame);
+            TableView = new UITableView(new CGRect(0, 0, UIScreen.MainScreen.Bounds.Width, UIScreen.MainScreen.Bounds.Height));
             TableViewContainer.TranslatesAutoresizingMaskIntoConstraints = false;
             TableViewContainer.AddSubview(TableView);
 
-            _searchBar = new UISearchBar(new RectangleF(0, 0, (float)View.Frame.Width, 44))
+            _searchBar = new UISearchBar(new RectangleF(0, 0, (float)UIScreen.MainScreen.Bounds.Width, 44))
             {
                 AutocorrectionType = UITextAutocorrectionType.No
             };
             TableView.TableHeaderView = _searchBar;
+            TableViewContainer.SetNeedsLayout();
+            TableViewContainer.LayoutIfNeeded();
         }
 
         protected override void DoBind()

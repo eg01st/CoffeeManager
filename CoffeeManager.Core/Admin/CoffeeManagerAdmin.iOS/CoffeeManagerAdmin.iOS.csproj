@@ -108,23 +108,11 @@
       <DependentUpon>MainView.cs</DependentUpon>
     </Compile>
     <Compile Include="TableSources\ShiftInfoTableSource.cs" />
-    <Compile Include="Views\SuplyProductsView.cs" />
-    <Compile Include="Views\SuplyProductsView.designer.cs">
-      <DependentUpon>SuplyProductsView.cs</DependentUpon>
-    </Compile>
     <Compile Include="TableSources\SuplyProductTableSource.cs" />
-    <Compile Include="Views\Cells\SuplyProductCell.cs" />
-    <Compile Include="Views\Cells\SuplyProductCell.designer.cs">
-      <DependentUpon>SuplyProductCell.cs</DependentUpon>
-    </Compile>
     <Compile Include="Converters\DecimalToStringConverter.cs" />
     <Compile Include="TableSources\SaleTableSource.cs" />
     <Compile Include="Bootstrap\MessengerPluginBootstrap.cs" />
     <Compile Include="Converters\GenericConverter.cs" />
-    <Compile Include="Views\SuplyProductDetailsView.cs" />
-    <Compile Include="Views\SuplyProductDetailsView.designer.cs">
-      <DependentUpon>SuplyProductDetailsView.cs</DependentUpon>
-    </Compile>
     <Compile Include="Views\CalculationView.cs" />
     <Compile Include="Views\CalculationView.designer.cs">
       <DependentUpon>CalculationView.cs</DependentUpon>
@@ -263,10 +251,6 @@
     <Compile Include="Views\ManageExpenses\AddExpenseTypeView.designer.cs">
       <DependentUpon>AddExpenseTypeView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\AddSuplyProductView.cs" />
-    <Compile Include="Views\AddSuplyProductView.designer.cs">
-      <DependentUpon>AddSuplyProductView.cs</DependentUpon>
-    </Compile>
     <Compile Include="Views\Shifts\ShiftDetailsView.cs" />
     <Compile Include="Views\Shifts\ShiftDetailsView.designer.cs">
       <DependentUpon>ShiftDetailsView.cs</DependentUpon>
@@ -336,15 +320,32 @@
     <Compile Include="Views\Inventory\InventoryDetailsItemHeader.designer.cs">
       <DependentUpon>InventoryDetailsItemHeader.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\SuplyProducts\AddSuplyProductView.cs" />
+    <Compile Include="Views\SuplyProducts\AddSuplyProductView.designer.cs">
+      <DependentUpon>AddSuplyProductView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SuplyProducts\SuplyProductDetailsView.cs" />
+    <Compile Include="Views\SuplyProducts\SuplyProductDetailsView.designer.cs">
+      <DependentUpon>SuplyProductDetailsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SuplyProducts\SuplyProductsView.cs" />
+    <Compile Include="Views\SuplyProducts\SuplyProductsView.designer.cs">
+      <DependentUpon>SuplyProductsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SuplyProducts\SuplyProductCell.cs" />
+    <Compile Include="Views\SuplyProducts\SuplyProductCell.designer.cs">
+      <DependentUpon>SuplyProductCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SuplyProducts\SuplyProductHeaderCell.cs" />
+    <Compile Include="Views\SuplyProducts\SuplyProductHeaderCell.designer.cs">
+      <DependentUpon>SuplyProductHeaderCell.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Setup.cs" />
     <InterfaceDefinition Include="Resources\LaunchScreen.xib" />
     <InterfaceDefinition Include="Views\LoginView.xib" />
     <InterfaceDefinition Include="Views\MainView.xib" />
-    <InterfaceDefinition Include="Views\SuplyProductsView.xib" />
-    <InterfaceDefinition Include="Views\Cells\SuplyProductCell.xib" />
-    <InterfaceDefinition Include="Views\SuplyProductDetailsView.xib" />
     <InterfaceDefinition Include="Views\CalculationView.xib" />
     <InterfaceDefinition Include="Views\Cells\CalculationItemViewCell.xib" />
     <InterfaceDefinition Include="Views\SelectCalculationListView.xib" />
@@ -377,7 +378,6 @@
     <InterfaceDefinition Include="Views\ManageExpenses\MappedSuplyProductsTableViewCell.xib" />
     <InterfaceDefinition Include="Views\ManageExpenses\MapExpenseToSuplyProductView.xib" />
     <InterfaceDefinition Include="Views\ManageExpenses\AddExpenseTypeView.xib" />
-    <InterfaceDefinition Include="Views\AddSuplyProductView.xib" />
     <InterfaceDefinition Include="Views\Shifts\ShiftDetailsView.xib" />
     <InterfaceDefinition Include="Views\Shifts\ShiftSalesView.xib" />
     <InterfaceDefinition Include="Views\Shifts\ShiftsView.xib" />
@@ -395,6 +395,12 @@
     <InterfaceDefinition Include="Views\Inventory\InventoryReportDetailsView.xib" />
     <InterfaceDefinition Include="Views\Inventory\InventoryDetailsItemCell.xib" />
     <InterfaceDefinition Include="Views\Inventory\InventoryDetailsItemHeader.xib" />
+    <InterfaceDefinition Include="Views\SuplyProducts\AddSuplyProductView.xib" />
+    <InterfaceDefinition Include="Views\SuplyProducts\SuplyProductDetailsView.xib" />
+    <InterfaceDefinition Include="Views\SuplyProducts\SuplyProductsView.xib" />
+    <InterfaceDefinition Include="Views\SuplyProducts\SuplyProductCell.xib" />
+    <InterfaceDefinition Include="Views\SuplyProducts\SuplyProductHeaderCell.xib" />
+    <InterfaceDefinition Include="Resources\Views\SuplyProducts\en.lproj\SuplyProductsView.xib" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MvvmCross.Binding, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -508,6 +514,7 @@
     <Folder Include="Platform\" />
     <Folder Include="Views\Shifts\" />
     <Folder Include="Views\Inventory\" />
+    <Folder Include="Views\SuplyProducts\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\ic_check.png" />

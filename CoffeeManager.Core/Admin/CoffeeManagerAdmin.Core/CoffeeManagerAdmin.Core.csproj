@@ -101,6 +101,7 @@
     <Compile Include="ViewModels\Inventory\InventoryItemViewModel.cs" />
     <Compile Include="ViewModels\Inventory\InventoryReportDetailsViewModel.cs" />
     <Compile Include="ViewModels\Inventory\InventoryReportDetailsItemViewModel.cs" />
+    <Compile Include="ViewModels\SuplyProducts\ExpenseTypeHeaderViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">

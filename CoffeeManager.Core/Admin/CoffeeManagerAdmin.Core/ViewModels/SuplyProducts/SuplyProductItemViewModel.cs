@@ -34,6 +34,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels
 
         public string Quatity => _item.Quatity?.ToString("F");
 
+        public string ExpenseTypeName => _item.ExpenseTypeName;
 
         private void DoDeleteItem()
         {

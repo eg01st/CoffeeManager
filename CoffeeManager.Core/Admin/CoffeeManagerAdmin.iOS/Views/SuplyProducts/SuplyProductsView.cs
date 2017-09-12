@@ -1,13 +1,14 @@
-﻿using CoffeeManagerAdmin.Core.ViewModels;
+﻿﻿using CoffeeManagerAdmin.Core.ViewModels;
 using UIKit;
 using MvvmCross.Binding.BindingContext;
 using System.Collections.Generic;
+using CoffeManager.Common;
 
 namespace CoffeeManagerAdmin.iOS
 {
-    public partial class SuplyProductsView : SearchViewController<SuplyProductsView, SuplyProductsViewModel, SuplyProductItemViewModel>
+    public partial class SuplyProductsView : SearchViewController<SuplyProductsView, SuplyProductsViewModel, ListItemViewModelBase>
     {
-        protected override SimpleTableSource TableSource => new SimpleTableSource(TableView, SuplyProductCell.Key, SuplyProductCell.Nib);
+        protected override SimpleTableSource TableSource => new SuplyProductTableSource(TableView, SuplyProductCell.Key, SuplyProductCell.Nib, SuplyProductHeaderCell.Key, SuplyProductHeaderCell.Nib);
 
         protected override UIView TableViewContainer => ContainerView;
 
