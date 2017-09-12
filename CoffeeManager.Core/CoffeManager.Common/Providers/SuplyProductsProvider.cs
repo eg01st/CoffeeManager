@@ -52,6 +52,15 @@ namespace CoffeManager.Common
         {
             await Put(RoutesConstants.AddProductCalculationItem, productCalculationEntity);
         }
-       
+
+        public async Task UtilizeSuplyProduct(UtilizedSuplyProduct product)
+        {
+            await Post(RoutesConstants.UtilizeSuplyProduct, product);
+        }
+
+        public async Task<IEnumerable<UtilizedSuplyProduct>> GetUtilizedProducts()
+        {
+            return await Get<IEnumerable<UtilizedSuplyProduct>>(RoutesConstants.GetUtilizedSuplyProducts);
+        }
     }
 }

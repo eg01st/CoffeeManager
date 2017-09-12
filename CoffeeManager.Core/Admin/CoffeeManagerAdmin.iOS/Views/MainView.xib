@@ -22,6 +22,7 @@
                 <outlet property="SupliedProductsButton" destination="mJ4-rp-f1g" id="bZJ-rA-HxT"/>
                 <outlet property="UpdateButton" destination="eri-g4-8vn" id="ZbT-6V-SUk"/>
                 <outlet property="UsersButton" destination="ljL-ig-Bk5" id="qJb-11-Rym"/>
+                <outlet property="UtilizeButton" destination="p4E-pw-rZo" id="hfQ-4y-9ly"/>
                 <outlet property="view" destination="2" id="RRd-Eg-VrN"/>
             </connections>
         </placeholder>
@@ -112,6 +113,10 @@
                             <rect key="frame" x="122" y="398" width="131" height="30"/>
                             <state key="normal" title="Отчеты переучета"/>
                         </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p4E-pw-rZo">
+                            <rect key="frame" x="153" y="428" width="70" height="30"/>
+                            <state key="normal" title="Списания"/>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
@@ -120,6 +125,7 @@
                         <constraint firstItem="BLn-MY-6qN" firstAttribute="top" secondItem="510-wl-31F" secondAttribute="bottom" id="9vz-bg-2eB"/>
                         <constraint firstAttribute="trailing" secondItem="6pf-lb-OPA" secondAttribute="trailing" id="A92-MY-CFK"/>
                         <constraint firstItem="NTu-F5-vSy" firstAttribute="centerX" secondItem="nw2-pP-fuX" secondAttribute="centerX" id="CcP-h8-YD1"/>
+                        <constraint firstItem="p4E-pw-rZo" firstAttribute="top" secondItem="TZH-yp-llI" secondAttribute="bottom" id="DNI-hq-QB2"/>
                         <constraint firstItem="mJ4-rp-f1g" firstAttribute="leading" secondItem="nw2-pP-fuX" secondAttribute="leading" id="DlG-fi-nj4"/>
                         <constraint firstItem="BLn-MY-6qN" firstAttribute="centerX" secondItem="nw2-pP-fuX" secondAttribute="centerX" id="J2J-4q-TO1"/>
                         <constraint firstItem="ljL-ig-Bk5" firstAttribute="top" secondItem="BLn-MY-6qN" secondAttribute="bottom" id="MIk-V8-ca4"/>
@@ -131,6 +137,7 @@
                         <constraint firstItem="ndV-93-hpW" firstAttribute="centerX" secondItem="nw2-pP-fuX" secondAttribute="centerX" id="Z6M-w6-mHA"/>
                         <constraint firstItem="ljL-ig-Bk5" firstAttribute="centerX" secondItem="nw2-pP-fuX" secondAttribute="centerX" id="aEK-rj-Lsg"/>
                         <constraint firstItem="Suy-dX-keX" firstAttribute="top" secondItem="4eu-9a-SXF" secondAttribute="bottom" constant="20" id="cZ9-ZM-gy7"/>
+                        <constraint firstItem="p4E-pw-rZo" firstAttribute="centerX" secondItem="nw2-pP-fuX" secondAttribute="centerX" id="dv9-A4-9yx"/>
                         <constraint firstAttribute="trailing" secondItem="510-wl-31F" secondAttribute="trailing" id="fpC-tG-ezw"/>
                         <constraint firstItem="510-wl-31F" firstAttribute="top" secondItem="mJ4-rp-f1g" secondAttribute="bottom" id="gy2-Eb-Uyr"/>
                         <constraint firstItem="NTu-F5-vSy" firstAttribute="top" secondItem="ndV-93-hpW" secondAttribute="bottom" id="ixI-Im-Ocg"/>

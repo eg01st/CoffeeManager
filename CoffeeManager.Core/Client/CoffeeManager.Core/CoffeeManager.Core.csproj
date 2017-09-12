@@ -66,6 +66,8 @@
     <Compile Include="ViewModels\ExpenseItemExtendedViewModel.cs" />
     <Compile Include="ViewModels\Inventory\InventoryViewModel.cs" />
     <Compile Include="ViewModels\Inventory\InventoryItemViewModel.cs" />
+    <Compile Include="ViewModels\UtilizedProducts\UtilizeProductsViewModel.cs" />
+    <Compile Include="ViewModels\UtilizedProducts\UtilizeItemViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Cheesebaron.MvxPlugins.SMS, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -143,6 +145,7 @@
   <ItemGroup>
     <Folder Include="Managers\" />
     <Folder Include="ServiceProviders\" />
+    <Folder Include="ViewModels\UtilizedProducts\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\CoffeeManager.Models\CoffeeManager.Models.csproj">

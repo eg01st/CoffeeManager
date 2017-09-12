@@ -102,6 +102,8 @@
     <Compile Include="ViewModels\Inventory\InventoryReportDetailsViewModel.cs" />
     <Compile Include="ViewModels\Inventory\InventoryReportDetailsItemViewModel.cs" />
     <Compile Include="ViewModels\SuplyProducts\ExpenseTypeHeaderViewModel.cs" />
+    <Compile Include="ViewModels\Utilize\UtilizeViewModel.cs" />
+    <Compile Include="ViewModels\Utilize\UtilizeItemViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">
@@ -173,6 +175,7 @@
     <Folder Include="ServiceProviders\" />
     <Folder Include="Managers\" />
     <Folder Include="ViewModels\Inventory\" />
+    <Folder Include="ViewModels\Utilize\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\CoffeeManager.Models\CoffeeManager.Models.csproj">

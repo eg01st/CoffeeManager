@@ -229,6 +229,7 @@
     <Compile Include="Converters\InvertedBoolToVisibilityConverter.cs" />
     <Compile Include="Views\InventoryView.cs" />
     <Compile Include="Converters\DecimalToQuantityConverter.cs" />
+    <Compile Include="Views\UtilizeProductsView.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -307,6 +308,8 @@
     <AndroidResource Include="Resources\drawable-xhdpi\ic_done_black_24dp.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\ic_done_black_24dp.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_done_black_24dp.png" />
+    <AndroidResource Include="Resources\layout\utilize_layout.axml" />
+    <AndroidResource Include="Resources\layout\utilize_item.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />

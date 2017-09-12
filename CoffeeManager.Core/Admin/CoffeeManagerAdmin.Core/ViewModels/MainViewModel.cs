@@ -37,7 +37,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels
         public ICommand ShowStatiscticCommand => _showStatiscticCommand;
         public ICommand ShowExpensesCommand { get; set; }
         public ICommand ShowInventoryCommand { get; set; }
-
+        public ICommand ShowUtilizedSuplyProductsCommand { get; set; }
 
         public string CurrentBalance
         {
@@ -73,6 +73,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels
             _showStatiscticCommand = new MvxCommand(() => ShowViewModel<StatisticViewModel>());
             ShowExpensesCommand = new MvxCommand(() => ShowViewModel<ManageExpensesViewModel>());
             ShowInventoryCommand = new MvxCommand(() => ShowViewModel<InventoryViewModel>());
+            ShowUtilizedSuplyProductsCommand = new MvxCommand(() => ShowViewModel<UtilizeViewModel>());
         }
 
 
