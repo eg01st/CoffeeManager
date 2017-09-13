@@ -12,7 +12,6 @@ namespace CoffeManager.Common
     {
         public static string AccessToken = "";
 
-        protected readonly int CoffeeRoomNo = Config.CoffeeRoomNo;
         private readonly string _apiUrl = Config.ApiUrl;
 
         protected async Task<T> Get<T>(string path, Dictionary<string, string> param = null)
@@ -113,7 +112,7 @@ namespace CoffeManager.Common
 
         private string GetUrl(string path, Dictionary<string, string> param = null)
         {
-            string url = $"{_apiUrl}{path}?coffeeroomno={CoffeeRoomNo}";
+            string url = $"{_apiUrl}{path}?coffeeroomno={Config.CoffeeRoomNo}";
             if (param != null && param.Count > 0)
             {
                 foreach (var parameter in param)

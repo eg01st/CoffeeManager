@@ -78,6 +78,10 @@
     <Compile Include="Providers\IInventoryProvider.cs" />
     <Compile Include="Managers\IInventoryManager.cs" />
     <Compile Include="Managers\InventoryManager.cs" />
+    <Compile Include="Providers\IAdminProvider.cs" />
+    <Compile Include="Managers\IAdminManager.cs" />
+    <Compile Include="Providers\AdminProvider.cs" />
+    <Compile Include="Managers\AdminManager.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

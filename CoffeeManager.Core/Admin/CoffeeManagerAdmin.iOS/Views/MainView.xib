@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainView">
             <connections>
+                <outlet property="CoffeeRoomNameTextField" destination="gpD-Et-VUg" id="zBc-wV-Q9j"/>
                 <outlet property="CurrentAmountLabel" destination="xWM-em-lxK" id="pxx-KU-8wv"/>
                 <outlet property="CurrentShiftAmountLabel" destination="ycJ-p5-eWj" id="1sX-PQ-9f8"/>
                 <outlet property="ExpensesButton" destination="NTu-F5-vSy" id="iu7-gB-2i5"/>
@@ -35,7 +36,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6pf-lb-OPA">
-                            <rect key="frame" x="0.0" y="123" width="375" height="57"/>
+                            <rect key="frame" x="0.0" y="135" width="375" height="57"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Текущая касса:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Suy-dX-keX">
                                     <rect key="frame" x="14" y="18" width="123" height="21"/>
@@ -70,78 +71,95 @@
                             </constraints>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ho5-eG-NZS">
-                            <rect key="frame" x="0.0" y="188" width="375" height="30"/>
+                            <rect key="frame" x="0.0" y="200" width="375" height="30"/>
                             <state key="normal" title="Информация по сменам"/>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mJ4-rp-f1g">
-                            <rect key="frame" x="0.0" y="218" width="375" height="30"/>
+                            <rect key="frame" x="0.0" y="230" width="375" height="30"/>
                             <state key="normal" title="Информация по балансу продуктов"/>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="510-wl-31F">
-                            <rect key="frame" x="0.0" y="248" width="375" height="30"/>
+                            <rect key="frame" x="0.0" y="260" width="375" height="30"/>
                             <state key="normal" title="Заявки на покупку продуктов"/>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BLn-MY-6qN">
-                            <rect key="frame" x="0.0" y="278" width="375" height="30"/>
+                            <rect key="frame" x="0.0" y="290" width="375" height="30"/>
                             <state key="normal" title="Редактированние товаров"/>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ljL-ig-Bk5">
-                            <rect key="frame" x="152" y="308" width="71" height="30"/>
+                            <rect key="frame" x="152" y="320" width="71" height="30"/>
                             <state key="normal" title="Персонал"/>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ndV-93-hpW">
-                            <rect key="frame" x="146" y="338" width="82" height="30"/>
+                            <rect key="frame" x="146" y="350" width="82" height="30"/>
                             <state key="normal" title="Статистика"/>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Текущая смена: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4eu-9a-SXF">
-                            <rect key="frame" x="14" y="100" width="132" height="21"/>
+                            <rect key="frame" x="14" y="112" width="132" height="21"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ycJ-p5-eWj">
-                            <rect key="frame" x="154" y="100" width="42" height="21"/>
+                            <rect key="frame" x="154" y="112" width="42" height="21"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NTu-F5-vSy">
-                            <rect key="frame" x="93" y="368" width="190" height="30"/>
+                            <rect key="frame" x="93" y="380" width="190" height="30"/>
                             <state key="normal" title="Редактирование расходов"/>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TZH-yp-llI">
-                            <rect key="frame" x="122" y="398" width="131" height="30"/>
+                            <rect key="frame" x="122" y="410" width="131" height="30"/>
                             <state key="normal" title="Отчеты переучета"/>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p4E-pw-rZo">
-                            <rect key="frame" x="153" y="428" width="70" height="30"/>
+                            <rect key="frame" x="153" y="440" width="70" height="30"/>
                             <state key="normal" title="Списания"/>
                         </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Кофейня: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KnL-Eg-UdO">
+                            <rect key="frame" x="16" y="75" width="80" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gpD-Et-VUg">
+                            <rect key="frame" x="112" y="70.5" width="247" height="30"/>
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="510-wl-31F" firstAttribute="leading" secondItem="nw2-pP-fuX" secondAttribute="leading" id="0JR-3f-7sz"/>
                         <constraint firstItem="ho5-eG-NZS" firstAttribute="top" secondItem="6pf-lb-OPA" secondAttribute="bottom" constant="8" id="0qD-cX-jnt"/>
+                        <constraint firstItem="4eu-9a-SXF" firstAttribute="top" secondItem="KnL-Eg-UdO" secondAttribute="bottom" constant="16" id="7Y3-rg-9v2"/>
+                        <constraint firstItem="KnL-Eg-UdO" firstAttribute="leading" secondItem="nw2-pP-fuX" secondAttribute="leading" constant="16" id="9Rk-qr-fzZ"/>
                         <constraint firstItem="BLn-MY-6qN" firstAttribute="top" secondItem="510-wl-31F" secondAttribute="bottom" id="9vz-bg-2eB"/>
                         <constraint firstAttribute="trailing" secondItem="6pf-lb-OPA" secondAttribute="trailing" id="A92-MY-CFK"/>
                         <constraint firstItem="NTu-F5-vSy" firstAttribute="centerX" secondItem="nw2-pP-fuX" secondAttribute="centerX" id="CcP-h8-YD1"/>
                         <constraint firstItem="p4E-pw-rZo" firstAttribute="top" secondItem="TZH-yp-llI" secondAttribute="bottom" id="DNI-hq-QB2"/>
                         <constraint firstItem="mJ4-rp-f1g" firstAttribute="leading" secondItem="nw2-pP-fuX" secondAttribute="leading" id="DlG-fi-nj4"/>
+                        <constraint firstAttribute="trailing" secondItem="gpD-Et-VUg" secondAttribute="trailing" constant="16" id="I6y-n9-1fh"/>
                         <constraint firstItem="BLn-MY-6qN" firstAttribute="centerX" secondItem="nw2-pP-fuX" secondAttribute="centerX" id="J2J-4q-TO1"/>
+                        <constraint firstItem="gpD-Et-VUg" firstAttribute="leading" secondItem="KnL-Eg-UdO" secondAttribute="trailing" constant="16" id="JTX-DZ-kfs"/>
                         <constraint firstItem="ljL-ig-Bk5" firstAttribute="top" secondItem="BLn-MY-6qN" secondAttribute="bottom" id="MIk-V8-ca4"/>
                         <constraint firstItem="TZH-yp-llI" firstAttribute="centerX" secondItem="nw2-pP-fuX" secondAttribute="centerX" id="MZ7-8G-yvd"/>
                         <constraint firstItem="ycJ-p5-eWj" firstAttribute="leading" secondItem="4eu-9a-SXF" secondAttribute="trailing" constant="8" id="NCJ-pc-jtj"/>
                         <constraint firstItem="6pf-lb-OPA" firstAttribute="leading" secondItem="nw2-pP-fuX" secondAttribute="leading" id="Ps8-tv-f19"/>
+                        <constraint firstItem="KnL-Eg-UdO" firstAttribute="top" secondItem="nw2-pP-fuX" secondAttribute="top" constant="75" id="Qht-Wq-kx5"/>
                         <constraint firstItem="xWM-em-lxK" firstAttribute="top" secondItem="ycJ-p5-eWj" secondAttribute="bottom" constant="20" id="VSx-7t-qYu"/>
                         <constraint firstItem="ndV-93-hpW" firstAttribute="top" secondItem="ljL-ig-Bk5" secondAttribute="bottom" id="XyV-hQ-F4O"/>
                         <constraint firstItem="ndV-93-hpW" firstAttribute="centerX" secondItem="nw2-pP-fuX" secondAttribute="centerX" id="Z6M-w6-mHA"/>
                         <constraint firstItem="ljL-ig-Bk5" firstAttribute="centerX" secondItem="nw2-pP-fuX" secondAttribute="centerX" id="aEK-rj-Lsg"/>
                         <constraint firstItem="Suy-dX-keX" firstAttribute="top" secondItem="4eu-9a-SXF" secondAttribute="bottom" constant="20" id="cZ9-ZM-gy7"/>
+                        <constraint firstItem="gpD-Et-VUg" firstAttribute="centerY" secondItem="KnL-Eg-UdO" secondAttribute="centerY" id="cxx-Gl-kDr"/>
                         <constraint firstItem="p4E-pw-rZo" firstAttribute="centerX" secondItem="nw2-pP-fuX" secondAttribute="centerX" id="dv9-A4-9yx"/>
                         <constraint firstAttribute="trailing" secondItem="510-wl-31F" secondAttribute="trailing" id="fpC-tG-ezw"/>
                         <constraint firstItem="510-wl-31F" firstAttribute="top" secondItem="mJ4-rp-f1g" secondAttribute="bottom" id="gy2-Eb-Uyr"/>
                         <constraint firstItem="NTu-F5-vSy" firstAttribute="top" secondItem="ndV-93-hpW" secondAttribute="bottom" id="ixI-Im-Ocg"/>
-                        <constraint firstItem="4eu-9a-SXF" firstAttribute="top" secondItem="nw2-pP-fuX" secondAttribute="top" constant="100" id="iyd-B1-gSA"/>
                         <constraint firstAttribute="trailing" secondItem="mJ4-rp-f1g" secondAttribute="trailing" id="lnp-3f-aOE"/>
                         <constraint firstItem="BLn-MY-6qN" firstAttribute="width" secondItem="nw2-pP-fuX" secondAttribute="width" id="m0v-2p-oKU"/>
                         <constraint firstItem="mJ4-rp-f1g" firstAttribute="top" secondItem="ho5-eG-NZS" secondAttribute="bottom" id="mNT-uo-NLK"/>

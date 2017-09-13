@@ -4,6 +4,10 @@ using System.Threading.Tasks;
 using CoffeeManagerAdmin.Core.ViewModels.Orders;
 using CoffeManager.Common;
 using CoffeeManager.Core.ViewModels;
+using System.Collections.Generic;
+using CoffeeManager.Models;
+using System.Linq;
+using CoffeeManager.Common;
 
 namespace CoffeeManagerAdmin.Core.ViewModels
 {
@@ -27,6 +31,8 @@ namespace CoffeeManagerAdmin.Core.ViewModels
 
         private string _currentBalance;
         private string _currentShiftBalance;
+        private Entity _currentCoffeeRoom;
+        private List<Entity> coffeeRooms;
 
         public ICommand ShowShiftsCommand => _showShiftsCommand;
         public ICommand ShowSupliedProductsCommand => _showSupliedProductsCommand;
@@ -59,10 +65,40 @@ namespace CoffeeManagerAdmin.Core.ViewModels
             }
         }
 
-       
-
-        public MainViewModel(IShiftManager shiftManager)
+        public Entity CurrentCoffeeRoom
         {
+            get { return _currentCoffeeRoom; }
+            set
+            {
+                _currentCoffeeRoom = value;
+                RaisePropertyChanged(nameof(CurrentCoffeeRoom));
+                RaisePropertyChanged(nameof(CurrentCoffeeRoomName));
+                Config.CoffeeRoomNo = _currentCoffeeRoom.Id;
+                GetEntireMoney();
+            }
+        }
+
+        public List<Entity> CoffeeRooms
+        {
+            get { return coffeeRooms; }
+            set
+            {
+                coffeeRooms = value;
+                RaisePropertyChanged(nameof(CoffeeRooms));
+            }
+        }
+
+        public string CurrentCoffeeRoomName
+        {
+            get { return CurrentCoffeeRoom.Name; }
+          
+        }
+
+        readonly IAdminManager adminManager;
+
+        public MainViewModel(IShiftManager shiftManager, IAdminManager adminManager)
+        {
+            this.adminManager = adminManager;
             this.shiftManager = shiftManager;
             _showShiftsCommand = new MvxCommand(DoShowShifts);
             _showSupliedProductsCommand = new MvxCommand(DoShowSupliedProducts);
@@ -105,6 +141,8 @@ namespace CoffeeManagerAdmin.Core.ViewModels
         public async void Init()
         {
             await GetEntireMoney();
+            await GetCoffeeRooms();
+
         }
 
         private async void DoGetEntireMoney()
@@ -120,6 +158,16 @@ namespace CoffeeManagerAdmin.Core.ViewModels
                 CurrentBalance = currentBalance.ToString("F1");
                 var shiftBalance = await shiftManager.GetCurrentShiftMoney();
                 CurrentShiftBalance = shiftBalance.ToString("F1");
+            });
+        }
+
+        private async Task GetCoffeeRooms()
+        {
+            await ExecuteSafe(async () =>
+            {
+                var items = await adminManager.GetCoffeeRooms();
+                CoffeeRooms = items.ToList();
+                CurrentCoffeeRoom = CoffeeRooms.First();
             });
         }
     }
