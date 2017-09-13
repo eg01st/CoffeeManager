@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using CoffeeManager.Common;
 using CoffeeManager.Models;
 
 namespace CoffeManager.Common
@@ -26,7 +27,7 @@ namespace CoffeManager.Common
         {
             await
             Put(RoutesConstants.AddSuplyProduct,
-                    new SupliedProduct() { CoffeeRoomNo = CoffeeRoomNo, Quatity = 0, Price = 0, Name = newProduct });
+                    new SupliedProduct() { CoffeeRoomNo = Config.CoffeeRoomNo, Quatity = 0, Price = 0, Name = newProduct });
         }
 
         public async Task DeleteSuplyProduct(int id)

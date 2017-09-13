@@ -29,6 +29,7 @@ namespace CoffeManager.Common
             Mvx.RegisterSingleton<ISuplyProductsProvider>(new SuplyProductsProvider());
             Mvx.RegisterSingleton<IDataBaseProvider>(new DataBaseProvider(Mvx.Resolve<IMvxSqliteConnectionFactory>()));
             Mvx.RegisterSingleton<IInventoryProvider>(new InventoryProvider());
+            Mvx.RegisterSingleton<IAdminProvider>(new AdminProvider());
         }
 
         public virtual void RegisterManagers()
@@ -42,6 +43,7 @@ namespace CoffeManager.Common
             Mvx.RegisterSingleton<ISuplyOrderManager>(new SuplyOrderManager(Mvx.Resolve<ISuplyOrderProvider>()));
             Mvx.RegisterSingleton<ISuplyProductsManager>(new SuplyProductsManager(Mvx.Resolve<ISuplyProductsProvider>()));
             Mvx.RegisterSingleton<IInventoryManager>(new InventoryManager(Mvx.Resolve<IInventoryProvider>(), Mvx.Resolve<IDataBaseProvider>()));
+            Mvx.RegisterSingleton<IAdminManager>(new AdminManager(Mvx.Resolve<IAdminProvider>()));
         }
     }
 }

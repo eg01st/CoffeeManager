@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using CoffeeManager.Models;
+using CoffeeManager.Common;
 
 namespace CoffeManager.Common
 {
@@ -37,7 +38,7 @@ namespace CoffeManager.Common
                 Post<EndShiftUserInfo, EndShiftDTO>(RoutesConstants.EndShift,
                      new EndShiftDTO()
                      {
-                         CoffeeRoomNo = CoffeeRoomNo,
+                        CoffeeRoomNo = Config.CoffeeRoomNo,
                          ShiftId = shiftId,
                          RealAmount = realAmount,
                          Counter = endCounter

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using CoffeeManager.Models;
+using CoffeeManager.Common;
 
 namespace CoffeManager.Common
 {
@@ -27,7 +28,7 @@ namespace CoffeManager.Common
                         ItemCount = itemCount,
                         ExpenseId = expenseId,
                         ShiftId = shiftId,
-                        CoffeeRoomNo = CoffeeRoomNo
+                        CoffeeRoomNo = Config.CoffeeRoomNo
                     });
         }
 

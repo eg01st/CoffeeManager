@@ -13,6 +13,9 @@ namespace CoffeeManagerAdmin.iOS
 	partial class MainView
 	{
 		[Outlet]
+		UIKit.UITextField CoffeeRoomNameTextField { get; set; }
+
+		[Outlet]
 		UIKit.UILabel CurrentAmountLabel { get; set; }
 
 		[Outlet]
@@ -116,6 +119,11 @@ namespace CoffeeManagerAdmin.iOS
 			if (UtilizeButton != null) {
 				UtilizeButton.Dispose ();
 				UtilizeButton = null;
+			}
+
+			if (CoffeeRoomNameTextField != null) {
+				CoffeeRoomNameTextField.Dispose ();
+				CoffeeRoomNameTextField = null;
 			}
 		}
 	}

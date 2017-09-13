@@ -4,6 +4,8 @@ using UIKit;
 using MvvmCross.iOS.Views;
 using MvvmCross.Binding.BindingContext;
 using CoffeeManagerAdmin.Core.ViewModels;
+using CoreGraphics;
+using MvvmCross.Binding.iOS.Views;
 
 namespace CoffeeManagerAdmin.iOS
 {
@@ -24,6 +26,29 @@ namespace CoffeeManagerAdmin.iOS
             NavigationItem.SetHidesBackButton(true, false);
 
 
+            var toolbar = new UIToolbar(new CGRect(0, 0, this.View.Frame.Width, 44));
+            toolbar.UserInteractionEnabled = true;
+            toolbar.BarStyle = UIBarStyle.BlackOpaque;
+            var doneButton = new UIBarButtonItem();
+            doneButton.Title = "Готово";
+            doneButton.Style = UIBarButtonItemStyle.Bordered;
+            doneButton.TintColor = UIColor.Black;
+            doneButton.Clicked += (sender, e) =>
+            {
+                View.EndEditing(true);
+            };
+            toolbar.SetItems(new[] { doneButton }, false);
+
+
+            var coffeeRoomPicker = new UIPickerView();
+            var coffeeRoomPickerViewModel = new MvxPickerViewModel(coffeeRoomPicker);
+            coffeeRoomPicker.Model = coffeeRoomPickerViewModel;
+            coffeeRoomPicker.ShowSelectionIndicator = true;
+            CoffeeRoomNameTextField.InputView = coffeeRoomPicker;
+            CoffeeRoomNameTextField.InputAccessoryView = toolbar;
+
+
+
             var set = this.CreateBindingSet<MainView, MainViewModel>();
             set.Bind(CurrentAmountLabel).To(vm => vm.CurrentBalance);
             set.Bind(CurrentShiftAmountLabel).To(vm => vm.CurrentShiftBalance);
@@ -37,6 +62,11 @@ namespace CoffeeManagerAdmin.iOS
             set.Bind(ExpensesButton).To(vm => vm.ShowExpensesCommand);
             set.Bind(InventoryButton).To(vm => vm.ShowInventoryCommand);
             set.Bind(UtilizeButton).To(vm => vm.ShowUtilizedSuplyProductsCommand);
+
+            set.Bind(coffeeRoomPickerViewModel).For(p => p.ItemsSource).To(vm => vm.CoffeeRooms);
+            set.Bind(coffeeRoomPickerViewModel).For(p => p.SelectedItem).To(vm => vm.CurrentCoffeeRoom);
+            set.Bind(CoffeeRoomNameTextField).To(vm => vm.CurrentCoffeeRoomName);
+
             set.Apply();
             // Perform any additional setup after loading the view, typically from a nib.
         }
