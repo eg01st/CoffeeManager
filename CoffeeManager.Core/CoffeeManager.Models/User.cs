@@ -10,6 +10,7 @@ namespace CoffeeManager.Models
         public bool IsActive { get; set; }
         public int DayShiftPersent { get; set; }
         public int NightShiftPercent { get; set; }
+        public decimal SalaryRate { get; set; }
         public decimal CurrentEarnedAmount { get; set; }
         public decimal EntireEarnedAmount { get; set; }
         public Nullable<int> ExpenceId { get; set; }

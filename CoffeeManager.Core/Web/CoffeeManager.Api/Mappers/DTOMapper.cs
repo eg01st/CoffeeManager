@@ -19,7 +19,8 @@ namespace CoffeeManager.Api.Mappers
                 EntireEarnedAmount = dbUser.EntireEarnedAmount,
                 ExpenceId = dbUser.ExpenceId,
                 IsActive = dbUser.IsActive,
-                NightShiftPercent = dbUser.NightShiftPercent
+                NightShiftPercent = dbUser.NightShiftPercent,
+                SalaryRate = dbUser.SimplePayment
             };
             if(dbUser.UserPenalties != null && dbUser.UserPenalties.Any())
             {
