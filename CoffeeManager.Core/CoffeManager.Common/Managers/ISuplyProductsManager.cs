@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using CoffeeManager.Models;
+using System.Collections.Generic;
 
 namespace CoffeManager.Common
 {
@@ -21,5 +22,9 @@ namespace CoffeManager.Common
         Task DeleteProductCalculationItem(int id);
 
         Task AddProductCalculationItem(int productId, int id, decimal quantity);
+
+        Task UtilizeSuplyProduct(UtilizedSuplyProduct product);
+
+        Task<IEnumerable<UtilizedSuplyProduct>> GetUtilizedProducts();
     }
 }

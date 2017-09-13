@@ -69,5 +69,16 @@ namespace CoffeManager.Common
                         }
                 });
         }
+
+        public async Task<IEnumerable<UtilizedSuplyProduct>> GetUtilizedProducts()
+        {
+            return await provider.GetUtilizedProducts();
+        }
+
+        public async Task UtilizeSuplyProduct(UtilizedSuplyProduct product)
+        {
+            await provider.UtilizeSuplyProduct(product);
+        }
+
     }
 }

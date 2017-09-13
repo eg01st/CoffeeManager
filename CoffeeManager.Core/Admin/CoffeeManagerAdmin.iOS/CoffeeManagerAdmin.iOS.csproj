@@ -340,6 +340,18 @@
     <Compile Include="Views\SuplyProducts\SuplyProductHeaderCell.designer.cs">
       <DependentUpon>SuplyProductHeaderCell.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Utilize\UtilizeView.cs" />
+    <Compile Include="Views\Utilize\UtilizeView.designer.cs">
+      <DependentUpon>UtilizeView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Utilize\UtilizeItemCell.cs" />
+    <Compile Include="Views\Utilize\UtilizeItemCell.designer.cs">
+      <DependentUpon>UtilizeItemCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Utilize\UtilizeItemHeader.cs" />
+    <Compile Include="Views\Utilize\UtilizeItemHeader.designer.cs">
+      <DependentUpon>UtilizeItemHeader.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Setup.cs" />
@@ -401,6 +413,9 @@
     <InterfaceDefinition Include="Views\SuplyProducts\SuplyProductCell.xib" />
     <InterfaceDefinition Include="Views\SuplyProducts\SuplyProductHeaderCell.xib" />
     <InterfaceDefinition Include="Resources\Views\SuplyProducts\en.lproj\SuplyProductsView.xib" />
+    <InterfaceDefinition Include="Views\Utilize\UtilizeView.xib" />
+    <InterfaceDefinition Include="Views\Utilize\UtilizeItemCell.xib" />
+    <InterfaceDefinition Include="Views\Utilize\UtilizeItemHeader.xib" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MvvmCross.Binding, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -515,6 +530,7 @@
     <Folder Include="Views\Shifts\" />
     <Folder Include="Views\Inventory\" />
     <Folder Include="Views\SuplyProducts\" />
+    <Folder Include="Views\Utilize\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\ic_check.png" />

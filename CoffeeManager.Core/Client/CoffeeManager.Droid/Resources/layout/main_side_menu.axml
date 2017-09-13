@@ -30,6 +30,13 @@
         </LinearLayout>
         <LinearLayout
             style="@style/left_menu_button_layout"
+            android:id="@+id/utilize_suply_product">
+            <TextView
+                style="@style/left_menu_button_text"
+                android:text="Списание" />
+        </LinearLayout>
+        <LinearLayout
+            style="@style/left_menu_button_layout"
             android:id="@+id/inventory">
             <TextView
                 style="@style/left_menu_button_text"

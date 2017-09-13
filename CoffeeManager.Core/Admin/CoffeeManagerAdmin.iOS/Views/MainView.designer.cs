@@ -47,6 +47,9 @@ namespace CoffeeManagerAdmin.iOS
 
 		[Outlet]
 		UIKit.UIButton UsersButton { get; set; }
+
+		[Outlet]
+		UIKit.UIButton UtilizeButton { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
@@ -110,9 +113,9 @@ namespace CoffeeManagerAdmin.iOS
 				UsersButton = null;
 			}
 
-			if (InventoryButton != null) {
-				InventoryButton.Dispose ();
-				InventoryButton = null;
+			if (UtilizeButton != null) {
+				UtilizeButton.Dispose ();
+				UtilizeButton = null;
 			}
 		}
 	}

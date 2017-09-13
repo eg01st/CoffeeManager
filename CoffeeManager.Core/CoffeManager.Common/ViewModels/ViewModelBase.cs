@@ -214,7 +214,7 @@ namespace CoffeManager.Common
             var result = await UserDialogs.PromptAsync(new PromptConfig()
             {
                 Message = message,
-                InputType = InputType.DecimalNumber
+                InputType = InputType.Default
 
             });
             return result.Value;
