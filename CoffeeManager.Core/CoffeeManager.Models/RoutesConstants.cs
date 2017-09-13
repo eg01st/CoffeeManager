@@ -87,7 +87,10 @@ namespace CoffeeManager.Models
         public const string ToggleItemInventoryEnabled = Inventory + "/toggleItemInventoryEnabled";
         public const string GetInventoryReports = Inventory + "/getInventoryReports";
         public const string GetInventoryReportDetails = Inventory + "/getInventoryReportDetails";
-       
+
+        public const string Admin = Api + "/admin";
+        public const string GetCoffeeRooms = Admin + "/getCoffeeRooms";
+
 
     }
 }

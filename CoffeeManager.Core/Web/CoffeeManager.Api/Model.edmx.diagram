@@ -60,6 +60,7 @@
         <EntityTypeShape EntityType="CoffeeRoomModel.UtilizedSuplyProduct" Width="1.5" PointX="10.5" PointY="14.75" />
         <AssociationConnector Association="CoffeeRoomModel.FK__UtilizedS__Shift__0662F0A3" />
         <AssociationConnector Association="CoffeeRoomModel.FK__UtilizedS__Suply__056ECC6A" />
+        <EntityTypeShape EntityType="CoffeeRoomModel.CoffeeRoom" Width="1.5" PointX="7.375" PointY="11.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

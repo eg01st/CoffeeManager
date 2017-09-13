@@ -19,7 +19,7 @@ namespace CoffeeManager.Api.Controllers
         public async Task<HttpResponseMessage> GetAllSales([FromUri] int coffeeroomno, [FromUri] DateTime from, [FromUri] DateTime to, HttpRequestMessage message)
         {
             var ctx = new CoffeeRoomEntities();
-            var sales = ctx.GetAllSales(from, to).ToList();
+            var sales = ctx.GetAllSales(from, to, coffeeroomno).ToList();
             return Request.CreateResponse(HttpStatusCode.OK, sales.ToDTO());
         }
 
@@ -28,7 +28,7 @@ namespace CoffeeManager.Api.Controllers
         public async Task<HttpResponseMessage> GetExpenses([FromUri] int coffeeroomno, [FromUri] DateTime from, [FromUri] DateTime to, HttpRequestMessage message)
         {
             var ctx = new CoffeeRoomEntities();
-            var expenses = ctx.GetExpenses(from, to).ToList();
+            var expenses = ctx.GetExpenses(from, to, coffeeroomno).ToList();
             return Request.CreateResponse(HttpStatusCode.OK, expenses.ToDTO());
         }
 

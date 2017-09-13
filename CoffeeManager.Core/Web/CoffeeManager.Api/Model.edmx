@@ -13,6 +13,13 @@
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="CoffeeRoom">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+        </EntityType>
         <EntityType Name="CupSuply">
           <Key>
             <PropertyRef Name="Id" />
@@ -629,22 +636,27 @@
         <Function Name="GetAllSales" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="from" Type="date" Mode="In" />
           <Parameter Name="to" Type="date" Mode="In" />
+          <Parameter Name="coffeeroomNo" Type="int" Mode="In" />
         </Function>
         <Function Name="GetExpenses" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="from" Type="datetime" Mode="In" />
           <Parameter Name="to" Type="datetime" Mode="In" />
+          <Parameter Name="coffeeroomNo" Type="int" Mode="In" />
         </Function>
         <Function Name="GetMetroExpenses" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="from" Type="date" Mode="In" />
           <Parameter Name="to" Type="date" Mode="In" />
+          <Parameter Name="coffeeroomNo" Type="int" Mode="In" />
         </Function>
         <Function Name="GetSales" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="from" Type="date" Mode="In" />
           <Parameter Name="to" Type="date" Mode="In" />
           <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="coffeeroomNo" Type="int" Mode="In" />
         </Function>
         <EntityContainer Name="CoffeeRoomModelStoreContainer">
           <EntitySet Name="AdminUser" EntityType="Self.AdminUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CoffeeRoom" EntityType="Self.CoffeeRoom" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CupSuply" EntityType="Self.CupSuply" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CupType" EntityType="Self.CupType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Dept" EntityType="Self.Dept" Schema="dbo" store:Type="Tables" />
@@ -1180,19 +1192,23 @@
           <FunctionImport Name="GetAllSales" ReturnType="Collection(CoffeeRoomModel.GetAllSales_Result)">
             <Parameter Name="from" Mode="In" Type="DateTime" />
             <Parameter Name="to" Mode="In" Type="DateTime" />
+            <Parameter Name="coffeeroomNo" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetExpenses" ReturnType="Collection(CoffeeRoomModel.GetExpenses_Result)">
             <Parameter Name="from" Mode="In" Type="DateTime" />
             <Parameter Name="to" Mode="In" Type="DateTime" />
+            <Parameter Name="coffeeroomNo" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetMetroExpenses" ReturnType="Collection(CoffeeRoomModel.GetMetroExpenses_Result)">
             <Parameter Name="from" Mode="In" Type="DateTime" />
             <Parameter Name="to" Mode="In" Type="DateTime" />
+            <Parameter Name="coffeeroomNo" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetSales" ReturnType="Collection(CoffeeRoomModel.GetSales_Result)">
             <Parameter Name="from" Mode="In" Type="DateTime" />
             <Parameter Name="to" Mode="In" Type="DateTime" />
             <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="coffeeroomNo" Mode="In" Type="Int32" />
           </FunctionImport>
           <AssociationSet Name="FK_Users_Expence" Association="CoffeeRoomModel.FK_Users_Expence">
             <End Role="Expense" EntitySet="Expenses" />
@@ -1235,6 +1251,7 @@
             <End Role="SupliedProduct" EntitySet="SupliedProducts" />
             <End Role="UtilizedSuplyProduct" EntitySet="UtilizedSuplyProducts" />
           </AssociationSet>
+          <EntitySet Name="CoffeeRooms" EntityType="CoffeeRoomModel.CoffeeRoom" />
         </EntityContainer>
         <EntityType Name="Dept">
           <Key>
@@ -1665,6 +1682,13 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="CoffeeRoom">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2024,6 +2048,14 @@
                 <ScalarProperty Name="Quantity" ColumnName="Quantity" />
                 <ScalarProperty Name="ShiftId" ColumnName="ShiftId" />
                 <ScalarProperty Name="SuplyProductId" ColumnName="SuplyProductId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CoffeeRooms">
+            <EntityTypeMapping TypeName="CoffeeRoomModel.CoffeeRoom">
+              <MappingFragment StoreEntitySet="CoffeeRoom">
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

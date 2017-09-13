@@ -19,7 +19,7 @@ namespace CoffeeManager.Api.Controllers
         {
             var shiftToReturn = new Models.Shift();
             var entities = new  CoffeeRoomEntities();
-            var currentShift = entities.Shifts.FirstOrDefault(s => s.IsFinished.Value == false);
+            var currentShift = entities.Shifts.FirstOrDefault(s => s.CoffeeRoomNo == coffeeroomno && s.IsFinished.Value == false);
             if (currentShift == null)
             {
                 var shift = new Shift
@@ -32,7 +32,7 @@ namespace CoffeeManager.Api.Controllers
                     CreditCardAmount = 0
                 };
                 var lastShift =
-                    entities.Shifts.Where(s => s.CoffeeRoomNo == coffeeroomno).OrderByDescending(s => s.Id).First();
+                    entities.Shifts.Where(s => s.CoffeeRoomNo == coffeeroomno).OrderByDescending(s => s.Id).FirstOrDefault();
                 if (lastShift != null)
                 {
                     shift.TotalAmount = lastShift.RealAmount;
@@ -105,7 +105,7 @@ namespace CoffeeManager.Api.Controllers
                 return Request.CreateResponse(HttpStatusCode.Forbidden);
             }
             var entities = new CoffeeRoomEntities();
-            var shifts = entities.Shifts.Include(s => s.User);
+            var shifts = entities.Shifts.Include(s => s.User).Where(s => s.CoffeeRoomNo == coffeeroomno);
             var response = new List<ShiftInfo>();
             foreach (var shift in shifts)
             {
@@ -146,19 +146,24 @@ namespace CoffeeManager.Api.Controllers
             {
 
                 decimal usedCoffee = 0;
-                var sales = entities.Sales.Where(s => s.ShiftId == id);
+                var sales = entities.Sales.Where(s => s.ShiftId == id && !s.IsRejected);
 
-                var coffeeSales = sales.Where(s => s.Product1.ProductType == 1);
+                var coffeeProductTypeId = (int)Models.ProductType.Coffee;
+                var coffeeSales = sales.Where(s => s.Product1.ProductType == coffeeProductTypeId);
+
+                var coffeeSuplyProduct = entities.SupliedProducts
+                    .FirstOrDefault(s => s.CoffeeRoomNo == coffeeroomno 
+                    && "Кофе".Equals(s.Name, StringComparison.OrdinalIgnoreCase));
                 foreach (var item in coffeeSales)
                 {
-                    var coffeeUsage = item.Product1.ProductCalculations.FirstOrDefault(c => c.SuplyProductId == 2);
+                    var coffeeUsage = item.Product1.ProductCalculations.FirstOrDefault(c => c.SuplyProductId == coffeeSuplyProduct.Id);
                     if(coffeeUsage != null)
                     {
                         usedCoffee += coffeeUsage.Quantity;
                     }
                 }
 
-                var usedPortions = usedCoffee / (decimal)0.0075;
+                var usedPortions = usedCoffee / (decimal)0.0075; // TODO: take from config
 
                 var dto = new ShiftInfo()
                 {

@@ -43,7 +43,7 @@ namespace CoffeeManager.Api.Controllers
 			}
 			var request = await message.Content.ReadAsStringAsync ();
 			var product = JsonConvert.DeserializeObject<Models.Product> (request);
-
+            product.CoffeeRoomNo = coffeeroomno;
 			var entities = new CoffeeRoomEntities ();
 			entities.Products.Add (DbMapper.Map (product));
 			await entities.SaveChangesAsync ();

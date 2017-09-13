@@ -33,8 +33,14 @@ namespace CoffeeManager.Api.Controllers
         public async Task<HttpResponseMessage> GetEntireMoney([FromUri]int coffeeroomno, HttpRequestMessage message)
         {
             var entities = new  CoffeeRoomEntities();
-            var shift = entities.Shifts.Where(s => s.CoffeeRoomNo == coffeeroomno).OrderByDescending(s => s.Id).First();
-            return Request.CreateResponse(HttpStatusCode.OK, shift.TotalAmount);
+            var shift = entities.Shifts.Where(s => s.CoffeeRoomNo == coffeeroomno).OrderByDescending(s => s.Id).FirstOrDefault();
+
+            if (shift != null)
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, shift.TotalAmount);
+            }
+
+            return Request.CreateResponse(HttpStatusCode.OK, 0);
         }
 
         [Route(RoutesConstants.GetExpenseItems)]

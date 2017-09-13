@@ -18,10 +18,10 @@ namespace CoffeeManager.Api.Controllers
 		[HttpGet]
 		public async Task<HttpResponseMessage> GetSuplyProducts ([FromUri] int coffeeroomno, HttpRequestMessage message)
 		{
-			var token = message.Headers.GetValues ("token").FirstOrDefault ();
-			if (token == null || !UserSessions.Contains (token)) {
-				return Request.CreateResponse (HttpStatusCode.Forbidden);
-			}
+			//var token = message.Headers.GetValues ("token").FirstOrDefault ();
+			//if (token == null || !UserSessions.Contains (token)) {
+			//	return Request.CreateResponse (HttpStatusCode.Forbidden);
+			//}
 			var entites = new CoffeeRoomEntities ();
             var items = entites.SupliedProducts.Include(s => s.ExpenseType).Where(s => s.CoffeeRoomNo == coffeeroomno && !s.Removed).ToList ().Select (p => p.ToDTO ());
 			return Request.CreateResponse (HttpStatusCode.OK, items);
@@ -209,11 +209,6 @@ namespace CoffeeManager.Api.Controllers
         [HttpPost]
         public async Task<HttpResponseMessage> UtilizeSuplyProduct([FromUri] int coffeeroomno, HttpRequestMessage message)
         {
-            var token = message.Headers.GetValues("token").FirstOrDefault();
-            if (token == null || !UserSessions.Contains(token))
-            {
-                return Request.CreateResponse(HttpStatusCode.Forbidden);
-            }
 
             var request = await message.Content.ReadAsStringAsync();
             var item = JsonConvert.DeserializeObject<Models.UtilizedSuplyProduct>(request);

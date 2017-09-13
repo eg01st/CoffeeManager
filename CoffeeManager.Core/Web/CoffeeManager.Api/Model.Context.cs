@@ -53,8 +53,9 @@ namespace CoffeeManager.Api
         public virtual DbSet<InventoryReportItem> InventoryReportItems { get; set; }
         public virtual DbSet<UserPenalty> UserPenalties { get; set; }
         public virtual DbSet<UtilizedSuplyProduct> UtilizedSuplyProducts { get; set; }
+        public virtual DbSet<CoffeeRoom> CoffeeRooms { get; set; }
     
-        public virtual ObjectResult<GetAllSales_Result> GetAllSales(Nullable<System.DateTime> from, Nullable<System.DateTime> to)
+        public virtual ObjectResult<GetAllSales_Result> GetAllSales(Nullable<System.DateTime> from, Nullable<System.DateTime> to, Nullable<int> coffeeroomNo)
         {
             var fromParameter = from.HasValue ?
                 new ObjectParameter("from", from) :
@@ -64,10 +65,14 @@ namespace CoffeeManager.Api
                 new ObjectParameter("to", to) :
                 new ObjectParameter("to", typeof(System.DateTime));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAllSales_Result>("GetAllSales", fromParameter, toParameter);
+            var coffeeroomNoParameter = coffeeroomNo.HasValue ?
+                new ObjectParameter("coffeeroomNo", coffeeroomNo) :
+                new ObjectParameter("coffeeroomNo", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAllSales_Result>("GetAllSales", fromParameter, toParameter, coffeeroomNoParameter);
         }
     
-        public virtual ObjectResult<GetExpenses_Result> GetExpenses(Nullable<System.DateTime> from, Nullable<System.DateTime> to)
+        public virtual ObjectResult<GetExpenses_Result> GetExpenses(Nullable<System.DateTime> from, Nullable<System.DateTime> to, Nullable<int> coffeeroomNo)
         {
             var fromParameter = from.HasValue ?
                 new ObjectParameter("from", from) :
@@ -77,10 +82,14 @@ namespace CoffeeManager.Api
                 new ObjectParameter("to", to) :
                 new ObjectParameter("to", typeof(System.DateTime));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetExpenses_Result>("GetExpenses", fromParameter, toParameter);
+            var coffeeroomNoParameter = coffeeroomNo.HasValue ?
+                new ObjectParameter("coffeeroomNo", coffeeroomNo) :
+                new ObjectParameter("coffeeroomNo", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetExpenses_Result>("GetExpenses", fromParameter, toParameter, coffeeroomNoParameter);
         }
     
-        public virtual ObjectResult<GetMetroExpenses_Result> GetMetroExpenses(Nullable<System.DateTime> from, Nullable<System.DateTime> to)
+        public virtual ObjectResult<GetMetroExpenses_Result> GetMetroExpenses(Nullable<System.DateTime> from, Nullable<System.DateTime> to, Nullable<int> coffeeroomNo)
         {
             var fromParameter = from.HasValue ?
                 new ObjectParameter("from", from) :
@@ -90,10 +99,14 @@ namespace CoffeeManager.Api
                 new ObjectParameter("to", to) :
                 new ObjectParameter("to", typeof(System.DateTime));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetMetroExpenses_Result>("GetMetroExpenses", fromParameter, toParameter);
+            var coffeeroomNoParameter = coffeeroomNo.HasValue ?
+                new ObjectParameter("coffeeroomNo", coffeeroomNo) :
+                new ObjectParameter("coffeeroomNo", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetMetroExpenses_Result>("GetMetroExpenses", fromParameter, toParameter, coffeeroomNoParameter);
         }
     
-        public virtual ObjectResult<GetSales_Result> GetSales(Nullable<System.DateTime> from, Nullable<System.DateTime> to, Nullable<int> id)
+        public virtual ObjectResult<GetSales_Result> GetSales(Nullable<System.DateTime> from, Nullable<System.DateTime> to, Nullable<int> id, Nullable<int> coffeeroomNo)
         {
             var fromParameter = from.HasValue ?
                 new ObjectParameter("from", from) :
@@ -107,7 +120,11 @@ namespace CoffeeManager.Api
                 new ObjectParameter("id", id) :
                 new ObjectParameter("id", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetSales_Result>("GetSales", fromParameter, toParameter, idParameter);
+            var coffeeroomNoParameter = coffeeroomNo.HasValue ?
+                new ObjectParameter("coffeeroomNo", coffeeroomNo) :
+                new ObjectParameter("coffeeroomNo", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetSales_Result>("GetSales", fromParameter, toParameter, idParameter, coffeeroomNoParameter);
         }
     }
 }
