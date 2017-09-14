@@ -17,6 +17,8 @@ namespace CoffeeManagerAdmin.iOS
         {
             base.ViewDidLoad();
 
+            Title = "Калькуляция";
+
             var source = new SimpleTableSource(TableView, CalculationItemViewCell.Key, CalculationItemViewCell.Nib);
             TableView.Source = source;
 
