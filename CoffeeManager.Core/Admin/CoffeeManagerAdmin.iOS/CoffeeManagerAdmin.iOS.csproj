@@ -352,6 +352,18 @@
     <Compile Include="Views\Utilize\UtilizeItemHeader.designer.cs">
       <DependentUpon>UtilizeItemHeader.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Users\UserEarningsView.cs" />
+    <Compile Include="Views\Users\UserEarningsView.designer.cs">
+      <DependentUpon>UserEarningsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Users\UserEarningCell.cs" />
+    <Compile Include="Views\Users\UserEarningCell.designer.cs">
+      <DependentUpon>UserEarningCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Users\UserEarningHeader.cs" />
+    <Compile Include="Views\Users\UserEarningHeader.designer.cs">
+      <DependentUpon>UserEarningHeader.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Setup.cs" />
@@ -416,6 +428,9 @@
     <InterfaceDefinition Include="Views\Utilize\UtilizeView.xib" />
     <InterfaceDefinition Include="Views\Utilize\UtilizeItemCell.xib" />
     <InterfaceDefinition Include="Views\Utilize\UtilizeItemHeader.xib" />
+    <InterfaceDefinition Include="Views\Users\UserEarningsView.xib" />
+    <InterfaceDefinition Include="Views\Users\UserEarningCell.xib" />
+    <InterfaceDefinition Include="Views\Users\UserEarningHeader.xib" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MvvmCross.Binding, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">

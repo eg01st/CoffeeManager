@@ -21,6 +21,7 @@
                 <outlet property="PenaltyButton" destination="Am3-Qq-JPL" id="0uM-Cw-x5k"/>
                 <outlet property="PenaltyTableView" destination="lxB-bV-VnX" id="oeZ-Su-J2U"/>
                 <outlet property="SalaryRateTextField" destination="Uiy-z9-7tb" id="0Mc-y5-bBb"/>
+                <outlet property="UserEarningsButton" destination="ism-y5-Umf" id="duQ-eM-M35"/>
                 <outlet property="view" destination="2" id="RRd-Eg-VrN"/>
             </connections>
         </placeholder>
@@ -121,8 +122,8 @@
                     <rect key="frame" x="16" y="340" width="99" height="30"/>
                     <state key="normal" title="Оштрафовать"/>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Штрафы" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mQm-cC-sQ3">
-                    <rect key="frame" x="150" y="354" width="68" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Штрафы" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mQm-cC-sQ3">
+                    <rect key="frame" x="153.5" y="386" width="68" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -146,9 +147,14 @@
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ism-y5-Umf">
+                    <rect key="frame" x="145.5" y="340" width="85" height="30"/>
+                    <state key="normal" title="Зачисления"/>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="ism-y5-Umf" firstAttribute="centerX" secondItem="2" secondAttribute="centerX" id="02b-uU-Tv3"/>
                 <constraint firstItem="xZT-YJ-kI2" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="16" id="1bn-xd-oGy"/>
                 <constraint firstItem="Am3-Qq-JPL" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="16" id="1yV-k5-gzz"/>
                 <constraint firstAttribute="trailing" secondItem="osM-ou-IvM" secondAttribute="trailing" constant="16" id="2G0-aG-JVG"/>
@@ -156,6 +162,7 @@
                 <constraint firstItem="pMt-Yo-d0w" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="16" id="5RV-e9-95W"/>
                 <constraint firstItem="DIb-7P-yaQ" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="16" id="6I5-Dp-UYe"/>
                 <constraint firstItem="5Om-gl-Dhz" firstAttribute="centerY" secondItem="CX7-yu-psO" secondAttribute="centerY" id="9Dr-4q-iUP"/>
+                <constraint firstItem="ism-y5-Umf" firstAttribute="centerY" secondItem="osM-ou-IvM" secondAttribute="centerY" id="9ZO-CE-5gM"/>
                 <constraint firstItem="Uiy-z9-7tb" firstAttribute="leading" secondItem="SiZ-xR-sMg" secondAttribute="trailing" constant="16" id="AX7-Bo-0PW"/>
                 <constraint firstItem="brU-dU-A59" firstAttribute="leading" secondItem="UmY-tt-qms" secondAttribute="trailing" constant="16" id="BD7-lp-DOf"/>
                 <constraint firstItem="lxB-bV-VnX" firstAttribute="top" secondItem="mQm-cC-sQ3" secondAttribute="bottom" constant="16" id="Chs-ui-7lG"/>

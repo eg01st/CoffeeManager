@@ -32,6 +32,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
+                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                 <constraints>
                     <constraint firstAttribute="trailingMargin" secondItem="3tv-g7-hV5" secondAttribute="trailing" constant="16" id="DP9-Hp-NXT"/>
                     <constraint firstItem="A0B-LU-LLz" firstAttribute="leading" secondItem="YTl-1W-gDM" secondAttribute="leadingMargin" constant="16" id="QEM-Ot-XuB"/>

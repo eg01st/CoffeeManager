@@ -104,6 +104,8 @@
     <Compile Include="ViewModels\SuplyProducts\ExpenseTypeHeaderViewModel.cs" />
     <Compile Include="ViewModels\Utilize\UtilizeViewModel.cs" />
     <Compile Include="ViewModels\Utilize\UtilizeItemViewModel.cs" />
+    <Compile Include="ViewModels\Users\UserEarningsViewModel.cs" />
+    <Compile Include="ViewModels\Users\UserEarningItemViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">
