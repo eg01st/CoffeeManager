@@ -27,6 +27,8 @@ namespace CoffeeManager.Droid.Views
         private TabLayout tabLayout;
         private View _policeSaveView;
         private View _creditCardView;
+        private ImageView _policeButton;
+        private ImageView _creditCardButton;
 
         private CoffeeFragment coffeeFragment;
         private TeaFragment teaFragment;
@@ -139,13 +141,13 @@ namespace CoffeeManager.Droid.Views
 
             _policeSaveView = FindViewById<View>(Resource.Id.police_sale_enabled);
 
-            var police = FindViewById<ImageView>(Resource.Id.police_sale);
-            police.Click += PoliceSale_Click;
+            _policeButton = FindViewById<ImageView>(Resource.Id.police_sale);
+            _policeButton.Click += PoliceSale_Click;
 
             _creditCardView = FindViewById<View>(Resource.Id.credit_card_enabled);
 
-            var creditCard = FindViewById<ImageView>(Resource.Id.credit_card);
-            creditCard.Click += CreditCard_Click;
+            _creditCardButton = FindViewById<ImageView>(Resource.Id.credit_card);
+            _creditCardButton.Click += CreditCard_Click;
         }
 
         private void CreditCard_Click(object sender, EventArgs e)
@@ -228,6 +230,15 @@ namespace CoffeeManager.Droid.Views
             {
                 drawerLayout.CloseDrawer(drawerGravity);
             }
+        }
+
+        public override void Finish()
+        {
+            _policeButton.Click -= PoliceSale_Click;
+            _creditCardButton.Click -= CreditCard_Click;
+
+            base.Finish();
+
         }
 
         public override bool OnOptionsItemSelected(IMenuItem item)

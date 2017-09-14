@@ -26,29 +26,29 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Трата:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S4o-Lc-rZj">
-                            <rect key="frame" x="32" y="42" width="51" height="21"/>
+                            <rect key="frame" x="32" y="16" width="51" height="21"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kkv-dC-sKR">
-                            <rect key="frame" x="99" y="42" width="42" height="21"/>
+                            <rect key="frame" x="99" y="16" width="42" height="21"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Связанные товары" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PEe-WS-Qnr">
-                            <rect key="frame" x="112.5" y="125" width="150" height="21"/>
+                            <rect key="frame" x="112.5" y="99" width="150" height="21"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="IeP-X3-ZAS">
-                            <rect key="frame" x="0.0" y="162" width="375" height="505"/>
+                            <rect key="frame" x="0.0" y="136" width="375" height="531"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </tableView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KI0-u3-RBn">
-                            <rect key="frame" x="136.5" y="79" width="103" height="30"/>
+                            <rect key="frame" x="136.5" y="53" width="103" height="30"/>
                             <state key="normal" title="Связать товар"/>
                         </button>
                     </subviews>
@@ -63,7 +63,7 @@
                         <constraint firstItem="KI0-u3-RBn" firstAttribute="centerX" secondItem="6EL-ka-yTw" secondAttribute="centerX" id="dAQ-Ab-iCN"/>
                         <constraint firstItem="IeP-X3-ZAS" firstAttribute="leading" secondItem="6EL-ka-yTw" secondAttribute="leading" id="hJK-DA-ThZ"/>
                         <constraint firstAttribute="bottom" secondItem="IeP-X3-ZAS" secondAttribute="bottom" id="hXE-NA-8vv"/>
-                        <constraint firstItem="S4o-Lc-rZj" firstAttribute="top" secondItem="6EL-ka-yTw" secondAttribute="top" constant="42" id="oD2-dj-iSf"/>
+                        <constraint firstItem="S4o-Lc-rZj" firstAttribute="top" secondItem="6EL-ka-yTw" secondAttribute="top" constant="16" id="oD2-dj-iSf"/>
                         <constraint firstItem="kkv-dC-sKR" firstAttribute="leading" secondItem="S4o-Lc-rZj" secondAttribute="trailing" constant="16" id="oDH-ZI-IYi"/>
                         <constraint firstItem="S4o-Lc-rZj" firstAttribute="leading" secondItem="6EL-ka-yTw" secondAttribute="leading" constant="32" id="wI5-PY-tQU"/>
                     </constraints>

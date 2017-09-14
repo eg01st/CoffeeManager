@@ -29,7 +29,7 @@ namespace CoffeeManagerAdmin.Core
 
         protected override void DoGoToDetails()
         {
-            ShowViewModel<SuplyProductDetailsViewModel>(new { id = Id });
+            ShowViewModel<SuplyProductDetailsViewModel>(new { id = SuplyProductId });
         }
     }
 }
