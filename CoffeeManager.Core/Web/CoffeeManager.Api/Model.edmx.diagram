@@ -61,6 +61,9 @@
         <AssociationConnector Association="CoffeeRoomModel.FK__UtilizedS__Shift__0662F0A3" />
         <AssociationConnector Association="CoffeeRoomModel.FK__UtilizedS__Suply__056ECC6A" />
         <EntityTypeShape EntityType="CoffeeRoomModel.CoffeeRoom" Width="1.5" PointX="7.375" PointY="11.75" />
+        <EntityTypeShape EntityType="CoffeeRoomModel.UserEarningsHistory" Width="1.5" PointX="5.25" PointY="0.75" />
+        <AssociationConnector Association="CoffeeRoomModel.FK__UserEarni__Shift__10E07F16" />
+        <AssociationConnector Association="CoffeeRoomModel.FK__UserEarni__UserI__0FEC5ADD" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

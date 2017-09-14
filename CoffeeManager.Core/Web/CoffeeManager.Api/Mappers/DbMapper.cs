@@ -46,6 +46,7 @@ namespace CoffeeManager.Api.Mappers
             userDb.DayShiftPersent = user.DayShiftPersent;
             userDb.IsActive = user.IsActive;
             userDb.ExpenceId= user.ExpenceId;
+            userDb.SimplePayment = user.SalaryRate;
             return userDb;
         }
 

@@ -16,5 +16,7 @@ namespace CoffeeManager.Models
         public Nullable<int> ExpenceId { get; set; }
 
         public UserPenalty[] Penalties { get; set; }
+
+        public UserEarningsHistory[] Earnings { get; set; }
     }
 }

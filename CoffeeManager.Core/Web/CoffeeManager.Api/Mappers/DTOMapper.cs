@@ -38,6 +38,23 @@ namespace CoffeeManager.Api.Mappers
                 }
                 user.Penalties = penalties.ToArray();
             }
+            if (dbUser.UserEarningsHistories != null && dbUser.UserEarningsHistories.Any())
+            {
+                var earnings = new List<Models.UserEarningsHistory>();
+                foreach (var earning in dbUser.UserEarningsHistories)
+                {
+                    earnings.Add(new Models.UserEarningsHistory()
+                    {
+                        Amount = earning.Amount,
+                        Date = earning.Date,
+                        IsDayShift = earning.IsDayShift,
+                        Id = earning.Id,
+                        UserId = earning.UserId,
+                         ShiftId = earning.ShiftId
+                    });
+                }
+                user.Earnings = earnings.ToArray();
+            }
             return user;
         }
 

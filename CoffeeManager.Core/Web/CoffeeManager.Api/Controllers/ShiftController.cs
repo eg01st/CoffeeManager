@@ -74,6 +74,14 @@ namespace CoffeeManager.Api.Controllers
             var userEarnedAmount = user.SimplePayment + (realShiftAmount / 100 * (isDayShift ? user.DayShiftPersent : user.NightShiftPercent));
             user.CurrentEarnedAmount += userEarnedAmount;
 
+            var userEarneingHistory = new UserEarningsHistory();
+            userEarneingHistory.Amount = userEarnedAmount;
+            userEarneingHistory.Date = shift.Date.Value;
+            userEarneingHistory.IsDayShift = isDayShift;
+            userEarneingHistory.ShiftId = shift.Id;
+            userEarneingHistory.UserId = shift.UserId.Value;
+            enities.UserEarningsHistories.Add(userEarneingHistory);
+
             await enities.SaveChangesAsync();
             return Request.CreateResponse<Models.EndShiftUserInfo>(HttpStatusCode.OK, new EndShiftUserInfo() {EarnedAmount = userEarnedAmount, RealShiftAmount = realShiftAmount, CurrentUserAmount = user.CurrentEarnedAmount });
         }

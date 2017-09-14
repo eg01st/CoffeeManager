@@ -258,6 +258,17 @@
           <Property Name="MilkPacks" Type="int" Nullable="false" />
           <Property Name="CoffeeRoomNo" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="UserEarningsHistory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="ShiftId" Type="int" Nullable="false" />
+          <Property Name="Amount" Type="money" Nullable="false" />
+          <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="IsDayShift" Type="bit" Nullable="false" />
+        </EntityType>
         <EntityType Name="UserPenalty">
           <Key>
             <PropertyRef Name="Id" />
@@ -549,6 +560,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__UserEarni__Shift__10E07F16">
+          <End Role="Shifts" Type="Self.Shifts" Multiplicity="1" />
+          <End Role="UserEarningsHistory" Type="Self.UserEarningsHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shifts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserEarningsHistory">
+              <PropertyRef Name="ShiftId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserEarni__UserI__0FEC5ADD">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="UserEarningsHistory" Type="Self.UserEarningsHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserEarningsHistory">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__UserPenal__UserI__1C873BEC">
           <End Role="Users" Type="Self.Users" Multiplicity="1" />
           <End Role="UserPenalty" Type="Self.UserPenalty" Multiplicity="*" />
@@ -678,6 +713,7 @@
           <EntitySet Name="SuplyOrderItem" EntityType="Self.SuplyOrderItem" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UsedCupsPerShift" EntityType="Self.UsedCupsPerShift" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UsedProductsPerShift" EntityType="Self.UsedProductsPerShift" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserEarningsHistory" EntityType="Self.UserEarningsHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserPenalty" EntityType="Self.UserPenalty" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UtilizedCup" EntityType="Self.UtilizedCup" Schema="dbo" store:Type="Tables" />
@@ -761,6 +797,14 @@
           <AssociationSet Name="FK__UsedProdu__Shift__628FA481" Association="Self.FK__UsedProdu__Shift__628FA481">
             <End Role="Shifts" EntitySet="Shifts" />
             <End Role="UsedProductsPerShift" EntitySet="UsedProductsPerShift" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserEarni__Shift__10E07F16" Association="Self.FK__UserEarni__Shift__10E07F16">
+            <End Role="Shifts" EntitySet="Shifts" />
+            <End Role="UserEarningsHistory" EntitySet="UserEarningsHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserEarni__UserI__0FEC5ADD" Association="Self.FK__UserEarni__UserI__0FEC5ADD">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserEarningsHistory" EntitySet="UserEarningsHistory" />
           </AssociationSet>
           <AssociationSet Name="FK__UserPenal__UserI__1C873BEC" Association="Self.FK__UserPenal__UserI__1C873BEC">
             <End Role="Users" EntitySet="Users" />
@@ -921,6 +965,7 @@
           <Property Name="EndCounter" Type="Int32" />
           <Property Name="CreditCardAmount" Type="Decimal" Precision="19" Scale="4" />
           <NavigationProperty Name="UtilizedSuplyProducts" Relationship="CoffeeRoomModel.FK__UtilizedS__Shift__0662F0A3" FromRole="Shift" ToRole="UtilizedSuplyProduct" />
+          <NavigationProperty Name="UserEarningsHistories" Relationship="CoffeeRoomModel.FK__UserEarni__Shift__10E07F16" FromRole="Shift" ToRole="UserEarningsHistory" />
         </EntityType>
         <EntityType Name="UsedCupsPerShift">
           <Key>
@@ -954,6 +999,7 @@
           <Property Name="SimplePayment" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
           <NavigationProperty Name="ExpenseType" Relationship="CoffeeRoomModel.FK_Users_Expence1" FromRole="User" ToRole="ExpenseType" />
           <NavigationProperty Name="UserPenalties" Relationship="CoffeeRoomModel.FK__UserPenal__UserI__1C873BEC" FromRole="User" ToRole="UserPenalty" />
+          <NavigationProperty Name="UserEarningsHistories" Relationship="CoffeeRoomModel.FK__UserEarni__UserI__0FEC5ADD" FromRole="User" ToRole="UserEarningsHistory" />
         </EntityType>
         <EntityType Name="UtilizedCup">
           <Key>
@@ -1252,6 +1298,15 @@
             <End Role="UtilizedSuplyProduct" EntitySet="UtilizedSuplyProducts" />
           </AssociationSet>
           <EntitySet Name="CoffeeRooms" EntityType="CoffeeRoomModel.CoffeeRoom" />
+          <EntitySet Name="UserEarningsHistories" EntityType="CoffeeRoomModel.UserEarningsHistory" />
+          <AssociationSet Name="FK__UserEarni__Shift__10E07F16" Association="CoffeeRoomModel.FK__UserEarni__Shift__10E07F16">
+            <End Role="Shift" EntitySet="Shifts" />
+            <End Role="UserEarningsHistory" EntitySet="UserEarningsHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserEarni__UserI__0FEC5ADD" Association="CoffeeRoomModel.FK__UserEarni__UserI__0FEC5ADD">
+            <End Role="User" EntitySet="Users" />
+            <End Role="UserEarningsHistory" EntitySet="UserEarningsHistories" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Dept">
           <Key>
@@ -1689,6 +1744,43 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="UserEarningsHistory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="ShiftId" Type="Int32" Nullable="false" />
+          <Property Name="Amount" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IsDayShift" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Shift" Relationship="CoffeeRoomModel.FK__UserEarni__Shift__10E07F16" FromRole="UserEarningsHistory" ToRole="Shift" />
+          <NavigationProperty Name="User" Relationship="CoffeeRoomModel.FK__UserEarni__UserI__0FEC5ADD" FromRole="UserEarningsHistory" ToRole="User" />
+        </EntityType>
+        <Association Name="FK__UserEarni__Shift__10E07F16">
+          <End Type="CoffeeRoomModel.Shift" Role="Shift" Multiplicity="1" />
+          <End Type="CoffeeRoomModel.UserEarningsHistory" Role="UserEarningsHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shift">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserEarningsHistory">
+              <PropertyRef Name="ShiftId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserEarni__UserI__0FEC5ADD">
+          <End Type="CoffeeRoomModel.User" Role="User" Multiplicity="1" />
+          <End Type="CoffeeRoomModel.UserEarningsHistory" Role="UserEarningsHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserEarningsHistory">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2056,6 +2148,18 @@
             <EntityTypeMapping TypeName="CoffeeRoomModel.CoffeeRoom">
               <MappingFragment StoreEntitySet="CoffeeRoom">
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserEarningsHistories">
+            <EntityTypeMapping TypeName="CoffeeRoomModel.UserEarningsHistory">
+              <MappingFragment StoreEntitySet="UserEarningsHistory">
+                <ScalarProperty Name="IsDayShift" ColumnName="IsDayShift" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="ShiftId" ColumnName="ShiftId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
