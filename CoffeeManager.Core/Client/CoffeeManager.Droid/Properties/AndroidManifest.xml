@@ -7,5 +7,5 @@
 	<uses-permission android:name="android.permission.SEND_RESPOND_VIA_MESSAGE" />
 	<uses-permission android:name="android.permission.READ_SMS" />
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-	<application android:label="CoffeeManager.Droid"></application>
+	<application android:label="CoffeeManager" android:debuggable="true" android:largeHeap="true"></application>
 </manifest>

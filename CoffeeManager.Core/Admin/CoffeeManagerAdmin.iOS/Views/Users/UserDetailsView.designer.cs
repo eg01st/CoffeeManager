@@ -38,6 +38,9 @@ namespace CoffeeManagerAdmin.iOS
 
 		[Outlet]
 		UIKit.UITableView PenaltyTableView { get; set; }
+
+		[Outlet]
+		UIKit.UITextField SalaryRateTextField { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
@@ -84,6 +87,11 @@ namespace CoffeeManagerAdmin.iOS
 			if (PenaltyTableView != null) {
 				PenaltyTableView.Dispose ();
 				PenaltyTableView = null;
+			}
+
+			if (SalaryRateTextField != null) {
+				SalaryRateTextField.Dispose ();
+				SalaryRateTextField = null;
 			}
 		}
 	}
