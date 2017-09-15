@@ -79,13 +79,23 @@ namespace CoffeManager.Common
             try
             {
                 await productProvider.SaleProduct((Sale)sale);
-                await syncManager.SyncSales();
             }
             catch(Exception ex)
             {
                 Debug.WriteLine(ex.ToDiagnosticString());
                 EmailService?.SendErrorEmail(ex.ToDiagnosticString());
                 syncManager.AddSaleToSync(sale, SaleAction.Add);
+                return;
+            }
+
+            try
+            {
+                await syncManager.SyncSales();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.ToDiagnosticString());
+                EmailService?.SendErrorEmail(ex.ToDiagnosticString());
             }
         }
 

@@ -2924,6 +2924,9 @@ namespace CoffeeManager.Droid
 			// aapt resource value: 0x7f090016
 			public const int character_counter_pattern = 2131296278;
 			
+			// aapt resource value: 0x7f09001e
+			public const int currency = 2131296286;
+			
 			// aapt resource value: 0x7f09001b
 			public const int current_shift_money = 2131296283;
 			

@@ -13,6 +13,7 @@
         local:cardUseCompatPadding="true"
         local:cardCornerRadius="5dp">
         <LinearLayout
+            android:layout_marginLeft="8dp"
             android:gravity="center_vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -29,7 +30,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="16dp"
                 android:textColor="#008000"
-                android:text="грн" />
+                android:text="@string/currency" />
             <TextView
                 android:layout_marginLeft="15dp"
                 android:layout_width="wrap_content"
