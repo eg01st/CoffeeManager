@@ -1,6 +1,6 @@
 // WARNING
 //
-// This file has been generated automatically by Xamarin Studio to store outlets and
+// This file has been generated automatically by Visual Studio to store outlets and
 // actions made in the UI designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
@@ -9,17 +9,17 @@ using System.CodeDom.Compiler;
 
 namespace CoffeeManagerAdmin.iOS
 {
-	[Register ("ExpensesStatisticView")]
-	partial class ExpensesStatisticView
+	[Register ("UserEarningsView")]
+	partial class UserEarningsView
 	{
 		[Outlet]
-		UIKit.UIView ContainerView { get; set; }
+		UIKit.UITableView EarningsTableView { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (ContainerView != null) {
-				ContainerView.Dispose ();
-				ContainerView = null;
+			if (EarningsTableView != null) {
+				EarningsTableView.Dispose ();
+				EarningsTableView = null;
 			}
 		}
 	}

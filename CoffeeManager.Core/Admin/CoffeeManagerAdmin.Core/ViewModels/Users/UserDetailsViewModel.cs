@@ -8,6 +8,7 @@ using CoffeManager.Common;
 using CoffeeManager.Common;
 using System;
 using MvvmCross.Plugins.Messenger;
+using CoffeeManagerAdmin.Core.Util;
 
 namespace CoffeeManagerAdmin.Core
 {
@@ -37,8 +38,10 @@ namespace CoffeeManagerAdmin.Core
         public ICommand PaySalaryCommand {get;set;}
         public ICommand UpdateCommand {get;set;}
         public ICommand PenaltyCommand { get; set; }
+        public ICommand ShowEarningsCommand { get; set; }
 
         public List<UserPenaltyItemViewModel> Penalties { get; set; } = new List<UserPenaltyItemViewModel>();
+
 
         public List<Entity> ExpenseItems
         {
@@ -93,8 +96,15 @@ namespace CoffeeManagerAdmin.Core
             PaySalaryCommand = new MvxCommand(DoPaySalary);
             UpdateCommand = new MvxCommand(DoUpdateUser);
             PenaltyCommand = new MvxCommand(DoPenalty);
+            ShowEarningsCommand = new MvxCommand(DoShowEarnings);
 
             token = Subscribe<UserAmountChangedMessage>(async (obj) => await Init(useridParameter));
+        }
+
+        private void DoShowEarnings()
+        {
+            var id = ParameterTransmitter.PutParameter(user?.Earnings);
+            ShowViewModel<UserEarningsViewModel>(new {id});
         }
 
         private async void DoPenalty()

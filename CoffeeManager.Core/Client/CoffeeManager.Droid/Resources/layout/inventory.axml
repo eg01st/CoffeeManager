@@ -58,7 +58,7 @@
             android:layout_weight="25"
             android:textSize="24dp"
             android:textColor="#000000"
-            android:text="Количетсво" />
+            android:text="Количество" />
     </LinearLayout>
     <Mvx.MvxListView
         android:gravity="top"

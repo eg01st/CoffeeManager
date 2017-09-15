@@ -45,7 +45,10 @@ namespace CoffeeManagerAdmin.Core.ViewModels
                ExpenseItems = items.Select(s => new ExpenseItemViewModel(s)).ToList();
 
                var saleItems = await shiftManager.GetShiftSales(_shiftId);
-               CalculateCopSalePercentage(saleItems.ToList());
+                if(saleItems.Any())
+                {
+                    CalculateCopSalePercentage(saleItems.ToList());    
+                }
 
                var shiftInfo = await shiftManager.GetShiftInfo(id);
                Date = shiftInfo.Date.ToString("g");

@@ -27,75 +27,75 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Название: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sHa-ci-xuD">
-                    <rect key="frame" x="16" y="75" width="86.5" height="20.5"/>
+                    <rect key="frame" x="16" y="16" width="86.5" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Цена поставки: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NEh-Gc-2xv">
-                    <rect key="frame" x="16" y="111.5" width="128" height="20.5"/>
+                    <rect key="frame" x="16" y="52.5" width="128" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Цена продажи: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xZp-17-8fg">
-                    <rect key="frame" x="16" y="148" width="126.5" height="20.5"/>
+                    <rect key="frame" x="16" y="89" width="126.5" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aos-EH-lfd">
-                    <rect key="frame" x="150.5" y="148" width="42" height="20.5"/>
+                    <rect key="frame" x="150.5" y="89" width="42" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Q6O-Zi-JrM">
-                    <rect key="frame" x="118.5" y="70.5" width="240.5" height="30"/>
+                    <rect key="frame" x="118.5" y="11.5" width="240.5" height="30"/>
                     <nil key="textColor"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tC0-ZH-PYs">
-                    <rect key="frame" x="160" y="107" width="199" height="30"/>
+                    <rect key="frame" x="160" y="48" width="199" height="30"/>
                     <nil key="textColor"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                 </textField>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VJF-ey-uSl">
-                    <rect key="frame" x="135" y="172" width="224" height="30"/>
+                    <rect key="frame" x="135" y="113" width="224" height="30"/>
                     <nil key="textColor"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                 </textField>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Количество: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NWl-jT-wvJ">
-                    <rect key="frame" x="16" y="176.5" width="103" height="20.5"/>
+                    <rect key="frame" x="16" y="117.5" width="103" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BAd-gv-WhZ">
-                    <rect key="frame" x="16" y="257" width="58" height="30"/>
+                    <rect key="frame" x="16" y="198" width="58" height="30"/>
                     <state key="normal" title="Удалить"/>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Требует переучет" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bTd-rQ-76w">
-                    <rect key="frame" x="16" y="213" width="143" height="21"/>
+                    <rect key="frame" x="16" y="154" width="143" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l9e-ji-KnA">
-                    <rect key="frame" x="310" y="208" width="51" height="31"/>
+                    <rect key="frame" x="310" y="149" width="51" height="31"/>
                 </switch>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qnX-sL-XdU">
-                    <rect key="frame" x="282" y="257" width="77" height="30"/>
+                    <rect key="frame" x="282" y="198" width="77" height="30"/>
                     <state key="normal" title="Сохранить"/>
                 </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="l9e-ji-KnA" secondAttribute="trailing" constant="16" id="5sg-lv-AzR"/>
-                <constraint firstItem="sHa-ci-xuD" firstAttribute="top" secondItem="2" secondAttribute="top" constant="75" id="80i-gf-eji"/>
+                <constraint firstItem="sHa-ci-xuD" firstAttribute="top" secondItem="2" secondAttribute="top" constant="16" id="80i-gf-eji"/>
                 <constraint firstItem="qnX-sL-XdU" firstAttribute="centerY" secondItem="BAd-gv-WhZ" secondAttribute="centerY" id="A9Z-FZ-fyN"/>
                 <constraint firstAttribute="trailing" secondItem="tC0-ZH-PYs" secondAttribute="trailing" constant="16" id="AX4-yS-D3M"/>
                 <constraint firstItem="VJF-ey-uSl" firstAttribute="leading" secondItem="NWl-jT-wvJ" secondAttribute="trailing" constant="16" id="FMQ-gh-K3b"/>

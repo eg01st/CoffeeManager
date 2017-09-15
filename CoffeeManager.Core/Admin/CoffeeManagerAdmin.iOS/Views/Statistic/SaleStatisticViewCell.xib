@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -20,35 +21,38 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x1E-bx-9XM">
-                        <rect key="frame" x="24" y="36" width="42" height="21"/>
+                        <rect key="frame" x="8" y="36" width="192" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lkT-lp-hWD">
-                        <rect key="frame" x="361" y="36" width="42" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lkT-lp-hWD">
+                        <rect key="frame" x="312.5" y="36" width="106.5" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gfm-im-2wN">
-                        <rect key="frame" x="192" y="36" width="42" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gfm-im-2wN">
+                        <rect key="frame" x="200" y="36" width="64" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="шт" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xLR-Cl-fMg">
-                        <rect key="frame" x="242" y="36" width="22" height="21"/>
+                        <rect key="frame" x="272" y="36" width="22" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailingMargin" secondItem="lkT-lp-hWD" secondAttribute="trailing" constant="16" id="Cf2-r0-mcs"/>
+                    <constraint firstItem="Gfm-im-2wN" firstAttribute="width" secondItem="YTl-1W-gDM" secondAttribute="width" multiplier="0.15" id="AU3-OU-2oN"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="lkT-lp-hWD" secondAttribute="trailing" id="Cf2-r0-mcs"/>
+                    <constraint firstItem="lkT-lp-hWD" firstAttribute="width" secondItem="YTl-1W-gDM" secondAttribute="width" multiplier="0.25" id="IVx-r6-El5"/>
                     <constraint firstItem="Gfm-im-2wN" firstAttribute="centerY" secondItem="YTl-1W-gDM" secondAttribute="centerY" id="JAz-sl-SBQ"/>
-                    <constraint firstItem="x1E-bx-9XM" firstAttribute="leading" secondItem="YTl-1W-gDM" secondAttribute="leadingMargin" constant="16" id="Tm1-5s-SAT"/>
-                    <constraint firstItem="Gfm-im-2wN" firstAttribute="centerX" secondItem="YTl-1W-gDM" secondAttribute="centerX" id="dQF-0q-uun"/>
+                    <constraint firstItem="x1E-bx-9XM" firstAttribute="leading" secondItem="YTl-1W-gDM" secondAttribute="leadingMargin" id="Tm1-5s-SAT"/>
+                    <constraint firstItem="x1E-bx-9XM" firstAttribute="width" secondItem="YTl-1W-gDM" secondAttribute="width" multiplier="0.45" id="cON-Qc-7dk"/>
+                    <constraint firstItem="Gfm-im-2wN" firstAttribute="leading" secondItem="x1E-bx-9XM" secondAttribute="trailing" id="d8f-7A-fL9"/>
                     <constraint firstItem="xLR-Cl-fMg" firstAttribute="leading" secondItem="Gfm-im-2wN" secondAttribute="trailing" constant="8" id="lVQ-z4-z3g"/>
                     <constraint firstItem="x1E-bx-9XM" firstAttribute="centerY" secondItem="YTl-1W-gDM" secondAttribute="centerY" id="qpn-Ca-Edz"/>
                     <constraint firstItem="lkT-lp-hWD" firstAttribute="centerY" secondItem="YTl-1W-gDM" secondAttribute="centerY" id="scf-r5-jyN"/>

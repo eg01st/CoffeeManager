@@ -16,6 +16,9 @@ namespace CoffeeManagerAdmin.iOS
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
+
+            NavigationController.NavigationBar.Translucent = false;
+
 			var set = this.CreateBindingSet<LoginView, LoginViewModel> ();
 			set.Bind (LoginText).To (vm => vm.Name);
 			set.Bind (PasswordText).To (vm => vm.Password);

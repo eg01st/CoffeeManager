@@ -3,6 +3,7 @@ using System.Windows.Input;
 using CoffeeManager.Models;
 using MvvmCross.Core.ViewModels;
 using CoffeManager.Common;
+using System.Threading.Tasks;
 
 namespace CoffeeManagerAdmin.Core.ViewModels
 {
@@ -36,16 +37,21 @@ namespace CoffeeManagerAdmin.Core.ViewModels
         public LoginViewModel(IUserManager manager)
         {
             this.manager = manager;
-            _loginCommand = new MvxCommand(DoLogin);
+            _loginCommand = new MvxAsyncCommand(DoLogin);
+        }
 
+        public async Task Init()
+        {
             var userinfo = LocalStorage.GetUserInfo();
             Name = userinfo.Login;
             Password = userinfo.Password;
+
+            await DoLogin();
         }
 
         public ICommand LoginCommand => _loginCommand;
 
-        private async void DoLogin()
+        private async Task DoLogin()
         {
             await ExecuteSafe(async () => 
             {           

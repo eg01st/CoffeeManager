@@ -9,9 +9,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SalesStatisticView">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UserEarningsView">
             <connections>
-                <outlet property="TableView" destination="vxK-8y-Qaq" id="1Kw-sX-Ms7"/>
+                <outlet property="EarningsTableView" destination="e0H-91-Ra8" id="ICe-ck-GlF"/>
                 <outlet property="view" destination="2" id="RRd-Eg-VrN"/>
             </connections>
         </placeholder>
@@ -20,17 +20,17 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vxK-8y-Qaq">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="e0H-91-Ra8">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="vxK-8y-Qaq" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="AMe-E0-gED"/>
-                <constraint firstAttribute="bottom" secondItem="vxK-8y-Qaq" secondAttribute="bottom" id="f24-ar-yxN"/>
-                <constraint firstItem="vxK-8y-Qaq" firstAttribute="top" secondItem="2" secondAttribute="top" id="xnA-Ig-XsW"/>
-                <constraint firstAttribute="trailing" secondItem="vxK-8y-Qaq" secondAttribute="trailing" id="zlI-ob-lZR"/>
+                <constraint firstAttribute="trailing" secondItem="e0H-91-Ra8" secondAttribute="trailing" id="Dr2-ze-sND"/>
+                <constraint firstItem="e0H-91-Ra8" firstAttribute="top" secondItem="2" secondAttribute="top" id="L8d-if-sIe"/>
+                <constraint firstAttribute="bottom" secondItem="e0H-91-Ra8" secondAttribute="bottom" id="Yg7-1b-Lbn"/>
+                <constraint firstItem="e0H-91-Ra8" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="s5c-Ar-i5j"/>
             </constraints>
         </view>
     </objects>

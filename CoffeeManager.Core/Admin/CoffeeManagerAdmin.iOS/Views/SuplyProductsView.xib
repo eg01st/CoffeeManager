@@ -9,9 +9,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ExpensesStatisticView">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SuplyProductsView">
             <connections>
-                <outlet property="ContainerView" destination="Ebn-8b-Vij" id="0k6-YE-rgM"/>
+                <outlet property="ContainerView" destination="Zzv-33-irF" id="Q8s-j0-Fhs"/>
                 <outlet property="view" destination="2" id="RRd-Eg-VrN"/>
             </connections>
         </placeholder>
@@ -20,17 +20,17 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ebn-8b-Vij">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zzv-33-irF">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="Ebn-8b-Vij" secondAttribute="bottom" id="0kB-S6-9OW"/>
-                <constraint firstItem="Ebn-8b-Vij" firstAttribute="top" secondItem="2" secondAttribute="top" id="BMt-ze-Zk3"/>
-                <constraint firstAttribute="trailing" secondItem="Ebn-8b-Vij" secondAttribute="trailing" id="Np4-uI-sYf"/>
-                <constraint firstItem="Ebn-8b-Vij" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="fZK-de-9sb"/>
+                <constraint firstAttribute="trailing" secondItem="Zzv-33-irF" secondAttribute="trailing" id="Kf5-zd-I5f"/>
+                <constraint firstItem="Zzv-33-irF" firstAttribute="top" secondItem="2" secondAttribute="top" id="Nvr-Z0-Ln9"/>
+                <constraint firstAttribute="bottom" secondItem="Zzv-33-irF" secondAttribute="bottom" id="d7x-l3-LJM"/>
+                <constraint firstItem="Zzv-33-irF" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="ecy-Ha-RxO"/>
             </constraints>
         </view>
     </objects>

@@ -41,6 +41,9 @@ namespace CoffeeManagerAdmin.iOS
 
 		[Outlet]
 		UIKit.UITextField SalaryRateTextField { get; set; }
+
+		[Outlet]
+		UIKit.UIButton UserEarningsButton { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
@@ -92,6 +95,11 @@ namespace CoffeeManagerAdmin.iOS
 			if (SalaryRateTextField != null) {
 				SalaryRateTextField.Dispose ();
 				SalaryRateTextField = null;
+			}
+
+			if (UserEarningsButton != null) {
+				UserEarningsButton.Dispose ();
+				UserEarningsButton = null;
 			}
 		}
 	}

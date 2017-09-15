@@ -26,5 +26,10 @@ namespace CoffeeManagerAdmin.Core
             QuantityAfer = s.QuantityAfer;
             QuantityDiff = s.QuantityDiff;
         }
+
+        protected override void DoGoToDetails()
+        {
+            ShowViewModel<SuplyProductDetailsViewModel>(new { id = SuplyProductId });
+        }
     }
 }

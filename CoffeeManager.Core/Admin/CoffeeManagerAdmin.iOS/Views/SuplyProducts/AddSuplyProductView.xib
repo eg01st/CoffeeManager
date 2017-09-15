@@ -22,7 +22,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UYm-VB-1Jh">
-                    <rect key="frame" x="0.0" y="65" width="375" height="602"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Имя товара:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X6e-aZ-6gf">
                             <rect key="frame" x="16" y="16" width="98" height="21"/>
@@ -55,7 +55,7 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="UYm-VB-1Jh" firstAttribute="top" secondItem="2" secondAttribute="top" constant="65" id="ZcH-RP-ssb"/>
+                <constraint firstItem="UYm-VB-1Jh" firstAttribute="top" secondItem="2" secondAttribute="top" id="ZcH-RP-ssb"/>
                 <constraint firstItem="UYm-VB-1Jh" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="ea6-4p-ncG"/>
                 <constraint firstAttribute="bottom" secondItem="UYm-VB-1Jh" secondAttribute="bottom" id="mBV-qO-8Cd"/>
                 <constraint firstAttribute="trailing" secondItem="UYm-VB-1Jh" secondAttribute="trailing" id="x21-Ui-6np"/>

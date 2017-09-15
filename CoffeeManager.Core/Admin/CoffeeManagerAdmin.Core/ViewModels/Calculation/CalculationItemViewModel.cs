@@ -32,5 +32,10 @@ namespace CoffeeManagerAdmin.Core.ViewModels
         public override string Name => _item.Name;
 
         public decimal Quantity => _item.Quantity;
+
+        protected override void DoGoToDetails()
+        {
+            ShowViewModel<SuplyProductDetailsViewModel>(new {id = Id});
+        }
     }
 }

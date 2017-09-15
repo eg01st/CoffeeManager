@@ -1,19 +1,18 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11760" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11755"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ShiftSalesView">
             <connections>
-                <outlet property="ByProductButton" destination="S5k-PY-5Nd" id="DFC-zG-Owb"/>
-                <outlet property="ByTimeButton" destination="OiT-Xt-8Yt" id="jUK-3u-mx0"/>
                 <outlet property="SalesTableView" destination="KCg-aG-dwx" id="b07-oK-5Uq"/>
+                <outlet property="SegmentControl" destination="NeL-4V-yAl" id="hvt-Es-L8C"/>
                 <outlet property="view" destination="2" id="RRd-Eg-VrN"/>
             </connections>
         </placeholder>
@@ -22,45 +21,40 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="KCg-aG-dwx">
-                    <rect key="frame" x="0.0" y="110.5" width="375" height="556.5"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gE0-63-dxv">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <subviews>
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="KCg-aG-dwx">
+                            <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </tableView>
+                        <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="NeL-4V-yAl">
+                            <rect key="frame" x="36" y="20" width="303" height="29"/>
+                            <segments>
+                                <segment title="По времени"/>
+                                <segment title="По товару"/>
+                            </segments>
+                        </segmentedControl>
+                    </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="height" id="zeM-Ef-LsU"/>
+                        <constraint firstAttribute="trailing" secondItem="KCg-aG-dwx" secondAttribute="trailing" id="3wy-Df-Y5O"/>
+                        <constraint firstItem="NeL-4V-yAl" firstAttribute="centerX" secondItem="gE0-63-dxv" secondAttribute="centerX" id="Kz7-6g-IEB"/>
+                        <constraint firstItem="NeL-4V-yAl" firstAttribute="leading" secondItem="gE0-63-dxv" secondAttribute="leading" constant="36" id="WWs-Y3-z5h"/>
+                        <constraint firstItem="KCg-aG-dwx" firstAttribute="top" secondItem="NeL-4V-yAl" secondAttribute="bottom" constant="16" id="XBj-ds-ezk"/>
+                        <constraint firstAttribute="trailing" secondItem="NeL-4V-yAl" secondAttribute="trailing" constant="36" id="gj7-tk-Lbd"/>
+                        <constraint firstItem="NeL-4V-yAl" firstAttribute="top" secondItem="gE0-63-dxv" secondAttribute="top" constant="20" id="ljY-5v-p5X"/>
+                        <constraint firstItem="KCg-aG-dwx" firstAttribute="leading" secondItem="gE0-63-dxv" secondAttribute="leading" id="s7P-qV-f3i"/>
+                        <constraint firstAttribute="bottom" secondItem="KCg-aG-dwx" secondAttribute="bottom" id="yg6-yr-ePz"/>
                     </constraints>
-                    <variation key="default">
-                        <mask key="constraints">
-                            <exclude reference="zeM-Ef-LsU"/>
-                        </mask>
-                    </variation>
-                </tableView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Продажи за смену" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ln4-dB-osr">
-                    <rect key="frame" x="16" y="70" width="151" height="20.5"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OiT-Xt-8Yt">
-                    <rect key="frame" x="175" y="70" width="87" height="30"/>
-                    <state key="normal" title="По времени"/>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S5k-PY-5Nd">
-                    <rect key="frame" x="274" y="70" width="73" height="30"/>
-                    <state key="normal" title="По товару"/>
-                </button>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="ln4-dB-osr" firstAttribute="top" secondItem="2" secondAttribute="top" constant="70" id="1S8-MB-83l"/>
-                <constraint firstItem="S5k-PY-5Nd" firstAttribute="top" secondItem="2" secondAttribute="top" constant="70" id="CYr-nq-ehU"/>
-                <constraint firstItem="KCg-aG-dwx" firstAttribute="top" secondItem="OiT-Xt-8Yt" secondAttribute="bottom" constant="10.5" id="GTa-uw-p3c"/>
-                <constraint firstItem="KCg-aG-dwx" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="OFc-Mp-4vB"/>
-                <constraint firstItem="ln4-dB-osr" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="16" id="YXA-hY-cJY"/>
-                <constraint firstAttribute="bottom" secondItem="KCg-aG-dwx" secondAttribute="bottom" id="h2n-eU-fJ2"/>
-                <constraint firstItem="S5k-PY-5Nd" firstAttribute="leading" secondItem="OiT-Xt-8Yt" secondAttribute="trailing" constant="12" id="mGG-z6-DSQ"/>
-                <constraint firstAttribute="trailing" secondItem="KCg-aG-dwx" secondAttribute="trailing" id="mfq-gc-YoD"/>
-                <constraint firstItem="OiT-Xt-8Yt" firstAttribute="leading" secondItem="ln4-dB-osr" secondAttribute="trailing" constant="8" id="mwJ-XT-xqO"/>
-                <constraint firstItem="OiT-Xt-8Yt" firstAttribute="top" secondItem="2" secondAttribute="top" constant="70" id="rnk-wz-Agv"/>
+                <constraint firstItem="gE0-63-dxv" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="iov-nE-5H2"/>
+                <constraint firstAttribute="trailing" secondItem="gE0-63-dxv" secondAttribute="trailing" id="ktq-10-x0Z"/>
+                <constraint firstAttribute="bottom" secondItem="gE0-63-dxv" secondAttribute="bottom" id="udh-Yy-4kW"/>
+                <constraint firstItem="gE0-63-dxv" firstAttribute="top" secondItem="2" secondAttribute="top" id="za8-DJ-hgz"/>
             </constraints>
         </view>
     </objects>

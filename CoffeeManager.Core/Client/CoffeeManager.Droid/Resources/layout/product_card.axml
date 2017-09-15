@@ -41,7 +41,7 @@
                 android:gravity="center"
                 android:textSize="16dp"
                 android:textColor="#008000"
-                android:text="грн" />
+                android:text="@string/currency" />
             <ImageView
                 android:layout_gravity="right"
                 android:layout_width="wrap_content"

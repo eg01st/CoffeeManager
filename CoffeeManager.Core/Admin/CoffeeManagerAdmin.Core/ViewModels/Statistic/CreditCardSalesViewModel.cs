@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using CoffeeManager.Models;
 using System.Linq;
-using CoffeeManagerAdmin.Core.Util;
 using CoffeManager.Common;
+using System.Threading.Tasks;
 
 namespace CoffeeManagerAdmin.Core
 {
@@ -13,14 +12,20 @@ namespace CoffeeManagerAdmin.Core
         public List<StatisticSaleItemViewModel> Sales {get;set;}
         public decimal EntireSaleAmount {get;set;}
 
-        public CreditCardSalesViewModel()
+        readonly IStatisticManager manager;
+        readonly DateTime from;
+        readonly DateTime to;
+
+        public CreditCardSalesViewModel(IStatisticManager manager, DateTime from, DateTime to)
         {
+            this.to = to;
+            this.from = from;
+            this.manager = manager;
         }
 
-        public void Init(Guid id)
+        public async Task Init()
         {
-            IEnumerable<Sale> sales;
-            ParameterTransmitter.TryGetParameter(id, out sales);
+            IEnumerable<Sale> sales = await manager.GetCreditCardSales(from, to);
             Sales = sales.Select(s => new StatisticSaleItemViewModel(s)).ToList();
             EntireSaleAmount = sales.Sum(s => s.Amount);
             RaiseAllPropertiesChanged();

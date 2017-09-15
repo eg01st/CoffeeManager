@@ -10,18 +10,22 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Statistic
 {
     public class ExpensesStatisticViewModel : BaseSearchViewModel<ExpenseItemViewModel>
     {
-        private Guid id;
-        public void Init(Guid id)
+        readonly IStatisticManager manager;
+        readonly DateTime from;
+        readonly DateTime to;
+
+        public ExpensesStatisticViewModel(IStatisticManager manager, DateTime from, DateTime to)
         {
-            this.id = id;
+            this.to = to;
+            this.from = from;
+            this.manager = manager;
         }
 
-        public override Task<List<ExpenseItemViewModel>> LoadData()
+        public async override Task<List<ExpenseItemViewModel>> LoadData()
         {
-            IEnumerable<Expense> expenses;
-            ParameterTransmitter.TryGetParameter(id, out expenses);
+            IEnumerable<Expense> expenses = await manager.GetExpenses(from, to);
             var resutl = expenses.Select(s=> new ExpenseItemViewModel(s)).ToList();
-            return Task.FromResult(resutl);
+            return resutl;
         }
     }
 }

@@ -21,6 +21,7 @@
                 <outlet property="PenaltyButton" destination="Am3-Qq-JPL" id="0uM-Cw-x5k"/>
                 <outlet property="PenaltyTableView" destination="lxB-bV-VnX" id="oeZ-Su-J2U"/>
                 <outlet property="SalaryRateTextField" destination="Uiy-z9-7tb" id="0Mc-y5-bBb"/>
+                <outlet property="UserEarningsButton" destination="ism-y5-Umf" id="duQ-eM-M35"/>
                 <outlet property="view" destination="2" id="RRd-Eg-VrN"/>
             </connections>
         </placeholder>
@@ -30,55 +31,55 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Имя:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CX7-yu-psO">
-                    <rect key="frame" x="16" y="72" width="39" height="21"/>
+                    <rect key="frame" x="16" y="16" width="39" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Текущая зп:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DIb-7P-yaQ">
-                    <rect key="frame" x="16" y="109" width="96" height="21"/>
+                    <rect key="frame" x="16" y="53" width="96" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YtU-ld-wax">
-                    <rect key="frame" x="128" y="109" width="42" height="21"/>
+                    <rect key="frame" x="128" y="53" width="42" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Общая зп:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UmY-tt-qms">
-                    <rect key="frame" x="16" y="146" width="82" height="21"/>
+                    <rect key="frame" x="16" y="90" width="82" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="brU-dU-A59">
-                    <rect key="frame" x="114" y="146" width="42" height="21"/>
+                    <rect key="frame" x="114" y="90" width="42" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Дневной процент:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BRL-sk-0hQ">
-                    <rect key="frame" x="16" y="220" width="146" height="21"/>
+                    <rect key="frame" x="16" y="164" width="146" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ночной процент:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pMt-Yo-d0w">
-                    <rect key="frame" x="16" y="257" width="138" height="21"/>
+                    <rect key="frame" x="16" y="201" width="138" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Имя траты для зп:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xZT-YJ-kI2">
-                    <rect key="frame" x="16" y="294" width="146" height="21"/>
+                    <rect key="frame" x="16" y="238" width="146" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="r6v-0x-r0m">
-                    <rect key="frame" x="178" y="215.5" width="60" height="30"/>
+                    <rect key="frame" x="178" y="159.5" width="60" height="30"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="60" id="swH-iG-Yaf"/>
                     </constraints>
@@ -87,7 +88,7 @@
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yDU-5g-eLB">
-                    <rect key="frame" x="170" y="252.5" width="60" height="30"/>
+                    <rect key="frame" x="170" y="196.5" width="60" height="30"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="60" id="Xiw-H0-upA"/>
                     </constraints>
@@ -96,7 +97,7 @@
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CPg-kC-fXr">
-                    <rect key="frame" x="178" y="289.5" width="160" height="30"/>
+                    <rect key="frame" x="178" y="233.5" width="160" height="30"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="160" id="CYe-Mi-oDa"/>
                     </constraints>
@@ -105,11 +106,11 @@
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="osM-ou-IvM">
-                    <rect key="frame" x="286" y="340" width="73" height="30"/>
+                    <rect key="frame" x="286" y="284" width="73" height="30"/>
                     <state key="normal" title="Выдать зп"/>
                 </button>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5Om-gl-Dhz">
-                    <rect key="frame" x="71" y="67.5" width="200" height="30"/>
+                    <rect key="frame" x="71" y="11.5" width="200" height="30"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="200" id="DoH-tV-lVr"/>
                     </constraints>
@@ -118,27 +119,27 @@
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Am3-Qq-JPL">
-                    <rect key="frame" x="16" y="340" width="99" height="30"/>
+                    <rect key="frame" x="16" y="284" width="99" height="30"/>
                     <state key="normal" title="Оштрафовать"/>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Штрафы" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mQm-cC-sQ3">
-                    <rect key="frame" x="150" y="354" width="68" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Штрафы" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mQm-cC-sQ3">
+                    <rect key="frame" x="153.5" y="330" width="68" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lxB-bV-VnX">
-                    <rect key="frame" x="0.0" y="423" width="375" height="244"/>
+                    <rect key="frame" x="0.0" y="367" width="375" height="300"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ставка:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SiZ-xR-sMg">
-                    <rect key="frame" x="16" y="183" width="61" height="21"/>
+                    <rect key="frame" x="16" y="127" width="61" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Uiy-z9-7tb">
-                    <rect key="frame" x="93" y="178.5" width="60" height="30"/>
+                    <rect key="frame" x="93" y="122.5" width="60" height="30"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="60" id="TpT-6X-VBp"/>
                     </constraints>
@@ -146,9 +147,14 @@
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ism-y5-Umf">
+                    <rect key="frame" x="145.5" y="284" width="85" height="30"/>
+                    <state key="normal" title="Зачисления"/>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="ism-y5-Umf" firstAttribute="centerX" secondItem="2" secondAttribute="centerX" id="02b-uU-Tv3"/>
                 <constraint firstItem="xZT-YJ-kI2" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="16" id="1bn-xd-oGy"/>
                 <constraint firstItem="Am3-Qq-JPL" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="16" id="1yV-k5-gzz"/>
                 <constraint firstAttribute="trailing" secondItem="osM-ou-IvM" secondAttribute="trailing" constant="16" id="2G0-aG-JVG"/>
@@ -156,6 +162,7 @@
                 <constraint firstItem="pMt-Yo-d0w" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="16" id="5RV-e9-95W"/>
                 <constraint firstItem="DIb-7P-yaQ" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="16" id="6I5-Dp-UYe"/>
                 <constraint firstItem="5Om-gl-Dhz" firstAttribute="centerY" secondItem="CX7-yu-psO" secondAttribute="centerY" id="9Dr-4q-iUP"/>
+                <constraint firstItem="ism-y5-Umf" firstAttribute="centerY" secondItem="osM-ou-IvM" secondAttribute="centerY" id="9ZO-CE-5gM"/>
                 <constraint firstItem="Uiy-z9-7tb" firstAttribute="leading" secondItem="SiZ-xR-sMg" secondAttribute="trailing" constant="16" id="AX7-Bo-0PW"/>
                 <constraint firstItem="brU-dU-A59" firstAttribute="leading" secondItem="UmY-tt-qms" secondAttribute="trailing" constant="16" id="BD7-lp-DOf"/>
                 <constraint firstItem="lxB-bV-VnX" firstAttribute="top" secondItem="mQm-cC-sQ3" secondAttribute="bottom" constant="16" id="Chs-ui-7lG"/>
@@ -174,7 +181,7 @@
                 <constraint firstItem="5Om-gl-Dhz" firstAttribute="leading" secondItem="CX7-yu-psO" secondAttribute="trailing" constant="16" id="XRJ-52-dXg"/>
                 <constraint firstItem="Uiy-z9-7tb" firstAttribute="centerY" secondItem="SiZ-xR-sMg" secondAttribute="centerY" id="ZKL-ro-Slf"/>
                 <constraint firstItem="r6v-0x-r0m" firstAttribute="leading" secondItem="BRL-sk-0hQ" secondAttribute="trailing" constant="16" id="Zte-Dn-gUc"/>
-                <constraint firstItem="CX7-yu-psO" firstAttribute="top" secondItem="2" secondAttribute="top" constant="72" id="a03-lv-0vV"/>
+                <constraint firstItem="CX7-yu-psO" firstAttribute="top" secondItem="2" secondAttribute="top" constant="16" id="a03-lv-0vV"/>
                 <constraint firstItem="pMt-Yo-d0w" firstAttribute="top" secondItem="BRL-sk-0hQ" secondAttribute="bottom" constant="16" id="aJz-Va-CRc"/>
                 <constraint firstItem="r6v-0x-r0m" firstAttribute="centerY" secondItem="BRL-sk-0hQ" secondAttribute="centerY" id="d3W-Xo-RM1"/>
                 <constraint firstItem="YtU-ld-wax" firstAttribute="leading" secondItem="DIb-7P-yaQ" secondAttribute="trailing" constant="16" id="eo6-cW-qHg"/>

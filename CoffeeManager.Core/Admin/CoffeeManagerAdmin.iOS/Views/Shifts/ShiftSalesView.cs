@@ -56,23 +56,11 @@ namespace CoffeeManagerAdmin.iOS
         {
             base.ViewDidLoad();
             Title = "Продажи за смену";
-            var g = new UITapGestureRecognizer((obj) =>
-               {
-                   tableSource.ItemsSource = _saleItems;
-                   SalesTableView.ReloadData();
-               });
-            ByTimeButton.AddGestureRecognizer(g);
 
-            var g1 = new UITapGestureRecognizer((obj) =>
-            {
-                tableSource.ItemsSource = _groupedSaleItems;
-                SalesTableView.ReloadData();
-            });
-            ByProductButton.AddGestureRecognizer(g1);
+            SegmentControl.ValueChanged += SegmentControl_ValueChanged;
 
             tableSource = new SaleTableSource(SalesTableView);
             SalesTableView.Source = tableSource;
-
 
             var set = this.CreateBindingSet<ShiftSalesView, ShiftSalesViewModel>();
             set.Bind(this).For(i => i.SaleItems).To(vm => vm.SaleItems);
@@ -80,10 +68,19 @@ namespace CoffeeManagerAdmin.iOS
             set.Apply();
         }
 
-        public override void DidReceiveMemoryWarning()
+
+        void SegmentControl_ValueChanged(object sender, EventArgs e)
         {
-            base.DidReceiveMemoryWarning();
-            // Release any cached data, images, etc that aren't in use.
+            if(SegmentControl.SelectedSegment == 0)
+            {
+                tableSource.ItemsSource = _saleItems;
+
+            }
+            else if(SegmentControl.SelectedSegment == 1)
+            {
+                tableSource.ItemsSource = _groupedSaleItems;
+            }
+            SalesTableView.ReloadData();
         }
     }
 }

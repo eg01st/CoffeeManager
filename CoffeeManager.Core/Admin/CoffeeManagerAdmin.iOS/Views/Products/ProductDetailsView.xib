@@ -29,84 +29,84 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Название: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2ab-2R-e5x">
-                    <rect key="frame" x="16" y="70" width="86.5" height="20.5"/>
+                    <rect key="frame" x="16" y="16" width="86.5" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Цена: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sVq-yO-dH9">
-                    <rect key="frame" x="16" y="106.5" width="50.5" height="20.5"/>
+                    <rect key="frame" x="16" y="52.5" width="50.5" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Цена для копов: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dTt-hN-i8G">
-                    <rect key="frame" x="16" y="143" width="134" height="20.5"/>
+                    <rect key="frame" x="16" y="89" width="134" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5qj-Mx-bsO">
-                    <rect key="frame" x="110.5" y="65.5" width="248.5" height="30"/>
+                    <rect key="frame" x="110.5" y="11.5" width="248.5" height="30"/>
                     <nil key="textColor"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RJZ-Qh-gGh">
-                    <rect key="frame" x="110.5" y="102" width="249" height="30"/>
+                    <rect key="frame" x="110.5" y="48" width="249" height="30"/>
                     <nil key="textColor"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                 </textField>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OWg-nt-owM">
-                    <rect key="frame" x="158" y="138.5" width="201" height="30"/>
+                    <rect key="frame" x="158" y="84.5" width="201" height="30"/>
                     <nil key="textColor"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                 </textField>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Объем стакана: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q6D-u7-Jen">
-                    <rect key="frame" x="16" y="179.5" width="130.5" height="20.5"/>
+                    <rect key="frame" x="16" y="125.5" width="130.5" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Категория товара: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S4k-UQ-wMj">
-                    <rect key="frame" x="16" y="216" width="151.5" height="20.5"/>
+                    <rect key="frame" x="16" y="162" width="151.5" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Q2J-wp-TPy">
-                    <rect key="frame" x="154.5" y="174.5" width="205" height="30"/>
+                    <rect key="frame" x="154.5" y="120.5" width="205" height="30"/>
                     <nil key="textColor"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hgT-q7-OYV">
-                    <rect key="frame" x="175.5" y="210.5" width="184" height="30"/>
+                    <rect key="frame" x="175.5" y="156.5" width="184" height="30"/>
                     <nil key="textColor"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AcP-fh-uUE">
-                    <rect key="frame" x="153" y="289.5" width="69" height="30"/>
+                    <rect key="frame" x="153" y="235.5" width="69" height="30"/>
                     <state key="normal" title="Добавить"/>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Продажа на вес" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lq8-0U-9q5">
-                    <rect key="frame" x="16" y="252.5" width="129" height="21"/>
+                    <rect key="frame" x="16" y="198.5" width="129" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TI3-JO-6FO">
-                    <rect key="frame" x="310" y="247.5" width="51" height="31"/>
+                    <rect key="frame" x="310" y="193.5" width="51" height="31"/>
                 </switch>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="RJZ-Qh-gGh" secondAttribute="trailing" constant="15.5" id="0ki-SR-W1t"/>
                 <constraint firstAttribute="trailing" secondItem="5qj-Mx-bsO" secondAttribute="trailing" constant="16" id="1eu-B9-xIg"/>
-                <constraint firstItem="2ab-2R-e5x" firstAttribute="top" secondItem="2" secondAttribute="top" constant="70" id="1gO-L0-mwz"/>
+                <constraint firstItem="2ab-2R-e5x" firstAttribute="top" secondItem="2" secondAttribute="top" constant="16" id="1gO-L0-mwz"/>
                 <constraint firstItem="TI3-JO-6FO" firstAttribute="centerY" secondItem="lq8-0U-9q5" secondAttribute="centerY" id="1lo-5P-Ste"/>
                 <constraint firstItem="sVq-yO-dH9" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="16" id="4iY-cZ-Lhn"/>
                 <constraint firstItem="2ab-2R-e5x" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="16" id="5WC-WT-Nj1"/>
