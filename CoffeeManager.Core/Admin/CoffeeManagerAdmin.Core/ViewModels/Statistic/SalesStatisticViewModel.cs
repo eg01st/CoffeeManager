@@ -6,27 +6,31 @@ using System.Windows.Input;
 using MvvmCross.Core.ViewModels;
 using CoffeeManagerAdmin.Core.Util;
 using CoffeManager.Common;
+using System.Threading.Tasks;
 
 namespace CoffeeManagerAdmin.Core.ViewModels.Statistic
 {
     public class SalesStatisticViewModel : ViewModelBase
     {
         private IEnumerable<SaleInfo> saleItems;
-        DateTime from, to;
 
         public List<BaseStatisticSaleItemViewModel> Items {get;set;}
-        public ICommand ShowChartCommand {get;set;}
 
-        public SalesStatisticViewModel()
+
+        readonly IStatisticManager manager;
+        readonly DateTime from;
+        readonly DateTime to;
+
+        public SalesStatisticViewModel(IStatisticManager manager, DateTime from, DateTime to)
         {
-            ShowChartCommand = new MvxCommand(DoShowChart);
+            this.to = to;
+            this.from = from;
+            this.manager = manager;
         }
 
-        public void Init(Guid id, DateTime from, DateTime to)
-        {     
-            this.from = from;
-            this.to = to;
-            ParameterTransmitter.TryGetParameter(id, out saleItems);
+        public async Task Init()
+        {
+            saleItems = await manager.GetSales(from, to);
             
             var entireAmount = saleItems.Sum(i => i.Amount);
             var entireAmountHeaderVm = new StatisticSaleHeaderViewModel("Общая сумма", entireAmount.Value);
@@ -45,10 +49,6 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Statistic
             RaisePropertyChanged(nameof(Items));
         }
 
-        private void DoShowChart()
-        {
-            var id = ParameterTransmitter.PutParameter(saleItems);
-            ShowViewModel<SelectSalesViewModel>(new {id, from, to});
-        }
+
     }
 }

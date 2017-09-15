@@ -29,8 +29,6 @@ namespace CoffeeManagerAdmin.iOS
 
             this.DelayBind(() =>
             {
-                var conv = new GenericConverter<bool, bool>((arg) => !arg);
-
                 var set = this.CreateBindingSet<SaleStatisticViewCell, SaleItemViewModel>();
                 set.Bind(NameLabel).To(vm => vm.Name);
                 set.Bind(AmountLabel).To(vm => vm.Amount);
