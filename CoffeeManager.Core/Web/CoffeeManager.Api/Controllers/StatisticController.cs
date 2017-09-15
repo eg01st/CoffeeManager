@@ -19,7 +19,7 @@ namespace CoffeeManager.Api.Controllers
         public async Task<HttpResponseMessage> GetAllSales([FromUri] int coffeeroomno, [FromUri] DateTime from, [FromUri] DateTime to, HttpRequestMessage message)
         {
             var ctx = new CoffeeRoomEntities();
-            var sales = ctx.GetAllSales(from, to, coffeeroomno).ToList();
+            var sales = ctx.GetAllSales(from, to.AddDays(1), coffeeroomno).ToList();
             return Request.CreateResponse(HttpStatusCode.OK, sales.ToDTO());
         }
 
@@ -28,7 +28,7 @@ namespace CoffeeManager.Api.Controllers
         public async Task<HttpResponseMessage> GetExpenses([FromUri] int coffeeroomno, [FromUri] DateTime from, [FromUri] DateTime to, HttpRequestMessage message)
         {
             var ctx = new CoffeeRoomEntities();
-            var expenses = ctx.GetExpenses(from, to, coffeeroomno).ToList();
+            var expenses = ctx.GetExpenses(from, to.AddDays(1), coffeeroomno).ToList();
             return Request.CreateResponse(HttpStatusCode.OK, expenses.ToDTO());
         }
 
@@ -37,6 +37,7 @@ namespace CoffeeManager.Api.Controllers
         public async Task<HttpResponseMessage> GetCreditCardSales([FromUri] int coffeeroomno, [FromUri] DateTime from, [FromUri] DateTime to, HttpRequestMessage message)
         {
             var ctx = new CoffeeRoomEntities();
+            to = to.AddDays(1);
             var sales = ctx.Sales.Where(s => s.CoffeeRoomNo == coffeeroomno && s.IsCreditCardSale && !s.IsRejected && !s.IsUtilized && s.Time > from && s.Time < to).ToList().Select(s => s.ToDTO());
             return Request.CreateResponse(HttpStatusCode.OK, sales);
         }
@@ -47,6 +48,7 @@ namespace CoffeeManager.Api.Controllers
         {
             var request = await message.Content.ReadAsStringAsync();
             var items = JsonConvert.DeserializeObject<List<string>>(request);
+            to = to.AddDays(1);
             var ctx = new CoffeeRoomEntities();
             var sales = ctx.Sales.Include(p => p.Product1).Where(s => s.CoffeeRoomNo == coffeeroomno && items.Contains(s.Product1.Name) && !s.IsRejected && !s.IsUtilized && s.Time > from && s.Time < to).ToList().Select(s => s.ToDTO());
             return Request.CreateResponse(HttpStatusCode.OK, sales);

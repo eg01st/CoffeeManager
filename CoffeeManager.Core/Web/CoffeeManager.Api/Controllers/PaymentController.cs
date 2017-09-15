@@ -195,13 +195,21 @@ namespace CoffeeManager.Api.Controllers
                 {
                     continue;
                 }
-                expense.ExpenseSuplyProducts.Add(new ExpenseSuplyProduct()
+                var expenseDb = new ExpenseSuplyProduct()
                 {
-                     CoffeeRoonNo = coffeeroomno,
-                     Amount = suplyProduct.Price,
-                     Quantity = suplyProduct.Quatity.Value,
-                     SuplyProductId = suplyProduct.Id       
-                });
+                    CoffeeRoonNo = coffeeroomno,
+                    Amount = suplyProduct.Price,
+                    SuplyProductId = suplyProduct.Id
+                };
+                if(suplyProduct.ExpenseNumerationMultyplier.HasValue && suplyProduct.ExpenseNumerationMultyplier > 0)
+                {
+                    expenseDb.Quantity = suplyProduct.Quatity.Value * suplyProduct.ExpenseNumerationMultyplier.Value;
+                }
+                else
+                {
+                    expenseDb.Quantity = suplyProduct.Quatity.Value;
+                }
+                expense.ExpenseSuplyProducts.Add(expenseDb);
             }
 
             entities.Expenses.Add(expense);
@@ -212,11 +220,25 @@ namespace CoffeeManager.Api.Controllers
     
                 if (suplyProductDb.Quantity.HasValue)
                 {
-                    suplyProductDb.Quantity += suplyProduct.Quatity;
+                    if(suplyProductDb.ExpenseNumerationMultyplier.HasValue && suplyProductDb.ExpenseNumerationMultyplier > 0)
+                    {
+                        suplyProductDb.Quantity += suplyProduct.Quatity * suplyProduct.ExpenseNumerationMultyplier.Value;
+                    }
+                    else
+                    {
+                        suplyProductDb.Quantity += suplyProduct.Quatity;
+                    }
                 }
                 else
                 {
-                    suplyProductDb.Quantity = suplyProduct.Quatity;
+                    if (suplyProductDb.ExpenseNumerationMultyplier.HasValue && suplyProductDb.ExpenseNumerationMultyplier > 0)
+                    {
+                        suplyProductDb.Quantity = suplyProduct.Quatity * suplyProduct.ExpenseNumerationMultyplier.Value;
+                    }
+                    else
+                    {
+                        suplyProductDb.Quantity = suplyProduct.Quatity;
+                    }
                 }
                 
             }

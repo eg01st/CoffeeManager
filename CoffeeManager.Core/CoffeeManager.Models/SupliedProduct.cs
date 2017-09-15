@@ -9,5 +9,9 @@
         public int? ExpenseTypeId { get; set; }
         public string ExpenseTypeName { get; set; }
         public bool InventoryEnabled { get; set; }
+
+        public string ExpenseNumerationName { get; set; }
+
+        public decimal? ExpenseNumerationMultyplier { get; set; }
     }
 }
