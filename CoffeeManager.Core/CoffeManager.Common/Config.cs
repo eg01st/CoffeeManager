@@ -1,4 +1,4 @@
-﻿﻿namespace CoffeeManager.Common
+﻿﻿﻿namespace CoffeeManager.Common
 {
     public static class Config
     {

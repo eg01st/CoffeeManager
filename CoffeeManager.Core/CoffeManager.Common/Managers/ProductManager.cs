@@ -80,10 +80,20 @@ namespace CoffeManager.Common
             {
                 await productProvider.SaleProduct((Sale)sale);
             }
+            catch (HttpRequestException hrex)
+            {
+                Debug.WriteLine(hrex.ToDiagnosticString());
+                syncManager.AddSaleToSync(sale, SaleAction.Add);
+            }
+            catch (TaskCanceledException tcex)
+            {
+                Debug.WriteLine(tcex.ToDiagnosticString());
+                syncManager.AddSaleToSync(sale, SaleAction.Add);
+            }
             catch(Exception ex)
             {
                 Debug.WriteLine(ex.ToDiagnosticString());
-                EmailService?.SendErrorEmail(ex.ToDiagnosticString());
+                await EmailService?.SendErrorEmail(ex.ToDiagnosticString());
                 syncManager.AddSaleToSync(sale, SaleAction.Add);
                 return;
             }
@@ -92,10 +102,18 @@ namespace CoffeManager.Common
             {
                 await syncManager.SyncSales();
             }
+            catch (HttpRequestException hrex)
+            {
+                Debug.WriteLine(hrex.ToDiagnosticString());
+            }
+            catch (TaskCanceledException tcex)
+            {
+                Debug.WriteLine(tcex.ToDiagnosticString());
+            }
             catch (Exception ex)
             {
                 Debug.WriteLine(ex.ToDiagnosticString());
-                EmailService?.SendErrorEmail(ex.ToDiagnosticString());
+                await EmailService?.SendErrorEmail(ex.ToDiagnosticString());
             }
         }
 
@@ -106,10 +124,20 @@ namespace CoffeManager.Common
                 await productProvider.DeleteSale(ShiftNo, id);
                 await syncManager.SyncSales();
             }
+            catch (HttpRequestException hrex)
+            {
+                Debug.WriteLine(hrex.ToDiagnosticString());
+                syncManager.AddSaleToSync(new SaleEntity() { Id = id, ShiftId = ShiftNo }, SaleAction.Dismiss);
+            }
+            catch (TaskCanceledException tcex)
+            {
+                Debug.WriteLine(tcex.ToDiagnosticString());
+                syncManager.AddSaleToSync(new SaleEntity() { Id = id, ShiftId = ShiftNo }, SaleAction.Dismiss);
+            }
             catch (Exception ex)
             {
                 Debug.WriteLine(ex.ToDiagnosticString());
-                EmailService?.SendErrorEmail(ex.ToDiagnosticString());
+                await EmailService?.SendErrorEmail(ex.ToDiagnosticString());
                 syncManager.AddSaleToSync(new SaleEntity() { Id = id, ShiftId = ShiftNo}, SaleAction.Dismiss);
             }
 
@@ -121,10 +149,20 @@ namespace CoffeManager.Common
                 await productProvider.UtilizeSaleProduct(ShiftNo, id);
                 await syncManager.SyncSales();
             }
+            catch (HttpRequestException hrex)
+            {
+                Debug.WriteLine(hrex.ToDiagnosticString());
+                syncManager.AddSaleToSync(new SaleEntity() { Id = id, ShiftId = ShiftNo }, SaleAction.Utilize);
+            }
+            catch (TaskCanceledException tcex)
+            {
+                Debug.WriteLine(tcex.ToDiagnosticString());
+                syncManager.AddSaleToSync(new SaleEntity() { Id = id, ShiftId = ShiftNo }, SaleAction.Utilize);
+            }
             catch (Exception ex)
             {
                 Debug.WriteLine(ex.ToDiagnosticString());
-                EmailService?.SendErrorEmail(ex.ToDiagnosticString());
+                await EmailService?.SendErrorEmail(ex.ToDiagnosticString());
                 syncManager.AddSaleToSync(new SaleEntity() { Id = id, ShiftId = ShiftNo }, SaleAction.Utilize);
             }
         }
@@ -167,10 +205,15 @@ namespace CoffeManager.Common
                 Debug.WriteLine(hrex.ToDiagnosticString());
                 products = syncManager.GetProducts(type);
             }
+            catch (TaskCanceledException tcex)
+            {
+                Debug.WriteLine(tcex.ToDiagnosticString());
+                products = syncManager.GetProducts(type);
+            }
             catch(Exception ex)
             {
                 Debug.WriteLine(ex.ToDiagnosticString());
-                EmailService?.SendErrorEmail(ex.ToDiagnosticString());
+                await EmailService?.SendErrorEmail(ex.ToDiagnosticString());
                 throw;
             }
             return products.ToArray();

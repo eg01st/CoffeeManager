@@ -83,10 +83,37 @@ namespace CoffeManager.Common
                     return null;
                 }
             }
+            catch (TaskCanceledException tcex)
+            {
+                var shiftDb = syncManager.GetCurrentShift();
+                if (shiftDb != null)
+                {
+                    return (Shift)shiftDb;
+                }
+                else
+                {
+                    return null;
+                }
+            }
             catch(Exception ex)
             {
                 Debug.WriteLine(ex.ToDiagnosticString());
-                EmailService?.SendErrorEmail(ex.ToDiagnosticString());
+                await EmailService?.SendErrorEmail(ex.ToDiagnosticString());
+                return null;
+            }
+        }
+
+        public async Task<Shift> GetCurrentShiftAdmin()
+        {
+            try
+            {
+                var shift = await shiftProvider.GetCurrentShift();
+                return shift;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.ToDiagnosticString());
+                await EmailService?.SendErrorEmail(ex.ToDiagnosticString());
                 return null;
             }
         }

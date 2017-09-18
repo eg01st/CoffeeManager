@@ -208,19 +208,17 @@ namespace CoffeeManager.Core.ViewModels
 
         private async Task DoPay()
         {
-            var tasks = new List<Task>();
-            foreach (var productViewModel in SelectedProducts)
-            {
-                await ExecuteSafe(async () => 
-                                  await productManager.SaleProduct(
-			                    _shiftId,
-			                    productViewModel.ProductId,
-			                    productViewModel.Price,
-			                    productViewModel.IsPoliceSale,
-			                    productViewModel.IsCreditCardSale,
-			                    productViewModel.IsSaleByWeight,
-			                        productViewModel.Weight));
-            }
+            var tasks = SelectedProducts.Select(productViewModel =>
+                                  productManager.SaleProduct(
+                                _shiftId,
+                                productViewModel.ProductId,
+                                productViewModel.Price,
+                                productViewModel.IsPoliceSale,
+                                productViewModel.IsCreditCardSale,
+                                productViewModel.IsSaleByWeight,
+                                    productViewModel.Weight)
+                                               );
+            await ExecuteSafe(async () => await Task.WhenAll(tasks));
             SelectedProducts.Clear();
             Sum = 0;
             RaisePropertyChanged(nameof(PayEnabled));

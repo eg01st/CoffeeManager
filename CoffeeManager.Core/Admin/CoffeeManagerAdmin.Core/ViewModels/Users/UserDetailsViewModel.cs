@@ -248,7 +248,7 @@ namespace CoffeeManagerAdmin.Core
             }
             await ExecuteSafe(async () => 
             {
-                var shift = await shiftManager.GetCurrentShift();
+                var shift = await shiftManager.GetCurrentShiftAdmin();
                 if(shift == null)
                 {
                     UserDialogs.Alert("Запустите новую смену!");

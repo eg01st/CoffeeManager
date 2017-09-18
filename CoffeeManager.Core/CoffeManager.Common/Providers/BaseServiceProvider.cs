@@ -17,8 +17,7 @@ namespace CoffeManager.Common
         protected async Task<T> Get<T>(string path, Dictionary<string, string> param = null)
         {
             string url = GetUrl(path, param);
-            var client = new HttpClient();
-            client.DefaultRequestHeaders.Add("token", AccessToken);
+            var client = GetClient();
             var response = await client.GetAsync(url);
             string responseString = await response.Content.ReadAsStringAsync();
             Debug.WriteLine(responseString);
@@ -34,9 +33,7 @@ namespace CoffeManager.Common
         protected async Task<T> Post<T, TY>(string path, TY obj, Dictionary<string, string> param = null)
         {
             string url = GetUrl(path, param);
-            var client = new HttpClient();
-            client.DefaultRequestHeaders.Add("token", AccessToken);
-
+            var client = GetClient();
             var response = await client.PostAsync(url, new StringContent(JsonConvert.SerializeObject(obj)));
             string responseString = await response.Content.ReadAsStringAsync();
             if (response.StatusCode != System.Net.HttpStatusCode.OK)
@@ -51,9 +48,7 @@ namespace CoffeManager.Common
         protected async Task<string> Post<T>(string path, T obj, Dictionary<string, string> param = null)
         {
             string url = GetUrl(path, param);
-            var client = new HttpClient();
-            client.DefaultRequestHeaders.Add("token", AccessToken);
-
+            var client = GetClient();
             var response = await client.PostAsync(url, new StringContent(JsonConvert.SerializeObject(obj)));
             var responseString = await response.Content.ReadAsStringAsync();
             if (response.StatusCode != System.Net.HttpStatusCode.OK)
@@ -66,9 +61,7 @@ namespace CoffeManager.Common
         protected async Task<T> Put<T, TY>(string path, TY obj, Dictionary<string, string> param = null)
         {
             string url = GetUrl(path, param);
-            var client = new HttpClient();
-            client.DefaultRequestHeaders.Add("token", AccessToken);
-
+            var client = GetClient();
             var response = await client.PutAsync(url, new StringContent(JsonConvert.SerializeObject(obj)));
             string responseString = await response.Content.ReadAsStringAsync();
             if (response.StatusCode != System.Net.HttpStatusCode.OK)
@@ -83,9 +76,7 @@ namespace CoffeManager.Common
         protected async Task<string> Put<T>(string path, T obj, Dictionary<string, string> param = null)
         {
             string url = GetUrl(path, param);
-            var client = new HttpClient();
-            client.DefaultRequestHeaders.Add("token", AccessToken);
-
+            var client = GetClient();
             var response = await client.PutAsync(url, new StringContent(JsonConvert.SerializeObject(obj)));
             var responseString = await response.Content.ReadAsStringAsync();
             if (response.StatusCode != System.Net.HttpStatusCode.OK)
@@ -98,9 +89,7 @@ namespace CoffeManager.Common
         protected async Task<string> Delete(string path, Dictionary<string, string> param = null)
         {
             string url = GetUrl(path, param);
-            var client = new HttpClient();
-            client.DefaultRequestHeaders.Add("token", AccessToken);
-
+            var client = GetClient();
             var response = await client.DeleteAsync(url);
             var responseString = await response.Content.ReadAsStringAsync();
             if (response.StatusCode != System.Net.HttpStatusCode.OK)
@@ -121,6 +110,14 @@ namespace CoffeManager.Common
                 }
             }
             return url;
+        }
+
+        private HttpClient GetClient()
+        {
+            var client = new HttpClient();
+            client.Timeout = new TimeSpan(0, 0, 5);
+            client.DefaultRequestHeaders.Add("token", AccessToken);
+            return client;
         }
     }
 }

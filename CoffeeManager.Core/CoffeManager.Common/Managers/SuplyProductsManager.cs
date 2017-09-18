@@ -30,9 +30,9 @@ namespace CoffeManager.Common
             return await provider.GetSuplyProduct(id);
         }
 
-        public async Task EditSuplyProduct(int id, string name, decimal supliedPrice, decimal? itemCount)
+        public async Task EditSuplyProduct(SupliedProduct prod)
         {
-            await provider.EditSuplyProduct(new SupliedProduct { Id = id, Quatity = itemCount, Name = name, Price = supliedPrice, CoffeeRoomNo = Config.CoffeeRoomNo });
+            await provider.EditSuplyProduct(prod);
         }
 
         public async Task DeleteSuplyProduct(int _id)

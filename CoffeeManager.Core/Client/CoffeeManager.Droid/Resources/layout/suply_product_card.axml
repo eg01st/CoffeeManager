@@ -23,23 +23,30 @@
                 android:gravity="center_vertical"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="40"
+                android:layout_weight="35"
                 android:textSize="20dp"
                 local:MvxBind="Text Name" />
             <EditText
                 android:inputType="numberDecimal"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="30"
+                android:layout_weight="20"
                 android:textSize="20dp"
                 local:MvxBind="Text DecimalToPrice(Amount)" />
             <EditText
                 android:inputType="numberDecimal"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="30"
+                android:layout_weight="15"
                 android:textSize="20dp"
                 local:MvxBind="Text DecimalToPrice(ItemCount)" />
+            <TextView
+                android:gravity="center_vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="35"
+                android:textSize="20dp"
+                local:MvxBind="Text ExpenseMultiplierName" />
         </LinearLayout>
     </CardView>
 </LinearLayout>

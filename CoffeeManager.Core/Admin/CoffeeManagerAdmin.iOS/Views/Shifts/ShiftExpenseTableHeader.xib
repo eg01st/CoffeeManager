@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -20,19 +21,19 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Название" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pcB-U4-369">
-                        <rect key="frame" x="24" y="11.5" width="78" height="21"/>
+                        <rect key="frame" x="16" y="11.5" width="96" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Количество" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tm0-19-lFd">
-                        <rect key="frame" x="123" y="11.5" width="94" height="21"/>
+                        <rect key="frame" x="144" y="11.5" width="96" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Сумма" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MBY-Sv-vRN">
-                        <rect key="frame" x="241" y="11.5" width="55" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Сумма" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MBY-Sv-vRN">
+                        <rect key="frame" x="240" y="11.5" width="64" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -40,12 +41,15 @@
                 </subviews>
                 <color key="backgroundColor" red="0.59215686270000001" green="0.59999999999999998" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
+                    <constraint firstItem="tm0-19-lFd" firstAttribute="width" secondItem="YTl-1W-gDM" secondAttribute="width" multiplier="0.3" id="0nd-pu-E3G"/>
+                    <constraint firstItem="pcB-U4-369" firstAttribute="width" secondItem="YTl-1W-gDM" secondAttribute="width" multiplier="0.3" id="7Mn-BM-Y1t"/>
                     <constraint firstItem="tm0-19-lFd" firstAttribute="centerY" secondItem="YTl-1W-gDM" secondAttribute="centerY" id="8RQ-0a-6Oa"/>
-                    <constraint firstItem="MBY-Sv-vRN" firstAttribute="leading" secondItem="tm0-19-lFd" secondAttribute="trailing" constant="24" id="CLF-lR-iYz"/>
+                    <constraint firstItem="MBY-Sv-vRN" firstAttribute="leading" secondItem="tm0-19-lFd" secondAttribute="trailing" id="CLF-lR-iYz"/>
                     <constraint firstItem="pcB-U4-369" firstAttribute="centerY" secondItem="YTl-1W-gDM" secondAttribute="centerY" id="CRU-0S-Hne"/>
                     <constraint firstItem="MBY-Sv-vRN" firstAttribute="centerY" secondItem="YTl-1W-gDM" secondAttribute="centerY" id="DpD-Ti-t1y"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="MBY-Sv-vRN" secondAttribute="trailing" constant="16" id="O32-Ti-7mv"/>
-                    <constraint firstItem="pcB-U4-369" firstAttribute="leading" secondItem="YTl-1W-gDM" secondAttribute="leadingMargin" constant="16" id="pKz-Zj-FCN"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="MBY-Sv-vRN" secondAttribute="trailing" constant="8" id="O32-Ti-7mv"/>
+                    <constraint firstItem="MBY-Sv-vRN" firstAttribute="width" secondItem="YTl-1W-gDM" secondAttribute="width" multiplier="0.2" id="dgB-6H-xvo"/>
+                    <constraint firstItem="pcB-U4-369" firstAttribute="leading" secondItem="YTl-1W-gDM" secondAttribute="leadingMargin" constant="8" id="pKz-Zj-FCN"/>
                 </constraints>
             </tableViewCellContentView>
         </tableViewCell>

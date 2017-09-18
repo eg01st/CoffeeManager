@@ -127,14 +127,17 @@ namespace CoffeManager.Common
             {
                 Debug.WriteLine(hrex.ToDiagnosticString());
                 UserDialogs.Alert("Нет подключения к интернету, доступно только добавление продаж");
-                EmailService?.SendErrorEmail(hrex.ToDiagnosticString());
+            }
+            catch (TaskCanceledException tcex)
+            {
+                Debug.WriteLine(tcex.ToDiagnosticString());
+                UserDialogs.Alert("Нет подключения к интернету, доступно только добавление продаж");
             }
             catch (Exception e)
             {
                 Debug.WriteLine(e.ToDiagnosticString());
                 UserDialogs.Alert(e.ToString());
-                // send email here
-                EmailService?.SendErrorEmail(e.ToDiagnosticString());
+                await EmailService?.SendErrorEmail(e.ToDiagnosticString());
             }
             finally
             {

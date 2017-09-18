@@ -9,11 +9,13 @@ namespace CoffeeManager.Core
         private decimal amount;
         private string name;
         private int id;
+        private string expenseMultiplierName;
 
         public SuplyProductViewModel(SupliedProduct product)
         {
             Id = product.Id;
             Name = product.Name;
+            ExpenseMultiplierName = product.ExpenseNumerationName;
         }
 
         public string Name
@@ -25,6 +27,17 @@ namespace CoffeeManager.Core
                 RaisePropertyChanged(nameof(Name));
             }
         }
+
+        public string ExpenseMultiplierName
+        {
+            get { return expenseMultiplierName; }
+            set
+            {
+                expenseMultiplierName = value;
+                RaisePropertyChanged(nameof(ExpenseMultiplierName));
+            }
+        }
+
 
         public decimal Amount
         {
