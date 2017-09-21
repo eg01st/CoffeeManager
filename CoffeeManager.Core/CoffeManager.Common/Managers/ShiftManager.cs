@@ -76,6 +76,7 @@ namespace CoffeManager.Common
                 var shiftDb = syncManager.GetCurrentShift();
                 if(shiftDb != null)
                 {
+                    ShiftNo = shiftDb.Id;
                     return (Shift)shiftDb;
                 }
                 else
@@ -88,6 +89,7 @@ namespace CoffeManager.Common
                 var shiftDb = syncManager.GetCurrentShift();
                 if (shiftDb != null)
                 {
+                    ShiftNo = shiftDb.Id;
                     return (Shift)shiftDb;
                 }
                 else
