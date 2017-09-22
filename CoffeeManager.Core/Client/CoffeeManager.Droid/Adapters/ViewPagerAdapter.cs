@@ -12,29 +12,10 @@ namespace CoffeeManager.Droid.Adapters
     {
         private readonly List<Tuple<string, Fragment>> fragments = new List<Tuple<string, Fragment>>();
 
+
         public ViewPagerAdapter(FragmentManager manager)
             : base(manager)
         {
-        }
-
-        public override Object InstantiateItem(ViewGroup container, int position)
-        {
-            return base.InstantiateItem(container, position);
-        }
-
-        public override Object InstantiateItem(View container, int position)
-        {
-            return base.InstantiateItem(container, position);
-        }
-
-        public override void DestroyItem(View container, int position, Object objectValue)
-        {
-            base.DestroyItem(container, position, objectValue);
-        }
-
-        public override void DestroyItem(ViewGroup container, int position, Object objectValue)
-        {
-            base.DestroyItem(container, position, objectValue);
         }
 
         public override int Count => fragments.Count;
