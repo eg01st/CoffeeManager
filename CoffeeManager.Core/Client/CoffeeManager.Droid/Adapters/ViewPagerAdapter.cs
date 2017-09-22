@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
 using Android.Support.V4.App;
+using Android.Views;
 using Java.Lang;
-
+using Object = Java.Lang.Object;
 
 
 namespace CoffeeManager.Droid.Adapters
@@ -14,6 +15,26 @@ namespace CoffeeManager.Droid.Adapters
         public ViewPagerAdapter(FragmentManager manager)
             : base(manager)
         {
+        }
+
+        public override Object InstantiateItem(ViewGroup container, int position)
+        {
+            return base.InstantiateItem(container, position);
+        }
+
+        public override Object InstantiateItem(View container, int position)
+        {
+            return base.InstantiateItem(container, position);
+        }
+
+        public override void DestroyItem(View container, int position, Object objectValue)
+        {
+            base.DestroyItem(container, position, objectValue);
+        }
+
+        public override void DestroyItem(ViewGroup container, int position, Object objectValue)
+        {
+            base.DestroyItem(container, position, objectValue);
         }
 
         public override int Count => fragments.Count;
@@ -31,14 +52,14 @@ namespace CoffeeManager.Droid.Adapters
             fragments.Add(keyValuePair);
         }
 
-        public override ICharSequence GetPageTitleFormatted(int position)
-        {
-            var element = GetElementAt(position);
-            var titleStr = element.Item1;
-            var javaStr = new Java.Lang.String(titleStr);
+        //public override ICharSequence GetPageTitleFormatted(int position)
+        //{
+        //    var element = GetElementAt(position);
+        //    var titleStr = element.Item1;
+        //    var javaStr = new Java.Lang.String(titleStr);
 
-            return javaStr;
-        }
+        //    return javaStr;
+        //}
 
         private Tuple<string, Fragment> GetElementAt(int position)
         {

@@ -33,7 +33,7 @@
                 android:gravity="center"
                 android:textSize="16dp"
                 android:textColor="#008000"
-                local:MvxBind="Text DecimalToPrice(Price)" />
+                local:MvxBind="Text Price" />
             <TextView
                 android:layout_marginLeft="5dp"
                 android:layout_width="wrap_content"
@@ -76,7 +76,7 @@
                 android:gravity="center"
                 android:textSize="16dp"
                 android:textColor="#008000"
-                android:text=" мл" />
+                android:text="@string/ml" />
         </LinearLayout>
     </CardView>
 </LinearLayout>

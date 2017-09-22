@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using MvvmCross.Core.ViewModels;
 using System.Linq;
+using System.Text;
 using CoffeManager.Common;
 
 namespace CoffeeManager.Core.ViewModels
@@ -52,11 +53,13 @@ namespace CoffeeManager.Core.ViewModels
 
         public int Sum
         {
-            get { return _sum; }
+            get => _sum;
             set
             {
                 _sum = value;
                 RaisePropertyChanged(nameof(Sum));
+                RaisePropertyChanged(nameof(PayEnabled));
+                RaisePropertyChanged(nameof(SumButtonText));
             }
         }
 
@@ -64,7 +67,13 @@ namespace CoffeeManager.Core.ViewModels
 
         public string SumButtonText
         {
-            get { return $"Оплатить {Sum} Грн"; }
+            get
+            {
+                var sb = new StringBuilder("Оплатить ");
+                sb.Append(Sum);
+                sb.Append(" Грн");
+                return sb.ToString();
+            }
             set
             {
                 _sumButtonText = value;
@@ -147,29 +156,29 @@ namespace CoffeeManager.Core.ViewModels
         {
             _userId = userId;
             _shiftId = shiftId;
+            var tasks = new List<Task>();
+            tasks.Add(CoffeeProducts.InitViewModel());
+            tasks.Add(TeaProducts.InitViewModel());
+            tasks.Add(SweetsProducts.InitViewModel());
+            tasks.Add(WaterProducts.InitViewModel());
+            tasks.Add(AddsProducts.InitViewModel());
+            tasks.Add(MealsProducts.InitViewModel());
+            tasks.Add(ColdDrinksProducts.InitViewModel());
+            tasks.Add(IceCreamProducts.InitViewModel());
             await ExecuteSafe( async () => 
             {
-                var tasks = new List<Task>();
-                tasks.Add(CoffeeProducts.InitViewModel());
-                tasks.Add(TeaProducts.InitViewModel());
-                tasks.Add(SweetsProducts.InitViewModel());
-                tasks.Add(WaterProducts.InitViewModel());
-                tasks.Add(AddsProducts.InitViewModel());
-                tasks.Add(MealsProducts.InitViewModel());
-                tasks.Add(ColdDrinksProducts.InitViewModel());
-                tasks.Add(IceCreamProducts.InitViewModel());
                 await Task.WhenAll(tasks);
-                allProducts = CoffeeProducts.Items
-                                            .Concat(TeaProducts.Items)
-                                            .Concat(SweetsProducts.Items)
-                                            .Concat(WaterProducts.Items)
-                                            .Concat(AddsProducts.Items)
-                                            .Concat(MealsProducts.Items)
-                                            .Concat(ColdDrinksProducts.Items)
-                                            .Concat(IceCreamProducts.Items);
-    
-                SubscribeToSelectProduct();
             });
+            allProducts = CoffeeProducts.Items
+                .Concat(TeaProducts.Items)
+                .Concat(SweetsProducts.Items)
+                .Concat(WaterProducts.Items)
+                .Concat(AddsProducts.Items)
+                .Concat(MealsProducts.Items)
+                .Concat(ColdDrinksProducts.Items)
+                .Concat(IceCreamProducts.Items);
+
+            SubscribeToSelectProduct();
         }
 
         private void SubscribeToSelectProduct()
@@ -193,8 +202,6 @@ namespace CoffeeManager.Core.ViewModels
                                                         e.Weight);
             SelectedProducts.Add(selectedItem);
             Sum += (int)e.Price;
-            RaisePropertyChanged(nameof(PayEnabled));
-            RaisePropertyChanged(nameof(SumButtonText));
         }
 
 
@@ -202,8 +209,6 @@ namespace CoffeeManager.Core.ViewModels
         {
             SelectedProducts.Remove(obj);
             Sum -= (int)obj.Price;
-            RaisePropertyChanged(nameof(PayEnabled));
-            RaisePropertyChanged(nameof(SumButtonText));
         }
 
         private async Task DoPay()
@@ -221,9 +226,6 @@ namespace CoffeeManager.Core.ViewModels
             await ExecuteSafe(async () => await Task.WhenAll(tasks));
             SelectedProducts.Clear();
             Sum = 0;
-            RaisePropertyChanged(nameof(PayEnabled));
-            RaisePropertyChanged(nameof(SumButtonText));
-
         }
 
         protected override void DoUnsubscribe()
