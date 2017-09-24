@@ -2,6 +2,7 @@
 using System.Windows.Input;
 using MvvmCross.Core.ViewModels;
 using CoffeManager.Common;
+using CoffeeManager.Common;
 namespace CoffeeManagerAdmin.Core
 {
     public class SuplyProductDetailsViewModel : ViewModelBase
@@ -11,6 +12,8 @@ namespace CoffeeManagerAdmin.Core
         private decimal _supliedPrice;
         private decimal? _salePrice;
         private decimal? _itemCount;
+        private decimal? _expenseNumerationMultiplier;
+        private string _expenseNumerationName;
         private bool inventoryEnabled;
         private ICommand _saveCommand;
 
@@ -26,6 +29,16 @@ namespace CoffeeManagerAdmin.Core
             {
                 _name = value;
                 RaisePropertyChanged(nameof(Name));
+            }
+        }
+
+        public string ExpenseNumerationName
+        {
+            get { return _expenseNumerationName; }
+            set
+            {
+                _expenseNumerationName = value;
+                RaisePropertyChanged(nameof(ExpenseNumerationName));
             }
         }
 
@@ -57,6 +70,16 @@ namespace CoffeeManagerAdmin.Core
             {
                 _itemCount = value;
                 RaisePropertyChanged(nameof(ItemCount));
+            }
+        }
+
+        public decimal? ExpenseNumerationMultiplier
+        {
+            get { return _expenseNumerationMultiplier; }
+            set
+            {
+                _expenseNumerationMultiplier = value;
+                RaisePropertyChanged(nameof(ExpenseNumerationMultiplier));
             }
         }
 
@@ -103,7 +126,15 @@ namespace CoffeeManagerAdmin.Core
 
         private async void DoSaveProduct()
         {
-            await manager.EditSuplyProduct(_id, Name, SupliedPrice, ItemCount);
+            await manager.EditSuplyProduct(new CoffeeManager.Models.SupliedProduct()
+            {
+                Id = _id,
+                CoffeeRoomNo = Config.CoffeeRoomNo,
+                ExpenseNumerationMultyplier = ExpenseNumerationMultiplier,
+                ExpenseNumerationName = ExpenseNumerationName,
+                Price = SupliedPrice,
+                Quatity = ItemCount,
+            });
             Publish(new SuplyListChangedMessage(this));
             Close(this);
         }
@@ -118,6 +149,8 @@ namespace CoffeeManagerAdmin.Core
                SupliedPrice = product.Price;
                SalePrice = product.SalePrice;
                ItemCount = product.Quatity;
+               ExpenseNumerationName = product.ExpenseNumerationName;
+               ExpenseNumerationMultiplier = product.ExpenseNumerationMultyplier;
                inventoryEnabled = product.InventoryEnabled;
                RaisePropertyChanged(nameof(InventoryEnabled));
            });

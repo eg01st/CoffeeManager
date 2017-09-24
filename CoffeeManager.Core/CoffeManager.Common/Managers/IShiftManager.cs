@@ -22,6 +22,8 @@ namespace CoffeManager.Common
 
         Task<Shift> GetCurrentShift();
 
+        Task<Shift> GetCurrentShiftAdmin();
+
         Task<Sale[]> GetCurrentShiftSales();
     }
 }

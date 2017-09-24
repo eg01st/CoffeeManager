@@ -13,7 +13,7 @@ namespace CoffeManager.Common
 
         Task<SupliedProduct> GetSuplyProduct(int id);
 
-        Task EditSuplyProduct(int id, string name, decimal supliedPrice, decimal? itemCount);
+        Task EditSuplyProduct(SupliedProduct prod);
 
         Task DeleteSuplyProduct(int _id);
 

@@ -15,17 +15,9 @@ namespace CoffeeManager.Droid.Views.Fragments
         {
             this.EnsureBindingContextIsSet(savedInstanceState);
             var view = this.BindingInflate(Resource.Layout.product_list, null);
+
             return view;
         }
 
-        public void LoadVm()
-        {
-            if (ViewModel == null)
-            {
-                var request = new MvxViewModelRequest<T>(null, null, MvxRequestedBy.UserAction);
-                var viewModel = (T)_mvxViewModelLoader.LoadViewModel(request, null);
-                ViewModel = viewModel;
-            }
-        }
     }
 }

@@ -76,6 +76,20 @@ namespace CoffeManager.Common
                 var shiftDb = syncManager.GetCurrentShift();
                 if(shiftDb != null)
                 {
+                    ShiftNo = shiftDb.Id;
+                    return (Shift)shiftDb;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (TaskCanceledException tcex)
+            {
+                var shiftDb = syncManager.GetCurrentShift();
+                if (shiftDb != null)
+                {
+                    ShiftNo = shiftDb.Id;
                     return (Shift)shiftDb;
                 }
                 else
@@ -86,7 +100,22 @@ namespace CoffeManager.Common
             catch(Exception ex)
             {
                 Debug.WriteLine(ex.ToDiagnosticString());
-                EmailService?.SendErrorEmail(ex.ToDiagnosticString());
+                await EmailService?.SendErrorEmail(ex.ToDiagnosticString());
+                return null;
+            }
+        }
+
+        public async Task<Shift> GetCurrentShiftAdmin()
+        {
+            try
+            {
+                var shift = await shiftProvider.GetCurrentShift();
+                return shift;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.ToDiagnosticString());
+                await EmailService?.SendErrorEmail(ex.ToDiagnosticString());
                 return null;
             }
         }

@@ -21,13 +21,13 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3pK-28-Lpw">
-                        <rect key="frame" x="16" y="11.5" width="67" height="21"/>
+                        <rect key="frame" x="16" y="11.5" width="134" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ahe-v8-lYW">
-                        <rect key="frame" x="99" y="12" width="223.5" height="21"/>
+                        <rect key="frame" x="166" y="12" width="170" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -43,10 +43,10 @@
                     <constraint firstItem="fvb-t9-GCI" firstAttribute="centerY" secondItem="YTl-1W-gDM" secondAttribute="centerY" id="52X-On-Ew6"/>
                     <constraint firstItem="3pK-28-Lpw" firstAttribute="leading" secondItem="YTl-1W-gDM" secondAttribute="leadingMargin" constant="8" id="Efv-uH-KdC"/>
                     <constraint firstAttribute="trailingMargin" secondItem="fvb-t9-GCI" secondAttribute="trailing" constant="8" id="GXt-ah-xKn"/>
-                    <constraint firstItem="ahe-v8-lYW" firstAttribute="width" secondItem="YTl-1W-gDM" secondAttribute="width" multiplier="0.5" id="lAv-i9-COT"/>
+                    <constraint firstItem="ahe-v8-lYW" firstAttribute="width" secondItem="YTl-1W-gDM" secondAttribute="width" multiplier="0.38" id="lAv-i9-COT"/>
                     <constraint firstItem="fvb-t9-GCI" firstAttribute="width" secondItem="YTl-1W-gDM" secondAttribute="width" multiplier="0.15" id="uPP-C1-uwV"/>
                     <constraint firstItem="3pK-28-Lpw" firstAttribute="centerY" secondItem="YTl-1W-gDM" secondAttribute="centerY" id="xDE-eh-FVh"/>
-                    <constraint firstItem="3pK-28-Lpw" firstAttribute="width" secondItem="YTl-1W-gDM" secondAttribute="width" multiplier="0.15" id="xqv-Xp-I8W"/>
+                    <constraint firstItem="3pK-28-Lpw" firstAttribute="width" secondItem="YTl-1W-gDM" secondAttribute="width" multiplier="0.3" id="xqv-Xp-I8W"/>
                     <constraint firstItem="ahe-v8-lYW" firstAttribute="centerY" secondItem="YTl-1W-gDM" secondAttribute="centerY" id="xwR-QC-qTv"/>
                     <constraint firstItem="ahe-v8-lYW" firstAttribute="leading" secondItem="3pK-28-Lpw" secondAttribute="trailing" constant="16" id="zGG-JN-uP6"/>
                 </constraints>

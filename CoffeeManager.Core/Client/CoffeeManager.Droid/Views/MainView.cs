@@ -14,6 +14,7 @@ using MvvmCross.Binding.BindingContext;
 using TabItem = CoffeeManager.Droid.Entities.TabItem;
 using Android.Support.V4.Widget;
 using Android.Support.V7.App;
+using System.Linq;
 
 namespace CoffeeManager.Droid.Views
 {
@@ -190,6 +191,7 @@ namespace CoffeeManager.Droid.Views
         private void SetupViewPager(IEnumerable<TabItem> tabItems)
         {
             var adapter = new ViewPagerAdapter(SupportFragmentManager);
+
             foreach (var tabItem in tabItems)
             {
                 var fragment = tabItem.Fragment;
@@ -198,6 +200,7 @@ namespace CoffeeManager.Droid.Views
             }
 
             viewPager.Adapter = adapter;
+            viewPager.OffscreenPageLimit = tabItems.Count();
         }
 
         private TabItem[] ProduceTabItems()

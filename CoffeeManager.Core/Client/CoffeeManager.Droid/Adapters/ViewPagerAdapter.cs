@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
 using Android.Support.V4.App;
+using Android.Views;
 using Java.Lang;
-
+using Object = Java.Lang.Object;
 
 
 namespace CoffeeManager.Droid.Adapters
@@ -10,6 +11,7 @@ namespace CoffeeManager.Droid.Adapters
     public class ViewPagerAdapter : FragmentPagerAdapter
     {
         private readonly List<Tuple<string, Fragment>> fragments = new List<Tuple<string, Fragment>>();
+
 
         public ViewPagerAdapter(FragmentManager manager)
             : base(manager)
@@ -31,14 +33,14 @@ namespace CoffeeManager.Droid.Adapters
             fragments.Add(keyValuePair);
         }
 
-        public override ICharSequence GetPageTitleFormatted(int position)
-        {
-            var element = GetElementAt(position);
-            var titleStr = element.Item1;
-            var javaStr = new Java.Lang.String(titleStr);
+        //public override ICharSequence GetPageTitleFormatted(int position)
+        //{
+        //    var element = GetElementAt(position);
+        //    var titleStr = element.Item1;
+        //    var javaStr = new Java.Lang.String(titleStr);
 
-            return javaStr;
-        }
+        //    return javaStr;
+        //}
 
         private Tuple<string, Fragment> GetElementAt(int position)
         {

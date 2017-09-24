@@ -2,15 +2,16 @@
 using CoffeManager.Common;
 using MailKit.Net.Smtp;
 using MimeKit;
+using System.Threading.Tasks;
 
 namespace CoffeeManager.Droid
 {
     public class EmailService : IEmailService
     {
-        public void SendErrorEmail(string message)
+        public async Task SendErrorEmail(string message)
         {
             var email = new MimeMessage();
-            email.From.Add(new MailboxAddress("Info", "serdechnyi.dima@gmail.com"));
+            email.From.Add(new MailboxAddress("Info", "coffeemanager221@gmail.com"));
             email.To.Add(new MailboxAddress("", "tertyshnykov@gmail.com"));
             email.Subject = "Error";
 
@@ -35,7 +36,7 @@ namespace CoffeeManager.Droid
                     // Note: only needed if the SMTP server requires authentication
                     client.Authenticate("coffeemanager221@gmail.com", "Q!w2e3r4");
 
-                    client.Send(email);
+                    await client.SendAsync(email);
                     client.Disconnect(true);
                 }
             }

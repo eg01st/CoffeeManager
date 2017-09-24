@@ -47,8 +47,8 @@ namespace CoffeeManagerAdmin.iOS
 
         protected override void InitStylesAndContent()
         {
-            TableView = new UITableView(new CGRect(0, 0, UIScreen.MainScreen.Bounds.Width, UIScreen.MainScreen.Bounds.Height));
-            TableViewContainer.TranslatesAutoresizingMaskIntoConstraints = false;
+            TableView = new UITableView();
+            TableView.TranslatesAutoresizingMaskIntoConstraints = false;
             TableViewContainer.AddSubview(TableView);
 
             _searchBar = new UISearchBar(new RectangleF(0, 0, (float)UIScreen.MainScreen.Bounds.Width, 44))
@@ -56,8 +56,8 @@ namespace CoffeeManagerAdmin.iOS
                 AutocorrectionType = UITextAutocorrectionType.No
             };
             TableView.TableHeaderView = _searchBar;
-            TableViewContainer.SetNeedsLayout();
-            TableViewContainer.LayoutIfNeeded();
+
+            TableViewContainer.AddConstraints(ConstraintExtensions.StickToAllSuperViewEdges(TableViewContainer, TableView));
         }
 
         protected override void DoBind()

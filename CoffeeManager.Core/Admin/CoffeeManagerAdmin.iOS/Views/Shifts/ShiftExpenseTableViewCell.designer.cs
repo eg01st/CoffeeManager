@@ -13,6 +13,9 @@ namespace CoffeeManagerAdmin.iOS
 	partial class ShiftExpenseTableViewCell
 	{
 		[Outlet]
+		UIKit.UILabel ExpenseQuantitnyName { get; set; }
+
+		[Outlet]
 		UIKit.UILabel NameLabel { get; set; }
 
 		[Outlet]
@@ -23,19 +26,24 @@ namespace CoffeeManagerAdmin.iOS
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (PriceLabel != null) {
-				PriceLabel.Dispose ();
-				PriceLabel = null;
-			}
-
 			if (NameLabel != null) {
 				NameLabel.Dispose ();
 				NameLabel = null;
 			}
 
+			if (PriceLabel != null) {
+				PriceLabel.Dispose ();
+				PriceLabel = null;
+			}
+
 			if (QuantityLabel != null) {
 				QuantityLabel.Dispose ();
 				QuantityLabel = null;
+			}
+
+			if (ExpenseQuantitnyName != null) {
+				ExpenseQuantitnyName.Dispose ();
+				ExpenseQuantitnyName = null;
 			}
 		}
 	}

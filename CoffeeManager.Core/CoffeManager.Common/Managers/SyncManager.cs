@@ -107,13 +107,17 @@ namespace CoffeManager.Common
                 catch (HttpRequestException hrex)
                 {
                     Debug.WriteLine(hrex.ToDiagnosticString());
-                    EmailService?.SendErrorEmail(hrex.ToDiagnosticString());
+                    return false;
+                }
+                catch (TaskCanceledException tcex)
+                {
+                    Debug.WriteLine(tcex.ToDiagnosticString());
                     return false;
                 }
                 catch (Exception ex)
                 {
                     Debug.WriteLine(ex.ToDiagnosticString());
-                    EmailService?.SendErrorEmail(ex.ToDiagnosticString());
+                    await EmailService?.SendErrorEmail(ex.ToDiagnosticString());
                     return false;
                 }
             }

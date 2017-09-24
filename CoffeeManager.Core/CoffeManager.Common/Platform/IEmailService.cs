@@ -1,8 +1,9 @@
 ﻿using System;
+using System.Threading.Tasks;
 namespace CoffeManager.Common
 {
     public interface IEmailService
     {
-        void SendErrorEmail(string message);
+        Task SendErrorEmail(string message);
     }
 }

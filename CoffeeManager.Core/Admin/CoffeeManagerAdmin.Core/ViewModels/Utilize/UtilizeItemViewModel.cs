@@ -12,7 +12,7 @@ namespace CoffeeManagerAdmin.Core
         public UtilizeItemViewModel(UtilizedSuplyProduct product)
         {
             Name = product.SuplyProductName;
-            Date = product.Date.Date.ToString("dd-MM"); ;
+            Date = product.Date.ToString("dd-MM HH:mm");
             Quantity = product.Quantity;
             Reason = product.Reason;
         }

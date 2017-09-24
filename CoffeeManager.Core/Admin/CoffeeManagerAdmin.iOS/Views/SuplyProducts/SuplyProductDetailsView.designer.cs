@@ -16,6 +16,12 @@ namespace CoffeeManagerAdmin.iOS
 		UIKit.UIButton DeleteButton { get; set; }
 
 		[Outlet]
+		UIKit.UITextField ExpenseNumerationMultyplierTextField { get; set; }
+
+		[Outlet]
+		UIKit.UITextField ExpenseNumerationNameTextField { get; set; }
+
+		[Outlet]
 		UIKit.UISwitch InventoryNeededSwitch { get; set; }
 
 		[Outlet]
@@ -38,6 +44,11 @@ namespace CoffeeManagerAdmin.iOS
 			if (DeleteButton != null) {
 				DeleteButton.Dispose ();
 				DeleteButton = null;
+			}
+
+			if (InventoryNeededSwitch != null) {
+				InventoryNeededSwitch.Dispose ();
+				InventoryNeededSwitch = null;
 			}
 
 			if (ItemCountText != null) {
@@ -65,9 +76,14 @@ namespace CoffeeManagerAdmin.iOS
 				SuplyPriceText = null;
 			}
 
-			if (InventoryNeededSwitch != null) {
-				InventoryNeededSwitch.Dispose ();
-				InventoryNeededSwitch = null;
+			if (ExpenseNumerationNameTextField != null) {
+				ExpenseNumerationNameTextField.Dispose ();
+				ExpenseNumerationNameTextField = null;
+			}
+
+			if (ExpenseNumerationMultyplierTextField != null) {
+				ExpenseNumerationMultyplierTextField.Dispose ();
+				ExpenseNumerationMultyplierTextField = null;
 			}
 		}
 	}

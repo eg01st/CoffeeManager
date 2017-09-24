@@ -21,13 +21,13 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Дата" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lTK-we-99m">
-                        <rect key="frame" x="16" y="11.5" width="48" height="20.5"/>
+                        <rect key="frame" x="16" y="11.5" width="96" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Название" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tKL-gS-oMo">
-                        <rect key="frame" x="80" y="11" width="160" height="21"/>
+                        <rect key="frame" x="128" y="11" width="121.5" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -43,10 +43,10 @@
                 <constraints>
                     <constraint firstItem="tKL-gS-oMo" firstAttribute="leading" secondItem="lTK-we-99m" secondAttribute="trailing" constant="16" id="0ni-Tg-qBE"/>
                     <constraint firstItem="tKL-gS-oMo" firstAttribute="centerY" secondItem="YTl-1W-gDM" secondAttribute="centerY" id="13G-wn-3Mu"/>
-                    <constraint firstItem="tKL-gS-oMo" firstAttribute="width" secondItem="YTl-1W-gDM" secondAttribute="width" multiplier="0.5" id="71D-Ph-xBa"/>
+                    <constraint firstItem="tKL-gS-oMo" firstAttribute="width" secondItem="YTl-1W-gDM" secondAttribute="width" multiplier="0.38" id="71D-Ph-xBa"/>
                     <constraint firstItem="lTK-we-99m" firstAttribute="leading" secondItem="YTl-1W-gDM" secondAttribute="leadingMargin" constant="8" id="J4c-fi-3wo"/>
                     <constraint firstItem="fb2-nb-hCl" firstAttribute="centerY" secondItem="YTl-1W-gDM" secondAttribute="centerY" id="N2Y-N0-G3Z"/>
-                    <constraint firstItem="lTK-we-99m" firstAttribute="width" secondItem="YTl-1W-gDM" secondAttribute="width" multiplier="0.15" id="Ph3-GM-VaY"/>
+                    <constraint firstItem="lTK-we-99m" firstAttribute="width" secondItem="YTl-1W-gDM" secondAttribute="width" multiplier="0.3" id="Ph3-GM-VaY"/>
                     <constraint firstAttribute="trailingMargin" secondItem="fb2-nb-hCl" secondAttribute="trailing" constant="8" id="Qoa-aO-gmb"/>
                     <constraint firstItem="fb2-nb-hCl" firstAttribute="width" secondItem="YTl-1W-gDM" secondAttribute="width" multiplier="0.15" id="RrZ-ZS-Jja"/>
                     <constraint firstItem="lTK-we-99m" firstAttribute="centerY" secondItem="YTl-1W-gDM" secondAttribute="centerY" id="eCI-og-48c"/>
