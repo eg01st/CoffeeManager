@@ -34,7 +34,8 @@ namespace CoffeeManager.Api.Mappers
                 EntireEarnedAmount = user.EntireEarnedAmount,
                 ExpenceId = user.ExpenceId,
                 NightShiftPercent = user.NightShiftPercent,
-                IsActive = user.IsActive
+                IsActive = user.IsActive,
+                MinimumPayment = user.MinimumPayment
             };
 
         }
@@ -47,6 +48,7 @@ namespace CoffeeManager.Api.Mappers
             userDb.IsActive = user.IsActive;
             userDb.ExpenceId= user.ExpenceId;
             userDb.SimplePayment = user.SalaryRate;
+            userDb.MinimumPayment = user.MinimumPayment;
             return userDb;
         }
 
@@ -103,7 +105,7 @@ namespace CoffeeManager.Api.Mappers
                 Reason = product.Reason,
                 CoffeeRoomNo = product.CoffeeRoomNo,
                 ShiftId = product.ShiftId,
-                Date = product.Date
+                DateTime = product.Date
             };
         }
     }

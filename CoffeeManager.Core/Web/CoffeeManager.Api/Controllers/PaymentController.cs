@@ -222,7 +222,7 @@ namespace CoffeeManager.Api.Controllers
                 {
                     if(suplyProductDb.ExpenseNumerationMultyplier.HasValue && suplyProductDb.ExpenseNumerationMultyplier > 0)
                     {
-                        suplyProductDb.Quantity += suplyProduct.Quatity * suplyProduct.ExpenseNumerationMultyplier.Value;
+                        suplyProductDb.Quantity += suplyProduct.Quatity * suplyProductDb.ExpenseNumerationMultyplier;
                     }
                     else
                     {
@@ -233,7 +233,7 @@ namespace CoffeeManager.Api.Controllers
                 {
                     if (suplyProductDb.ExpenseNumerationMultyplier.HasValue && suplyProductDb.ExpenseNumerationMultyplier > 0)
                     {
-                        suplyProductDb.Quantity = suplyProduct.Quatity * suplyProduct.ExpenseNumerationMultyplier.Value;
+                        suplyProductDb.Quantity = suplyProduct.Quatity * suplyProductDb.ExpenseNumerationMultyplier;
                     }
                     else
                     {
@@ -283,7 +283,15 @@ namespace CoffeeManager.Api.Controllers
             foreach (var sp in suplyProducts)
             {
                 var suplyProduct = entities.SupliedProducts.First(s => s.Id == sp.SuplyProductId);
-                suplyProduct.Quantity -= sp.Quantity;
+                if (suplyProduct.ExpenseNumerationMultyplier.HasValue && suplyProduct.ExpenseNumerationMultyplier > 0)
+                {
+                    suplyProduct.Quantity -= sp.Quantity * suplyProduct.ExpenseNumerationMultyplier;
+                }
+                else
+                {
+                    suplyProduct.Quantity -= sp.Quantity;
+                }
+                    
                 entities.ExpenseSuplyProducts.Remove(sp);
             }
             var currentShift = entities.Shifts.First(s => s.Id == expense.ShiftId);

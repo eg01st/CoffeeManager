@@ -19,8 +19,8 @@ namespace CoffeeManager.Api
         public int ShiftId { get; set; }
         public decimal Quantity { get; set; }
         public string Reason { get; set; }
-        public System.DateTime Date { get; set; }
         public int CoffeeRoomNo { get; set; }
+        public System.DateTime DateTime { get; set; }
     
         public virtual Shift Shift { get; set; }
         public virtual SupliedProduct SupliedProduct { get; set; }

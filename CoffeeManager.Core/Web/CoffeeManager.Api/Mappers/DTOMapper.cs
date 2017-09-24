@@ -155,7 +155,7 @@ namespace CoffeeManager.Api.Mappers
                 Reason = product.Reason,
                 CoffeeRoomNo = product.CoffeeRoomNo,
                 ShiftId = product.ShiftId,
-                Date = product.Date
+                Date = product.DateTime
             };       
         }
 
@@ -192,7 +192,10 @@ namespace CoffeeManager.Api.Mappers
                 CoffeeRoomNo = item.CoffeeRoonNo,
                 Quatity = item.Quantity,
                 Price = item.Amount,
-                Name = item.SupliedProduct.Name
+                Name = item.SupliedProduct.Name,
+                ExpenseNumerationName = item.SupliedProduct.ExpenseNumerationName,
+                ExpenseNumerationMultyplier = item.SupliedProduct.ExpenseNumerationMultyplier,
+                 InventoryEnabled = item.SupliedProduct.InventoryEnabled
             };
         }
 

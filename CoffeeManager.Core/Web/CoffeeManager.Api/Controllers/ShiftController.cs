@@ -72,6 +72,10 @@ namespace CoffeeManager.Api.Controllers
 
             var user = shift.User;
             var userEarnedAmount = user.SimplePayment + (realShiftAmount / 100 * (isDayShift ? user.DayShiftPersent : user.NightShiftPercent));
+            if(userEarnedAmount < user.MinimumPayment)
+            {
+                userEarnedAmount = user.MinimumPayment;
+            }
             user.CurrentEarnedAmount += userEarnedAmount;
 
             var userEarneingHistory = new UserEarningsHistory();
