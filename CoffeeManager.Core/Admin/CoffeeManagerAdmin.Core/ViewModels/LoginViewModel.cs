@@ -59,7 +59,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels
                 accessToken = accessToken.Substring(1);
                 accessToken = accessToken.Substring(0, accessToken.Length - 1);
                 LocalStorage.SetUserInfo(new UserInfo() { Login = Name, Password = Password });
-                BaseServiceProvider.AccessToken = accessToken;
+                BaseServiceProvider.SetAccessToken(accessToken);
                 ShowViewModel<MainViewModel>();
             });
 

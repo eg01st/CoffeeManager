@@ -10,11 +10,14 @@ namespace CoffeManager.Common
 {
     public class BaseServiceProvider
     {
-        public static string AccessToken = "";
-
-        private HttpClient httpClient;
+        private static HttpClient httpClient;
 
         private readonly string _apiUrl = Config.ApiUrl;
+
+        public static void SetAccessToken(string token)
+        {
+            httpClient.DefaultRequestHeaders.Add("token", token);
+        }
 
         protected async Task<T> Get<T>(string path, Dictionary<string, string> param = null)
         {
@@ -145,7 +148,6 @@ namespace CoffeManager.Common
                 httpClient.Timeout = new TimeSpan(0, 0, 5);
             }
 
-            httpClient.DefaultRequestHeaders.Add("token", AccessToken);
             return httpClient;
         }
     }

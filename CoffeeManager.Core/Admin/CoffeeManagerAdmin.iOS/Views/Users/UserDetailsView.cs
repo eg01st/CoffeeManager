@@ -63,6 +63,7 @@ namespace CoffeeManagerAdmin.iOS
             set.Bind(PenaltyButton).To(vm => vm.PenaltyCommand);
             set.Bind(EntireSalaryLabel).To(vm => vm.EntireEarnedAmount).WithConversion(new DecimalToStringConverter());
             set.Bind(CurrentSalaryLabel).To(vm => vm.CurrentEarnedAmount).WithConversion(new DecimalToStringConverter());
+            set.Bind(MinimimPaymentTextField).To(vm => vm.MinimumPayment);
             set.Bind(SalaryRateTextField).To(vm => vm.SalaryRate);
             set.Bind(DayPercentageTextField).To(vm => vm.DayShiftPersent);
             set.Bind(NightPercentageTextField).To(vm => vm.NightShiftPercent);

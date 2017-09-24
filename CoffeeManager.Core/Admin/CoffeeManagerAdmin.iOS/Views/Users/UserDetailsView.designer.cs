@@ -25,6 +25,9 @@ namespace CoffeeManagerAdmin.iOS
 		UIKit.UITextField ExpenseTypeTextField { get; set; }
 
 		[Outlet]
+		UIKit.UITextField MinimimPaymentTextField { get; set; }
+
+		[Outlet]
 		UIKit.UITextField NameTextField { get; set; }
 
 		[Outlet]
@@ -100,6 +103,11 @@ namespace CoffeeManagerAdmin.iOS
 			if (UserEarningsButton != null) {
 				UserEarningsButton.Dispose ();
 				UserEarningsButton = null;
+			}
+
+			if (MinimimPaymentTextField != null) {
+				MinimimPaymentTextField.Dispose ();
+				MinimimPaymentTextField = null;
 			}
 		}
 	}

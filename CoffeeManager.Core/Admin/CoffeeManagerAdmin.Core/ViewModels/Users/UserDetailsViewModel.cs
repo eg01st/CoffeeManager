@@ -34,6 +34,7 @@ namespace CoffeeManagerAdmin.Core
         public int DayShiftPersent {get;set;}  
         public int NightShiftPercent {get;set;}
         public decimal SalaryRate { get; set; }
+        public decimal MinimumPayment { get; set; }
 
         public ICommand PaySalaryCommand {get;set;}
         public ICommand UpdateCommand {get;set;}
@@ -148,6 +149,7 @@ namespace CoffeeManagerAdmin.Core
             user.NightShiftPercent = NightShiftPercent;
             user.ExpenceId = SelectedExpenseType?.Id;
             user.SalaryRate = SalaryRate;
+            user.MinimumPayment = MinimumPayment;
             await userManager.UpdateUser(user);
             Close(this);        
         }
@@ -161,6 +163,7 @@ namespace CoffeeManagerAdmin.Core
             user.CoffeeRoomNo = Config.CoffeeRoomNo;
             user.SalaryRate = SalaryRate;
             user.IsActive = true;
+            user.MinimumPayment = MinimumPayment;
             await userManager.AddUser(user);
             Close(this);        
         }
@@ -179,6 +182,7 @@ namespace CoffeeManagerAdmin.Core
                 DayShiftPersent = user.DayShiftPersent;
                 NightShiftPercent = user.NightShiftPercent;
                 SalaryRate = user.SalaryRate;
+                MinimumPayment = user.MinimumPayment;
 
                 Penalties = user.Penalties?.Select(s => new UserPenaltyItemViewModel(s)).ToList();
 
