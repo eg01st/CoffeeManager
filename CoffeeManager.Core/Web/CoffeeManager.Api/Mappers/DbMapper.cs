@@ -84,8 +84,18 @@ namespace CoffeeManager.Api.Mappers
 			};
 		}
 
+	    public static SupliedProduct Update(Models.SupliedProduct sProduct, SupliedProduct dbProd)
+	    {
+	        dbProd.Quantity = sProduct.Quatity;
+            dbProd.ExpenseNumerationMultyplier = dbProd.ExpenseNumerationMultyplier;
+	        dbProd.ExpenseNumerationName = dbProd.ExpenseNumerationName;
+	        dbProd.InventoryNumerationMultyplier = sProduct.InventoryNumerationMultyplier;
+	        dbProd.InventoryNumerationName = sProduct.InventoryNumerationName;
+	        dbProd.Price = sProduct.Price;
+	        return dbProd;
+	    }
 
-		public static SupliedProduct Map (Models.SupliedProduct sProduct)
+        public static SupliedProduct Map (Models.SupliedProduct sProduct)
 		{
 			return new SupliedProduct () {
 				Quantity = 0,

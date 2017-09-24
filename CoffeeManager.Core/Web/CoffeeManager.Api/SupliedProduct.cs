@@ -35,6 +35,8 @@ namespace CoffeeManager.Api
         public bool InventoryEnabled { get; set; }
         public string ExpenseNumerationName { get; set; }
         public Nullable<decimal> ExpenseNumerationMultyplier { get; set; }
+        public string InventoryNumerationName { get; set; }
+        public Nullable<decimal> InventoryNumerationMultyplier { get; set; }
     
         public virtual ExpenseType ExpenseType { get; set; }
         public virtual Product Product { get; set; }

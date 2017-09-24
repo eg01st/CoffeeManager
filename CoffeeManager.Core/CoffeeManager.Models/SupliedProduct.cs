@@ -11,7 +11,9 @@
         public bool InventoryEnabled { get; set; }
 
         public string ExpenseNumerationName { get; set; }
-
         public decimal? ExpenseNumerationMultyplier { get; set; }
+
+        public string InventoryNumerationName { get; set; }
+        public decimal? InventoryNumerationMultyplier { get; set; }
     }
 }

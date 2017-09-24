@@ -213,6 +213,8 @@
           <Property Name="InventoryEnabled" Type="bit" Nullable="false" />
           <Property Name="ExpenseNumerationName" Type="nvarchar" MaxLength="50" />
           <Property Name="ExpenseNumerationMultyplier" Type="money" />
+          <Property Name="InventoryNumerationName" Type="nvarchar" MaxLength="50" />
+          <Property Name="InventoryNumerationMultyplier" Type="money" />
         </EntityType>
         <EntityType Name="SuplyOrder">
           <Key>
@@ -1399,6 +1401,8 @@
           <NavigationProperty Name="UtilizedSuplyProducts" Relationship="CoffeeRoomModel.FK__UtilizedS__Suply__056ECC6A" FromRole="SupliedProduct" ToRole="UtilizedSuplyProduct" />
           <Property Name="ExpenseNumerationName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ExpenseNumerationMultyplier" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="InventoryNumerationName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="InventoryNumerationMultyplier" Type="Decimal" Precision="19" Scale="4" />
         </EntityType>
         <Association Name="FK_SupliedProduct_ExpenseType">
           <End Type="CoffeeRoomModel.ExpenseType" Role="ExpenseType" Multiplicity="0..1" />
@@ -1989,6 +1993,8 @@
           <EntitySetMapping Name="SupliedProducts">
             <EntityTypeMapping TypeName="CoffeeRoomModel.SupliedProduct">
               <MappingFragment StoreEntitySet="SupliedProduct">
+                <ScalarProperty Name="InventoryNumerationMultyplier" ColumnName="InventoryNumerationMultyplier" />
+                <ScalarProperty Name="InventoryNumerationName" ColumnName="InventoryNumerationName" />
                 <ScalarProperty Name="ExpenseNumerationMultyplier" ColumnName="ExpenseNumerationMultyplier" />
                 <ScalarProperty Name="ExpenseNumerationName" ColumnName="ExpenseNumerationName" />
                 <ScalarProperty Name="InventoryEnabled" ColumnName="InventoryEnabled" />
