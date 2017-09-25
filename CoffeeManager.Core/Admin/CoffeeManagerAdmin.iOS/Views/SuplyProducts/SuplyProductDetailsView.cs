@@ -7,7 +7,7 @@ using CoffeeManagerAdmin.Core;
 
 namespace CoffeeManagerAdmin.iOS
 {
-    public partial class SuplyProductDetailsView : MvxViewController
+    public partial class SuplyProductDetailsView : ViewControllerBase<SuplyProductDetailsViewModel>
     {
         public SuplyProductDetailsView() : base("SuplyProductDetailsView", null)
         {
@@ -20,10 +20,12 @@ namespace CoffeeManagerAdmin.iOS
             var set = this.CreateBindingSet<SuplyProductDetailsView, SuplyProductDetailsViewModel>();
             set.Bind(NameText).To(vm => vm.Name);
             set.Bind(ExpenseNumerationNameTextField).To(vm => vm.ExpenseNumerationName);
-            set.Bind(SuplyPriceText).To(vm => vm.SupliedPrice).WithConversion(new DecimalToStringConverter());
-            set.Bind(SalePriceLabel).To(vm => vm.SalePrice).WithConversion(new DecimalToStringConverter());
-            set.Bind(ItemCountText).To(vm => vm.ItemCount).WithConversion(new DecimalToStringConverter());
+            set.Bind(InventoryNumerationNameTextField).To(vm => vm.InventoryNumerationName);
+            set.Bind(SuplyPriceText).To(vm => vm.SupliedPrice);
+            set.Bind(SalePriceLabel).To(vm => vm.SalePrice);
+            set.Bind(ItemCountText).To(vm => vm.ItemCount);
             set.Bind(ExpenseNumerationMultyplierTextField).To(vm => vm.ExpenseNumerationMultiplier);
+            set.Bind(InventoryNumerationMultiplierTextField).To(vm => vm.InventoryNumerationMultiplier);
             set.Bind(SaveButton).To(vm => vm.SaveCommand);
             set.Bind(DeleteButton).To(vm => vm.DeleteCommand);
             set.Bind(InventoryNeededSwitch).For(s => s.On).To(vm => vm.InventoryEnabled);

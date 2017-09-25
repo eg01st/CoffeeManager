@@ -10,7 +10,7 @@ using CoreGraphics;
 
 namespace CoffeeManagerAdmin.iOS
 {
-    public partial class UserDetailsView : MvxViewController
+    public partial class UserDetailsView : ViewControllerBase<UserDetailsViewModel>
     {
         public UserDetailsView() : base("UserDetailsView", null)
         {

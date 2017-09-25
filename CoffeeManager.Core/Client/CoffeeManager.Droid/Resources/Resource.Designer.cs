@@ -2936,6 +2936,9 @@ namespace CoffeeManager.Droid
 			// aapt resource value: 0x7f090017
 			public const int library_name = 2131296279;
 			
+			// aapt resource value: 0x7f09001f
+			public const int ml = 2131296287;
+			
 			// aapt resource value: 0x7f09001a
 			public const int select_user = 2131296282;
 			

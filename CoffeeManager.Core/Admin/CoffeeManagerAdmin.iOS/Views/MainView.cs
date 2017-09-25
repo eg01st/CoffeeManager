@@ -6,10 +6,11 @@ using MvvmCross.Binding.BindingContext;
 using CoffeeManagerAdmin.Core.ViewModels;
 using CoreGraphics;
 using MvvmCross.Binding.iOS.Views;
+using CoffeManager.Common;
 
 namespace CoffeeManagerAdmin.iOS
 {
-    public partial class MainView : MvxViewController
+    public partial class MainView : ViewControllerBase<MainViewModel>
     {
         public MainView() : base("MainView", null)
         {
@@ -71,11 +72,11 @@ namespace CoffeeManagerAdmin.iOS
             // Perform any additional setup after loading the view, typically from a nib.
         }
 
-        public override void DidReceiveMemoryWarning()
+
+        protected override void InitNavigationItem(UINavigationItem navigationItem)
         {
-            base.DidReceiveMemoryWarning();
-            // Release any cached data, images, etc that aren't in use.
         }
+
     }
 }
 

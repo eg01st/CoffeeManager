@@ -6,7 +6,7 @@ using CoffeeManagerAdmin.Core;
 
 namespace CoffeeManagerAdmin.iOS
 {
-    public partial class UtilizeView : ViewControllerBase
+    public partial class UtilizeView : ViewControllerBase<UtilizeViewModel>
     {
         public UtilizeView() : base("UtilizeView", null)
         {

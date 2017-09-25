@@ -12,7 +12,7 @@ using Foundation;
 
 namespace CoffeeManagerAdmin.iOS
 {
-    public partial class SalesChartView : MvxViewController
+    public partial class SalesChartView : ViewControllerBase<SalesChartViewModel>
     {
 
         private List<Sale> sales;

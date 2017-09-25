@@ -41,6 +41,11 @@ namespace CoffeeManagerAdmin.Core
         }
 
         public ICommand AddProductCommand => _addProductCommand;
+
+        protected override void DoUnsubscribe()
+        {
+            Unsubscribe<ProductListChangedMessage>(_productListChangedToken);
+        }
       
     }
 }

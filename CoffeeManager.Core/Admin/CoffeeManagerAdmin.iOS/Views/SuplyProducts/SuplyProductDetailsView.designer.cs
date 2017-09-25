@@ -25,6 +25,12 @@ namespace CoffeeManagerAdmin.iOS
 		UIKit.UISwitch InventoryNeededSwitch { get; set; }
 
 		[Outlet]
+		UIKit.UITextField InventoryNumerationMultiplierTextField { get; set; }
+
+		[Outlet]
+		UIKit.UITextField InventoryNumerationNameTextField { get; set; }
+
+		[Outlet]
 		UIKit.UITextField ItemCountText { get; set; }
 
 		[Outlet]
@@ -44,6 +50,16 @@ namespace CoffeeManagerAdmin.iOS
 			if (DeleteButton != null) {
 				DeleteButton.Dispose ();
 				DeleteButton = null;
+			}
+
+			if (ExpenseNumerationMultyplierTextField != null) {
+				ExpenseNumerationMultyplierTextField.Dispose ();
+				ExpenseNumerationMultyplierTextField = null;
+			}
+
+			if (ExpenseNumerationNameTextField != null) {
+				ExpenseNumerationNameTextField.Dispose ();
+				ExpenseNumerationNameTextField = null;
 			}
 
 			if (InventoryNeededSwitch != null) {
@@ -76,14 +92,14 @@ namespace CoffeeManagerAdmin.iOS
 				SuplyPriceText = null;
 			}
 
-			if (ExpenseNumerationNameTextField != null) {
-				ExpenseNumerationNameTextField.Dispose ();
-				ExpenseNumerationNameTextField = null;
+			if (InventoryNumerationNameTextField != null) {
+				InventoryNumerationNameTextField.Dispose ();
+				InventoryNumerationNameTextField = null;
 			}
 
-			if (ExpenseNumerationMultyplierTextField != null) {
-				ExpenseNumerationMultyplierTextField.Dispose ();
-				ExpenseNumerationMultyplierTextField = null;
+			if (InventoryNumerationMultiplierTextField != null) {
+				InventoryNumerationMultiplierTextField.Dispose ();
+				InventoryNumerationMultiplierTextField = null;
 			}
 		}
 	}

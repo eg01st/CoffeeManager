@@ -10,7 +10,7 @@ using MvvmCross.Platform.iOS;
 
 namespace CoffeeManagerAdmin.iOS
 {
-    public partial class StatisticView : MvxViewController
+    public partial class StatisticView : ViewControllerBase<StatisticViewModel>
     {
         public StatisticView() : base("StatisticView", null)
         {

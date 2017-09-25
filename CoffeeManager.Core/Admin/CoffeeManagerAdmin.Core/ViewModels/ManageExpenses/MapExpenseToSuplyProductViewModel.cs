@@ -34,5 +34,10 @@ namespace CoffeeManagerAdmin.Core
 		    var items = await suplyProductManager.GetSuplyProducts();
             return items.Where(i => i.ExpenseTypeId != expenseTypeId).Select(s => new SelectMappedSuplyProductItemViewModel(s, expenseTypeId)).ToList();
         }
+
+        protected override void DoUnsubscribe()
+        {
+            Unsubscribe<SuplyListChangedMessage>(_listChanged);
+        }
     }
 }

@@ -28,18 +28,20 @@
                 android:textSize="20dp"
                 local:MvxBind="Text Name" />
             <TextView
+                android:gravity="center"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="25"
-                android:textSize="20dp"
-                android:visibility="invisible"
-                local:MvxBind="Text DecimalToQuantity(QuantityBefore)" />
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="25"
+                android:layout_weight="20"
                 android:textSize="20dp"
                 local:MvxBind="Text DecimalToQuantity(QuantityAfter)" />
+            <TextView
+                android:gravity="center"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="30"
+                android:textColor="#000000"
+                android:textSize="20dp"
+                local:MvxBind="Text InventoryNumerationName" />
             <ImageView
                 android:gravity="center"
                 android:layout_weight="10"

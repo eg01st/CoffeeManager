@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace CoffeeManagerAdmin.iOS
 {
-    public partial class StatisticResultView : ViewControllerBase
+    public partial class StatisticResultView : ViewControllerBase<StatisticResultViewModel>
     {
         private SimpleTableSource creaditCardSalesTableSource;
         private SalesStatisticTableSource salesTableSource;

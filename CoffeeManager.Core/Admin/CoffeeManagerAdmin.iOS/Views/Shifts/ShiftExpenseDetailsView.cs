@@ -5,7 +5,7 @@ using UIKit;
 
 namespace CoffeeManagerAdmin.iOS
 {
-    public partial class ShiftExpenseDetailsView : ViewControllerBase
+    public partial class ShiftExpenseDetailsView : ViewControllerBase<ShiftExpenseDetailsViewModel>
     {
         public ShiftExpenseDetailsView() : base("ShiftExpenseDetailsView", null)
         {

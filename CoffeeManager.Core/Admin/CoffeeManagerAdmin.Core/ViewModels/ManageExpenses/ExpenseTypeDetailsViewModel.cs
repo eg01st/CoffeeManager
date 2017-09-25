@@ -53,5 +53,10 @@ namespace CoffeeManagerAdmin.Core
                 RaisePropertyChanged(nameof(MappedItems));
             });
         }
+
+        protected override void DoUnsubscribe()
+        {
+            Unsubscribe<MappedSuplyProductChangedMessage>(reloadDataToken);
+        }
     }
 }

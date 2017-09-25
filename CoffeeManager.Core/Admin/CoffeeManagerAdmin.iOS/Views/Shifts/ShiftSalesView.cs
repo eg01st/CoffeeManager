@@ -9,7 +9,7 @@ using UIKit;
 
 namespace CoffeeManagerAdmin.iOS
 {
-    public partial class ShiftSalesView : MvxViewController 
+    public partial class ShiftSalesView : ViewControllerBase<ShiftSalesViewModel> 
     {
         public ShiftSalesView() : base("ShiftSalesView", null)
         {

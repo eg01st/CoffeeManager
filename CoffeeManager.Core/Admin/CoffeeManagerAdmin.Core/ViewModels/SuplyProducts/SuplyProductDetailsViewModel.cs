@@ -14,6 +14,8 @@ namespace CoffeeManagerAdmin.Core
         private decimal? _itemCount;
         private decimal? _expenseNumerationMultiplier;
         private string _expenseNumerationName;
+        private decimal? _inventoryNumerationMultiplier;
+        private string _inventoryNumerationName;
         private bool inventoryEnabled;
         private ICommand _saveCommand;
 
@@ -39,6 +41,16 @@ namespace CoffeeManagerAdmin.Core
             {
                 _expenseNumerationName = value;
                 RaisePropertyChanged(nameof(ExpenseNumerationName));
+            }
+        }
+
+        public string InventoryNumerationName
+        {
+            get { return _inventoryNumerationName; }
+            set
+            {
+                _inventoryNumerationName = value;
+                RaisePropertyChanged(nameof(InventoryNumerationName));
             }
         }
 
@@ -80,6 +92,16 @@ namespace CoffeeManagerAdmin.Core
             {
                 _expenseNumerationMultiplier = value;
                 RaisePropertyChanged(nameof(ExpenseNumerationMultiplier));
+            }
+        }
+
+        public decimal? InventoryNumerationMultiplier
+        {
+            get { return _inventoryNumerationMultiplier; }
+            set
+            {
+                _inventoryNumerationMultiplier = value;
+                RaisePropertyChanged(nameof(InventoryNumerationMultiplier));
             }
         }
 
@@ -126,14 +148,19 @@ namespace CoffeeManagerAdmin.Core
 
         private async void DoSaveProduct()
         {
-            await manager.EditSuplyProduct(new CoffeeManager.Models.SupliedProduct()
+            await ExecuteSafe(async () =>
             {
-                Id = _id,
-                CoffeeRoomNo = Config.CoffeeRoomNo,
-                ExpenseNumerationMultyplier = ExpenseNumerationMultiplier,
-                ExpenseNumerationName = ExpenseNumerationName,
-                Price = SupliedPrice,
-                Quatity = ItemCount,
+			    await manager.EditSuplyProduct(new CoffeeManager.Models.SupliedProduct()
+			    {
+			        Id = _id,
+			        CoffeeRoomNo = Config.CoffeeRoomNo,
+			        ExpenseNumerationMultyplier = ExpenseNumerationMultiplier,
+			        ExpenseNumerationName = ExpenseNumerationName,
+			        InventoryNumerationName = InventoryNumerationName,
+			        InventoryNumerationMultyplier = InventoryNumerationMultiplier,
+			        Price = SupliedPrice,
+			        Quatity = ItemCount,
+			    });
             });
             Publish(new SuplyListChangedMessage(this));
             Close(this);
@@ -151,6 +178,8 @@ namespace CoffeeManagerAdmin.Core
                ItemCount = product.Quatity;
                ExpenseNumerationName = product.ExpenseNumerationName;
                ExpenseNumerationMultiplier = product.ExpenseNumerationMultyplier;
+               InventoryNumerationName = product.InventoryNumerationName;
+               InventoryNumerationMultiplier = product.InventoryNumerationMultyplier;
                inventoryEnabled = product.InventoryEnabled;
                RaisePropertyChanged(nameof(InventoryEnabled));
            });

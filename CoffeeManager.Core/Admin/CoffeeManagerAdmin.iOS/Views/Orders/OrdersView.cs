@@ -5,7 +5,7 @@ using UIKit;
 
 namespace CoffeeManagerAdmin.iOS
 {
-    public partial class OrdersView : MvxViewController
+    public partial class OrdersView : ViewControllerBase<OrdersViewModel>
     {
         public OrdersView() : base("OrdersView", null)
         {

@@ -9,7 +9,7 @@ using System.Collections.Generic;
 
 namespace CoffeeManagerAdmin.iOS
 {
-    public partial class UsersView : MvxViewController
+    public partial class UsersView : ViewControllerBase<UsersViewModel>
     {
         public UsersView() : base("UsersView", null)
         {

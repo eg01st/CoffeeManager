@@ -82,6 +82,7 @@
     <Compile Include="Managers\IAdminManager.cs" />
     <Compile Include="Providers\AdminProvider.cs" />
     <Compile Include="Managers\AdminManager.cs" />
+    <Compile Include="Extensions\MvxNavigationExtensions.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

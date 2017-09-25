@@ -6,7 +6,7 @@ using UIKit;
 
 namespace CoffeeManagerAdmin.iOS
 {
-    public partial class ExpenseTypeDetailsView : MvxViewController<ExpenseTypeDetailsViewModel>
+    public partial class ExpenseTypeDetailsView : ViewControllerBase<ExpenseTypeDetailsViewModel>
     {
         public ExpenseTypeDetailsView() : base("ExpenseTypeDetailsView", null)
         {

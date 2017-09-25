@@ -63,5 +63,10 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Orders
             var items = await manager.GetOrders();
             Items = items.Select(s => new OrderViewModel(manager, s)).OrderByDescending(o => o.Id).ToList();
         }
+
+        protected override void DoUnsubscribe()
+        {
+            Unsubscribe<OrderListChangedMessage>(_token);
+        }
     }
 }
