@@ -99,5 +99,7 @@ namespace CoffeeManager.Models
         public const string SetPassword = Admin + "/SetPassword";
         public const string RemoveLogin = Admin + "/RemoveLogin";
         public const string Register = Admin + "/Register";
+
+        public const string Token = "/Token";
     }
 }

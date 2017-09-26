@@ -12,11 +12,12 @@ namespace CoffeManager.Common
     {
         private static HttpClient httpClient;
 
-        private readonly string _apiUrl = Config.ApiUrl;
+        protected string _apiUrl = Config.ApiUrl;
 
-        public static void SetAccessToken(string token)
+        public static void SetAccessToken(string accessToken)
         {
-            httpClient.DefaultRequestHeaders.Add("token", token);
+            httpClient.DefaultRequestHeaders.Authorization =
+                new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
         }
 
         protected async Task<T> Get<T>(string path, Dictionary<string, string> param = null)
