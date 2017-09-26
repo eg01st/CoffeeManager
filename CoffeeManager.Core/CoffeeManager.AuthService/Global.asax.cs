@@ -7,7 +7,7 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 
-namespace CoffeeManager.Api
+namespace CoffeeManager.AuthService
 {
     public class WebApiApplication : System.Web.HttpApplication
     {
@@ -15,7 +15,6 @@ namespace CoffeeManager.Api
         {
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
-            RouteConfig.RegisterRoutes(RouteTable.Routes);
         }
     }
 }

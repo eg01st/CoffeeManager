@@ -92,5 +92,12 @@ namespace CoffeeManager.Models
         public const string GetCoffeeRooms = Admin + "/getCoffeeRooms";
 
 
+        public const string Account = Api + "/account";
+        public const string GetUserInfo = Admin + "/GetUserInfo";
+        public const string Logout = Admin + "/Logout";
+        public const string ChangePassword = Admin + "/ChangePassword";
+        public const string SetPassword = Admin + "/SetPassword";
+        public const string RemoveLogin = Admin + "/RemoveLogin";
+        public const string Register = Admin + "/Register";
     }
 }

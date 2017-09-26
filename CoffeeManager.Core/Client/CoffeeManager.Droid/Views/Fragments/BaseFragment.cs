@@ -10,7 +10,6 @@ namespace CoffeeManager.Droid.Views.Fragments
 {
     public class BaseFragment<T> : MvxFragment<T> where T: ViewModelBase
     {
-        private readonly IMvxViewModelLoader _mvxViewModelLoader = Mvx.Resolve<IMvxViewModelLoader>();
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             this.EnsureBindingContextIsSet(savedInstanceState);
@@ -18,14 +17,5 @@ namespace CoffeeManager.Droid.Views.Fragments
             return view;
         }
 
-        public void LoadVm()
-        {
-            if (ViewModel == null)
-            {
-                var request = new MvxViewModelRequest<T>(null, null, MvxRequestedBy.UserAction);
-                var viewModel = (T)_mvxViewModelLoader.LoadViewModel(request, null);
-                ViewModel = viewModel;
-            }
-        }
     }
 }

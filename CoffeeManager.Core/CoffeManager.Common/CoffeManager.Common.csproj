@@ -30,6 +30,7 @@
   <ItemGroup>
     <Compile Include="Database\InventoryItemEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Providers\AccountProvider.cs" />
     <Compile Include="ViewModels\BaseSearchViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="ViewModels\ListItemViewModelBase.cs" />
