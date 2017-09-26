@@ -4,7 +4,7 @@ using CoffeeManagerAdmin.Core.ViewModels;
 
 namespace CoffeeManagerAdmin.iOS
 {
-    public partial class ShiftDetailsView : MvxViewController
+    public partial class ShiftDetailsView : ViewControllerBase<ShiftDetailsViewModel>
     {
         public ShiftDetailsView() : base("ShiftDetailsView", null)
         {

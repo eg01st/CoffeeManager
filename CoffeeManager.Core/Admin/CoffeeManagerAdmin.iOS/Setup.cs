@@ -39,5 +39,10 @@ namespace CoffeeManagerAdmin.iOS
             base.InitializeLastChance();
 
         }
+
+        protected override IMvxIosViewPresenter CreatePresenter()
+        {
+            return new CoffeeManagerAdminPresenter(ApplicationDelegate, Window);
+        }
     }
 }

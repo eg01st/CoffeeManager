@@ -10,7 +10,7 @@ using CoreGraphics;
 
 namespace CoffeeManagerAdmin.iOS
 {
-    public partial class OrderItemsView : ViewControllerBase
+    public partial class OrderItemsView : ViewControllerBase<OrderItemsViewModel>
     {
         public OrderItemsView() : base("OrderItemsView", null)
         {

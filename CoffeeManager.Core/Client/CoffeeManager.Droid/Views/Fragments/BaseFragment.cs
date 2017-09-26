@@ -14,6 +14,7 @@ namespace CoffeeManager.Droid.Views.Fragments
         {
             this.EnsureBindingContextIsSet(savedInstanceState);
             var view = this.BindingInflate(Resource.Layout.product_list, null);
+
             return view;
         }
 

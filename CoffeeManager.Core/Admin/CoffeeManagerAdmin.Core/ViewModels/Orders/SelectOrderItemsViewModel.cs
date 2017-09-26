@@ -94,5 +94,10 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Orders
         public ICommand DoneCommand { get; set; }
 
         public ICommand AddNewSuplyProductCommand { get; }
+
+        protected override void DoUnsubscribe()
+        {
+            Unsubscribe<SuplyListChangedMessage>(_token);
+        }
     }
 }

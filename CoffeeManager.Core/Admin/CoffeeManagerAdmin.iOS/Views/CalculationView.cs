@@ -4,10 +4,11 @@ using UIKit;
 using MvvmCross.iOS.Views;
 using MvvmCross.Binding.BindingContext;
 using CoffeeManagerAdmin.Core.ViewModels;
+using CoffeManager.Common;
 
 namespace CoffeeManagerAdmin.iOS
 {
-    public partial class CalculationView : MvxViewController
+    public partial class CalculationView : ViewControllerBase<CalculationViewModel>
     {
         public CalculationView() : base("CalculationView", null)
         {

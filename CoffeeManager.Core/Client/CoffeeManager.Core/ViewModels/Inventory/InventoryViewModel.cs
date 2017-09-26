@@ -43,7 +43,7 @@ namespace CoffeeManager.Core
             }
             await ExecuteSafe(async () =>
             {
-                var items = Items.Select(Map);
+                var items = Items.Select(MapForServerSend);
                 await manager.SentInventoryInfo(items);
                 manager.RemoveSavedItems();
                 CloseCommand.Execute(null);
@@ -79,6 +79,23 @@ namespace CoffeeManager.Core
                 CoffeeRoomNo = vm.CoffeeRoomNo,
                 SuplyProductName = vm.Name,
             };
+        }
+
+        private InventoryItem MapForServerSend(InventoryItemViewModel vm)
+        {
+            var item = new InventoryItem()
+            {
+                SuplyProductId = vm.SuplyProductId,
+                QuantityBefore = vm.QuantityBefore,
+                QuantityAfer = vm.QuantityAfter ?? 0,
+                CoffeeRoomNo = vm.CoffeeRoomNo,
+                SuplyProductName = vm.Name,
+            };
+            if(vm.InventoryNumerationMultyplier.HasValue)
+            {
+                item.QuantityAfer = vm.QuantityAfter * vm.InventoryNumerationMultyplier ?? 0;
+            }
+            return item;
         }
 
         protected override void DoUnsubscribe()

@@ -35,5 +35,9 @@ namespace CoffeeManagerAdmin.Core.ViewModels
             var items = await manager.GetSuplyProducts();
             return items.Select(s => new SelectCalculationItemViewModel(manager, productId, s)).ToList();
         }
+        protected override void DoUnsubscribe()
+        {
+            Unsubscribe<SuplyListChangedMessage>(_listChanged);
+        }
     }
 }

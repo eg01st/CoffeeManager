@@ -67,11 +67,10 @@ namespace CoffeeManager.Api.Controllers
 
             var entites = new CoffeeRoomEntities();
             var item = entites.SupliedProducts.FirstOrDefault(p => p.Id == sProduct.Id && p.CoffeeRoomNo == coffeeroomno);
+
             if (item != null)
             {
-                item.Name = sProduct.Name;
-                item.Price = sProduct.Price;
-                item.Quantity = sProduct.Quatity;
+                var prodDb = DbMapper.Update(sProduct, item);
                 await entites.SaveChangesAsync();
                 return Request.CreateResponse(HttpStatusCode.OK, item.ToDTO());
             }

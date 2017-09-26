@@ -9,7 +9,7 @@ using System.Drawing;
 
 namespace CoffeeManagerAdmin.iOS
 {
-    public partial class SelectOrderItemsView : MvxViewController
+    public partial class SelectOrderItemsView : ViewControllerBase<SelectOrderItemsViewModel>
     {
         public SelectOrderItemsView() : base("SelectOrderItemsView", null)
         {

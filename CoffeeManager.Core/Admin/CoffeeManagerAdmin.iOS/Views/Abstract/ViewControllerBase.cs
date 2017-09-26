@@ -3,16 +3,22 @@ using CoreGraphics;
 using Foundation;
 using MvvmCross.iOS.Views;
 using UIKit;
+using CoffeManager.Common;
+using System.Linq;
+using MvvmCross.Binding.BindingContext;
+using System.Collections.Generic;
 
 namespace CoffeeManagerAdmin.iOS
 {
-    public abstract class ViewControllerBase : MvxViewController
+    public abstract class ViewControllerBase<TViewModel> :  MvxViewController<TViewModel>
+        where TViewModel : ViewModelBase
     {
         private NSLayoutConstraint buttonBottomConstraint;
         private nfloat buttonBottomMargin;
         private const double layoutKeyboardAnimationSpeed = 0.35;
         private NSObject keyboardShowObserver;
         private NSObject keyboardHideObserver;
+
 
        protected ViewControllerBase()
             :base()
@@ -34,12 +40,29 @@ namespace CoffeeManagerAdmin.iOS
         {
         }
 
+
+        protected virtual void InitNavigationItem(UINavigationItem navigationItem)
+        {
+        }
+
         public override void ViewDidLoad()
         {
   
             base.ViewDidLoad();
+
+            DoViewDidLoad();
             InitStylesAndContent();
+
+            InitNavigationItem(NavigationItem);
+
+
             DoBind();
+        }
+
+
+        protected virtual void DoViewDidLoad()
+        {
+            
         }
 
         protected virtual void DoBind()

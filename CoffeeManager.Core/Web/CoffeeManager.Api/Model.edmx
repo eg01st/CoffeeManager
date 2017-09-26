@@ -213,6 +213,8 @@
           <Property Name="InventoryEnabled" Type="bit" Nullable="false" />
           <Property Name="ExpenseNumerationName" Type="nvarchar" MaxLength="50" />
           <Property Name="ExpenseNumerationMultyplier" Type="money" />
+          <Property Name="InventoryNumerationName" Type="nvarchar" MaxLength="50" />
+          <Property Name="InventoryNumerationMultyplier" Type="money" />
         </EntityType>
         <EntityType Name="SuplyOrder">
           <Key>
@@ -295,6 +297,7 @@
           <Property Name="EntireEarnedAmount" Type="decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="ExpenceId" Type="int" />
           <Property Name="SimplePayment" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="MinimumPayment" Type="decimal" Precision="18" Scale="0" Nullable="false" />
         </EntityType>
         <EntityType Name="UtilizedCup">
           <Key>
@@ -315,8 +318,8 @@
           <Property Name="ShiftId" Type="int" Nullable="false" />
           <Property Name="Quantity" Type="money" Nullable="false" />
           <Property Name="Reason" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="Date" Type="date" Nullable="false" />
           <Property Name="CoffeeRoomNo" Type="int" Nullable="false" />
+          <Property Name="DateTime" Type="datetime" Nullable="false" />
         </EntityType>
         <Association Name="FK__Dept__ShiftId__4E88ABD4">
           <End Role="Shifts" Type="Self.Shifts" Multiplicity="1" />
@@ -1002,6 +1005,7 @@
           <NavigationProperty Name="ExpenseType" Relationship="CoffeeRoomModel.FK_Users_Expence1" FromRole="User" ToRole="ExpenseType" />
           <NavigationProperty Name="UserPenalties" Relationship="CoffeeRoomModel.FK__UserPenal__UserI__1C873BEC" FromRole="User" ToRole="UserPenalty" />
           <NavigationProperty Name="UserEarningsHistories" Relationship="CoffeeRoomModel.FK__UserEarni__UserI__0FEC5ADD" FromRole="User" ToRole="UserEarningsHistory" />
+          <Property Name="MinimumPayment" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
         </EntityType>
         <EntityType Name="UtilizedCup">
           <Key>
@@ -1397,6 +1401,8 @@
           <NavigationProperty Name="UtilizedSuplyProducts" Relationship="CoffeeRoomModel.FK__UtilizedS__Suply__056ECC6A" FromRole="SupliedProduct" ToRole="UtilizedSuplyProduct" />
           <Property Name="ExpenseNumerationName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ExpenseNumerationMultyplier" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="InventoryNumerationName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="InventoryNumerationMultyplier" Type="Decimal" Precision="19" Scale="4" />
         </EntityType>
         <Association Name="FK_SupliedProduct_ExpenseType">
           <End Type="CoffeeRoomModel.ExpenseType" Role="ExpenseType" Multiplicity="0..1" />
@@ -1712,10 +1718,10 @@
           <Property Name="ShiftId" Type="Int32" Nullable="false" />
           <Property Name="Quantity" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
           <Property Name="Reason" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="CoffeeRoomNo" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Shift" Relationship="CoffeeRoomModel.FK__UtilizedS__Shift__0662F0A3" FromRole="UtilizedSuplyProduct" ToRole="Shift" />
           <NavigationProperty Name="SupliedProduct" Relationship="CoffeeRoomModel.FK__UtilizedS__Suply__056ECC6A" FromRole="UtilizedSuplyProduct" ToRole="SupliedProduct" />
+          <Property Name="DateTime" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
         <Association Name="FK__UtilizedS__Shift__0662F0A3">
           <End Type="CoffeeRoomModel.Shift" Role="Shift" Multiplicity="1" />
@@ -1917,6 +1923,7 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="CoffeeRoomModel.User">
               <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="MinimumPayment" ColumnName="MinimumPayment" />
                 <ScalarProperty Name="SimplePayment" ColumnName="SimplePayment" />
                 <ScalarProperty Name="ExpenceId" ColumnName="ExpenceId" />
                 <ScalarProperty Name="EntireEarnedAmount" ColumnName="EntireEarnedAmount" />
@@ -1986,6 +1993,8 @@
           <EntitySetMapping Name="SupliedProducts">
             <EntityTypeMapping TypeName="CoffeeRoomModel.SupliedProduct">
               <MappingFragment StoreEntitySet="SupliedProduct">
+                <ScalarProperty Name="InventoryNumerationMultyplier" ColumnName="InventoryNumerationMultyplier" />
+                <ScalarProperty Name="InventoryNumerationName" ColumnName="InventoryNumerationName" />
                 <ScalarProperty Name="ExpenseNumerationMultyplier" ColumnName="ExpenseNumerationMultyplier" />
                 <ScalarProperty Name="ExpenseNumerationName" ColumnName="ExpenseNumerationName" />
                 <ScalarProperty Name="InventoryEnabled" ColumnName="InventoryEnabled" />
@@ -2140,8 +2149,8 @@
           <EntitySetMapping Name="UtilizedSuplyProducts">
             <EntityTypeMapping TypeName="CoffeeRoomModel.UtilizedSuplyProduct">
               <MappingFragment StoreEntitySet="UtilizedSuplyProduct">
+                <ScalarProperty Name="DateTime" ColumnName="DateTime" />
                 <ScalarProperty Name="CoffeeRoomNo" ColumnName="CoffeeRoomNo" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="Reason" ColumnName="Reason" />
                 <ScalarProperty Name="Quantity" ColumnName="Quantity" />
                 <ScalarProperty Name="ShiftId" ColumnName="ShiftId" />

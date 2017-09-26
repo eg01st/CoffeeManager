@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -213,6 +213,10 @@ namespace CoffeeManager.Core.ViewModels
 
         private async Task DoPay()
         {
+            if(SelectedProducts.Count <= 0)
+            {
+                return;
+            }
             var tasks = SelectedProducts.Select(productViewModel =>
                                   productManager.SaleProduct(
                                 _shiftId,

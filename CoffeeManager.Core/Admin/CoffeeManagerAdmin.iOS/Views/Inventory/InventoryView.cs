@@ -6,7 +6,7 @@ using CoffeeManagerAdmin.Core;
 
 namespace CoffeeManagerAdmin.iOS
 {
-    public partial class InventoryView : ViewControllerBase
+    public partial class InventoryView : ViewControllerBase<InventoryViewModel>
     {
         public InventoryView() : base("InventoryView", null)
         {

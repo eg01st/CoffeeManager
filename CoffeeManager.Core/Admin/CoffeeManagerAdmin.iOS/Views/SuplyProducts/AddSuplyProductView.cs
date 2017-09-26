@@ -7,7 +7,7 @@ using CoffeeManagerAdmin.Core;
 
 namespace CoffeeManagerAdmin.iOS
 {
-    public partial class AddSuplyProductView : MvxViewController
+    public partial class AddSuplyProductView : ViewControllerBase<AddSuplyProductViewModel>
     {
         public AddSuplyProductView() : base("AddSuplyProductView", null)
         {

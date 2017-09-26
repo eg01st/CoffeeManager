@@ -12,6 +12,8 @@ namespace CoffeeManager.Api.Controllers
 {
 	public class ProductsController : ApiController
 	{
+
+        private static readonly object ShiftAmountLock = new object();
 		// GET: api/Products
 		public async Task<HttpResponseMessage> Get ([FromUri]int coffeeroomno, [FromUri]int productType)
 		{
@@ -109,25 +111,31 @@ namespace CoffeeManager.Api.Controllers
 			var sale = JsonConvert.DeserializeObject<Models.Sale> (request);
 			try
             {
-				var entities = new CoffeeRoomEntities ();
-				entities.Sales.Add (DbMapper.Map (sale));
-                var currentShift = entities.Shifts.First(s => s.Id == sale.ShiftId);
-                if (sale.IsCreditCardSale)
+                lock (ShiftAmountLock)
                 {
-                    currentShift.CreditCardAmount += sale.Amount;
-                }
-                else
-                {
-                    currentShift.CurrentAmount += sale.Amount;
-                    currentShift.TotalAmount += sale.Amount;
-                }
-				
-                await Task.Run( async () =>  
-                {
+                    var entities = new CoffeeRoomEntities();
+                    entities.Sales.Add(DbMapper.Map(sale));
+                    entities.SaveChanges();
+
+                    using (var sContext = new CoffeeRoomEntities())
+                    {
+                        var currentShift = sContext.Shifts.First(s => s.Id == sale.ShiftId);
+                        if (sale.IsCreditCardSale)
+                        {
+                            currentShift.CreditCardAmount += sale.Amount;
+                        }
+                        else
+                        {
+                            currentShift.CurrentAmount += sale.Amount;
+                            currentShift.TotalAmount += sale.Amount;
+                        }
+                        sContext.SaveChanges();
+                    }
+
                     using (var sContext = new CoffeeRoomEntities())
                     {
                         var product = sContext.Products.First(p => p.Id == sale.ProductId);
-                        if(product.IsSaleByWeight)
+                        if (product.IsSaleByWeight)
                         {
 
                         }
@@ -136,11 +144,11 @@ namespace CoffeeManager.Api.Controllers
                             var supliedProduct =
                                 sContext.SupliedProducts.First(p => p.Id == productCalculation.SuplyProductId);
                             supliedProduct.Quantity -= productCalculation.Quantity;
-                            await sContext.SaveChangesAsync();
+                            sContext.SaveChanges();
                         }
                     }
-                });
-				await entities.SaveChangesAsync();
+                }
+
 				return Request.CreateResponse (HttpStatusCode.OK);
 			} catch (Exception ex) {
 				return Request.CreateErrorResponse (HttpStatusCode.BadRequest, ex.ToString ());
@@ -173,7 +181,7 @@ namespace CoffeeManager.Api.Controllers
                 }
             });
 
-            var currentShift = entities.Shifts.First (s => s.Id == sale.ShiftId);
+            var currentShift = entities.Shifts.First (s => s.Id == saleDb.ShiftId);
             if(saleDb.IsCreditCardSale)
             {
                 currentShift.CreditCardAmount -= saleDb.Amount;
@@ -200,7 +208,7 @@ namespace CoffeeManager.Api.Controllers
             var saleDb = entities.Sales.First(s => s.CoffeeRoomNo == coffeeroomno && s.Id == sale.Id);
             saleDb.IsUtilized = true;
 
-            var currentShift = entities.Shifts.First(s => s.Id == sale.ShiftId);
+            var currentShift = entities.Shifts.First(s => s.Id == saleDb.ShiftId);
             if (saleDb.IsCreditCardSale)
             {
                 currentShift.CreditCardAmount -= saleDb.Amount;

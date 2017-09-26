@@ -204,5 +204,10 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Orders
         }
 
         public string Status => IsDone ? "Выполнен" : "В процессе";
+
+        protected override void DoUnsubscribe()
+        {
+            Unsubscribe<OrderItemsListChangedMessage>(_itemsSelectedtoken);
+        }
     }
 }

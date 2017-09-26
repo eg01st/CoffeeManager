@@ -10,25 +10,30 @@ namespace CoffeManager.Common
 {
     public class BaseServiceProvider
     {
-        public static string AccessToken = "";
+        private static HttpClient httpClient;
 
         private readonly string _apiUrl = Config.ApiUrl;
+
+        public static void SetAccessToken(string token)
+        {
+            httpClient.DefaultRequestHeaders.Add("token", token);
+        }
 
         protected async Task<T> Get<T>(string path, Dictionary<string, string> param = null)
         {
             string url = GetUrl(path, param);
             string responseString;
-            using (var client = GetClient())
+            var client = GetClient();
+
+            using (var response = await client.GetAsync(url))
             {
-                using (var response = await client.GetAsync(url))
+                responseString = await response.Content.ReadAsStringAsync();
+                if (response.StatusCode != System.Net.HttpStatusCode.OK)
                 {
-                    responseString = await response.Content.ReadAsStringAsync();
-                    if (response.StatusCode != System.Net.HttpStatusCode.OK)
-                    {
-                        throw new Exception(response.ToString() + responseString);
-                    }
+                    throw new Exception(response.ToString() + responseString);
                 }
             }
+
             Debug.WriteLine(responseString);          
             var result = JsonConvert.DeserializeObject<T>(responseString);
             return result;
@@ -38,17 +43,17 @@ namespace CoffeManager.Common
         {
             string url = GetUrl(path, param);
             string responseString;
-            using (var client = GetClient())
+            var client = GetClient();
+
+            using (var response = await client.PostAsync(url, new StringContent(JsonConvert.SerializeObject(obj))))
             {
-                using (var response = await client.PostAsync(url, new StringContent(JsonConvert.SerializeObject(obj))))
+                responseString = await response.Content.ReadAsStringAsync();
+                if (response.StatusCode != System.Net.HttpStatusCode.OK)
                 {
-                    responseString = await response.Content.ReadAsStringAsync();
-                    if (response.StatusCode != System.Net.HttpStatusCode.OK)
-                    {
-                        throw new Exception(response.ToString() + responseString);
-                    }
+                    throw new Exception(response.ToString() + responseString);
                 }
             }
+
             var result = JsonConvert.DeserializeObject<T>(responseString);
             return result;
 
@@ -57,35 +62,35 @@ namespace CoffeManager.Common
         protected async Task<string> Post<T>(string path, T obj, Dictionary<string, string> param = null)
         {
             string url = GetUrl(path, param);
-            using (var client = GetClient())
+            var client = GetClient();
+
+            using (var response = await client.PostAsync(url, new StringContent(JsonConvert.SerializeObject(obj))))
             {
-                using (var response = await client.PostAsync(url, new StringContent(JsonConvert.SerializeObject(obj))))
+                var responseString = await response.Content.ReadAsStringAsync();
+                if (response.StatusCode != System.Net.HttpStatusCode.OK)
                 {
-                    var responseString = await response.Content.ReadAsStringAsync();
-                    if (response.StatusCode != System.Net.HttpStatusCode.OK)
-                    {
-                        throw new Exception(response.ToString() + responseString);
-                    }
-                    return responseString;
+                    throw new Exception(response.ToString() + responseString);
                 }
+                return responseString;
             }
+
         }
 
         protected async Task<T> Put<T, TY>(string path, TY obj, Dictionary<string, string> param = null)
         {
             string url = GetUrl(path, param);
             string responseString;
-            using (var client = GetClient())
+            var client = GetClient();
+
+            using (var response = await client.PutAsync(url, new StringContent(JsonConvert.SerializeObject(obj))))
             {
-                using (var response = await client.PutAsync(url, new StringContent(JsonConvert.SerializeObject(obj))))
+                responseString = await response.Content.ReadAsStringAsync();
+                if (response.StatusCode != System.Net.HttpStatusCode.OK)
                 {
-                    responseString = await response.Content.ReadAsStringAsync();
-                    if (response.StatusCode != System.Net.HttpStatusCode.OK)
-                    {
-                        throw new Exception(response.ToString() + responseString);
-                    }
+                    throw new Exception(response.ToString() + responseString);
                 }
             }
+
             var result = JsonConvert.DeserializeObject<T>(responseString);
             return result;
 
@@ -94,35 +99,31 @@ namespace CoffeManager.Common
         protected async Task<string> Put<T>(string path, T obj, Dictionary<string, string> param = null)
         {
             string url = GetUrl(path, param);
-            using (var client = GetClient())
-            {
-                using (var response = await client.PutAsync(url, new StringContent(JsonConvert.SerializeObject(obj))))
-                {
-                    var responseString = await response.Content.ReadAsStringAsync();
-                    if (response.StatusCode != System.Net.HttpStatusCode.OK)
-                    {
-                        throw new Exception(response + responseString);
-                    }
-                    return responseString;
-                }
+            var client = GetClient();
 
+            using (var response = await client.PutAsync(url, new StringContent(JsonConvert.SerializeObject(obj))))
+            {
+                var responseString = await response.Content.ReadAsStringAsync();
+                if (response.StatusCode != System.Net.HttpStatusCode.OK)
+                {
+                    throw new Exception(response + responseString);
+                }
+                return responseString;
             }
         }
 
         protected async Task<string> Delete(string path, Dictionary<string, string> param = null)
         {
             string url = GetUrl(path, param);
-            using (var client = GetClient())
-            {
-                using (var response = await client.DeleteAsync(url))
-                { 
-                    var responseString = await response.Content.ReadAsStringAsync();
-                    if (response.StatusCode != System.Net.HttpStatusCode.OK)
-                    {
-                        throw new Exception(response.ToString() + responseString);
-                    }
-                    return responseString;
+            var client = GetClient();
+            using (var response = await client.DeleteAsync(url))
+            { 
+                var responseString = await response.Content.ReadAsStringAsync();
+                if (response.StatusCode != System.Net.HttpStatusCode.OK)
+                {
+                    throw new Exception(response.ToString() + responseString);
                 }
+                return responseString;
             }
         }
 
@@ -141,10 +142,13 @@ namespace CoffeManager.Common
 
         private HttpClient GetClient()
         {
-            var client = new HttpClient();
-            client.Timeout = new TimeSpan(0, 0, 5);
-            client.DefaultRequestHeaders.Add("token", AccessToken);
-            return client;
+            if(httpClient == null)
+            {
+                httpClient = new HttpClient();
+                httpClient.Timeout = new TimeSpan(0, 0, 5);
+            }
+
+            return httpClient;
         }
     }
 }

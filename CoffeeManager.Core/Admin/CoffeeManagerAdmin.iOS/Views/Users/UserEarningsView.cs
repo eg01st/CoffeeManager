@@ -7,7 +7,7 @@ using CoffeeManagerAdmin.Core;
 
 namespace CoffeeManagerAdmin.iOS
 {
-    public partial class UserEarningsView : ViewControllerBase
+    public partial class UserEarningsView : ViewControllerBase<UserEarningsViewModel>
     {
         public UserEarningsView() : base("UserEarningsView", null)
         {

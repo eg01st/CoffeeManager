@@ -32,6 +32,7 @@ namespace CoffeeManager.Api
         public decimal EntireEarnedAmount { get; set; }
         public Nullable<int> ExpenceId { get; set; }
         public decimal SimplePayment { get; set; }
+        public decimal MinimumPayment { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Shift> Shifts { get; set; }

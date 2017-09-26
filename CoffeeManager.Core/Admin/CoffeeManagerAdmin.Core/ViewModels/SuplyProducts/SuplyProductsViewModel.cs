@@ -39,5 +39,10 @@ namespace CoffeeManagerAdmin.Core.ViewModels
             }
             return result;
         }
+
+        protected override void DoUnsubscribe()
+        {
+            Unsubscribe<SuplyListChangedMessage>(_listChanged);
+        }
     }
 }

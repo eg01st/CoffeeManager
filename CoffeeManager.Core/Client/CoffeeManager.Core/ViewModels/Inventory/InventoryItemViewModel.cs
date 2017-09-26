@@ -14,6 +14,10 @@ namespace CoffeeManager.Core
 
         public int SuplyProductId { get; set; }
 
+        public string InventoryNumerationName { get; set; }
+
+        public decimal? InventoryNumerationMultyplier { get; set; }
+
         public int CoffeeRoomNo { get; set; }
 
         public bool IsProceeded { get; set; }
@@ -24,6 +28,8 @@ namespace CoffeeManager.Core
             SuplyProductId = item.Id;
             QuantityBefore = item.Quatity ?? 0;
             CoffeeRoomNo = item.CoffeeRoomNo;
+            InventoryNumerationName = item.InventoryNumerationName;
+            InventoryNumerationMultyplier = item.InventoryNumerationMultyplier;
         }
 
         protected async override void DoGoToDetails()

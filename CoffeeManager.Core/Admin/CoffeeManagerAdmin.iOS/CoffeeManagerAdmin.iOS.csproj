@@ -357,6 +357,8 @@
       <DependentUpon>StatisticResultView.cs</DependentUpon>
     </Compile>
     <Compile Include="Extensions\UIViewExtensions.cs" />
+    <Compile Include="Platform\CoffeeManagerAdminPresenter.cs" />
+    <Compile Include="Platform\CoffeeManagerAdminNavigationContoller.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Setup.cs" />
@@ -549,6 +551,9 @@
     <BundleResource Include="Resources\ic_arrow_downward_2x.png" />
     <BundleResource Include="Resources\ic_arrow_downward_3x.png" />
     <BundleResource Include="Resources\ic_arrow_downward.png" />
+    <BundleResource Include="Resources\ic_arrow_back_3x.png" />
+    <BundleResource Include="Resources\ic_arrow_back_2x.png" />
+    <BundleResource Include="Resources\ic_arrow_back.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

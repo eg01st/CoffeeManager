@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace CoffeeManagerAdmin.iOS
 {
-    public partial class ProductDetailsView : MvxViewController
+    public partial class ProductDetailsView : ViewControllerBase<ProductDetailsViewModel>
     {
         public ProductDetailsView() : base("ProductDetailsView", null)
         {

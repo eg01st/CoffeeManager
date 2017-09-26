@@ -31,5 +31,10 @@ namespace CoffeeManagerAdmin.Core
             });
         }
 
+        protected override void DoUnsubscribe()
+        {
+            Unsubscribe<ExpenseListChangedMessage>(reloadListToken);
+        }
+
     }
 }

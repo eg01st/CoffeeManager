@@ -34,7 +34,8 @@ namespace CoffeeManager.Api.Mappers
                 EntireEarnedAmount = user.EntireEarnedAmount,
                 ExpenceId = user.ExpenceId,
                 NightShiftPercent = user.NightShiftPercent,
-                IsActive = user.IsActive
+                IsActive = user.IsActive,
+                MinimumPayment = user.MinimumPayment
             };
 
         }
@@ -47,6 +48,7 @@ namespace CoffeeManager.Api.Mappers
             userDb.IsActive = user.IsActive;
             userDb.ExpenceId= user.ExpenceId;
             userDb.SimplePayment = user.SalaryRate;
+            userDb.MinimumPayment = user.MinimumPayment;
             return userDb;
         }
 
@@ -82,8 +84,18 @@ namespace CoffeeManager.Api.Mappers
 			};
 		}
 
+	    public static SupliedProduct Update(Models.SupliedProduct sProduct, SupliedProduct dbProd)
+	    {
+	        dbProd.Quantity = sProduct.Quatity;
+            dbProd.ExpenseNumerationMultyplier = dbProd.ExpenseNumerationMultyplier;
+	        dbProd.ExpenseNumerationName = dbProd.ExpenseNumerationName;
+	        dbProd.InventoryNumerationMultyplier = sProduct.InventoryNumerationMultyplier;
+	        dbProd.InventoryNumerationName = sProduct.InventoryNumerationName;
+	        dbProd.Price = sProduct.Price;
+	        return dbProd;
+	    }
 
-		public static SupliedProduct Map (Models.SupliedProduct sProduct)
+        public static SupliedProduct Map (Models.SupliedProduct sProduct)
 		{
 			return new SupliedProduct () {
 				Quantity = 0,
@@ -103,7 +115,7 @@ namespace CoffeeManager.Api.Mappers
                 Reason = product.Reason,
                 CoffeeRoomNo = product.CoffeeRoomNo,
                 ShiftId = product.ShiftId,
-                Date = product.Date
+                DateTime = product.Date
             };
         }
     }

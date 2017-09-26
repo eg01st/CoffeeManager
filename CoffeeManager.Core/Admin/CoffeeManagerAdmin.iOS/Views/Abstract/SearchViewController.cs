@@ -9,7 +9,7 @@ using CoreGraphics;
 
 namespace CoffeeManagerAdmin.iOS
 {
-    public abstract partial class SearchViewController<TView, TViewModel, TItemViewModel> : ViewControllerBase 
+    public abstract partial class SearchViewController<TView, TViewModel, TItemViewModel> : ViewControllerBase<TViewModel> 
         where TView : SearchViewController<TView, TViewModel, TItemViewModel>
         where TItemViewModel : ListItemViewModelBase
         where TViewModel : BaseSearchViewModel<TItemViewModel> 

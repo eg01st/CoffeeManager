@@ -45,6 +45,12 @@ namespace CoffeeManagerAdmin.Core.ViewModels
         public ICommand ShowInventoryCommand { get; set; }
         public ICommand ShowUtilizedSuplyProductsCommand { get; set; }
 
+
+        protected override void OnClose()
+        {
+
+        }
+
         public string CurrentBalance
         {
             get { return _currentBalance; }

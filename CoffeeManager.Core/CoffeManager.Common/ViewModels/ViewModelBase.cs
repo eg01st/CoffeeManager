@@ -222,5 +222,12 @@ namespace CoffeManager.Common
             });
             return result.Value;
         }
+
+
+        protected bool ShowViewModelAsRoot<TViewModel>(object parameter = null, MvxRequestedBy requestedBy = null) where TViewModel : IMvxViewModel
+        {
+            var bundle = MvxNavigationExtensions.ProduceRootViewModelRequest();
+            return ShowViewModel<TViewModel>(parameter, bundle, requestedBy);
+        }
     }
 }

@@ -67,5 +67,10 @@ namespace CoffeeManagerAdmin.Core.ViewModels
                 RaisePropertyChanged(nameof(Items));
             }
         }
+
+        protected override void DoUnsubscribe()
+        {
+            Unsubscribe<CalculationListChangedMessage>(_listChangedToken);
+        }
     }
 }
