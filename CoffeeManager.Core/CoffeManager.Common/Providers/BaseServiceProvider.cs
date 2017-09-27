@@ -12,7 +12,7 @@ namespace CoffeManager.Common
     {
         private static HttpClient httpClient;
 
-        protected string _apiUrl = Config.ApiUrl;
+        protected static string _apiUrl = Config.ApiUrl;
 
         public static void SetAccessToken(string accessToken)
         {

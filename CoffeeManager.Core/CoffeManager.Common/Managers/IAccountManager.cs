@@ -9,6 +9,8 @@ namespace CoffeManager.Common.Managers
 {
     public interface IAccountManager
     {
+        Task<string> AuthorizeInitial(string login, string password);
+
         Task<string> Authorize(string login, string password);
 
         Task<UserAcount> GetUserInfo();

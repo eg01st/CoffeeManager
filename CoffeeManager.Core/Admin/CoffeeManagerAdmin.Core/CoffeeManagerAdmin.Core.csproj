@@ -163,21 +163,11 @@
       <HintPath>..\..\packages\MvvmCross.Plugin.SQLitePCL.4.4.0\lib\portable-win+net45+wp8+win8+wpa81+win81+dotnet\MvvmCross.Plugins.Sqlite.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <Folder Include="ViewModels\Users\" />
-    <Folder Include="ViewModels\SuplyProducts\" />
-    <Folder Include="ViewModels\Shifts\" />
-    <Folder Include="ViewModels\Calculation\" />
-    <Folder Include="ViewModels\Statistic\" />
-    <Folder Include="Util\" />
-    <Folder Include="ViewModels\ManageExpenses\" />
-    <Folder Include="ViewModels\Products\" />
-    <Folder Include="ServiceProviders\" />
     <Folder Include="Managers\" />
-    <Folder Include="ViewModels\Inventory\" />
-    <Folder Include="ViewModels\Utilize\" />
+    <Folder Include="ServiceProviders\" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\..\CoffeeManager.Models\CoffeeManager.Models.csproj">
       <Project>{77E355CB-ADF2-4617-AD95-59E1F4F8AF17}</Project>

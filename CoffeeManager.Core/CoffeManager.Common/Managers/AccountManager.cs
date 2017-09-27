@@ -13,6 +13,11 @@ namespace CoffeManager.Common.Managers
             _provider = provider;
         }
 
+        public async Task<string> AuthorizeInitial(string login, string password)
+        {
+            return await _provider.AuthorizeInitial(login, password);
+        }
+
         public async Task<string> Authorize(string login, string password)
         {
             return await _provider.Authorize(login, password);

@@ -5,6 +5,8 @@ namespace CoffeManager.Common.Providers
 {
     public interface IAccountProvider
     {
+        Task<string> AuthorizeInitial(string login, string password);
+
         Task<string> Authorize(string login, string password);
 
         Task<UserAcount> GetUserInfo();

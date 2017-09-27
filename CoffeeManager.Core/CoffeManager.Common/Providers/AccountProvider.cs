@@ -9,6 +9,20 @@ namespace CoffeManager.Common.Providers
 {
     public class AccountProvider : BaseServiceProvider, IAccountProvider
     {
+        public async Task<string> AuthorizeInitial(string login, string password)
+        {
+            _apiUrl = Config.ApiUrl;
+            var result = await Post<object>(RoutesConstants.Token, null, new Dictionary<string, string>()
+            {
+                {"grant_type", "password"},
+                {"username", login},
+                {"password", password}
+            });
+            var obj = new JObject(result);
+            var token = obj["access_token"].Value<string>();
+            return token;
+        }
+
         public async Task<string> Authorize(string login, string password)
         {
             _apiUrl = Config.AuthApiUrl;
@@ -25,6 +39,7 @@ namespace CoffeManager.Common.Providers
 
         public async Task<UserAcount> GetUserInfo()
         {
+            _apiUrl = Config.AuthApiUrl;
             return await Get<UserAcount>(RoutesConstants.GetUserInfo);
         }
 

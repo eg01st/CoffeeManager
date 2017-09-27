@@ -4,12 +4,15 @@ using CoffeeManager.Models;
 using MvvmCross.Core.ViewModels;
 using CoffeManager.Common;
 using System.Threading.Tasks;
+using CoffeeManager.Common;
+using CoffeManager.Common.Managers;
 
 namespace CoffeeManagerAdmin.Core.ViewModels
 {
     public class LoginViewModel : ViewModelBase
     {
         private readonly IUserManager manager;
+        private readonly IAccountManager _accountManager;
 
         private string _name;
         private string _password;
@@ -34,9 +37,10 @@ namespace CoffeeManagerAdmin.Core.ViewModels
         }
 
 
-        public LoginViewModel(IUserManager manager)
+        public LoginViewModel(IUserManager manager, IAccountManager accountManager)
         {
             this.manager = manager;
+            _accountManager = accountManager;
             _loginCommand = new MvxAsyncCommand(DoLogin);
         }
 
@@ -55,9 +59,16 @@ namespace CoffeeManagerAdmin.Core.ViewModels
         {
             await ExecuteSafe(async () => 
             {           
-                string accessToken = await manager.Login(Name, Password);
-                accessToken = accessToken.Substring(1);
-                accessToken = accessToken.Substring(0, accessToken.Length - 1);
+                string accessToken = await _accountManager.AuthorizeInitial(Name, Password);
+                BaseServiceProvider.SetAccessToken(accessToken);
+                var user = await _accountManager.GetUserInfo();
+                Config.ApiUrl = user.ApiUrl;
+
+                accessToken = await _accountManager.Authorize(Name, Password);
+                BaseServiceProvider.SetAccessToken(accessToken);
+
+                //accessToken = accessToken.Substring(1);
+                //accessToken = accessToken.Substring(0, accessToken.Length - 1);
                 LocalStorage.SetUserInfo(new UserInfo() { Login = Name, Password = Password });
                 BaseServiceProvider.SetAccessToken(accessToken);
                 ShowViewModelAsRoot<MainViewModel>();
