@@ -157,7 +157,11 @@ namespace CoffeeManager.Core.ViewModels
                         Id = s.Id,
                         Price = s.Amount,
                         Quatity = s.ItemCount,
-                        CoffeeRoomNo = SelectedExpense.CoffeeRoomNo
+                        CoffeeRoomNo = SelectedExpense.CoffeeRoomNo,
+	                    ExpenseNumerationMultyplier = s.Product.ExpenseNumerationMultyplier,
+	                    InventoryNumerationMultyplier = s.Product.InventoryNumerationMultyplier,
+	                    ExpenseNumerationName = s.Product.ExpenseNumerationName,
+	                    InventoryNumerationName = s.Product.InventoryNumerationName
                     })
                     .ToArray();
                 await manager.AddExpense(type);
