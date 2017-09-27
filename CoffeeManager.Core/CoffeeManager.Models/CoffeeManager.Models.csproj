@@ -60,6 +60,7 @@
     <Compile Include="ShiftInfo.cs" />
     <Compile Include="SupliedProduct.cs" />
     <Compile Include="User.cs" />
+    <Compile Include="UserAcount.cs" />
     <Compile Include="UserEarningsHistory.cs" />
     <Compile Include="UserInfo.cs" />
     <Compile Include="TypesLists.cs" />

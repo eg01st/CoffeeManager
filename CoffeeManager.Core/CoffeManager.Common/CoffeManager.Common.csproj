@@ -29,7 +29,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Database\InventoryItemEntity.cs" />
+    <Compile Include="Managers\AccountManager.cs" />
+    <Compile Include="Managers\IAccountManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Providers\AccountProvider.cs" />
+    <Compile Include="Providers\IAccountProvider.cs" />
     <Compile Include="ViewModels\BaseSearchViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="ViewModels\ListItemViewModelBase.cs" />
