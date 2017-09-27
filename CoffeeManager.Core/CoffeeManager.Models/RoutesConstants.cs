@@ -93,12 +93,12 @@ namespace CoffeeManager.Models
 
 
         public const string Account = Api + "/account";
-        public const string GetUserInfo = Admin + "/GetUserInfo";
-        public const string Logout = Admin + "/Logout";
-        public const string ChangePassword = Admin + "/ChangePassword";
-        public const string SetPassword = Admin + "/SetPassword";
-        public const string RemoveLogin = Admin + "/RemoveLogin";
-        public const string Register = Admin + "/Register";
+        public const string GetUserInfo = Account + "/GetUserInfo";
+        public const string Logout = Account + "/Logout";
+        public const string ChangePassword = Account + "/ChangePassword";
+        public const string SetPassword = Account + "/SetPassword";
+        public const string RemoveLogin = Account + "/RemoveLogin";
+        public const string Register = Account + "/Register";
 
         public const string Token = "/Token";
     }

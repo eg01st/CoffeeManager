@@ -17,7 +17,6 @@ using Microsoft.Owin.Security.Cookies;
 namespace CoffeeManager.Api.Controllers
 {
     [Authorize]
-    [RoutePrefix("api/Account")]
     public class AccountController : ApiController
     {
         private const string LocalLoginProvider = "Local";
