@@ -211,10 +211,10 @@
           <Property Name="Quantity" Type="money" />
           <Property Name="Removed" Type="bit" Nullable="false" />
           <Property Name="InventoryEnabled" Type="bit" Nullable="false" />
-          <Property Name="ExpenseNumerationName" Type="nvarchar" MaxLength="50" />
-          <Property Name="ExpenseNumerationMultyplier" Type="money" />
-          <Property Name="InventoryNumerationName" Type="nvarchar" MaxLength="50" />
-          <Property Name="InventoryNumerationMultyplier" Type="money" />
+          <Property Name="ExpenseNumerationName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ExpenseNumerationMultyplier" Type="money" Nullable="false" />
+          <Property Name="InventoryNumerationName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="InventoryNumerationMultyplier" Type="money" Nullable="false" />
         </EntityType>
         <EntityType Name="SuplyOrder">
           <Key>
@@ -1399,10 +1399,10 @@
           <Property Name="InventoryEnabled" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="InventoryReportItems" Relationship="CoffeeRoomModel.FK__Inventory__Suply__74444068" FromRole="SupliedProduct" ToRole="InventoryReportItem" />
           <NavigationProperty Name="UtilizedSuplyProducts" Relationship="CoffeeRoomModel.FK__UtilizedS__Suply__056ECC6A" FromRole="SupliedProduct" ToRole="UtilizedSuplyProduct" />
-          <Property Name="ExpenseNumerationName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ExpenseNumerationMultyplier" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="InventoryNumerationName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="InventoryNumerationMultyplier" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="ExpenseNumerationName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ExpenseNumerationMultyplier" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="InventoryNumerationName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="InventoryNumerationMultyplier" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
         </EntityType>
         <Association Name="FK_SupliedProduct_ExpenseType">
           <End Type="CoffeeRoomModel.ExpenseType" Role="ExpenseType" Multiplicity="0..1" />

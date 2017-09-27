@@ -201,14 +201,9 @@ namespace CoffeeManager.Api.Controllers
                     Amount = suplyProduct.Price,
                     SuplyProductId = suplyProduct.Id
                 };
-                if(suplyProduct.ExpenseNumerationMultyplier.HasValue && suplyProduct.ExpenseNumerationMultyplier > 0)
-                {
-                    expenseDb.Quantity = suplyProduct.Quatity.Value * suplyProduct.ExpenseNumerationMultyplier.Value;
-                }
-                else
-                {
-                    expenseDb.Quantity = suplyProduct.Quatity.Value;
-                }
+
+                expenseDb.Quantity = suplyProduct.Quatity.Value;
+                
                 expense.ExpenseSuplyProducts.Add(expenseDb);
             }
 
@@ -216,29 +211,19 @@ namespace CoffeeManager.Api.Controllers
 
             foreach (var suplyProduct in expenseEx.SuplyProducts)
             {
+                if (!suplyProduct.Quatity.HasValue || suplyProduct.Quatity <= 0 || suplyProduct.Price <= 0)
+                {
+                    continue;
+                }
                 var suplyProductDb = entities.SupliedProducts.First(s => s.Id == suplyProduct.Id);
     
                 if (suplyProductDb.Quantity.HasValue)
                 {
-                    if(suplyProductDb.ExpenseNumerationMultyplier.HasValue && suplyProductDb.ExpenseNumerationMultyplier > 0)
-                    {
-                        suplyProductDb.Quantity += suplyProduct.Quatity * suplyProductDb.ExpenseNumerationMultyplier;
-                    }
-                    else
-                    {
-                        suplyProductDb.Quantity += suplyProduct.Quatity;
-                    }
+                    suplyProductDb.Quantity += suplyProduct.Quatity * suplyProductDb.ExpenseNumerationMultyplier;
                 }
                 else
                 {
-                    if (suplyProductDb.ExpenseNumerationMultyplier.HasValue && suplyProductDb.ExpenseNumerationMultyplier > 0)
-                    {
-                        suplyProductDb.Quantity = suplyProduct.Quatity * suplyProductDb.ExpenseNumerationMultyplier;
-                    }
-                    else
-                    {
-                        suplyProductDb.Quantity = suplyProduct.Quatity;
-                    }
+                    suplyProductDb.Quantity = suplyProduct.Quatity * suplyProductDb.ExpenseNumerationMultyplier;
                 }
                 
             }
@@ -283,14 +268,7 @@ namespace CoffeeManager.Api.Controllers
             foreach (var sp in suplyProducts)
             {
                 var suplyProduct = entities.SupliedProducts.First(s => s.Id == sp.SuplyProductId);
-                if (suplyProduct.ExpenseNumerationMultyplier.HasValue && suplyProduct.ExpenseNumerationMultyplier > 0)
-                {
-                    suplyProduct.Quantity -= sp.Quantity * suplyProduct.ExpenseNumerationMultyplier;
-                }
-                else
-                {
-                    suplyProduct.Quantity -= sp.Quantity;
-                }
+                suplyProduct.Quantity -= sp.Quantity * suplyProduct.ExpenseNumerationMultyplier;
                     
                 entities.ExpenseSuplyProducts.Remove(sp);
             }
