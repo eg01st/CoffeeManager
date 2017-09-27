@@ -288,6 +288,7 @@
     <Compile Include="Shift.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Startup.cs" />
     <Compile Include="SupliedProduct.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>

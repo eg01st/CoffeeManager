@@ -1,17 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using CoffeeManager.Api;
+using CoffeeManager.Api.AuthModels;
+using CoffeeManager.Api.Providers;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
 using Owin;
-using CoffeeManager.Api.Providers;
-using CoffeeManager.Api.AuthModels;
 
-namespace CoffeeManager.AuthService
+namespace CoffeeManager.Api
 {
     public partial class Startup
     {
