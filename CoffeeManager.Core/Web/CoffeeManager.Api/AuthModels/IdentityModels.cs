@@ -22,8 +22,9 @@ namespace CoffeeManager.Api.AuthModels
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("CoffeeRoomEntities", throwIfV1Schema: false)
+            : base("AuthConnection", throwIfV1Schema: false)
         {
+            
         }
         
         public static ApplicationDbContext Create()
