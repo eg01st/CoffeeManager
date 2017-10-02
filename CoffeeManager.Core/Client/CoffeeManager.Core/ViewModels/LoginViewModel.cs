@@ -4,6 +4,8 @@ using MvvmCross.Core.ViewModels;
 using System.Linq;
 using CoffeManager.Common;
 using System.Threading.Tasks;
+using CoffeManager.Common.Managers;
+using System;
 
 namespace CoffeeManager.Core.ViewModels
 {
@@ -16,8 +18,13 @@ namespace CoffeeManager.Core.ViewModels
         public ICommand SelectUserCommand { get; }
         public ICommand RefreshCommand { get; }
 
-        public LoginViewModel(IShiftManager shiftManager, IUserManager userManager)
+        readonly IAccountManager accountManager;
+        readonly ILocalStorage localStorage;
+
+        public LoginViewModel(IShiftManager shiftManager, IUserManager userManager, IAccountManager accountManager, ILocalStorage localStorage)
         {
+            this.localStorage = localStorage;
+            this.accountManager = accountManager;
             _userManager = userManager;
             _shiftManager = shiftManager;
             SelectUserCommand = new MvxCommand<User>(DoSelectUser);
@@ -61,6 +68,32 @@ namespace CoffeeManager.Core.ViewModels
         {
             await ExecuteSafe(async () =>
             {
+                var userInfo = localStorage.GetUserInfo();
+
+                try
+                {
+                    if (userInfo == null)
+                    {
+                        await PromtLogin();
+                    }
+                    else
+                    {
+                        await accountManager.Authorize(userInfo.Login, userInfo.Password);
+                    }
+                }
+                catch (System.UnauthorizedAccessException uex)
+                {
+                    Alert("Не правильный логин или пароль");
+                    localStorage.ClearUserInfo();
+                    return;
+                }
+                catch(Exception ex)
+                {
+                    Alert("Произошла ошибка сервера. Мы работаем над решением проблемы");
+                    await EmailService?.SendErrorEmail(ex.ToDiagnosticString());
+                    return;
+                }
+
                 Shift currentShift = await _shiftManager.GetCurrentShift();
                 if (currentShift != null)
                 {
@@ -69,6 +102,23 @@ namespace CoffeeManager.Core.ViewModels
                 var res = await _userManager.GetUsers();
                 Users = res.Where(u => u.IsActive).ToArray();
             });
+        }
+
+
+        private async Task PromtLogin()
+        {
+            var email = await PromtStringAsync("Введите логин");
+            if(string.IsNullOrEmpty(email))
+            {
+                return;
+            }
+            var password = await PromtStringAsync("Введите пароль");
+            if (string.IsNullOrEmpty(password))
+            {
+                return;
+            }
+            await accountManager.Authorize(email, password);
+            localStorage.SetUserInfo(new UserInfo() { Login = email, Password = password });
         }
     }
 }

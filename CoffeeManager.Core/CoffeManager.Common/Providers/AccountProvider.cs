@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using CoffeeManager.Common;
 using CoffeeManager.Models;
 using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 
 namespace CoffeManager.Common.Providers
 {
@@ -11,28 +12,18 @@ namespace CoffeManager.Common.Providers
     {
         public async Task<string> AuthorizeInitial(string login, string password)
         {
-            _apiUrl = Config.ApiUrl;
-            var result = await Post<object>(RoutesConstants.Token, null, new Dictionary<string, string>()
-            {
-                {"grant_type", "password"},
-                {"username", login},
-                {"password", password}
-            });
-            var obj = new JObject(result);
+            _apiUrl = Config.AuthApiUrl;
+            var result = await Post<string>(RoutesConstants.Token, $"grant_type=password&username={login}&password={password}");
+            var obj = JObject.Parse(result);
             var token = obj["access_token"].Value<string>();
             return token;
         }
 
         public async Task<string> Authorize(string login, string password)
         {
-            _apiUrl = Config.AuthApiUrl;
-            var result = await Post<object>(RoutesConstants.Token, null, new Dictionary<string, string>()
-            {
-                {"grant_type", "password"},
-                {"username", login},
-                {"password", password}
-            });
-            var obj = new JObject(result);
+            _apiUrl = Config.ApiUrl;
+            var result = await Post<string>(RoutesConstants.Token, $"grant_type=password&username={login}&password={password}");
+            var obj = JObject.Parse(result);
             var token = obj["access_token"].Value<string>();
             return token;
         }

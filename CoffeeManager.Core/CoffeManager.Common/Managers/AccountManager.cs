@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using CoffeeManager.Models;
 using CoffeManager.Common.Providers;
+using CoffeeManager.Common;
 
 namespace CoffeManager.Common.Managers
 {
@@ -20,7 +21,15 @@ namespace CoffeManager.Common.Managers
 
         public async Task<string> Authorize(string login, string password)
         {
-            return await _provider.Authorize(login, password);
+            var initialAccessToken = await _provider.AuthorizeInitial(login, password);
+            BaseServiceProvider.SetAccessToken(initialAccessToken);
+            var userInfo = await _provider.GetUserInfo();
+            Config.ApiUrl = userInfo.ApiUrl;
+
+            var token = await _provider.Authorize(login, password);
+            BaseServiceProvider.SetAccessToken(token);
+
+            return token;
         }
 
         public async Task<UserAcount> GetUserInfo()

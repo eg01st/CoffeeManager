@@ -1,26 +1,37 @@
-﻿
+﻿using System;
 using CoffeeManager.Models;
-using MvvmCross.Platform;
 using MvvmCross.Plugins.File;
 using Newtonsoft.Json;
 
-namespace CoffeeManagerAdmin.Core
+namespace CoffeManager.Common
 {
-    public class LocalStorage
+    public class LocalStorage : ILocalStorage
     {
-        private static IMvxFileStore storage = Mvx.Resolve<IMvxFileStore>();
         private const string UserInfoStorage = "UserInfo";
-        public static UserInfo GetUserInfo()
+        readonly IMvxFileStore storage;
+
+        public LocalStorage(IMvxFileStore storage)
+        {
+            this.storage = storage;
+        }
+
+        public UserInfo GetUserInfo()
         {
             var info = GetStorage<UserInfo>(UserInfoStorage);
             return info;
         }
-        public static void SetUserInfo(UserInfo info)
+
+        public void ClearUserInfo()
+        {
+            storage.WriteFile(UserInfoStorage, string.Empty);
+        }
+
+        public void SetUserInfo(UserInfo info)
         {
             storage.WriteFile(UserInfoStorage, JsonConvert.SerializeObject(info));
         }
 
-        private static T GetStorage<T>(string fileName) where T : new()
+        private T GetStorage<T>(string fileName) where T : new()
         {
             string storageJson;
             if (storage.TryReadTextFile(fileName, out storageJson))
@@ -29,7 +40,7 @@ namespace CoffeeManagerAdmin.Core
             }
             else
             {
-                return new T();
+                return default(T);
             }
         }
     }

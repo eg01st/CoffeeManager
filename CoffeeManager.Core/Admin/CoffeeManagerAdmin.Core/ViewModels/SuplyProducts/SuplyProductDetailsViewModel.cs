@@ -12,9 +12,9 @@ namespace CoffeeManagerAdmin.Core
         private decimal _supliedPrice;
         private decimal? _salePrice;
         private decimal? _itemCount;
-        private decimal? _expenseNumerationMultiplier;
+        private decimal _expenseNumerationMultiplier;
         private string _expenseNumerationName;
-        private decimal? _inventoryNumerationMultiplier;
+        private decimal _inventoryNumerationMultiplier;
         private string _inventoryNumerationName;
         private bool inventoryEnabled;
         private ICommand _saveCommand;
@@ -85,7 +85,7 @@ namespace CoffeeManagerAdmin.Core
             }
         }
 
-        public decimal? ExpenseNumerationMultiplier
+        public decimal ExpenseNumerationMultiplier
         {
             get { return _expenseNumerationMultiplier; }
             set
@@ -95,7 +95,7 @@ namespace CoffeeManagerAdmin.Core
             }
         }
 
-        public decimal? InventoryNumerationMultiplier
+        public decimal InventoryNumerationMultiplier
         {
             get { return _inventoryNumerationMultiplier; }
             set

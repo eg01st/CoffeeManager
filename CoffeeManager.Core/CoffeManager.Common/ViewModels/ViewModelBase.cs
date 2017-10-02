@@ -1,4 +1,4 @@
-﻿﻿using System;
+﻿using System;
 using System.Diagnostics;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -15,13 +15,13 @@ namespace CoffeManager.Common
         private bool isLoading;
         public bool IsLoading
         {
-            get { return isLoading;}
-            set 
+            get { return isLoading; }
+            set
             {
                 isLoading = value;
-                if(isLoading)
+                if (isLoading)
                 {
-                    this.UserDialogs.ShowLoading("Loading", Acr.UserDialogs.MaskType.Black) ;
+                    this.UserDialogs.ShowLoading("Loading", Acr.UserDialogs.MaskType.Black);
                 }
                 else
                 {
@@ -50,11 +50,11 @@ namespace CoffeManager.Common
         }
 
 
-        private IEmailService EmailService
+        protected IEmailService EmailService
         {
             get
             {
-                if(Mvx.CanResolve<IEmailService>())
+                if (Mvx.CanResolve<IEmailService>())
                 {
                     return Mvx.Resolve<IEmailService>();
                 }
@@ -110,7 +110,7 @@ namespace CoffeManager.Common
         {
             Func<Task<bool>> runDelegate = async () => { await functionToRun(); return true; };
 
-            await ExecuteSafe(functionToRun: runDelegate, 
+            await ExecuteSafe(functionToRun: runDelegate,
                                     globalExceptionMessage: globalExceptionMessage);
         }
 
@@ -136,7 +136,12 @@ namespace CoffeManager.Common
             catch (Exception e)
             {
                 Debug.WriteLine(e.ToDiagnosticString());
+#if DEBUG
                 UserDialogs.Alert(e.ToString());
+#else
+                Alert("Произошла ошибка сервера. Мы работаем над решением проблемы");
+#endif
+
                 await EmailService?.SendErrorEmail(e.ToDiagnosticString());
             }
             finally

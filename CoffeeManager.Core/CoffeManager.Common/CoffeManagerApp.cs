@@ -2,6 +2,7 @@
 using CoffeManager.Common.Providers;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
+using MvvmCross.Plugins.File;
 using MvvmCross.Plugins.Sqlite;
 
 namespace CoffeManager.Common
@@ -16,6 +17,8 @@ namespace CoffeManager.Common
 
         public virtual void RegisterInjections()
         {
+            Mvx.RegisterSingleton<ILocalStorage>(new LocalStorage(Mvx.Resolve<IMvxFileStore>()));
+
             RegisterProviders();
             RegisterManagers();
         }

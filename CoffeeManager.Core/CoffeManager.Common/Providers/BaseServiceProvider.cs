@@ -77,6 +77,30 @@ namespace CoffeManager.Common
 
         }
 
+        protected async Task<string> Post<T>(string path, string obj, Dictionary<string, string> param = null)
+        {
+            string url = GetUrl(path, param);
+            var client = GetClient();
+
+            using (var response = await client.PostAsync(url, new StringContent(obj)))
+            {
+                var responseString = await response.Content.ReadAsStringAsync();
+                if (response.StatusCode != System.Net.HttpStatusCode.OK)
+                {
+                    if(responseString.Contains("The user name or password is incorrect"))
+                    {
+                        throw new UnauthorizedAccessException(responseString);
+                    }
+                    else
+                    {
+                        throw new Exception(response.ToString() + responseString);
+                    }
+                }
+                return responseString;
+            }
+
+        }
+
         protected async Task<T> Put<T, TY>(string path, TY obj, Dictionary<string, string> param = null)
         {
             string url = GetUrl(path, param);
