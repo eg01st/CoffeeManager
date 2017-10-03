@@ -81,7 +81,8 @@ namespace CoffeeManager.Droid.Views
                     Resource.Id.shift_sales,
                     Resource.Id.end_shift,
                     Resource.Id.inventory,
-                    Resource.Id.utilize_suply_product
+                    Resource.Id.utilize_suply_product,
+                    Resource.Id.settings
                 };
         }
 
@@ -114,7 +115,9 @@ namespace CoffeeManager.Droid.Views
                 case Resource.Id.utilize_suply_product:
                     ViewModel.ShowUtilizeCommand.Execute(null);
                     break;
-
+                case Resource.Id.settings:
+                    ViewModel.ShowSettingsCommand.Execute(null);
+                    break;
                 default:
                     break;
             }

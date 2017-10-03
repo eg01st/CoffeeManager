@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:local="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="100"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_margin="16dp"
+            android:layout_width="match_parent"
+            android:layout_weight="90"
+            android:layout_height="0dp"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:textColor="#000000"
+                android:text="Выбор кофейни: " />
+            <Mvx.MvxListView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                local:MvxBind="ItemsSource CoffeeRooms; ItemClick CoffeeRoomSelectedCommand"
+                local:MvxItemTemplate="@layout/coffee_room_card" />
+        </LinearLayout>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_weight="10"
+            android:layout_height="0dp"
+            android:text="Сохранить"
+            local:MvxBind="Click CloseCommand" />
+    </LinearLayout>
+</LinearLayout>

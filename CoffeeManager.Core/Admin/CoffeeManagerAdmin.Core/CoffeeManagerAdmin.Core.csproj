@@ -35,7 +35,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
-    <Compile Include="LocalStorage.cs" />
     <Compile Include="Messages\CalculationListChangedMessage.cs" />
     <Compile Include="Messages\OrderItemChangedMessage.cs" />
     <Compile Include="Messages\OrderItemsListChangedMessage.cs" />

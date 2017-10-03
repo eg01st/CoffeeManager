@@ -65,12 +65,46 @@ namespace CoffeManager.Common
             string url = GetUrl(path, param);
             var client = GetClient();
 
+
             using (var response = await client.PostAsync(url, new StringContent(JsonConvert.SerializeObject(obj))))
             {
                 var responseString = await response.Content.ReadAsStringAsync();
                 if (response.StatusCode != System.Net.HttpStatusCode.OK)
                 {
                     throw new Exception(response.ToString() + responseString);
+                }
+                return responseString;
+            }
+
+        }
+
+        protected async Task<string> Post<T>(string path, Dictionary<string, string> param = null)
+        {
+            string url = GetUrl(path);
+            var client = GetClient();
+
+            string body = string.Empty;
+            if (param != null && param.Count > 0)
+            {
+                foreach (var parameter in param)
+                {
+                    body += $"&{parameter.Key}={parameter.Value}";
+                }
+            }
+
+            using (var response = await client.PostAsync(url, new StringContent(body)))
+            {
+                var responseString = await response.Content.ReadAsStringAsync();
+                if (response.StatusCode != System.Net.HttpStatusCode.OK)
+                {
+                    if(responseString.Contains("The user name or password is incorrect"))
+                    {
+                        throw new UnauthorizedAccessException(responseString);
+                    }
+                    else
+                    {
+                        throw new Exception(response.ToString() + responseString);
+                    }
                 }
                 return responseString;
             }
@@ -146,7 +180,7 @@ namespace CoffeManager.Common
             if(httpClient == null)
             {
                 httpClient = new HttpClient();
-                httpClient.Timeout = new TimeSpan(0, 0, 5);
+                httpClient.Timeout = new TimeSpan(0, 0, 10);
             }
 
             return httpClient;

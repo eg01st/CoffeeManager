@@ -15,6 +15,8 @@ namespace CoffeManager.Common
         private readonly IProductProvider productProvider;
         private readonly ISyncManager syncManager;
 
+        private static readonly object salesSyncLock = new object();
+
         public ProductManager(IProductProvider productProvider, ISyncManager syncManager)
         {
             this.syncManager = syncManager;
@@ -84,11 +86,13 @@ namespace CoffeManager.Common
             {
                 Debug.WriteLine(hrex.ToDiagnosticString());
                 syncManager.AddSaleToSync(sale, SaleAction.Add);
+                return;
             }
             catch (TaskCanceledException tcex)
             {
                 Debug.WriteLine(tcex.ToDiagnosticString());
                 syncManager.AddSaleToSync(sale, SaleAction.Add);
+                return;
             }
             catch(Exception ex)
             {
@@ -98,22 +102,9 @@ namespace CoffeManager.Common
                 return;
             }
 
-            try
+            lock(salesSyncLock)
             {
-                await syncManager.SyncSales();
-            }
-            catch (HttpRequestException hrex)
-            {
-                Debug.WriteLine(hrex.ToDiagnosticString());
-            }
-            catch (TaskCanceledException tcex)
-            {
-                Debug.WriteLine(tcex.ToDiagnosticString());
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex.ToDiagnosticString());
-                await EmailService?.SendErrorEmail(ex.ToDiagnosticString());
+                syncManager.SyncSales();
             }
         }
 

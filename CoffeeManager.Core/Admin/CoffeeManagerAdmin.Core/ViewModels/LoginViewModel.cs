@@ -11,7 +11,6 @@ namespace CoffeeManagerAdmin.Core.ViewModels
 {
     public class LoginViewModel : ViewModelBase
     {
-        private readonly IUserManager manager;
         private readonly IAccountManager _accountManager;
 
         private string _name;
@@ -36,17 +35,18 @@ namespace CoffeeManagerAdmin.Core.ViewModels
             }
         }
 
+        readonly ILocalStorage localStorage;
 
-        public LoginViewModel(IUserManager manager, IAccountManager accountManager)
+        public LoginViewModel(IAccountManager accountManager, ILocalStorage localStorage)
         {
-            this.manager = manager;
+            this.localStorage = localStorage;
             _accountManager = accountManager;
             _loginCommand = new MvxAsyncCommand(DoLogin);
         }
 
         public async Task Init()
         {
-            var userinfo = LocalStorage.GetUserInfo();
+            var userinfo = localStorage.GetUserInfo();
             Name = userinfo.Login;
             Password = userinfo.Password;
 
@@ -59,18 +59,9 @@ namespace CoffeeManagerAdmin.Core.ViewModels
         {
             await ExecuteSafe(async () => 
             {           
-                string accessToken = await _accountManager.AuthorizeInitial(Name, Password);
-                BaseServiceProvider.SetAccessToken(accessToken);
-                var user = await _accountManager.GetUserInfo();
-                Config.ApiUrl = user.ApiUrl;
+                await _accountManager.Authorize(Name, Password);
 
-                accessToken = await _accountManager.Authorize(Name, Password);
-                BaseServiceProvider.SetAccessToken(accessToken);
-
-                //accessToken = accessToken.Substring(1);
-                //accessToken = accessToken.Substring(0, accessToken.Length - 1);
-                LocalStorage.SetUserInfo(new UserInfo() { Login = Name, Password = Password });
-                BaseServiceProvider.SetAccessToken(accessToken);
+                localStorage.SetUserInfo(new UserInfo() { Login = Name, Password = Password });
                 ShowViewModelAsRoot<MainViewModel>();
             });
 

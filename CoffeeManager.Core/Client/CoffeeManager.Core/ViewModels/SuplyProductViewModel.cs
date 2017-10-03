@@ -1,6 +1,7 @@
 ﻿using System;
 using CoffeManager.Common;
 using CoffeeManager.Models;
+using System.Drawing;
 namespace CoffeeManager.Core
 {
     public class SuplyProductViewModel : ViewModelBase
@@ -16,7 +17,10 @@ namespace CoffeeManager.Core
             Id = product.Id;
             Name = product.Name;
             ExpenseMultiplierName = product.ExpenseNumerationName;
+            Product = product;
         }
+
+        public SupliedProduct Product { get; set; }
 
         public string Name
         {

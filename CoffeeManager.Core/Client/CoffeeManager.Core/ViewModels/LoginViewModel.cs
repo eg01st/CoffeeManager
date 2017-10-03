@@ -4,6 +4,9 @@ using MvvmCross.Core.ViewModels;
 using System.Linq;
 using CoffeManager.Common;
 using System.Threading.Tasks;
+using CoffeManager.Common.Managers;
+using System;
+using CoffeeManager.Common;
 
 namespace CoffeeManager.Core.ViewModels
 {
@@ -16,8 +19,13 @@ namespace CoffeeManager.Core.ViewModels
         public ICommand SelectUserCommand { get; }
         public ICommand RefreshCommand { get; }
 
-        public LoginViewModel(IShiftManager shiftManager, IUserManager userManager)
+        readonly IAccountManager accountManager;
+        readonly ILocalStorage localStorage;
+
+        public LoginViewModel(IShiftManager shiftManager, IUserManager userManager, IAccountManager accountManager, ILocalStorage localStorage)
         {
+            this.localStorage = localStorage;
+            this.accountManager = accountManager;
             _userManager = userManager;
             _shiftManager = shiftManager;
             SelectUserCommand = new MvxCommand<User>(DoSelectUser);
@@ -61,6 +69,49 @@ namespace CoffeeManager.Core.ViewModels
         {
             await ExecuteSafe(async () =>
             {
+                var userInfo = localStorage.GetUserInfo();
+                bool loggedIn = false;
+                try
+                {
+                    if (userInfo == null)
+                    {
+                        loggedIn = await PromtLogin();
+                    }
+                    else
+                    {
+                        await accountManager.Authorize(userInfo.Login, userInfo.Password);
+                        loggedIn = true;
+                    }
+                }
+                catch (System.UnauthorizedAccessException uex)
+                {
+                    Alert("Не правильный логин или пароль");
+                    localStorage.ClearUserInfo();
+                    return;
+                }
+                catch(Exception ex)
+                {
+                    Alert("Произошла ошибка сервера. Мы работаем над решением проблемы");
+                    await EmailService?.SendErrorEmail(ex.ToDiagnosticString());
+                    return;
+                }
+
+                if(!loggedIn)
+                {
+                    return;
+                }
+
+                var coffeeRoomNo = localStorage.GetCoffeeRoomId();
+                if (coffeeRoomNo == -1)
+                {
+                    ShowViewModel<SettingsViewModel>(new {isInitialSetup = true});
+                    return;
+                }
+                else
+                {
+                    Config.CoffeeRoomNo = coffeeRoomNo;
+                }
+
                 Shift currentShift = await _shiftManager.GetCurrentShift();
                 if (currentShift != null)
                 {
@@ -70,5 +121,6 @@ namespace CoffeeManager.Core.ViewModels
                 Users = res.Where(u => u.IsActive).ToArray();
             });
         }
+
     }
 }

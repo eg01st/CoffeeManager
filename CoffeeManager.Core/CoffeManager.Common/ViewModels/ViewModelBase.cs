@@ -1,4 +1,4 @@
-﻿﻿using System;
+﻿using System;
 using System.Diagnostics;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -7,6 +7,8 @@ using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
 using MvvmCross.Plugins.Messenger;
 using System.Windows.Input;
+using CoffeeManager.Models;
+using CoffeManager.Common.Managers;
 
 namespace CoffeManager.Common
 {
@@ -15,13 +17,13 @@ namespace CoffeManager.Common
         private bool isLoading;
         public bool IsLoading
         {
-            get { return isLoading;}
-            set 
+            get { return isLoading; }
+            set
             {
                 isLoading = value;
-                if(isLoading)
+                if (isLoading)
                 {
-                    this.UserDialogs.ShowLoading("Loading", Acr.UserDialogs.MaskType.Black) ;
+                    this.UserDialogs.ShowLoading("Loading", Acr.UserDialogs.MaskType.Black);
                 }
                 else
                 {
@@ -49,12 +51,28 @@ namespace CoffeManager.Common
             }
         }
 
-
-        private IEmailService EmailService
+        private IAccountManager AccountManager
         {
             get
             {
-                if(Mvx.CanResolve<IEmailService>())
+                return Mvx.Resolve<IAccountManager>();
+            }
+        }
+
+        private ILocalStorage LocalStorage
+        {
+            get
+            {
+                return Mvx.Resolve<ILocalStorage>();
+            }
+        }
+
+
+        protected IEmailService EmailService
+        {
+            get
+            {
+                if (Mvx.CanResolve<IEmailService>())
                 {
                     return Mvx.Resolve<IEmailService>();
                 }
@@ -71,7 +89,7 @@ namespace CoffeManager.Common
             CloseCommand = new MvxCommand(DoClose);
         }
 
-        private void DoClose()
+        protected virtual void DoClose()
         {
             OnClose();
             DoUnsubscribe();
@@ -110,7 +128,7 @@ namespace CoffeManager.Common
         {
             Func<Task<bool>> runDelegate = async () => { await functionToRun(); return true; };
 
-            await ExecuteSafe(functionToRun: runDelegate, 
+            await ExecuteSafe(functionToRun: runDelegate,
                                     globalExceptionMessage: globalExceptionMessage);
         }
 
@@ -136,7 +154,12 @@ namespace CoffeManager.Common
             catch (Exception e)
             {
                 Debug.WriteLine(e.ToDiagnosticString());
+#if DEBUG
                 UserDialogs.Alert(e.ToString());
+#else
+                Alert("Произошла ошибка сервера. Мы работаем над решением проблемы");
+#endif
+
                 await EmailService?.SendErrorEmail(e.ToDiagnosticString());
             }
             finally
@@ -228,6 +251,24 @@ namespace CoffeManager.Common
         {
             var bundle = MvxNavigationExtensions.ProduceRootViewModelRequest();
             return ShowViewModel<TViewModel>(parameter, bundle, requestedBy);
+        }
+
+
+        protected async Task<bool> PromtLogin()
+        {
+            var email = await PromtStringAsync("Введите логин");
+            if (string.IsNullOrEmpty(email))
+            {
+                return false;
+            }
+            var password = await PromtStringAsync("Введите пароль");
+            if (string.IsNullOrEmpty(password))
+            {
+                return false;
+            }
+            await AccountManager.Authorize(email, password);
+            LocalStorage.SetUserInfo(new UserInfo() { Login = email, Password = password });
+            return true;
         }
     }
 }
