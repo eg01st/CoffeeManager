@@ -65,6 +65,7 @@ namespace CoffeManager.Common
             string url = GetUrl(path, param);
             var client = GetClient();
 
+
             using (var response = await client.PostAsync(url, new StringContent(JsonConvert.SerializeObject(obj))))
             {
                 var responseString = await response.Content.ReadAsStringAsync();
@@ -77,12 +78,21 @@ namespace CoffeManager.Common
 
         }
 
-        protected async Task<string> Post<T>(string path, string obj, Dictionary<string, string> param = null)
+        protected async Task<string> Post<T>(string path, Dictionary<string, string> param = null)
         {
-            string url = GetUrl(path, param);
+            string url = GetUrl(path);
             var client = GetClient();
 
-            using (var response = await client.PostAsync(url, new StringContent(obj)))
+            string body = string.Empty;
+            if (param != null && param.Count > 0)
+            {
+                foreach (var parameter in param)
+                {
+                    body += $"&{parameter.Key}={parameter.Value}";
+                }
+            }
+
+            using (var response = await client.PostAsync(url, new StringContent(body)))
             {
                 var responseString = await response.Content.ReadAsStringAsync();
                 if (response.StatusCode != System.Net.HttpStatusCode.OK)

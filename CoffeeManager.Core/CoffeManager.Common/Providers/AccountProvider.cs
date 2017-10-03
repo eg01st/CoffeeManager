@@ -13,7 +13,13 @@ namespace CoffeManager.Common.Providers
         public async Task<string> AuthorizeInitial(string login, string password)
         {
             _apiUrl = Config.AuthApiUrl;
-            var result = await Post<string>(RoutesConstants.Token, $"grant_type=password&username={login}&password={password}");
+            var result = await Post<string>(RoutesConstants.Token, new Dictionary<string, string>()
+            {
+                {"grant_type", "password"},
+                {"username", login},
+                {"password", password},
+
+            });
             var obj = JObject.Parse(result);
             var token = obj["access_token"].Value<string>();
             return token;
@@ -22,7 +28,13 @@ namespace CoffeManager.Common.Providers
         public async Task<string> Authorize(string login, string password)
         {
             _apiUrl = Config.ApiUrl;
-            var result = await Post<string>(RoutesConstants.Token, $"grant_type=password&username={login}&password={password}");
+            var result = await Post<string>(RoutesConstants.Token, new Dictionary<string, string>() 
+            {
+                {"grant_type", "password"},
+                {"username", login},
+                {"password", password},
+
+            } );
             var obj = JObject.Parse(result);
             var token = obj["access_token"].Value<string>();
             return token;
