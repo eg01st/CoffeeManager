@@ -230,6 +230,7 @@
     <Compile Include="Views\InventoryView.cs" />
     <Compile Include="Converters\DecimalToQuantityConverter.cs" />
     <Compile Include="Views\UtilizeProductsView.cs" />
+    <Compile Include="Views\SettingsView.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -310,6 +311,8 @@
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_done_black_24dp.png" />
     <AndroidResource Include="Resources\layout\utilize_layout.axml" />
     <AndroidResource Include="Resources\layout\utilize_item.axml" />
+    <AndroidResource Include="Resources\layout\settings.axml" />
+    <AndroidResource Include="Resources\layout\coffee_room_card.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />

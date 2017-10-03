@@ -44,6 +44,13 @@
         </LinearLayout>
         <LinearLayout
             style="@style/left_menu_button_layout"
+            android:id="@+id/settings">
+            <TextView
+                style="@style/left_menu_button_text"
+                android:text="Настройки" />
+        </LinearLayout>
+        <LinearLayout
+            style="@style/left_menu_button_layout"
             android:id="@+id/end_shift">
             <TextView
                 style="@style/left_menu_button_text"

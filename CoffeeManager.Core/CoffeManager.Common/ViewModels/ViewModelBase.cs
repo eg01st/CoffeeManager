@@ -7,6 +7,8 @@ using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
 using MvvmCross.Plugins.Messenger;
 using System.Windows.Input;
+using CoffeeManager.Models;
+using CoffeManager.Common.Managers;
 
 namespace CoffeManager.Common
 {
@@ -49,6 +51,22 @@ namespace CoffeManager.Common
             }
         }
 
+        private IAccountManager AccountManager
+        {
+            get
+            {
+                return Mvx.Resolve<IAccountManager>();
+            }
+        }
+
+        private ILocalStorage LocalStorage
+        {
+            get
+            {
+                return Mvx.Resolve<ILocalStorage>();
+            }
+        }
+
 
         protected IEmailService EmailService
         {
@@ -71,7 +89,7 @@ namespace CoffeManager.Common
             CloseCommand = new MvxCommand(DoClose);
         }
 
-        private void DoClose()
+        protected virtual void DoClose()
         {
             OnClose();
             DoUnsubscribe();
@@ -233,6 +251,24 @@ namespace CoffeManager.Common
         {
             var bundle = MvxNavigationExtensions.ProduceRootViewModelRequest();
             return ShowViewModel<TViewModel>(parameter, bundle, requestedBy);
+        }
+
+
+        protected async Task<bool> PromtLogin()
+        {
+            var email = await PromtStringAsync("Введите логин");
+            if (string.IsNullOrEmpty(email))
+            {
+                return false;
+            }
+            var password = await PromtStringAsync("Введите пароль");
+            if (string.IsNullOrEmpty(password))
+            {
+                return false;
+            }
+            await AccountManager.Authorize(email, password);
+            LocalStorage.SetUserInfo(new UserInfo() { Login = email, Password = password });
+            return true;
         }
     }
 }

@@ -94,6 +94,7 @@ namespace CoffeeManager.Core.ViewModels
         public ICommand ShowCurrentShiftExpensesCommand { get; set; }
         public ICommand ShowInventoryCommand { get; set; }
         public ICommand ShowUtilizeCommand { get; set; }
+        public ICommand ShowSettingsCommand { get; set; }
 
         public ObservableCollection<SelectedProductViewModel> SelectedProducts
         {
@@ -150,6 +151,7 @@ namespace CoffeeManager.Core.ViewModels
             ShowCurrentShiftExpensesCommand = new MvxCommand(() => ShowViewModel<CurrentShiftExpensesViewModel>());
             ShowInventoryCommand= new MvxCommand(() => ShowViewModel<InventoryViewModel>());
             ShowUtilizeCommand = new MvxCommand(() => ShowViewModel<UtilizeProductsViewModel>());
+            ShowSettingsCommand = new MvxCommand(() => ShowViewModel<SettingsViewModel>(new { isInitialSetup = false }));
         }
 
         public async void Init(int userId, int shiftId)

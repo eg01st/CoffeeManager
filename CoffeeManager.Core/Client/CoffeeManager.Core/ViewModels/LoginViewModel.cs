@@ -6,6 +6,7 @@ using CoffeManager.Common;
 using System.Threading.Tasks;
 using CoffeManager.Common.Managers;
 using System;
+using CoffeeManager.Common;
 
 namespace CoffeeManager.Core.ViewModels
 {
@@ -69,16 +70,17 @@ namespace CoffeeManager.Core.ViewModels
             await ExecuteSafe(async () =>
             {
                 var userInfo = localStorage.GetUserInfo();
-
+                bool loggedIn = false;
                 try
                 {
                     if (userInfo == null)
                     {
-                        await PromtLogin();
+                        loggedIn = await PromtLogin();
                     }
                     else
                     {
                         await accountManager.Authorize(userInfo.Login, userInfo.Password);
+                        loggedIn = true;
                     }
                 }
                 catch (System.UnauthorizedAccessException uex)
@@ -94,6 +96,22 @@ namespace CoffeeManager.Core.ViewModels
                     return;
                 }
 
+                if(!loggedIn)
+                {
+                    return;
+                }
+
+                var coffeeRoomNo = localStorage.GetCoffeeRoomId();
+                if (coffeeRoomNo == -1)
+                {
+                    ShowViewModel<SettingsViewModel>(new {isInitialSetup = true});
+                    return;
+                }
+                else
+                {
+                    Config.CoffeeRoomNo = coffeeRoomNo;
+                }
+
                 Shift currentShift = await _shiftManager.GetCurrentShift();
                 if (currentShift != null)
                 {
@@ -104,21 +122,5 @@ namespace CoffeeManager.Core.ViewModels
             });
         }
 
-
-        private async Task PromtLogin()
-        {
-            var email = await PromtStringAsync("Введите логин");
-            if(string.IsNullOrEmpty(email))
-            {
-                return;
-            }
-            var password = await PromtStringAsync("Введите пароль");
-            if (string.IsNullOrEmpty(password))
-            {
-                return;
-            }
-            await accountManager.Authorize(email, password);
-            localStorage.SetUserInfo(new UserInfo() { Login = email, Password = password });
-        }
     }
 }

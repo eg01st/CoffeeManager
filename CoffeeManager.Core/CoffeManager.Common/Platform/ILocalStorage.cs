@@ -9,5 +9,8 @@ namespace CoffeManager.Common
         void SetUserInfo(UserInfo info);
         void ClearUserInfo();
 
+        int GetCoffeeRoomId();
+        void SetCoffeeRoomId(int id);
+
     }
 }

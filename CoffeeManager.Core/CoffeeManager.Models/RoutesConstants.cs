@@ -100,6 +100,6 @@ namespace CoffeeManager.Models
         public const string RemoveLogin = Account + "/RemoveLogin";
         public const string Register = Account + "/Register";
 
-        public const string Token = "/Token";
+        public const string Token = "Token";
     }
 }

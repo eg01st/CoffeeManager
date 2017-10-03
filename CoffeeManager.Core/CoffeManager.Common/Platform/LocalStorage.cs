@@ -8,6 +8,7 @@ namespace CoffeManager.Common
     public class LocalStorage : ILocalStorage
     {
         private const string UserInfoStorage = "UserInfo";
+        private const string CoffeeRoomIdStorage = "CoffeeRoomIdStorage";
         readonly IMvxFileStore storage;
 
         public LocalStorage(IMvxFileStore storage)
@@ -42,6 +43,21 @@ namespace CoffeManager.Common
             {
                 return default(T);
             }
+        }
+
+        public int GetCoffeeRoomId()
+        {
+            string info;
+            if (storage.TryReadTextFile(CoffeeRoomIdStorage, out info))
+            {
+                return int.Parse(info);
+            }
+            return -1;
+        }
+
+        public void SetCoffeeRoomId(int id)
+        {
+            storage.WriteFile(CoffeeRoomIdStorage, id.ToString());
         }
     }
 }
