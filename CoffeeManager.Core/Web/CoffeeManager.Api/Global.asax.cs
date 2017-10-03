@@ -17,7 +17,7 @@ namespace CoffeeManager.Api
         {
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
-            RouteConfig.RegisterRoutes(RouteTable.Routes);
+            //RouteConfig.RegisterRoutes(RouteTable.Routes);
         }
 
         protected string fileNameBase = "f:\\temp\\log-";

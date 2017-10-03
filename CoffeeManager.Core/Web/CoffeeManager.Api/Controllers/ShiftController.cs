@@ -13,6 +13,7 @@ using Newtonsoft.Json;
 
 namespace CoffeeManager.Api.Controllers
 {
+    [Authorize]
     public class ShiftController : ApiController
     {
         public async Task<HttpResponseMessage> Post([FromUri]int coffeeroomno, [FromUri]int userId, [FromUri] int counter)

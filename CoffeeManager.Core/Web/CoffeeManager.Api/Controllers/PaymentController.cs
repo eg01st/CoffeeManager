@@ -12,6 +12,7 @@ using System.Data.Entity;
 
 namespace CoffeeManager.Api.Controllers
 {
+    [Authorize]
     public class PaymentController : ApiController
     {
         [Route(RoutesConstants.GetCurrentShiftMoney)]
@@ -57,11 +58,6 @@ namespace CoffeeManager.Api.Controllers
         [HttpDelete]
         public async Task<HttpResponseMessage> RemoveExpenseType([FromUri]int coffeeroomno, [FromUri] int expenseTypeId, HttpRequestMessage message)
         {
-            var token = message.Headers.GetValues("token").FirstOrDefault();
-            if (token == null || !UserSessions.Contains(token))
-            {
-                return Request.CreateResponse(HttpStatusCode.Forbidden);
-            }
             var entities = new CoffeeRoomEntities();
             var type = entities.ExpenseTypes.FirstOrDefault(t => t.Id == expenseTypeId && t.CoffeeRoomNo == coffeeroomno);
             type.IsRemoved = true;
@@ -73,11 +69,6 @@ namespace CoffeeManager.Api.Controllers
         [HttpPost]
         public async Task<HttpResponseMessage> ToggleExpenseEnabled([FromUri]int coffeeroomno, [FromUri]int id, HttpRequestMessage message)
         {
-            var token = message.Headers.GetValues("token").FirstOrDefault();
-            if (token == null || !UserSessions.Contains(token))
-            {
-                return Request.CreateResponse(HttpStatusCode.Forbidden);
-            }
             var entities = new CoffeeRoomEntities();
             var type = entities.ExpenseTypes.FirstOrDefault(t => t.CoffeeRoomNo == coffeeroomno && t.Id == id);
             if(type != null)
@@ -93,11 +84,6 @@ namespace CoffeeManager.Api.Controllers
         [HttpPost]
         public async Task<HttpResponseMessage> MapExpenseToSuplyProduct([FromUri]int coffeeroomno, [FromUri]int expenseTypeId, [FromUri]int suplyProductId, HttpRequestMessage message)
         {
-            var token = message.Headers.GetValues("token").FirstOrDefault();
-            if (token == null || !UserSessions.Contains(token))
-            {
-                return Request.CreateResponse(HttpStatusCode.Forbidden);
-            }
             var entities = new CoffeeRoomEntities();
             var sp = entities.SupliedProducts.FirstOrDefault(t => t.CoffeeRoomNo == coffeeroomno && t.Id == suplyProductId);
             if (sp != null)
@@ -112,11 +98,6 @@ namespace CoffeeManager.Api.Controllers
         [HttpGet]
         public async Task<HttpResponseMessage> GetMappedSuplyProductsToExpense([FromUri]int coffeeroomno, [FromUri]int expenseTypeId, HttpRequestMessage message)
         {
-            var token = message.Headers.GetValues("token").FirstOrDefault();
-            if (token == null || !UserSessions.Contains(token))
-            {
-                return Request.CreateResponse(HttpStatusCode.Forbidden);
-            }
             var entities = new CoffeeRoomEntities();
             var sp = entities.SupliedProducts.Where(t => t.CoffeeRoomNo == coffeeroomno && t.ExprenseTypeId == expenseTypeId).ToList().Select(s => s.ToDTO());
 
@@ -127,11 +108,6 @@ namespace CoffeeManager.Api.Controllers
         [HttpDelete]
         public async Task<HttpResponseMessage> RemoveMappedSuplyProductsToExpense([FromUri]int coffeeroomno, [FromUri]int expenseTypeId, [FromUri]int suplyProductId, HttpRequestMessage message)
         {
-            var token = message.Headers.GetValues("token").FirstOrDefault();
-            if (token == null || !UserSessions.Contains(token))
-            {
-                return Request.CreateResponse(HttpStatusCode.Forbidden);
-            }
             var entities = new CoffeeRoomEntities();
             var sp = entities.SupliedProducts.FirstOrDefault(t => t.CoffeeRoomNo == coffeeroomno && t.Id == suplyProductId);
             if (sp != null)
@@ -240,11 +216,6 @@ namespace CoffeeManager.Api.Controllers
         [HttpGet]
         public async Task<HttpResponseMessage> GetExpenseDetails([FromUri]int coffeeroomno, [FromUri]int expenseId, HttpRequestMessage message)
         {
-            var token = message.Headers.GetValues("token").FirstOrDefault();
-            if (token == null || !UserSessions.Contains(token))
-            {
-                return Request.CreateResponse(HttpStatusCode.Forbidden);
-            }
             var entities = new CoffeeRoomEntities();
             var sp = entities.ExpenseSuplyProducts.Include(e => e.SupliedProduct).Where(t => t.CoffeeRoonNo == coffeeroomno && t.ExpenseId == expenseId).ToList().Select(s => s.ToDTO());
 
@@ -326,11 +297,6 @@ namespace CoffeeManager.Api.Controllers
         [HttpGet]
         public async Task<HttpResponseMessage> GetSalesByDate([FromUri]int coffeeroomno, [FromUri]DateTime from, [FromUri]DateTime to, HttpRequestMessage message)
         {
-            var token = message.Headers.GetValues("token").FirstOrDefault();
-            if (token == null || !UserSessions.Contains(token))
-            {
-                return Request.CreateResponse(HttpStatusCode.Forbidden);
-            }
             var entities = new CoffeeRoomEntities();
             var sales = entities.Sales.Where(s => s.Time > from && s.Time < to && s.CoffeeRoomNo == coffeeroomno).Select(s => s.ToDTO());
             return Request.CreateResponse(HttpStatusCode.OK, sales);           

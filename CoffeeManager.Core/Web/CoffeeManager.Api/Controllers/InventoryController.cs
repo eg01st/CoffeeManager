@@ -11,6 +11,7 @@ using System.Web.Http;
 
 namespace CoffeeManager.Api.Controllers
 {
+    [Authorize]
     public class InventoryController : ApiController
     {
         [Route(RoutesConstants.GetInventoryItems)]

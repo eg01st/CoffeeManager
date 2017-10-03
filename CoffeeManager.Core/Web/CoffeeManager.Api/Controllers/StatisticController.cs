@@ -12,6 +12,7 @@ using CoffeeManager.Models;
 
 namespace CoffeeManager.Api.Controllers
 {
+    [Authorize]
     public class StatisticController : ApiController
     {
         [Route(RoutesConstants.StatisticGetAllSales)]

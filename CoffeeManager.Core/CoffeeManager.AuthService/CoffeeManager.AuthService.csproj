@@ -236,6 +236,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Properties\PublishProfiles\Default Settings.pubxml" />
     <None Include="Properties\PublishProfiles\Prod.pubxml" />
   </ItemGroup>
   <PropertyGroup>

@@ -12,17 +12,13 @@ using Newtonsoft.Json;
 
 namespace CoffeeManager.Api.Controllers
 {
+    [Authorize]
     public class SuplyOrderController : ApiController
     {
         [Route(RoutesConstants.GetOrders)]
         [HttpGet]
         public async Task<HttpResponseMessage> GetOrders([FromUri]int coffeeroomno, HttpRequestMessage message)
         {
-            var token = message.Headers.GetValues("token").FirstOrDefault();
-            if (token == null || !UserSessions.Contains(token))
-            {
-                return Request.CreateResponse(HttpStatusCode.Forbidden);
-            }
             var entities = new CoffeeRoomEntities();
             var orders = entities.SuplyOrders.Where(s => s.CoffeeRoomNo == coffeeroomno).ToList().Select(s => s.ToDTO());
          
@@ -33,11 +29,6 @@ namespace CoffeeManager.Api.Controllers
         [HttpGet]
         public async Task<HttpResponseMessage> GetOrderItems([FromUri]int coffeeroomno, [FromUri] int id, HttpRequestMessage message)
         {
-            var token = message.Headers.GetValues("token").FirstOrDefault();
-            if (token == null || !UserSessions.Contains(token))
-            {
-                return Request.CreateResponse(HttpStatusCode.Forbidden);
-            }
             var entities = new CoffeeRoomEntities();
             var orders = entities.SuplyOrderItems.Include("SupliedProduct").Where(o => o.SuplyOrderId == id && o.CoffeeRoomNo == coffeeroomno).ToList().Select(s => s.ToDTO());
             return Request.CreateResponse(HttpStatusCode.OK, orders);
@@ -47,12 +38,6 @@ namespace CoffeeManager.Api.Controllers
         [HttpPost]
         public async Task<HttpResponseMessage> SaveOrderItem([FromUri]int coffeeroomno, HttpRequestMessage message)
         {
-            var token = message.Headers.GetValues("token").FirstOrDefault();
-            if (token == null || !UserSessions.Contains(token))
-            {
-                return Request.CreateResponse(HttpStatusCode.Forbidden);
-            }
-
             var request = await message.Content.ReadAsStringAsync();
             var orderItem = JsonConvert.DeserializeObject<Models.OrderItem>(request);
 
@@ -69,12 +54,6 @@ namespace CoffeeManager.Api.Controllers
         [HttpPut]
         public async Task<HttpResponseMessage> CreateOrderItem([FromUri]int coffeeroomno, HttpRequestMessage message)
         {
-            var token = message.Headers.GetValues("token").FirstOrDefault();
-            if (token == null || !UserSessions.Contains(token))
-            {
-                return Request.CreateResponse(HttpStatusCode.Forbidden);
-            }
-
             var request = await message.Content.ReadAsStringAsync();
             var orderItem = JsonConvert.DeserializeObject<Models.OrderItem>(request);
 
@@ -102,12 +81,6 @@ namespace CoffeeManager.Api.Controllers
         [HttpPut]
         public async Task<HttpResponseMessage> CreateOrder([FromUri]int coffeeroomno, HttpRequestMessage message)
         {
-            var token = message.Headers.GetValues("token").FirstOrDefault();
-            if (token == null || !UserSessions.Contains(token))
-            {
-                return Request.CreateResponse(HttpStatusCode.Forbidden);
-            }
-
             var request = await message.Content.ReadAsStringAsync();
             var order = JsonConvert.DeserializeObject<Models.Order>(request);
 
@@ -149,11 +122,6 @@ namespace CoffeeManager.Api.Controllers
         [HttpPost]
         public async Task<HttpResponseMessage> CloseOrder([FromUri]int coffeeroomno, HttpRequestMessage message)
         {
-            var token = message.Headers.GetValues("token").FirstOrDefault();
-            if (token == null || !UserSessions.Contains(token))
-            {
-                return Request.CreateResponse(HttpStatusCode.Forbidden);
-            }
             var request = await message.Content.ReadAsStringAsync();
             var order = JsonConvert.DeserializeObject<Models.Order>(request);
 
@@ -198,12 +166,7 @@ namespace CoffeeManager.Api.Controllers
         [Route(RoutesConstants.DeleteOrder)]
         [HttpDelete]
         public async Task<HttpResponseMessage> DeleteOrder([FromUri]int coffeeroomno, [FromUri]int id, HttpRequestMessage message)
-        {
-            var token = message.Headers.GetValues("token").FirstOrDefault();
-            if (token == null || !UserSessions.Contains(token))
-            {
-                return Request.CreateResponse(HttpStatusCode.Forbidden);
-            }    
+        {   
             var entities = new CoffeeRoomEntities();
             var orderDb = entities.SuplyOrders.First(o => o.Id == id && o.CoffeeRoomNo == coffeeroomno);
             entities.SuplyOrders.Remove(orderDb);
@@ -215,11 +178,6 @@ namespace CoffeeManager.Api.Controllers
         [HttpDelete]
         public async Task<HttpResponseMessage> DeleteOrderItem([FromUri]int coffeeroomno, [FromUri]int id, HttpRequestMessage message)
         {
-            var token = message.Headers.GetValues("token").FirstOrDefault();
-            if (token == null || !UserSessions.Contains(token))
-            {
-                return Request.CreateResponse(HttpStatusCode.Forbidden);
-            }
             var entities = new CoffeeRoomEntities();
             var orderDb = entities.SuplyOrderItems.First(o => o.Id == id && o.CoffeeRoomNo == coffeeroomno);
             entities.SuplyOrderItems.Remove(orderDb);

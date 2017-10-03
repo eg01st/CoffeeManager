@@ -13,6 +13,7 @@ using System.Data.Entity;
 
 namespace CoffeeManager.Api.Controllers
 {
+    [Authorize]
     public class UsersController : ApiController
     {
         [Route(RoutesConstants.GetUsers)]
@@ -35,11 +36,6 @@ namespace CoffeeManager.Api.Controllers
         [HttpPut]
         public async Task<HttpResponseMessage> AddUser([FromUri]int coffeeroomno, HttpRequestMessage message)
         {
-            var token = message.Headers.GetValues("token").FirstOrDefault();
-            if (token == null || !UserSessions.Contains(token))
-            {
-                return Request.CreateResponse(HttpStatusCode.Forbidden);
-            }
             var request = await message.Content.ReadAsStringAsync();
             var user = JsonConvert.DeserializeObject<Models.User>(request);
             var entites = new  CoffeeRoomEntities();
@@ -53,11 +49,6 @@ namespace CoffeeManager.Api.Controllers
         [HttpPost]
         public async Task<HttpResponseMessage> UpdateUser([FromUri]int coffeeroomno, HttpRequestMessage message)
         {
-            var token = message.Headers.GetValues("token").FirstOrDefault();
-            if (token == null || !UserSessions.Contains(token))
-            {
-                return Request.CreateResponse(HttpStatusCode.Forbidden);
-            }
             var request = await message.Content.ReadAsStringAsync();
             var user = JsonConvert.DeserializeObject<Models.User>(request);
             var entites = new CoffeeRoomEntities();
@@ -71,12 +62,6 @@ namespace CoffeeManager.Api.Controllers
         [HttpPost]
         public async Task<HttpResponseMessage> PenaltyUser([FromUri]int coffeeroomno, [FromUri]int userId, [FromUri]decimal amount, [FromUri]string reason, HttpRequestMessage message)
         {
-            var token = message.Headers.GetValues("token").FirstOrDefault();
-            if (token == null || !UserSessions.Contains(token))
-            {
-                return Request.CreateResponse(HttpStatusCode.Forbidden);
-            }
-         
             var entites = new CoffeeRoomEntities();
             var userDb = entites.Users.First(u => u.CoffeeRoomNo == coffeeroomno && u.Id == userId);
             userDb.CurrentEarnedAmount -= amount;
@@ -94,12 +79,6 @@ namespace CoffeeManager.Api.Controllers
         [HttpPost]
         public async Task<HttpResponseMessage> DismisPenalty([FromUri]int coffeeroomno, [FromUri]int id, HttpRequestMessage message)
         {
-            var token = message.Headers.GetValues("token").FirstOrDefault();
-            if (token == null || !UserSessions.Contains(token))
-            {
-                return Request.CreateResponse(HttpStatusCode.Forbidden);
-            }
-
             var entites = new CoffeeRoomEntities();
             var penalty = entites.UserPenalties.Include(u => u.User).First(u => u.Id == id);
             penalty.User.CurrentEarnedAmount += penalty.Amount;
@@ -117,12 +96,6 @@ namespace CoffeeManager.Api.Controllers
         [HttpPost]
         public async Task<HttpResponseMessage> PaySalary([FromUri]int coffeeroomno, [FromUri]int userId, [FromUri]int currentShifId, HttpRequestMessage message)
         {
-            var token = message.Headers.GetValues("token").FirstOrDefault();
-            if (token == null || !UserSessions.Contains(token))
-            {
-                return Request.CreateResponse(HttpStatusCode.Forbidden);
-            }
-           
             var entites = new CoffeeRoomEntities();
             var user = entites.Users.FirstOrDefault(u => u.Id == userId && u.CoffeeRoomNo == coffeeroomno);
             if(user != null)
@@ -151,13 +124,7 @@ namespace CoffeeManager.Api.Controllers
         [Route(RoutesConstants.ToggleUserEnabled)]
         [HttpPost]
         public async Task<HttpResponseMessage> ToggleUserEnabled([FromUri]int coffeeroomno, [FromUri]int userId, HttpRequestMessage message)
-        {
-            var token = message.Headers.GetValues("token").FirstOrDefault();
-            if (token == null || !UserSessions.Contains(token))
-            {
-                return Request.CreateResponse(HttpStatusCode.Forbidden);
-            }
-           
+        {         
             var entites = new CoffeeRoomEntities();
             var user = entites.Users.FirstOrDefault(u => u.CoffeeRoomNo == coffeeroomno && u.Id == userId);
             if(user != null)
@@ -181,7 +148,6 @@ namespace CoffeeManager.Api.Controllers
             if (user != null)
             {
                 var guid = Guid.NewGuid().ToString();
-                UserSessions.AddSession(user.Id, guid);
                 return Request.CreateResponse<string>(HttpStatusCode.OK, guid);
             }
             return Request.CreateErrorResponse(HttpStatusCode.Forbidden, "Invalid user name or password");

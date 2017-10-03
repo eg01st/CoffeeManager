@@ -12,7 +12,8 @@ using System.Data.Entity;
 
 namespace CoffeeManager.Api.Controllers
 {
-	public class SuplyProductsController : ApiController
+    [Authorize]
+    public class SuplyProductsController : ApiController
 	{
         [Route(RoutesConstants.GetSuplyProducts)]
 		[HttpGet]
@@ -31,11 +32,6 @@ namespace CoffeeManager.Api.Controllers
         [HttpGet]
         public async Task<HttpResponseMessage> GetSuplyProduct([FromUri] int coffeeroomno, [FromUri] int id, HttpRequestMessage message)
         {
-            var token = message.Headers.GetValues("token").FirstOrDefault();
-            if (token == null || !UserSessions.Contains(token))
-            {
-                return Request.CreateResponse(HttpStatusCode.Forbidden);
-            }
             var entites = new CoffeeRoomEntities();
             var item = entites.SupliedProducts.FirstOrDefault(p => p.Id == id && p.CoffeeRoomNo == coffeeroomno);
             if(item != null)
@@ -56,12 +52,6 @@ namespace CoffeeManager.Api.Controllers
         [HttpPost]
         public async Task<HttpResponseMessage> EditSuplyProduct([FromUri] int coffeeroomno, HttpRequestMessage message)
         {
-            var token = message.Headers.GetValues("token").FirstOrDefault();
-            if (token == null || !UserSessions.Contains(token))
-            {
-                return Request.CreateResponse(HttpStatusCode.Forbidden);
-            }
-
             var request = await message.Content.ReadAsStringAsync();
             var sProduct = JsonConvert.DeserializeObject<Models.SupliedProduct>(request);
 
@@ -82,11 +72,6 @@ namespace CoffeeManager.Api.Controllers
 		[HttpPut]
 		public async Task<HttpResponseMessage> AddSuplyProduct ([FromUri] int coffeeroomno, HttpRequestMessage message)
 		{
-			var token = message.Headers.GetValues ("token").FirstOrDefault ();
-			if (token == null || !UserSessions.Contains (token)) {
-				return Request.CreateResponse (HttpStatusCode.Forbidden);
-			}
-
 			var request = await message.Content.ReadAsStringAsync ();
 			var sProduct = JsonConvert.DeserializeObject<Models.SupliedProduct> (request);
 			var prodDb = DbMapper.Map (sProduct);
@@ -100,11 +85,6 @@ namespace CoffeeManager.Api.Controllers
         [HttpDelete]
         public async Task<HttpResponseMessage> DeleteSuplyProduct([FromUri] int coffeeroomno, [FromUri] int id, HttpRequestMessage message)
         {
-            var token = message.Headers.GetValues("token").FirstOrDefault();
-            if (token == null || !UserSessions.Contains(token))
-            {
-                return Request.CreateResponse(HttpStatusCode.Forbidden);
-            }
             var entities = new CoffeeRoomEntities();
             var suplyProduct = entities.SupliedProducts.FirstOrDefault(r => r.Id == id && r.CoffeeRoomNo == coffeeroomno);
             if (suplyProduct != null)
@@ -120,12 +100,6 @@ namespace CoffeeManager.Api.Controllers
         [HttpGet]
         public async Task<HttpResponseMessage> GetProductCalculationItems([FromUri] int coffeeroomno, [FromUri] int productId, HttpRequestMessage message)
         {
-            var token = message.Headers.GetValues("token").FirstOrDefault();
-            if (token == null || !UserSessions.Contains(token))
-            {
-                return Request.CreateResponse(HttpStatusCode.Forbidden);
-            }
-            
             var entites = new CoffeeRoomEntities();
             var product = entites.Products.FirstOrDefault(p => p.Id == productId && p.CoffeeRoomNo == coffeeroomno);
             if (product == null)
@@ -160,11 +134,6 @@ namespace CoffeeManager.Api.Controllers
         [HttpDelete]
         public async Task<HttpResponseMessage> DeleteProductCalculationItem([FromUri] int coffeeroomno, [FromUri] int id, HttpRequestMessage message)
         {
-            var token = message.Headers.GetValues("token").FirstOrDefault();
-            if (token == null || !UserSessions.Contains(token))
-            {
-                return Request.CreateResponse(HttpStatusCode.Forbidden);
-            }
             var entities = new CoffeeRoomEntities();
             var productCalculationItem = entities.ProductCalculations.FirstOrDefault(r => r.Id == id && r.CoffeeRoomNo == coffeeroomno);
             if (productCalculationItem != null)
@@ -181,12 +150,6 @@ namespace CoffeeManager.Api.Controllers
         [HttpPut]
         public async Task<HttpResponseMessage> AddProductCalculationItem([FromUri] int coffeeroomno, HttpRequestMessage message)
         {
-            var token = message.Headers.GetValues("token").FirstOrDefault();
-            if (token == null || !UserSessions.Contains(token))
-            {
-                return Request.CreateResponse(HttpStatusCode.Forbidden);
-            }
-
             var request = await message.Content.ReadAsStringAsync();
             var item = JsonConvert.DeserializeObject<Models.ProductCalculationEntity>(request);
             var entites = new CoffeeRoomEntities();
@@ -227,11 +190,6 @@ namespace CoffeeManager.Api.Controllers
         [HttpGet]
         public async Task<HttpResponseMessage> GetUtilizedSuplyProducts([FromUri] int coffeeroomno, HttpRequestMessage message)
         {
-            var token = message.Headers.GetValues("token").FirstOrDefault();
-            if (token == null || !UserSessions.Contains(token))
-            {
-                return Request.CreateResponse(HttpStatusCode.Forbidden);
-            }
             var entites = new CoffeeRoomEntities();
 
             var items = entites.UtilizedSuplyProducts.Include(u => u.SupliedProduct).Where(u => u.CoffeeRoomNo == coffeeroomno).ToList().Select(s => s.ToDTO());

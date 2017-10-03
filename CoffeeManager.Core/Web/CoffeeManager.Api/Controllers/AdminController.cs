@@ -9,6 +9,7 @@ using System.Web.Http;
 
 namespace CoffeeManager.Api.Controllers
 {
+    [Authorize]
     public class AdminController : ApiController
     {
         [Route(RoutesConstants.GetCoffeeRooms)]
