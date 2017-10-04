@@ -48,22 +48,35 @@ namespace CoffeManager.Common.Providers
 
         public async Task Register(string email, string password)
         {
-            await Post<object>(RoutesConstants.Token, new { Email = email, Password = password, ConfirmPassword = password });
+            await Post<object>(RoutesConstants.Register, new { Email = email, Password = password, ConfirmPassword = password });
         }
 
-        public Task Logout()
+        public async Task Logout()
         {
-            throw new NotImplementedException();
+            await Post<object>(RoutesConstants.Logout);
         }
 
-        public Task ChangePassword(string oldPassword, string newPassword)
+        public async Task ChangePassword(string oldPassword, string newPassword)
         {
-            throw new NotImplementedException();
+            await Post<string>(RoutesConstants.ChangePassword, new Dictionary<string, string>()
+            {
+                {nameof(oldPassword), oldPassword},
+                {nameof(newPassword), newPassword},
+            });
         }
 
-        public Task SetPassword(string newPassword, string confirmPassword)
+        public async Task<UserAcount[]> GetUsers()
         {
-            throw new NotImplementedException();
+            return await Get<UserAcount[]>(RoutesConstants.GetAdminUsers);
+        }
+
+        public async Task SetApiUrl(string userId, string url)
+        {
+            await Post<string>(RoutesConstants.SetApiUrl, new Dictionary<string, string>()
+            {
+                {nameof(userId), userId},
+                {nameof(url), url}
+            });
         }
     }
 }

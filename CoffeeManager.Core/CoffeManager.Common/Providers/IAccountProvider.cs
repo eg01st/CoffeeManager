@@ -17,6 +17,8 @@ namespace CoffeManager.Common.Providers
 
         Task ChangePassword(string oldPassword, string newPassword);
 
-        Task SetPassword(string newPassword, string confirmPassword);
+        Task<UserAcount[]> GetUsers();
+
+        Task SetApiUrl(string userId, string url);
     }
 }

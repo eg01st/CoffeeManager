@@ -7,22 +7,16 @@ using System.Security.Cryptography;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
-using System.Web.Http.ModelBinding;
-using CoffeeManager.AuthService.Extesions;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
-using Microsoft.Owin.Security.OAuth;
 using CoffeeManager.AuthService.Models;
-using CoffeeManager.AuthService.Providers;
-using CoffeeManager.AuthService.Results;
+using CoffeeManager.Models;
 
 namespace CoffeeManager.AuthService.Controllers
 {
     [Authorize]
-    [RoutePrefix("api/Account")]
     public class AccountController : ApiController
     {
         private const string LocalLoginProvider = "Local";
@@ -53,10 +47,23 @@ namespace CoffeeManager.AuthService.Controllers
 
         public ISecureDataFormat<AuthenticationTicket> AccessTokenFormat { get; private set; }
 
+        // GET api/Account/UserInfo
+        [HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
+        [Route(RoutesConstants.GetAdminUsers)]
+        public IEnumerable<UserAcount> GetAdminUsers()
+        {
+            bool isAdmin = User.IsInRole("Admin");
+            if (!isAdmin)
+            {
+                return Enumerable.Empty<UserAcount>();
+            }
+            var users = UserManager.Users.Select(s => new UserAcount() {Email = s.Email, Id = s.Id});
+            return users;
+        }
 
         // GET api/Account/UserInfo
         [HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
-        [Route("GetUserInfo")]
+        [Route(RoutesConstants.GetUserInfo)]
         public UserInfoViewModel GetUserInfo()
         {
             string userId = User.Identity.GetUserId();
@@ -65,6 +72,7 @@ namespace CoffeeManager.AuthService.Controllers
 
             return new UserInfoViewModel
             {
+                Id = userId,
                 Email = User.Identity.GetUserName(),
                 IsAdmin = isAdmin,
                 ApiUrl = user.ApiUrl
@@ -72,7 +80,8 @@ namespace CoffeeManager.AuthService.Controllers
         }
 
         // POST api/Account/Logout
-        [Route("Logout")]
+        [HttpPost]
+        [Route(RoutesConstants.Logout)]
         public IHttpActionResult Logout()
         {
             Authentication.SignOut(CookieAuthenticationDefaults.AuthenticationType);
@@ -80,16 +89,17 @@ namespace CoffeeManager.AuthService.Controllers
         }
 
         // POST api/Account/ChangePassword
-        [Route("ChangePassword")]
-        public async Task<IHttpActionResult> ChangePassword(ChangePasswordBindingModel model)
+        [HttpPost]
+        [Route(RoutesConstants.ChangePassword)]
+        public async Task<IHttpActionResult> ChangePassword(string oldPassword, string newPassword)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            IdentityResult result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword,
-                model.NewPassword);
+            IdentityResult result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), oldPassword,
+                newPassword);
             
             if (!result.Succeeded)
             {
@@ -99,28 +109,44 @@ namespace CoffeeManager.AuthService.Controllers
             return Ok();
         }
 
+        //// POST api/Account/SetPassword
+        //[Route(RoutesConstants.SetPassword)]
+        //[HttpPost]
+        //public async Task<IHttpActionResult> SetPassword(string password)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
+
+        //    IdentityResult result = await UserManager.AddPasswordAsync(User.Identity.GetUserId(), password);
+
+        //    if (!result.Succeeded)
+        //    {
+        //        return GetErrorResult(result);
+        //    }
+
+        //    return Ok();
+        //}
+
         // POST api/Account/SetPassword
-        [Route("SetPassword")]
-        public async Task<IHttpActionResult> SetPassword(SetPasswordBindingModel model)
+        [Route(RoutesConstants.SetApiUrl)]
+        [HttpPost]
+        public async Task<IHttpActionResult> SetApiUrl(string userId, string url)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-
-            IdentityResult result = await UserManager.AddPasswordAsync(User.Identity.GetUserId(), model.NewPassword);
-
-            if (!result.Succeeded)
-            {
-                return GetErrorResult(result);
-            }
+            var user = UserManager.Users.First(u => u.Id == userId);
+            user.ApiUrl = url;
 
             return Ok();
         }
 
-       
+
         // POST api/Account/RemoveLogin
-        [Route("RemoveLogin")]
+        [Route(RoutesConstants.RemoveLogin)]
         public async Task<IHttpActionResult> RemoveLogin(RemoveLoginBindingModel model)
         {
             if (!ModelState.IsValid)
@@ -150,7 +176,7 @@ namespace CoffeeManager.AuthService.Controllers
 
         // POST api/Account/Register
         [AllowAnonymous]
-        [Route("Register")]
+        [Route(RoutesConstants.Register)]
         public async Task<IHttpActionResult> Register(RegisterBindingModel model)
         {
             if (!ModelState.IsValid)
@@ -170,38 +196,38 @@ namespace CoffeeManager.AuthService.Controllers
             return Ok();
         }
 
-        // POST api/Account/RegisterExternal
-        [OverrideAuthentication]
-        [HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
-        [Route("RegisterExternal")]
-        public async Task<IHttpActionResult> RegisterExternal(RegisterExternalBindingModel model)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+        //// POST api/Account/RegisterExternal
+        //[OverrideAuthentication]
+        //[HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
+        //[Route("RegisterExternal")]
+        //public async Task<IHttpActionResult> RegisterExternal(RegisterExternalBindingModel model)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
 
-            var info = await Authentication.GetExternalLoginInfoAsync();
-            if (info == null)
-            {
-                return InternalServerError();
-            }
+        //    var info = await Authentication.GetExternalLoginInfoAsync();
+        //    if (info == null)
+        //    {
+        //        return InternalServerError();
+        //    }
 
-            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
+        //    var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
 
-            IdentityResult result = await UserManager.CreateAsync(user);
-            if (!result.Succeeded)
-            {
-                return GetErrorResult(result);
-            }
+        //    IdentityResult result = await UserManager.CreateAsync(user);
+        //    if (!result.Succeeded)
+        //    {
+        //        return GetErrorResult(result);
+        //    }
 
-            result = await UserManager.AddLoginAsync(user.Id, info.Login);
-            if (!result.Succeeded)
-            {
-                return GetErrorResult(result); 
-            }
-            return Ok();
-        }
+        //    result = await UserManager.AddLoginAsync(user.Id, info.Login);
+        //    if (!result.Succeeded)
+        //    {
+        //        return GetErrorResult(result); 
+        //    }
+        //    return Ok();
+        //}
 
         protected override void Dispose(bool disposing)
         {
