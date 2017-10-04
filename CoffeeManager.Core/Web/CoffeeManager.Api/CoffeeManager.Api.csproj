@@ -196,6 +196,9 @@
     <Compile Include="AspNetUserLogin.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="CoffeePortion.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="CoffeeRoom.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>

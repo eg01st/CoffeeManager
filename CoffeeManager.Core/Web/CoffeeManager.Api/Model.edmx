@@ -67,6 +67,14 @@
           <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
           <Property Name="ApiUrl" Type="nvarchar" MaxLength="1024" />
         </EntityType>
+        <EntityType Name="CoffeePortion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CoffeeRoomNo" Type="int" Nullable="false" />
+          <Property Name="PortionWeight" Type="money" Nullable="false" />
+        </EntityType>
         <EntityType Name="CoffeeRoom">
           <Key>
             <PropertyRef Name="Id" />
@@ -375,6 +383,18 @@
           <Property Name="CoffeeRoomNo" Type="int" Nullable="false" />
           <Property Name="DateTime" Type="datetime" Nullable="false" />
         </EntityType>
+        <Association Name="FK__CoffeePor__Coffe__3864608B">
+          <End Role="CoffeeRoom" Type="Self.CoffeeRoom" Multiplicity="1" />
+          <End Role="CoffeePortion" Type="Self.CoffeePortion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CoffeeRoom">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CoffeePortion">
+              <PropertyRef Name="CoffeeRoomNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Dept__ShiftId__4E88ABD4">
           <End Role="Shifts" Type="Self.Shifts" Multiplicity="1" />
           <End Role="Dept" Type="Self.Dept" Multiplicity="*" />
@@ -811,6 +831,7 @@
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CoffeePortion" EntityType="Self.CoffeePortion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CoffeeRoom" EntityType="Self.CoffeeRoom" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CupSuply" EntityType="Self.CupSuply" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CupType" EntityType="Self.CupType" Schema="dbo" store:Type="Tables" />
@@ -838,6 +859,10 @@
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UtilizedCup" EntityType="Self.UtilizedCup" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UtilizedSuplyProduct" EntityType="Self.UtilizedSuplyProduct" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__CoffeePor__Coffe__3864608B" Association="Self.FK__CoffeePor__Coffe__3864608B">
+            <End Role="CoffeeRoom" EntitySet="CoffeeRoom" />
+            <End Role="CoffeePortion" EntitySet="CoffeePortion" />
+          </AssociationSet>
           <AssociationSet Name="FK__Dept__ShiftId__4E88ABD4" Association="Self.FK__Dept__ShiftId__4E88ABD4">
             <End Role="Shifts" EntitySet="Shifts" />
             <End Role="Dept" EntitySet="Dept" />
@@ -1460,6 +1485,11 @@
             <End Role="AspNetRole" EntitySet="AspNetRoles" />
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
           </AssociationSet>
+          <EntitySet Name="CoffeePortions" EntityType="CoffeeRoomModel.CoffeePortion" />
+          <AssociationSet Name="FK__CoffeePor__Coffe__3864608B" Association="CoffeeRoomModel.FK__CoffeePor__Coffe__3864608B">
+            <End Role="CoffeeRoom" EntitySet="CoffeeRooms" />
+            <End Role="CoffeePortion" EntitySet="CoffeePortions" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Dept">
           <Key>
@@ -1900,6 +1930,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CoffeePortions" Relationship="CoffeeRoomModel.FK__CoffeePor__Coffe__3864608B" FromRole="CoffeeRoom" ToRole="CoffeePortion" />
         </EntityType>
         <EntityType Name="UserEarningsHistory">
           <Key>
@@ -2021,6 +2052,27 @@
         <Association Name="AspNetUserRoles">
           <End Type="CoffeeRoomModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
           <End Type="CoffeeRoomModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+        </Association>
+        <EntityType Name="CoffeePortion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CoffeeRoomNo" Type="Int32" Nullable="false" />
+          <Property Name="PortionWeight" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <NavigationProperty Name="CoffeeRoom" Relationship="CoffeeRoomModel.FK__CoffeePor__Coffe__3864608B" FromRole="CoffeePortion" ToRole="CoffeeRoom" />
+        </EntityType>
+        <Association Name="FK__CoffeePor__Coffe__3864608B">
+          <End Type="CoffeeRoomModel.CoffeeRoom" Role="CoffeeRoom" Multiplicity="1" />
+          <End Type="CoffeeRoomModel.CoffeePortion" Role="CoffeePortion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CoffeeRoom">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CoffeePortion">
+              <PropertyRef Name="CoffeeRoomNo" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -2466,6 +2518,15 @@
               <ScalarProperty Name="Id" ColumnName="RoleId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="CoffeePortions">
+            <EntityTypeMapping TypeName="CoffeeRoomModel.CoffeePortion">
+              <MappingFragment StoreEntitySet="CoffeePortion">
+                <ScalarProperty Name="PortionWeight" ColumnName="PortionWeight" />
+                <ScalarProperty Name="CoffeeRoomNo" ColumnName="CoffeeRoomNo" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

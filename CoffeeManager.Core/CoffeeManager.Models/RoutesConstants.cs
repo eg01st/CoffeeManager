@@ -90,6 +90,9 @@ namespace CoffeeManager.Models
 
         public const string Admin = Api + "/admin";
         public const string GetCoffeeRooms = Admin + "/getCoffeeRooms";
+        public const string AddCoffeeRoom = Admin + "/AddCoffeeRoom";
+        public const string SetCoffeePortionWeight = Admin + "/SetCoffeePortionWeight";
+        public const string GetCoffeePortionWeight = Admin + "/GetCoffeePortionWeight";
 
 
         public const string Account = Api + "/account";
