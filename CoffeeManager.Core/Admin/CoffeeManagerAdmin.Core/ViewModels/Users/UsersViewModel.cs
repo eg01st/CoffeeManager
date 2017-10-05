@@ -3,11 +3,15 @@ using MvvmCross.Core.ViewModels;
 using System.Collections.Generic;
 using System.Linq;
 using CoffeManager.Common;
+using MvvmCross.Plugins.Messenger;
+using System.Threading.Tasks;
 
 namespace CoffeeManagerAdmin.Core
 {
     public class UsersViewModel : ViewModelBase
     {
+        private MvxSubscriptionToken refreshUsersToken;
+
         private readonly IUserManager manager;
 
         private List<UserItemViewModel> users;
@@ -24,7 +28,7 @@ namespace CoffeeManagerAdmin.Core
         }
 
 
-        public async void Init()
+        public async Task Init()
         {
             await ExecuteSafe(async () => 
             {
@@ -42,11 +46,19 @@ namespace CoffeeManagerAdmin.Core
         {
             this.manager = manager;
             _addUserCommand = new MvxCommand(DoAddUser);
+
+            refreshUsersToken = Subscribe<RefreshUserListMessage>(async (obj) => await Init());
         }
 
         private void DoAddUser()
         {
             ShowViewModel<UserDetailsViewModel>();
+        }
+
+        protected override void DoUnsubscribe()
+        {
+            base.DoUnsubscribe();
+            Unsubscribe<RefreshUserListMessage>(refreshUsersToken);
         }
     }
 }

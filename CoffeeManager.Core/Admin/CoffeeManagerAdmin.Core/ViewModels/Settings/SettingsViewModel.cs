@@ -91,6 +91,7 @@ namespace CoffeeManagerAdmin.Core
                 }
                 await adminManager.AddCoffeeRoom(NewCoffeeroomName);
                 Publish(new RefreshCoffeeRoomsMessage(this));
+                NewCoffeeroomName = string.Empty;
             });
         }
 

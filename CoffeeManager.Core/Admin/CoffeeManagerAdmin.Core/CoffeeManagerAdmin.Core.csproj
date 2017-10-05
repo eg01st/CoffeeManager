@@ -111,6 +111,7 @@
     <Compile Include="Messages\RefreshCoffeeRoomsMessage.cs" />
     <Compile Include="Messages\RefreshAdminUsersMessage.cs" />
     <Compile Include="ViewModels\Settings\CoffeeRoomItemViewModel.cs" />
+    <Compile Include="Messages\RefreshUserListMessage.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">
