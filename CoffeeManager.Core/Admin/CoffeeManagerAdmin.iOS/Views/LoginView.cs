@@ -20,10 +20,10 @@ namespace CoffeeManagerAdmin.iOS
             NavigationController.NavigationBar.Translucent = false;
 
 			var set = this.CreateBindingSet<LoginView, LoginViewModel> ();
-			set.Bind (LoginText).To (vm => vm.Name);
-			set.Bind (PasswordText).To (vm => vm.Password);
-			set.Bind (LoginButton).To (vm => vm.LoginCommand);
-			set.Apply ();
+			set.Bind(LoginText).To(vm => vm.Name);
+			set.Bind(PasswordText).To(vm => vm.Password);
+			set.Bind(LoginButton).To(vm => vm.LoginCommand);
+			set.Apply();
 
 			// Perform any additional setup after loading the view, typically from a nib.
 		}

@@ -42,41 +42,63 @@ namespace CoffeManager.Common.Providers
 
         public async Task<UserAcount> GetUserInfo()
         {
-            _apiUrl = Config.AuthApiUrl;
-            return await Get<UserAcount>(RoutesConstants.GetUserInfo);
+            return await ExecuteWithAdminCredentials(async () =>
+            {
+                return await Get<UserAcount>(RoutesConstants.GetUserInfo);
+            }, false);
+
         }
 
-        public async Task Register(string email, string password)
+        public async Task Register(string email, string password, string apiUrl)
         {
-            await Post<object>(RoutesConstants.Register, new { Email = email, Password = password, ConfirmPassword = password });
+            await PostWithFullUrl<object>(Config.AuthApiUrl + RoutesConstants.Register, new { Email = email, Password = password, ConfirmPassword = password, ApiUrl = apiUrl });
+        }
+
+        public async Task RegisterLocal(string email, string password, string apiUrl)
+        {
+            await PostWithFullUrl<object>(apiUrl + RoutesConstants.Register, new { Email = email, Password = password, ConfirmPassword = password });
         }
 
         public async Task Logout()
         {
-            await Post<object>(RoutesConstants.Logout);
+            await ExecuteWithAdminCredentials(
+                Post<object>(RoutesConstants.Logout)
+            );
         }
 
         public async Task ChangePassword(string oldPassword, string newPassword)
         {
-            await Post<string>(RoutesConstants.ChangePassword, new Dictionary<string, string>()
-            {
-                {nameof(oldPassword), oldPassword},
-                {nameof(newPassword), newPassword},
-            });
+            await ExecuteWithAdminCredentials(
+                Post<string>(RoutesConstants.ChangePassword, new Dictionary<string, string>()
+                {
+                    {nameof(oldPassword), oldPassword},
+                    {nameof(newPassword), newPassword},
+                })
+            );
         }
 
         public async Task<UserAcount[]> GetUsers()
         {
+            return await ExecuteWithAdminCredentials<UserAcount[]>(async () =>
+            {
+                return await Get<UserAcount[]>(RoutesConstants.GetAdminUsers);
+            }, false);
+        }
+
+        public async Task<UserAcount[]> GetLocalUsers()
+        {
             return await Get<UserAcount[]>(RoutesConstants.GetAdminUsers);
         }
 
-        public async Task SetApiUrl(string userId, string url)
+        public async Task DeleteAdminUser(string userId)
         {
-            await Post<string>(RoutesConstants.SetApiUrl, new Dictionary<string, string>()
-            {
-                {nameof(userId), userId},
-                {nameof(url), url}
-            });
+            await PostWithFullUrl<object>(Config.AuthApiUrl + RoutesConstants.DeleteAdminUser, new { Id = userId } );
         }
+
+        public async Task DeleteAdminUserLocal(string id, string apiUrl)
+        {
+            await PostWithFullUrl<object>(apiUrl + RoutesConstants.DeleteAdminUser, new {Id =id });
+        }
+
     }
 }

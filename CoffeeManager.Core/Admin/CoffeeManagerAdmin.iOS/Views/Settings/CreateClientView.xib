@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CreateClientView">
+            <connections>
+                <outlet property="ApiUrlTextField" destination="Gu1-O2-vNS" id="name-outlet-Gu1-O2-vNS"/>
+                <outlet property="ConfirmPasswordTextField" destination="arj-bE-Yk2" id="name-outlet-arj-bE-Yk2"/>
+                <outlet property="EmailTextField" destination="OYC-LO-dY7" id="name-outlet-OYC-LO-dY7"/>
+                <outlet property="PasswordTextField" destination="EpY-NM-Hfr" id="name-outlet-EpY-NM-Hfr"/>
+                <outlet property="RegisterButton" destination="QUD-F2-G2a" id="name-outlet-QUD-F2-G2a"/>
+                <outlet property="view" destination="2" id="RRd-Eg-VrN"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="2">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Имейл:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yPF-Tm-mU9">
+                    <rect key="frame" x="16" y="16" width="59" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Пароль:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ga1-b9-M1G">
+                    <rect key="frame" x="16" y="53" width="64" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OYC-LO-dY7">
+                    <rect key="frame" x="91" y="11" width="268" height="30"/>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EpY-NM-Hfr">
+                    <rect key="frame" x="96" y="48" width="263" height="30"/>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
+                </textField>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="arj-bE-Yk2">
+                    <rect key="frame" x="220" y="85.5" width="139" height="30"/>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
+                </textField>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Подверждение пароля:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mFm-Ko-ohT">
+                    <rect key="frame" x="16" y="90" width="188" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ссылка на сервис:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rRf-TD-XxB">
+                    <rect key="frame" x="16" y="127" width="150" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Gu1-O2-vNS">
+                    <rect key="frame" x="182" y="122.5" width="177" height="30"/>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QUD-F2-G2a">
+                    <rect key="frame" x="121" y="176.5" width="133" height="30"/>
+                    <state key="normal" title="Зарегистрировать"/>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="EpY-NM-Hfr" firstAttribute="leading" secondItem="ga1-b9-M1G" secondAttribute="trailing" constant="16" id="25h-uw-RUf"/>
+                <constraint firstItem="QUD-F2-G2a" firstAttribute="centerX" secondItem="2" secondAttribute="centerX" id="50k-mW-4eB"/>
+                <constraint firstItem="rRf-TD-XxB" firstAttribute="top" secondItem="mFm-Ko-ohT" secondAttribute="bottom" constant="16" id="5GS-rq-HrR"/>
+                <constraint firstItem="QUD-F2-G2a" firstAttribute="top" secondItem="Gu1-O2-vNS" secondAttribute="bottom" constant="24" id="73F-Sx-y9F"/>
+                <constraint firstItem="Gu1-O2-vNS" firstAttribute="leading" secondItem="rRf-TD-XxB" secondAttribute="trailing" constant="16" id="Ag9-I0-pds"/>
+                <constraint firstItem="OYC-LO-dY7" firstAttribute="leading" secondItem="yPF-Tm-mU9" secondAttribute="trailing" constant="16" id="F4G-jX-f7k"/>
+                <constraint firstAttribute="trailing" secondItem="Gu1-O2-vNS" secondAttribute="trailing" constant="16" id="J0w-Uh-gfs"/>
+                <constraint firstItem="yPF-Tm-mU9" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="16" id="RbU-BA-G5T"/>
+                <constraint firstItem="OYC-LO-dY7" firstAttribute="centerY" secondItem="yPF-Tm-mU9" secondAttribute="centerY" id="anE-lg-90q"/>
+                <constraint firstItem="arj-bE-Yk2" firstAttribute="leading" secondItem="mFm-Ko-ohT" secondAttribute="trailing" constant="16" id="g5l-0F-xWA"/>
+                <constraint firstAttribute="trailing" secondItem="EpY-NM-Hfr" secondAttribute="trailing" constant="16" id="gbM-4d-CSu"/>
+                <constraint firstItem="yPF-Tm-mU9" firstAttribute="top" secondItem="2" secondAttribute="top" constant="16" id="jul-6D-YGk"/>
+                <constraint firstItem="rRf-TD-XxB" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="16" id="kkI-tR-O5B"/>
+                <constraint firstItem="mFm-Ko-ohT" firstAttribute="top" secondItem="ga1-b9-M1G" secondAttribute="bottom" constant="16" id="l2b-1L-cfn"/>
+                <constraint firstItem="Gu1-O2-vNS" firstAttribute="centerY" secondItem="rRf-TD-XxB" secondAttribute="centerY" id="mvY-Fv-MpL"/>
+                <constraint firstAttribute="trailing" secondItem="arj-bE-Yk2" secondAttribute="trailing" constant="16" id="qBE-FN-Yle"/>
+                <constraint firstItem="EpY-NM-Hfr" firstAttribute="centerY" secondItem="ga1-b9-M1G" secondAttribute="centerY" id="qUU-P4-3PC"/>
+                <constraint firstAttribute="trailing" secondItem="OYC-LO-dY7" secondAttribute="trailing" constant="16" id="qaR-vd-VOG"/>
+                <constraint firstItem="arj-bE-Yk2" firstAttribute="centerY" secondItem="mFm-Ko-ohT" secondAttribute="centerY" id="t9M-IU-QlE"/>
+                <constraint firstItem="mFm-Ko-ohT" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="16" id="tmg-27-snI"/>
+                <constraint firstItem="ga1-b9-M1G" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="16" id="u7j-rV-eN0"/>
+                <constraint firstItem="ga1-b9-M1G" firstAttribute="top" secondItem="yPF-Tm-mU9" secondAttribute="bottom" constant="16" id="z68-aU-9rB"/>
+            </constraints>
+        </view>
+    </objects>
+</document>

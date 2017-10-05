@@ -6,5 +6,9 @@ namespace CoffeManager.Common
     public interface IAdminManager
     {
         Task<Entity[]> GetCoffeeRooms();
+
+        Task AddCoffeeRoom(string name);
+
+        Task DeleteCoffeeRoom(int id);
     }
 }

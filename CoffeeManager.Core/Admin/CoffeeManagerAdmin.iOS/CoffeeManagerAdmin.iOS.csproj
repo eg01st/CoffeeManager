@@ -359,6 +359,27 @@
     <Compile Include="Extensions\UIViewExtensions.cs" />
     <Compile Include="Platform\CoffeeManagerAdminPresenter.cs" />
     <Compile Include="Platform\CoffeeManagerAdminNavigationContoller.cs" />
+    <Compile Include="Views\Settings\SettingsView.cs" />
+    <Compile Include="Views\Settings\SettingsView.designer.cs">
+      <DependentUpon>SettingsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Settings\ClientViewCell.cs" />
+    <Compile Include="Views\Settings\ClientViewCell.designer.cs">
+      <DependentUpon>ClientViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Settings\ClientDetailsView.cs" />
+    <Compile Include="Views\Settings\ClientDetailsView.designer.cs">
+      <DependentUpon>ClientDetailsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Settings\CreateClientView.cs" />
+    <Compile Include="Views\Settings\CreateClientView.designer.cs">
+      <DependentUpon>CreateClientView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Converters\InvertedBoolConverter.cs" />
+    <Compile Include="Views\Settings\CoffeeRoomItemViewCell.cs" />
+    <Compile Include="Views\Settings\CoffeeRoomItemViewCell.designer.cs">
+      <DependentUpon>CoffeeRoomItemViewCell.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Setup.cs" />
@@ -424,6 +445,11 @@
     <InterfaceDefinition Include="Views\Users\UserEarningCell.xib" />
     <InterfaceDefinition Include="Views\Users\UserEarningHeader.xib" />
     <InterfaceDefinition Include="Views\Statistic\StatisticResultView.xib" />
+    <InterfaceDefinition Include="Views\Settings\SettingsView.xib" />
+    <InterfaceDefinition Include="Views\Settings\ClientViewCell.xib" />
+    <InterfaceDefinition Include="Views\Settings\ClientDetailsView.xib" />
+    <InterfaceDefinition Include="Views\Settings\CreateClientView.xib" />
+    <InterfaceDefinition Include="Views\Settings\CoffeeRoomItemViewCell.xib" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MvvmCross.Binding, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -539,6 +565,7 @@
     <Folder Include="Views\Inventory\" />
     <Folder Include="Views\SuplyProducts\" />
     <Folder Include="Views\Utilize\" />
+    <Folder Include="Views\Settings\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\ic_check.png" />
@@ -554,6 +581,12 @@
     <BundleResource Include="Resources\ic_arrow_back_3x.png" />
     <BundleResource Include="Resources\ic_arrow_back_2x.png" />
     <BundleResource Include="Resources\ic_arrow_back.png" />
+    <BundleResource Include="Resources\ic_settings_3x.png" />
+    <BundleResource Include="Resources\ic_settings_2x.png" />
+    <BundleResource Include="Resources\ic_settings.png" />
+    <BundleResource Include="Resources\ic_add_circle_outline_3x.png" />
+    <BundleResource Include="Resources\ic_add_circle_outline_2x.png" />
+    <BundleResource Include="Resources\ic_add_circle_outline.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

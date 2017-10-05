@@ -3,6 +3,7 @@ using CoffeeManager.Models;
 using MvvmCross.Core.ViewModels;
 using CoffeManager.Common;
 using MvvmCross.Platform;
+using System.Threading.Tasks;
 
 namespace CoffeeManagerAdmin.Core.ViewModels
 {
@@ -41,11 +42,11 @@ namespace CoffeeManagerAdmin.Core.ViewModels
             if (!_isPromt)
             {
                 _isPromt = true;
-                Confirm($"Действительно удалить товар {_item.Name}?", () => OnDeleteItem());
+                Confirm($"Действительно удалить товар {_item.Name}?", OnDeleteItem);
             }
         }
 
-        private async void OnDeleteItem()
+        private async Task OnDeleteItem()
         {
             await manager.DeleteSuplyProduct(_item.Id);
             Publish(new SuplyListChangedMessage(this));

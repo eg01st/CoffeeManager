@@ -11,7 +11,7 @@ namespace CoffeManager.Common.Providers
 
         Task<UserAcount> GetUserInfo();
 
-        Task Register(string email, string password);
+        Task Register(string email, string password, string apiUrl);
 
         Task Logout();
 
@@ -19,6 +19,12 @@ namespace CoffeManager.Common.Providers
 
         Task<UserAcount[]> GetUsers();
 
-        Task SetApiUrl(string userId, string url);
+        Task<UserAcount[]> GetLocalUsers();
+
+        Task RegisterLocal(string email, string password, string apiUrl);
+
+        Task DeleteAdminUser(string userId);
+
+        Task DeleteAdminUserLocal(string userId, string apiUrl);
     }
 }

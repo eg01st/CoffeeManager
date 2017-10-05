@@ -122,7 +122,13 @@ namespace CoffeManager.Common
             MvxMessenger.Publish(message);
         }
 
+        protected async Task ExecuteSafe(Task functionToRun, string globalExceptionMessage = null)
+        {
+            Func<Task<bool>> runDelegate = async () => { await functionToRun; return true; };
 
+            await ExecuteSafe(functionToRun: runDelegate,
+                                    globalExceptionMessage: globalExceptionMessage);
+        }
 
         protected async Task ExecuteSafe(Func<Task> functionToRun, string globalExceptionMessage = null)
         {
@@ -151,6 +157,11 @@ namespace CoffeManager.Common
                 Debug.WriteLine(tcex.ToDiagnosticString());
                 UserDialogs.Alert("Нет подключения к интернету, доступно только добавление продаж");
             }
+            catch (UnauthorizedAccessException uaex)
+            {
+                Debug.WriteLine(uaex.ToDiagnosticString());
+                UserDialogs.Alert("Не верный логин или пароль");
+            }
             catch (Exception e)
             {
                 Debug.WriteLine(e.ToDiagnosticString());
@@ -158,9 +169,9 @@ namespace CoffeManager.Common
                 UserDialogs.Alert(e.ToString());
 #else
                 Alert("Произошла ошибка сервера. Мы работаем над решением проблемы");
+                await EmailService?.SendErrorEmail(e.ToDiagnosticString());
 #endif
 
-                await EmailService?.SendErrorEmail(e.ToDiagnosticString());
             }
             finally
             {
@@ -205,6 +216,22 @@ namespace CoffeManager.Common
                 });
         }
 
+        public void Confirm(string message, Func<Task> action)
+        {
+            UserDialogs.Confirm(new ConfirmConfig()
+            {
+                Message = message,
+                OnAction = async
+                    (confirm) =>
+                {
+                    if (confirm)
+                    {
+                        await ExecuteSafe(async () => await action());
+                    }
+                }
+            });
+        }
+
         public async Task<int?> PromtAsync(string message)
         {
            var result = await UserDialogs.PromptAsync(new PromptConfig()
@@ -235,12 +262,12 @@ namespace CoffeManager.Common
             return decimal.Parse(result.Value);
         }
 
-        public async Task<string> PromtStringAsync(string message)
+        public async Task<string> PromtStringAsync(string message, InputType inputType = InputType.Default)
         {
             var result = await UserDialogs.PromptAsync(new PromptConfig()
             {
                 Message = message,
-                InputType = InputType.Default
+                InputType = inputType
 
             });
             return result.Value;
@@ -261,7 +288,7 @@ namespace CoffeManager.Common
             {
                 return false;
             }
-            var password = await PromtStringAsync("Введите пароль");
+            var password = await PromtStringAsync("Введите пароль", InputType.Password);
             if (string.IsNullOrEmpty(password))
             {
                 return false;

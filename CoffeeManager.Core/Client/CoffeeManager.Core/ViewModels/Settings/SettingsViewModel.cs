@@ -34,7 +34,8 @@ namespace CoffeeManager.Core
 
             if(!isInitialSetup)
             {
-                isLoggedIn = await PromtLogin();
+               isLoggedIn = await ExecuteSafe(async () => await PromtLogin());
+
                 if (isLoggedIn == false)
                 {
                     CloseCommand.Execute(null);

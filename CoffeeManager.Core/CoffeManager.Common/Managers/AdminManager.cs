@@ -17,5 +17,15 @@ namespace CoffeManager.Common
         {
             return await provider.GetCoffeeRooms();
         }
+
+        public async Task AddCoffeeRoom(string name)
+        {
+            await provider.AddCoffeeRoom(name);
+        }
+
+        public async Task DeleteCoffeeRoom(int id)
+        {
+            await provider.DeleteCoffeeRoom(id);
+        }
     }
 }

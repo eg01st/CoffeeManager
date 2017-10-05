@@ -104,6 +104,13 @@
     <Compile Include="ViewModels\Users\UserEarningsViewModel.cs" />
     <Compile Include="ViewModels\Users\UserEarningItemViewModel.cs" />
     <Compile Include="ViewModels\Statistic\StatisticResultViewModel.cs" />
+    <Compile Include="ViewModels\Settings\SettingsViewModel.cs" />
+    <Compile Include="ViewModels\Settings\ClientItemViewModel.cs" />
+    <Compile Include="ViewModels\Settings\ClientDetailsViewModel.cs" />
+    <Compile Include="ViewModels\Settings\CreateClientViewModel.cs" />
+    <Compile Include="Messages\RefreshCoffeeRoomsMessage.cs" />
+    <Compile Include="Messages\RefreshAdminUsersMessage.cs" />
+    <Compile Include="ViewModels\Settings\CoffeeRoomItemViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">
@@ -165,6 +172,7 @@
   <ItemGroup>
     <Folder Include="Managers\" />
     <Folder Include="ServiceProviders\" />
+    <Folder Include="ViewModels\Settings\" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
