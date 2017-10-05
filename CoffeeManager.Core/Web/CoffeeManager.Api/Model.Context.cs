@@ -59,7 +59,6 @@ namespace CoffeeManager.Api
         public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
-        public virtual DbSet<CoffeePortion> CoffeePortions { get; set; }
     
         public virtual ObjectResult<GetAllSales_Result> GetAllSales(Nullable<System.DateTime> from, Nullable<System.DateTime> to, Nullable<int> coffeeroomNo)
         {

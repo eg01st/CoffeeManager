@@ -152,7 +152,6 @@ namespace CoffeeManager.Api.Controllers
             var shift = entities.Shifts.FirstOrDefault(s => s.Id == id && s.CoffeeRoomNo == coffeeroomno);
             if (shift != null)
             {
-
                 decimal usedCoffee = 0;
                 var sales = entities.Sales.Where(s => s.ShiftId == id && !s.IsRejected);
 
@@ -162,16 +161,19 @@ namespace CoffeeManager.Api.Controllers
                 var coffeeSuplyProduct = entities.SupliedProducts
                     .FirstOrDefault(s => s.CoffeeRoomNo == coffeeroomno 
                     && "Кофе".Equals(s.Name, StringComparison.OrdinalIgnoreCase));
-                foreach (var item in coffeeSales)
+                if (coffeeSuplyProduct != null)
                 {
-                    var coffeeUsage = item.Product1.ProductCalculations.FirstOrDefault(c => c.SuplyProductId == coffeeSuplyProduct.Id);
-                    if(coffeeUsage != null)
+                    foreach (var item in coffeeSales)
                     {
-                        usedCoffee += coffeeUsage.Quantity;
+                        var coffeeUsage =
+                            item.Product1.ProductCalculations.FirstOrDefault(c =>
+                                c.SuplyProductId == coffeeSuplyProduct.Id);
+                        if (coffeeUsage != null)
+                        {
+                            usedCoffee += coffeeUsage.Quantity;
+                        }
                     }
                 }
-
-                var usedPortions = usedCoffee / (decimal)0.0075; // TODO: take from config
 
                 var dto = new ShiftInfo()
                 {
@@ -185,7 +187,7 @@ namespace CoffeeManager.Api.Controllers
                     ShiftEarnedMoney = shift.CurrentAmount,
                     StartCounter = shift.StartCounter,
                     EndCounter = shift.EndCounter,
-                    UsedPortions = usedPortions                
+                    UsedPortions = usedCoffee
                 };
                 return Request.CreateResponse(HttpStatusCode.OK, dto);
             }

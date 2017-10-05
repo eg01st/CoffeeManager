@@ -47,6 +47,18 @@ namespace CoffeeManager.Api.Controllers
 
         public ISecureDataFormat<AuthenticationTicket> AccessTokenFormat { get; private set; }
 
+        [HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
+        [Route(RoutesConstants.GetAdminUsers)]
+        public IEnumerable<UserAcount> GetAdminUsers()
+        {
+            bool isAdmin = User.IsInRole("Admin");
+            if (!isAdmin)
+            {
+                return Enumerable.Empty<UserAcount>();
+            }
+            var users = UserManager.Users.Select(s => new UserAcount() { Email = s.Email, Id = s.Id, ApiUrl = s.ApiUrl });
+            return users;
+        }
 
         // GET api/Account/UserInfo
         [HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
@@ -131,6 +143,28 @@ namespace CoffeeManager.Api.Controllers
                 return GetErrorResult(result);
             }
 
+            return Ok();
+        }
+
+        [AllowAnonymous]
+        [Route(RoutesConstants.DeleteAdminUser)]
+        public async Task<IHttpActionResult> DeleteUser(string userId)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var user = UserManager.Users.FirstOrDefault(u => u.Id == userId);
+            if (user != null)
+            {
+                IdentityResult result = await UserManager.DeleteAsync(user);
+                if (!result.Succeeded)
+                {
+                    return GetErrorResult(result);
+                }
+            }
+            
             return Ok();
         }
 

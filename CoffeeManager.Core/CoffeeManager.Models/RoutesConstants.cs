@@ -103,7 +103,7 @@ namespace CoffeeManager.Models
         public const string SetPassword = Account + "/SetPassword";
         public const string RemoveLogin = Account + "/RemoveLogin";
         public const string Register = Account + "/Register";
-        public const string SetApiUrl = Account + "/SetApiUrl";
+        public const string DeleteAdminUser = Account + "/DeleteAdminUser";
 
         public const string Token = "Token";
     }

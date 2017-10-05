@@ -71,8 +71,6 @@
         <AssociationConnector Association="CoffeeRoomModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="CoffeeRoomModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="CoffeeRoomModel.AspNetUserRoles" />
-        <EntityTypeShape EntityType="CoffeeRoomModel.CoffeePortion" Width="1.5" PointX="9.625" PointY="24.625" />
-        <AssociationConnector Association="CoffeeRoomModel.FK__CoffeePor__Coffe__3864608B" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -57,7 +57,7 @@ namespace CoffeeManager.AuthService.Controllers
             {
                 return Enumerable.Empty<UserAcount>();
             }
-            var users = UserManager.Users.Select(s => new UserAcount() {Email = s.Email, Id = s.Id});
+            var users = UserManager.Users.Select(s => new UserAcount() {Email = s.Email, Id = s.Id, ApiUrl = s.ApiUrl});
             return users;
         }
 
@@ -109,41 +109,6 @@ namespace CoffeeManager.AuthService.Controllers
             return Ok();
         }
 
-        //// POST api/Account/SetPassword
-        //[Route(RoutesConstants.SetPassword)]
-        //[HttpPost]
-        //public async Task<IHttpActionResult> SetPassword(string password)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
-
-        //    IdentityResult result = await UserManager.AddPasswordAsync(User.Identity.GetUserId(), password);
-
-        //    if (!result.Succeeded)
-        //    {
-        //        return GetErrorResult(result);
-        //    }
-
-        //    return Ok();
-        //}
-
-        // POST api/Account/SetPassword
-        [Route(RoutesConstants.SetApiUrl)]
-        [HttpPost]
-        public async Task<IHttpActionResult> SetApiUrl(string userId, string url)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-            var user = UserManager.Users.First(u => u.Id == userId);
-            user.ApiUrl = url;
-
-            return Ok();
-        }
-
 
         // POST api/Account/RemoveLogin
         [Route(RoutesConstants.RemoveLogin)]
@@ -184,7 +149,7 @@ namespace CoffeeManager.AuthService.Controllers
                 return BadRequest(ModelState);
             }
 
-            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
+            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email, ApiUrl = model.ApiUrl};
 
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
 
@@ -196,38 +161,27 @@ namespace CoffeeManager.AuthService.Controllers
             return Ok();
         }
 
-        //// POST api/Account/RegisterExternal
-        //[OverrideAuthentication]
-        //[HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
-        //[Route("RegisterExternal")]
-        //public async Task<IHttpActionResult> RegisterExternal(RegisterExternalBindingModel model)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
+        [AllowAnonymous]
+        [Route(RoutesConstants.DeleteAdminUser)]
+        public async Task<IHttpActionResult> DeleteUser(string userId)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
-        //    var info = await Authentication.GetExternalLoginInfoAsync();
-        //    if (info == null)
-        //    {
-        //        return InternalServerError();
-        //    }
+            var user = UserManager.Users.FirstOrDefault(u => u.Id == userId);
+            if (user != null)
+            {
+                IdentityResult result = await UserManager.DeleteAsync(user);
+                if (!result.Succeeded)
+                {
+                    return GetErrorResult(result);
+                }
+            }
 
-        //    var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
-
-        //    IdentityResult result = await UserManager.CreateAsync(user);
-        //    if (!result.Succeeded)
-        //    {
-        //        return GetErrorResult(result);
-        //    }
-
-        //    result = await UserManager.AddLoginAsync(user.Id, info.Login);
-        //    if (!result.Succeeded)
-        //    {
-        //        return GetErrorResult(result); 
-        //    }
-        //    return Ok();
-        //}
+            return Ok();
+        }
 
         protected override void Dispose(bool disposing)
         {

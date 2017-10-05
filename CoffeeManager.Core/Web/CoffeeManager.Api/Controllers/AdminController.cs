@@ -34,40 +34,5 @@ namespace CoffeeManager.Api.Controllers
 
             return Request.CreateResponse(HttpStatusCode.OK);
         }
-
-        [Route(RoutesConstants.GetCoffeePortionWeight)]
-        [HttpGet]
-        public async Task<HttpResponseMessage> GetCoffeePortionWeight([FromUri]int coffeeroomno, HttpRequestMessage message)
-        {
-            var entities = new CoffeeRoomEntities();
-            var item = entities.CoffeePortions.FirstOrDefault(i => i.CoffeeRoomNo == coffeeroomno);
-            if (item == null)
-            {
-                return Request.CreateResponse(HttpStatusCode.OK, default(decimal?));
-            }
-            return Request.CreateResponse(HttpStatusCode.OK, item.PortionWeight);
-        }
-
-        [Route(RoutesConstants.SetCoffeePortionWeight)]
-        [HttpPost]
-        public async Task<HttpResponseMessage> SetCoffeePortionWeight([FromUri]int coffeeroomno, decimal weight, HttpRequestMessage message)
-        {
-            var entities = new CoffeeRoomEntities();
-            var item = entities.CoffeePortions.FirstOrDefault(i => i.CoffeeRoomNo == coffeeroomno);
-            if (item == null)
-            {
-                item = new CoffeePortion();
-                item.CoffeeRoomNo = coffeeroomno;
-                item.PortionWeight = weight;
-                entities.CoffeePortions.Add(item);
-            }
-            else
-            {
-                item.PortionWeight = weight;
-            }
-            entities.SaveChanges();
-
-            return Request.CreateResponse(HttpStatusCode.OK);
-        }
     }
 }
