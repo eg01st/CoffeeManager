@@ -17,21 +17,36 @@ namespace CoffeeManager.Api.Controllers
         public async Task<HttpResponseMessage> GetCoffeeRooms([FromUri]int coffeeroomno, HttpRequestMessage message)
         {
             var entities = new CoffeeRoomEntities();
-            var items = entities.CoffeeRooms.ToList().Select(s => new Entity() { Id = s.Id, Name = s.Name });
+            var items = entities.CoffeeRooms.Where(c => c.IsActive).ToList().Select(s => new Entity() { Id = s.Id, Name = s.Name });
 
             return Request.CreateResponse(HttpStatusCode.OK, items);
         }
 
         [Route(RoutesConstants.AddCoffeeRoom)]
         [HttpPost]
-        public async Task<HttpResponseMessage> AddCoffeeRoom([FromUri]int coffeeroomno, string name, HttpRequestMessage message)
+        public async Task<HttpResponseMessage> AddCoffeeRoom([FromUri]int coffeeroomno, dynamic model, HttpRequestMessage message)
         {
             var entities = new CoffeeRoomEntities();
             var coffeeRoom = new CoffeeRoom();
-            coffeeRoom.Name = name;
+            coffeeRoom.Name = model.Name;
             entities.CoffeeRooms.Add(coffeeRoom);
             entities.SaveChanges();
 
+            return Request.CreateResponse(HttpStatusCode.OK);
+        }
+
+        [Route(RoutesConstants.DeleteCoffeeRoom)]
+        [HttpPost]
+        public async Task<HttpResponseMessage> DeleteCoffeeRoom([FromUri]int coffeeroomno, dynamic model, HttpRequestMessage message)
+        {
+            var entities = new CoffeeRoomEntities();
+            int id = model.Id;
+            var cofferrom =  entities.CoffeeRooms.FirstOrDefault(c => c.Id == id);
+            if (cofferrom != null)
+            {
+                cofferrom.IsActive = false;
+                entities.SaveChanges();
+            }
             return Request.CreateResponse(HttpStatusCode.OK);
         }
     }

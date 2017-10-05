@@ -110,35 +110,6 @@ namespace CoffeeManager.AuthService.Controllers
         }
 
 
-        // POST api/Account/RemoveLogin
-        [Route(RoutesConstants.RemoveLogin)]
-        public async Task<IHttpActionResult> RemoveLogin(RemoveLoginBindingModel model)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            IdentityResult result;
-
-            if (model.LoginProvider == LocalLoginProvider)
-            {
-                result = await UserManager.RemovePasswordAsync(User.Identity.GetUserId());
-            }
-            else
-            {
-                result = await UserManager.RemoveLoginAsync(User.Identity.GetUserId(),
-                    new UserLoginInfo(model.LoginProvider, model.ProviderKey));
-            }
-
-            if (!result.Succeeded)
-            {
-                return GetErrorResult(result);
-            }
-
-            return Ok();
-        }
-
         // POST api/Account/Register
         [AllowAnonymous]
         [Route(RoutesConstants.Register)]
@@ -162,15 +133,16 @@ namespace CoffeeManager.AuthService.Controllers
         }
 
         [AllowAnonymous]
+        [HttpPost]
         [Route(RoutesConstants.DeleteAdminUser)]
-        public async Task<IHttpActionResult> DeleteUser(string userId)
+        public async Task<IHttpActionResult> DeleteAdminUser(DeleteUserBindingModel model)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var user = UserManager.Users.FirstOrDefault(u => u.Id == userId);
+            var user = UserManager.Users.FirstOrDefault(u => u.Id == model.Id);
             if (user != null)
             {
                 IdentityResult result = await UserManager.DeleteAsync(user);
@@ -179,7 +151,6 @@ namespace CoffeeManager.AuthService.Controllers
                     return GetErrorResult(result);
                 }
             }
-
             return Ok();
         }
 

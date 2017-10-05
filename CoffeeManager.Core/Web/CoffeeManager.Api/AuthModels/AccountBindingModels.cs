@@ -48,11 +48,11 @@ namespace CoffeeManager.Api.AuthModels
         public string ConfirmPassword { get; set; }
     }
 
-    public class RegisterExternalBindingModel
+    public class DeleteUserBindingModel
     {
         [Required]
-        [Display(Name = "Email")]
-        public string Email { get; set; }
+        [Display(Name = "Id")]
+        public string Id { get; set; }
     }
 
     public class RemoveLoginBindingModel

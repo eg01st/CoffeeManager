@@ -51,11 +51,6 @@ namespace CoffeeManager.Api.Controllers
         [Route(RoutesConstants.GetAdminUsers)]
         public IEnumerable<UserAcount> GetAdminUsers()
         {
-            bool isAdmin = User.IsInRole("Admin");
-            if (!isAdmin)
-            {
-                return Enumerable.Empty<UserAcount>();
-            }
             var users = UserManager.Users.Select(s => new UserAcount() { Email = s.Email, Id = s.Id, ApiUrl = s.ApiUrl });
             return users;
         }
@@ -147,15 +142,16 @@ namespace CoffeeManager.Api.Controllers
         }
 
         [AllowAnonymous]
+        [HttpPost]
         [Route(RoutesConstants.DeleteAdminUser)]
-        public async Task<IHttpActionResult> DeleteUser(string userId)
+        public async Task<IHttpActionResult> DeleteAdminUser(DeleteUserBindingModel model)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var user = UserManager.Users.FirstOrDefault(u => u.Id == userId);
+            var user = UserManager.Users.FirstOrDefault(u => u.Id == model.Id);
             if (user != null)
             {
                 IdentityResult result = await UserManager.DeleteAsync(user);
