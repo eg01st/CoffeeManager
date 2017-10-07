@@ -8,11 +8,14 @@ using System.Collections.Generic;
 using CoffeeManager.Models;
 using System.Linq;
 using CoffeeManager.Common;
+using MvvmCross.Plugins.Messenger;
 
 namespace CoffeeManagerAdmin.Core.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
+        private readonly MvxSubscriptionToken refreshCoffeeroomsToken;
+
         private readonly IShiftManager shiftManager;
 
         private ICommand _showShiftsCommand;
@@ -44,6 +47,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels
         public ICommand ShowExpensesCommand { get; set; }
         public ICommand ShowInventoryCommand { get; set; }
         public ICommand ShowUtilizedSuplyProductsCommand { get; set; }
+        public ICommand ShowSettingsCommand { get; set; }
 
 
         protected override void OnClose()
@@ -116,6 +120,9 @@ namespace CoffeeManagerAdmin.Core.ViewModels
             ShowExpensesCommand = new MvxCommand(() => ShowViewModel<ManageExpensesViewModel>());
             ShowInventoryCommand = new MvxCommand(() => ShowViewModel<InventoryViewModel>());
             ShowUtilizedSuplyProductsCommand = new MvxCommand(() => ShowViewModel<UtilizeViewModel>());
+            ShowSettingsCommand = new MvxCommand(() => ShowViewModel<SettingsViewModel>());
+
+            refreshCoffeeroomsToken = Subscribe<RefreshCoffeeRoomsMessage>(async (obj) => await GetCoffeeRooms());
         }
 
 
@@ -144,11 +151,10 @@ namespace CoffeeManagerAdmin.Core.ViewModels
             ShowViewModel<ShiftsViewModel>();
         }
 
-        public async void Init()
+        public async Task Init()
         {
             await GetEntireMoney();
             await GetCoffeeRooms();
-
         }
 
         private async void DoGetEntireMoney()

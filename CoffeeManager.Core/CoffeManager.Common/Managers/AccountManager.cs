@@ -2,6 +2,8 @@
 using CoffeeManager.Models;
 using CoffeManager.Common.Providers;
 using CoffeeManager.Common;
+using System;
+using System.Linq;
 
 namespace CoffeManager.Common.Managers
 {
@@ -19,17 +21,17 @@ namespace CoffeManager.Common.Managers
             return await _provider.AuthorizeInitial(login, password);
         }
 
-        public async Task<string> Authorize(string login, string password)
+        public async Task<UserAcount> Authorize(string login, string password)
         {
             var initialAccessToken = await _provider.AuthorizeInitial(login, password);
-            BaseServiceProvider.SetAccessToken(initialAccessToken);
+            BaseServiceProvider.SetInitialAccessToken(initialAccessToken);
             var userInfo = await _provider.GetUserInfo();
             Config.ApiUrl = userInfo.ApiUrl;
 
             var token = await _provider.Authorize(login, password);
             BaseServiceProvider.SetAccessToken(token);
 
-            return token;
+            return userInfo;
         }
 
         public async Task<UserAcount> GetUserInfo()
@@ -37,9 +39,14 @@ namespace CoffeManager.Common.Managers
             return await _provider.GetUserInfo();
         }
 
-        public async Task Register(string email, string password)
+        public async Task Register(string email, string password, string apiUrl)
         {
-            await _provider.Register(email, password);
+            await _provider.Register(email, password, apiUrl);
+        }
+
+        public async Task RegisterLocal(string email, string password, string apiUrl)
+        {
+            await _provider.RegisterLocal(email, password, apiUrl);
         }
 
         public async Task Logout()
@@ -52,9 +59,21 @@ namespace CoffeManager.Common.Managers
             await _provider.ChangePassword(oldPassword, newPassword);
         }
 
-        public async Task SetPassword(string newPassword, string confirmPassword)
+        public async Task<UserAcount[]> GetUsers()
         {
-            await _provider.SetPassword(newPassword, confirmPassword);
+            return await _provider.GetUsers();
+        }
+
+
+        public async Task DeleteAdminUser(string userId, string email, string localApiUrl)
+        {
+            var users = await _provider.GetLocalUsers();
+            var localUser = users.FirstOrDefault(u => u.Email == email);
+            if(localUser != null)
+            {
+                await _provider.DeleteAdminUserLocal(localUser.Id, localApiUrl);
+                await _provider.DeleteAdminUser(userId);
+            }
         }
     }
 }

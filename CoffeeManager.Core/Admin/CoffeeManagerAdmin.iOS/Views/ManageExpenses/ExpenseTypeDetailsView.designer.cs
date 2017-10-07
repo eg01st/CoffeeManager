@@ -1,42 +1,45 @@
 // WARNING
 //
-// This file has been generated automatically by Visual Studio to store outlets and
-// actions made in the UI designer. If it is removed, they will be lost.
-// Manual changes to this file may not be handled correctly.
+// This file has been generated automatically by Visual Studio from the outlets and
+// actions declared in your storyboard file.
+// Manual changes to this file will not be maintained.
 //
 using Foundation;
+using System;
 using System.CodeDom.Compiler;
 
 namespace CoffeeManagerAdmin.iOS
 {
-	[Register ("ExpenseTypeDetailsView")]
-	partial class ExpenseTypeDetailsView
-	{
-		[Outlet]
-		UIKit.UILabel ExpenseTypeNameLabel { get; set; }
+    [Register ("ExpenseTypeDetailsView")]
+    partial class ExpenseTypeDetailsView
+    {
+        [Outlet]
+        UIKit.UILabel ExpenseTypeNameLabel { get; set; }
 
-		[Outlet]
-		UIKit.UITableView MappedSuplyProductsTableView { get; set; }
 
-		[Outlet]
-		UIKit.UIButton MapSuplyProductButton { get; set; }
-		
-		void ReleaseDesignerOutlets ()
-		{
-			if (ExpenseTypeNameLabel != null) {
-				ExpenseTypeNameLabel.Dispose ();
-				ExpenseTypeNameLabel = null;
-			}
+        [Outlet]
+        UIKit.UITableView MappedSuplyProductsTableView { get; set; }
 
-			if (MapSuplyProductButton != null) {
-				MapSuplyProductButton.Dispose ();
-				MapSuplyProductButton = null;
-			}
 
-			if (MappedSuplyProductsTableView != null) {
-				MappedSuplyProductsTableView.Dispose ();
-				MappedSuplyProductsTableView = null;
-			}
-		}
-	}
+        [Outlet]
+        UIKit.UIButton MapSuplyProductButton { get; set; }
+
+        void ReleaseDesignerOutlets ()
+        {
+            if (ExpenseTypeNameLabel != null) {
+                ExpenseTypeNameLabel.Dispose ();
+                ExpenseTypeNameLabel = null;
+            }
+
+            if (MappedSuplyProductsTableView != null) {
+                MappedSuplyProductsTableView.Dispose ();
+                MappedSuplyProductsTableView = null;
+            }
+
+            if (MapSuplyProductButton != null) {
+                MapSuplyProductButton.Dispose ();
+                MapSuplyProductButton = null;
+            }
+        }
+    }
 }

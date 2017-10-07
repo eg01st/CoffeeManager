@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SettingsView">
+            <connections>
+                <outlet property="AddCoffeeRoomButton" destination="vRD-5a-IFs" id="name-outlet-vRD-5a-IFs"/>
+                <outlet property="ClientsTableView" destination="b7J-0N-BZh" id="name-outlet-b7J-0N-BZh"/>
+                <outlet property="CoffeeRoonNameTextField" destination="ukA-iZ-i0a" id="name-outlet-ukA-iZ-i0a"/>
+                <outlet property="view" destination="2" id="RRd-Eg-VrN"/>
+                <outlet property="CoffeeRoomsTable" destination="ScL-G4-sMF" id="name-outlet-ScL-G4-sMF"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="2">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Добавить кофейню:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IiJ-rs-W8K">
+                    <rect key="frame" x="16" y="16" width="159" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Адрес:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lhZ-Mu-pQW" misplaced="YES">
+                    <rect key="frame" x="16" y="53" width="55" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vRD-5a-IFs" misplaced="YES">
+                    <rect key="frame" x="290" y="48.5" width="69" height="30"/>
+                    <state key="normal" title="Добавить"/>
+                </button>
+                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ukA-iZ-i0a" misplaced="YES">
+                    <rect key="frame" x="87" y="48.5" width="187" height="30"/>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Кофейни:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J7u-hS-GVf" misplaced="YES">
+                    <rect key="frame" x="149.5" y="102.5" width="76" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ScL-G4-sMF" misplaced="YES">
+                    <rect key="frame" x="0.0" y="139.5" width="375" height="291.5"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="b7J-0N-BZh" misplaced="YES">
+                    <rect key="frame" x="0.0" y="447" width="375" height="200"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="200" id="lbN-35-Xzw"/>
+                    </constraints>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="b7J-0N-BZh" firstAttribute="top" secondItem="ScL-G4-sMF" secondAttribute="bottom" constant="16" id="6cj-Z9-7UE"/>
+                <constraint firstItem="vRD-5a-IFs" firstAttribute="centerY" secondItem="ukA-iZ-i0a" secondAttribute="centerY" id="BWG-dg-Ndr"/>
+                <constraint firstItem="vRD-5a-IFs" firstAttribute="leading" secondItem="ukA-iZ-i0a" secondAttribute="trailing" constant="16" id="CV0-D4-Qgp"/>
+                <constraint firstAttribute="trailing" secondItem="b7J-0N-BZh" secondAttribute="trailing" id="Mvq-RX-KuI"/>
+                <constraint firstItem="lhZ-Mu-pQW" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="16" id="Ndc-aE-zoF"/>
+                <constraint firstItem="ukA-iZ-i0a" firstAttribute="leading" secondItem="lhZ-Mu-pQW" secondAttribute="trailing" constant="16" id="TfD-A6-m2b"/>
+                <constraint firstItem="J7u-hS-GVf" firstAttribute="top" secondItem="ukA-iZ-i0a" secondAttribute="bottom" constant="24" id="V7M-F7-haX"/>
+                <constraint firstItem="IiJ-rs-W8K" firstAttribute="top" secondItem="2" secondAttribute="top" constant="16" id="Vi8-mV-SWd"/>
+                <constraint firstItem="ScL-G4-sMF" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="aJ2-QR-Ncg"/>
+                <constraint firstItem="ScL-G4-sMF" firstAttribute="top" secondItem="J7u-hS-GVf" secondAttribute="bottom" constant="16" id="ixU-45-C38"/>
+                <constraint firstItem="lhZ-Mu-pQW" firstAttribute="top" secondItem="IiJ-rs-W8K" secondAttribute="bottom" constant="16" id="l3a-cX-Igs"/>
+                <constraint firstAttribute="trailing" secondItem="ScL-G4-sMF" secondAttribute="trailing" id="lrf-9S-1QW"/>
+                <constraint firstAttribute="bottom" secondItem="b7J-0N-BZh" secondAttribute="bottom" constant="20" id="mXn-pB-9n2"/>
+                <constraint firstItem="ukA-iZ-i0a" firstAttribute="centerY" secondItem="lhZ-Mu-pQW" secondAttribute="centerY" id="ngh-4D-pB8"/>
+                <constraint firstAttribute="trailing" secondItem="vRD-5a-IFs" secondAttribute="trailing" constant="16" id="o4k-mf-NZ5"/>
+                <constraint firstItem="J7u-hS-GVf" firstAttribute="centerX" secondItem="2" secondAttribute="centerX" id="oxc-kW-rIA"/>
+                <constraint firstItem="IiJ-rs-W8K" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="16" id="sK5-o2-9La"/>
+                <constraint firstItem="b7J-0N-BZh" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="wjt-hO-oxP"/>
+            </constraints>
+            <point key="canvasLocation" x="24.5" y="51.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ic_check.png" width="50" height="50"/>
+        <image name="ic_arrow_upward_2x.png" width="48" height="48"/>
+        <image name="ic_arrow_upward_3x.png" width="72" height="72"/>
+        <image name="ic_arrow_upward.png" width="24" height="24"/>
+        <image name="ic_credit_card_2x.png" width="48" height="48"/>
+        <image name="ic_credit_card_3x.png" width="72" height="72"/>
+        <image name="ic_credit_card.png" width="24" height="24"/>
+        <image name="ic_arrow_downward_2x.png" width="48" height="48"/>
+        <image name="ic_arrow_downward_3x.png" width="72" height="72"/>
+        <image name="ic_arrow_downward.png" width="24" height="24"/>
+        <image name="ic_arrow_back_3x.png" width="72" height="72"/>
+        <image name="ic_arrow_back_2x.png" width="48" height="48"/>
+        <image name="ic_arrow_back.png" width="24" height="24"/>
+        <image name="ic_settings_3x.png" width="72" height="72"/>
+        <image name="ic_settings_2x.png" width="48" height="48"/>
+        <image name="ic_settings.png" width="24" height="24"/>
+        <image name="ic_add_circle_outline_3x.png" width="72" height="72"/>
+        <image name="ic_add_circle_outline_2x.png" width="48" height="48"/>
+        <image name="ic_add_circle_outline.png" width="24" height="24"/>
+    </resources>
+</document>

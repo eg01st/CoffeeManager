@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ClientDetailsView">
+            <connections>
+                <outlet property="ClientNameLabel" destination="KhO-HW-aaT" id="name-outlet-KhO-HW-aaT"/>
+                <outlet property="view" destination="2" id="RRd-Eg-VrN"/>
+                <outlet property="ApiUrlLabel" destination="CeK-e1-sIs" id="name-outlet-CeK-e1-sIs"/>
+                <outlet property="DeleteUserButton" destination="jJF-0d-kn8" id="name-outlet-jJF-0d-kn8"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="2">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Имя:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zgk-jp-45u">
+                    <rect key="frame" x="16" y="16" width="39" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Урл:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3cc-RS-fYS" misplaced="YES">
+                    <rect key="frame" x="16" y="53" width="35" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KhO-HW-aaT" misplaced="YES">
+                    <rect key="frame" x="71" y="16" width="288" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CeK-e1-sIs" misplaced="YES">
+                    <rect key="frame" x="67" y="53" width="292" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jJF-0d-kn8" misplaced="YES">
+                    <rect key="frame" x="158.5" y="98" width="58" height="30"/>
+                    <state key="normal" title="Удалить"/>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="KhO-HW-aaT" firstAttribute="centerY" secondItem="zgk-jp-45u" secondAttribute="centerY" id="6uR-gh-q7e"/>
+                <constraint firstAttribute="trailing" secondItem="KhO-HW-aaT" secondAttribute="trailing" constant="16" id="8XX-bA-uun"/>
+                <constraint firstItem="CeK-e1-sIs" firstAttribute="leading" secondItem="3cc-RS-fYS" secondAttribute="trailing" constant="16" id="Cky-1C-tu7"/>
+                <constraint firstItem="KhO-HW-aaT" firstAttribute="leading" secondItem="zgk-jp-45u" secondAttribute="trailing" constant="16" id="D6B-t7-pHq"/>
+                <constraint firstItem="CeK-e1-sIs" firstAttribute="centerY" secondItem="3cc-RS-fYS" secondAttribute="centerY" id="E5x-zm-hmA"/>
+                <constraint firstItem="zgk-jp-45u" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="16" id="FqK-h0-U1o"/>
+                <constraint firstItem="3cc-RS-fYS" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="16" id="NJ9-gO-yKj"/>
+                <constraint firstItem="zgk-jp-45u" firstAttribute="top" secondItem="2" secondAttribute="top" constant="16" id="Q6v-bo-wIl"/>
+                <constraint firstItem="jJF-0d-kn8" firstAttribute="top" secondItem="CeK-e1-sIs" secondAttribute="bottom" constant="24" id="SAy-fE-KhV"/>
+                <constraint firstItem="jJF-0d-kn8" firstAttribute="centerX" secondItem="2" secondAttribute="centerX" id="X1B-IV-MxH"/>
+                <constraint firstAttribute="trailing" secondItem="CeK-e1-sIs" secondAttribute="trailing" constant="16" id="uJV-f4-PLc"/>
+                <constraint firstItem="3cc-RS-fYS" firstAttribute="top" secondItem="zgk-jp-45u" secondAttribute="bottom" constant="16" id="zK1-Za-HgX"/>
+            </constraints>
+        </view>
+    </objects>
+    <resources>
+        <image name="ic_check.png" width="50" height="50"/>
+        <image name="ic_arrow_upward_2x.png" width="48" height="48"/>
+        <image name="ic_arrow_upward_3x.png" width="72" height="72"/>
+        <image name="ic_arrow_upward.png" width="24" height="24"/>
+        <image name="ic_credit_card_2x.png" width="48" height="48"/>
+        <image name="ic_credit_card_3x.png" width="72" height="72"/>
+        <image name="ic_credit_card.png" width="24" height="24"/>
+        <image name="ic_arrow_downward_2x.png" width="48" height="48"/>
+        <image name="ic_arrow_downward_3x.png" width="72" height="72"/>
+        <image name="ic_arrow_downward.png" width="24" height="24"/>
+        <image name="ic_arrow_back_3x.png" width="72" height="72"/>
+        <image name="ic_arrow_back_2x.png" width="48" height="48"/>
+        <image name="ic_arrow_back.png" width="24" height="24"/>
+        <image name="ic_settings_3x.png" width="72" height="72"/>
+        <image name="ic_settings_2x.png" width="48" height="48"/>
+        <image name="ic_settings.png" width="24" height="24"/>
+        <image name="ic_add_circle_outline_3x.png" width="72" height="72"/>
+        <image name="ic_add_circle_outline_2x.png" width="48" height="48"/>
+        <image name="ic_add_circle_outline.png" width="24" height="24"/>
+    </resources>
+</document>

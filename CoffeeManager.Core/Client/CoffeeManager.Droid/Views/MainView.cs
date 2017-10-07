@@ -176,6 +176,7 @@ namespace CoffeeManager.Droid.Views
             {
                 var tab = tabLayout.GetTabAt(i);
                 var tabItem = tabItems[i];
+
                 var view = new LinearLayout(this.BaseContext);
                 view.SetGravity(GravityFlags.Center);
                 var param = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.MatchParent);

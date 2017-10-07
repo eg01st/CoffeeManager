@@ -50,11 +50,20 @@ namespace CoffeeManagerAdmin.iOS
             TableView = new UITableView();
             TableView.TranslatesAutoresizingMaskIntoConstraints = false;
             TableViewContainer.AddSubview(TableView);
-
             _searchBar = new UISearchBar(new RectangleF(0, 0, (float)UIScreen.MainScreen.Bounds.Width, 44))
             {
                 AutocorrectionType = UITextAutocorrectionType.No
             };
+
+            _searchBar.ShowsCancelButton = true;
+            _searchBar.CancelButtonClicked += (sender, e) =>
+            {
+                ViewModel.SearchString = string.Empty;
+                View.EndEditing(true);
+            };
+
+                
+         
             TableView.TableHeaderView = _searchBar;
 
             TableViewContainer.AddConstraints(ConstraintExtensions.StickToAllSuperViewEdges(TableViewContainer, TableView));

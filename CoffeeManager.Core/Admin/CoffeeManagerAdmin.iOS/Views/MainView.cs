@@ -7,6 +7,7 @@ using CoffeeManagerAdmin.Core.ViewModels;
 using CoreGraphics;
 using MvvmCross.Binding.iOS.Views;
 using CoffeManager.Common;
+using System.Collections.Generic;
 
 namespace CoffeeManagerAdmin.iOS
 {
@@ -24,7 +25,18 @@ namespace CoffeeManagerAdmin.iOS
         {
             base.ViewDidLoad();
 
-            NavigationItem.SetHidesBackButton(true, false);
+            var btn = new UIBarButtonItem()
+            {
+                Image = UIImage.FromBundle("ic_settings")
+            };
+
+
+            NavigationItem.SetRightBarButtonItem(btn, false);
+            this.AddBindings(new Dictionary<object, string>
+            {
+                {btn, "Clicked ShowSettingsCommand"},
+
+            });
 
 
             var toolbar = new UIToolbar(new CGRect(0, 0, this.View.Frame.Width, 44));
