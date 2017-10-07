@@ -101,7 +101,11 @@ namespace CoffeeManager.Api.Mappers
 				Quantity = 0,
 				CoffeeRoomNo = sProduct.CoffeeRoomNo,
 				Name = sProduct.Name,
-				Price = sProduct.Price
+				Price = sProduct.Price,
+                ExpenseNumerationName = "Штуки",
+                InventoryNumerationName = "Штуки",
+                ExpenseNumerationMultyplier = 1,
+                InventoryNumerationMultyplier = 1               
 			};
 		}
 

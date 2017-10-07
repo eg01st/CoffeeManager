@@ -371,6 +371,7 @@
     <Content Include="Model.edmx.diagram">
       <DependentUpon>Model.edmx</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\Default Settings %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\Default Settings.pubxml" />
     <None Include="Properties\PublishProfiles\dev.pubxml" />
     <None Include="Properties\PublishProfiles\local.pubxml" />

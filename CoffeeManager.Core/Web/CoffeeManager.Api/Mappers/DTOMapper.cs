@@ -20,7 +20,8 @@ namespace CoffeeManager.Api.Mappers
                 ExpenceId = dbUser.ExpenceId,
                 IsActive = dbUser.IsActive,
                 NightShiftPercent = dbUser.NightShiftPercent,
-                SalaryRate = dbUser.SimplePayment
+                SalaryRate = dbUser.SimplePayment,
+                MinimumPayment = dbUser.MinimumPayment
             };
             if(dbUser.UserPenalties != null && dbUser.UserPenalties.Any())
             {

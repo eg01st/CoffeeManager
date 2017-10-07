@@ -29,6 +29,7 @@ namespace CoffeeManager.Api.Controllers
             var entities = new CoffeeRoomEntities();
             var coffeeRoom = new CoffeeRoom();
             coffeeRoom.Name = model.Name;
+            coffeeRoom.IsActive = true;
             entities.CoffeeRooms.Add(coffeeRoom);
             entities.SaveChanges();
 
