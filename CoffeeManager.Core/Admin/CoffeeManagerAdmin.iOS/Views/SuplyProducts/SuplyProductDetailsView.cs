@@ -4,10 +4,11 @@ using UIKit;
 using MvvmCross.iOS.Views;
 using MvvmCross.Binding.BindingContext;
 using CoffeeManagerAdmin.Core;
+using Foundation;
 
 namespace CoffeeManagerAdmin.iOS
 {
-    public partial class SuplyProductDetailsView : ViewControllerBase<SuplyProductDetailsViewModel>
+    public partial class SuplyProductDetailsView : ViewControllerBase<SuplyProductDetailsViewModel>, IUITextFieldDelegate
     {
         public SuplyProductDetailsView() : base("SuplyProductDetailsView", null)
         {
@@ -15,8 +16,34 @@ namespace CoffeeManagerAdmin.iOS
 
         public override void ViewDidLoad()
         {
+
             base.ViewDidLoad();
             Title = "Детали товара";
+          
+            StickBottomButtonToKeyboard(BottomHeightConstraint);
+        }
+
+        protected override void InitStylesAndContent()
+        {
+            base.InitStylesAndContent();
+            ExpenseNumerationNameTextField.Delegate = this;
+            ExpenseNumerationMultyplierTextField.Delegate = this;
+            SuplyPriceText.Delegate = this;
+            InventoryNumerationNameTextField.Delegate = this;
+            InventoryNumerationMultiplierTextField.Delegate = this;
+
+            ItemCountText.Delegate = this;
+        }
+
+        [Export("textFieldShouldReturn:")]
+        public bool ShouldReturn(UITextField textField)
+        {
+            textField.ResignFirstResponder();
+            return true;
+        }
+
+        protected override void DoBind()
+        {
             var set = this.CreateBindingSet<SuplyProductDetailsView, SuplyProductDetailsViewModel>();
             set.Bind(NameText).To(vm => vm.Name);
             set.Bind(ExpenseNumerationNameTextField).To(vm => vm.ExpenseNumerationName);
@@ -30,12 +57,6 @@ namespace CoffeeManagerAdmin.iOS
             set.Bind(DeleteButton).To(vm => vm.DeleteCommand);
             set.Bind(InventoryNeededSwitch).For(s => s.On).To(vm => vm.InventoryEnabled);
             set.Apply();
-        }
-
-        public override void DidReceiveMemoryWarning()
-        {
-            base.DidReceiveMemoryWarning();
-            // Release any cached data, images, etc that aren't in use.
         }
     }
 }

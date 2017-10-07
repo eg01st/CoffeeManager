@@ -31,7 +31,6 @@ namespace CoffeeManagerAdmin.iOS
             this.AddBindings(new Dictionary<object, string>
             {
                 {btn, "Clicked AddNewSuplyProductCommand"},
-
             });
         }
 

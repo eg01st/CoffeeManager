@@ -155,7 +155,6 @@ namespace CoffeeManagerAdmin.Core.ViewModels
         {
             await GetEntireMoney();
             await GetCoffeeRooms();
-            CurrentCoffeeRoom = CoffeeRooms.First();
         }
 
         private async void DoGetEntireMoney()
@@ -180,6 +179,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels
             {
                 var items = await adminManager.GetCoffeeRooms();
                 CoffeeRooms = items.ToList();
+                CurrentCoffeeRoom = CoffeeRooms.First();
             });
         }
     }

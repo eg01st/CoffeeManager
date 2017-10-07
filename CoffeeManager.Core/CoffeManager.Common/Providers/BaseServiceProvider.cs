@@ -76,6 +76,8 @@ namespace CoffeManager.Common
                 responseString = await response.Content.ReadAsStringAsync();
                 if (response.StatusCode != System.Net.HttpStatusCode.OK)
                 {
+                    Debug.WriteLine("GET");
+                    Debug.WriteLine(url);
                     throw new Exception(response.ToString() + responseString);
                 }
             }
@@ -90,12 +92,17 @@ namespace CoffeManager.Common
             string url = GetUrl(path, param);
             string responseString;
             var client = GetClient();
+            string body = JsonConvert.SerializeObject(obj);
 
-            using (var response = await client.PostAsync(url, new StringContent(JsonConvert.SerializeObject(obj))))
+ 
+            using (var response = await client.PostAsync(url, new StringContent(body)))
             {
                 responseString = await response.Content.ReadAsStringAsync();
                 if (response.StatusCode != System.Net.HttpStatusCode.OK)
                 {
+                    Debug.WriteLine("Post");
+                    Debug.WriteLine(url);
+                    Debug.WriteLine(body);
                     throw new Exception(response.ToString() + responseString);
                 }
             }
@@ -109,14 +116,19 @@ namespace CoffeManager.Common
         {
             string url = GetUrl(path, param);
             var client = GetClient();
+            string body = JsonConvert.SerializeObject(obj);
 
 
-            using (var response = await client.PostAsync(url, new StringContent(JsonConvert.SerializeObject(obj), Encoding.UTF8,
-                                        "application/json")))
+                using (var response = await client.PostAsync(url, new StringContent(body, Encoding.UTF8,
+                                                                                    "application/json")))
             {
                 var responseString = await response.Content.ReadAsStringAsync();
                 if (response.StatusCode != System.Net.HttpStatusCode.OK)
                 {
+                    Debug.WriteLine("Post");
+                    Debug.WriteLine(url);
+                    Debug.WriteLine(body);
+
                     throw new Exception(response.ToString() + responseString);
                 }
                 return responseString;
@@ -129,12 +141,17 @@ namespace CoffeManager.Common
             using (var client = new HttpClient())
             {
                 var stringContent = JsonConvert.SerializeObject(obj);
+
+
                 using (var response = await client.PostAsync(url, new StringContent(stringContent, Encoding.UTF8,
                                         "application/json")))
                 {
                     var responseString = await response.Content.ReadAsStringAsync();
                     if (response.StatusCode != System.Net.HttpStatusCode.OK)
                     {
+                        Debug.WriteLine("Post");
+                        Debug.WriteLine(url);
+                        Debug.WriteLine(stringContent);
                         throw new Exception(response.ToString() + responseString);
                     }
                     return responseString;
@@ -168,6 +185,9 @@ namespace CoffeManager.Common
                     }
                     else
                     {
+                        Debug.WriteLine("Post");
+                        Debug.WriteLine(url);
+                        Debug.WriteLine(body);
                         throw new Exception(response.ToString() + responseString);
                     }
                 }
@@ -201,6 +221,9 @@ namespace CoffeManager.Common
                     }
                     else
                     {
+                        Debug.WriteLine("Post");
+                        Debug.WriteLine(url);
+                        Debug.WriteLine(body);
                         throw new Exception(response.ToString() + responseString);
                     }
                 }
@@ -213,8 +236,11 @@ namespace CoffeManager.Common
             string url = GetUrl(path, param);
             string responseString;
             var client = GetClient();
-
-            using (var response = await client.PutAsync(url, new StringContent(JsonConvert.SerializeObject(obj))))
+            var body = JsonConvert.SerializeObject(obj);
+            Debug.WriteLine("PUT");
+            Debug.WriteLine(url);
+            Debug.WriteLine(body);
+            using (var response = await client.PutAsync(url, new StringContent(body)))
             {
                 responseString = await response.Content.ReadAsStringAsync();
                 if (response.StatusCode != System.Net.HttpStatusCode.OK)
@@ -232,8 +258,11 @@ namespace CoffeManager.Common
         {
             string url = GetUrl(path, param);
             var client = GetClient();
-
-            using (var response = await client.PutAsync(url, new StringContent(JsonConvert.SerializeObject(obj))))
+            var body = JsonConvert.SerializeObject(obj);
+            Debug.WriteLine("PUT");
+            Debug.WriteLine(url);
+            Debug.WriteLine(body);
+            using (var response = await client.PutAsync(url, new StringContent(body)))
             {
                 var responseString = await response.Content.ReadAsStringAsync();
                 if (response.StatusCode != System.Net.HttpStatusCode.OK)
@@ -248,6 +277,10 @@ namespace CoffeManager.Common
         {
             string url = GetUrl(path, param);
             var client = GetClient();
+
+            Debug.WriteLine("Delete");
+            Debug.WriteLine(url);
+
             using (var response = await client.DeleteAsync(url))
             { 
                 var responseString = await response.Content.ReadAsStringAsync();

@@ -56,8 +56,17 @@ namespace CoffeeManagerAdmin.iOS
         [Outlet]
         UIKit.UITextField SuplyPriceText { get; set; }
 
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.NSLayoutConstraint BottomHeightConstraint { get; set; }
+
         void ReleaseDesignerOutlets ()
         {
+            if (BottomHeightConstraint != null) {
+                BottomHeightConstraint.Dispose ();
+                BottomHeightConstraint = null;
+            }
+
             if (DeleteButton != null) {
                 DeleteButton.Dispose ();
                 DeleteButton = null;

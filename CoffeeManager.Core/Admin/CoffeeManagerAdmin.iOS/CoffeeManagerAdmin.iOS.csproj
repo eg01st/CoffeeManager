@@ -46,9 +46,9 @@
     <ConsolePause>false</ConsolePause>
     <MtouchArch>ARMv7, ARM64</MtouchArch>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-    <CodesignKey>iPhone Developer: Dmytro Serdechnyi (L437EB49N2)</CodesignKey>
+    <CodesignKey>iPhone Developer: tertyshnykov@gmail.com (B6W7MCB7GE)</CodesignKey>
     <MtouchDebug>true</MtouchDebug>
-    <CodesignProvision>d611088f-f8a0-4f9a-88e7-22a28ee1d7f2</CodesignProvision>
+    <CodesignProvision>iOS Team Provisioning Profile: com.companyname.CoffeeManagerAdmin.iOS1</CodesignProvision>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">

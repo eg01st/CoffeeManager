@@ -130,17 +130,7 @@ namespace CoffeeManagerAdmin.Core
 
         private void DoUpdateUser()
         {
-            UserDialogs.Confirm(new Acr.UserDialogs.ConfirmConfig() 
-            {
-                Message = "Сохранить изменения?",
-                OnAction = async (bool obj) => 
-                {
-                    if(obj)
-                    {
-                         await UpdateUser();
-                    }                
-                }
-            });
+            Confirm("Сохранить изменения?", UpdateUser);
         }
 
         private async Task UpdateUser()
@@ -165,6 +155,7 @@ namespace CoffeeManagerAdmin.Core
             user.IsActive = true;
             user.MinimumPayment = MinimumPayment;
             await userManager.AddUser(user);
+            Publish(new RefreshUserListMessage(this));
             Close(this);        
         }
 

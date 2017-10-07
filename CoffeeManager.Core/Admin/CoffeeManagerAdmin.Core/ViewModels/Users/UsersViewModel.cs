@@ -39,8 +39,7 @@ namespace CoffeeManagerAdmin.Core
         }
 
         public ICommand AddUserCommand => _addUserCommand;
-
-       
+              
 
         public UsersViewModel(IUserManager manager)
         {
