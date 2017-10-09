@@ -9,6 +9,7 @@ namespace CoffeeManager.Models
         public const string GetCurrentShiftMoney = Payment + "/getcurrentshiftmoney";
         public const string GetEntireMoney = Payment + "/getentiremoney";
         public const string GetCreditCardEntireMoney = Payment + "/GetCreditCardEntireMoney";
+        public const string SetCreditCardEntireMoney = Payment + "/SetCreditCardEntireMoney";
         public const string GetExpenseItems = Payment + "/getexpenseitems";
         public const string RemoveExpenseType = Payment + "/removeExpenseType";
         public const string ToggleExpenseEnabled = Payment + "/toggleExpenseEnabled";

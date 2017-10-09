@@ -317,5 +317,21 @@ namespace CoffeeManager.Api.Controllers
             return Request.CreateResponse(HttpStatusCode.OK);
         }
 
+        [Route(RoutesConstants.SetCreditCardEntireMoney)]
+        [HttpGet]
+        public async Task<HttpResponseMessage> SetCreditCardEntireMoney([FromUri]int coffeeroomno, decimal amount, HttpRequestMessage message)
+        {
+            var entities = new CoffeeRoomEntities();
+            var shift = entities.Shifts.Where(s => s.CoffeeRoomNo == coffeeroomno).OrderByDescending(s => s.Id).FirstOrDefault();
+
+            if (shift != null)
+            {
+                shift.TotalCreditCardAmount = amount;
+                entities.SaveChanges();
+            }
+
+            return Request.CreateResponse(HttpStatusCode.OK, 0);
+        }
+
     }
 }
