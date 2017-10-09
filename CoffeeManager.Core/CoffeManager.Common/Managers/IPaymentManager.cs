@@ -17,6 +17,10 @@ namespace CoffeManager.Common
 
         Task<decimal> GetEntireMoney();
 
+        Task<decimal> GetCreditCardEntireMoney();
+
+        Task SetCreditCardEntireMoney(decimal amount);
+
         Task AddExpense(int expenseId, decimal amout, int itemCount);
 
         Task<ExpenseType[]> GetActiveExpenseItems();
@@ -38,5 +42,7 @@ namespace CoffeManager.Common
         Task RemoveExpenseType(int expenseTypeId);
 
         Task<IEnumerable<SupliedProduct>> GetExpenseDetails(int expenseId);
+
+        Task CashOutCreditCard(decimal amount);
     }
 }

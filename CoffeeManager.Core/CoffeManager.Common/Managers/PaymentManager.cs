@@ -95,5 +95,20 @@ namespace CoffeManager.Common
         {
             return await paymentProvider.GetExpenseDetails(expenseId);
         }
+
+        public async Task<decimal> GetCreditCardEntireMoney()
+        {
+            return await paymentProvider.GetCreditCardEntireMoney();
+        }
+
+        public async Task CashOutCreditCard(decimal amount)
+        {
+            await paymentProvider.CashOutCreditCard(amount);
+        }
+
+        public async Task SetCreditCardEntireMoney(decimal amount)
+        {
+            await paymentProvider.SetCreditCardEntireMoney(amount);
+        }
     }
 }

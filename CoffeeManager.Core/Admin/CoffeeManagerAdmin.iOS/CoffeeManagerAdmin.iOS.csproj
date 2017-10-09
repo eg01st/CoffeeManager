@@ -380,6 +380,10 @@
     <Compile Include="Views\Settings\CoffeeRoomItemViewCell.designer.cs">
       <DependentUpon>CoffeeRoomItemViewCell.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\CreditCard\CreditCardView.cs" />
+    <Compile Include="Views\CreditCard\CreditCardView.designer.cs">
+      <DependentUpon>CreditCardView.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Setup.cs" />
@@ -450,6 +454,7 @@
     <InterfaceDefinition Include="Views\Settings\ClientDetailsView.xib" />
     <InterfaceDefinition Include="Views\Settings\CreateClientView.xib" />
     <InterfaceDefinition Include="Views\Settings\CoffeeRoomItemViewCell.xib" />
+    <InterfaceDefinition Include="Views\CreditCard\CreditCardView.xib" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MvvmCross.Binding, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -566,6 +571,7 @@
     <Folder Include="Views\SuplyProducts\" />
     <Folder Include="Views\Utilize\" />
     <Folder Include="Views\Settings\" />
+    <Folder Include="Views\CreditCard\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\ic_check.png" />

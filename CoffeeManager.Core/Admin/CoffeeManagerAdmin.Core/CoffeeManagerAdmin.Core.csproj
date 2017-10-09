@@ -112,6 +112,7 @@
     <Compile Include="Messages\RefreshAdminUsersMessage.cs" />
     <Compile Include="ViewModels\Settings\CoffeeRoomItemViewModel.cs" />
     <Compile Include="Messages\RefreshUserListMessage.cs" />
+    <Compile Include="ViewModels\CreditCard\CreditCardViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">
@@ -174,6 +175,7 @@
     <Folder Include="Managers\" />
     <Folder Include="ServiceProviders\" />
     <Folder Include="ViewModels\Settings\" />
+    <Folder Include="ViewModels\CreditCard\" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
