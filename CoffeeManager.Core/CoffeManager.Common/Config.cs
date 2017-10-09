@@ -4,7 +4,7 @@
     {
         public static string ApiUrl = string.Empty;
 
-        public static string AuthApiUrl = "http://185.191.177.62:8084/";
+        public static string AuthApiUrl = "http://csgoopencase-001-site3.atempurl.com/";
 
         public static int CoffeeRoomNo = 1;
     }
