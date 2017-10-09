@@ -110,5 +110,20 @@ namespace CoffeManager.Common
                 { nameof(expenseId), expenseId.ToString()},
             });
         }
+
+        public async Task<decimal> GetCreditCardEntireMoney()
+        {
+            return await Get<decimal>(RoutesConstants.GetCreditCardEntireMoney);
+        }
+
+        public async Task CashOutCreditCard(decimal amount)
+        {
+            await Post<object>(RoutesConstants.CashOutCreditCard, null, new Dictionary<string, string>() { { nameof(amount), amount.ToString() } });
+        }
+
+        public async Task SetCreditCardEntireMoney(decimal amount)
+        {
+            await Post<object>(RoutesConstants.SetCreditCardEntireMoney, null, new Dictionary<string, string>() { { nameof(amount), amount.ToString() } });
+        }
     }
 }

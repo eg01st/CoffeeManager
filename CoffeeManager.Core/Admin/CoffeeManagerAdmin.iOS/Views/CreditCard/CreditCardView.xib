@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CreditCardView">
+            <connections>
+                <outlet property="view" destination="2" id="RRd-Eg-VrN"/>
+                <outlet property="CurrentAmountTextField" destination="hCz-nq-iJv" id="name-outlet-hCz-nq-iJv"/>
+                <outlet property="SaveCurrentAmountButton" destination="Fzv-U2-zFK" id="name-outlet-Fzv-U2-zFK"/>
+                <outlet property="CashoutAmountTextField" destination="Nyc-SZ-mev" id="name-outlet-Nyc-SZ-mev"/>
+                <outlet property="CashoutButton" destination="fpw-TA-QQQ" id="name-outlet-fpw-TA-QQQ"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="2">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Текущий баланс:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GHm-7x-XK6">
+                    <rect key="frame" x="16" y="16" width="136" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hCz-nq-iJv" misplaced="YES">
+                    <rect key="frame" x="168" y="11" width="98" height="30"/>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fzv-U2-zFK" misplaced="YES">
+                    <rect key="frame" x="282" y="11" width="77" height="30"/>
+                    <state key="normal" title="Сохранить"/>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Обналичить сумму:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s5g-ij-RFP" misplaced="YES">
+                    <rect key="frame" x="16" y="53" width="158" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Nyc-SZ-mev" misplaced="YES">
+                    <rect key="frame" x="190" y="48.5" width="66" height="30"/>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fpw-TA-QQQ" misplaced="YES">
+                    <rect key="frame" x="272" y="48.5" width="87" height="30"/>
+                    <state key="normal" title="Обналичить"/>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="Fzv-U2-zFK" secondAttribute="trailing" constant="16" id="0Kt-2p-ujX"/>
+                <constraint firstAttribute="trailing" secondItem="fpw-TA-QQQ" secondAttribute="trailing" constant="16" id="Ahh-Cu-mzG"/>
+                <constraint firstItem="Nyc-SZ-mev" firstAttribute="leading" secondItem="s5g-ij-RFP" secondAttribute="trailing" constant="16" id="BJz-UB-jmE"/>
+                <constraint firstItem="GHm-7x-XK6" firstAttribute="top" secondItem="2" secondAttribute="top" constant="16" id="BqZ-CG-ZS3"/>
+                <constraint firstItem="GHm-7x-XK6" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="16" id="Bs8-pv-M7s"/>
+                <constraint firstItem="hCz-nq-iJv" firstAttribute="leading" secondItem="GHm-7x-XK6" secondAttribute="trailing" constant="16" id="Chw-RZ-fky"/>
+                <constraint firstItem="fpw-TA-QQQ" firstAttribute="centerY" secondItem="Nyc-SZ-mev" secondAttribute="centerY" id="GBA-tG-gZf"/>
+                <constraint firstItem="Fzv-U2-zFK" firstAttribute="leading" secondItem="hCz-nq-iJv" secondAttribute="trailing" constant="16" id="GVw-If-HTh"/>
+                <constraint firstItem="hCz-nq-iJv" firstAttribute="centerY" secondItem="GHm-7x-XK6" secondAttribute="centerY" id="T5n-Q3-RdK"/>
+                <constraint firstItem="fpw-TA-QQQ" firstAttribute="leading" secondItem="Nyc-SZ-mev" secondAttribute="trailing" constant="16" id="kx6-5F-oC5"/>
+                <constraint firstItem="s5g-ij-RFP" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="16" id="m4J-wW-IRG"/>
+                <constraint firstItem="Fzv-U2-zFK" firstAttribute="centerY" secondItem="hCz-nq-iJv" secondAttribute="centerY" id="oWO-RN-5zJ"/>
+                <constraint firstItem="Nyc-SZ-mev" firstAttribute="centerY" secondItem="s5g-ij-RFP" secondAttribute="centerY" id="qez-Nu-C5T"/>
+                <constraint firstItem="s5g-ij-RFP" firstAttribute="top" secondItem="GHm-7x-XK6" secondAttribute="bottom" constant="16" id="zb8-6d-udD"/>
+            </constraints>
+        </view>
+    </objects>
+    <resources>
+        <image name="ic_check.png" width="50" height="50"/>
+        <image name="ic_arrow_upward_2x.png" width="48" height="48"/>
+        <image name="ic_arrow_upward_3x.png" width="72" height="72"/>
+        <image name="ic_arrow_upward.png" width="24" height="24"/>
+        <image name="ic_credit_card_2x.png" width="48" height="48"/>
+        <image name="ic_credit_card_3x.png" width="72" height="72"/>
+        <image name="ic_credit_card.png" width="24" height="24"/>
+        <image name="ic_arrow_downward_2x.png" width="48" height="48"/>
+        <image name="ic_arrow_downward_3x.png" width="72" height="72"/>
+        <image name="ic_arrow_downward.png" width="24" height="24"/>
+        <image name="ic_arrow_back_3x.png" width="72" height="72"/>
+        <image name="ic_arrow_back_2x.png" width="48" height="48"/>
+        <image name="ic_arrow_back.png" width="24" height="24"/>
+        <image name="ic_settings_3x.png" width="72" height="72"/>
+        <image name="ic_settings_2x.png" width="48" height="48"/>
+        <image name="ic_settings.png" width="24" height="24"/>
+        <image name="ic_add_circle_outline_3x.png" width="72" height="72"/>
+        <image name="ic_add_circle_outline_2x.png" width="48" height="48"/>
+        <image name="ic_add_circle_outline.png" width="24" height="24"/>
+    </resources>
+</document>

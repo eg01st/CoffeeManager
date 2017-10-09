@@ -6,10 +6,6 @@ namespace CoffeManager.Common
 {
     public interface IShiftManager
     {
-        Task<decimal> GetEntireMoney();
-
-        Task<decimal> GetCurrentShiftMoney();
-
         Task<ShiftInfo[]> GetShifts();
 
         Task<Sale[]> GetShiftSales(int id);

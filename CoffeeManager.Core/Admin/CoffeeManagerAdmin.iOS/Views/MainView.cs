@@ -65,6 +65,7 @@ namespace CoffeeManagerAdmin.iOS
             var set = this.CreateBindingSet<MainView, MainViewModel>();
             set.Bind(CurrentAmountLabel).To(vm => vm.CurrentBalance);
             set.Bind(CurrentShiftAmountLabel).To(vm => vm.CurrentShiftBalance);
+            set.Bind(CreditCardLabel).To(vm => vm.CurrentCreditCardBalance);
             set.Bind(UpdateButton).To(vm => vm.UpdateEntireMoneyCommand);
             set.Bind(ShiftButton).To(vm => vm.ShowShiftsCommand);
             set.Bind(SupliedProductsButton).To(vm => vm.ShowSupliedProductsCommand);
@@ -75,6 +76,7 @@ namespace CoffeeManagerAdmin.iOS
             set.Bind(ExpensesButton).To(vm => vm.ShowExpensesCommand);
             set.Bind(InventoryButton).To(vm => vm.ShowInventoryCommand);
             set.Bind(UtilizeButton).To(vm => vm.ShowUtilizedSuplyProductsCommand);
+            set.Bind(CreditCardButton).To(vm => vm.ShowCreditCardCommand);
 
             set.Bind(coffeeRoomPickerViewModel).For(p => p.ItemsSource).To(vm => vm.CoffeeRooms);
             set.Bind(coffeeRoomPickerViewModel).For(p => p.SelectedItem).To(vm => vm.CurrentCoffeeRoom);

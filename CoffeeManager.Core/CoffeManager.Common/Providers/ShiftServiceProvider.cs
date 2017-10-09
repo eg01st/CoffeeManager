@@ -62,14 +62,5 @@ namespace CoffeManager.Common
             return await Get<ShiftInfo>(RoutesConstants.GetShiftInfo, new Dictionary<string, string>() { { nameof(id), id.ToString() } });
         }
 
-        public async Task<decimal> GetEntireMoney()
-        {
-            return await Get<decimal>(RoutesConstants.GetEntireMoney);
-        }
-
-        public async Task<decimal> GetCurrentShiftMoney()
-        {
-            return await Get<decimal>(RoutesConstants.GetCurrentShiftMoney);
-        }
     }
 }

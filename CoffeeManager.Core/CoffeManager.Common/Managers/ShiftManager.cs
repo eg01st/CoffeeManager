@@ -17,15 +17,6 @@ namespace CoffeManager.Common
             this.shiftProvider = provider;
         }
 
-        public async Task<decimal> GetEntireMoney()
-        {
-            return await shiftProvider.GetEntireMoney();
-        }
-
-        public async Task<decimal> GetCurrentShiftMoney()
-        {
-            return await shiftProvider.GetCurrentShiftMoney();
-        }
 
         public async Task<ShiftInfo[]> GetShifts()
         {

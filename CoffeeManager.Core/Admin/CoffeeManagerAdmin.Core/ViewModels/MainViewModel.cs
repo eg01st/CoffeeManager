@@ -34,6 +34,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels
 
         private string _currentBalance;
         private string _currentShiftBalance;
+        private string _currentCreditCardBalance;
         private Entity _currentCoffeeRoom;
         private List<Entity> coffeeRooms;
 
@@ -48,6 +49,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels
         public ICommand ShowInventoryCommand { get; set; }
         public ICommand ShowUtilizedSuplyProductsCommand { get; set; }
         public ICommand ShowSettingsCommand { get; set; }
+        public ICommand ShowCreditCardCommand { get; set; }
 
 
         protected override void OnClose()
@@ -72,6 +74,16 @@ namespace CoffeeManagerAdmin.Core.ViewModels
             {
                 _currentShiftBalance = value;
                 RaisePropertyChanged(nameof(CurrentShiftBalance));
+            }
+        }
+
+        public string CurrentCreditCardBalance
+        {
+            get { return _currentCreditCardBalance; }
+            set
+            {
+                _currentCreditCardBalance = value;
+                RaisePropertyChanged(nameof(CurrentCreditCardBalance));
             }
         }
 
@@ -105,9 +117,11 @@ namespace CoffeeManagerAdmin.Core.ViewModels
         }
 
         readonly IAdminManager adminManager;
+        readonly IPaymentManager paymentManager;
 
-        public MainViewModel(IShiftManager shiftManager, IAdminManager adminManager)
+        public MainViewModel(IShiftManager shiftManager, IAdminManager adminManager, IPaymentManager paymentManager)
         {
+            this.paymentManager = paymentManager;
             this.adminManager = adminManager;
             this.shiftManager = shiftManager;
             _showShiftsCommand = new MvxCommand(DoShowShifts);
@@ -121,6 +135,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels
             ShowInventoryCommand = new MvxCommand(() => ShowViewModel<InventoryViewModel>());
             ShowUtilizedSuplyProductsCommand = new MvxCommand(() => ShowViewModel<UtilizeViewModel>());
             ShowSettingsCommand = new MvxCommand(() => ShowViewModel<SettingsViewModel>());
+            ShowCreditCardCommand = new MvxCommand(() => ShowViewModel<CreditCardViewModel>());
 
             refreshCoffeeroomsToken = Subscribe<RefreshCoffeeRoomsMessage>(async (obj) => await GetCoffeeRooms());
         }
@@ -166,10 +181,12 @@ namespace CoffeeManagerAdmin.Core.ViewModels
         {
             await ExecuteSafe(async () =>
             {
-                var currentBalance = await shiftManager.GetEntireMoney();
+                var currentBalance = await paymentManager.GetEntireMoney();
                 CurrentBalance = currentBalance.ToString("F1");
-                var shiftBalance = await shiftManager.GetCurrentShiftMoney();
+                var shiftBalance = await paymentManager.GetCurrentShiftMoney();
                 CurrentShiftBalance = shiftBalance.ToString("F1");
+                var creditCardBalance = await paymentManager.GetCreditCardEntireMoney();
+                CurrentCreditCardBalance = creditCardBalance.ToString("F1");
             });
         }
 

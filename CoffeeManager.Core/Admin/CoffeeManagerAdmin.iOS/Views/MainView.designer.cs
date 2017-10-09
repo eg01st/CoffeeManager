@@ -68,11 +68,29 @@ namespace CoffeeManagerAdmin.iOS
         [Outlet]
         UIKit.UIButton UtilizeButton { get; set; }
 
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIButton CreditCardButton { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UILabel CreditCardLabel { get; set; }
+
         void ReleaseDesignerOutlets ()
         {
             if (CoffeeRoomNameTextField != null) {
                 CoffeeRoomNameTextField.Dispose ();
                 CoffeeRoomNameTextField = null;
+            }
+
+            if (CreditCardButton != null) {
+                CreditCardButton.Dispose ();
+                CreditCardButton = null;
+            }
+
+            if (CreditCardLabel != null) {
+                CreditCardLabel.Dispose ();
+                CreditCardLabel = null;
             }
 
             if (CurrentAmountLabel != null) {

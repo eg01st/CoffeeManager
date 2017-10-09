@@ -19,9 +19,5 @@ namespace CoffeManager.Common
         Task<Sale[]> GetShiftSales(int id);
 
         Task<ShiftInfo> GetShiftInfo(int id);
-
-        Task<decimal> GetEntireMoney();
-
-        Task<decimal> GetCurrentShiftMoney();
     }
 }

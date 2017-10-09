@@ -8,7 +8,7 @@ using Foundation;
 
 namespace CoffeeManagerAdmin.iOS
 {
-    public partial class SuplyProductDetailsView : ViewControllerBase<SuplyProductDetailsViewModel>, IUITextFieldDelegate
+    public partial class SuplyProductDetailsView : ViewControllerBase<SuplyProductDetailsViewModel>
     {
         public SuplyProductDetailsView() : base("SuplyProductDetailsView", null)
         {
@@ -21,25 +21,6 @@ namespace CoffeeManagerAdmin.iOS
             Title = "Детали товара";
           
             StickBottomButtonToKeyboard(BottomHeightConstraint);
-        }
-
-        protected override void InitStylesAndContent()
-        {
-            base.InitStylesAndContent();
-            ExpenseNumerationNameTextField.Delegate = this;
-            ExpenseNumerationMultyplierTextField.Delegate = this;
-            SuplyPriceText.Delegate = this;
-            InventoryNumerationNameTextField.Delegate = this;
-            InventoryNumerationMultiplierTextField.Delegate = this;
-
-            ItemCountText.Delegate = this;
-        }
-
-        [Export("textFieldShouldReturn:")]
-        public bool ShouldReturn(UITextField textField)
-        {
-            textField.ResignFirstResponder();
-            return true;
         }
 
         protected override void DoBind()
