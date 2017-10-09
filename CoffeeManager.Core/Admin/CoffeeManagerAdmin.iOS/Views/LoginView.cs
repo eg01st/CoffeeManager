@@ -4,10 +4,11 @@ using UIKit;
 using MvvmCross.iOS.Views;
 using MvvmCross.Binding.BindingContext;
 using CoffeeManagerAdmin.Core.ViewModels;
+using Foundation;
 
 namespace CoffeeManagerAdmin.iOS
 {
-	public partial class LoginView : MvxViewController
+    public partial class LoginView : ViewControllerBase<LoginViewModel>
 	{
 		public LoginView () : base ("LoginView", null)
 		{
@@ -26,12 +27,6 @@ namespace CoffeeManagerAdmin.iOS
 			set.Apply();
 
 			// Perform any additional setup after loading the view, typically from a nib.
-		}
-
-		public override void DidReceiveMemoryWarning ()
-		{
-			base.DidReceiveMemoryWarning ();
-			// Release any cached data, images, etc that aren't in use.
 		}
 	}
 }

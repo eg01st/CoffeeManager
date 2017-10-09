@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace CoffeeManagerAdmin.iOS
 {
-    public abstract class ViewControllerBase<TViewModel> :  MvxViewController<TViewModel>
+    public abstract class ViewControllerBase<TViewModel> :  MvxViewController<TViewModel> , IUITextFieldDelegate
         where TViewModel : ViewModelBase
     {
         private NSLayoutConstraint buttonBottomConstraint;
@@ -50,6 +50,8 @@ namespace CoffeeManagerAdmin.iOS
   
             base.ViewDidLoad();
 
+            SetTextFieldDelegate(View);
+
             DoViewDidLoad();
             InitStylesAndContent();
 
@@ -57,6 +59,29 @@ namespace CoffeeManagerAdmin.iOS
 
 
             DoBind();
+        }
+
+        private void SetTextFieldDelegate(UIView view)
+        {
+            if(view.Subviews.Length > 0)
+            {
+                foreach (var v in view.Subviews)
+                {
+                    SetTextFieldDelegate(v);
+                }
+            }
+            var textField = view as UITextField;
+            if(textField != null)
+            {
+                textField.Delegate = this;
+            }
+        }
+
+        [Export("textFieldShouldReturn:")]
+        public bool ShouldReturn(UITextField textField)
+        {
+            textField.ResignFirstResponder();
+            return true;
         }
 
 
