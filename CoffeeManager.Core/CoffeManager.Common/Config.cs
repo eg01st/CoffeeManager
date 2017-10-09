@@ -6,6 +6,6 @@
 
         public static string AuthApiUrl = "http://csgoopencase-001-site3.atempurl.com/";
 
-        public static int CoffeeRoomNo = 1;
+        public static int CoffeeRoomNo = 1; 
     }
 }
