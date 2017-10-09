@@ -30,7 +30,7 @@ namespace CoffeeManager.Api.Controllers
                     UserId = userId,
                     Date = DateTime.Now,
                     StartCounter = counter,
-                    CreditCardAmount = 0
+                    CreditCardAmount = 0,
                 };
                 var lastShift =
                     entities.Shifts.Where(s => s.CoffeeRoomNo == coffeeroomno).OrderByDescending(s => s.Id).FirstOrDefault();
@@ -38,6 +38,14 @@ namespace CoffeeManager.Api.Controllers
                 {
                     shift.TotalAmount = lastShift.RealAmount;
                     shift.StartAmount = lastShift.RealAmount;
+                    if (lastShift.TotalCreditCardAmount.HasValue)
+                    {
+                        shift.TotalCreditCardAmount = lastShift.TotalCreditCardAmount;
+                    }
+                    else
+                    {
+                        shift.TotalCreditCardAmount = 0;
+                    }
                 }
 
                 entities.Shifts.Add(shift);
@@ -127,7 +135,8 @@ namespace CoffeeManager.Api.Controllers
                     TotalAmount = shift.TotalAmount,
                     ExpenseAmount = shift.TotalExprenses,
                     ShiftEarnedMoney = shift.CurrentAmount,
-                    CreditCardAmount = shift.CreditCardAmount
+                    CreditCardAmount = shift.CreditCardAmount,
+                    TotalCreditCardAmount = shift.TotalCreditCardAmount
                 };
                 response.Add(res);
             }

@@ -8,6 +8,7 @@ namespace CoffeeManager.Models
         public const string Payment = Api + "/payment";
         public const string GetCurrentShiftMoney = Payment + "/getcurrentshiftmoney";
         public const string GetEntireMoney = Payment + "/getentiremoney";
+        public const string GetCreditCardEntireMoney = Payment + "/GetCreditCardEntireMoney";
         public const string GetExpenseItems = Payment + "/getexpenseitems";
         public const string RemoveExpenseType = Payment + "/removeExpenseType";
         public const string ToggleExpenseEnabled = Payment + "/toggleExpenseEnabled";
@@ -22,6 +23,7 @@ namespace CoffeeManager.Models
         public const string GetShiftExpenses = Payment + "/getShiftExpenses";
         public const string GetExpenses = Payment + "/getExpenses";
         public const string GetSalesByDate = Payment + "/getSalesByDateDate";
+        public const string CashOutCreditCard = Payment + "/CashOutCreditCard";
 
         public const string Products = Api + "/products";
         public const string GetAllProducts = Products + "/getAll";

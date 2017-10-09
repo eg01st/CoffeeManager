@@ -107,6 +107,7 @@ namespace CoffeeManager.Api.Controllers
                         if (sale.IsCreditCardSale)
                         {
                             currentShift.CreditCardAmount += sale.Amount;
+                            currentShift.TotalCreditCardAmount += sale.Amount;
                         }
                         else
                         {

@@ -20,8 +20,6 @@ namespace CoffeeManager.Api
             this.Expenses = new HashSet<Expense>();
             this.Sales = new HashSet<Sale>();
             this.UsedCupsPerShifts = new HashSet<UsedCupsPerShift>();
-            this.UtilizedCups = new HashSet<UtilizedCup>();
-            this.Depts = new HashSet<Dept>();
             this.UsedProductsPerShifts = new HashSet<UsedProductsPerShift>();
             this.UtilizedSuplyProducts = new HashSet<UtilizedSuplyProduct>();
             this.UserEarningsHistories = new HashSet<UserEarningsHistory>();
@@ -40,6 +38,7 @@ namespace CoffeeManager.Api
         public Nullable<int> StartCounter { get; set; }
         public Nullable<int> EndCounter { get; set; }
         public Nullable<decimal> CreditCardAmount { get; set; }
+        public Nullable<decimal> TotalCreditCardAmount { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Expense> Expenses { get; set; }
@@ -48,10 +47,6 @@ namespace CoffeeManager.Api
         public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UsedCupsPerShift> UsedCupsPerShifts { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UtilizedCup> UtilizedCups { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Dept> Depts { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UsedProductsPerShift> UsedProductsPerShifts { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

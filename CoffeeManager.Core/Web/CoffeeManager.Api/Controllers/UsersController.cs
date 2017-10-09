@@ -135,38 +135,5 @@ namespace CoffeeManager.Api.Controllers
             
             return Request.CreateResponse(HttpStatusCode.OK);
         }
-
-        [Route(RoutesConstants.Login)]
-        [HttpPost]
-        public async Task<HttpResponseMessage> Login([FromUri]int coffeeroomno, HttpRequestMessage message)
-        {
-            var request = await message.Content.ReadAsStringAsync();
-            var userInfo = JsonConvert.DeserializeObject<UserInfo>(request);
-            var entites = new CoffeeRoomEntities();
-            var user =
-                entites.AdminUsers.FirstOrDefault(u => u.Name == userInfo.Login && u.Password == userInfo.Password);
-            if (user != null)
-            {
-                var guid = Guid.NewGuid().ToString();
-                return Request.CreateResponse<string>(HttpStatusCode.OK, guid);
-            }
-            return Request.CreateErrorResponse(HttpStatusCode.Forbidden, "Invalid user name or password");
-        }
-
-
-        [Route(RoutesConstants.DeleteUser)]
-        [HttpDelete]
-        public async Task<HttpResponseMessage> Delete([FromUri]int coffeeroomno, [FromUri]int userId)
-        {
-            var entities = new  CoffeeRoomEntities();
-            var user = entities.Users.FirstOrDefault(u => u.Id == userId && u.CoffeeRoomNo == coffeeroomno);
-            if (user != null)
-            {
-                entities.Users.Remove(user);
-                await entities.SaveChangesAsync();
-                return Request.CreateResponse(HttpStatusCode.OK);
-            }
-            return Request.CreateErrorResponse(HttpStatusCode.BadRequest, $"No user with such id '{userId}'");
-        }
     }
 }

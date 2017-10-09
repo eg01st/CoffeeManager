@@ -44,6 +44,21 @@ namespace CoffeeManager.Api.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, 0);
         }
 
+        [Route(RoutesConstants.GetCreditCardEntireMoney)]
+        [HttpGet]
+        public async Task<HttpResponseMessage> GetCreditCardEntireMoney([FromUri]int coffeeroomno, HttpRequestMessage message)
+        {
+            var entities = new CoffeeRoomEntities();
+            var shift = entities.Shifts.Where(s => s.CoffeeRoomNo == coffeeroomno).OrderByDescending(s => s.Id).FirstOrDefault();
+
+            if (shift != null)
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, shift.TotalCreditCardAmount);
+            }
+
+            return Request.CreateResponse(HttpStatusCode.OK, 0);
+        }
+
         [Route(RoutesConstants.GetExpenseItems)]
         [HttpGet]
         public async Task<HttpResponseMessage> GetExpenseItems([FromUri]int coffeeroomno, HttpRequestMessage message)
@@ -226,11 +241,6 @@ namespace CoffeeManager.Api.Controllers
         [HttpDelete]
         public async Task<HttpResponseMessage> DeleteExpense([FromUri]int coffeeroomno, [FromUri]int id, HttpRequestMessage message)
         {
-            //var token = message.Headers.GetValues("token").FirstOrDefault();
-            //if (token == null || !UserSessions.Sessions.Contains(token))
-            //{
-            //    return Request.CreateResponse(HttpStatusCode.Forbidden);
-            //}
             var entities = new CoffeeRoomEntities();
             var expense = entities.Expenses.First(e => e.Id == id && e.CoffeeRoomNo.Value == coffeeroomno);
 
@@ -269,11 +279,6 @@ namespace CoffeeManager.Api.Controllers
         [HttpGet]
         public async Task<HttpResponseMessage> GetShiftExpenses([FromUri]int coffeeroomno, [FromUri]int id, HttpRequestMessage message)
         {
-            //var token = message.Headers.GetValues("token").FirstOrDefault();
-            //if (token == null || !UserSessions.Sessions.Contains(token))
-            //{
-            //    return Request.CreateResponse(HttpStatusCode.Forbidden);
-            //}
             var entities = new CoffeeRoomEntities();
             var expenses = entities.Expenses.Include("ExpenseType1").Where(e => e.CoffeeRoomNo == coffeeroomno && e.ShiftId.Value == id).ToList().Select(s => s.ToDTO());
             return Request.CreateResponse(HttpStatusCode.OK, expenses);
@@ -283,11 +288,6 @@ namespace CoffeeManager.Api.Controllers
         [HttpGet]
         public async Task<HttpResponseMessage> GetExpenses([FromUri]int coffeeroomno, [FromUri]DateTime from, [FromUri]DateTime to, HttpRequestMessage message)
         {
-            //var token = message.Headers.GetValues("token").FirstOrDefault();
-            //if (token == null || !UserSessions.Sessions.Contains(token))
-            //{
-            //    return Request.CreateResponse(HttpStatusCode.Forbidden);
-            //}
             var entities = new CoffeeRoomEntities();
             var expenses = entities.Expenses.Include(i => i.ExpenseType1).Include(i => i.Shift).Where(e => e.CoffeeRoomNo == coffeeroomno && e.Shift.Date > from && e.Shift.Date < to).ToList().Select(s => s.ToDTO());
             return Request.CreateResponse(HttpStatusCode.OK, expenses);
@@ -300,6 +300,21 @@ namespace CoffeeManager.Api.Controllers
             var entities = new CoffeeRoomEntities();
             var sales = entities.Sales.Where(s => s.Time > from && s.Time < to && s.CoffeeRoomNo == coffeeroomno).Select(s => s.ToDTO());
             return Request.CreateResponse(HttpStatusCode.OK, sales);           
+        }
+
+        [Route(RoutesConstants.CashOutCreditCard)]
+        [HttpPost]
+        public async Task<HttpResponseMessage> CashOutCreditCard([FromUri]int coffeeroomno, decimal amount,  HttpRequestMessage message)
+        {
+            var entities = new CoffeeRoomEntities();
+            var currentShift = entities.Shifts.FirstOrDefault(s => s.CoffeeRoomNo == coffeeroomno && s.IsFinished.Value == false);
+            if (currentShift?.TotalCreditCardAmount != null && currentShift.TotalCreditCardAmount.Value > amount)
+            {
+                currentShift.TotalCreditCardAmount -= amount;
+                currentShift.TotalAmount += amount;
+                entities.SaveChanges();
+            }
+            return Request.CreateResponse(HttpStatusCode.OK);
         }
 
     }

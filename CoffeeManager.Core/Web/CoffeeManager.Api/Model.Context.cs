@@ -37,17 +37,12 @@ namespace CoffeeManager.Api
         public virtual DbSet<Shift> Shifts { get; set; }
         public virtual DbSet<UsedCupsPerShift> UsedCupsPerShifts { get; set; }
         public virtual DbSet<User> Users { get; set; }
-        public virtual DbSet<UtilizedCup> UtilizedCups { get; set; }
-        public virtual DbSet<Dept> Depts { get; set; }
         public virtual DbSet<UsedProductsPerShift> UsedProductsPerShifts { get; set; }
         public virtual DbSet<Error> Errors { get; set; }
-        public virtual DbSet<AdminUser> AdminUsers { get; set; }
         public virtual DbSet<SupliedProduct> SupliedProducts { get; set; }
         public virtual DbSet<ProductCalculation> ProductCalculations { get; set; }
         public virtual DbSet<SuplyOrder> SuplyOrders { get; set; }
         public virtual DbSet<SuplyOrderItem> SuplyOrderItems { get; set; }
-        public virtual DbSet<Message> Messages { get; set; }
-        public virtual DbSet<Session> Sessions { get; set; }
         public virtual DbSet<ExpenseSuplyProduct> ExpenseSuplyProducts { get; set; }
         public virtual DbSet<InventoryReport> InventoryReports { get; set; }
         public virtual DbSet<InventoryReportItem> InventoryReportItems { get; set; }
