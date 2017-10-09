@@ -318,7 +318,7 @@ namespace CoffeeManager.Api.Controllers
         }
 
         [Route(RoutesConstants.SetCreditCardEntireMoney)]
-        [HttpGet]
+        [HttpPost]
         public async Task<HttpResponseMessage> SetCreditCardEntireMoney([FromUri]int coffeeroomno, decimal amount, HttpRequestMessage message)
         {
             var entities = new CoffeeRoomEntities();
