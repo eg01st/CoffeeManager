@@ -110,5 +110,10 @@ namespace CoffeManager.Common
         {
             await paymentProvider.SetCreditCardEntireMoney(amount);
         }
+
+        public async Task<IEnumerable<CashoutHistory>> GetCashoutHistory()
+        {
+            return await paymentProvider.GetCashoutHistory();
+        }
     }
 }

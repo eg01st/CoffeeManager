@@ -38,5 +38,7 @@ namespace CoffeManager.Common
         Task<IEnumerable<SupliedProduct>> GetExpenseDetails(int expenseId);
 
         Task CashOutCreditCard(decimal amount);
+
+        Task<IEnumerable<CashoutHistory>> GetCashoutHistory();
     }
 }

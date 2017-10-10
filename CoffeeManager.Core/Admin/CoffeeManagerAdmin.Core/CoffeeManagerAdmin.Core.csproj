@@ -113,6 +113,8 @@
     <Compile Include="ViewModels\Settings\CoffeeRoomItemViewModel.cs" />
     <Compile Include="Messages\RefreshUserListMessage.cs" />
     <Compile Include="ViewModels\CreditCard\CreditCardViewModel.cs" />
+    <Compile Include="ViewModels\CreditCard\CashoutHistoryItemViewModel.cs" />
+    <Compile Include="Messages\UpdateCashAmountMessage.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">

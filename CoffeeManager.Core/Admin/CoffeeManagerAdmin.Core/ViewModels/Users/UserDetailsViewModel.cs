@@ -252,6 +252,7 @@ namespace CoffeeManagerAdmin.Core
                 await userManager.PaySalary(UserId, shift.Id);
                 user.EntireEarnedAmount += CurrentEarnedAmount;
                 user.CurrentEarnedAmount = 0;
+                Publish(new UpdateCashAmountMessage(this));
                 Close(this);
             });
         }

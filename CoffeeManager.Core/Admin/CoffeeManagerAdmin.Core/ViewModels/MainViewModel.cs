@@ -15,6 +15,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels
     public class MainViewModel : ViewModelBase
     {
         private readonly MvxSubscriptionToken refreshCoffeeroomsToken;
+        private readonly MvxSubscriptionToken refreshAmountToken;
 
         private readonly IShiftManager shiftManager;
 
@@ -138,6 +139,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels
             ShowCreditCardCommand = new MvxCommand(() => ShowViewModel<CreditCardViewModel>());
 
             refreshCoffeeroomsToken = Subscribe<RefreshCoffeeRoomsMessage>(async (obj) => await GetCoffeeRooms());
+            refreshAmountToken = Subscribe<UpdateCashAmountMessage>(async (obj) => await GetEntireMoney());
         }
 
 

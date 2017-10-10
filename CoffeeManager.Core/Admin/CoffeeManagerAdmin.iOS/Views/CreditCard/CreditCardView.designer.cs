@@ -24,6 +24,10 @@ namespace CoffeeManagerAdmin.iOS
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UITableView CashoutTableView { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UITextField CurrentAmountTextField { get; set; }
 
         [Outlet]
@@ -40,6 +44,11 @@ namespace CoffeeManagerAdmin.iOS
             if (CashoutButton != null) {
                 CashoutButton.Dispose ();
                 CashoutButton = null;
+            }
+
+            if (CashoutTableView != null) {
+                CashoutTableView.Dispose ();
+                CashoutTableView = null;
             }
 
             if (CurrentAmountTextField != null) {
