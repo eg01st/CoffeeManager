@@ -330,7 +330,7 @@ namespace CoffeeManager.Api.Controllers
         public async Task<HttpResponseMessage> GetCashOutHistory([FromUri]int coffeeroomno, HttpRequestMessage message)
         {
             var entities = new CoffeeRoomEntities();
-            var histories = entities.CashoutHistories.Where(s => s.CoffeeRoomNo == coffeeroomno).Select(s => s.ToDTO());
+            var histories = entities.CashoutHistories.Where(s => s.CoffeeRoomNo == coffeeroomno).ToList().Select(s => s.ToDTO());
         
             return Request.CreateResponse(HttpStatusCode.OK, histories);
         }
