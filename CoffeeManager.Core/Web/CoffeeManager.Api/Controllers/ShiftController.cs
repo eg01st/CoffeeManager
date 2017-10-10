@@ -196,7 +196,8 @@ namespace CoffeeManager.Api.Controllers
                     ShiftEarnedMoney = shift.CurrentAmount,
                     StartCounter = shift.StartCounter,
                     EndCounter = shift.EndCounter,
-                    UsedPortions = usedCoffee
+                    UsedPortions = usedCoffee,
+                    IsFinished = shift.IsFinished.Value
                 };
                 return Request.CreateResponse(HttpStatusCode.OK, dto);
             }

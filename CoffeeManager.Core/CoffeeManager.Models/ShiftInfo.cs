@@ -21,5 +21,7 @@ namespace CoffeeManager.Models
 
         public int? EndCounter { get; set; }
         public decimal UsedPortions { get; set; }
+
+        public bool IsFinished { get; set; }
     }
 }
