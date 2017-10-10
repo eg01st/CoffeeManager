@@ -7,6 +7,8 @@ namespace CoffeeManagerAdmin.iOS
 {
     public partial class CreditCardView : ViewControllerBase<CreditCardViewModel>
     {
+        private SimpleTableSourceWithHeader tableSource;
+
         public CreditCardView() : base("CreditCardView", null)
         {
         }
@@ -19,6 +21,10 @@ namespace CoffeeManagerAdmin.iOS
 
             SaveCurrentAmountButton.TouchUpInside += (sender, e) => View.EndEditing(true);
             CashoutButton.TouchUpInside += (sender, e) => View.EndEditing(true);
+
+            tableSource = new SimpleTableSourceWithHeader(CashoutTableView, CashoutTableViewCell.Key, CashoutTableViewCell.Nib, CashoutTableHeader.Key);
+            CashoutTableView.RegisterNibForHeaderFooterViewReuse(CashoutTableHeader.Nib, CashoutTableHeader.Key);
+            CashoutTableView.Source = tableSource;
         }
 
         protected override void DoBind()
@@ -28,6 +34,7 @@ namespace CoffeeManagerAdmin.iOS
             set.Bind(CashoutAmountTextField).To(vm => vm.AmountToCashOut);
             set.Bind(SaveCurrentAmountButton).To(vm => vm.SetAmountCommand);
             set.Bind(CashoutButton).To(vm => vm.CashoutCommand);
+            set.Bind(tableSource).To(vm => vm.CashoutItems);
             set.Apply();
         }
 

@@ -17,8 +17,6 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Orders
     {
         private MvxSubscriptionToken _token;
         private MvxSubscriptionToken _itemsSelectedtoken;
-
-        private bool _isPromt;
         private Order _order;
         private decimal _price;
         private int? _expenseTypeId;
@@ -53,42 +51,34 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Orders
         {
             if (!_expenseTypeId.HasValue || _expenseTypeId == 0)
             {
-                UserDialogs.Alert("Выберите тип траты");
+                Alert("Выберите тип траты");
                 return;
             }
 
             if (Items.All(i => !i.IsDone))
             {
-                UserDialogs.Alert("Не выполнена ни одна покупка");
+                Alert("Не выполнена ни одна покупка");
                 return;
             }
 
-            if (!_isPromt && !IsDone)
+            if (!IsDone)
             {
-                _isPromt = true;
-                UserDialogs.Confirm(new ConfirmConfig
-                {
-                    Message = "Закрыть заявку? Сумма заказа будет списана с кассы",
-                    OnAction = OnCloseOrder
-                });
+                Confirm("Закрыть заявку? Сумма заказа будет списана с кассы", CloseOrder);
             }
 
         }
 
-        private async void OnCloseOrder(bool ok)
+        private async Task CloseOrder()
         {
-            if (ok)
+            await suplyOrderManager.CloseOrder(new Order
             {
-                await suplyOrderManager.CloseOrder(new Order
-                {
-                    Id = _order.Id,
-                    Price = Price,
-                    ExpenseTypeId = ExpenseTypeId
-                });
-                Publish(new OrderListChangedMessage(this));
-                Close(this);
-            }
-            _isPromt = false;
+                Id = _order.Id,
+                Price = Price,
+                ExpenseTypeId = ExpenseTypeId
+            });
+            Publish(new OrderListChangedMessage(this));
+            Publish(new UpdateCashAmountMessage(this));
+            Close(this);
         }
 
         private void ReloadPrice()

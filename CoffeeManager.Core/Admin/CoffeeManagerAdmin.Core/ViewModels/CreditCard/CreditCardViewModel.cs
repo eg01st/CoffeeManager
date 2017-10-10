@@ -3,12 +3,15 @@ using CoffeManager.Common;
 using System.Windows.Input;
 using MvvmCross.Core.ViewModels;
 using System.Threading.Tasks;
+using System.Collections.Generic;
+using System.Linq;
 namespace CoffeeManagerAdmin.Core
 {
     public class CreditCardViewModel : ViewModelBase
     {
         private decimal amountToCashOut;
         private decimal currentAmount;
+        private List<CashoutHistoryItemViewModel> cashoutItems;
 
         readonly IPaymentManager manager;
 
@@ -32,6 +35,16 @@ namespace CoffeeManagerAdmin.Core
             }
         }
 
+        public List<CashoutHistoryItemViewModel> CashoutItems
+        {
+            get { return cashoutItems; }
+            set
+            {
+                cashoutItems = value;
+                RaisePropertyChanged(nameof(CashoutItems));
+            }
+        }
+
 
         public ICommand CashoutCommand { get; }
 
@@ -48,6 +61,8 @@ namespace CoffeeManagerAdmin.Core
         {
             var amount = await ExecuteSafe(manager.GetCreditCardEntireMoney);
             CurrentAmount = amount;
+            var items = await ExecuteSafe(manager.GetCashoutHistory);
+            CashoutItems = items.Select(s => new CashoutHistoryItemViewModel(s)).ToList();
         }
 
         private void DoSetAmount()
@@ -59,6 +74,7 @@ namespace CoffeeManagerAdmin.Core
         {
             await manager.SetCreditCardEntireMoney(CurrentAmount);
             await Init();
+            Publish(new UpdateCashAmountMessage(this));
         }
 
 
@@ -82,6 +98,7 @@ namespace CoffeeManagerAdmin.Core
             await manager.CashOutCreditCard(AmountToCashOut);
             await Init();
             AmountToCashOut = 0;
+            Publish(new UpdateCashAmountMessage(this));
         }
 
     }

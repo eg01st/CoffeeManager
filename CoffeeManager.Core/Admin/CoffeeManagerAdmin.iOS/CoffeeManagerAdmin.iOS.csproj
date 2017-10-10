@@ -384,6 +384,14 @@
     <Compile Include="Views\CreditCard\CreditCardView.designer.cs">
       <DependentUpon>CreditCardView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\CreditCard\CashoutTableViewCell.cs" />
+    <Compile Include="Views\CreditCard\CashoutTableViewCell.designer.cs">
+      <DependentUpon>CashoutTableViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CreditCard\CashoutTableHeader.cs" />
+    <Compile Include="Views\CreditCard\CashoutTableHeader.designer.cs">
+      <DependentUpon>CashoutTableHeader.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Setup.cs" />
@@ -455,6 +463,8 @@
     <InterfaceDefinition Include="Views\Settings\CreateClientView.xib" />
     <InterfaceDefinition Include="Views\Settings\CoffeeRoomItemViewCell.xib" />
     <InterfaceDefinition Include="Views\CreditCard\CreditCardView.xib" />
+    <InterfaceDefinition Include="Views\CreditCard\CashoutTableViewCell.xib" />
+    <InterfaceDefinition Include="Views\CreditCard\CashoutTableHeader.xib" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MvvmCross.Binding, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">

@@ -5,7 +5,6 @@ using UIKit;
 using MvvmCross.Binding.iOS.Views;
 using MvvmCross.Binding.BindingContext;
 using CoffeeManagerAdmin.Core.ViewModels.Orders;
-using MvvmCross.Binding.iOS.Views.Gestures;
 using System.Windows.Input;
 
 namespace CoffeeManagerAdmin.iOS
@@ -33,8 +32,14 @@ namespace CoffeeManagerAdmin.iOS
 
         protected OrderViewCell(IntPtr handle) : base(handle)
         {
-            // Note: this .ctor should not contain any initialization logic.
-            var longPressGesture = new UILongPressGestureRecognizer(() => DeleteOrderCommand?.Execute(null));
+            var longPressGesture = new UILongPressGestureRecognizer((sender) =>
+            {
+                if (sender.State == UIGestureRecognizerState.Began)
+                {
+                    DeleteOrderCommand?.Execute(null);
+                }
+            });
+
             AddGestureRecognizer(longPressGesture);
         }
 

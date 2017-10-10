@@ -125,5 +125,10 @@ namespace CoffeManager.Common
         {
             await Post<object>(RoutesConstants.SetCreditCardEntireMoney, null, new Dictionary<string, string>() { { nameof(amount), amount.ToString() } });
         }
+
+        public async Task<IEnumerable<CashoutHistory>> GetCashoutHistory()
+        {
+            return await Get<IEnumerable<CashoutHistory>>(RoutesConstants.GetCashOutHistory);
+        }
     }
 }

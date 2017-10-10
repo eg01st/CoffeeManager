@@ -10,11 +10,12 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CreditCardView">
             <connections>
-                <outlet property="view" destination="2" id="RRd-Eg-VrN"/>
-                <outlet property="CurrentAmountTextField" destination="hCz-nq-iJv" id="name-outlet-hCz-nq-iJv"/>
-                <outlet property="SaveCurrentAmountButton" destination="Fzv-U2-zFK" id="name-outlet-Fzv-U2-zFK"/>
                 <outlet property="CashoutAmountTextField" destination="Nyc-SZ-mev" id="name-outlet-Nyc-SZ-mev"/>
                 <outlet property="CashoutButton" destination="fpw-TA-QQQ" id="name-outlet-fpw-TA-QQQ"/>
+                <outlet property="CurrentAmountTextField" destination="hCz-nq-iJv" id="name-outlet-hCz-nq-iJv"/>
+                <outlet property="SaveCurrentAmountButton" destination="Fzv-U2-zFK" id="name-outlet-Fzv-U2-zFK"/>
+                <outlet property="view" destination="2" id="RRd-Eg-VrN"/>
+                <outlet property="CashoutTableView" destination="mLI-D0-OTv" id="name-outlet-mLI-D0-OTv"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -54,6 +55,16 @@
                     <rect key="frame" x="272" y="48.5" width="87" height="30"/>
                     <state key="normal" title="Обналичить"/>
                 </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="История обналички" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mvC-Ag-poY" misplaced="YES">
+                    <rect key="frame" x="108.5" y="98" width="158" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mLI-D0-OTv" misplaced="YES">
+                    <rect key="frame" x="0.0" y="135" width="375" height="532"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -63,9 +74,15 @@
                 <constraint firstItem="GHm-7x-XK6" firstAttribute="top" secondItem="2" secondAttribute="top" constant="16" id="BqZ-CG-ZS3"/>
                 <constraint firstItem="GHm-7x-XK6" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="16" id="Bs8-pv-M7s"/>
                 <constraint firstItem="hCz-nq-iJv" firstAttribute="leading" secondItem="GHm-7x-XK6" secondAttribute="trailing" constant="16" id="Chw-RZ-fky"/>
+                <constraint firstAttribute="bottom" secondItem="mLI-D0-OTv" secondAttribute="bottom" id="Ffu-p5-jAO"/>
                 <constraint firstItem="fpw-TA-QQQ" firstAttribute="centerY" secondItem="Nyc-SZ-mev" secondAttribute="centerY" id="GBA-tG-gZf"/>
                 <constraint firstItem="Fzv-U2-zFK" firstAttribute="leading" secondItem="hCz-nq-iJv" secondAttribute="trailing" constant="16" id="GVw-If-HTh"/>
+                <constraint firstItem="mvC-Ag-poY" firstAttribute="centerX" secondItem="2" secondAttribute="centerX" id="OEG-WR-Clc"/>
                 <constraint firstItem="hCz-nq-iJv" firstAttribute="centerY" secondItem="GHm-7x-XK6" secondAttribute="centerY" id="T5n-Q3-RdK"/>
+                <constraint firstItem="mvC-Ag-poY" firstAttribute="top" secondItem="s5g-ij-RFP" secondAttribute="bottom" constant="24" id="Tbk-I1-fnx"/>
+                <constraint firstItem="mLI-D0-OTv" firstAttribute="top" secondItem="mvC-Ag-poY" secondAttribute="bottom" constant="16" id="WBY-CV-uyu"/>
+                <constraint firstItem="mLI-D0-OTv" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="fhk-fs-LXG"/>
+                <constraint firstAttribute="trailing" secondItem="mLI-D0-OTv" secondAttribute="trailing" id="fod-8E-tBb"/>
                 <constraint firstItem="fpw-TA-QQQ" firstAttribute="leading" secondItem="Nyc-SZ-mev" secondAttribute="trailing" constant="16" id="kx6-5F-oC5"/>
                 <constraint firstItem="s5g-ij-RFP" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="16" id="m4J-wW-IRG"/>
                 <constraint firstItem="Fzv-U2-zFK" firstAttribute="centerY" secondItem="hCz-nq-iJv" secondAttribute="centerY" id="oWO-RN-5zJ"/>
