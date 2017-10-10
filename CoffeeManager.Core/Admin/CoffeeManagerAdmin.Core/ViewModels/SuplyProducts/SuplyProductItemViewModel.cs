@@ -11,7 +11,6 @@ namespace CoffeeManagerAdmin.Core.ViewModels
     {
         private readonly ISuplyProductsManager manager;
         private SupliedProduct _item;
-        private bool _isPromt;
 
         public SuplyProductItemViewModel(SupliedProduct product)
         {
@@ -39,18 +38,13 @@ namespace CoffeeManagerAdmin.Core.ViewModels
 
         private void DoDeleteItem()
         {
-            if (!_isPromt)
-            {
-                _isPromt = true;
-                Confirm($"Действительно удалить товар {_item.Name}?", OnDeleteItem);
-            }
+            Confirm($"Действительно удалить товар {_item.Name}?", OnDeleteItem);
         }
 
         private async Task OnDeleteItem()
         {
             await manager.DeleteSuplyProduct(_item.Id);
             Publish(new SuplyListChangedMessage(this));
-            _isPromt = false;
         }
     }
 }

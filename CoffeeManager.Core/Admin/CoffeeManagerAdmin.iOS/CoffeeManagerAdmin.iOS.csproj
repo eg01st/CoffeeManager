@@ -279,7 +279,6 @@
     <Compile Include="Views\Shifts\ShiftExpenseTableHeader.designer.cs">
       <DependentUpon>ShiftExpenseTableHeader.cs</DependentUpon>
     </Compile>
-    <Compile Include="TableSources\SimpleTableSourceWithHeader.cs" />
     <Compile Include="Views\Users\UserPenaltyItemCell.cs" />
     <Compile Include="Views\Users\UserPenaltyItemCell.designer.cs">
       <DependentUpon>UserPenaltyItemCell.cs</DependentUpon>
@@ -392,6 +391,26 @@
     <Compile Include="Views\CreditCard\CashoutTableHeader.designer.cs">
       <DependentUpon>CashoutTableHeader.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Shifts\AddExpense\AddShiftExpenseView.cs" />
+    <Compile Include="Views\Shifts\AddExpense\AddShiftExpenseView.designer.cs">
+      <DependentUpon>AddShiftExpenseView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Shifts\AddExpense\SimpleExpenseCell.cs" />
+    <Compile Include="Views\Shifts\AddExpense\SimpleExpenseCell.designer.cs">
+      <DependentUpon>SimpleExpenseCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Shifts\AddExpense\AddExpenseExtendedView.cs" />
+    <Compile Include="Views\Shifts\AddExpense\AddExpenseExtendedView.designer.cs">
+      <DependentUpon>AddExpenseExtendedView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Shifts\AddExpense\AddExpenseExtendedTableCell.cs" />
+    <Compile Include="Views\Shifts\AddExpense\AddExpenseExtendedTableCell.designer.cs">
+      <DependentUpon>AddExpenseExtendedTableCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Shifts\AddExpense\AddExpenseExtendedTableHeader.cs" />
+    <Compile Include="Views\Shifts\AddExpense\AddExpenseExtendedTableHeader.designer.cs">
+      <DependentUpon>AddExpenseExtendedTableHeader.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Setup.cs" />
@@ -465,6 +484,11 @@
     <InterfaceDefinition Include="Views\CreditCard\CreditCardView.xib" />
     <InterfaceDefinition Include="Views\CreditCard\CashoutTableViewCell.xib" />
     <InterfaceDefinition Include="Views\CreditCard\CashoutTableHeader.xib" />
+    <InterfaceDefinition Include="Views\Shifts\AddExpense\AddShiftExpenseView.xib" />
+    <InterfaceDefinition Include="Views\Shifts\AddExpense\SimpleExpenseCell.xib" />
+    <InterfaceDefinition Include="Views\Shifts\AddExpense\AddExpenseExtendedView.xib" />
+    <InterfaceDefinition Include="Views\Shifts\AddExpense\AddExpenseExtendedTableCell.xib" />
+    <InterfaceDefinition Include="Views\Shifts\AddExpense\AddExpenseExtendedTableHeader.xib" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MvvmCross.Binding, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -582,6 +606,7 @@
     <Folder Include="Views\Utilize\" />
     <Folder Include="Views\Settings\" />
     <Folder Include="Views\CreditCard\" />
+    <Folder Include="Views\Shifts\AddExpense\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\ic_check.png" />

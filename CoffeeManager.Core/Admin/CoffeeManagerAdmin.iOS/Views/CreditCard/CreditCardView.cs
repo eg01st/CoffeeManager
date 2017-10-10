@@ -7,7 +7,7 @@ namespace CoffeeManagerAdmin.iOS
 {
     public partial class CreditCardView : ViewControllerBase<CreditCardViewModel>
     {
-        private SimpleTableSourceWithHeader tableSource;
+        private SimpleTableSource tableSource;
 
         public CreditCardView() : base("CreditCardView", null)
         {
@@ -22,8 +22,7 @@ namespace CoffeeManagerAdmin.iOS
             SaveCurrentAmountButton.TouchUpInside += (sender, e) => View.EndEditing(true);
             CashoutButton.TouchUpInside += (sender, e) => View.EndEditing(true);
 
-            tableSource = new SimpleTableSourceWithHeader(CashoutTableView, CashoutTableViewCell.Key, CashoutTableViewCell.Nib, CashoutTableHeader.Key);
-            CashoutTableView.RegisterNibForHeaderFooterViewReuse(CashoutTableHeader.Nib, CashoutTableHeader.Key);
+            tableSource = new SimpleTableSource(CashoutTableView, CashoutTableViewCell.Key, CashoutTableViewCell.Nib, CashoutTableHeader.Key, CashoutTableHeader.Nib);
             CashoutTableView.Source = tableSource;
         }
 

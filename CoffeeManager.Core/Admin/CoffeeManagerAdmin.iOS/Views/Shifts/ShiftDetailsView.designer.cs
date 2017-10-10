@@ -48,8 +48,17 @@ namespace CoffeeManagerAdmin.iOS
         [Outlet]
         UIKit.UILabel UtilizedSalesLabel { get; set; }
 
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIButton AddExpenseButton { get; set; }
+
         void ReleaseDesignerOutlets ()
         {
+            if (AddExpenseButton != null) {
+                AddExpenseButton.Dispose ();
+                AddExpenseButton = null;
+            }
+
             if (CoffeeCounter != null) {
                 CoffeeCounter.Dispose ();
                 CoffeeCounter = null;

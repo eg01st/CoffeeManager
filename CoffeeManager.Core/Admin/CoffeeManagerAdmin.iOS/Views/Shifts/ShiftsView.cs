@@ -17,7 +17,7 @@ namespace CoffeeManagerAdmin.iOS
         {
             base.ViewDidLoad();
             Title = "Смены";
-            var source = new ShiftInfoTableSource(TableView);
+            var source = new SimpleTableSource(TableView, ShiftInfoCell.Key, ShiftInfoCell.Nib);
             TableView.Source = source;
             var set = this.CreateBindingSet<ShiftsView, ShiftsViewModel>();
             set.Bind(source).To(vm => vm.Items);

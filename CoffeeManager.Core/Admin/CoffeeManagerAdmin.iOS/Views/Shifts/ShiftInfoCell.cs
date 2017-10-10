@@ -33,8 +33,7 @@ namespace CoffeeManagerAdmin.iOS
                 set.Bind(NameLabel).To(vm => vm.UserName);
                 set.Bind(ShiftEarnedAmountLabel).To(vm => vm.EarnedAmount);
                 set.Bind(ExpenseLabel).To(vm => vm.ExpenseAmount);
-                set.Bind(RealAmountLabel).To(vm => vm.RealAmount);
-                set.Bind(TotalLabel).To(vm => vm.TotalAmount);
+                set.Bind(TotalLabel).To(vm => vm.RealAmount);
                 set.Bind(StartAmount).To(vm => vm.RealShiftAmount);
                 set.Bind(CreditCardAmount).To(vm => vm.CreditCardAmount);
                 set.Bind(StartAmount).For(o => o.TextColor).To(vm => vm.IsPositive)
@@ -49,7 +48,6 @@ namespace CoffeeManagerAdmin.iOS
                        return UIColor.Red;
                    }
                }));
-                set.Bind(this.Tap()).For(tap => tap.Command).To(vm => vm.ShowDetailsCommand);
                 set.Apply();
             });
         }

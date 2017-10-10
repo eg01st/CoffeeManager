@@ -4,11 +4,15 @@ using System.Windows.Input;
 using CoffeeManager.Models;
 using MvvmCross.Core.ViewModels;
 using CoffeManager.Common;
+using System.Threading.Tasks;
+using MvvmCross.Plugins.Messenger;
 
 namespace CoffeeManagerAdmin.Core.ViewModels
 {
     public class ShiftDetailsViewModel : ViewModelBase
     {
+        private readonly MvxSubscriptionToken updateToken;
+        
         private readonly IShiftManager shiftManager;
         private readonly IPaymentManager paymentManager;
         
@@ -19,6 +23,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels
         private int? _counter;
         private int _rejectedSales;
         private int _utilizeSales;
+        private bool isFinished;
         private List<ExpenseItemViewModel> _expenseItems = new List<ExpenseItemViewModel>();
 
         private float _copSalePercentage;
@@ -29,6 +34,9 @@ namespace CoffeeManagerAdmin.Core.ViewModels
             this.paymentManager = paymentManager;
             this.shiftManager = shiftManager;
             ShowSalesCommand = new MvxCommand(DoShowSales);
+            AddExpenseCommand = new MvxCommand(() => ShowViewModel<AddShiftExpenseViewModel>(new { id = _shiftId }));
+
+            updateToken = Subscribe<UpdateShiftMessage>(async obj => await Init(_shiftId));
         }
 
         private void DoShowSales()
@@ -36,7 +44,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels
             ShowViewModel<ShiftSalesViewModel>(new { id = _shiftId });
         }
 
-        public async void Init(int id)
+        public async Task Init(int id)
         {
             _shiftId = id;
             await ExecuteSafe(async () =>
@@ -45,10 +53,10 @@ namespace CoffeeManagerAdmin.Core.ViewModels
                ExpenseItems = items.Select(s => new ExpenseItemViewModel(s)).ToList();
 
                var saleItems = await shiftManager.GetShiftSales(_shiftId);
-                if(saleItems.Any())
-                {
-                    CalculateCopSalePercentage(saleItems.ToList());    
-                }
+               if (saleItems.Any())
+               {
+                   CalculateCopSalePercentage(saleItems.ToList());
+               }
 
                var shiftInfo = await shiftManager.GetShiftInfo(id);
                Date = shiftInfo.Date.ToString("g");
@@ -60,7 +68,9 @@ namespace CoffeeManagerAdmin.Core.ViewModels
                RejectedSales = saleItems.Count(i => i.IsRejected);
                UtilizedSales = saleItems.Count(i => i.IsUtilized);
                UsedCoffee = (int)shiftInfo.UsedPortions;
+               IsFinished = shiftInfo.IsFinished;
            });
+            BaseManager.ShiftNo = id;
         }
 
 
@@ -74,6 +84,8 @@ namespace CoffeeManagerAdmin.Core.ViewModels
         }
 
         public ICommand ShowSalesCommand { get; set; }
+
+        public ICommand AddExpenseCommand { get; set; }
 
         public float CopSalePercentage
         {
@@ -152,6 +164,22 @@ namespace CoffeeManagerAdmin.Core.ViewModels
                 _utilizeSales = value;
                 RaisePropertyChanged(nameof(UtilizedSales));
             }
+        }
+
+        public bool IsFinished
+        {
+            get { return isFinished; }
+            set
+            {
+                isFinished = value;
+                RaisePropertyChanged(nameof(IsFinished));
+            }
+        }
+
+        protected override void DoUnsubscribe()
+        {
+            base.DoUnsubscribe();
+            Unsubscribe<UpdateShiftMessage>(updateToken);
         }
     }
 }

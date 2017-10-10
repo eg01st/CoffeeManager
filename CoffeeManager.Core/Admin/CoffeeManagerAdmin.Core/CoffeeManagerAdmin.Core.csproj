@@ -115,6 +115,11 @@
     <Compile Include="ViewModels\CreditCard\CreditCardViewModel.cs" />
     <Compile Include="ViewModels\CreditCard\CashoutHistoryItemViewModel.cs" />
     <Compile Include="Messages\UpdateCashAmountMessage.cs" />
+    <Compile Include="ViewModels\Shifts\AddShiftExpenseViewModel.cs" />
+    <Compile Include="ViewModels\Shifts\AddExpenseItemViewModel.cs" />
+    <Compile Include="ViewModels\Shifts\AddExpenseExtendedViewModel.cs" />
+    <Compile Include="ViewModels\Shifts\AddExtendedExpenseItemViewModel.cs" />
+    <Compile Include="Messages\UpdateShiftMessage.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">
@@ -174,7 +179,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Managers\" />
     <Folder Include="ServiceProviders\" />
     <Folder Include="ViewModels\Settings\" />
     <Folder Include="ViewModels\CreditCard\" />
