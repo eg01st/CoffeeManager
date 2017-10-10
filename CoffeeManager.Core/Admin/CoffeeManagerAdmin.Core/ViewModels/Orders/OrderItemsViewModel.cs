@@ -197,6 +197,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Orders
 
         protected override void DoUnsubscribe()
         {
+            Unsubscribe<OrderItemsListChangedMessage>(_token);
             Unsubscribe<OrderItemsListChangedMessage>(_itemsSelectedtoken);
         }
     }
