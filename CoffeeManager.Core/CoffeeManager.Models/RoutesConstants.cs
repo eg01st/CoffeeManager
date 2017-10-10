@@ -25,6 +25,8 @@ namespace CoffeeManager.Models
         public const string GetExpenses = Payment + "/getExpenses";
         public const string GetSalesByDate = Payment + "/getSalesByDateDate";
         public const string CashOutCreditCard = Payment + "/CashOutCreditCard";
+        public const string GetCashOutHistory = Payment + "/GetCashOutHistory";
+        
 
         public const string Products = Api + "/products";
         public const string GetAllProducts = Products + "/getAll";

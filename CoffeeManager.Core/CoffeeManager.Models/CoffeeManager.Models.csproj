@@ -38,6 +38,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CalculationItem.cs" />
+    <Compile Include="CashoutHistory.cs" />
     <Compile Include="CupType.cs" />
     <Compile Include="CupTypeEnum.cs" />
     <Compile Include="EndShiftDTO.cs" />

@@ -62,6 +62,9 @@
         <AssociationConnector Association="CoffeeRoomModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="CoffeeRoomModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="CoffeeRoomModel.AspNetUserRoles" />
+        <EntityTypeShape EntityType="CoffeeRoomModel.CashoutHistory" Width="1.5" PointX="10.625" PointY="7.5" />
+        <AssociationConnector Association="CoffeeRoomModel.FK__CashoutHi__Coffe__2739D489" />
+        <AssociationConnector Association="CoffeeRoomModel.FK__CashoutHi__Shift__2645B050" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

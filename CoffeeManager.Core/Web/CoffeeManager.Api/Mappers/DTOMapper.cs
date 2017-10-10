@@ -225,5 +225,17 @@ namespace CoffeeManager.Api.Mappers
                 yield return new Models.SaleInfo() { Name = item.name, Amount = item.amount, Quantity = item.quantity, Producttype = item.producttype };
             }
         }
+
+        public static Models.CashoutHistory ToDTO(this CashoutHistory item)
+        {
+            return new Models.CashoutHistory()
+            {
+                Id = item.Id,
+                CoffeeRoomNo = item.CoffeeRoomNo,
+                Amount = item.Amount,
+                ShiftId = item.ShiftId,
+                Date = item.Date,
+            };
+        }
     }
 }

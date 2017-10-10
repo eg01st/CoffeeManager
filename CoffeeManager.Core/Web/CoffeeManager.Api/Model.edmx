@@ -59,6 +59,16 @@
           <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
           <Property Name="ApiUrl" Type="nvarchar" MaxLength="1024" />
         </EntityType>
+        <EntityType Name="CashoutHistory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Amount" Type="money" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="ShiftId" Type="int" Nullable="false" />
+          <Property Name="CoffeeRoomNo" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="CoffeeRoom">
           <Key>
             <PropertyRef Name="Id" />
@@ -333,6 +343,30 @@
           <Property Name="CoffeeRoomNo" Type="int" Nullable="false" />
           <Property Name="DateTime" Type="datetime" Nullable="false" />
         </EntityType>
+        <Association Name="FK__CashoutHi__Coffe__2739D489">
+          <End Role="CoffeeRoom" Type="Self.CoffeeRoom" Multiplicity="1" />
+          <End Role="CashoutHistory" Type="Self.CashoutHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CoffeeRoom">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CashoutHistory">
+              <PropertyRef Name="CoffeeRoomNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CashoutHi__Shift__2645B050">
+          <End Role="Shifts" Type="Self.Shifts" Multiplicity="1" />
+          <End Role="CashoutHistory" Type="Self.CashoutHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shifts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CashoutHistory">
+              <PropertyRef Name="ShiftId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Expense__Expense__37A5467C">
           <End Role="ExpenseType" Type="Self.ExpenseType" Multiplicity="0..1" />
           <End Role="Expense" Type="Self.Expense" Multiplicity="*" />
@@ -732,6 +766,7 @@
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CashoutHistory" EntityType="Self.CashoutHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CoffeeRoom" EntityType="Self.CoffeeRoom" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CupSuply" EntityType="Self.CupSuply" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CupType" EntityType="Self.CupType" Schema="dbo" store:Type="Tables" />
@@ -755,6 +790,14 @@
           <EntitySet Name="UserPenalty" EntityType="Self.UserPenalty" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UtilizedSuplyProduct" EntityType="Self.UtilizedSuplyProduct" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__CashoutHi__Coffe__2739D489" Association="Self.FK__CashoutHi__Coffe__2739D489">
+            <End Role="CoffeeRoom" EntitySet="CoffeeRoom" />
+            <End Role="CashoutHistory" EntitySet="CashoutHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CashoutHi__Shift__2645B050" Association="Self.FK__CashoutHi__Shift__2645B050">
+            <End Role="Shifts" EntitySet="Shifts" />
+            <End Role="CashoutHistory" EntitySet="CashoutHistory" />
+          </AssociationSet>
           <AssociationSet Name="FK__Expense__Expense__37A5467C" Association="Self.FK__Expense__Expense__37A5467C">
             <End Role="ExpenseType" EntitySet="ExpenseType" />
             <End Role="Expense" EntitySet="Expense" />
@@ -1005,6 +1048,7 @@
           <NavigationProperty Name="UtilizedSuplyProducts" Relationship="CoffeeRoomModel.FK__UtilizedS__Shift__0662F0A3" FromRole="Shift" ToRole="UtilizedSuplyProduct" />
           <NavigationProperty Name="UserEarningsHistories" Relationship="CoffeeRoomModel.FK__UserEarni__Shift__10E07F16" FromRole="Shift" ToRole="UserEarningsHistory" />
           <Property Name="TotalCreditCardAmount" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="CashoutHistories" Relationship="CoffeeRoomModel.FK__CashoutHi__Shift__2645B050" FromRole="Shift" ToRole="CashoutHistory" />
         </EntityType>
         <EntityType Name="UsedCupsPerShift">
           <Key>
@@ -1305,6 +1349,15 @@
           <AssociationSet Name="AspNetUserRoles" Association="CoffeeRoomModel.AspNetUserRoles">
             <End Role="AspNetRole" EntitySet="AspNetRoles" />
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <EntitySet Name="CashoutHistories" EntityType="CoffeeRoomModel.CashoutHistory" />
+          <AssociationSet Name="FK__CashoutHi__Coffe__2739D489" Association="CoffeeRoomModel.FK__CashoutHi__Coffe__2739D489">
+            <End Role="CoffeeRoom" EntitySet="CoffeeRooms" />
+            <End Role="CashoutHistory" EntitySet="CashoutHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CashoutHi__Shift__2645B050" Association="CoffeeRoomModel.FK__CashoutHi__Shift__2645B050">
+            <End Role="Shift" EntitySet="Shifts" />
+            <End Role="CashoutHistory" EntitySet="CashoutHistories" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="UsedProductsPerShift">
@@ -1686,6 +1739,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="CashoutHistories" Relationship="CoffeeRoomModel.FK__CashoutHi__Coffe__2739D489" FromRole="CoffeeRoom" ToRole="CashoutHistory" />
         </EntityType>
         <EntityType Name="UserEarningsHistory">
           <Key>
@@ -1807,6 +1861,42 @@
         <Association Name="AspNetUserRoles">
           <End Type="CoffeeRoomModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
           <End Type="CoffeeRoomModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+        </Association>
+        <EntityType Name="CashoutHistory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Amount" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ShiftId" Type="Int32" Nullable="false" />
+          <Property Name="CoffeeRoomNo" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CoffeeRoom" Relationship="CoffeeRoomModel.FK__CashoutHi__Coffe__2739D489" FromRole="CashoutHistory" ToRole="CoffeeRoom" />
+          <NavigationProperty Name="Shift" Relationship="CoffeeRoomModel.FK__CashoutHi__Shift__2645B050" FromRole="CashoutHistory" ToRole="Shift" />
+        </EntityType>
+        <Association Name="FK__CashoutHi__Coffe__2739D489">
+          <End Type="CoffeeRoomModel.CoffeeRoom" Role="CoffeeRoom" Multiplicity="1" />
+          <End Type="CoffeeRoomModel.CashoutHistory" Role="CashoutHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CoffeeRoom">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CashoutHistory">
+              <PropertyRef Name="CoffeeRoomNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CashoutHi__Shift__2645B050">
+          <End Type="CoffeeRoomModel.Shift" Role="Shift" Multiplicity="1" />
+          <End Type="CoffeeRoomModel.CashoutHistory" Role="CashoutHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shift">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CashoutHistory">
+              <PropertyRef Name="ShiftId" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -2205,6 +2295,17 @@
               <ScalarProperty Name="Id" ColumnName="RoleId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="CashoutHistories">
+            <EntityTypeMapping TypeName="CoffeeRoomModel.CashoutHistory">
+              <MappingFragment StoreEntitySet="CashoutHistory">
+                <ScalarProperty Name="CoffeeRoomNo" ColumnName="CoffeeRoomNo" />
+                <ScalarProperty Name="ShiftId" ColumnName="ShiftId" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

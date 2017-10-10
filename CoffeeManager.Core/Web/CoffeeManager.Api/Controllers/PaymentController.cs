@@ -312,9 +312,27 @@ namespace CoffeeManager.Api.Controllers
             {
                 currentShift.TotalCreditCardAmount -= amount;
                 currentShift.TotalAmount += amount;
+
+                var cashoutHistory = new CashoutHistory();
+                cashoutHistory.CoffeeRoomNo = coffeeroomno;
+                cashoutHistory.Amount = amount;
+                cashoutHistory.Date = DateTime.Now;
+                cashoutHistory.ShiftId = currentShift.Id;
+                entities.CashoutHistories.Add(cashoutHistory);
+
                 entities.SaveChanges();
             }
             return Request.CreateResponse(HttpStatusCode.OK);
+        }
+
+        [Route(RoutesConstants.GetCashOutHistory)]
+        [HttpGet]
+        public async Task<HttpResponseMessage> GetCashOutHistory([FromUri]int coffeeroomno, HttpRequestMessage message)
+        {
+            var entities = new CoffeeRoomEntities();
+            var histories = entities.CashoutHistories.Where(s => s.CoffeeRoomNo == coffeeroomno).Select(s => s.ToDTO());
+        
+            return Request.CreateResponse(HttpStatusCode.OK, histories);
         }
 
         [Route(RoutesConstants.SetCreditCardEntireMoney)]
