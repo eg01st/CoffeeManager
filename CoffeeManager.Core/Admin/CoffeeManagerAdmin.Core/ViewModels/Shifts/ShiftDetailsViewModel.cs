@@ -49,8 +49,17 @@ namespace CoffeeManagerAdmin.Core.ViewModels
             _shiftId = id;
             await ExecuteSafe(async () =>
            {
+               var shiftInfo = await shiftManager.GetShiftInfo(id);
+               IsFinished = shiftInfo.IsFinished;
+               Date = shiftInfo.Date.ToString("g");
+               Name = shiftInfo.UserName;
+               if (shiftInfo.StartCounter.HasValue && shiftInfo.EndCounter.HasValue)
+               {
+                   Counter = shiftInfo.EndCounter - shiftInfo.StartCounter;
+               }
+
                var items = await paymentManager.GetShiftExpenses(_shiftId);
-               ExpenseItems = items.Select(s => new ExpenseItemViewModel(s)).ToList();
+               ExpenseItems = items.Select(s => new ExpenseItemViewModel(s, !isFinished)).ToList();
 
                var saleItems = await shiftManager.GetShiftSales(_shiftId);
                if (saleItems.Any())
@@ -58,17 +67,10 @@ namespace CoffeeManagerAdmin.Core.ViewModels
                    CalculateCopSalePercentage(saleItems.ToList());
                }
 
-               var shiftInfo = await shiftManager.GetShiftInfo(id);
-               Date = shiftInfo.Date.ToString("g");
-               Name = shiftInfo.UserName;
-               if (shiftInfo.StartCounter.HasValue && shiftInfo.EndCounter.HasValue)
-               {
-                   Counter = shiftInfo.EndCounter - shiftInfo.StartCounter;
-               }
                RejectedSales = saleItems.Count(i => i.IsRejected);
                UtilizedSales = saleItems.Count(i => i.IsUtilized);
                UsedCoffee = (int)shiftInfo.UsedPortions;
-               IsFinished = shiftInfo.IsFinished;
+
            });
             BaseManager.ShiftNo = id;
         }

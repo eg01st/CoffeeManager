@@ -11,15 +11,20 @@ namespace CoffeeManagerAdmin.Core
     public class ExpenseItemViewModel : ListItemViewModelBase
     {
         private Expense _item;
-        public ExpenseItemViewModel(Expense item)
+        private bool canRemove;
+        public ExpenseItemViewModel(Expense item, bool canRemove = false)
         {
+            this.canRemove = canRemove;
             _item = item;
             DeleteExpenseCommand = new MvxCommand(DoDeleExpense);
         }
 
         private void DoDeleExpense()
         {
-            Confirm($"Удалить расход {Name}?", DeleteExpense);
+            if(canRemove)
+            {
+                Confirm($"Удалить расход {Name}?", DeleteExpense);
+            }
         }
 
         private async Task DeleteExpense()
