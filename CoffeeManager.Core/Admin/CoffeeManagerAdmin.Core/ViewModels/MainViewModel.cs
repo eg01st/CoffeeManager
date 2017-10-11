@@ -1,31 +1,9 @@
-﻿using System.Windows.Input;
-using MvvmCross.Core.ViewModels;
-using System.Threading.Tasks;
-using CoffeeManagerAdmin.Core.ViewModels.Orders;
-using CoffeManager.Common;
-using CoffeeManager.Core.ViewModels;
-using System.Collections.Generic;
-using CoffeeManager.Models;
-using System.Linq;
-using CoffeeManager.Common;
-using MvvmCross.Plugins.Messenger;
+﻿using CoffeManager.Common;
 
 namespace CoffeeManagerAdmin.Core.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
-        private readonly MvxSubscriptionToken refreshCoffeeroomsToken;
-        private readonly MvxSubscriptionToken refreshAmountToken;
-
-        private readonly IShiftManager shiftManager;
-
-        private ICommand _showShiftsCommand;
-        private ICommand _showSupliedProductsCommand;
-        private ICommand _updateEntireMoneyCommand;
-        private ICommand _showOrdersCommand;
-        private ICommand _editProductsCommand;
-        private ICommand _editUsersCommand;
-        private ICommand _showStatiscticCommand;
 
         public void ShowErrorMessage(string v)
         {
@@ -33,173 +11,10 @@ namespace CoffeeManagerAdmin.Core.ViewModels
         }
 
 
-        private string _currentBalance;
-        private string _currentShiftBalance;
-        private string _currentCreditCardBalance;
-        private Entity _currentCoffeeRoom;
-        private List<Entity> coffeeRooms;
-
-        public ICommand ShowShiftsCommand => _showShiftsCommand;
-        public ICommand ShowSupliedProductsCommand => _showSupliedProductsCommand;
-        public ICommand UpdateEntireMoneyCommand => _updateEntireMoneyCommand;
-        public ICommand ShowOrdersCommand => _showOrdersCommand;
-        public ICommand EditProductsCommand => _editProductsCommand;
-        public ICommand EditUsersCommand => _editUsersCommand;
-        public ICommand ShowStatiscticCommand => _showStatiscticCommand;
-        public ICommand ShowExpensesCommand { get; set; }
-        public ICommand ShowInventoryCommand { get; set; }
-        public ICommand ShowUtilizedSuplyProductsCommand { get; set; }
-        public ICommand ShowSettingsCommand { get; set; }
-        public ICommand ShowCreditCardCommand { get; set; }
-
-
-        protected override void OnClose()
+        public MainViewModel()
         {
 
         }
 
-        public string CurrentBalance
-        {
-            get { return _currentBalance; }
-            set
-            {
-                _currentBalance = value;
-                RaisePropertyChanged(nameof(CurrentBalance));
-            }
-        }
-
-        public string CurrentShiftBalance
-        {
-            get { return _currentShiftBalance; }
-            set
-            {
-                _currentShiftBalance = value;
-                RaisePropertyChanged(nameof(CurrentShiftBalance));
-            }
-        }
-
-        public string CurrentCreditCardBalance
-        {
-            get { return _currentCreditCardBalance; }
-            set
-            {
-                _currentCreditCardBalance = value;
-                RaisePropertyChanged(nameof(CurrentCreditCardBalance));
-            }
-        }
-
-        public Entity CurrentCoffeeRoom
-        {
-            get { return _currentCoffeeRoom; }
-            set
-            {
-                _currentCoffeeRoom = value;
-                RaisePropertyChanged(nameof(CurrentCoffeeRoom));
-                RaisePropertyChanged(nameof(CurrentCoffeeRoomName));
-                Config.CoffeeRoomNo = _currentCoffeeRoom.Id;
-                GetEntireMoney();
-            }
-        }
-
-        public List<Entity> CoffeeRooms
-        {
-            get { return coffeeRooms; }
-            set
-            {
-                coffeeRooms = value;
-                RaisePropertyChanged(nameof(CoffeeRooms));
-            }
-        }
-
-        public string CurrentCoffeeRoomName
-        {
-            get { return CurrentCoffeeRoom.Name; }
-          
-        }
-
-        readonly IAdminManager adminManager;
-        readonly IPaymentManager paymentManager;
-
-        public MainViewModel(IShiftManager shiftManager, IAdminManager adminManager, IPaymentManager paymentManager)
-        {
-            this.paymentManager = paymentManager;
-            this.adminManager = adminManager;
-            this.shiftManager = shiftManager;
-            _showShiftsCommand = new MvxCommand(DoShowShifts);
-            _showSupliedProductsCommand = new MvxCommand(DoShowSupliedProducts);
-            _updateEntireMoneyCommand = new MvxCommand(DoGetEntireMoney);
-            _showOrdersCommand = new MvxCommand(DoShowOrders);
-            _editProductsCommand = new MvxCommand(DoEditProducts);
-            _editUsersCommand = new MvxCommand(DoEditUsers);
-            _showStatiscticCommand = new MvxCommand(() => ShowViewModel<StatisticViewModel>());
-            ShowExpensesCommand = new MvxCommand(() => ShowViewModel<ManageExpensesViewModel>());
-            ShowInventoryCommand = new MvxCommand(() => ShowViewModel<InventoryViewModel>());
-            ShowUtilizedSuplyProductsCommand = new MvxCommand(() => ShowViewModel<UtilizeViewModel>());
-            ShowSettingsCommand = new MvxCommand(() => ShowViewModel<SettingsViewModel>());
-            ShowCreditCardCommand = new MvxCommand(() => ShowViewModel<CreditCardViewModel>());
-
-            refreshCoffeeroomsToken = Subscribe<RefreshCoffeeRoomsMessage>(async (obj) => await GetCoffeeRooms());
-            refreshAmountToken = Subscribe<UpdateCashAmountMessage>(async (obj) => await GetEntireMoney());
-        }
-
-
-        private void DoEditUsers()
-        {
-            ShowViewModel<UsersViewModel>();
-        }
-
-        private void DoEditProducts()
-        {
-            ShowViewModel<ProductsViewModel>();
-        }
-
-        private void DoShowOrders()
-        {
-            ShowViewModel<OrdersViewModel>();
-        }
-
-        private void DoShowSupliedProducts()
-        {
-            ShowViewModel<SuplyProductsViewModel>();
-        }
-
-        private void DoShowShifts()
-        {
-            ShowViewModel<ShiftsViewModel>();
-        }
-
-        public async Task Init()
-        {
-            await GetEntireMoney();
-            await GetCoffeeRooms();
-        }
-
-        private async void DoGetEntireMoney()
-        {
-            await GetEntireMoney();
-        }
-
-        private async Task GetEntireMoney()
-        {
-            await ExecuteSafe(async () =>
-            {
-                var currentBalance = await paymentManager.GetEntireMoney();
-                CurrentBalance = currentBalance.ToString("F1");
-                var shiftBalance = await paymentManager.GetCurrentShiftMoney();
-                CurrentShiftBalance = shiftBalance.ToString("F1");
-                var creditCardBalance = await paymentManager.GetCreditCardEntireMoney();
-                CurrentCreditCardBalance = creditCardBalance.ToString("F1");
-            });
-        }
-
-        private async Task GetCoffeeRooms()
-        {
-            await ExecuteSafe(async () =>
-            {
-                var items = await adminManager.GetCoffeeRooms();
-                CoffeeRooms = items.ToList();
-                CurrentCoffeeRoom = CoffeeRooms.First();
-            });
-        }
     }
 }

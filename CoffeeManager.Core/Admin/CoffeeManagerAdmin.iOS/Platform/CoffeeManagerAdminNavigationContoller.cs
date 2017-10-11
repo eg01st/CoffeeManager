@@ -35,7 +35,7 @@ namespace CoffeeManagerAdmin.iOS
         [Export("navigationController:didShowViewController:animated:")]
         public void DidShowViewController(UINavigationController navigationController, UIViewController viewController, bool animated)
         {
-            bool isRootController = viewController is MainView;
+            bool isRootController = viewController == navigationController.ViewControllers.FirstOrDefault();
             navigationController.InteractivePopGestureRecognizer.Enabled = !isRootController;
         }
     }

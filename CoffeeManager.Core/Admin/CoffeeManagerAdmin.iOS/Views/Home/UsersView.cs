@@ -11,6 +11,8 @@ namespace CoffeeManagerAdmin.iOS
 {
     public partial class UsersView : ViewControllerBase<UsersViewModel>
     {
+        protected override bool UseCustomBackButton => false;
+
         public UsersView() : base("UsersView", null)
         {
         }

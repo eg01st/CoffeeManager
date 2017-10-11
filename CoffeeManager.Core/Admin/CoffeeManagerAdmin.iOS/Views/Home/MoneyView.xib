@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MoneyView">
+            <connections>
+                <outlet property="view" destination="2" id="RRd-Eg-VrN"/>
+                <outlet property="CoffeeRoomTextField" destination="CSn-ZE-L6f" id="name-outlet-CSn-ZE-L6f"/>
+                <outlet property="EntireMoneyLabel" destination="f0w-Fy-OCF" id="name-outlet-f0w-Fy-OCF"/>
+                <outlet property="CurrentShiftMoneyLabel" destination="K1E-8Y-53G" id="name-outlet-K1E-8Y-53G"/>
+                <outlet property="CreditCardAmountLabel" destination="uYR-TD-RIB" id="name-outlet-uYR-TD-RIB"/>
+                <outlet property="RefreshMoneyButton" destination="ih7-Dc-7kq" id="name-outlet-ih7-Dc-7kq"/>
+                <outlet property="ShiftsButton" destination="EJu-eb-gpe" id="name-outlet-EJu-eb-gpe"/>
+                <outlet property="ProductsButton" destination="aQs-di-vzS" id="name-outlet-aQs-di-vzS"/>
+                <outlet property="ExpensesButton" destination="Wvm-qp-dxw" id="name-outlet-Wvm-qp-dxw"/>
+                <outlet property="CreditCardButton" destination="BaX-My-9Tv" id="name-outlet-BaX-My-9Tv"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="2">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rlh-8c-hEh" misplaced="YES">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Кофейня: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qSb-Bz-Ouc">
+                            <rect key="frame" x="16" y="16" width="80" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CSn-ZE-L6f" misplaced="YES">
+                            <rect key="frame" x="112" y="11" width="247" height="30"/>
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AQd-Qn-Epj" misplaced="YES">
+                            <rect key="frame" x="0.0" y="100" width="375" height="127"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Текущая касса:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E8A-Cv-KcG">
+                                    <rect key="frame" x="16" y="16" width="123" height="21"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f0w-Fy-OCF" misplaced="YES">
+                                    <rect key="frame" x="166.5" y="16" width="42" height="21"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Текущая смена: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T4A-8F-fqf" misplaced="YES">
+                                    <rect key="frame" x="16" y="53" width="132" height="21"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K1E-8Y-53G" misplaced="YES">
+                                    <rect key="frame" x="166.5" y="53" width="42" height="21"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ih7-Dc-7kq" misplaced="YES">
+                                    <rect key="frame" x="289" y="16" width="70" height="94"/>
+                                    <state key="normal" title="Обновить"/>
+                                </button>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Кредитка:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l8M-Q3-tUr" misplaced="YES">
+                                    <rect key="frame" x="16" y="90" width="81" height="21"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uYR-TD-RIB" misplaced="YES">
+                                    <rect key="frame" x="166.5" y="90" width="42" height="21"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="f0w-Fy-OCF" firstAttribute="centerX" secondItem="AQd-Qn-Epj" secondAttribute="centerX" id="9F9-hu-lqg"/>
+                                <constraint firstItem="ih7-Dc-7kq" firstAttribute="centerY" secondItem="AQd-Qn-Epj" secondAttribute="centerY" id="A1f-Xa-mQV"/>
+                                <constraint firstAttribute="trailing" secondItem="ih7-Dc-7kq" secondAttribute="trailing" constant="16" id="EN0-SG-Gtp"/>
+                                <constraint firstItem="uYR-TD-RIB" firstAttribute="centerY" secondItem="l8M-Q3-tUr" secondAttribute="centerY" id="FlJ-FT-svM"/>
+                                <constraint firstItem="T4A-8F-fqf" firstAttribute="top" secondItem="E8A-Cv-KcG" secondAttribute="bottom" constant="16" id="IKu-LD-HYQ"/>
+                                <constraint firstItem="T4A-8F-fqf" firstAttribute="leading" secondItem="AQd-Qn-Epj" secondAttribute="leading" constant="16" id="IOS-QO-iCa"/>
+                                <constraint firstItem="f0w-Fy-OCF" firstAttribute="centerY" secondItem="E8A-Cv-KcG" secondAttribute="centerY" id="KV6-q3-lXU"/>
+                                <constraint firstItem="ih7-Dc-7kq" firstAttribute="top" secondItem="AQd-Qn-Epj" secondAttribute="top" constant="16" id="V0f-hM-2JL"/>
+                                <constraint firstItem="l8M-Q3-tUr" firstAttribute="top" secondItem="T4A-8F-fqf" secondAttribute="bottom" constant="16" id="fYo-ed-h3r"/>
+                                <constraint firstItem="K1E-8Y-53G" firstAttribute="centerX" secondItem="AQd-Qn-Epj" secondAttribute="centerX" id="jXw-9S-8WQ"/>
+                                <constraint firstAttribute="bottom" secondItem="l8M-Q3-tUr" secondAttribute="bottom" constant="16" id="sx7-jm-YBG"/>
+                                <constraint firstItem="E8A-Cv-KcG" firstAttribute="top" secondItem="AQd-Qn-Epj" secondAttribute="top" constant="16" id="szA-cs-IfP"/>
+                                <constraint firstItem="l8M-Q3-tUr" firstAttribute="leading" secondItem="AQd-Qn-Epj" secondAttribute="leading" constant="16" id="tjR-3c-QzD"/>
+                                <constraint firstItem="K1E-8Y-53G" firstAttribute="centerY" secondItem="T4A-8F-fqf" secondAttribute="centerY" id="w2v-pf-8Ky"/>
+                                <constraint firstItem="uYR-TD-RIB" firstAttribute="centerX" secondItem="AQd-Qn-Epj" secondAttribute="centerX" id="wCt-vh-eym"/>
+                                <constraint firstItem="E8A-Cv-KcG" firstAttribute="leading" secondItem="AQd-Qn-Epj" secondAttribute="leading" constant="16" id="yIB-Ja-TK8"/>
+                            </constraints>
+                        </view>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EJu-eb-gpe" misplaced="YES">
+                            <rect key="frame" x="0.0" y="243" width="375" height="30"/>
+                            <state key="normal" title="Информация по сменам"/>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aQs-di-vzS" misplaced="YES">
+                            <rect key="frame" x="0.0" y="273" width="375" height="30"/>
+                            <state key="normal" title="Редактированние товаров"/>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wvm-qp-dxw" misplaced="YES">
+                            <rect key="frame" x="92.5" y="303" width="190" height="30"/>
+                            <state key="normal" title="Редактирование расходов"/>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BaX-My-9Tv" misplaced="YES">
+                            <rect key="frame" x="153" y="333" width="69" height="30"/>
+                            <state key="normal" title="Кредитка"/>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="AQd-Qn-Epj" firstAttribute="leading" secondItem="Rlh-8c-hEh" secondAttribute="leading" id="0Kx-eS-7eE"/>
+                        <constraint firstItem="CSn-ZE-L6f" firstAttribute="centerY" secondItem="qSb-Bz-Ouc" secondAttribute="centerY" id="0Qx-vg-E5O"/>
+                        <constraint firstItem="AQd-Qn-Epj" firstAttribute="top" secondItem="Rlh-8c-hEh" secondAttribute="top" constant="100" id="2f7-4e-Yul"/>
+                        <constraint firstAttribute="trailing" secondItem="EJu-eb-gpe" secondAttribute="trailing" id="4vr-hV-RhN"/>
+                        <constraint firstItem="aQs-di-vzS" firstAttribute="centerX" secondItem="Rlh-8c-hEh" secondAttribute="centerX" id="9mq-rN-k2f"/>
+                        <constraint firstItem="EJu-eb-gpe" firstAttribute="leading" secondItem="Rlh-8c-hEh" secondAttribute="leading" id="Apk-4t-m9e"/>
+                        <constraint firstItem="qSb-Bz-Ouc" firstAttribute="top" secondItem="Rlh-8c-hEh" secondAttribute="top" constant="16" id="BwB-Nm-B5M"/>
+                        <constraint firstItem="CSn-ZE-L6f" firstAttribute="leading" secondItem="qSb-Bz-Ouc" secondAttribute="trailing" constant="16" id="CJ2-I1-tQT"/>
+                        <constraint firstItem="aQs-di-vzS" firstAttribute="width" secondItem="Rlh-8c-hEh" secondAttribute="width" id="DIn-I2-pow"/>
+                        <constraint firstAttribute="trailing" secondItem="AQd-Qn-Epj" secondAttribute="trailing" id="MR0-Cc-7zO"/>
+                        <constraint firstItem="qSb-Bz-Ouc" firstAttribute="leading" secondItem="Rlh-8c-hEh" secondAttribute="leading" constant="16" id="PzO-k9-l09"/>
+                        <constraint firstItem="Wvm-qp-dxw" firstAttribute="centerX" secondItem="Rlh-8c-hEh" secondAttribute="centerX" id="Sp8-Yd-sxy"/>
+                        <constraint firstItem="EJu-eb-gpe" firstAttribute="top" secondItem="AQd-Qn-Epj" secondAttribute="bottom" constant="16" id="Ucp-dS-jxR"/>
+                        <constraint firstItem="aQs-di-vzS" firstAttribute="top" secondItem="EJu-eb-gpe" secondAttribute="bottom" id="W9X-d6-YUl"/>
+                        <constraint firstItem="BaX-My-9Tv" firstAttribute="top" secondItem="Wvm-qp-dxw" secondAttribute="bottom" id="Y0Y-Qu-rn4"/>
+                        <constraint firstItem="Wvm-qp-dxw" firstAttribute="top" secondItem="aQs-di-vzS" secondAttribute="bottom" id="efu-hQ-Ljn"/>
+                        <constraint firstAttribute="trailing" secondItem="CSn-ZE-L6f" secondAttribute="trailing" constant="16" id="kJO-y9-2kz"/>
+                        <constraint firstItem="BaX-My-9Tv" firstAttribute="centerX" secondItem="Rlh-8c-hEh" secondAttribute="centerX" id="lFx-hd-aFS"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="Rlh-8c-hEh" secondAttribute="bottom" id="KFs-Gh-3GK"/>
+                <constraint firstAttribute="trailing" secondItem="Rlh-8c-hEh" secondAttribute="trailing" id="T9H-NL-4EO"/>
+                <constraint firstItem="Rlh-8c-hEh" firstAttribute="top" secondItem="2" secondAttribute="top" id="TRb-nq-Skg"/>
+                <constraint firstItem="Rlh-8c-hEh" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="yfU-EB-G1f"/>
+            </constraints>
+        </view>
+    </objects>
+    <resources>
+        <image name="ic_check.png" width="50" height="50"/>
+        <image name="ic_arrow_upward_2x.png" width="48" height="48"/>
+        <image name="ic_arrow_upward_3x.png" width="72" height="72"/>
+        <image name="ic_arrow_upward.png" width="24" height="24"/>
+        <image name="ic_credit_card_2x.png" width="48" height="48"/>
+        <image name="ic_credit_card_3x.png" width="72" height="72"/>
+        <image name="ic_credit_card.png" width="24" height="24"/>
+        <image name="ic_arrow_downward_2x.png" width="48" height="48"/>
+        <image name="ic_arrow_downward_3x.png" width="72" height="72"/>
+        <image name="ic_arrow_downward.png" width="24" height="24"/>
+        <image name="ic_arrow_back_3x.png" width="72" height="72"/>
+        <image name="ic_arrow_back_2x.png" width="48" height="48"/>
+        <image name="ic_arrow_back.png" width="24" height="24"/>
+        <image name="ic_settings_3x.png" width="72" height="72"/>
+        <image name="ic_settings_2x.png" width="48" height="48"/>
+        <image name="ic_settings.png" width="24" height="24"/>
+        <image name="ic_add_circle_outline_3x.png" width="72" height="72"/>
+        <image name="ic_add_circle_outline_2x.png" width="48" height="48"/>
+        <image name="ic_add_circle_outline.png" width="24" height="24"/>
+        <image name="ic_attach_money_3x.png" width="72" height="72"/>
+        <image name="ic_attach_money_2x.png" width="48" height="48"/>
+        <image name="ic_attach_money.png" width="24" height="24"/>
+        <image name="ic_attach_money_white_3x.png" width="72" height="72"/>
+        <image name="ic_attach_money_white_2x.png" width="48" height="48"/>
+        <image name="ic_attach_money_white.png" width="24" height="24"/>
+        <image name="ic_shopping_basket_white_3x.png" width="72" height="72"/>
+        <image name="ic_shopping_basket_white_2x.png" width="48" height="48"/>
+        <image name="ic_shopping_basket_white.png" width="24" height="24"/>
+        <image name="ic_shopping_basket_3x.png" width="72" height="72"/>
+        <image name="ic_shopping_basket_2x.png" width="48" height="48"/>
+        <image name="ic_shopping_basket.png" width="24" height="24"/>
+        <image name="ic_account_circle_3x.png" width="72" height="72"/>
+        <image name="ic_account_circle_2x.png" width="48" height="48"/>
+        <image name="ic_account_circle.png" width="24" height="24"/>
+        <image name="ic_account_circle_white_3x.png" width="72" height="72"/>
+        <image name="ic_account_circle_white_2x.png" width="48" height="48"/>
+        <image name="ic_account_circle_white.png" width="24" height="24"/>
+        <image name="ic_trending_up_white_3x.png" width="72" height="72"/>
+        <image name="ic_trending_up_white_2x.png" width="48" height="48"/>
+        <image name="ic_trending_up_white.png" width="24" height="24"/>
+        <image name="ic_trending_up_3x.png" width="72" height="72"/>
+        <image name="ic_trending_up_2x.png" width="48" height="48"/>
+        <image name="ic_trending_up.png" width="24" height="24"/>
+    </resources>
+</document>

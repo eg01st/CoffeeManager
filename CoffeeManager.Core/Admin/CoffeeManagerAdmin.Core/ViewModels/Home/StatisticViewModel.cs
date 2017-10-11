@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows.Input;
-using Acr.UserDialogs;
-using CoffeeManagerAdmin.Core.Util;
-using CoffeeManagerAdmin.Core.ViewModels.Statistic;
 using MvvmCross.Core.ViewModels;
 using CoffeManager.Common;
 
@@ -11,6 +7,9 @@ namespace CoffeeManagerAdmin.Core
 {
     public class StatisticViewModel : ViewModelBase
     {
+
+        public string Name { get; set; } = "StatisticViewModel";
+
         private readonly IStatisticManager manager;
 
         private DateTime from = DateTime.Now.Date.AddMonths(-1);

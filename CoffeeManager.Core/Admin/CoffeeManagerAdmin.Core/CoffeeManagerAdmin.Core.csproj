@@ -52,7 +52,6 @@
     <Compile Include="Messages\BaseMessage.cs" />
     <Compile Include="Messages\ProductListChangedMessage.cs" />
     <Compile Include="Messages\SuplyListChangedMessage.cs" />
-    <Compile Include="ViewModels\Users\UsersViewModel.cs" />
     <Compile Include="ViewModels\Users\UserItemViewModel.cs" />
     <Compile Include="ViewModels\Users\UserDetailsViewModel.cs" />
     <Compile Include="ViewModels\SuplyProducts\SuplyProductDetailsViewModel.cs" />
@@ -66,7 +65,6 @@
     <Compile Include="ViewModels\Calculation\CalculationViewModel.cs" />
     <Compile Include="ViewModels\Calculation\SelectCalculationItemViewModel.cs" />
     <Compile Include="ViewModels\Calculation\SelectCalculationListViewModel.cs" />
-    <Compile Include="ViewModels\Statistic\StatisticViewModel.cs" />
     <Compile Include="ViewModels\Statistic\SalesStatisticViewModel.cs" />
     <Compile Include="ViewModels\Statistic\ExpensesStatisticViewModel.cs" />
     <Compile Include="Util\ParameterTransmitter.cs" />
@@ -120,6 +118,10 @@
     <Compile Include="ViewModels\Shifts\AddExpenseExtendedViewModel.cs" />
     <Compile Include="ViewModels\Shifts\AddExtendedExpenseItemViewModel.cs" />
     <Compile Include="Messages\UpdateShiftMessage.cs" />
+    <Compile Include="ViewModels\Home\MoneyViewModel.cs" />
+    <Compile Include="ViewModels\Home\UsersViewModel.cs" />
+    <Compile Include="ViewModels\Home\StatisticViewModel.cs" />
+    <Compile Include="ViewModels\Home\StorageViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">
@@ -182,6 +184,7 @@
     <Folder Include="ServiceProviders\" />
     <Folder Include="ViewModels\Settings\" />
     <Folder Include="ViewModels\CreditCard\" />
+    <Folder Include="ViewModels\Home\" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

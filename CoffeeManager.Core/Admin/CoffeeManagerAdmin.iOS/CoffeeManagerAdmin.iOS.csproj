@@ -104,9 +104,6 @@
       <DependentUpon>LoginView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\MainView.cs" />
-    <Compile Include="Views\MainView.designer.cs">
-      <DependentUpon>MainView.cs</DependentUpon>
-    </Compile>
     <Compile Include="TableSources\ShiftInfoTableSource.cs" />
     <Compile Include="TableSources\SuplyProductTableSource.cs" />
     <Compile Include="Converters\DecimalToStringConverter.cs" />
@@ -154,17 +151,9 @@
       <DependentUpon>OrderItemsView.cs</DependentUpon>
     </Compile>
     <Compile Include="Bootstrap\VisibilityPluginBootstrap.cs" />
-    <Compile Include="Views\Users\UsersView.cs" />
-    <Compile Include="Views\Users\UsersView.designer.cs">
-      <DependentUpon>UsersView.cs</DependentUpon>
-    </Compile>
     <Compile Include="Views\Users\UserDetailsView.cs" />
     <Compile Include="Views\Users\UserDetailsView.designer.cs">
       <DependentUpon>UserDetailsView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Statistic\StatisticView.cs" />
-    <Compile Include="Views\Statistic\StatisticView.designer.cs">
-      <DependentUpon>StatisticView.cs</DependentUpon>
     </Compile>
     <Compile Include="Converters\DateToStringConverter.cs" />
     <Compile Include="Views\Statistic\SaleStatisticViewCell.cs" />
@@ -411,12 +400,28 @@
     <Compile Include="Views\Shifts\AddExpense\AddExpenseExtendedTableHeader.designer.cs">
       <DependentUpon>AddExpenseExtendedTableHeader.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Abstract\MainTabController.cs" />
+    <Compile Include="Views\Home\MoneyView.cs" />
+    <Compile Include="Views\Home\MoneyView.designer.cs">
+      <DependentUpon>MoneyView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Home\StorageView.cs" />
+    <Compile Include="Views\Home\StorageView.designer.cs">
+      <DependentUpon>StorageView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Home\UsersView.cs" />
+    <Compile Include="Views\Home\UsersView.designer.cs">
+      <DependentUpon>UsersView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Home\StatisticView.cs" />
+    <Compile Include="Views\Home\StatisticView.designer.cs">
+      <DependentUpon>StatisticView.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Setup.cs" />
     <InterfaceDefinition Include="Resources\LaunchScreen.xib" />
     <InterfaceDefinition Include="Views\LoginView.xib" />
-    <InterfaceDefinition Include="Views\MainView.xib" />
     <InterfaceDefinition Include="Views\CalculationView.xib" />
     <InterfaceDefinition Include="Views\Cells\CalculationItemViewCell.xib" />
     <InterfaceDefinition Include="Views\SelectCalculationListView.xib" />
@@ -427,9 +432,7 @@
     <InterfaceDefinition Include="Views\Orders\SelectOrderItemViewCell.xib" />
     <InterfaceDefinition Include="Views\Orders\SelectOrderItemsView.xib" />
     <InterfaceDefinition Include="Views\Orders\OrderItemsView.xib" />
-    <InterfaceDefinition Include="Views\Users\UsersView.xib" />
     <InterfaceDefinition Include="Views\Users\UserDetailsView.xib" />
-    <InterfaceDefinition Include="Views\Statistic\StatisticView.xib" />
     <InterfaceDefinition Include="Views\Statistic\SaleStatisticViewCell.xib" />
     <InterfaceDefinition Include="Views\Statistic\SelectSalesView.xib" />
     <InterfaceDefinition Include="Views\Statistic\SelectSalesTableViewCell.xib" />
@@ -489,6 +492,10 @@
     <InterfaceDefinition Include="Views\Shifts\AddExpense\AddExpenseExtendedView.xib" />
     <InterfaceDefinition Include="Views\Shifts\AddExpense\AddExpenseExtendedTableCell.xib" />
     <InterfaceDefinition Include="Views\Shifts\AddExpense\AddExpenseExtendedTableHeader.xib" />
+    <InterfaceDefinition Include="Views\Home\MoneyView.xib" />
+    <InterfaceDefinition Include="Views\Home\StorageView.xib" />
+    <InterfaceDefinition Include="Views\Home\UsersView.xib" />
+    <InterfaceDefinition Include="Views\Home\StatisticView.xib" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MvvmCross.Binding, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -607,6 +614,7 @@
     <Folder Include="Views\Settings\" />
     <Folder Include="Views\CreditCard\" />
     <Folder Include="Views\Shifts\AddExpense\" />
+    <Folder Include="Views\Home\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\ic_check.png" />
@@ -628,6 +636,30 @@
     <BundleResource Include="Resources\ic_add_circle_outline_3x.png" />
     <BundleResource Include="Resources\ic_add_circle_outline_2x.png" />
     <BundleResource Include="Resources\ic_add_circle_outline.png" />
+    <BundleResource Include="Resources\ic_attach_money_3x.png" />
+    <BundleResource Include="Resources\ic_attach_money_2x.png" />
+    <BundleResource Include="Resources\ic_attach_money.png" />
+    <BundleResource Include="Resources\ic_attach_money_white_3x.png" />
+    <BundleResource Include="Resources\ic_attach_money_white_2x.png" />
+    <BundleResource Include="Resources\ic_attach_money_white.png" />
+    <BundleResource Include="Resources\ic_shopping_basket_white_3x.png" />
+    <BundleResource Include="Resources\ic_shopping_basket_white_2x.png" />
+    <BundleResource Include="Resources\ic_shopping_basket_white.png" />
+    <BundleResource Include="Resources\ic_shopping_basket_3x.png" />
+    <BundleResource Include="Resources\ic_shopping_basket_2x.png" />
+    <BundleResource Include="Resources\ic_shopping_basket.png" />
+    <BundleResource Include="Resources\ic_account_circle_3x.png" />
+    <BundleResource Include="Resources\ic_account_circle_2x.png" />
+    <BundleResource Include="Resources\ic_account_circle.png" />
+    <BundleResource Include="Resources\ic_account_circle_white_3x.png" />
+    <BundleResource Include="Resources\ic_account_circle_white_2x.png" />
+    <BundleResource Include="Resources\ic_account_circle_white.png" />
+    <BundleResource Include="Resources\ic_trending_up_white_3x.png" />
+    <BundleResource Include="Resources\ic_trending_up_white_2x.png" />
+    <BundleResource Include="Resources\ic_trending_up_white.png" />
+    <BundleResource Include="Resources\ic_trending_up_3x.png" />
+    <BundleResource Include="Resources\ic_trending_up_2x.png" />
+    <BundleResource Include="Resources\ic_trending_up.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

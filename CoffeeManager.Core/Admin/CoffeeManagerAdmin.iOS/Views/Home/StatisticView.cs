@@ -12,6 +12,8 @@ namespace CoffeeManagerAdmin.iOS
 {
     public partial class StatisticView : ViewControllerBase<StatisticViewModel>
     {
+        protected override bool UseCustomBackButton => false;
+
         public StatisticView() : base("StatisticView", null)
         {
         }

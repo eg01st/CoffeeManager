@@ -36,6 +36,16 @@ namespace CoffeeManagerAdmin.iOS
             }
         }
 
+
+
+        public override void Show(IMvxIosView view)
+        {
+            var uiViewController = CastToViewController(view);
+
+            uiViewController.HidesBottomBarWhenPushed = true;
+            base.Show(view);
+        }
+
         private bool IsViewControllerPresented(IMvxIosView requestedController)
         {
             var requestedVcType = requestedController.GetType();
@@ -51,6 +61,16 @@ namespace CoffeeManagerAdmin.iOS
         private void ShowAsRoot(IMvxIosView view)
         {
             var viewController = CastToViewController(view);
+
+            if (view.GetType() == typeof(MainView))
+            {
+                var mainView = (MainView)view;
+                mainView.ViewControllerSelected += MainViewViewControllerSelected;
+                Window.RootViewController = viewController;
+                MasterNavigationController = mainView.SelectedViewController as UINavigationController;
+                return;
+            }
+
             MasterNavigationController.SetViewControllers(new UIViewController[] { viewController }, true);
         }
 
@@ -62,6 +82,15 @@ namespace CoffeeManagerAdmin.iOS
                 throw new MvvmCross.Platform.Exceptions.MvxException("Passed in IMvxIosView is not a UIViewController");
             }
             return viewController;
+        }
+
+        private void MainViewViewControllerSelected(object sender, UITabBarSelectionEventArgs e)
+        {
+            var navController = e.ViewController as UINavigationController;
+            if (navController != null)
+            {
+                MasterNavigationController = navController;
+            }
         }
     }
 }

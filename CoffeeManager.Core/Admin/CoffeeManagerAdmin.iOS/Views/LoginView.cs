@@ -10,6 +10,8 @@ namespace CoffeeManagerAdmin.iOS
 {
     public partial class LoginView : ViewControllerBase<LoginViewModel>
 	{
+        protected override bool HideNavBar => true;
+
 		public LoginView () : base ("LoginView", null)
 		{
 		}
@@ -18,7 +20,7 @@ namespace CoffeeManagerAdmin.iOS
 		{
 			base.ViewDidLoad ();
 
-            NavigationController.NavigationBar.Translucent = false;
+
 
 			var set = this.CreateBindingSet<LoginView, LoginViewModel> ();
 			set.Bind(LoginText).To(vm => vm.Name);

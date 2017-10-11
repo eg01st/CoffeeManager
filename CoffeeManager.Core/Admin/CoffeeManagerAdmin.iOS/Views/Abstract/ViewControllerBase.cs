@@ -19,6 +19,10 @@ namespace CoffeeManagerAdmin.iOS
         private NSObject keyboardShowObserver;
         private NSObject keyboardHideObserver;
 
+        protected virtual bool UseCustomBackButton { get; set; } = true;
+
+        protected virtual bool HideNavBar => false;
+
 
        protected ViewControllerBase()
             :base()
@@ -43,6 +47,37 @@ namespace CoffeeManagerAdmin.iOS
 
         protected virtual void InitNavigationItem(UINavigationItem navigationItem)
         {
+            if (UseCustomBackButton)
+            {
+                var backButton = CreateImageBarButton("ic_arrow_back.png", OnBackButtonPressed);
+                navigationItem.SetLeftBarButtonItem(backButton, false);
+            }
+        }
+
+        protected virtual void OnBackButtonPressed(object sender, EventArgs e)
+        {
+            CloseViewModel();
+        }
+
+        protected void CloseViewModel()
+        {
+            ViewModel.CloseCommand.Execute(null);
+        }
+
+        protected virtual void InitNavigationController(UINavigationController navigationController)
+        {
+
+        }
+
+        private void InitNavigationController()
+        {
+            var navigationController = NavigationController;
+            if (navigationController == null)
+                return;
+            
+            NavigationController.NavigationBar.Translucent = false;
+            navigationController.SetNavigationBarHidden(HideNavBar, false);
+            InitNavigationController(navigationController);
         }
 
         public override void ViewDidLoad()
@@ -56,6 +91,7 @@ namespace CoffeeManagerAdmin.iOS
             InitStylesAndContent();
 
             InitNavigationItem(NavigationItem);
+            InitNavigationController();
 
 
             DoBind();
@@ -151,5 +187,21 @@ namespace CoffeeManagerAdmin.iOS
         }
 
         #endregion
+
+        private UIBarButtonItem CreateImageBarButton(string imageKey, EventHandler handler)
+        {
+            var image = new UIImage(imageKey);
+            var button = UIButton.FromType(UIButtonType.Custom);
+            button.SetImage(image, UIControlState.Normal);
+            button.BackgroundColor = UIColor.Clear;
+            var imageSize = image.Size;
+            button.Frame = new CGRect(0.0f, 0.0f, imageSize.Width, imageSize.Height);
+
+            button.TouchUpInside += handler;
+            var barButton = new UIBarButtonItem(button);
+
+            return barButton;
+        }
+
     }
 }

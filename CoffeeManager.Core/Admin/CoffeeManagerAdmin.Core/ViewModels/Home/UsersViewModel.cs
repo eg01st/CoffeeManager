@@ -10,6 +10,8 @@ namespace CoffeeManagerAdmin.Core
 {
     public class UsersViewModel : ViewModelBase
     {
+        public string Name { get; set; } = "UsersViewModel";
+
         private MvxSubscriptionToken refreshUsersToken;
 
         private readonly IUserManager manager;
