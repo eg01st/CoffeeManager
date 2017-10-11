@@ -190,6 +190,7 @@ namespace CoffeeManager.Api.Controllers
                     Date = shift.Date.Value,
                     RealAmount = shift.RealAmount,
                     StartMoney = shift.StartAmount,
+                    UserId = shift.UserId.Value,
                     UserName = shift.User.Name,
                     TotalAmount = shift.TotalAmount,
                     ExpenseAmount = shift.TotalExprenses,
