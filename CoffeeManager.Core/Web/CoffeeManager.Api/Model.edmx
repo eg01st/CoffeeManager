@@ -118,6 +118,8 @@
           <Property Name="ExpenseType" Type="int" />
           <Property Name="CoffeeRoomNo" Type="int" />
           <Property Name="Quantity" Type="int" />
+          <Property Name="IsUserSalaryPayment" Type="bit" Nullable="false" />
+          <Property Name="UserId" Type="int" />
         </EntityType>
         <EntityType Name="ExpenseSuplyProduct">
           <Key>
@@ -703,6 +705,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Expense_User">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Expense" Type="Self.Expense" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Expense">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_SupliedProduct_ExpenseType">
           <End Role="ExpenseType" Type="Self.ExpenseType" Multiplicity="0..1" />
           <End Role="SupliedProduct" Type="Self.SupliedProduct" Multiplicity="*" />
@@ -906,6 +920,10 @@
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
           </AssociationSet>
+          <AssociationSet Name="FK_Expense_User" Association="Self.FK_Expense_User">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Expense" EntitySet="Expense" />
+          </AssociationSet>
           <AssociationSet Name="FK_SupliedProduct_ExpenseType" Association="Self.FK_SupliedProduct_ExpenseType">
             <End Role="ExpenseType" EntitySet="ExpenseType" />
             <End Role="SupliedProduct" EntitySet="SupliedProduct" />
@@ -959,6 +977,9 @@
           <Property Name="Quantity" Type="Int32" />
           <NavigationProperty Name="Users" Relationship="CoffeeRoomModel.FK_Users_Expence" FromRole="Expense" ToRole="User" />
           <NavigationProperty Name="ExpenseSuplyProducts" Relationship="CoffeeRoomModel.FK__ExpenseSu__Expen__67DE6983" FromRole="Expense" ToRole="ExpenseSuplyProduct" />
+          <Property Name="IsUserSalaryPayment" Type="Boolean" Nullable="false" />
+          <Property Name="UserId" Type="Int32" />
+          <NavigationProperty Name="User" Relationship="CoffeeRoomModel.FK_Expense_User" FromRole="Expense" ToRole="User" />
         </EntityType>
         <EntityType Name="ExpenseType">
           <Key>
@@ -1084,6 +1105,7 @@
           <NavigationProperty Name="UserPenalties" Relationship="CoffeeRoomModel.FK__UserPenal__UserI__1C873BEC" FromRole="User" ToRole="UserPenalty" />
           <NavigationProperty Name="UserEarningsHistories" Relationship="CoffeeRoomModel.FK__UserEarni__UserI__0FEC5ADD" FromRole="User" ToRole="UserEarningsHistory" />
           <Property Name="MinimumPayment" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <NavigationProperty Name="Expenses" Relationship="CoffeeRoomModel.FK_Expense_User" FromRole="User" ToRole="Expense" />
         </EntityType>
         <Association Name="FK__Product__CupType__32E0915F">
           <End Role="CupType" Type="Self.CupType" Multiplicity="0..1" />
@@ -1358,6 +1380,10 @@
           <AssociationSet Name="FK__CashoutHi__Shift__2645B050" Association="CoffeeRoomModel.FK__CashoutHi__Shift__2645B050">
             <End Role="Shift" EntitySet="Shifts" />
             <End Role="CashoutHistory" EntitySet="CashoutHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Expense_User" Association="CoffeeRoomModel.FK_Expense_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Expense" EntitySet="Expenses" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="UsedProductsPerShift">
@@ -1898,6 +1924,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Expense_User">
+          <End Type="CoffeeRoomModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="CoffeeRoomModel.Expense" Role="Expense" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Expense">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1930,6 +1968,8 @@
           <EntitySetMapping Name="Expenses">
             <EntityTypeMapping TypeName="CoffeeRoomModel.Expense">
               <MappingFragment StoreEntitySet="Expense">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="IsUserSalaryPayment" ColumnName="IsUserSalaryPayment" />
                 <ScalarProperty Name="Quantity" ColumnName="Quantity" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Amount" ColumnName="Amount" />

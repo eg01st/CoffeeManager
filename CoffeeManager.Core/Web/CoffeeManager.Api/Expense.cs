@@ -27,6 +27,8 @@ namespace CoffeeManager.Api
         public Nullable<int> ExpenseType { get; set; }
         public Nullable<int> CoffeeRoomNo { get; set; }
         public Nullable<int> Quantity { get; set; }
+        public bool IsUserSalaryPayment { get; set; }
+        public Nullable<int> UserId { get; set; }
     
         public virtual ExpenseType ExpenseType1 { get; set; }
         public virtual Shift Shift { get; set; }
@@ -34,5 +36,6 @@ namespace CoffeeManager.Api
         public virtual ICollection<User> Users { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ExpenseSuplyProduct> ExpenseSuplyProducts { get; set; }
+        public virtual User User { get; set; }
     }
 }

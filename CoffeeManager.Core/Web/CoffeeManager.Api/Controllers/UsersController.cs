@@ -106,6 +106,8 @@ namespace CoffeeManager.Api.Controllers
                 expense.CoffeeRoomNo = coffeeroomno;
                 expense.Quantity = 1;
                 expense.ShiftId = currentShifId;
+                expense.IsUserSalaryPayment = true; 
+                expense.UserId = userId;
                 entites.Expenses.Add(expense);
 
                 user.EntireEarnedAmount += user.CurrentEarnedAmount;

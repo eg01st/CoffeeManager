@@ -244,14 +244,28 @@ namespace CoffeeManager.Api.Controllers
             var entities = new CoffeeRoomEntities();
             var expense = entities.Expenses.First(e => e.Id == id && e.CoffeeRoomNo.Value == coffeeroomno);
 
-            var suplyProducts = entities.ExpenseSuplyProducts.Where(p => p.ExpenseId == id && p.CoffeeRoonNo == coffeeroomno);
-
-            foreach (var sp in suplyProducts)
+            if (expense.IsUserSalaryPayment)
             {
-                var suplyProduct = entities.SupliedProducts.First(s => s.Id == sp.SuplyProductId);
-                suplyProduct.Quantity -= sp.Quantity * suplyProduct.ExpenseNumerationMultyplier;
-                    
-                entities.ExpenseSuplyProducts.Remove(sp);
+                var user = entities.Users.FirstOrDefault(u => u.Id == expense.UserId.Value);
+                if (user == null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.BadRequest, $"No user with ID {expense.UserId} found");
+                }
+                user.CurrentEarnedAmount += expense.Amount;
+                user.EntireEarnedAmount -= expense.Amount;
+            }
+            else
+            {
+                var suplyProducts =
+                    entities.ExpenseSuplyProducts.Where(p => p.ExpenseId == id && p.CoffeeRoonNo == coffeeroomno);
+
+                foreach (var sp in suplyProducts)
+                {
+                    var suplyProduct = entities.SupliedProducts.First(s => s.Id == sp.SuplyProductId);
+                    suplyProduct.Quantity -= sp.Quantity * suplyProduct.ExpenseNumerationMultyplier;
+
+                    entities.ExpenseSuplyProducts.Remove(sp);
+                }
             }
             var currentShift = entities.Shifts.First(s => s.Id == expense.ShiftId);
             currentShift.TotalExprenses -= expense.Amount;

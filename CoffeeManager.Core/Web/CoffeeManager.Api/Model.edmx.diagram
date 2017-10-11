@@ -65,6 +65,7 @@
         <EntityTypeShape EntityType="CoffeeRoomModel.CashoutHistory" Width="1.5" PointX="10.625" PointY="7.5" />
         <AssociationConnector Association="CoffeeRoomModel.FK__CashoutHi__Coffe__2739D489" />
         <AssociationConnector Association="CoffeeRoomModel.FK__CashoutHi__Shift__2645B050" />
+        <AssociationConnector Association="CoffeeRoomModel.FK_Expense_User" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
