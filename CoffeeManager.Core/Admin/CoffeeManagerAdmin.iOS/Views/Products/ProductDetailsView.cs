@@ -19,7 +19,7 @@ namespace CoffeeManagerAdmin.iOS
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-            Title = "Детали продукта";
+            Title = "Детали товара";
             var toolbar = new UIToolbar(new CGRect(0, 0, this.View.Frame.Width, 44));
             toolbar.UserInteractionEnabled = true;
             toolbar.BarStyle = UIBarStyle.BlackOpaque;

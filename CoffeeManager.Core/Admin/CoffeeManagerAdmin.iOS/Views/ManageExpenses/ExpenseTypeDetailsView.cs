@@ -16,7 +16,7 @@ namespace CoffeeManagerAdmin.iOS
         {
             base.ViewDidLoad();
 
-            Title = "Детали траты";
+            Title = "Детали расхода";
             var source = new SimpleTableSource(MappedSuplyProductsTableView, MappedSuplyProductsTableViewCell.Key, MappedSuplyProductsTableViewCell.Nib);
             MappedSuplyProductsTableView.Source = source;
 

@@ -19,8 +19,11 @@ namespace CoffeeManagerAdmin.iOS
         {
             base.ViewDidLoad();
             Title = "Персонал";
-             var btn = new UIBarButtonItem();
-            btn.Title = "Добавить";
+
+            var btn = new UIBarButtonItem()
+            {
+                Image = UIImage.FromBundle("ic_add_circle_outline")
+            };
 
             NavigationItem.SetRightBarButtonItem(btn, false);
             this.AddBindings(new Dictionary<object, string>

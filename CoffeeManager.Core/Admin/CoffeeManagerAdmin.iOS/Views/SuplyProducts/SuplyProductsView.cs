@@ -19,11 +19,11 @@ namespace CoffeeManagerAdmin.iOS
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-            Title = "Баланс товара";
+            Title = "Баланс продуктов";
 
             var btn = new UIBarButtonItem()
             {
-                Title = "Создать товар"
+                Image = UIImage.FromBundle("ic_add_circle_outline")
             };
 
 

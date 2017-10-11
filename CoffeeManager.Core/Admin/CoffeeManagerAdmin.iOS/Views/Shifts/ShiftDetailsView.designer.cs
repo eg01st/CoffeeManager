@@ -52,6 +52,10 @@ namespace CoffeeManagerAdmin.iOS
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UIButton AddExpenseButton { get; set; }
 
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIButton UserNameButton { get; set; }
+
         void ReleaseDesignerOutlets ()
         {
             if (AddExpenseButton != null) {
@@ -84,11 +88,6 @@ namespace CoffeeManagerAdmin.iOS
                 ExpenseTableView = null;
             }
 
-            if (NameLabel != null) {
-                NameLabel.Dispose ();
-                NameLabel = null;
-            }
-
             if (RejectedSalesLabel != null) {
                 RejectedSalesLabel.Dispose ();
                 RejectedSalesLabel = null;
@@ -97,6 +96,11 @@ namespace CoffeeManagerAdmin.iOS
             if (SalesButton != null) {
                 SalesButton.Dispose ();
                 SalesButton = null;
+            }
+
+            if (UserNameButton != null) {
+                UserNameButton.Dispose ();
+                UserNameButton = null;
             }
 
             if (UtilizedSalesLabel != null) {

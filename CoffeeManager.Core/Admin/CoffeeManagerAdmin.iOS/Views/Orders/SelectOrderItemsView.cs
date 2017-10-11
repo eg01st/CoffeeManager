@@ -35,9 +35,8 @@ namespace CoffeeManagerAdmin.iOS
 
             var btn1 = new UIBarButtonItem()
             {
-                Title = "Создать товар"
+                Image = UIImage.FromBundle("ic_add_circle_outline")
             };
-
 
             NavigationItem.SetRightBarButtonItem(btn1, false);
             this.AddBindings(new Dictionary<object, string>

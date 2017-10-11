@@ -15,6 +15,8 @@ namespace CoffeeManagerAdmin.iOS
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
+
+            Title = "Добавить расход";
             var set = this.CreateBindingSet<AddExpenseTypeView, AddExpenseTypeViewModel>();
             set.Bind(NameTextView).To(vm => vm.ExpenseName);
             set.Bind(AddButton).To(vm => vm.AddExpenseTypeCommand);

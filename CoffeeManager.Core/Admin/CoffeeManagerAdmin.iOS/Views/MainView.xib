@@ -118,7 +118,7 @@
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mJ4-rp-f1g">
                             <rect key="frame" x="0.0" y="273" width="375" height="30"/>
-                            <state key="normal" title="Информация по балансу продуктов"/>
+                            <state key="normal" title="Баланс продуктов"/>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="510-wl-31F">
                             <rect key="frame" x="0.0" y="303" width="375" height="30"/>

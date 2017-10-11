@@ -62,7 +62,7 @@ namespace CoffeeManagerAdmin.Core
             var amount = await ExecuteSafe(manager.GetCreditCardEntireMoney);
             CurrentAmount = amount;
             var items = await ExecuteSafe(manager.GetCashoutHistory);
-            CashoutItems = items.Select(s => new CashoutHistoryItemViewModel(s)).ToList();
+            CashoutItems = items.Select(s => new CashoutHistoryItemViewModel(s)).OrderByDescending(o => o.Id).ToList();
         }
 
         private void DoSetAmount()

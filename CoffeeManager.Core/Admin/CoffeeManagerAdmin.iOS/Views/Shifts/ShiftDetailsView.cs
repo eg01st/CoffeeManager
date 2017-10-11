@@ -22,7 +22,8 @@ namespace CoffeeManagerAdmin.iOS
             var set = this.CreateBindingSet<ShiftDetailsView, ShiftDetailsViewModel>();
             set.Bind(CopSalePercentageLabel).To(vm => vm.CopSalePercentage);
             set.Bind(source).To(vm => vm.ExpenseItems);
-            set.Bind(NameLabel).To(vm => vm.Name);
+            set.Bind(UserNameButton).For("Title").To(vm => vm.Name);
+            set.Bind(UserNameButton).To(vm => vm.ShowUserDetailsCommand);
             set.Bind(DateLabel).To(vm => vm.Date);
             set.Bind(CoffeeCounter).To(vm => vm.Counter);
             set.Bind(CoffeeSaleCounter).To(vm => vm.UsedCoffee);

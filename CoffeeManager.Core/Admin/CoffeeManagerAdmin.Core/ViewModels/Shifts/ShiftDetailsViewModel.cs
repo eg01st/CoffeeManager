@@ -15,7 +15,8 @@ namespace CoffeeManagerAdmin.Core.ViewModels
         
         private readonly IShiftManager shiftManager;
         private readonly IPaymentManager paymentManager;
-        
+
+        private int userId;
         private int _shiftId;
         private string _date;
         private string _name;
@@ -35,6 +36,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels
             this.shiftManager = shiftManager;
             ShowSalesCommand = new MvxCommand(DoShowSales);
             AddExpenseCommand = new MvxCommand(() => ShowViewModel<AddShiftExpenseViewModel>(new { id = _shiftId }));
+            ShowUserDetailsCommand = new MvxCommand(() => ShowViewModel<UserDetailsViewModel>(new { id = userId }));
 
             updateToken = Subscribe<UpdateShiftMessage>(async obj => await Init(_shiftId));
         }
@@ -53,6 +55,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels
                IsFinished = shiftInfo.IsFinished;
                Date = shiftInfo.Date.ToString("g");
                Name = shiftInfo.UserName;
+               userId = shiftInfo.UserId;
                if (shiftInfo.StartCounter.HasValue && shiftInfo.EndCounter.HasValue)
                {
                    Counter = shiftInfo.EndCounter - shiftInfo.StartCounter;
@@ -88,6 +91,8 @@ namespace CoffeeManagerAdmin.Core.ViewModels
         public ICommand ShowSalesCommand { get; set; }
 
         public ICommand AddExpenseCommand { get; set; }
+
+        public ICommand ShowUserDetailsCommand { get; set; }
 
         public float CopSalePercentage
         {

@@ -25,11 +25,11 @@ namespace CoffeeManagerAdmin.iOS
         {
             base.ViewDidLoad();
 
-            Title = "Добавить товар";
+            Title = "Добавить продукт";
 
             var btn = new UIBarButtonItem()
             {
-                Title = "Создать товар"
+                Image = UIImage.FromBundle("ic_add_circle_outline")
             };
 
 

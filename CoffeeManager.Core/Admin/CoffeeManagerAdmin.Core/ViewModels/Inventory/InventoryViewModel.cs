@@ -22,7 +22,7 @@ namespace CoffeeManagerAdmin.Core
             await ExecuteSafe(async () =>
             {
                 var items = await manager.GetInventoryReports();
-                Items = items.Select(s => new InventoryItemViewModel(s)).ToList();
+                Items = items.Select(s => new InventoryItemViewModel(s)).OrderByDescending(o => o.Id).ToList();
                 RaisePropertyChanged(nameof(Items));
             });
         }

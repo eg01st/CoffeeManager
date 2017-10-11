@@ -16,6 +16,9 @@ namespace CoffeeManagerAdmin.iOS
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
+
+            Title = "Создать продукт";
+
             var set = this.CreateBindingSet<AddSuplyProductView, AddSuplyProductViewModel>();
             set.Bind(SuplyProductTextView).To(vm => vm.Name);
             set.Bind(AddButton).To(vm => vm.AddSuplyProductCommand);

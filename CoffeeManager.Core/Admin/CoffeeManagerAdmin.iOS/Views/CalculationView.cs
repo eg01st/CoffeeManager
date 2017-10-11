@@ -28,7 +28,6 @@ namespace CoffeeManagerAdmin.iOS
             set.Bind(AddProductButton).To(vm => vm.AddItemCommand);
             set.Bind(source).To(vm => vm.Items);
             set.Apply();
-            // Perform any additional setup after loading the view, typically from a nib.
         }
 
         public override void DidReceiveMemoryWarning()

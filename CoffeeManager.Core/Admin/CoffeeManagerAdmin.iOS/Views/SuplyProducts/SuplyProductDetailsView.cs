@@ -18,7 +18,7 @@ namespace CoffeeManagerAdmin.iOS
         {
 
             base.ViewDidLoad();
-            Title = "Детали товара";
+            Title = "Детали продукта";
           
             StickBottomButtonToKeyboard(BottomHeightConstraint);
         }

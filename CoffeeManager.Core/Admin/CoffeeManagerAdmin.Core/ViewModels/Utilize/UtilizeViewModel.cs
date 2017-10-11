@@ -19,7 +19,7 @@ namespace CoffeeManagerAdmin.Core
         public async Task Init()
         {
             var items = await manager.GetUtilizedProducts();
-            Items = items.Select(s => new UtilizeItemViewModel(s)).ToList();
+            Items = items.Select(s => new UtilizeItemViewModel(s)).OrderByDescending(o => o.Id).ToList();
             RaisePropertyChanged(nameof(Items));
         }
     }
