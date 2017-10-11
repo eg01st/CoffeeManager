@@ -66,11 +66,6 @@ namespace CoffeeManagerAdmin.iOS
                 NameLabel = null;
             }
 
-            if (RealAmountLabel != null) {
-                RealAmountLabel.Dispose ();
-                RealAmountLabel = null;
-            }
-
             if (ShiftEarnedAmountLabel != null) {
                 ShiftEarnedAmountLabel.Dispose ();
                 ShiftEarnedAmountLabel = null;

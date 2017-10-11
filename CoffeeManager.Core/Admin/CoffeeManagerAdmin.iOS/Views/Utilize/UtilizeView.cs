@@ -16,7 +16,7 @@ namespace CoffeeManagerAdmin.iOS
         {
             base.ViewDidLoad();
             Title = "Списания";
-            var source = new SimpleTableSourceWithHeader(UtilizedTableView, UtilizeItemCell.Key, UtilizeItemCell.Nib, UtilizeItemHeader.Key);
+            var source = new SimpleTableSource(UtilizedTableView, UtilizeItemCell.Key, UtilizeItemCell.Nib, UtilizeItemHeader.Key, UtilizeItemHeader.Nib);
             UtilizedTableView.Source = source;
             UtilizedTableView.RegisterNibForHeaderFooterViewReuse(UtilizeItemHeader.Nib, UtilizeItemHeader.Key);
             var set = this.CreateBindingSet<UtilizeView, UtilizeViewModel>();

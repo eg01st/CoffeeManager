@@ -1,15 +1,41 @@
 ﻿using System;
 using CoffeeManager.Models;
 using CoffeManager.Common;
+using System.Windows.Input;
+using MvvmCross.Core.ViewModels;
+using System.Threading.Tasks;
+using MvvmCross.Platform;
+
 namespace CoffeeManagerAdmin.Core
 {
     public class ExpenseItemViewModel : ListItemViewModelBase
     {
         private Expense _item;
-        public ExpenseItemViewModel(Expense item)
+        private bool canRemove;
+        public ExpenseItemViewModel(Expense item, bool canRemove = false)
         {
+            this.canRemove = canRemove;
             _item = item;
+            DeleteExpenseCommand = new MvxCommand(DoDeleExpense);
         }
+
+        private void DoDeleExpense()
+        {
+            if(canRemove)
+            {
+                Confirm($"Удалить расход {Name}?", DeleteExpense);
+            }
+        }
+
+        private async Task DeleteExpense()
+        {
+            var manager = Mvx.Resolve<IPaymentManager>();
+            await ExecuteSafe(manager.DeleteExpenseItem(Id));
+            Publish(new UpdateShiftMessage(this));
+            Publish(new UpdateCashAmountMessage(this));
+        }
+
+        public ICommand DeleteExpenseCommand { get;}
 
         public int Id => _item.Id;
 

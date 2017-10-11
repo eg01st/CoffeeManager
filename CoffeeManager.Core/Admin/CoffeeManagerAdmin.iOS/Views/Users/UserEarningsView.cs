@@ -20,9 +20,8 @@ namespace CoffeeManagerAdmin.iOS
 
             Title = "Зачисление зарплаты";
 
-            var source = new SimpleTableSourceWithHeader(EarningsTableView, UserEarningCell.Key, UserEarningCell.Nib, UserEarningHeader.Key);
+            var source = new SimpleTableSource(EarningsTableView, UserEarningCell.Key, UserEarningCell.Nib, UserEarningHeader.Key, UserEarningHeader.Nib);
             EarningsTableView.Source = source;
-            EarningsTableView.RegisterNibForHeaderFooterViewReuse(UserEarningHeader.Nib, UserEarningHeader.Key);
 
             var set = this.CreateBindingSet<UserEarningsView, UserEarningsViewModel>();
             set.Bind(source).To(vm => vm.Items);

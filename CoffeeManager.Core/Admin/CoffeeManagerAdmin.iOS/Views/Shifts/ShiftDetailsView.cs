@@ -9,6 +9,8 @@ namespace CoffeeManagerAdmin.iOS
         public ShiftDetailsView() : base("ShiftDetailsView", null)
         {
         }
+
+
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
@@ -27,6 +29,8 @@ namespace CoffeeManagerAdmin.iOS
             set.Bind(RejectedSalesLabel).To(vm => vm.RejectedSales);
             set.Bind(UtilizedSalesLabel).To(vm => vm.UtilizedSales);
             set.Bind(SalesButton).To(vm => vm.ShowSalesCommand);
+            set.Bind(AddExpenseButton).For(b => b.Hidden).To(vm => vm.IsFinished);
+            set.Bind(AddExpenseButton).To(vm => vm.AddExpenseCommand);
             set.Apply();
         }
 

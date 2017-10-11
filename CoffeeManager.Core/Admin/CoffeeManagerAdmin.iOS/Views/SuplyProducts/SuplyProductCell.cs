@@ -35,7 +35,14 @@ namespace CoffeeManagerAdmin.iOS
 
         protected SuplyProductCell(IntPtr handle) : base(handle)
         {
-            var longPressGesture = new UILongPressGestureRecognizer(() => DeleteCommand?.Execute(null));
+            var longPressGesture = new UILongPressGestureRecognizer((sender) =>
+            {
+                if (sender.State == UIGestureRecognizerState.Began)
+                {
+                    DeleteCommand?.Execute(null);
+                }
+            });
+
             AddGestureRecognizer(longPressGesture);
         }
 

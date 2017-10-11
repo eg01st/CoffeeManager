@@ -16,9 +16,8 @@ namespace CoffeeManagerAdmin.iOS
         {
             base.ViewDidLoad();
             Title = "Детали переучета";
-            var source = new SimpleTableSourceWithHeader(ReportDetailsTableView,InventoryDetailsItemCell.Key, InventoryDetailsItemCell.Nib, InventoryDetailsItemHeader.Key);
+            var source = new SimpleTableSource(ReportDetailsTableView,InventoryDetailsItemCell.Key, InventoryDetailsItemCell.Nib, InventoryDetailsItemHeader.Key, InventoryDetailsItemHeader.Nib);
             ReportDetailsTableView.Source = source;
-            ReportDetailsTableView.RegisterNibForHeaderFooterViewReuse(InventoryDetailsItemHeader.Nib, InventoryDetailsItemHeader.Key);
             var set = this.CreateBindingSet<InventoryReportDetailsView, InventoryReportDetailsViewModel>();
             set.Bind(source).To(vm => vm.Items);
             set.Apply();

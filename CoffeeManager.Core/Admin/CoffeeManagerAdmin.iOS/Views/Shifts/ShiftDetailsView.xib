@@ -1,5 +1,8 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -7,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ShiftDetailsView">
             <connections>
+                <outlet property="AddExpenseButton" destination="1fI-ha-oCx" id="name-outlet-1fI-ha-oCx"/>
                 <outlet property="CoffeeCounter" destination="DkE-qK-XJN" id="KzF-Cy-P8V"/>
                 <outlet property="CoffeeSaleCounter" destination="ZJ8-vW-u4G" id="lwS-ij-4C8"/>
                 <outlet property="CopSalePercentageLabel" destination="N4v-mK-Ss0" id="vjF-ZG-NDy"/>
@@ -21,7 +25,7 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="2">
-            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Дата: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P9l-dc-8ut">
@@ -42,24 +46,24 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Траты за смену" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l3Z-xK-jbU" misplaced="YES">
-                    <rect key="frame" x="125" y="261" width="125.5" height="20.5"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Расходы за смену" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l3Z-xK-jbU">
+                    <rect key="frame" x="114.5" y="261" width="146" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WIW-7g-4kV" misplaced="YES">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WIW-7g-4kV">
                     <rect key="frame" x="0.0" y="297.5" width="375" height="369.5"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Процент продаж по скидке: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hlx-iW-clO" misplaced="YES">
-                    <rect key="frame" x="16" y="130" width="199.5" height="20.5"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Процент продаж по скидке: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hlx-iW-clO">
+                    <rect key="frame" x="16" y="130" width="229.5" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N4v-mK-Ss0" misplaced="YES">
-                    <rect key="frame" x="223.5" y="130" width="42" height="20.5"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N4v-mK-Ss0">
+                    <rect key="frame" x="253.5" y="130" width="42" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -118,8 +122,8 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v4G-SW-tzD" misplaced="YES">
-                    <rect key="frame" x="273.5" y="130" width="13" height="20.5"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v4G-SW-tzD">
+                    <rect key="frame" x="303.5" y="130" width="13" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -127,6 +131,11 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QuD-5O-fxG">
                     <rect key="frame" x="16" y="215" width="135" height="30"/>
                     <state key="normal" title="Продажи за смену"/>
+                </button>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1fI-ha-oCx">
+                    <rect key="frame" x="335" y="259" width="24" height="24"/>
+                    <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <state key="normal" image="ic_add_circle_outline.png"/>
                 </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -144,6 +153,7 @@
                 <constraint firstItem="N4v-mK-Ss0" firstAttribute="leading" secondItem="Hlx-iW-clO" secondAttribute="trailing" constant="8" id="HgA-rX-ZSg"/>
                 <constraint firstItem="v4G-SW-tzD" firstAttribute="top" secondItem="pXn-WI-trb" secondAttribute="bottom" constant="8" id="IcT-5L-HZ8"/>
                 <constraint firstItem="N4v-mK-Ss0" firstAttribute="top" secondItem="pXn-WI-trb" secondAttribute="bottom" constant="8" id="JLT-b8-MAs"/>
+                <constraint firstAttribute="trailing" secondItem="1fI-ha-oCx" secondAttribute="trailing" constant="16" id="Obb-aM-lvy"/>
                 <constraint firstItem="BLs-eM-2tI" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="16" id="QU4-Df-X7f"/>
                 <constraint firstItem="IL3-rL-XsY" firstAttribute="top" secondItem="Hlx-iW-clO" secondAttribute="bottom" constant="8" id="V69-5o-FAQ"/>
                 <constraint firstItem="WIW-7g-4kV" firstAttribute="width" secondItem="2" secondAttribute="width" id="WiJ-Ix-VBi"/>
@@ -169,28 +179,11 @@
                 <constraint firstItem="Vc6-Y1-dVe" firstAttribute="leading" secondItem="P9l-dc-8ut" secondAttribute="trailing" constant="8" id="tTE-pb-2NN"/>
                 <constraint firstItem="Vc6-Y1-dVe" firstAttribute="centerY" secondItem="P9l-dc-8ut" secondAttribute="centerY" id="the-qt-7G7"/>
                 <constraint firstItem="Hlx-iW-clO" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="16" id="wgp-JO-dPG"/>
+                <constraint firstItem="1fI-ha-oCx" firstAttribute="centerY" secondItem="l3Z-xK-jbU" secondAttribute="centerY" id="x28-Gh-Efw"/>
             </constraints>
         </view>
     </objects>
     <resources>
-        <image name="ic_check.png" width="50" height="50"/>
-        <image name="ic_arrow_upward_2x.png" width="48" height="48"/>
-        <image name="ic_arrow_upward_3x.png" width="72" height="72"/>
-        <image name="ic_arrow_upward.png" width="24" height="24"/>
-        <image name="ic_credit_card_2x.png" width="48" height="48"/>
-        <image name="ic_credit_card_3x.png" width="72" height="72"/>
-        <image name="ic_credit_card.png" width="24" height="24"/>
-        <image name="ic_arrow_downward_2x.png" width="48" height="48"/>
-        <image name="ic_arrow_downward_3x.png" width="72" height="72"/>
-        <image name="ic_arrow_downward.png" width="24" height="24"/>
-        <image name="ic_arrow_back_3x.png" width="72" height="72"/>
-        <image name="ic_arrow_back_2x.png" width="48" height="48"/>
-        <image name="ic_arrow_back.png" width="24" height="24"/>
-        <image name="ic_settings_3x.png" width="72" height="72"/>
-        <image name="ic_settings_2x.png" width="48" height="48"/>
-        <image name="ic_settings.png" width="24" height="24"/>
-        <image name="ic_add_circle_outline_3x.png" width="72" height="72"/>
-        <image name="ic_add_circle_outline_2x.png" width="48" height="48"/>
         <image name="ic_add_circle_outline.png" width="24" height="24"/>
     </resources>
 </document>
