@@ -14,7 +14,7 @@ namespace CoffeeManagerAdmin.iOS
     [Register("MainView")]
     public partial class MainView : MainTabController
     {
-
+        private ExpandableTabBar tabbar;
 
         protected override void DoViewDidLoad()
         {
@@ -29,43 +29,31 @@ namespace CoffeeManagerAdmin.iOS
             NavigationItem.SetHidesBackButton(true, false);
         }
 
+
         private void InitTabBar()
         {
-            var view = new ExpandableTabBar(this);
-            view.BackgroundColor = UIColor.GroupTableViewBackgroundColor;
+            tabbar = new ExpandableTabBar(this);
 
-            var button = new UIButton(new CGRect(0, 0, 50, 50));
-            button.SetTitle("1", UIControlState.Normal);
-            button.TouchUpInside += (sender, e) => SelectedIndex = 0;
-            button.BackgroundColor = UIColor.Orange;
-            view.AddTabItem(button);
+         
+            var moneytabBarItem = new ExpandableTabBar.ExpandableTabBarItem(0,"ic_attach_money_white.png" , "ic_attach_money.png", "Финансы");
+            var storagetabBarItem = new ExpandableTabBar.ExpandableTabBarItem(1, "ic_shopping_basket_white.png", "ic_shopping_basket.png", "Склад");
+            var userstabBarItem = new ExpandableTabBar.ExpandableTabBarItem(2, "ic_account_circle_white.png", "ic_account_circle.png", "Персонал");
+            var statistictabBarItem = new ExpandableTabBar.ExpandableTabBarItem(3, "ic_trending_up_white.png", "ic_trending_up.png", "Статистика");
 
-            var button1 = new UIButton(new CGRect(50, 0, 50, 50));
-            button1.SetTitle("2", UIControlState.Normal);
-            button1.TouchUpInside += (sender, e) => SelectedIndex = 1;
-            button1.BackgroundColor = UIColor.Magenta;
-            view.AddTabItem(button1);
-
-            var button2 = new UIButton(new CGRect(100, 0, 50, 50));
-            button2.SetTitle("3", UIControlState.Normal);
-            button2.TouchUpInside += (sender, e) => SelectedIndex = 2;
-            button2.BackgroundColor = UIColor.Green;
-            view.AddTabItem(button2);
+            var storagetabBarItem1 = new ExpandableTabBar.ExpandableTabBarItem(1, "ic_shopping_basket_white.png", "ic_shopping_basket.png", "Склад");
+            var userstabBarItem1 = new ExpandableTabBar.ExpandableTabBarItem(2, "ic_account_circle_white.png", "ic_account_circle.png", "Персонал");
 
 
-            var button3 = new UIButton(new CGRect(150, 0 , 50, 50));
-            button3.SetTitle("4", UIControlState.Normal);
-            button3.BackgroundColor = UIColor.Yellow;
-            button3.TouchUpInside += (sender, e) => SelectedIndex = 3;
-            view.AddTabItem(button3);
-          
+            tabbar.AddTabItems(new List<ExpandableTabBar.ExpandableTabBarItem>()
+            { moneytabBarItem, storagetabBarItem, userstabBarItem, statistictabBarItem, storagetabBarItem1, userstabBarItem1});
 
-                //var tabBar = TabBar;
-                //TabBar.BackgroundColor = UIColor.LightGray;
-                //TabBar.TintColor = UIColor.White;
+            //var tabBar = TabBar;
+            //TabBar.BackgroundColor = UIColor.LightGray;
+            //TabBar.TintColor = UIColor.White;
 
-            //    UITabBarItem.Appearance.SetTitleTextAttributes(new UITextAttributes() { TextColor = UIColor.White }, UIControlState.Normal);
-       //         UITabBarItem.Appearance.SetTitleTextAttributes(new UITextAttributes() {  TextColor = UIColor.Black }, UIControlState.Selected);
+                //UITabBarItem.Appearance.SetTitleTextAttributes(new UITextAttributes() { TextColor = UIColor.White }, UIControlState.Normal);
+                     //UITabBarItem.Appearance.SetTitleTextAttributes(new UITextAttributes() {  TextColor = UIColor.Black }, UIControlState.Selected);
+        
         }
 
     }
