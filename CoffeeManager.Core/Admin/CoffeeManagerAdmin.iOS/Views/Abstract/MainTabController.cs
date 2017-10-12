@@ -1,10 +1,8 @@
 ﻿using System;
 using MvvmCross.iOS.Views;
-using CoffeeManagerAdmin.Core.ViewModels;
 using MvvmCross.Core.ViewModels;
 using UIKit;
 using CoffeeManagerAdmin.Core;
-using System.Collections.Generic;
 using MvvmCross.Platform;
 
 namespace CoffeeManagerAdmin.iOS
@@ -77,7 +75,7 @@ namespace CoffeeManagerAdmin.iOS
 
             var moneytabBarItem = new UITabBarItem("Финансы", moneyImage, selectedMoneyImage);
 
-            moneyView.TabBarItem = moneytabBarItem;
+          //  moneyView.TabBarItem = moneytabBarItem;
 
 
             var storageViewModel = ProduceViewModel(typeof(StorageViewModel));
@@ -91,8 +89,8 @@ namespace CoffeeManagerAdmin.iOS
 
             var storagetabBarItem = new UITabBarItem("Склад", storageImage, selectedStorageImage);
 
-            storageView.TabBarItem = storagetabBarItem;
-
+           // storageView.TabBarItem = storagetabBarItem;
+           
 
             var usersViewModel = ProduceViewModel(typeof(UsersViewModel));
             var usersView = ProduceView(usersViewModel);
@@ -105,7 +103,7 @@ namespace CoffeeManagerAdmin.iOS
 
             var userstabBarItem = new UITabBarItem("Персонал", usersImage, selectedUsersImage);
 
-            usersView.TabBarItem = userstabBarItem;
+          //  usersView.TabBarItem = userstabBarItem;
 
 
             var statisticViewModel = ProduceViewModel(typeof(StatisticViewModel));
@@ -119,7 +117,7 @@ namespace CoffeeManagerAdmin.iOS
 
             var statistictabBarItem = new UITabBarItem("Статистика", statisticImage, selectedstatisticImage);
 
-            statisticView.TabBarItem = statistictabBarItem;
+           // statisticView.TabBarItem = statistictabBarItem;
 
 
             var controllers = new[] {moneyView, storageView, usersView, statisticView };

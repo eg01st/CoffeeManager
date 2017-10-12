@@ -20,7 +20,7 @@ namespace CoffeeManagerAdmin.iOS
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-            Title = "Персонал";
+           // Title = "Персонал";
 
             var btn = new UIBarButtonItem()
             {

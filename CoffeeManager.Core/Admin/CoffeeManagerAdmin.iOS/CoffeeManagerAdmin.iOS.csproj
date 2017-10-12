@@ -417,6 +417,7 @@
     <Compile Include="Views\Home\StatisticView.designer.cs">
       <DependentUpon>StatisticView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Controls\ExpandableTabBar.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Setup.cs" />
@@ -615,6 +616,7 @@
     <Folder Include="Views\CreditCard\" />
     <Folder Include="Views\Shifts\AddExpense\" />
     <Folder Include="Views\Home\" />
+    <Folder Include="Views\Controls\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\ic_check.png" />
@@ -648,11 +650,11 @@
     <BundleResource Include="Resources\ic_shopping_basket_3x.png" />
     <BundleResource Include="Resources\ic_shopping_basket_2x.png" />
     <BundleResource Include="Resources\ic_shopping_basket.png" />
-    <BundleResource Include="Resources\ic_account_circle_3x.png" />
-    <BundleResource Include="Resources\ic_account_circle_2x.png" />
+    <BundleResource Include="Resources\ic_account_circle%403x.png" />
+    <BundleResource Include="Resources\ic_account_circle%402x.png" />
     <BundleResource Include="Resources\ic_account_circle.png" />
-    <BundleResource Include="Resources\ic_account_circle_white_3x.png" />
-    <BundleResource Include="Resources\ic_account_circle_white_2x.png" />
+    <BundleResource Include="Resources\ic_account_circle_white%403x.png" />
+    <BundleResource Include="Resources\ic_account_circle_white%402x.png" />
     <BundleResource Include="Resources\ic_account_circle_white.png" />
     <BundleResource Include="Resources\ic_trending_up_white_3x.png" />
     <BundleResource Include="Resources\ic_trending_up_white_2x.png" />
@@ -660,6 +662,15 @@
     <BundleResource Include="Resources\ic_trending_up_3x.png" />
     <BundleResource Include="Resources\ic_trending_up_2x.png" />
     <BundleResource Include="Resources\ic_trending_up.png" />
+    <BundleResource Include="Resources\Views\ic_colapse.png" />
+    <BundleResource Include="Resources\Views\ic_colapse_3x.png" />
+    <BundleResource Include="Resources\Views\ic_colapse_2x.png" />
+    <BundleResource Include="Resources\ic_expand.png" />
+    <BundleResource Include="Resources\ic_expand%403x.png" />
+    <BundleResource Include="Resources\ic_expand%402x.png" />
+    <BundleResource Include="Resources\ic_colapse.png" />
+    <BundleResource Include="Resources\ic_colapse%403x.png" />
+    <BundleResource Include="Resources\ic_colapse%402x.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

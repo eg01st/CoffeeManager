@@ -96,11 +96,7 @@
         <image name="ic_shopping_basket_3x.png" width="72" height="72"/>
         <image name="ic_shopping_basket_2x.png" width="48" height="48"/>
         <image name="ic_shopping_basket.png" width="24" height="24"/>
-        <image name="ic_account_circle_3x.png" width="72" height="72"/>
-        <image name="ic_account_circle_2x.png" width="48" height="48"/>
         <image name="ic_account_circle.png" width="24" height="24"/>
-        <image name="ic_account_circle_white_3x.png" width="72" height="72"/>
-        <image name="ic_account_circle_white_2x.png" width="48" height="48"/>
         <image name="ic_account_circle_white.png" width="24" height="24"/>
         <image name="ic_trending_up_white_3x.png" width="72" height="72"/>
         <image name="ic_trending_up_white_2x.png" width="48" height="48"/>
@@ -108,5 +104,10 @@
         <image name="ic_trending_up_3x.png" width="72" height="72"/>
         <image name="ic_trending_up_2x.png" width="48" height="48"/>
         <image name="ic_trending_up.png" width="24" height="24"/>
+        <image name="Views/ic_colapse.png" width="24" height="24"/>
+        <image name="Views/ic_colapse_3x.png" width="72" height="72"/>
+        <image name="Views/ic_colapse_2x.png" width="48" height="48"/>
+        <image name="ic_expand.png" width="24" height="24"/>
+        <image name="ic_colapse.png" width="24" height="24"/>
     </resources>
 </document>
