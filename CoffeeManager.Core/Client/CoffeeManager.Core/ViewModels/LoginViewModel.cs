@@ -69,47 +69,25 @@ namespace CoffeeManager.Core.ViewModels
         {
             await ExecuteSafe(async () =>
             {
-                var userInfo = localStorage.GetUserInfo();
-                bool loggedIn = false;
-                try
+                if (BaseManager.ShiftNo == 0)
                 {
-                    if (userInfo == null)
+                    var loggedIn = await DoLogin();
+
+                    if (!loggedIn)
                     {
-                        loggedIn = await PromtLogin();
+                        return;
+                    }
+
+                    var coffeeRoomNo = localStorage.GetCoffeeRoomId();
+                    if (coffeeRoomNo == -1)
+                    {
+                        ShowViewModel<SettingsViewModel>(new { isInitialSetup = true });
+                        return;
                     }
                     else
                     {
-                        await accountManager.Authorize(userInfo.Login, userInfo.Password);
-                        loggedIn = true;
+                        Config.CoffeeRoomNo = coffeeRoomNo;
                     }
-                }
-                catch (System.UnauthorizedAccessException uex)
-                {
-                    Alert("Не правильный логин или пароль");
-                    localStorage.ClearUserInfo();
-                    return;
-                }
-                catch(Exception ex)
-                {
-                    Alert("Произошла ошибка сервера. Мы работаем над решением проблемы");
-                    await EmailService?.SendErrorEmail(ex.ToDiagnosticString());
-                    return;
-                }
-
-                if(!loggedIn)
-                {
-                    return;
-                }
-
-                var coffeeRoomNo = localStorage.GetCoffeeRoomId();
-                if (coffeeRoomNo == -1)
-                {
-                    ShowViewModel<SettingsViewModel>(new {isInitialSetup = true});
-                    return;
-                }
-                else
-                {
-                    Config.CoffeeRoomNo = coffeeRoomNo;
                 }
 
                 Shift currentShift = await _shiftManager.GetCurrentShift();
@@ -117,9 +95,43 @@ namespace CoffeeManager.Core.ViewModels
                 {
                     ShowViewModel<MainViewModel>(new { userId = currentShift.UserId, shiftId = currentShift.Id });
                 }
-                var res = await _userManager.GetUsers();
-                Users = res.Where(u => u.IsActive).ToArray();
+                else
+                {
+                    var res = await _userManager.GetUsers();
+                    Users = res.Where(u => u.IsActive).ToArray();
+                }
             });
+        }
+
+        private async Task<bool> DoLogin()
+        {
+            var userInfo = localStorage.GetUserInfo();
+            bool loggedIn = false;
+            try
+            {
+                if (userInfo == null)
+                {
+                    loggedIn = await PromtLogin();
+                }
+                else
+                {
+                    await accountManager.Authorize(userInfo.Login, userInfo.Password);
+                    loggedIn = true;
+                }
+            }
+            catch (System.UnauthorizedAccessException uex)
+            {
+                Alert("Не правильный логин или пароль");
+                localStorage.ClearUserInfo();
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Alert("Произошла ошибка сервера. Мы работаем над решением проблемы");
+                await EmailService?.SendErrorEmail(ex.ToDiagnosticString());
+                return false;
+            }
+            return loggedIn;
         }
 
     }
