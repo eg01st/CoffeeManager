@@ -123,21 +123,21 @@ namespace CoffeeManager.Core.ViewModels
             this.syncManager = syncManager;
             this.productManager = productManager;
 
-            var request = new MvxViewModelRequest(typeof(CoffeeViewModel), null, null, MvxRequestedBy.Unknown);
+            var request = new MvxViewModelRequest(typeof(CoffeeViewModel));
             CoffeeProducts = (CoffeeViewModel)mvxViewModelLoader.LoadViewModel(request, null);
-            request = new MvxViewModelRequest(typeof(TeaViewModel), null, null, MvxRequestedBy.Unknown);
+            request = new MvxViewModelRequest(typeof(TeaViewModel));
             TeaProducts = (TeaViewModel)mvxViewModelLoader.LoadViewModel(request, null);
-            request = new MvxViewModelRequest(typeof(SweetsViewModel), null, null, MvxRequestedBy.Unknown);
+            request = new MvxViewModelRequest(typeof(SweetsViewModel));
             SweetsProducts = (SweetsViewModel)mvxViewModelLoader.LoadViewModel(request, null);
-            request = new MvxViewModelRequest(typeof(WaterViewModel), null, null, MvxRequestedBy.Unknown);
+            request = new MvxViewModelRequest(typeof(WaterViewModel));
             WaterProducts = (WaterViewModel)mvxViewModelLoader.LoadViewModel(request, null);
-            request = new MvxViewModelRequest(typeof(AddsViewModel), null, null, MvxRequestedBy.Unknown);
+            request = new MvxViewModelRequest(typeof(AddsViewModel));
             AddsProducts = (AddsViewModel)mvxViewModelLoader.LoadViewModel(request, null);
-            request = new MvxViewModelRequest(typeof(MealsViewModel), null, null, MvxRequestedBy.Unknown);
+            request = new MvxViewModelRequest(typeof(MealsViewModel));
             MealsProducts = (MealsViewModel)mvxViewModelLoader.LoadViewModel(request, null);
-            request = new MvxViewModelRequest(typeof(ColdDrinksViewModel), null, null, MvxRequestedBy.Unknown);
+            request = new MvxViewModelRequest(typeof(ColdDrinksViewModel));
             ColdDrinksProducts = (ColdDrinksViewModel)mvxViewModelLoader.LoadViewModel(request, null);
-            request = new MvxViewModelRequest(typeof(IceCreamViewModel), null, null, MvxRequestedBy.Unknown);
+            request = new MvxViewModelRequest(typeof(IceCreamViewModel));
             IceCreamProducts = (IceCreamViewModel)mvxViewModelLoader.LoadViewModel(request, null);
 
            
