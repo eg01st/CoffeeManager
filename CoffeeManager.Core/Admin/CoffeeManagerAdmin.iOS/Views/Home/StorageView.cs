@@ -13,6 +13,12 @@ namespace CoffeeManagerAdmin.iOS
         {
         }
 
+        protected override void InitStylesAndContent()
+        {
+            base.InitStylesAndContent();
+            Title = "Склад";
+        }
+
         protected override void DoBind()
         {
             var set = this.CreateBindingSet<StorageView, StorageViewModel>();

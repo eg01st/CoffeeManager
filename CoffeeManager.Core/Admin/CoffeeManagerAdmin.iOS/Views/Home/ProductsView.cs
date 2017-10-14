@@ -6,36 +6,36 @@ using UIKit;
 
 namespace CoffeeManagerAdmin.iOS
 {
-    public partial class ManageExpensesView : SearchViewController<ManageExpensesView, ManageExpensesViewModel, ManageExpenseItemViewModel>
+    public partial class ProductsView : SearchViewController<ProductsView, ProductsViewModel, ProductItemViewModel>
     {
-        protected override SimpleTableSource TableSource => new SimpleTableSource(TableView, ManageExpensesTableViewCell.Key, ManageExpensesTableViewCell.Nib);
+        protected override SimpleTableSource TableSource => new SimpleTableSource(TableView, ProductItemCell.Key, ProductItemCell.Nib);
 
         protected override UIView TableViewContainer => this.ContainerView;
 
-        protected override MvxFluentBindingDescriptionSet<ManageExpensesView, ManageExpensesViewModel> CreateBindingSet()
-        {
-            return this.CreateBindingSet<ManageExpensesView, ManageExpensesViewModel>();
-        }
+        protected override bool UseCustomBackButton => false;
 
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-            Title = "Расходы";
+           
+            Title = "Товары";
 
             var btn = new UIBarButtonItem()
             {
                 Image = UIImage.FromBundle("ic_add_circle_outline")
             };
 
-
             NavigationItem.SetRightBarButtonItem(btn, false);
             this.AddBindings(new Dictionary<object, string>
             {
-                {btn, "Clicked AddExpenseTypeCommand"},
-
+                {btn, "Clicked AddProductCommand"},
             });
         }
 
+        protected override MvxFluentBindingDescriptionSet<ProductsView, ProductsViewModel> CreateBindingSet()
+        {
+            return this.CreateBindingSet<ProductsView, ProductsViewModel>();
+        }
     }
 }
 

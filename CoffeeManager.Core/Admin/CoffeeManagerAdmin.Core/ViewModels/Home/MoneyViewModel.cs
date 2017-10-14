@@ -35,8 +35,8 @@ namespace CoffeeManagerAdmin.Core
 
             UpdateEntireMoneyCommand = new MvxAsyncCommand(DoGetEntireMoney);
             ShowProductsCommand = new MvxCommand(() => ShowViewModel<ProductsViewModel>());
-            ShowExpensesCommand = new MvxCommand(() => ShowViewModel<ManageExpensesViewModel>());
             ShowSettingsCommand = new MvxCommand(() => ShowViewModel<SettingsViewModel>());
+            ShowUsersCommand = new MvxCommand(() => ShowViewModel<UsersViewModel>());
             ShowCreditCardCommand = new MvxCommand(() => ShowViewModel<CreditCardViewModel>());
 
             refreshCoffeeroomsToken = Subscribe<RefreshCoffeeRoomsMessage>(async (obj) => await GetCoffeeRooms());
@@ -46,10 +46,9 @@ namespace CoffeeManagerAdmin.Core
         public ICommand UpdateEntireMoneyCommand { get; }
         public ICommand ShowShiftsCommand { get; }
         public ICommand ShowProductsCommand { get; }
-        public ICommand ShowExpensesCommand { get; }
         public ICommand ShowCreditCardCommand { get; }
         public ICommand ShowSettingsCommand { get; }
-
+        public ICommand ShowUsersCommand { get; }
 
         public string CurrentBalance
         {

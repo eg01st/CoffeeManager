@@ -7,7 +7,7 @@ using MvvmCross.iOS.Views;
 
 namespace CoffeeManagerAdmin.iOS
 {
-    public class CoffeeManagerAdminNavigationContoller: UINavigationController, IUINavigationControllerDelegate, IUIGestureRecognizerDelegate
+    public class CoffeeManagerAdminNavigationContoller: MvxNavigationController, IUINavigationControllerDelegate, IUIGestureRecognizerDelegate
     {
         public CoffeeManagerAdminNavigationContoller(UIViewController viewController) : base(viewController)
         {
@@ -16,14 +16,10 @@ namespace CoffeeManagerAdmin.iOS
             InteractivePopGestureRecognizer.Enabled = true;
         }
 
-
-        public override UIViewController PopViewController(bool animated)
+        [Export("navigationController:willShowViewController:animated:")]
+        public void WillShowViewController(UINavigationController navigationController, UIViewController viewController, bool animated)
         {
-            var vc =  base.PopViewController(animated);
-            var mvxVc = vc as MvxViewController;
-            var vm = mvxVc.ViewModel as ViewModelBase;
-            vm.CloseCommand.Execute(null);
-            return vc;
+            
         }
 
         [Export("gestureRecognizer:shouldBeRequiredToFailByGestureRecognizer:")]

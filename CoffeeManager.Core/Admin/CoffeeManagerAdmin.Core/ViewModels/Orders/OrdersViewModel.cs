@@ -53,14 +53,14 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Orders
             }
         }
 
-        public async void Init()
+        public async Task Init()
         {
             await LoadData();
         }
 
         private async Task LoadData()
         {
-            var items = await manager.GetOrders();
+            var items = await ExecuteSafe(manager.GetOrders);
             Items = items.Select(s => new OrderViewModel(manager, s)).OrderByDescending(o => o.Id).ToList();
         }
 

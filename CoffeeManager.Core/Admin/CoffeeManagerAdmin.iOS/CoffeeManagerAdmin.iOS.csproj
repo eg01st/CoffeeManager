@@ -91,7 +91,6 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Bootstrap\FilePluginBootstrap.cs" />
     <Compile Include="DebugTrace.cs" />
     <Compile Include="LinkerPleaseInclude.cs" />
     <Compile Include="Main.cs" />
@@ -194,14 +193,6 @@
     <Compile Include="TableSources\SalesStatisticTableSource.cs" />
     <Compile Include="Views\Abstract\SearchViewController.cs" />
     <Compile Include="Views\Abstract\ViewControllerBase.cs" />
-    <Compile Include="Views\Products\ProductsView.cs" />
-    <Compile Include="Views\Products\ProductsView.designer.cs">
-      <DependentUpon>ProductsView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ManageExpenses\ManageExpensesView.cs" />
-    <Compile Include="Views\ManageExpenses\ManageExpensesView.designer.cs">
-      <DependentUpon>ManageExpensesView.cs</DependentUpon>
-    </Compile>
     <Compile Include="Views\Statistic\StatisticSaleItemViewCell.cs" />
     <Compile Include="Views\Statistic\StatisticSaleItemViewCell.designer.cs">
       <DependentUpon>StatisticSaleItemViewCell.cs</DependentUpon>
@@ -409,15 +400,23 @@
     <Compile Include="Views\Home\StorageView.designer.cs">
       <DependentUpon>StorageView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Home\UsersView.cs" />
-    <Compile Include="Views\Home\UsersView.designer.cs">
-      <DependentUpon>UsersView.cs</DependentUpon>
-    </Compile>
     <Compile Include="Views\Home\StatisticView.cs" />
     <Compile Include="Views\Home\StatisticView.designer.cs">
       <DependentUpon>StatisticView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls\ExpandableTabBar.cs" />
+    <Compile Include="Bootstrap\FilePluginBootstrap.cs" />
+    <Compile Include="Views\Users\UsersView.cs" />
+    <Compile Include="Views\Users\UsersView.designer.cs">
+      <DependentUpon>UsersView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Home\ProductsView.cs" />
+    <Compile Include="Views\Home\ProductsView.designer.cs">
+      <DependentUpon>ProductsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Home\ManageExpensesView.cs" />
+    <Compile Include="Views\Home\ManageExpensesView.designer.cs">
+      <DependentUpon>ManageExpensesView.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Setup.cs" />
@@ -442,8 +441,6 @@
     <InterfaceDefinition Include="Views\Products\ProductItemCell.xib" />
     <InterfaceDefinition Include="Views\Products\ProductDetailsView.xib" />
     <InterfaceDefinition Include="Views\Users\UserTableViewCell.xib" />
-    <InterfaceDefinition Include="Views\Products\ProductsView.xib" />
-    <InterfaceDefinition Include="Views\ManageExpenses\ManageExpensesView.xib" />
     <InterfaceDefinition Include="Views\Statistic\StatisticSaleItemViewCell.xib" />
     <InterfaceDefinition Include="Views\Statistic\SaleStatisticHeaderViewCell.xib" />
     <InterfaceDefinition Include="Views\ManageExpenses\ExpenseTypeDetailsView.xib" />
@@ -495,38 +492,12 @@
     <InterfaceDefinition Include="Views\Shifts\AddExpense\AddExpenseExtendedTableHeader.xib" />
     <InterfaceDefinition Include="Views\Home\MoneyView.xib" />
     <InterfaceDefinition Include="Views\Home\StorageView.xib" />
-    <InterfaceDefinition Include="Views\Home\UsersView.xib" />
     <InterfaceDefinition Include="Views\Home\StatisticView.xib" />
+    <InterfaceDefinition Include="Views\Users\UsersView.xib" />
+    <InterfaceDefinition Include="Views\Home\ProductsView.xib" />
+    <InterfaceDefinition Include="Views\Home\ManageExpensesView.xib" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="MvvmCross.Binding, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\MvvmCross.Binding.4.2.0\lib\Xamarin.iOS10\MvvmCross.Binding.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="MvvmCross.Binding.iOS, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\MvvmCross.Binding.4.2.0\lib\Xamarin.iOS10\MvvmCross.Binding.iOS.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="MvvmCross.Core, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\MvvmCross.Core.4.2.0\lib\Xamarin.iOS10\MvvmCross.Core.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="MvvmCross.iOS, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\MvvmCross.Core.4.2.0\lib\Xamarin.iOS10\MvvmCross.iOS.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="MvvmCross.Localization, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\MvvmCross.Binding.4.2.0\lib\Xamarin.iOS10\MvvmCross.Localization.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="MvvmCross.Plugins.File, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\MvvmCross.Plugin.File.4.3.0\lib\Xamarin.iOS10\MvvmCross.Plugins.File.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="MvvmCross.Plugins.File.iOS, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\MvvmCross.Plugin.File.4.3.0\lib\Xamarin.iOS10\MvvmCross.Plugins.File.iOS.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
@@ -536,12 +507,6 @@
     </Reference>
     <Reference Include="MvvmCross.Plugins.Messenger">
       <HintPath>..\..\packages\MvvmCross.Plugin.Messenger.4.3.0\lib\Xamarin.iOS10\MvvmCross.Plugins.Messenger.dll</HintPath>
-    </Reference>
-    <Reference Include="MvvmCross.Platform">
-      <HintPath>..\..\packages\MvvmCross.Platform.4.4.0\lib\Xamarin.iOS10\MvvmCross.Platform.dll</HintPath>
-    </Reference>
-    <Reference Include="MvvmCross.Platform.iOS">
-      <HintPath>..\..\packages\MvvmCross.Platform.4.4.0\lib\Xamarin.iOS10\MvvmCross.Platform.iOS.dll</HintPath>
     </Reference>
     <Reference Include="MvvmCross.Plugins.Visibility">
       <HintPath>..\..\packages\MvvmCross.Plugin.Visibility.4.4.0\lib\Xamarin.iOS10\MvvmCross.Plugins.Visibility.dll</HintPath>
@@ -578,6 +543,33 @@
     </Reference>
     <Reference Include="MvvmCross.Plugins.Sqlite.iOS">
       <HintPath>..\..\packages\MvvmCross.Plugin.SQLitePCL.4.4.0\lib\Xamarin.iOS10\MvvmCross.Plugins.Sqlite.iOS.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Platform">
+      <HintPath>..\..\packages\MvvmCross.Platform.5.2.1\lib\Xamarin.iOS10\MvvmCross.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Platform.iOS">
+      <HintPath>..\..\packages\MvvmCross.Platform.5.2.1\lib\Xamarin.iOS10\MvvmCross.Platform.iOS.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Core">
+      <HintPath>..\..\packages\MvvmCross.Core.5.2.1\lib\Xamarin.iOS10\MvvmCross.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.iOS">
+      <HintPath>..\..\packages\MvvmCross.Core.5.2.1\lib\Xamarin.iOS10\MvvmCross.iOS.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Binding">
+      <HintPath>..\..\packages\MvvmCross.Binding.5.2.1\lib\Xamarin.iOS10\MvvmCross.Binding.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Binding.iOS">
+      <HintPath>..\..\packages\MvvmCross.Binding.5.2.1\lib\Xamarin.iOS10\MvvmCross.Binding.iOS.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Localization">
+      <HintPath>..\..\packages\MvvmCross.Binding.5.2.1\lib\Xamarin.iOS10\MvvmCross.Localization.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Plugins.File">
+      <HintPath>..\..\packages\MvvmCross.Plugin.File.5.2.1\lib\Xamarin.iOS10\MvvmCross.Plugins.File.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Plugins.File.iOS">
+      <HintPath>..\..\packages\MvvmCross.Plugin.File.5.2.1\lib\Xamarin.iOS10\MvvmCross.Plugins.File.iOS.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -671,6 +663,15 @@
     <BundleResource Include="Resources\ic_colapse.png" />
     <BundleResource Include="Resources\ic_colapse%403x.png" />
     <BundleResource Include="Resources\ic_colapse%402x.png" />
+    <BundleResource Include="Resources\ic_arrow_upward_white_3x.png" />
+    <BundleResource Include="Resources\ic_arrow_upward_white_2x.png" />
+    <BundleResource Include="Resources\ic_arrow_upward_white.png" />
+    <BundleResource Include="Resources\ic_local_cafe_3x.png" />
+    <BundleResource Include="Resources\ic_local_cafe_2x.png" />
+    <BundleResource Include="Resources\ic_local_cafe.png" />
+    <BundleResource Include="Resources\ic_local_cafe_white_3x.png" />
+    <BundleResource Include="Resources\ic_local_cafe_white_2x.png" />
+    <BundleResource Include="Resources\ic_local_cafe_white.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

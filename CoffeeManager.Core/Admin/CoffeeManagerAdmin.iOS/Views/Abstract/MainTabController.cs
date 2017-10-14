@@ -4,10 +4,11 @@ using MvvmCross.Core.ViewModels;
 using UIKit;
 using CoffeeManagerAdmin.Core;
 using MvvmCross.Platform;
+using Foundation;
 
 namespace CoffeeManagerAdmin.iOS
 {
-    public abstract class MainTabController : MvxTabBarViewController
+    public abstract class MainTabController : MvxTabBarViewController, IUITabBarControllerDelegate
     {
         private bool isConstructed;
         private bool inConstruction;
@@ -17,6 +18,13 @@ namespace CoffeeManagerAdmin.iOS
         public MainTabController()
         {
             Initialize();
+            Delegate = this;
+        }
+
+        public override bool ShowChildView(UIViewController viewController)
+        {
+            viewController.HidesBottomBarWhenPushed = true;
+            return base.ShowChildView(viewController);
         }
 
         private void Initialize()
@@ -29,7 +37,7 @@ namespace CoffeeManagerAdmin.iOS
             ViewDidLoad();
             inConstruction = false;
         }
-
+ 
 
         protected int StartTabIndex
         {
@@ -51,9 +59,6 @@ namespace CoffeeManagerAdmin.iOS
                 base.SelectedIndex = value;
             }
         }
-
-
-        protected UIViewController LastTopController { get; set; }
 
         public override void ViewDidLoad()
         {
@@ -88,18 +93,30 @@ namespace CoffeeManagerAdmin.iOS
 
             var storagetabBarItem = new UITabBarItem("Склад", storageImage, selectedStorageImage);
 
-           
 
-            var usersViewModel = ProduceViewModel(typeof(UsersViewModel));
-            var usersView = ProduceView(usersViewModel);
+            var expensesViewModel = ProduceViewModel(typeof(ManageExpensesViewModel));
+            var expensesView = ProduceView(expensesViewModel);
 
-            var selectedUsersImage = UIImage.FromBundle("ic_account_circle.png");
-            selectedUsersImage = selectedUsersImage.ImageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal);
+            var selectedExpensesImage = UIImage.FromBundle("ic_arrow_upward.png");
+            selectedExpensesImage = selectedExpensesImage.ImageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal);
 
-            var usersImage = UIImage.FromBundle("ic_account_circle_white.png");
-            usersImage = usersImage.ImageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal);
+            var expensesImage = UIImage.FromBundle("ic_arrow_upward_white.png");
+            expensesImage = expensesImage.ImageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal);
 
-            var userstabBarItem = new UITabBarItem("Персонал", usersImage, selectedUsersImage);
+            var expensesTabBarItem = new UITabBarItem("Расходы", expensesImage, selectedExpensesImage);
+
+
+
+            var productsViewModel = ProduceViewModel(typeof(ProductsViewModel));
+            var productsView = ProduceView(productsViewModel);
+
+            var selectedProductsImage = UIImage.FromBundle("ic_local_cafe.png");
+            selectedProductsImage = selectedProductsImage.ImageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal);
+
+            var productsImage = UIImage.FromBundle("ic_local_cafe_white.png");
+            productsImage = productsImage.ImageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal);
+
+            var productsTabBarItem = new UITabBarItem("Товары", productsImage, selectedProductsImage);
 
         
 
@@ -116,30 +133,30 @@ namespace CoffeeManagerAdmin.iOS
             var statistictabBarItem = new UITabBarItem("Статистика", statisticImage, selectedstatisticImage);
 
 
-            //moneyView.TabBarItem = moneytabBarItem;
+            moneyView.TabBarItem = moneytabBarItem;
 
-            //storageView.TabBarItem = storagetabBarItem;
+            storageView.TabBarItem = storagetabBarItem;
 
-            //usersView.TabBarItem = userstabBarItem;
-            //statisticView.TabBarItem = statistictabBarItem;
+            productsView.TabBarItem = productsTabBarItem;
+            statisticView.TabBarItem = statistictabBarItem;
+            expensesView.TabBarItem = expensesTabBarItem;
 
-
-            var controllers = new[] {moneyView, storageView, usersView, statisticView };
+            var controllers = new[] {moneyView, storageView, productsView, expensesView, statisticView };
 
 
             ViewControllers = controllers;
 
-            LastTopController = controllers[0];
-
-            OnViewControllerChanged(null, LastTopController);
-
-
             DoViewDidLoad();
+        }
+
+        protected virtual void DoViewDidLoad()
+        {
+            
         }
 
         private MvxViewModel ProduceViewModel(Type viewModelType)
         {
-            var request = new MvxViewModelRequest(viewModelType, null, null, MvxRequestedBy.UserAction);
+            var request = new MvxViewModelRequest(viewModelType);
             var loadedViewModel = mvxViewModelLoader.LoadViewModel(request, null);
             var viewModel = loadedViewModel as MvxViewModel;
 
@@ -150,33 +167,6 @@ namespace CoffeeManagerAdmin.iOS
         {
             var controller = mvxIosViewCreator.CreateView(viewModel) as UIViewController;
             return new CoffeeManagerAdminNavigationContoller(controller);
-        }
-
-        protected virtual void DoViewDidLoad()
-        {
-        }
-
-        protected virtual void SubscribeToEvents()
-        {
-            ViewControllerSelected += OnViewControllerSelected;
-        }
-
-        protected virtual void UnsubscribeFromEvents()
-        {
-            ViewControllerSelected -= OnViewControllerSelected;
-        }
-
-        private void OnViewControllerSelected(object sender, UITabBarSelectionEventArgs e)
-        {
-            var oldController = LastTopController;
-            var newController = SelectedViewController;
-            LastTopController = newController;
-
-            OnViewControllerChanged(oldController, newController);
-        }
-
-        protected virtual void OnViewControllerChanged(UIViewController oldController, UIViewController newController)
-        {
         }
     }
 }

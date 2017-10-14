@@ -9,6 +9,7 @@ using MvvmCross.Plugins.Messenger;
 using System.Windows.Input;
 using CoffeeManager.Models;
 using CoffeManager.Common.Managers;
+using MvvmCross.Core.Navigation;
 
 namespace CoffeManager.Common
 {
@@ -79,6 +80,15 @@ namespace CoffeManager.Common
                 return null;
             }
         }
+
+        protected IMvxNavigationService NavigationService
+        {
+            get
+            {
+                return Mvx.Resolve<IMvxNavigationService>();
+            }
+        }
+
         #endregion
         public ICommand CloseCommand { get; }
 
@@ -94,6 +104,12 @@ namespace CoffeManager.Common
             OnClose();
             DoUnsubscribe();
             Close(this);
+        }
+
+        public override void ViewDestroy()
+        {
+            base.ViewDestroy();
+            DoUnsubscribe();
         }
 
 
@@ -136,6 +152,7 @@ namespace CoffeManager.Common
 
             await ExecuteSafe(functionToRun: runDelegate,
                                     globalExceptionMessage: globalExceptionMessage);
+            
         }
 
         protected async Task<T> ExecuteSafe<T>(Func<Task<T>> functionToRun, string globalExceptionMessage = null, T valueToReturnForError = default(T))
@@ -274,11 +291,11 @@ namespace CoffeManager.Common
         }
 
 
-        protected bool ShowViewModelAsRoot<TViewModel>(object parameter = null, MvxRequestedBy requestedBy = null) where TViewModel : IMvxViewModel
-        {
-            var bundle = MvxNavigationExtensions.ProduceRootViewModelRequest();
-            return ShowViewModel<TViewModel>(parameter, bundle, requestedBy);
-        }
+        //protected bool ShowViewModelAsRoot<TViewModel>(object parameter = null, MvxRequestedBy requestedBy = null) where TViewModel : IMvxViewModel
+        //{
+        //    var bundle = MvxNavigationExtensions.ProduceRootViewModelRequest();
+        //    return ShowViewModel<TViewModel>(parameter, bundle, requestedBy);
+        //}
 
 
         protected async Task<bool> PromtLogin()

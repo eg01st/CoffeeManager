@@ -23,18 +23,24 @@ namespace CoffeeManagerAdmin.iOS
         {
             base.DoViewDidLoad();
 
-            var btn = new UIBarButtonItem()
+            var settingsButton = new UIBarButtonItem()
             {
                 Image = UIImage.FromBundle("ic_settings")
             };
 
+            var usersButton = new UIBarButtonItem()
+            {
+                Image = UIImage.FromBundle("ic_account_circle")
+            };
 
-            NavigationItem.SetRightBarButtonItem(btn, false);
             this.AddBindings(new Dictionary<object, string>
             {
-                {btn, "Clicked ShowSettingsCommand"},
+                {settingsButton, "Clicked ShowSettingsCommand"},
+                {usersButton, "Clicked ShowUsersCommand"},
 
             });
+
+            NavigationItem.SetRightBarButtonItems(new [] { settingsButton, usersButton}, false);
 
             var toolbar = new UIToolbar(new CGRect(0, 0, this.View.Frame.Width, 44));
             toolbar.UserInteractionEnabled = true;
@@ -67,7 +73,6 @@ namespace CoffeeManagerAdmin.iOS
             set.Bind(RefreshMoneyButton).To(vm => vm.UpdateEntireMoneyCommand);
             set.Bind(ShiftsButton).To(vm => vm.ShowShiftsCommand);
             set.Bind(ProductsButton).To(vm => vm.ShowProductsCommand);
-            set.Bind(ExpensesButton).To(vm => vm.ShowExpensesCommand);
             set.Bind(CreditCardButton).To(vm => vm.ShowCreditCardCommand);
 
             set.Bind(coffeeRoomPickerViewModel).For(p => p.ItemsSource).To(vm => vm.CoffeeRooms);
