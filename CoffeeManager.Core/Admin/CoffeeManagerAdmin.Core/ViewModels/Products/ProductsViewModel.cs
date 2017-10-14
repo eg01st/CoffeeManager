@@ -11,7 +11,7 @@ using CoffeManager.Common;
 
 namespace CoffeeManagerAdmin.Core
 {
-    public class ProductsViewModel : BaseSearchViewModel<ProductItemViewModel>
+    public class ProductsViewModel : BaseSearchViewModel<ListItemViewModelBase>
     {
         private MvxSubscriptionToken _productListChangedToken;
 
@@ -22,9 +22,9 @@ namespace CoffeeManagerAdmin.Core
         {
             this.manager = manager;
             _addProductCommand = new MvxCommand(DoAddProduct);
-            _productListChangedToken = Subscribe<ProductListChangedMessage>((obj) =>
+            _productListChangedToken = Subscribe<ProductListChangedMessage>( async(obj) =>
             {
-                Init();
+                await Init();
             });
         }
 
@@ -34,10 +34,19 @@ namespace CoffeeManagerAdmin.Core
             ShowViewModel<ProductDetailsViewModel>();
         }
 
-        public async override Task<List<ProductItemViewModel>> LoadData()
+        public async override Task<List<ListItemViewModelBase>> LoadData()
         {
             var items = await manager.GetProducts();
-            return items.Select(s => new ProductItemViewModel(manager, s)).ToList();
+            var result = new List<ListItemViewModelBase>();
+
+
+            var vms = items.Select(s => new ProductItemViewModel(s)).GroupBy(g => g.Category).OrderBy(o => o.Key);
+            foreach (var item in vms)
+            {
+                result.Add(new ExpenseTypeHeaderViewModel(item.Key));
+                result.AddRange(item);
+            }
+            return result;
         }
 
         public ICommand AddProductCommand => _addProductCommand;

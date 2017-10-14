@@ -44,7 +44,13 @@ namespace CoffeeManagerAdmin.iOS
         protected ProductItemCell(IntPtr handle) : base(handle)
         {
             // Note: this .ctor should not contain any initialization logic.
-            var longPressGesture = new UILongPressGestureRecognizer(() => DeleteProductCommand?.Execute(null));
+            var longPressGesture = new UILongPressGestureRecognizer((obj) =>
+            {
+                if(obj.State == UIGestureRecognizerState.Began)
+                {
+                    DeleteProductCommand?.Execute(null);
+                }
+            });
             AddGestureRecognizer(longPressGesture);
         }
 
@@ -56,7 +62,7 @@ namespace CoffeeManagerAdmin.iOS
             {
                 var set = this.CreateBindingSet<ProductItemCell, ProductItemViewModel>();
                 set.Bind(NameLabel).To(vm => vm.Name);
-                set.Bind(CategoryLabel).To(vm => vm.Category);
+                set.Bind(CategoryLabel).To(vm => vm.CupType);
                 set.Bind(IsActiveSwitch).For(s => s.On).To(vm => vm.IsActive);
                 set.Bind(this).For(t => t.DeleteProductCommand).To(vm => vm.DeleteProductCommand);
                 set.Bind(this).For(t => t.ToggleIsActiveCommand).To(vm => vm.ToggleIsActiveCommand);

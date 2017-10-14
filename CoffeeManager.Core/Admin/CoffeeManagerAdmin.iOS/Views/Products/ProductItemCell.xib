@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -20,13 +20,13 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="He8-zK-odp">
-                        <rect key="frame" x="24" y="11.5" width="42" height="20.5"/>
+                        <rect key="frame" x="24" y="11.5" width="186" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bF3-vl-taA">
-                        <rect key="frame" x="165" y="11.5" width="42" height="20.5"/>
+                        <rect key="frame" x="210" y="11.5" width="74.5" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -37,10 +37,12 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="He8-zK-odp" firstAttribute="centerY" secondItem="YTl-1W-gDM" secondAttribute="centerY" id="E67-JM-PHX"/>
-                    <constraint firstItem="bF3-vl-taA" firstAttribute="centerY" secondItem="YTl-1W-gDM" secondAttribute="centerY" id="GQ8-KI-xU9"/>
+                    <constraint firstItem="bF3-vl-taA" firstAttribute="centerY" secondItem="He8-zK-odp" secondAttribute="centerY" id="Fp1-B7-MOv"/>
+                    <constraint firstItem="bF3-vl-taA" firstAttribute="width" secondItem="YTl-1W-gDM" secondAttribute="width" multiplier="0.2" id="Gbt-Tl-4dm"/>
+                    <constraint firstItem="He8-zK-odp" firstAttribute="width" secondItem="YTl-1W-gDM" secondAttribute="width" multiplier="0.5" id="MXb-J6-QFi"/>
                     <constraint firstAttribute="trailingMargin" secondItem="xbr-F0-A0k" secondAttribute="trailing" constant="16" id="P1H-Hn-fi6"/>
+                    <constraint firstItem="bF3-vl-taA" firstAttribute="leading" secondItem="He8-zK-odp" secondAttribute="trailing" id="TP6-ZR-88l"/>
                     <constraint firstItem="He8-zK-odp" firstAttribute="leading" secondItem="YTl-1W-gDM" secondAttribute="leadingMargin" constant="16" id="UEs-AO-pgR"/>
-                    <constraint firstItem="bF3-vl-taA" firstAttribute="centerX" secondItem="YTl-1W-gDM" secondAttribute="centerX" id="kFv-VP-SFM"/>
                     <constraint firstItem="xbr-F0-A0k" firstAttribute="centerY" secondItem="YTl-1W-gDM" secondAttribute="centerY" id="qIu-eb-VzK"/>
                 </constraints>
             </tableViewCellContentView>

@@ -1,9 +1,6 @@
-﻿using System;
-using MvvmCross.Binding.iOS.Views;
-using UIKit;
-using CoffeManager.Common;
+﻿using UIKit;
 using Foundation;
-using CoffeeManagerAdmin.Core.ViewModels;
+using CoffeeManagerAdmin.Core;
 
 namespace CoffeeManagerAdmin.iOS
 {
@@ -18,7 +15,7 @@ namespace CoffeeManagerAdmin.iOS
 
         protected override UITableViewCell GetOrCreateCellFor(UITableView tableView, NSIndexPath indexPath, object item)
         {
-            if (item is SuplyProductItemViewModel)
+            if (!(item is ExpenseTypeHeaderViewModel))
             {
                 return tableView.DequeueReusableCell(reuseIdentifier, indexPath);
             }

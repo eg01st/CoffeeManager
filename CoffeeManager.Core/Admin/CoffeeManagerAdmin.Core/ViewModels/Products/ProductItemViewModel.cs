@@ -6,6 +6,8 @@ using CoffeeManagerAdmin.Core.ViewModels;
 using System.Linq;
 using CoffeeManagerAdmin.Core.Util;
 using CoffeManager.Common;
+using MvvmCross.Platform;
+using System.Threading.Tasks;
 
 namespace CoffeeManagerAdmin.Core
 {
@@ -17,22 +19,22 @@ namespace CoffeeManagerAdmin.Core
         public ICommand DeleteProductCommand => _deleteProductCommand;
         public ICommand ToggleIsActiveCommand {get;set;}
 
-        private bool _isTapped;
-
-        public string Category {get;set;}
+        public string Category { get; set; }
+        public string CupType {get;set;}
         public bool IsActive {get;set;}
 
-        private readonly IProductManager manager;
-
-        public ProductItemViewModel(IProductManager manager, Product prod)
+        public ProductItemViewModel(Product prod)
         {
-            this.manager = manager;
             _prod = prod;
             Name = prod.Name;
             IsActive = prod.IsActive;
 
-            var type = TypesLists.ProductTypesList.First(i => i.Id == prod.ProductType);
-            Category = type.Name;
+            var category = TypesLists.ProductTypesList.First(i => i.Id == prod.ProductType);
+            Category = category.Name;
+
+
+            var type = (CupTypeEnum)prod.CupType;
+            CupType = type == CupTypeEnum.Unknown ? string.Empty : type.ToString();
             RaiseAllPropertiesChanged();
 
             _deleteProductCommand = new MvxCommand(DoDeleCommand);
@@ -41,6 +43,7 @@ namespace CoffeeManagerAdmin.Core
 
         private async void DoToggleIsActive()
         {
+            IProductManager manager = Mvx.Resolve<IProductManager>();
             await manager.ToggleIsActiveProduct(_prod.Id);
         }
 
@@ -52,24 +55,14 @@ namespace CoffeeManagerAdmin.Core
 
         private void DoDeleCommand()
         {
-            if (!_isTapped)
-            {
-                _isTapped = true;
+            Confirm($"Действительно удалить продукт \"{_prod.Name}\"?", DeleteProduct);
+        }
 
-                UserDialogs.Confirm(new Acr.UserDialogs.ConfirmConfig()
-                {
-                    Message = $"Действительно удалить продукт \"{_prod.Name}\"?",
-                    OnAction = async (bool obj) =>
-                    {
-                        if (obj)
-                        {
-                            await manager.DeleteProduct(_prod.Id);
-                            Publish(new ProductListChangedMessage(this));
-                        }
-                        _isTapped = false;
-                    },
-                });
-            }
+        private async Task DeleteProduct()
+        {
+            IProductManager manager = Mvx.Resolve<IProductManager>();
+            await manager.DeleteProduct(_prod.Id);
+            Publish(new ProductListChangedMessage(this));
         }
 
 
