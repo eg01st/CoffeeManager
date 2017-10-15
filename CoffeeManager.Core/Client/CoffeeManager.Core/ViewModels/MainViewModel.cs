@@ -154,7 +154,7 @@ namespace CoffeeManager.Core.ViewModels
             ShowSettingsCommand = new MvxCommand(() => ShowViewModel<SettingsViewModel>(new { isInitialSetup = false }));
         }
 
-        public async void Init(int userId, int shiftId)
+        public async Task Init(int userId, int shiftId)
         {
             _userId = userId;
             _shiftId = shiftId;
@@ -170,8 +170,8 @@ namespace CoffeeManager.Core.ViewModels
             await ExecuteSafe( async () => 
             {
                 await Task.WhenAll(tasks);
-            });
-            allProducts = CoffeeProducts.Items
+
+                allProducts = CoffeeProducts.Items
                 .Concat(TeaProducts.Items)
                 .Concat(SweetsProducts.Items)
                 .Concat(WaterProducts.Items)
@@ -180,7 +180,8 @@ namespace CoffeeManager.Core.ViewModels
                 .Concat(ColdDrinksProducts.Items)
                 .Concat(IceCreamProducts.Items);
 
-            SubscribeToSelectProduct();
+                SubscribeToSelectProduct();
+            });
         }
 
         private void SubscribeToSelectProduct()

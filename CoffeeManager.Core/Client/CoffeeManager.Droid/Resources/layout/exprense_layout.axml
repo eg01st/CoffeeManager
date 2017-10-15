@@ -84,7 +84,7 @@
                         android:text="Количество: " />
                     <EditText
                         android:inputType="numberDecimal"
-                        android:layout_width="50dp"
+                        android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:textSize="20dp"
                         local:MvxBind="Text ItemCount" />
@@ -100,7 +100,7 @@
                         android:text="Сумма: " />
                     <EditText
                         android:inputType="numberDecimal"
-                        android:layout_width="50dp"
+                        android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:textSize="20dp"
                         local:MvxBind="Text Amount" />
