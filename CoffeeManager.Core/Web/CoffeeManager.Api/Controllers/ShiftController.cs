@@ -136,7 +136,8 @@ namespace CoffeeManager.Api.Controllers
                     ExpenseAmount = shift.TotalExprenses,
                     ShiftEarnedMoney = shift.CurrentAmount,
                     CreditCardAmount = shift.CreditCardAmount,
-                    TotalCreditCardAmount = shift.TotalCreditCardAmount
+                    TotalCreditCardAmount = shift.TotalCreditCardAmount,
+                    IsFinished = shift.IsFinished.Value
                 };
                 response.Add(res);
             }
