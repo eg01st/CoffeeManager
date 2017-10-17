@@ -118,10 +118,10 @@ namespace CoffeeManager.Api.Controllers
 
         [Route(RoutesConstants.GetShifts)]
         [HttpGet]
-        public async Task<HttpResponseMessage> GetShifts([FromUri]int coffeeroomno, HttpRequestMessage message)
+        public async Task<HttpResponseMessage> GetShifts([FromUri]int coffeeroomno, [FromUri]int skip, HttpRequestMessage message)
         {
             var entities = new CoffeeRoomEntities();
-            var shifts = entities.Shifts.Include(s => s.User).Where(s => s.CoffeeRoomNo == coffeeroomno);
+            var shifts = entities.Shifts.OrderByDescending(s => s.Id).Include(s => s.User).Where(s => s.CoffeeRoomNo == coffeeroomno).Skip(skip).Take(50);
             var response = new List<ShiftInfo>();
             foreach (var shift in shifts)
             {

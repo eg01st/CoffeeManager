@@ -170,6 +170,7 @@ namespace CoffeeManager.Api.Controllers
             if(saleDb.IsCreditCardSale)
             {
                 currentShift.CreditCardAmount -= saleDb.Amount;
+                currentShift.TotalCreditCardAmount -= saleDb.Amount;
             }
             else
             {
