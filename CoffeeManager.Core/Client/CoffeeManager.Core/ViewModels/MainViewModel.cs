@@ -21,7 +21,7 @@ namespace CoffeeManager.Core.ViewModels
         private bool _isCreditCardSaleEnabled;
         private string _sumButtonText;
         private int _sum;
-        private int _changeSum;
+        private int? _changeSum;
         private ObservableCollection<SelectedProductViewModel> _selectedProducts = new ObservableCollection<SelectedProductViewModel>();
 
         public bool IsPoliceSaleEnabled
@@ -62,12 +62,23 @@ namespace CoffeeManager.Core.ViewModels
                 RaisePropertyChanged(nameof(Sum));
                 RaisePropertyChanged(nameof(PayEnabled));
                 RaisePropertyChanged(nameof(SumButtonText));
+                RaisePropertyChanged(nameof(ChangeSum));
             }
         }
 
-        public int ChangeSum
+        public int? ChangeSum
         {
-            get => _changeSum;
+            get 
+            {
+                if (_changeSum.HasValue && Sum > 0)
+                {
+                    return Math.Abs(Sum - _changeSum.Value);
+                }
+                else
+                {
+                    return null;
+                }
+            }
             set
             {
                 _changeSum = value;
@@ -107,7 +118,7 @@ namespace CoffeeManager.Core.ViewModels
         public ICommand ShowUtilizeCommand { get; set; }
         public ICommand ShowSettingsCommand { get; set; }
 
-        public ICommand ShowChanrgeCommand { get; set; }
+        public ICommand ShowChargeCommand { get; set; }
 
         public ObservableCollection<SelectedProductViewModel> SelectedProducts
         {
@@ -165,12 +176,12 @@ namespace CoffeeManager.Core.ViewModels
             ShowInventoryCommand= new MvxCommand(() => ShowViewModel<InventoryViewModel>());
             ShowUtilizeCommand = new MvxCommand(() => ShowViewModel<UtilizeProductsViewModel>());
             ShowSettingsCommand = new MvxCommand(() => ShowViewModel<SettingsViewModel>(new { isInitialSetup = false }));
-            ShowChanrgeCommand = new MvxCommand<int>((sum) => DoShowCharge(sum));
+            ShowChargeCommand = new MvxCommand<int>((sum) => DoShowCharge(sum));
         }
 
         private void DoShowCharge(int sum)
         {
-            ChangeSum = Sum - sum;
+            ChangeSum = sum;
         }
 
         public async Task Init(int userId, int shiftId)
@@ -231,6 +242,10 @@ namespace CoffeeManager.Core.ViewModels
         {
             SelectedProducts.Remove(obj);
             Sum -= (int)obj.Price;
+            if(SelectedProducts.Count == 0)
+            {
+                ChangeSum = null;
+            }
         }
 
         private async Task DoPay()
@@ -252,7 +267,7 @@ namespace CoffeeManager.Core.ViewModels
             await ExecuteSafe(async () => await Task.WhenAll(tasks));
             SelectedProducts.Clear();
             Sum = 0;
-            ChangeSum = 0;
+            ChangeSum = null;
         }
 
         protected override void DoUnsubscribe()

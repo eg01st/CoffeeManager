@@ -60,12 +60,57 @@
             android:layout_height="80dp">
             <LinearLayout
                 android:orientation="horizontal"
-                android:layout_gravity="right"
+                android:gravity="right"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textSize="20dp"
+                    android:textColor="#000000"
+                    android:text="100\nгрн"
+                    local:MvxBind="Click ShowChargeCommand, CommandParameter=100; Enabled PayEnabled" />
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textSize="20dp"
+                    android:textColor="#000000"
+                    android:text="200\nгрн"
+                    local:MvxBind="Click ShowChargeCommand, CommandParameter=200; Enabled PayEnabled" />
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textSize="20dp"
+                    android:textColor="#000000"
+                    android:text="500\nгрн"
+                    local:MvxBind="Click ShowChargeCommand, CommandParameter=500; Enabled PayEnabled" />
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:id="@+id/charge_text"
+                        android:gravity="center_horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="16dp"
+                        android:textColor="#000000"
+                        android:text="Сдача: " />
+                    <TextView
+                        android:id="@+id/charge_amount"
+                        android:gravity="center_horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="24dp"
+                        android:textColor="#000000"
+                        local:MvxBind="Text ChangeSum" />
+                </LinearLayout>
+                <Button
+                    android:layout_marginLeft="16dp"
                     android:layout_width="180dp"
                     android:layout_height="match_parent"
                     android:textSize="24dp"
