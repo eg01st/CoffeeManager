@@ -17,6 +17,10 @@ namespace CoffeeManagerAdmin.Core
         private readonly MvxSubscriptionToken refreshCoffeeroomsToken;
         private readonly MvxSubscriptionToken refreshAmountToken;
 
+        private bool isNextPageLoading = false;
+        private int totalCount = 0;
+
+        private MvxObservableCollection<ShiftItemViewModel> _items = new MvxObservableCollection<ShiftItemViewModel>();
         private string _currentBalance;
         private string _currentShiftBalance;
         private string _currentCreditCardBalance;
@@ -31,24 +35,52 @@ namespace CoffeeManagerAdmin.Core
             this.paymentManager = paymentManager;
             this.adminManager = adminManager;
             this.shiftManager = shiftManager;
-            ShowShiftsCommand = new MvxCommand(() => ShowViewModel<ShiftsViewModel>());
 
             UpdateEntireMoneyCommand = new MvxAsyncCommand(DoGetEntireMoney);
-            ShowProductsCommand = new MvxCommand(() => ShowViewModel<ProductsViewModel>());
             ShowSettingsCommand = new MvxCommand(() => ShowViewModel<SettingsViewModel>());
             ShowUsersCommand = new MvxCommand(() => ShowViewModel<UsersViewModel>());
             ShowCreditCardCommand = new MvxCommand(() => ShowViewModel<CreditCardViewModel>());
+            LoadNextPageCommand = new MvxAsyncCommand(DoLoadNextPage);
 
             refreshCoffeeroomsToken = Subscribe<RefreshCoffeeRoomsMessage>(async (obj) => await GetCoffeeRooms());
             refreshAmountToken = Subscribe<UpdateCashAmountMessage>(async (obj) => await GetEntireMoney());
         }
 
+        private async Task DoLoadNextPage()
+        {
+            if (isNextPageLoading == true)
+            {
+                return;
+            }
+
+            isNextPageLoading = true;
+
+
+            var itemsToSkip = Items.Count;
+            var items = await shiftManager.GetShifts(itemsToSkip);
+            var vms = items.Select(s => new ShiftItemViewModel(s));
+
+            Items.AddRange(vms);
+
+            isNextPageLoading = false;
+
+        }
+
+        public MvxObservableCollection<ShiftItemViewModel> Items
+        {
+            get { return _items; }
+            set
+            {
+                _items = value;
+                RaisePropertyChanged(nameof(Items));
+            }
+        }
+
         public ICommand UpdateEntireMoneyCommand { get; }
-        public ICommand ShowShiftsCommand { get; }
-        public ICommand ShowProductsCommand { get; }
         public ICommand ShowCreditCardCommand { get; }
         public ICommand ShowSettingsCommand { get; }
         public ICommand ShowUsersCommand { get; }
+        public ICommand LoadNextPageCommand { get; }
 
         public string CurrentBalance
         {
@@ -114,6 +146,21 @@ namespace CoffeeManagerAdmin.Core
         {
             await GetEntireMoney();
             await GetCoffeeRooms();
+            await ExecuteSafe(GetShifts);
+        }
+
+        private async Task GetShifts()
+        {
+            Items.Clear();
+            var items = await shiftManager.GetShifts(0);
+            if (items != null)
+            {
+                Items.AddRange(items.Select(s => new ShiftItemViewModel(s)));
+            }
+            else
+            {
+                UserDialogs.Alert("Empty list from server");
+            }
         }
 
         private async Task DoGetEntireMoney()
@@ -131,6 +178,7 @@ namespace CoffeeManagerAdmin.Core
                 CurrentShiftBalance = shiftBalance.ToString("F1");
                 var creditCardBalance = await paymentManager.GetCreditCardEntireMoney();
                 CurrentCreditCardBalance = creditCardBalance.ToString("F1");
+                await GetShifts();
             });
         }
 

@@ -17,7 +17,7 @@ namespace CoffeeManagerAdmin.iOS
         {
             base.InitStylesAndContent();
 
-            Title = "Кредитка";
+            Title = "Карта";
 
             SaveCurrentAmountButton.TouchUpInside += (sender, e) => View.EndEditing(true);
             CashoutButton.TouchUpInside += (sender, e) => View.EndEditing(true);

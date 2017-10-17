@@ -6,7 +6,7 @@ namespace CoffeManager.Common
 {
     public interface IShiftManager
     {
-        Task<ShiftInfo[]> GetShifts();
+        Task<ShiftInfo[]> GetShifts(int skip);
 
         Task<Sale[]> GetShiftSales(int id);
 

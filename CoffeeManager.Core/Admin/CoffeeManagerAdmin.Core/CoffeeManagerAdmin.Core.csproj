@@ -60,7 +60,6 @@
     <Compile Include="ViewModels\Shifts\ShiftDetailsViewModel.cs" />
     <Compile Include="ViewModels\Shifts\ShiftItemViewModel.cs" />
     <Compile Include="ViewModels\Shifts\ShiftSalesViewModel.cs" />
-    <Compile Include="ViewModels\Shifts\ShiftsViewModel.cs" />
     <Compile Include="ViewModels\Calculation\CalculationItemViewModel.cs" />
     <Compile Include="ViewModels\Calculation\CalculationViewModel.cs" />
     <Compile Include="ViewModels\Calculation\SelectCalculationItemViewModel.cs" />

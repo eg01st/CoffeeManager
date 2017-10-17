@@ -24,10 +24,6 @@ namespace CoffeeManagerAdmin.iOS
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UIButton CreditCardButton { get; set; }
-
-        [Outlet]
-        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UILabel CurrentShiftMoneyLabel { get; set; }
 
         [Outlet]
@@ -36,19 +32,11 @@ namespace CoffeeManagerAdmin.iOS
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UIButton ExpensesButton { get; set; }
-
-        [Outlet]
-        [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UIButton ProductsButton { get; set; }
-
-        [Outlet]
-        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UIButton RefreshMoneyButton { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UIButton ShiftsButton { get; set; }
+        UIKit.UITableView ShiftsTableView { get; set; }
 
         void ReleaseDesignerOutlets ()
         {
@@ -62,11 +50,6 @@ namespace CoffeeManagerAdmin.iOS
                 CreditCardAmountLabel = null;
             }
 
-            if (CreditCardButton != null) {
-                CreditCardButton.Dispose ();
-                CreditCardButton = null;
-            }
-
             if (CurrentShiftMoneyLabel != null) {
                 CurrentShiftMoneyLabel.Dispose ();
                 CurrentShiftMoneyLabel = null;
@@ -77,24 +60,14 @@ namespace CoffeeManagerAdmin.iOS
                 EntireMoneyLabel = null;
             }
 
-            if (ExpensesButton != null) {
-                ExpensesButton.Dispose ();
-                ExpensesButton = null;
-            }
-
-            if (ProductsButton != null) {
-                ProductsButton.Dispose ();
-                ProductsButton = null;
-            }
-
             if (RefreshMoneyButton != null) {
                 RefreshMoneyButton.Dispose ();
                 RefreshMoneyButton = null;
             }
 
-            if (ShiftsButton != null) {
-                ShiftsButton.Dispose ();
-                ShiftsButton = null;
+            if (ShiftsTableView != null) {
+                ShiftsTableView.Dispose ();
+                ShiftsTableView = null;
             }
         }
     }

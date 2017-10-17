@@ -12,6 +12,7 @@ namespace CoffeeManagerAdmin.iOS
     public partial class MoneyView : ViewControllerBase<MoneyViewModel>
     {
         private MvxPickerViewModel coffeeRoomPickerViewModel;
+        private PagingTableSource shiftsSource;
 
         protected override bool UseCustomBackButton => false;
 
@@ -33,14 +34,21 @@ namespace CoffeeManagerAdmin.iOS
                 Image = UIImage.FromBundle("ic_account_circle")
             };
 
+            var creditCardButton = new UIBarButtonItem()
+            {
+                Image = UIImage.FromBundle("ic_credit_card")
+            };
+
             this.AddBindings(new Dictionary<object, string>
             {
                 {settingsButton, "Clicked ShowSettingsCommand"},
-                {usersButton, "Clicked ShowUsersCommand"},
-
+                {usersButton, "Clicked ShowUsersCommand"}, 
+                {creditCardButton, "Clicked ShowCreditCardCommand"},
             });
 
-            NavigationItem.SetRightBarButtonItems(new [] { settingsButton, usersButton}, false);
+            NavigationItem.SetRightBarButtonItems(new [] { creditCardButton, usersButton}, false);
+
+            NavigationItem.SetLeftBarButtonItem(settingsButton, false);
 
             var toolbar = new UIToolbar(new CGRect(0, 0, this.View.Frame.Width, 44));
             toolbar.UserInteractionEnabled = true;
@@ -64,6 +72,12 @@ namespace CoffeeManagerAdmin.iOS
             CoffeeRoomTextField.InputAccessoryView = toolbar;
         }
 
+        protected override void InitStylesAndContent()
+        {
+            shiftsSource = new PagingTableSource(ShiftsTableView, ShiftInfoCell.Key, ShiftInfoCell.Nib);
+            ShiftsTableView.Source = shiftsSource;
+        }
+
         protected override void DoBind()
         {
             var set = this.CreateBindingSet<MoneyView, MoneyViewModel>();
@@ -71,13 +85,13 @@ namespace CoffeeManagerAdmin.iOS
             set.Bind(EntireMoneyLabel).To(vm => vm.CurrentBalance);
             set.Bind(CreditCardAmountLabel).To(vm => vm.CurrentCreditCardBalance);
             set.Bind(RefreshMoneyButton).To(vm => vm.UpdateEntireMoneyCommand);
-            set.Bind(ShiftsButton).To(vm => vm.ShowShiftsCommand);
-            set.Bind(ProductsButton).To(vm => vm.ShowProductsCommand);
-            set.Bind(CreditCardButton).To(vm => vm.ShowCreditCardCommand);
 
             set.Bind(coffeeRoomPickerViewModel).For(p => p.ItemsSource).To(vm => vm.CoffeeRooms);
             set.Bind(coffeeRoomPickerViewModel).For(p => p.SelectedItem).To(vm => vm.CurrentCoffeeRoom);
             set.Bind(CoffeeRoomTextField).To(vm => vm.CurrentCoffeeRoomName);
+
+            set.Bind(shiftsSource).To(vm => vm.Items);
+            set.Bind(shiftsSource).For(s => s.GetNewPageCommand).To(vm => vm.LoadNextPageCommand).OneWay();
             set.Apply();
         }
     }

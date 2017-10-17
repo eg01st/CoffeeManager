@@ -226,10 +226,6 @@
     <Compile Include="Views\Shifts\ShiftSalesView.designer.cs">
       <DependentUpon>ShiftSalesView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Shifts\ShiftsView.cs" />
-    <Compile Include="Views\Shifts\ShiftsView.designer.cs">
-      <DependentUpon>ShiftsView.cs</DependentUpon>
-    </Compile>
     <Compile Include="Views\Shifts\ShiftInfoCell.cs" />
     <Compile Include="Views\Shifts\ShiftInfoCell.designer.cs">
       <DependentUpon>ShiftInfoCell.cs</DependentUpon>
@@ -417,6 +413,7 @@
     </Compile>
     <Compile Include="Bootstrap\FilePluginBootstrap.cs" />
     <Compile Include="Bootstrap\MessengerPluginBootstrap.cs" />
+    <Compile Include="TableSources\BasePagingTableSource.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Setup.cs" />
@@ -449,7 +446,6 @@
     <InterfaceDefinition Include="Views\ManageExpenses\AddExpenseTypeView.xib" />
     <InterfaceDefinition Include="Views\Shifts\ShiftDetailsView.xib" />
     <InterfaceDefinition Include="Views\Shifts\ShiftSalesView.xib" />
-    <InterfaceDefinition Include="Views\Shifts\ShiftsView.xib" />
     <InterfaceDefinition Include="Views\Shifts\ShiftInfoCell.xib" />
     <InterfaceDefinition Include="Views\Shifts\ExpenseItemCell.xib" />
     <InterfaceDefinition Include="Views\Shifts\GroupedSaleCell.xib" />
@@ -633,24 +629,12 @@
     <BundleResource Include="Resources\ic_attach_money_3x.png" />
     <BundleResource Include="Resources\ic_attach_money_2x.png" />
     <BundleResource Include="Resources\ic_attach_money.png" />
-    <BundleResource Include="Resources\ic_attach_money_white_3x.png" />
-    <BundleResource Include="Resources\ic_attach_money_white_2x.png" />
-    <BundleResource Include="Resources\ic_attach_money_white.png" />
-    <BundleResource Include="Resources\ic_shopping_basket_white_3x.png" />
-    <BundleResource Include="Resources\ic_shopping_basket_white_2x.png" />
-    <BundleResource Include="Resources\ic_shopping_basket_white.png" />
     <BundleResource Include="Resources\ic_shopping_basket_3x.png" />
     <BundleResource Include="Resources\ic_shopping_basket_2x.png" />
     <BundleResource Include="Resources\ic_shopping_basket.png" />
     <BundleResource Include="Resources\ic_account_circle%403x.png" />
     <BundleResource Include="Resources\ic_account_circle%402x.png" />
     <BundleResource Include="Resources\ic_account_circle.png" />
-    <BundleResource Include="Resources\ic_account_circle_white%403x.png" />
-    <BundleResource Include="Resources\ic_account_circle_white%402x.png" />
-    <BundleResource Include="Resources\ic_account_circle_white.png" />
-    <BundleResource Include="Resources\ic_trending_up_white_3x.png" />
-    <BundleResource Include="Resources\ic_trending_up_white_2x.png" />
-    <BundleResource Include="Resources\ic_trending_up_white.png" />
     <BundleResource Include="Resources\ic_trending_up_3x.png" />
     <BundleResource Include="Resources\ic_trending_up_2x.png" />
     <BundleResource Include="Resources\ic_trending_up.png" />
@@ -663,15 +647,9 @@
     <BundleResource Include="Resources\ic_colapse.png" />
     <BundleResource Include="Resources\ic_colapse%403x.png" />
     <BundleResource Include="Resources\ic_colapse%402x.png" />
-    <BundleResource Include="Resources\ic_arrow_upward_white_3x.png" />
-    <BundleResource Include="Resources\ic_arrow_upward_white_2x.png" />
-    <BundleResource Include="Resources\ic_arrow_upward_white.png" />
     <BundleResource Include="Resources\ic_local_cafe_3x.png" />
     <BundleResource Include="Resources\ic_local_cafe_2x.png" />
     <BundleResource Include="Resources\ic_local_cafe.png" />
-    <BundleResource Include="Resources\ic_local_cafe_white_3x.png" />
-    <BundleResource Include="Resources\ic_local_cafe_white_2x.png" />
-    <BundleResource Include="Resources\ic_local_cafe_white.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

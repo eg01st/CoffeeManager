@@ -18,9 +18,9 @@ namespace CoffeManager.Common
         }
 
 
-        public async Task<ShiftInfo[]> GetShifts()
+        public async Task<ShiftInfo[]> GetShifts(int skip)
         {
-            return await shiftProvider.GetShifts();
+            return await shiftProvider.GetShifts(skip);
         }
 
         public async Task<Sale[]> GetShiftSales(int id)

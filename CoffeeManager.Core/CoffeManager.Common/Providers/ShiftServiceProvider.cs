@@ -47,9 +47,9 @@ namespace CoffeManager.Common
 
 
 
-        public async Task<ShiftInfo[]> GetShifts()
+        public async Task<ShiftInfo[]> GetShifts(int skip)
         {
-            return await Get<ShiftInfo[]>(RoutesConstants.GetShifts);
+            return await Get<ShiftInfo[]>(RoutesConstants.GetShifts, new Dictionary<string, string>() { { nameof(skip), skip.ToString() } });
         }
 
         public async Task<Sale[]> GetShiftSales(int id)

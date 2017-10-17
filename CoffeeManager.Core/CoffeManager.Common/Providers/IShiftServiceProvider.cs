@@ -14,7 +14,7 @@ namespace CoffeManager.Common
 
         Task<EndShiftUserInfo> EndShift(int shiftId, decimal realAmount, int endCounter);
 
-        Task<ShiftInfo[]> GetShifts();
+        Task<ShiftInfo[]> GetShifts(int skip);
 
         Task<Sale[]> GetShiftSales(int id);
 

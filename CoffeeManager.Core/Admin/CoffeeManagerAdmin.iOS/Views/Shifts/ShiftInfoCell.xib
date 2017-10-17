@@ -4,7 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -53,17 +53,8 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M1n-gm-OEz">
-                        <rect key="frame" x="278" y="14" width="40" height="17"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="40" id="tYJ-mz-wyR"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BVZ-dy-Nt6">
-                        <rect key="frame" x="326" y="14" width="40" height="17"/>
+                        <rect key="frame" x="278" y="14" width="40" height="17"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="40" id="gdE-Jf-cPm"/>
                         </constraints>
@@ -80,16 +71,25 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M1n-gm-OEz">
+                        <rect key="frame" x="326" y="14" width="40" height="17"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="40" id="tYJ-mz-wyR"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="BVZ-dy-Nt6" firstAttribute="leading" secondItem="M1n-gm-OEz" secondAttribute="trailing" constant="8" id="08Z-Tb-14N"/>
+                    <constraint firstItem="M1n-gm-OEz" firstAttribute="leading" secondItem="BVZ-dy-Nt6" secondAttribute="trailing" constant="8" id="0je-Lg-N00"/>
                     <constraint firstItem="8Vr-Wd-Awm" firstAttribute="leading" secondItem="HxB-Ku-TIw" secondAttribute="trailing" constant="8" id="3dU-H4-cRn"/>
                     <constraint firstItem="ZjA-BJ-bW5" firstAttribute="leading" secondItem="8Vr-Wd-Awm" secondAttribute="trailing" constant="8" id="8Va-4g-mra"/>
                     <constraint firstItem="psI-sY-5Ls" firstAttribute="leading" secondItem="ZjA-BJ-bW5" secondAttribute="trailing" constant="8" id="BKr-FF-opj"/>
                     <constraint firstItem="eCp-In-zCh" firstAttribute="centerY" secondItem="YTl-1W-gDM" secondAttribute="centerY" id="Dkg-ux-XNM"/>
                     <constraint firstItem="ZjA-BJ-bW5" firstAttribute="centerY" secondItem="8Vr-Wd-Awm" secondAttribute="centerY" id="InF-Zz-KfX"/>
+                    <constraint firstItem="BVZ-dy-Nt6" firstAttribute="leading" secondItem="psI-sY-5Ls" secondAttribute="trailing" constant="8" id="JHO-03-t6L"/>
                     <constraint firstItem="8Vr-Wd-Awm" firstAttribute="centerY" secondItem="HxB-Ku-TIw" secondAttribute="centerY" id="ZQk-Bb-iIF"/>
-                    <constraint firstItem="M1n-gm-OEz" firstAttribute="leading" secondItem="psI-sY-5Ls" secondAttribute="trailing" constant="8" id="anu-uK-Tfb"/>
                     <constraint firstItem="M1n-gm-OEz" firstAttribute="centerY" secondItem="psI-sY-5Ls" secondAttribute="centerY" id="gJC-cb-129"/>
                     <constraint firstItem="psI-sY-5Ls" firstAttribute="centerY" secondItem="ZjA-BJ-bW5" secondAttribute="centerY" id="hcw-b7-Jj0"/>
                     <constraint firstItem="HxB-Ku-TIw" firstAttribute="centerY" secondItem="eCp-In-zCh" secondAttribute="centerY" id="j45-Di-n9v"/>
