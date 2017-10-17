@@ -1,4 +1,4 @@
-﻿﻿using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -6,6 +6,7 @@ using MvvmCross.Core.ViewModels;
 using System.Linq;
 using System.Text;
 using CoffeManager.Common;
+using System;
 
 namespace CoffeeManager.Core.ViewModels
 {
@@ -20,6 +21,7 @@ namespace CoffeeManager.Core.ViewModels
         private bool _isCreditCardSaleEnabled;
         private string _sumButtonText;
         private int _sum;
+        private int _changeSum;
         private ObservableCollection<SelectedProductViewModel> _selectedProducts = new ObservableCollection<SelectedProductViewModel>();
 
         public bool IsPoliceSaleEnabled
@@ -63,6 +65,15 @@ namespace CoffeeManager.Core.ViewModels
             }
         }
 
+        public int ChangeSum
+        {
+            get => _changeSum;
+            set
+            {
+                _changeSum = value;
+                RaisePropertyChanged(nameof(ChangeSum));
+            }
+        }
 
 
         public string SumButtonText
@@ -95,6 +106,8 @@ namespace CoffeeManager.Core.ViewModels
         public ICommand ShowInventoryCommand { get; set; }
         public ICommand ShowUtilizeCommand { get; set; }
         public ICommand ShowSettingsCommand { get; set; }
+
+        public ICommand ShowChanrgeCommand { get; set; }
 
         public ObservableCollection<SelectedProductViewModel> SelectedProducts
         {
@@ -152,6 +165,12 @@ namespace CoffeeManager.Core.ViewModels
             ShowInventoryCommand= new MvxCommand(() => ShowViewModel<InventoryViewModel>());
             ShowUtilizeCommand = new MvxCommand(() => ShowViewModel<UtilizeProductsViewModel>());
             ShowSettingsCommand = new MvxCommand(() => ShowViewModel<SettingsViewModel>(new { isInitialSetup = false }));
+            ShowChanrgeCommand = new MvxCommand<int>((sum) => DoShowCharge(sum));
+        }
+
+        private void DoShowCharge(int sum)
+        {
+            ChangeSum = Sum - sum;
         }
 
         public async Task Init(int userId, int shiftId)
@@ -233,6 +252,7 @@ namespace CoffeeManager.Core.ViewModels
             await ExecuteSafe(async () => await Task.WhenAll(tasks));
             SelectedProducts.Clear();
             Sum = 0;
+            ChangeSum = 0;
         }
 
         protected override void DoUnsubscribe()

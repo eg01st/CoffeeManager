@@ -33,11 +33,11 @@ namespace CoffeeManagerAdmin.iOS
         private void InitTabBar()
         {
             var tabBar = TabBar;
-            TabBar.BackgroundColor = UIColor.LightGray;
-            TabBar.TintColor = UIColor.White;
+           // TabBar.BackgroundColor = UIColor.LightGray;
+          //  TabBar.TintColor = UIColor.White;
 
-            UITabBarItem.Appearance.SetTitleTextAttributes(new UITextAttributes() { TextColor = UIColor.White }, UIControlState.Normal);
-            UITabBarItem.Appearance.SetTitleTextAttributes(new UITextAttributes() {  TextColor = UIColor.Black }, UIControlState.Selected);
+          //  UITabBarItem.Appearance.SetTitleTextAttributes(new UITextAttributes() { TextColor = UIColor.White }, UIControlState.Normal);
+           // UITabBarItem.Appearance.SetTitleTextAttributes(new UITextAttributes() {  TextColor = UIColor.Black }, UIControlState.Selected);
         
         }
 
