@@ -73,7 +73,6 @@
     <Compile Include="ViewModels\Statistic\CreditCardSalesViewModel.cs" />
     <Compile Include="ViewModels\ManageExpenses\ManageExpensesViewModel.cs" />
     <Compile Include="ViewModels\ManageExpenses\ManageExpenseItemViewModel.cs" />
-    <Compile Include="ViewModels\Products\ProductsViewModel.cs" />
     <Compile Include="ViewModels\Products\ProductItemViewModel.cs" />
     <Compile Include="ViewModels\Products\ProductDetailsViewModel.cs" />
     <Compile Include="ViewModels\SaleItemViewModel.cs" />
@@ -121,6 +120,8 @@
     <Compile Include="ViewModels\Home\UsersViewModel.cs" />
     <Compile Include="ViewModels\Home\StatisticViewModel.cs" />
     <Compile Include="ViewModels\Home\StorageViewModel.cs" />
+    <Compile Include="ViewModels\Home\ProductsViewModel.cs" />
+    <Compile Include="Messages\CoffeeRoomChangedMessage.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">

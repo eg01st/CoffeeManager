@@ -17,6 +17,7 @@ namespace CoffeeManagerAdmin.Core
 
         private ICommand _addProductCommand;
         readonly IProductManager manager;
+        private readonly MvxSubscriptionToken _coffeeRoomChangedToken;
 
         public ProductsViewModel(IProductManager manager)
         {
@@ -26,6 +27,11 @@ namespace CoffeeManagerAdmin.Core
             {
                 await Init();
             });
+            _coffeeRoomChangedToken = Subscribe<CoffeeRoomChangedMessage>(async (obj) =>
+            {
+                await Init();
+            });
+
         }
 
 
@@ -54,6 +60,7 @@ namespace CoffeeManagerAdmin.Core
         protected override void DoUnsubscribe()
         {
             Unsubscribe<ProductListChangedMessage>(_productListChangedToken);
+            Unsubscribe<CoffeeRoomChangedMessage>(_coffeeRoomChangedToken);
         }
       
     }

@@ -310,7 +310,7 @@ namespace CoffeManager.Common
             if(httpClient == null)
             {
                 httpClient = new HttpClient();
-                httpClient.Timeout = new TimeSpan(0, 0, 20);
+                httpClient.Timeout = new TimeSpan(0, 0, 40);
             }
 
             return httpClient;
