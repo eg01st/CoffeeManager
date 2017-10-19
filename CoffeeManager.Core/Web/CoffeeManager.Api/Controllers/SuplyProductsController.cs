@@ -24,7 +24,7 @@ namespace CoffeeManager.Api.Controllers
 			//	return Request.CreateResponse (HttpStatusCode.Forbidden);
 			//}
 			var entites = new CoffeeRoomEntities ();
-            var items = entites.SupliedProducts.Include(s => s.ExpenseType).Where(s => s.CoffeeRoomNo == coffeeroomno && !s.Removed).ToList ().Select (p => p.ToDTO ());
+            var items = entites.SupliedProducts.Include(p => p.SuplyProductQuantities).Include(s => s.ExpenseType).Where(s => !s.Removed).ToList ().Select (p => p.ToDTO (coffeeroomno));
 			return Request.CreateResponse (HttpStatusCode.OK, items);
 		}
 
@@ -33,10 +33,10 @@ namespace CoffeeManager.Api.Controllers
         public async Task<HttpResponseMessage> GetSuplyProduct([FromUri] int coffeeroomno, [FromUri] int id, HttpRequestMessage message)
         {
             var entites = new CoffeeRoomEntities();
-            var item = entites.SupliedProducts.FirstOrDefault(p => p.Id == id && p.CoffeeRoomNo == coffeeroomno);
+            var item = entites.SupliedProducts.Include(p => p.SuplyProductQuantities).FirstOrDefault(p => p.Id == id);
             if(item != null)
             {
-                var suplyProduct = item.ToDTO();
+                var suplyProduct = item.ToDTO(coffeeroomno);
                 var product = entites.Products.FirstOrDefault(p => p.SuplyProductId.HasValue && p.SuplyProductId.Value == id);
                 if(product != null)
                 {
@@ -56,13 +56,28 @@ namespace CoffeeManager.Api.Controllers
             var sProduct = JsonConvert.DeserializeObject<Models.SupliedProduct>(request);
 
             var entites = new CoffeeRoomEntities();
-            var item = entites.SupliedProducts.FirstOrDefault(p => p.Id == sProduct.Id && p.CoffeeRoomNo == coffeeroomno);
+            var item = entites.SupliedProducts.Include(s => s.SuplyProductQuantities).FirstOrDefault(p => p.Id == sProduct.Id);
 
             if (item != null)
             {
                 var prodDb = DbMapper.Update(sProduct, item);
+                var quantity = prodDb.SuplyProductQuantities.FirstOrDefault(q => q.CoffeeRoomId == coffeeroomno);
+                if (quantity != null)
+                {
+                    quantity.Quantity = sProduct.Quatity.Value;
+                }
+                else
+                {
+                    var newQuantity = new SuplyProductQuantity()
+                    {
+                        CoffeeRoomId = coffeeroomno,
+                        SuplyProductId = item.Id,
+                        Quantity = sProduct.Quatity.Value
+                    };
+                    entites.SuplyProductQuantities.Add(newQuantity);
+                }
                 await entites.SaveChangesAsync();
-                return Request.CreateResponse(HttpStatusCode.OK, item.ToDTO());
+                return Request.CreateResponse(HttpStatusCode.OK, item.ToDTO(coffeeroomno));
             }
             return Request.CreateErrorResponse(HttpStatusCode.RequestedRangeNotSatisfiable, $"Cannot find suplyId {sProduct.Id}");
         }
@@ -86,7 +101,7 @@ namespace CoffeeManager.Api.Controllers
         public async Task<HttpResponseMessage> DeleteSuplyProduct([FromUri] int coffeeroomno, [FromUri] int id, HttpRequestMessage message)
         {
             var entities = new CoffeeRoomEntities();
-            var suplyProduct = entities.SupliedProducts.FirstOrDefault(r => r.Id == id && r.CoffeeRoomNo == coffeeroomno);
+            var suplyProduct = entities.SupliedProducts.FirstOrDefault(r => r.Id == id);
             if (suplyProduct != null)
             {
                 suplyProduct.Removed = true;
@@ -118,7 +133,6 @@ namespace CoffeeManager.Api.Controllers
                 var suplyProduct = entites.SupliedProducts.First(p => p.Id == productCalculation.SuplyProductId);
                 items.Add(new CalculationItem()
                 {
-                    CoffeeRoomNo = suplyProduct.CoffeeRoomNo.Value,
                     Id = productCalculation.Id,
                     Name = suplyProduct.Name,
                     Quantity = productCalculation.Quantity,
@@ -176,8 +190,8 @@ namespace CoffeeManager.Api.Controllers
             var item = JsonConvert.DeserializeObject<Models.UtilizedSuplyProduct>(request);
             var entites = new CoffeeRoomEntities();
        
-            var suplyProduct = entites.SupliedProducts.First(p => p.Id == item.SuplyProductId);
-            suplyProduct.Quantity -= item.Quantity;
+            var suplyProductQuantity = entites.SuplyProductQuantities.First(p => p.SuplyProductId == item.SuplyProductId && p.CoffeeRoomId == coffeeroomno);
+            suplyProductQuantity.Quantity -= item.Quantity;
 
             var dbItem = DbMapper.Map(item);
             entites.UtilizedSuplyProducts.Add(dbItem);
@@ -197,6 +211,47 @@ namespace CoffeeManager.Api.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, items);
         }
 
+
+	    [Route(RoutesConstants.TransferSuplyProduct)]
+	    [HttpPost]
+	    public async Task<HttpResponseMessage> TransferSuplyProduct([FromUri] int coffeeroomno, HttpRequestMessage message)
+	    {
+	        var request = await message.Content.ReadAsStringAsync();
+	        var transferRequests = JsonConvert.DeserializeObject<IEnumerable<TransferSuplyProductRequest>>(request);
+
+            var entites = new CoffeeRoomEntities();
+
+	        foreach (var transferRequest in transferRequests)
+	        {
+	            var itemFrom = entites.SuplyProductQuantities.First(u =>
+	                u.SuplyProductId == transferRequest.SuplyProductId &&
+	                u.CoffeeRoomId == transferRequest.CoffeeRoomIdFrom);
+	            if (itemFrom.Quantity < transferRequest.Quantity)
+	            {
+	                throw new Exception("Source quantity less than requested quantity");
+	            }
+	            itemFrom.Quantity -= transferRequest.Quantity;
+	            var itemTo = entites.SuplyProductQuantities.FirstOrDefault(u =>
+	                u.SuplyProductId == transferRequest.SuplyProductId &&
+	                u.CoffeeRoomId == transferRequest.CoffeeRoomIdTo);
+	            if (itemTo != null)
+	            {
+	                itemTo.Quantity += transferRequest.Quantity;
+	            }
+	            else
+	            {
+	                var quantity = new SuplyProductQuantity()
+	                {
+	                    CoffeeRoomId = transferRequest.CoffeeRoomIdTo,
+	                    SuplyProductId = transferRequest.SuplyProductId,
+	                    Quantity = transferRequest.Quantity
+	                };
+	                entites.SuplyProductQuantities.Add(quantity);
+	            }
+	        }
+	        entites.SaveChanges();
+            return Request.CreateResponse(HttpStatusCode.OK);
+	    }
 
     }
 }

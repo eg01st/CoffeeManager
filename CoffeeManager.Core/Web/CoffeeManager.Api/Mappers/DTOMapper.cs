@@ -75,7 +75,7 @@ namespace CoffeeManager.Api.Mappers
             };
         }
 
-        public static Models.ExpenseType ToDTO(this ExpenseType expenseDb)
+        public static Models.ExpenseType ToDTO(this ExpenseType expenseDb , int coffeeroomno)
         {
             return new Models.ExpenseType()
             {
@@ -83,7 +83,7 @@ namespace CoffeeManager.Api.Mappers
                 Name = expenseDb.Name,
                 CoffeeRoomNo = expenseDb.CoffeeRoomNo.Value,
                 IsActive = expenseDb.IsActive,
-                SuplyProducts = expenseDb.SupliedProducts.Select(s => s.ToDTO()).ToArray()
+                SuplyProducts = expenseDb.SupliedProducts.Select(s => s.ToDTO(coffeeroomno)).ToArray()
             };
         }
 
@@ -112,14 +112,13 @@ namespace CoffeeManager.Api.Mappers
             };
         }
 
-        public static Models.SupliedProduct ToDTO(this SupliedProduct productDb)
+        public static Models.SupliedProduct ToDTO(this SupliedProduct productDb, int coffeeroomno)
         {
             return new Models.SupliedProduct()
             {
                 Id = productDb.Id,
                 Name = productDb.Name,
-                CoffeeRoomNo = productDb.CoffeeRoomNo.Value,
-                Quatity = productDb.Quantity,
+                Quatity = productDb.SuplyProductQuantities.FirstOrDefault(q => q.CoffeeRoomId == coffeeroomno)?.Quantity ?? 0,
                 Price = productDb.Price,
                 ExpenseTypeId = productDb.ExprenseTypeId,
                 ExpenseTypeName = productDb.ExpenseType?.Name,

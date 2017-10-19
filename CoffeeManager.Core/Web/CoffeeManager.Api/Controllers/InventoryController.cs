@@ -8,6 +8,7 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Data.Entity;
 
 namespace CoffeeManager.Api.Controllers
 {
@@ -19,7 +20,7 @@ namespace CoffeeManager.Api.Controllers
         public async Task<HttpResponseMessage> GetInventoryItems([FromUri]int coffeeroomno, HttpRequestMessage message)
         {
             var entities = new CoffeeRoomEntities();
-            var items = entities.SupliedProducts.Where(s => s.CoffeeRoomNo == coffeeroomno && s.InventoryEnabled).ToList().Select(s => s.ToDTO());
+            var items = entities.SupliedProducts.Include(p => p.SuplyProductQuantities).Where(s => s.InventoryEnabled).ToList().Select(s => s.ToDTO(coffeeroomno));
 
             return Request.CreateResponse(HttpStatusCode.OK, items);
         }
@@ -60,7 +61,7 @@ namespace CoffeeManager.Api.Controllers
 
             foreach (var inv in inventoryItems)
             {
-                var suplyProduct = entities.SupliedProducts.First(p => p.Id == inv.SuplyProductId);
+                var suplyProduct = entities.SuplyProductQuantities.First(p => p.SuplyProductId == inv.SuplyProductId && p.CoffeeRoomId == coffeeroomno);
                 suplyProduct.Quantity = inv.QuantityAfer;
             }
             await entities.SaveChangesAsync();
@@ -73,7 +74,7 @@ namespace CoffeeManager.Api.Controllers
         public async Task<HttpResponseMessage> ToggleItemInventoryEnabled([FromUri]int coffeeroomno, [FromUri]int suplyProductId, HttpRequestMessage message)
         {
             var entities = new CoffeeRoomEntities();
-            var suplyProduct = entities.SupliedProducts.First(s => s.Id == suplyProductId && s.CoffeeRoomNo == coffeeroomno);
+            var suplyProduct = entities.SupliedProducts.First(s => s.Id == suplyProductId);
             suplyProduct.InventoryEnabled = !suplyProduct.InventoryEnabled;
             await entities.SaveChangesAsync();
 

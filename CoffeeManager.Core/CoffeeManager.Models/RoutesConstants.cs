@@ -73,6 +73,8 @@ namespace CoffeeManager.Models
         public const string AddProductCalculationItem = SuplyProducts + "/addproductcalculationitem";
         public const string UtilizeSuplyProduct = SuplyProducts + "/utilizeSuplyProduct";
         public const string GetUtilizedSuplyProducts = SuplyProducts + "/getUtilizedSuplyProducts";
+        public const string TransferSuplyProduct = SuplyProducts + "/TransferSuplyProduct";
+        
 
         public const string Users = Api + "/users";
         public const string GetUsers = Users + "/getUsers";

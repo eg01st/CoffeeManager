@@ -169,8 +169,7 @@ namespace CoffeeManager.Api.Controllers
                 var coffeeSales = sales.Where(s => s.Product1.ProductType == coffeeProductTypeId);
 
                 var coffeeSuplyProduct = entities.SupliedProducts
-                    .FirstOrDefault(s => s.CoffeeRoomNo == coffeeroomno 
-                    && "Кофе".Equals(s.Name, StringComparison.OrdinalIgnoreCase));
+                    .FirstOrDefault(s => "Кофе".Equals(s.Name, StringComparison.OrdinalIgnoreCase));
                 if (coffeeSuplyProduct != null)
                 {
                     foreach (var item in coffeeSales)

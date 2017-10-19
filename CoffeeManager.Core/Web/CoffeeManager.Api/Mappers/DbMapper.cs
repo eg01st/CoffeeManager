@@ -86,7 +86,6 @@ namespace CoffeeManager.Api.Mappers
 
 	    public static SupliedProduct Update(Models.SupliedProduct sProduct, SupliedProduct dbProd)
 	    {
-	        dbProd.Quantity = sProduct.Quatity;
             dbProd.ExpenseNumerationMultyplier = sProduct.ExpenseNumerationMultyplier;
 	        dbProd.ExpenseNumerationName = sProduct.ExpenseNumerationName;
 	        dbProd.InventoryNumerationMultyplier = sProduct.InventoryNumerationMultyplier;
@@ -98,8 +97,6 @@ namespace CoffeeManager.Api.Mappers
         public static SupliedProduct Map (Models.SupliedProduct sProduct)
 		{
 			return new SupliedProduct () {
-				Quantity = 0,
-				CoffeeRoomNo = sProduct.CoffeeRoomNo,
 				Name = sProduct.Name,
 				Price = sProduct.Price,
                 ExpenseNumerationName = "Штуки",

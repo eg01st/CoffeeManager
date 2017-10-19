@@ -296,6 +296,9 @@
     <Compile Include="SuplyOrderItem.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="SuplyProductQuantity.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="UsedCupsPerShift.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>

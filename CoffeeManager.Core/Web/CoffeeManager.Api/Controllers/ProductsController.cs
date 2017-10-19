@@ -126,9 +126,9 @@ namespace CoffeeManager.Api.Controllers
                         }
                         foreach (var productCalculation in product.ProductCalculations)
                         {
-                            var supliedProduct =
-                                sContext.SupliedProducts.First(p => p.Id == productCalculation.SuplyProductId);
-                            supliedProduct.Quantity -= productCalculation.Quantity;
+                            var supliedProductQuantity =
+                                sContext.SuplyProductQuantities.First(p => p.SuplyProductId == productCalculation.SuplyProductId && p.CoffeeRoomId == coffeeroomno);
+                            supliedProductQuantity.Quantity -= productCalculation.Quantity;
                             sContext.SaveChanges();
                         }
                     }
@@ -159,7 +159,7 @@ namespace CoffeeManager.Api.Controllers
                     foreach (var productCalculation in product.ProductCalculations)
                     {
                         var supliedProduct =
-                            sContext.SupliedProducts.First(p => p.Id == productCalculation.SuplyProductId);
+                            sContext.SuplyProductQuantities.First(p => p.SuplyProductId == productCalculation.SuplyProductId && p.CoffeeRoomId == coffeeroomno);
                         supliedProduct.Quantity += productCalculation.Quantity;
                         await sContext.SaveChangesAsync();
                     }

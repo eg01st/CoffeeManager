@@ -133,15 +133,22 @@ namespace CoffeeManager.Api.Controllers
 
             foreach (var item in orderDb.SuplyOrderItems)
             {
-                var prod = entities.SupliedProducts.First(s => s.Id == item.SuplyProductId);
-                prod.Price = item.Price;
-                if (prod.Quantity.HasValue)
+                var quantity = entities.SuplyProductQuantities.FirstOrDefault(s => s.SuplyProductId == item.SuplyProductId && s.CoffeeRoomId == coffeeroomno);
+                
+                if (quantity != null)
                 {
-                    prod.Quantity += item.Quantity;
+                    quantity.Quantity += item.Quantity;
                 }
                 else
                 {
-                    prod.Quantity = item.Quantity;
+                    var sp = entities.SupliedProducts.First(s => s.Id == item.SuplyProductId);
+                    var newQuantity = new SuplyProductQuantity()
+                    {
+                        CoffeeRoomId = coffeeroomno,
+                        SuplyProductId = item.SuplyProductId.Value,
+                        Quantity = item.Quantity * sp.ExpenseNumerationMultyplier
+                    };
+                    entities.SuplyProductQuantities.Add(newQuantity);
                 }  
             }
 

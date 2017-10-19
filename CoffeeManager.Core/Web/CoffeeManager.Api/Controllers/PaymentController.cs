@@ -64,8 +64,8 @@ namespace CoffeeManager.Api.Controllers
         public async Task<HttpResponseMessage> GetExpenseItems([FromUri]int coffeeroomno, HttpRequestMessage message)
         {
             var entities = new  CoffeeRoomEntities();
-            var types = entities.ExpenseTypes.Where(t => !t.IsRemoved).Include(i => i.SupliedProducts)
-                .Where(t => t.CoffeeRoomNo == coffeeroomno).ToList().Select(s => s.ToDTO());
+            var types = entities.ExpenseTypes.Where(t => !t.IsRemoved).Include(i => i.SupliedProducts).Include(i => i.SupliedProducts.Select(s => s.SuplyProductQuantities))
+                .Where(t => t.CoffeeRoomNo == coffeeroomno).ToList().Select(s => s.ToDTO(coffeeroomno));
             return Request.CreateResponse(HttpStatusCode.OK, types);
         }
 
@@ -100,7 +100,7 @@ namespace CoffeeManager.Api.Controllers
         public async Task<HttpResponseMessage> MapExpenseToSuplyProduct([FromUri]int coffeeroomno, [FromUri]int expenseTypeId, [FromUri]int suplyProductId, HttpRequestMessage message)
         {
             var entities = new CoffeeRoomEntities();
-            var sp = entities.SupliedProducts.FirstOrDefault(t => t.CoffeeRoomNo == coffeeroomno && t.Id == suplyProductId);
+            var sp = entities.SupliedProducts.FirstOrDefault(t => t.Id == suplyProductId);
             if (sp != null)
             {
                 sp.ExprenseTypeId = expenseTypeId;
@@ -114,7 +114,7 @@ namespace CoffeeManager.Api.Controllers
         public async Task<HttpResponseMessage> GetMappedSuplyProductsToExpense([FromUri]int coffeeroomno, [FromUri]int expenseTypeId, HttpRequestMessage message)
         {
             var entities = new CoffeeRoomEntities();
-            var sp = entities.SupliedProducts.Where(t => t.CoffeeRoomNo == coffeeroomno && t.ExprenseTypeId == expenseTypeId).ToList().Select(s => s.ToDTO());
+            var sp = entities.SupliedProducts.Include(p => p.SuplyProductQuantities).Where(t => t.ExprenseTypeId == expenseTypeId).ToList().Select(s => s.ToDTO(coffeeroomno));
 
             return Request.CreateResponse(HttpStatusCode.OK, sp);
         }
@@ -124,7 +124,7 @@ namespace CoffeeManager.Api.Controllers
         public async Task<HttpResponseMessage> RemoveMappedSuplyProductsToExpense([FromUri]int coffeeroomno, [FromUri]int expenseTypeId, [FromUri]int suplyProductId, HttpRequestMessage message)
         {
             var entities = new CoffeeRoomEntities();
-            var sp = entities.SupliedProducts.FirstOrDefault(t => t.CoffeeRoomNo == coffeeroomno && t.Id == suplyProductId);
+            var sp = entities.SupliedProducts.FirstOrDefault(t =>  t.Id == suplyProductId);
             if (sp != null)
             {
                 sp.ExprenseTypeId = null;
@@ -148,13 +148,23 @@ namespace CoffeeManager.Api.Controllers
                     s => s.ExprenseTypeId.HasValue && s.ExprenseTypeId.Value == expense.ExpenseId);
             if (suplyProduct != null)
             {
-                if (suplyProduct.Quantity.HasValue)
+                var quantity = entities.SuplyProductQuantities.FirstOrDefault(q =>
+                    q.SuplyProductId == suplyProduct.Id && q.CoffeeRoomId == coffeeroomno);
+                if (quantity != null)
                 {
-                    suplyProduct.Quantity += expense.ItemCount;
+                    quantity.Quantity += expense.ItemCount;
+
                 }
                 else
                 {
-                    suplyProduct.Quantity = expense.ItemCount;
+                    var newQuantity = new SuplyProductQuantity()
+                    {
+                        CoffeeRoomId = coffeeroomno,
+                        SuplyProductId = suplyProduct.Id,
+                        Quantity = expense.ItemCount
+                    };
+                    entities.SuplyProductQuantities.Add(newQuantity);
+
                 }
             }
             var currentShift = entities.Shifts.First(s => s.Id == expense.ShiftId);
@@ -206,17 +216,23 @@ namespace CoffeeManager.Api.Controllers
                 {
                     continue;
                 }
-                var suplyProductDb = entities.SupliedProducts.First(s => s.Id == suplyProduct.Id);
+                var suplyProductQuantity = entities.SuplyProductQuantities.Include(s => s.SupliedProduct).FirstOrDefault(s => s.SuplyProductId == suplyProduct.Id && s.CoffeeRoomId == coffeeroomno);
     
-                if (suplyProductDb.Quantity.HasValue)
+                if (suplyProductQuantity != null)
                 {
-                    suplyProductDb.Quantity += suplyProduct.Quatity * suplyProductDb.ExpenseNumerationMultyplier;
+                    suplyProductQuantity.Quantity += suplyProduct.Quatity.Value * suplyProductQuantity.SupliedProduct.ExpenseNumerationMultyplier;
                 }
                 else
                 {
-                    suplyProductDb.Quantity = suplyProduct.Quatity * suplyProductDb.ExpenseNumerationMultyplier;
-                }
-                
+                    var sp = entities.SupliedProducts.First(s => s.Id == suplyProduct.Id);
+                    var newQuantity = new SuplyProductQuantity()
+                    {
+                        CoffeeRoomId = coffeeroomno,
+                        SuplyProductId = suplyProduct.Id,
+                        Quantity = suplyProduct.Quatity.Value * sp.ExpenseNumerationMultyplier
+                    };
+                    entities.SuplyProductQuantities.Add(newQuantity);
+                }            
             }
            
             var currentShift = entities.Shifts.First(s => s.Id == expense.ShiftId);
@@ -261,9 +277,8 @@ namespace CoffeeManager.Api.Controllers
 
                 foreach (var sp in suplyProducts)
                 {
-                    var suplyProduct = entities.SupliedProducts.First(s => s.Id == sp.SuplyProductId);
-                    suplyProduct.Quantity -= sp.Quantity * suplyProduct.ExpenseNumerationMultyplier;
-
+                    var suplyProductQuantity = entities.SuplyProductQuantities.Include(s => s.SupliedProduct).First(s => s.SuplyProductId == sp.SuplyProductId && s.CoffeeRoomId == coffeeroomno);
+                    suplyProductQuantity.Quantity -= sp.Quantity * suplyProductQuantity.SupliedProduct.ExpenseNumerationMultyplier;
                     entities.ExpenseSuplyProducts.Remove(sp);
                 }
             }

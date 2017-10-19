@@ -18,6 +18,7 @@ namespace CoffeeManager.Api
         public CoffeeRoom()
         {
             this.CashoutHistories = new HashSet<CashoutHistory>();
+            this.SuplyProductQuantities = new HashSet<SuplyProductQuantity>();
         }
     
         public int Id { get; set; }
@@ -26,5 +27,7 @@ namespace CoffeeManager.Api
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CashoutHistory> CashoutHistories { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SuplyProductQuantity> SuplyProductQuantities { get; set; }
     }
 }
