@@ -46,7 +46,7 @@ namespace CoffeeManagerAdmin.iOS
                 {creditCardButton, "Clicked ShowCreditCardCommand"},
             });
 
-            NavigationItem.SetRightBarButtonItems(new [] { creditCardButton, usersButton}, false);
+            NavigationItem.SetRightBarButtonItems(new [] { creditCardButton, usersButton}, true);
 
             NavigationItem.SetLeftBarButtonItem(settingsButton, false);
 

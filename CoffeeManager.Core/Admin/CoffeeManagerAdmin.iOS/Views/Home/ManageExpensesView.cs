@@ -30,7 +30,7 @@ namespace CoffeeManagerAdmin.iOS
             };
 
 
-            NavigationItem.SetRightBarButtonItem(btn, false);
+            NavigationItem.SetRightBarButtonItem(btn, true);
             this.AddBindings(new Dictionary<object, string>
             {
                 {btn, "Clicked AddExpenseTypeCommand"},

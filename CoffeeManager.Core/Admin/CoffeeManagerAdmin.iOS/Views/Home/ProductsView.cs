@@ -26,7 +26,7 @@ namespace CoffeeManagerAdmin.iOS
                 Image = UIImage.FromBundle("ic_add_circle_outline")
             };
 
-            NavigationItem.SetRightBarButtonItem(btn, false);
+            NavigationItem.SetRightBarButtonItem(btn, true);
             this.AddBindings(new Dictionary<object, string>
             {
                 {btn, "Clicked AddProductCommand"},

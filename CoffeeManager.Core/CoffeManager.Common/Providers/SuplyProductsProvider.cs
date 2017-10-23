@@ -63,5 +63,10 @@ namespace CoffeManager.Common
         {
             return await Get<IEnumerable<UtilizedSuplyProduct>>(RoutesConstants.GetUtilizedSuplyProducts);
         }
+
+        public async Task TransferSuplyProducts(IEnumerable<TransferSuplyProductRequest> requests)
+        {
+            await Post(RoutesConstants.TransferSuplyProduct, requests);
+        }
     }
 }

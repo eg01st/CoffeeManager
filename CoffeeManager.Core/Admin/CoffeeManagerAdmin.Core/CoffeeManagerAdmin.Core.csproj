@@ -122,6 +122,8 @@
     <Compile Include="ViewModels\Home\StorageViewModel.cs" />
     <Compile Include="ViewModels\Home\ProductsViewModel.cs" />
     <Compile Include="Messages\CoffeeRoomChangedMessage.cs" />
+    <Compile Include="ViewModels\TransferSuplyProduct\TransferSuplyProductsViewModel.cs" />
+    <Compile Include="ViewModels\TransferSuplyProduct\TransferSuplyProductItemViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">
@@ -181,6 +183,7 @@
     <Folder Include="ViewModels\Settings\" />
     <Folder Include="ViewModels\CreditCard\" />
     <Folder Include="ViewModels\Home\" />
+    <Folder Include="ViewModels\TransferSuplyProduct\" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
