@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TransferSuplyProductsView">
+            <connections>
+                <outlet property="view" destination="2" id="RRd-Eg-VrN"/>
+                <outlet property="CoffeeRoomFromTextField" destination="HGC-EN-OIa" id="name-outlet-HGC-EN-OIa"/>
+                <outlet property="CoffeeRoomToTextField" destination="Z22-pt-QzP" id="name-outlet-Z22-pt-QzP"/>
+                <outlet property="TransferButton" destination="maK-sa-3kb" id="name-outlet-maK-sa-3kb"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="2">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Переводим с кофейни:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZQD-rG-MeZ" misplaced="YES">
+                    <rect key="frame" x="16" y="16" width="343" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HGC-EN-OIa" misplaced="YES">
+                    <rect key="frame" x="16" y="53" width="343" height="30"/>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="на кофейню:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LMa-Mc-4BX" misplaced="YES">
+                    <rect key="frame" x="16" y="99" width="343" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Z22-pt-QzP" misplaced="YES">
+                    <rect key="frame" x="16" y="136" width="343" height="30"/>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="maK-sa-3kb" misplaced="YES">
+                    <rect key="frame" x="120.5" y="182" width="134" height="30"/>
+                    <state key="normal" title="Выбрать продукты"/>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="HGC-EN-OIa" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="16" id="0iZ-Qm-ake"/>
+                <constraint firstItem="LMa-Mc-4BX" firstAttribute="top" secondItem="HGC-EN-OIa" secondAttribute="bottom" constant="16" id="1aL-y7-XPy"/>
+                <constraint firstItem="Z22-pt-QzP" firstAttribute="top" secondItem="LMa-Mc-4BX" secondAttribute="bottom" constant="16" id="1ob-Bf-rto"/>
+                <constraint firstItem="ZQD-rG-MeZ" firstAttribute="top" secondItem="2" secondAttribute="top" constant="16" id="2zH-B7-mtU"/>
+                <constraint firstItem="Z22-pt-QzP" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="16" id="AuM-2b-OML"/>
+                <constraint firstItem="maK-sa-3kb" firstAttribute="centerX" secondItem="2" secondAttribute="centerX" id="DN1-xa-cqF"/>
+                <constraint firstItem="maK-sa-3kb" firstAttribute="top" secondItem="Z22-pt-QzP" secondAttribute="bottom" constant="16" id="DPp-ge-CaC"/>
+                <constraint firstItem="LMa-Mc-4BX" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="16" id="IHO-bO-t9M"/>
+                <constraint firstAttribute="trailing" secondItem="LMa-Mc-4BX" secondAttribute="trailing" constant="16" id="YVL-Cr-CDX"/>
+                <constraint firstAttribute="trailing" secondItem="ZQD-rG-MeZ" secondAttribute="trailing" constant="16" id="ebn-qv-K5E"/>
+                <constraint firstAttribute="trailing" secondItem="HGC-EN-OIa" secondAttribute="trailing" constant="16" id="lI1-c5-ri5"/>
+                <constraint firstItem="ZQD-rG-MeZ" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="16" id="p5l-Ie-7uT"/>
+                <constraint firstItem="HGC-EN-OIa" firstAttribute="top" secondItem="ZQD-rG-MeZ" secondAttribute="bottom" constant="16" id="t3K-iS-8iV"/>
+                <constraint firstAttribute="trailing" secondItem="Z22-pt-QzP" secondAttribute="trailing" constant="16" id="vPY-gX-5Kx"/>
+            </constraints>
+        </view>
+    </objects>
+    <resources>
+        <image name="ic_check.png" width="50" height="50"/>
+        <image name="ic_arrow_upward.png" width="24" height="24"/>
+        <image name="ic_credit_card_2x.png" width="48" height="48"/>
+        <image name="ic_credit_card_3x.png" width="72" height="72"/>
+        <image name="ic_credit_card.png" width="24" height="24"/>
+        <image name="ic_arrow_downward.png" width="24" height="24"/>
+        <image name="ic_arrow_back.png" width="24" height="24"/>
+        <image name="ic_settings_3x.png" width="72" height="72"/>
+        <image name="ic_settings_2x.png" width="48" height="48"/>
+        <image name="ic_settings.png" width="24" height="24"/>
+        <image name="ic_add_circle_outline.png" width="24" height="24"/>
+        <image name="ic_attach_money.png" width="24" height="24"/>
+        <image name="ic_shopping_basket_3x.png" width="72" height="72"/>
+        <image name="ic_shopping_basket_2x.png" width="48" height="48"/>
+        <image name="ic_shopping_basket.png" width="24" height="24"/>
+        <image name="ic_account_circle.png" width="24" height="24"/>
+        <image name="ic_trending_up_3x.png" width="72" height="72"/>
+        <image name="ic_trending_up_2x.png" width="48" height="48"/>
+        <image name="ic_trending_up.png" width="24" height="24"/>
+        <image name="Views/ic_colapse.png" width="24" height="24"/>
+        <image name="Views/ic_colapse_3x.png" width="72" height="72"/>
+        <image name="Views/ic_colapse_2x.png" width="48" height="48"/>
+        <image name="ic_colapse.png" width="24" height="24"/>
+        <image name="ic_local_cafe_3x.png" width="72" height="72"/>
+        <image name="ic_local_cafe_2x.png" width="48" height="48"/>
+        <image name="ic_local_cafe.png" width="24" height="24"/>
+        <image name="ic_swap_horiz.png" width="24" height="24"/>
+    </resources>
+</document>

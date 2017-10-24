@@ -414,6 +414,18 @@
     <Compile Include="Bootstrap\FilePluginBootstrap.cs" />
     <Compile Include="Bootstrap\MessengerPluginBootstrap.cs" />
     <Compile Include="TableSources\BasePagingTableSource.cs" />
+    <Compile Include="Views\TransferSuplyProduct\TransferSuplyProductsView.cs" />
+    <Compile Include="Views\TransferSuplyProduct\TransferSuplyProductsView.designer.cs">
+      <DependentUpon>TransferSuplyProductsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TransferSuplyProduct\SelectSuplyProductsView.cs" />
+    <Compile Include="Views\TransferSuplyProduct\SelectSuplyProductsView.designer.cs">
+      <DependentUpon>SelectSuplyProductsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TransferSuplyProduct\TransferProductItemCell.cs" />
+    <Compile Include="Views\TransferSuplyProduct\TransferProductItemCell.designer.cs">
+      <DependentUpon>TransferProductItemCell.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Setup.cs" />
@@ -492,6 +504,9 @@
     <InterfaceDefinition Include="Views\Users\UsersView.xib" />
     <InterfaceDefinition Include="Views\Home\ProductsView.xib" />
     <InterfaceDefinition Include="Views\Home\ManageExpensesView.xib" />
+    <InterfaceDefinition Include="Views\TransferSuplyProduct\TransferSuplyProductsView.xib" />
+    <InterfaceDefinition Include="Views\TransferSuplyProduct\SelectSuplyProductsView.xib" />
+    <InterfaceDefinition Include="Views\TransferSuplyProduct\TransferProductItemCell.xib" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -605,6 +620,7 @@
     <Folder Include="Views\Shifts\AddExpense\" />
     <Folder Include="Views\Home\" />
     <Folder Include="Views\Controls\" />
+    <Folder Include="Views\TransferSuplyProduct\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\ic_check.png" />

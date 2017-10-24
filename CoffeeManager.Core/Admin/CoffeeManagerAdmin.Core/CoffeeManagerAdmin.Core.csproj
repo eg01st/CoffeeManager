@@ -123,7 +123,8 @@
     <Compile Include="ViewModels\Home\ProductsViewModel.cs" />
     <Compile Include="Messages\CoffeeRoomChangedMessage.cs" />
     <Compile Include="ViewModels\TransferSuplyProduct\TransferSuplyProductsViewModel.cs" />
-    <Compile Include="ViewModels\TransferSuplyProduct\TransferSuplyProductItemViewModel.cs" />
+    <Compile Include="ViewModels\TransferSuplyProduct\SelectSuplyProductsViewModel.cs" />
+    <Compile Include="ViewModels\TransferSuplyProduct\SelectSuplyProductItemViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">
