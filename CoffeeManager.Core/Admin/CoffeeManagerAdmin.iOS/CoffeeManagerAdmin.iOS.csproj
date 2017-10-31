@@ -414,6 +414,18 @@
     <Compile Include="Bootstrap\FilePluginBootstrap.cs" />
     <Compile Include="Bootstrap\MessengerPluginBootstrap.cs" />
     <Compile Include="TableSources\BasePagingTableSource.cs" />
+    <Compile Include="Views\TransferSuplyProduct\TransferSuplyProductsView.cs" />
+    <Compile Include="Views\TransferSuplyProduct\TransferSuplyProductsView.designer.cs">
+      <DependentUpon>TransferSuplyProductsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TransferSuplyProduct\SelectSuplyProductsView.cs" />
+    <Compile Include="Views\TransferSuplyProduct\SelectSuplyProductsView.designer.cs">
+      <DependentUpon>SelectSuplyProductsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TransferSuplyProduct\TransferProductItemCell.cs" />
+    <Compile Include="Views\TransferSuplyProduct\TransferProductItemCell.designer.cs">
+      <DependentUpon>TransferProductItemCell.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Setup.cs" />
@@ -492,6 +504,9 @@
     <InterfaceDefinition Include="Views\Users\UsersView.xib" />
     <InterfaceDefinition Include="Views\Home\ProductsView.xib" />
     <InterfaceDefinition Include="Views\Home\ManageExpensesView.xib" />
+    <InterfaceDefinition Include="Views\TransferSuplyProduct\TransferSuplyProductsView.xib" />
+    <InterfaceDefinition Include="Views\TransferSuplyProduct\SelectSuplyProductsView.xib" />
+    <InterfaceDefinition Include="Views\TransferSuplyProduct\TransferProductItemCell.xib" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -605,29 +620,30 @@
     <Folder Include="Views\Shifts\AddExpense\" />
     <Folder Include="Views\Home\" />
     <Folder Include="Views\Controls\" />
+    <Folder Include="Views\TransferSuplyProduct\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\ic_check.png" />
-    <BundleResource Include="Resources\ic_arrow_upward_2x.png" />
-    <BundleResource Include="Resources\ic_arrow_upward_3x.png" />
+    <BundleResource Include="Resources\ic_arrow_upward%402x.png" />
+    <BundleResource Include="Resources\ic_arrow_upward%403x.png" />
     <BundleResource Include="Resources\ic_arrow_upward.png" />
     <BundleResource Include="Resources\ic_credit_card_2x.png" />
     <BundleResource Include="Resources\ic_credit_card_3x.png" />
     <BundleResource Include="Resources\ic_credit_card.png" />
-    <BundleResource Include="Resources\ic_arrow_downward_2x.png" />
-    <BundleResource Include="Resources\ic_arrow_downward_3x.png" />
+    <BundleResource Include="Resources\ic_arrow_downward%402x.png" />
+    <BundleResource Include="Resources\ic_arrow_downward%403x.png" />
     <BundleResource Include="Resources\ic_arrow_downward.png" />
-    <BundleResource Include="Resources\ic_arrow_back_3x.png" />
-    <BundleResource Include="Resources\ic_arrow_back_2x.png" />
+    <BundleResource Include="Resources\ic_arrow_back%403x.png" />
+    <BundleResource Include="Resources\ic_arrow_back%402x.png" />
     <BundleResource Include="Resources\ic_arrow_back.png" />
     <BundleResource Include="Resources\ic_settings_3x.png" />
     <BundleResource Include="Resources\ic_settings_2x.png" />
     <BundleResource Include="Resources\ic_settings.png" />
-    <BundleResource Include="Resources\ic_add_circle_outline_3x.png" />
-    <BundleResource Include="Resources\ic_add_circle_outline_2x.png" />
+    <BundleResource Include="Resources\ic_add_circle_outline%403x.png" />
+    <BundleResource Include="Resources\ic_add_circle_outline%402x.png" />
     <BundleResource Include="Resources\ic_add_circle_outline.png" />
-    <BundleResource Include="Resources\ic_attach_money_3x.png" />
-    <BundleResource Include="Resources\ic_attach_money_2x.png" />
+    <BundleResource Include="Resources\ic_attach_money%403x.png" />
+    <BundleResource Include="Resources\ic_attach_money%402x.png" />
     <BundleResource Include="Resources\ic_attach_money.png" />
     <BundleResource Include="Resources\ic_shopping_basket_3x.png" />
     <BundleResource Include="Resources\ic_shopping_basket_2x.png" />
@@ -641,15 +657,15 @@
     <BundleResource Include="Resources\Views\ic_colapse.png" />
     <BundleResource Include="Resources\Views\ic_colapse_3x.png" />
     <BundleResource Include="Resources\Views\ic_colapse_2x.png" />
-    <BundleResource Include="Resources\ic_expand.png" />
-    <BundleResource Include="Resources\ic_expand%403x.png" />
-    <BundleResource Include="Resources\ic_expand%402x.png" />
     <BundleResource Include="Resources\ic_colapse.png" />
     <BundleResource Include="Resources\ic_colapse%403x.png" />
     <BundleResource Include="Resources\ic_colapse%402x.png" />
     <BundleResource Include="Resources\ic_local_cafe_3x.png" />
     <BundleResource Include="Resources\ic_local_cafe_2x.png" />
     <BundleResource Include="Resources\ic_local_cafe.png" />
+    <BundleResource Include="Resources\ic_swap_horiz%403x.png" />
+    <BundleResource Include="Resources\ic_swap_horiz%402x.png" />
+    <BundleResource Include="Resources\ic_swap_horiz.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

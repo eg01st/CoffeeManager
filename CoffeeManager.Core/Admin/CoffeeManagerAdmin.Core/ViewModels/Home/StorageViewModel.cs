@@ -15,11 +15,13 @@ namespace CoffeeManagerAdmin.Core
             ShowOrdersCommand = new MvxCommand(() => ShowViewModel<OrdersViewModel>());
             ShowInventoryCommand = new MvxCommand(() => ShowViewModel<InventoryViewModel>());
             ShowUtilizedSuplyProductsCommand = new MvxCommand(() => ShowViewModel<UtilizeViewModel>());
+            TransferSuplyProductsCommand = new MvxCommand(() => ShowViewModel<TransferSuplyProductsViewModel>());
         }
 
         public ICommand ShowSupliedProductsCommand { get; }
         public ICommand ShowOrdersCommand { get; }
         public ICommand ShowInventoryCommand { get; }
         public ICommand ShowUtilizedSuplyProductsCommand { get; }
+        public ICommand TransferSuplyProductsCommand { get; }
     }
 }

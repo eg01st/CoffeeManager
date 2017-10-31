@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using CoffeeManagerAdmin.Core;
 using MvvmCross.Binding.BindingContext;
 using UIKit;
@@ -17,6 +18,19 @@ namespace CoffeeManagerAdmin.iOS
         {
             base.InitStylesAndContent();
             Title = "Склад";
+
+            var transferButton = new UIBarButtonItem()
+            {
+                Image = UIImage.FromBundle("ic_swap_horiz"),
+                Title = "Переводы"
+            };
+
+            this.AddBindings(new Dictionary<object, string>
+            {
+                {transferButton, "Clicked TransferSuplyProductsCommand"},
+            });
+
+            NavigationItem.SetRightBarButtonItem(transferButton, true);
         }
 
         protected override void DoBind()

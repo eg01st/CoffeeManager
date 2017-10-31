@@ -26,5 +26,7 @@ namespace CoffeManager.Common
         Task UtilizeSuplyProduct(UtilizedSuplyProduct product);
 
         Task<IEnumerable<UtilizedSuplyProduct>> GetUtilizedProducts();
+
+        Task TransferSuplyProducts(IEnumerable<TransferSuplyProductRequest> requests);
     }
 }

@@ -80,5 +80,9 @@ namespace CoffeManager.Common
             await provider.UtilizeSuplyProduct(product);
         }
 
+        public async Task TransferSuplyProducts(IEnumerable<TransferSuplyProductRequest> requests)
+        {
+            await provider.TransferSuplyProducts(requests);
+        }
     }
 }

@@ -249,6 +249,22 @@ namespace CoffeManager.Common
             });
         }
 
+        public void Confirm<T>(string message, Func<T, Task> action, T item)
+        {
+            UserDialogs.Confirm(new ConfirmConfig()
+            {
+                Message = message,
+                OnAction = async
+                    (confirm) =>
+                {
+                    if (confirm)
+                    {
+                        await ExecuteSafe(async () => await action(item));
+                    }
+                }
+            });
+        }
+
         public async Task<int?> PromtAsync(string message)
         {
            var result = await UserDialogs.PromptAsync(new PromptConfig()
@@ -269,7 +285,7 @@ namespace CoffeManager.Common
             var result = await UserDialogs.PromptAsync(new PromptConfig()
             {
                 Message = message,
-                InputType = InputType.DecimalNumber
+                InputType = InputType.DecimalNumber,
 
             });
             if (string.IsNullOrWhiteSpace(result.Value))

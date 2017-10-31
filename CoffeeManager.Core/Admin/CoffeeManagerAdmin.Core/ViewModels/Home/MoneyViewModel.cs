@@ -55,9 +55,8 @@ namespace CoffeeManagerAdmin.Core
 
             isNextPageLoading = true;
 
-
             var itemsToSkip = Items.Count;
-            var items = await shiftManager.GetShifts(itemsToSkip);
+            var items = await ExecuteSafe(async () => await shiftManager.GetShifts(itemsToSkip));
             var vms = items.Select(s => new ShiftItemViewModel(s));
 
             Items.AddRange(vms);
@@ -122,6 +121,7 @@ namespace CoffeeManagerAdmin.Core
                 RaisePropertyChanged(nameof(CurrentCoffeeRoomName));
                 Config.CoffeeRoomNo = _currentCoffeeRoom.Id;
                 GetEntireMoney();
+                Publish(new CoffeeRoomChangedMessage(this));
             }
         }
 
