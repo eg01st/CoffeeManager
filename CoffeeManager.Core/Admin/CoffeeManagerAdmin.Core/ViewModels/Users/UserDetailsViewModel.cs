@@ -102,6 +102,17 @@ namespace CoffeeManagerAdmin.Core
                 _currentCoffeeRoom = value;
                 RaisePropertyChanged(nameof(CurrentCoffeeRoom));
                 RaisePropertyChanged(nameof(CurrentCoffeeRoomName));
+                if(useridParameter == 0)
+                {
+                    return;
+                }
+                var strategy = user.PaymentStrategies.FirstOrDefault(s => s.CoffeeRoomId == _currentCoffeeRoom.Id);
+
+                DayShiftPersent = strategy?.DayShiftPersent ?? 0;
+                NightShiftPercent = strategy?.NightShiftPercent ?? 0;
+                SalaryRate = strategy?.SimplePayment ?? 0;
+                MinimumPayment = strategy?.MinimumPayment ?? 0;
+                RaiseAllPropertiesChanged();
 
             }
         }
@@ -210,7 +221,6 @@ namespace CoffeeManagerAdmin.Core
         {
             useridParameter = id;
 
-            await InitCoffeeRooms();
 
             if(useridParameter == 0)
             {
@@ -232,7 +242,8 @@ namespace CoffeeManagerAdmin.Core
                 Penalties = user.Penalties?.Select(s => new UserPenaltyItemViewModel(s)).ToList();
 
                 await InitTypes();
-    
+
+                await InitCoffeeRooms();
                 RaiseAllPropertiesChanged();
             });
         }
@@ -280,22 +291,25 @@ namespace CoffeeManagerAdmin.Core
             });
         }
 
-        private void DoPaySalary()
+        private async Task PaySalary()
         {
-            UserDialogs.Confirm(new Acr.UserDialogs.ConfirmConfig() 
+            await ExecuteSafe(async () =>
             {
-                Message = "Выдать зарплату?",
-                OnAction = async (bool obj) => 
+                var shift = await shiftManager.GetCurrentShiftForCoffeeRoom(CurrentCoffeeRoom.Id);
+                if (shift == null)
                 {
-                    if(obj)
-                    {
-                         await PaySalary();
-                    }                
+                    UserDialogs.Alert("Запустите новую смену!");
+                    return;
                 }
+                await userManager.PaySalary(UserId, CurrentCoffeeRoom.Id);
+                user.EntireEarnedAmount += CurrentEarnedAmount;
+                user.CurrentEarnedAmount = 0;
+                Publish(new UpdateCashAmountMessage(this));
+                Close(this);
             });
         }
 
-        private async Task PaySalary()
+        private void DoPaySalary()
         {
             if(!user.ExpenceId.HasValue)
             {
@@ -307,20 +321,8 @@ namespace CoffeeManagerAdmin.Core
                 UserDialogs.Alert("Пустой баланс!");
                 return;
             }
-            await ExecuteSafe(async () => 
-            {
-                var shift = await shiftManager.GetCurrentShiftForCoffeeRoom();
-                if(shift == null)
-                {
-                    UserDialogs.Alert("Запустите новую смену!");
-                    return;
-                }
-                await userManager.PaySalary(UserId);
-                user.EntireEarnedAmount += CurrentEarnedAmount;
-                user.CurrentEarnedAmount = 0;
-                Publish(new UpdateCashAmountMessage(this));
-                Close(this);
-            });
+            Confirm($"Выдать зарплату баристе {UserName}\nв размере {CurrentEarnedAmount} грн\nс кофейни {CurrentCoffeeRoomName}?", PaySalary);
+       
         }
 
         protected override void DoUnsubscribe()

@@ -52,9 +52,9 @@ namespace CoffeeManagerAdmin.iOS
 
             var coffeeRoomPicker = new UIPickerView();
             var coffeeRoomPickerViewModel = new MvxPickerViewModel(coffeeRoomPicker);
-            coffeeRoomPicker.Model = expensePickerViewModel;
+            coffeeRoomPicker.Model = coffeeRoomPickerViewModel;
             coffeeRoomPicker.ShowSelectionIndicator = true;
-            CoffeeRoomTextField.InputView = expenseTypePicker;
+            CoffeeRoomTextField.InputView = coffeeRoomPicker;
             CoffeeRoomTextField.InputAccessoryView = toolbar;
 
 
