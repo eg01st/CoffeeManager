@@ -27,6 +27,11 @@ namespace CoffeManager.Common
             return await Get<Shift>(RoutesConstants.GetCurrentShift);
         }
 
+        public async Task<Shift> GetCurrentShiftForCoffeeRoom(int forCoffeeRoom)
+        {
+            return await Get<Shift>(RoutesConstants.GetCurrentShiftForCoffeeRoom, new Dictionary<string, string>() { { nameof(forCoffeeRoom), forCoffeeRoom.ToString() } });
+        }
+
         public async Task<Sale[]> GetCurrentShiftSales()
         {
             return await Get<Sale[]>(RoutesConstants.GetShiftSales);

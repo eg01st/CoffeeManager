@@ -54,12 +54,12 @@ namespace CoffeManager.Common
             await Post<object>(RoutesConstants.UpdateUser, user);
         }
 
-        public async Task PaySalary(int userId, int currentShifId)
+        public async Task PaySalary(int userId, int coffeeRoomToPay)
         {
             await Post<object>(RoutesConstants.PaySalary, null, new Dictionary<string, string>()
                 {
                     {nameof(userId), userId.ToString()},
-                    {nameof(currentShifId), currentShifId.ToString()},
+                    {nameof(coffeeRoomToPay), coffeeRoomToPay.ToString()},
                 }
             );
         }

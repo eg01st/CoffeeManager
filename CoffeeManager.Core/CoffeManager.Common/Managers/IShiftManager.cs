@@ -18,6 +18,8 @@ namespace CoffeManager.Common
 
         Task<Shift> GetCurrentShift();
 
+        Task<Shift> GetCurrentShiftForCoffeeRoom(int forCoffeeRoom);
+
         Task<Shift> GetCurrentShiftAdmin();
 
         Task<Sale[]> GetCurrentShiftSales();

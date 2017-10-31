@@ -20,7 +20,7 @@ namespace CoffeManager.Common
 
         Task UpdateUser(User user);
 
-        Task PaySalary(int userId, int currentShifId);
+        Task PaySalary(int userId, int coffeeRoomToPay);
 
         Task PenaltyUser(int userId, decimal amount, string reason);
 

@@ -39,9 +39,9 @@ namespace CoffeManager.Common
             return await provider.GetUser(userId);
         }
 
-        public async Task PaySalary(int userId, int currentShifId)
+        public async Task PaySalary(int userId, int coffeeRoomToPay)
         {
-            await provider.PaySalary(userId, currentShifId);
+            await provider.PaySalary(userId, coffeeRoomToPay);
         }
 
         public async Task UpdateUser(User user)

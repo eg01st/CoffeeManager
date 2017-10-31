@@ -115,5 +115,10 @@ namespace CoffeManager.Common
         {
             return await shiftProvider.GetCurrentShiftSales();
         }
+
+        public async Task<Shift> GetCurrentShiftForCoffeeRoom(int forCoffeeRoom)
+        {
+            return await shiftProvider.GetCurrentShiftForCoffeeRoom(forCoffeeRoom);
+        }
     }
 }

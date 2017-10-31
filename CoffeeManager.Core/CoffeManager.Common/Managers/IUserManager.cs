@@ -17,7 +17,7 @@ namespace CoffeManager.Common
 
         Task<User> GetUser(int userId);
 
-        Task PaySalary(int userId, int currentShifId);
+        Task PaySalary(int userId, int coffeeRoomToPay);
 
         Task UpdateUser(User user);
 

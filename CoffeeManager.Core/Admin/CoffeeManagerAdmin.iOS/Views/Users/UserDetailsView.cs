@@ -50,6 +50,13 @@ namespace CoffeeManagerAdmin.iOS
             toolbar.SetItems(new [] { doneButton}, false);
             ExpenseTypeTextField.InputAccessoryView = toolbar;
 
+            var coffeeRoomPicker = new UIPickerView();
+            var coffeeRoomPickerViewModel = new MvxPickerViewModel(coffeeRoomPicker);
+            coffeeRoomPicker.Model = expensePickerViewModel;
+            coffeeRoomPicker.ShowSelectionIndicator = true;
+            CoffeeRoomTextField.InputView = expenseTypePicker;
+            CoffeeRoomTextField.InputAccessoryView = toolbar;
+
 
             var source = new SimpleTableSource(PenaltyTableView, UserPenaltyItemCell.Key, UserPenaltyItemCell.Nib, UserPenaltyTableHeaderView.Key, UserPenaltyTableHeaderView.Nib);
             PenaltyTableView.Source = source;
@@ -69,6 +76,11 @@ namespace CoffeeManagerAdmin.iOS
             set.Bind(ExpenseTypeTextField).To(vm => vm.ExpenseTypeName);
             set.Bind(expensePickerViewModel).For(p => p.ItemsSource).To(vm => vm.ExpenseItems);
             set.Bind(expensePickerViewModel).For(p => p.SelectedItem).To(vm => vm.SelectedExpenseType);
+
+            set.Bind(CoffeeRoomTextField).To(vm => vm.CurrentCoffeeRoomName);
+            set.Bind(coffeeRoomPickerViewModel).For(p => p.ItemsSource).To(vm => vm.CoffeeRooms);
+            set.Bind(coffeeRoomPickerViewModel).For(p => p.SelectedItem).To(vm => vm.CurrentCoffeeRoom);
+
             set.Bind(source).To(vm => vm.Penalties);
             set.Apply();
         }

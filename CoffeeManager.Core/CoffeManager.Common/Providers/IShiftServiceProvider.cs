@@ -10,6 +10,8 @@ namespace CoffeManager.Common
 
         Task<Shift> GetCurrentShift();
 
+        Task<Shift> GetCurrentShiftForCoffeeRoom(int forCoffeeRoom);
+
         Task<Sale[]> GetCurrentShiftSales();
 
         Task<EndShiftUserInfo> EndShift(int shiftId, decimal realAmount, int endCounter);

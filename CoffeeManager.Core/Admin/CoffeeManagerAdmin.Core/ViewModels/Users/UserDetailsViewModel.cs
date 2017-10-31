@@ -19,6 +19,11 @@ namespace CoffeeManagerAdmin.Core
         private readonly IShiftManager shiftManager;
         private readonly IUserManager userManager;
         private readonly IPaymentManager paymentManager;
+        private readonly IAdminManager adminManager;
+
+
+        private Entity _currentCoffeeRoom;
+        private List<Entity> coffeeRooms;
 
         private List<Entity> _expenseItems = new List<Entity>();
         private Entity _selectedExpenseType;
@@ -31,8 +36,8 @@ namespace CoffeeManagerAdmin.Core
         public string UserName {get;set;}
         public decimal CurrentEarnedAmount => user.CurrentEarnedAmount;
         public decimal EntireEarnedAmount => user.EntireEarnedAmount;
-        public int DayShiftPersent {get;set;}  
-        public int NightShiftPercent {get;set;}
+        public decimal DayShiftPersent {get;set;}  
+        public decimal NightShiftPercent {get;set;}
         public decimal SalaryRate { get; set; }
         public decimal MinimumPayment { get; set; }
 
@@ -89,8 +94,37 @@ namespace CoffeeManagerAdmin.Core
             }
         }
 
-        public UserDetailsViewModel(IUserManager userManager, IPaymentManager paymentManager, IShiftManager shiftManager)
+        public Entity CurrentCoffeeRoom
         {
+            get { return _currentCoffeeRoom; }
+            set
+            {
+                _currentCoffeeRoom = value;
+                RaisePropertyChanged(nameof(CurrentCoffeeRoom));
+                RaisePropertyChanged(nameof(CurrentCoffeeRoomName));
+
+            }
+        }
+
+        public List<Entity> CoffeeRooms
+        {
+            get { return coffeeRooms; }
+            set
+            {
+                coffeeRooms = value;
+                RaisePropertyChanged(nameof(CoffeeRooms));
+            }
+        }
+
+        public string CurrentCoffeeRoomName
+        {
+            get { return CurrentCoffeeRoom.Name; }
+
+        }
+
+        public UserDetailsViewModel(IUserManager userManager, IPaymentManager paymentManager, IShiftManager shiftManager, IAdminManager adminManager)
+        {
+            this.adminManager = adminManager;
             this.shiftManager = shiftManager;
             this.paymentManager = paymentManager;
             this.userManager = userManager;
@@ -135,11 +169,17 @@ namespace CoffeeManagerAdmin.Core
 
         private async Task UpdateUser()
         {
-            user.DayShiftPersent = DayShiftPersent;
-            user.NightShiftPercent = NightShiftPercent;
+
             user.ExpenceId = SelectedExpenseType?.Id;
-            user.SalaryRate = SalaryRate;
-            user.MinimumPayment = MinimumPayment;
+
+            var strategy = user.PaymentStrategies.FirstOrDefault(s => s.CoffeeRoomId == CurrentCoffeeRoom.Id);
+            if (strategy != null)
+            {
+                strategy.SimplePayment = SalaryRate;
+                strategy.MinimumPayment = MinimumPayment;
+                strategy.DayShiftPersent = DayShiftPersent;
+                strategy.NightShiftPercent = NightShiftPercent;
+            }
             await userManager.UpdateUser(user);
             Close(this);        
         }
@@ -147,13 +187,20 @@ namespace CoffeeManagerAdmin.Core
         private async void DoCreateUser()
         {
             user.Name = UserName;
-            user.DayShiftPersent = DayShiftPersent;
-            user.NightShiftPercent = NightShiftPercent;
+
             user.ExpenceId = SelectedExpenseType?.Id;
             user.CoffeeRoomNo = Config.CoffeeRoomNo;
-            user.SalaryRate = SalaryRate;
+
             user.IsActive = true;
-            user.MinimumPayment = MinimumPayment;
+
+
+            var strategy = new UserPaymentStrategy();
+            strategy.MinimumPayment = MinimumPayment;
+            strategy.SimplePayment = SalaryRate;
+            strategy.DayShiftPersent = DayShiftPersent;
+            strategy.NightShiftPercent = NightShiftPercent;
+            user.PaymentStrategies = new[] { strategy };
+
             await userManager.AddUser(user);
             Publish(new RefreshUserListMessage(this));
             Close(this);        
@@ -162,6 +209,9 @@ namespace CoffeeManagerAdmin.Core
         public async Task Init(int id)
         {
             useridParameter = id;
+
+            await InitCoffeeRooms();
+
             if(useridParameter == 0)
             {
                 return;
@@ -170,10 +220,14 @@ namespace CoffeeManagerAdmin.Core
             {
                 user = await userManager.GetUser(useridParameter);
                 UserName = user.Name;
-                DayShiftPersent = user.DayShiftPersent;
-                NightShiftPercent = user.NightShiftPercent;
-                SalaryRate = user.SalaryRate;
-                MinimumPayment = user.MinimumPayment;
+                var strategy = user.PaymentStrategies.FirstOrDefault(s => s.CoffeeRoomId == Config.CoffeeRoomNo);
+                if(strategy != null)
+                {
+                    DayShiftPersent = strategy.DayShiftPersent;
+                    NightShiftPercent = strategy.NightShiftPercent;
+                    SalaryRate = strategy.SimplePayment;
+                    MinimumPayment = strategy.MinimumPayment;
+                }
 
                 Penalties = user.Penalties?.Select(s => new UserPenaltyItemViewModel(s)).ToList();
 
@@ -187,6 +241,8 @@ namespace CoffeeManagerAdmin.Core
         {
             if(useridParameter == 0)
             {
+                await InitCoffeeRooms();
+
                 user = new User();
                 await InitTypes();
                 UpdateCommand = new MvxCommand(DoCreateUser);
@@ -211,6 +267,16 @@ namespace CoffeeManagerAdmin.Core
                     }
                     SelectedExpenseType = item;
                 }
+            });
+        }
+
+        private async Task InitCoffeeRooms()
+        {
+            await ExecuteSafe(async () =>
+            {
+                var items = await adminManager.GetCoffeeRooms();
+                CoffeeRooms = items.ToList();
+                CurrentCoffeeRoom = CoffeeRooms.First(c => c.Id == Config.CoffeeRoomNo);
             });
         }
 
@@ -243,13 +309,13 @@ namespace CoffeeManagerAdmin.Core
             }
             await ExecuteSafe(async () => 
             {
-                var shift = await shiftManager.GetCurrentShiftAdmin();
+                var shift = await shiftManager.GetCurrentShiftForCoffeeRoom();
                 if(shift == null)
                 {
                     UserDialogs.Alert("Запустите новую смену!");
                     return;
                 }
-                await userManager.PaySalary(UserId, shift.Id);
+                await userManager.PaySalary(UserId);
                 user.EntireEarnedAmount += CurrentEarnedAmount;
                 user.CurrentEarnedAmount = 0;
                 Publish(new UpdateCashAmountMessage(this));
