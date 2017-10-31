@@ -70,20 +70,22 @@ namespace CoffeeManager.Api.Controllers
             int shiftId = shiftInfo.ShiftId;
                 
             var enities = new  CoffeeRoomEntities();
-            var shift = enities.Shifts.Include(s => s.User).First(s => s.Id == shiftId && s.CoffeeRoomNo == coffeeroomno);
+            var shift = enities.Shifts.Include(s => s.User).Include(s => s.User.UserPaymentStrategies).First(s => s.Id == shiftId && s.CoffeeRoomNo == coffeeroomno);
             shift.IsFinished = true;
             shift.RealAmount = shiftInfo.RealAmount;
             shift.EndCounter = shiftInfo.Counter;
+
+            var userPaymentStrategy = shift.User.UserPaymentStrategies.First(s => s.CoffeeRoomId == coffeeroomno);
 
             var diff = shift.RealAmount - shift.TotalAmount;
             var realShiftAmount = shift.CurrentAmount + diff + shift.CreditCardAmount.Value;
             bool isDayShift = shift.Date.Value.TimeOfDay.Hours < 12;
 
             var user = shift.User;
-            var userEarnedAmount = user.SimplePayment + (realShiftAmount / 100 * (isDayShift ? user.DayShiftPersent : user.NightShiftPercent));
-            if(userEarnedAmount < user.MinimumPayment)
+            var userEarnedAmount = userPaymentStrategy.SimplePayment + (realShiftAmount / 100 * (isDayShift ? userPaymentStrategy.DayShiftPersent : userPaymentStrategy.NightShiftPercent));
+            if(userEarnedAmount < userPaymentStrategy.MinimumPayment)
             {
-                userEarnedAmount = user.MinimumPayment;
+                userEarnedAmount = userPaymentStrategy.MinimumPayment;
             }
             user.CurrentEarnedAmount += userEarnedAmount;
 

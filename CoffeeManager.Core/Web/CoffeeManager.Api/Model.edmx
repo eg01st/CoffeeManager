@@ -314,6 +314,18 @@
           <Property Name="Date" Type="date" Nullable="false" />
           <Property Name="IsDayShift" Type="bit" Nullable="false" />
         </EntityType>
+        <EntityType Name="UserPaymentStrategy">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="CoffeeRoomId" Type="int" Nullable="false" />
+          <Property Name="DayShiftPersent" Type="money" Nullable="false" />
+          <Property Name="NightShiftPercent" Type="money" Nullable="false" />
+          <Property Name="SimplePayment" Type="money" Nullable="false" />
+          <Property Name="MinimumPayment" Type="money" Nullable="false" />
+        </EntityType>
         <EntityType Name="UserPenalty">
           <Key>
             <PropertyRef Name="Id" />
@@ -332,13 +344,9 @@
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
           <Property Name="CoffeeRoomNo" Type="int" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
-          <Property Name="DayShiftPersent" Type="int" Nullable="false" />
-          <Property Name="NightShiftPercent" Type="int" Nullable="false" />
           <Property Name="CurrentEarnedAmount" Type="decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="EntireEarnedAmount" Type="decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="ExpenceId" Type="int" />
-          <Property Name="SimplePayment" Type="decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="MinimumPayment" Type="decimal" Precision="18" Scale="0" Nullable="false" />
         </EntityType>
         <EntityType Name="UtilizedSuplyProduct">
           <Key>
@@ -572,7 +580,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__SuplyProd__Coffe__3E1D39E1">
+        <Association Name="FK__SuplyProd__Coffe__43D61337">
           <End Role="CoffeeRoom" Type="Self.CoffeeRoom" Multiplicity="1" />
           <End Role="SuplyProductQuantity" Type="Self.SuplyProductQuantity" Multiplicity="*" />
           <ReferentialConstraint>
@@ -584,7 +592,31 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__SuplyProd__Suply__3F115E1A">
+        <Association Name="FK__SuplyProd__Coffe__46B27FE2">
+          <End Role="CoffeeRoom" Type="Self.CoffeeRoom" Multiplicity="1" />
+          <End Role="SuplyProductQuantity" Type="Self.SuplyProductQuantity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CoffeeRoom">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SuplyProductQuantity">
+              <PropertyRef Name="CoffeeRoomId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SuplyProd__Suply__44CA3770">
+          <End Role="SupliedProduct" Type="Self.SupliedProduct" Multiplicity="1" />
+          <End Role="SuplyProductQuantity" Type="Self.SuplyProductQuantity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SupliedProduct">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SuplyProductQuantity">
+              <PropertyRef Name="SuplyProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SuplyProd__Suply__47A6A41B">
           <End Role="SupliedProduct" Type="Self.SupliedProduct" Multiplicity="1" />
           <End Role="SuplyProductQuantity" Type="Self.SuplyProductQuantity" Multiplicity="*" />
           <ReferentialConstraint>
@@ -640,6 +672,30 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="UserEarningsHistory">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserPayme__Coffe__40058253">
+          <End Role="CoffeeRoom" Type="Self.CoffeeRoom" Multiplicity="1" />
+          <End Role="UserPaymentStrategy" Type="Self.UserPaymentStrategy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CoffeeRoom">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserPaymentStrategy">
+              <PropertyRef Name="CoffeeRoomId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserPayme__UserI__3F115E1A">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="UserPaymentStrategy" Type="Self.UserPaymentStrategy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserPaymentStrategy">
               <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
@@ -833,6 +889,7 @@
           <EntitySet Name="UsedCupsPerShift" EntityType="Self.UsedCupsPerShift" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UsedProductsPerShift" EntityType="Self.UsedProductsPerShift" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserEarningsHistory" EntityType="Self.UserEarningsHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserPaymentStrategy" EntityType="Self.UserPaymentStrategy" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserPenalty" EntityType="Self.UserPenalty" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UtilizedSuplyProduct" EntityType="Self.UtilizedSuplyProduct" Schema="dbo" store:Type="Tables" />
@@ -908,11 +965,19 @@
             <End Role="SupliedProduct" EntitySet="SupliedProduct" />
             <End Role="SuplyOrderItem" EntitySet="SuplyOrderItem" />
           </AssociationSet>
-          <AssociationSet Name="FK__SuplyProd__Coffe__3E1D39E1" Association="Self.FK__SuplyProd__Coffe__3E1D39E1">
+          <AssociationSet Name="FK__SuplyProd__Coffe__43D61337" Association="Self.FK__SuplyProd__Coffe__43D61337">
             <End Role="CoffeeRoom" EntitySet="CoffeeRoom" />
             <End Role="SuplyProductQuantity" EntitySet="SuplyProductQuantity" />
           </AssociationSet>
-          <AssociationSet Name="FK__SuplyProd__Suply__3F115E1A" Association="Self.FK__SuplyProd__Suply__3F115E1A">
+          <AssociationSet Name="FK__SuplyProd__Coffe__46B27FE2" Association="Self.FK__SuplyProd__Coffe__46B27FE2">
+            <End Role="CoffeeRoom" EntitySet="CoffeeRoom" />
+            <End Role="SuplyProductQuantity" EntitySet="SuplyProductQuantity" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SuplyProd__Suply__44CA3770" Association="Self.FK__SuplyProd__Suply__44CA3770">
+            <End Role="SupliedProduct" EntitySet="SupliedProduct" />
+            <End Role="SuplyProductQuantity" EntitySet="SuplyProductQuantity" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SuplyProd__Suply__47A6A41B" Association="Self.FK__SuplyProd__Suply__47A6A41B">
             <End Role="SupliedProduct" EntitySet="SupliedProduct" />
             <End Role="SuplyProductQuantity" EntitySet="SuplyProductQuantity" />
           </AssociationSet>
@@ -931,6 +996,14 @@
           <AssociationSet Name="FK__UserEarni__UserI__0FEC5ADD" Association="Self.FK__UserEarni__UserI__0FEC5ADD">
             <End Role="Users" EntitySet="Users" />
             <End Role="UserEarningsHistory" EntitySet="UserEarningsHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserPayme__Coffe__40058253" Association="Self.FK__UserPayme__Coffe__40058253">
+            <End Role="CoffeeRoom" EntitySet="CoffeeRoom" />
+            <End Role="UserPaymentStrategy" EntitySet="UserPaymentStrategy" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserPayme__UserI__3F115E1A" Association="Self.FK__UserPayme__UserI__3F115E1A">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserPaymentStrategy" EntitySet="UserPaymentStrategy" />
           </AssociationSet>
           <AssociationSet Name="FK__UserPenal__UserI__1C873BEC" Association="Self.FK__UserPenal__UserI__1C873BEC">
             <End Role="Users" EntitySet="Users" />
@@ -1134,18 +1207,15 @@
           <Property Name="CoffeeRoomNo" Type="Int32" />
           <NavigationProperty Name="Shifts" Relationship="Self.FK__Shifts__UserId__22AA2996" FromRole="Users" ToRole="Shifts" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
-          <Property Name="DayShiftPersent" Type="Int32" Nullable="false" />
-          <Property Name="NightShiftPercent" Type="Int32" Nullable="false" />
           <Property Name="CurrentEarnedAmount" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
           <Property Name="EntireEarnedAmount" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
           <Property Name="ExpenceId" Type="Int32" />
           <NavigationProperty Name="Expense" Relationship="CoffeeRoomModel.FK_Users_Expence" FromRole="User" ToRole="Expense" />
-          <Property Name="SimplePayment" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
           <NavigationProperty Name="ExpenseType" Relationship="CoffeeRoomModel.FK_Users_Expence1" FromRole="User" ToRole="ExpenseType" />
           <NavigationProperty Name="UserPenalties" Relationship="CoffeeRoomModel.FK__UserPenal__UserI__1C873BEC" FromRole="User" ToRole="UserPenalty" />
           <NavigationProperty Name="UserEarningsHistories" Relationship="CoffeeRoomModel.FK__UserEarni__UserI__0FEC5ADD" FromRole="User" ToRole="UserEarningsHistory" />
-          <Property Name="MinimumPayment" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
           <NavigationProperty Name="Expenses" Relationship="CoffeeRoomModel.FK_Expense_User" FromRole="User" ToRole="Expense" />
+          <NavigationProperty Name="UserPaymentStrategies" Relationship="CoffeeRoomModel.FK__UserPayme__UserI__4F47C5E3" FromRole="User" ToRole="UserPaymentStrategy" />
         </EntityType>
         <Association Name="FK__Product__CupType__32E0915F">
           <End Role="CupType" Type="Self.CupType" Multiplicity="0..1" />
@@ -1433,6 +1503,15 @@
           <AssociationSet Name="FK__SuplyProd__Suply__3F115E1A" Association="CoffeeRoomModel.FK__SuplyProd__Suply__3F115E1A">
             <End Role="SupliedProduct" EntitySet="SupliedProducts" />
             <End Role="SuplyProductQuantity" EntitySet="SuplyProductQuantities" />
+          </AssociationSet>
+          <EntitySet Name="UserPaymentStrategies" EntityType="CoffeeRoomModel.UserPaymentStrategy" />
+          <AssociationSet Name="FK__UserPayme__Coffe__503BEA1C" Association="CoffeeRoomModel.FK__UserPayme__Coffe__503BEA1C">
+            <End Role="CoffeeRoom" EntitySet="CoffeeRooms" />
+            <End Role="UserPaymentStrategy" EntitySet="UserPaymentStrategies" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserPayme__UserI__4F47C5E3" Association="CoffeeRoomModel.FK__UserPayme__UserI__4F47C5E3">
+            <End Role="User" EntitySet="Users" />
+            <End Role="UserPaymentStrategy" EntitySet="UserPaymentStrategies" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="UsedProductsPerShift">
@@ -1815,6 +1894,7 @@
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="CashoutHistories" Relationship="CoffeeRoomModel.FK__CashoutHi__Coffe__2739D489" FromRole="CoffeeRoom" ToRole="CashoutHistory" />
           <NavigationProperty Name="SuplyProductQuantities" Relationship="CoffeeRoomModel.FK__SuplyProd__Coffe__3E1D39E1" FromRole="CoffeeRoom" ToRole="SuplyProductQuantity" />
+          <NavigationProperty Name="UserPaymentStrategies" Relationship="CoffeeRoomModel.FK__UserPayme__Coffe__503BEA1C" FromRole="CoffeeRoom" ToRole="UserPaymentStrategy" />
         </EntityType>
         <EntityType Name="UserEarningsHistory">
           <Key>
@@ -2020,6 +2100,44 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="UserPaymentStrategy">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="CoffeeRoomId" Type="Int32" Nullable="false" />
+          <Property Name="DayShiftPersent" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="NightShiftPercent" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="SimplePayment" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="MinimumPayment" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <NavigationProperty Name="CoffeeRoom" Relationship="CoffeeRoomModel.FK__UserPayme__Coffe__503BEA1C" FromRole="UserPaymentStrategy" ToRole="CoffeeRoom" />
+          <NavigationProperty Name="User" Relationship="CoffeeRoomModel.FK__UserPayme__UserI__4F47C5E3" FromRole="UserPaymentStrategy" ToRole="User" />
+        </EntityType>
+        <Association Name="FK__UserPayme__Coffe__503BEA1C">
+          <End Type="CoffeeRoomModel.CoffeeRoom" Role="CoffeeRoom" Multiplicity="1" />
+          <End Type="CoffeeRoomModel.UserPaymentStrategy" Role="UserPaymentStrategy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CoffeeRoom">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserPaymentStrategy">
+              <PropertyRef Name="CoffeeRoomId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserPayme__UserI__4F47C5E3">
+          <End Type="CoffeeRoomModel.User" Role="User" Multiplicity="1" />
+          <End Type="CoffeeRoomModel.UserPaymentStrategy" Role="UserPaymentStrategy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserPaymentStrategy">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2155,13 +2273,9 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="CoffeeRoomModel.User">
               <MappingFragment StoreEntitySet="Users">
-                <ScalarProperty Name="MinimumPayment" ColumnName="MinimumPayment" />
-                <ScalarProperty Name="SimplePayment" ColumnName="SimplePayment" />
                 <ScalarProperty Name="ExpenceId" ColumnName="ExpenceId" />
                 <ScalarProperty Name="EntireEarnedAmount" ColumnName="EntireEarnedAmount" />
                 <ScalarProperty Name="CurrentEarnedAmount" ColumnName="CurrentEarnedAmount" />
-                <ScalarProperty Name="NightShiftPercent" ColumnName="NightShiftPercent" />
-                <ScalarProperty Name="DayShiftPersent" ColumnName="DayShiftPersent" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -2434,6 +2548,19 @@
                 <ScalarProperty Name="Quantity" ColumnName="Quantity" />
                 <ScalarProperty Name="SuplyProductId" ColumnName="SuplyProductId" />
                 <ScalarProperty Name="CoffeeRoomId" ColumnName="CoffeeRoomId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserPaymentStrategies">
+            <EntityTypeMapping TypeName="CoffeeRoomModel.UserPaymentStrategy">
+              <MappingFragment StoreEntitySet="UserPaymentStrategy">
+                <ScalarProperty Name="MinimumPayment" ColumnName="MinimumPayment" />
+                <ScalarProperty Name="SimplePayment" ColumnName="SimplePayment" />
+                <ScalarProperty Name="NightShiftPercent" ColumnName="NightShiftPercent" />
+                <ScalarProperty Name="DayShiftPersent" ColumnName="DayShiftPersent" />
+                <ScalarProperty Name="CoffeeRoomId" ColumnName="CoffeeRoomId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

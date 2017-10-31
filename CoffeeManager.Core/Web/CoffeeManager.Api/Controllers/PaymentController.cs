@@ -65,7 +65,7 @@ namespace CoffeeManager.Api.Controllers
         {
             var entities = new  CoffeeRoomEntities();
             var types = entities.ExpenseTypes.Where(t => !t.IsRemoved).Include(i => i.SupliedProducts).Include(i => i.SupliedProducts.Select(s => s.SuplyProductQuantities))
-                .Where(t => t.CoffeeRoomNo == coffeeroomno).ToList().Select(s => s.ToDTO(coffeeroomno));
+                .ToList().Select(s => s.ToDTO(coffeeroomno));
             return Request.CreateResponse(HttpStatusCode.OK, types);
         }
 
@@ -74,7 +74,7 @@ namespace CoffeeManager.Api.Controllers
         public async Task<HttpResponseMessage> RemoveExpenseType([FromUri]int coffeeroomno, [FromUri] int expenseTypeId, HttpRequestMessage message)
         {
             var entities = new CoffeeRoomEntities();
-            var type = entities.ExpenseTypes.FirstOrDefault(t => t.Id == expenseTypeId && t.CoffeeRoomNo == coffeeroomno);
+            var type = entities.ExpenseTypes.First(t => t.Id == expenseTypeId);
             type.IsRemoved = true;
             await entities.SaveChangesAsync();
             return Request.CreateResponse(HttpStatusCode.OK);
@@ -85,7 +85,7 @@ namespace CoffeeManager.Api.Controllers
         public async Task<HttpResponseMessage> ToggleExpenseEnabled([FromUri]int coffeeroomno, [FromUri]int id, HttpRequestMessage message)
         {
             var entities = new CoffeeRoomEntities();
-            var type = entities.ExpenseTypes.FirstOrDefault(t => t.CoffeeRoomNo == coffeeroomno && t.Id == id);
+            var type = entities.ExpenseTypes.FirstOrDefault(t => t.Id == id);
             if(type != null)
             {
                 type.IsActive = !type.IsActive;

@@ -15,13 +15,9 @@ namespace CoffeeManager.Api.Mappers
                 Name = dbUser.Name,
                 Id = dbUser.Id,
                 CurrentEarnedAmount = dbUser.CurrentEarnedAmount,
-                DayShiftPersent = dbUser.DayShiftPersent,
                 EntireEarnedAmount = dbUser.EntireEarnedAmount,
                 ExpenceId = dbUser.ExpenceId,
                 IsActive = dbUser.IsActive,
-                NightShiftPercent = dbUser.NightShiftPercent,
-                SalaryRate = dbUser.SimplePayment,
-                MinimumPayment = dbUser.MinimumPayment
             };
             if(dbUser.UserPenalties != null && dbUser.UserPenalties.Any())
             {
@@ -56,7 +52,26 @@ namespace CoffeeManager.Api.Mappers
                 }
                 user.Earnings = earnings.ToArray();
             }
+
+            if (dbUser.UserPaymentStrategies != null && dbUser.UserPaymentStrategies.Any())
+            {
+                user.PaymentStrategies = dbUser.UserPaymentStrategies.ToList().Select(s => s.ToDTO()).ToArray();
+            }
             return user;
+        }
+
+        public static Models.UserPaymentStrategy ToDTO(this UserPaymentStrategy item)
+        {
+            return new Models.UserPaymentStrategy()
+            {
+                Id = item.Id,
+                UserId = item.UserId,
+                CoffeeRoomId = item.CoffeeRoomId,
+                DayShiftPersent = item.DayShiftPersent,
+                NightShiftPercent = item.NightShiftPercent,
+                SimplePayment = item.SimplePayment,
+                MinimumPayment = item.MinimumPayment,
+            };
         }
 
         public static Models.Product ToDTO(this Product prodDb)

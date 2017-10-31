@@ -28,7 +28,7 @@ namespace CoffeeManager.Api.Controllers
         [HttpGet]
         public HttpResponseMessage GetUser([FromUri]int coffeeroomno, [FromUri]int userId)
         {
-            var user = new CoffeeRoomEntities().Users.FirstOrDefault(u => u.CoffeeRoomNo == coffeeroomno && u.Id == userId)?.ToDTO();
+            var user = new CoffeeRoomEntities().Users.Include(u => u.UserPaymentStrategies).FirstOrDefault(u => u.CoffeeRoomNo == coffeeroomno && u.Id == userId)?.ToDTO();
             return new HttpResponseMessage() { Content = new ObjectContent<Models.User>(user, new JsonMediaTypeFormatter()) };
         }
 

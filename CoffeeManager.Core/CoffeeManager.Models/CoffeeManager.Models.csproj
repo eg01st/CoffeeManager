@@ -68,6 +68,7 @@
     <Compile Include="TypesLists.cs" />
     <Compile Include="RoutesConstants.cs" />
     <Compile Include="SaleAction.cs" />
+    <Compile Include="UserPaymentStrategy.cs" />
     <Compile Include="UserPenalty.cs" />
     <Compile Include="UtilizedSuplyProduct.cs" />
   </ItemGroup>

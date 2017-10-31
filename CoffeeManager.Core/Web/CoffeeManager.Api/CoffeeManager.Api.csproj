@@ -311,6 +311,9 @@
     <Compile Include="UserEarningsHistory.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="UserPaymentStrategy.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="UserPenalty.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>

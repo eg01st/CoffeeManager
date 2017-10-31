@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using CoffeeManager.Api.Mappers;
 using CoffeeManager.Models;
+using Microsoft.AspNet.Identity;
 using Newtonsoft.Json;
 
 namespace CoffeeManager.Api.Controllers
@@ -48,7 +49,7 @@ namespace CoffeeManager.Api.Controllers
         [Route(RoutesConstants.EditProduct)]
 		[HttpPost]
 		public async Task<HttpResponseMessage> EditProduct ([FromUri]int coffeeroomno, HttpRequestMessage message)
-		{
+        {
 			var request = await message.Content.ReadAsStringAsync ();
 			var product = JsonConvert.DeserializeObject<Models.Product> (request);
 

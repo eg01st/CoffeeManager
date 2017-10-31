@@ -19,5 +19,7 @@ namespace CoffeeManager.Models
         public UserPenalty[] Penalties { get; set; }
 
         public UserEarningsHistory[] Earnings { get; set; }
+
+        public UserPaymentStrategy[] PaymentStrategies { get; set; }
     }
 }

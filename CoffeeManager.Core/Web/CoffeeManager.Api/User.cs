@@ -21,19 +21,16 @@ namespace CoffeeManager.Api
             this.UserPenalties = new HashSet<UserPenalty>();
             this.UserEarningsHistories = new HashSet<UserEarningsHistory>();
             this.Expenses = new HashSet<Expense>();
+            this.UserPaymentStrategies = new HashSet<UserPaymentStrategy>();
         }
     
         public int Id { get; set; }
         public string Name { get; set; }
         public Nullable<int> CoffeeRoomNo { get; set; }
         public bool IsActive { get; set; }
-        public int DayShiftPersent { get; set; }
-        public int NightShiftPercent { get; set; }
         public decimal CurrentEarnedAmount { get; set; }
         public decimal EntireEarnedAmount { get; set; }
         public Nullable<int> ExpenceId { get; set; }
-        public decimal SimplePayment { get; set; }
-        public decimal MinimumPayment { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Shift> Shifts { get; set; }
@@ -45,5 +42,7 @@ namespace CoffeeManager.Api
         public virtual ICollection<UserEarningsHistory> UserEarningsHistories { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Expense> Expenses { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UserPaymentStrategy> UserPaymentStrategies { get; set; }
     }
 }

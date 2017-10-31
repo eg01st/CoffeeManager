@@ -25,30 +25,45 @@ namespace CoffeeManager.Api.Mappers
 
         public static User Map(Models.User user)
         {
-            return new User()
+            var us = new User()
             {
                 Name = user.Name,
                 CoffeeRoomNo = user.CoffeeRoomNo,
                 CurrentEarnedAmount = user.CurrentEarnedAmount,
-                DayShiftPersent = user.DayShiftPersent,
                 EntireEarnedAmount = user.EntireEarnedAmount,
                 ExpenceId = user.ExpenceId,
-                NightShiftPercent = user.NightShiftPercent,
                 IsActive = user.IsActive,
-                MinimumPayment = user.MinimumPayment
             };
-
+            if (user.PaymentStrategies != null && user.PaymentStrategies.Any())
+            {
+                us.UserPaymentStrategies = user.PaymentStrategies.Select(s => Map(s)).ToArray();
+            }
+            return us;
         }
+
+	    public static UserPaymentStrategy Map(Models.UserPaymentStrategy strategy)
+	    {
+	        return new UserPaymentStrategy
+	        {
+                UserId = strategy.UserId,
+                CoffeeRoomId = strategy.CoffeeRoomId,
+                DayShiftPersent = strategy.DayShiftPersent,
+                NightShiftPercent = strategy.NightShiftPercent,
+                MinimumPayment = strategy.MinimumPayment,
+                SimplePayment = strategy.SimplePayment
+	        };
+	    }
+
 
         public static User Update(Models.User user, User userDb)
         {
             userDb.Name = user.Name;
-            userDb.NightShiftPercent = user.NightShiftPercent;
-            userDb.DayShiftPersent = user.DayShiftPersent;
             userDb.IsActive = user.IsActive;
             userDb.ExpenceId= user.ExpenceId;
-            userDb.SimplePayment = user.SalaryRate;
-            userDb.MinimumPayment = user.MinimumPayment;
+            if (user.PaymentStrategies != null && user.PaymentStrategies.Any())
+            {
+                userDb.UserPaymentStrategies = user.PaymentStrategies.Select(s => Map(s)).ToArray();
+            }
             return userDb;
         }
 
