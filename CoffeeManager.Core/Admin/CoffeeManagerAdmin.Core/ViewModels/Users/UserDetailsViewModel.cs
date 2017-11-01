@@ -210,6 +210,7 @@ namespace CoffeeManagerAdmin.Core
             strategy.SimplePayment = SalaryRate;
             strategy.DayShiftPersent = DayShiftPersent;
             strategy.NightShiftPercent = NightShiftPercent;
+            strategy.CoffeeRoomId = CurrentCoffeeRoom.Id;
             user.PaymentStrategies = new[] { strategy };
 
             await userManager.AddUser(user);
