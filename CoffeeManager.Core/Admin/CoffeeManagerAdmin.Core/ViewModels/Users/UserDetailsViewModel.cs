@@ -184,13 +184,18 @@ namespace CoffeeManagerAdmin.Core
             user.ExpenceId = SelectedExpenseType?.Id;
 
             var strategy = user.PaymentStrategies.FirstOrDefault(s => s.CoffeeRoomId == CurrentCoffeeRoom.Id);
-            if (strategy != null)
+            if (strategy == null)
             {
-                strategy.SimplePayment = SalaryRate;
-                strategy.MinimumPayment = MinimumPayment;
-                strategy.DayShiftPersent = DayShiftPersent;
-                strategy.NightShiftPercent = NightShiftPercent;
+                strategy = new UserPaymentStrategy();
+                user.PaymentStrategies = user.PaymentStrategies.Concat(new [] { strategy}).ToArray();
             }
+
+            strategy.SimplePayment = SalaryRate;
+            strategy.MinimumPayment = MinimumPayment;
+            strategy.DayShiftPersent = DayShiftPersent;
+            strategy.NightShiftPercent = NightShiftPercent;
+            strategy.CoffeeRoomId = CurrentCoffeeRoom.Id;
+
             await userManager.UpdateUser(user);
             Close(this);        
         }
