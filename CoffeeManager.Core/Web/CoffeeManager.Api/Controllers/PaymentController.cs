@@ -337,7 +337,7 @@ namespace CoffeeManager.Api.Controllers
         {
             var entities = new CoffeeRoomEntities();
             var currentShift = entities.Shifts.FirstOrDefault(s => s.CoffeeRoomNo == coffeeroomno && s.IsFinished.Value == false);
-            if (currentShift?.TotalCreditCardAmount != null && currentShift.TotalCreditCardAmount.Value > amount)
+            if (currentShift?.TotalCreditCardAmount != null && currentShift.TotalCreditCardAmount.Value >= amount)
             {
                 currentShift.TotalCreditCardAmount -= amount;
                 currentShift.TotalAmount += amount;

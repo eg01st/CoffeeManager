@@ -118,6 +118,23 @@ namespace CoffeeManager.Api.Controllers
             }
         }
 
+        [Route(RoutesConstants.GetCurrentShiftForCoffeeRoom)]
+        [HttpGet]
+        public async Task<HttpResponseMessage> GetCurrentShiftForCoffeeRoom([FromUri]int coffeeroomno, [FromUri]int forCoffeeRoom, HttpRequestMessage message)
+        {
+            var entities = new CoffeeRoomEntities();
+            var shift = entities.Shifts.FirstOrDefault(s => s.CoffeeRoomNo == forCoffeeRoom && !s.IsFinished.Value);
+            if (shift != null)
+            {
+                return Request.CreateResponse(HttpStatusCode.OK,
+                    new Models.Shift() { Id = shift.Id, UserId = shift.UserId.Value });
+            }
+            else
+            {
+                return Request.CreateResponse<Models.Shift>(HttpStatusCode.OK, null);
+            }
+        }
+
         [Route(RoutesConstants.GetShifts)]
         [HttpGet]
         public async Task<HttpResponseMessage> GetShifts([FromUri]int coffeeroomno, [FromUri]int skip, HttpRequestMessage message)

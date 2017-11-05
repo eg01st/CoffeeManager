@@ -20,7 +20,7 @@ namespace CoffeeManager.Api.Controllers
 		public async Task<HttpResponseMessage> Get ([FromUri]int coffeeroomno, [FromUri]int productType)
 		{
 			var entities = new CoffeeRoomEntities ();
-			var products = entities.Products.Where (p => p.CoffeeRoomNo == coffeeroomno && p.ProductType.Value == productType && !p.Removed).ToList ().Select (s => s.ToDTO ());
+			var products = entities.Products.Where (p => p.ProductType.Value == productType && !p.Removed).ToList ().Select (s => s.ToDTO ());
 			return Request.CreateResponse (HttpStatusCode.OK, products);
 		}
 
@@ -29,7 +29,7 @@ namespace CoffeeManager.Api.Controllers
 		public async Task<HttpResponseMessage> GetAll ([FromUri]int coffeeroomno, HttpRequestMessage message)
 		{
 			var entities = new CoffeeRoomEntities ();
-			var products = entities.Products.Where (p => p.CoffeeRoomNo == coffeeroomno && !p.Removed).ToList ().Select (s => s.ToDTO ());
+			var products = entities.Products.Where (p => !p.Removed).ToList ().Select (s => s.ToDTO ());
 			return Request.CreateResponse (HttpStatusCode.OK, products);
 		}
 
@@ -128,7 +128,17 @@ namespace CoffeeManager.Api.Controllers
                         foreach (var productCalculation in product.ProductCalculations)
                         {
                             var supliedProductQuantity =
-                                sContext.SuplyProductQuantities.First(p => p.SuplyProductId == productCalculation.SuplyProductId && p.CoffeeRoomId == coffeeroomno);
+                                sContext.SuplyProductQuantities
+                                .FirstOrDefault(p => p.SuplyProductId == productCalculation.SuplyProductId 
+                                && p.CoffeeRoomId == coffeeroomno);
+                            if (supliedProductQuantity == null)
+                            {
+                                supliedProductQuantity = new SuplyProductQuantity();
+                                supliedProductQuantity.CoffeeRoomId = coffeeroomno;
+                                supliedProductQuantity.SuplyProductId = productCalculation.SuplyProductId;
+                                supliedProductQuantity.Quantity = 0;
+                                sContext.SuplyProductQuantities.Add(supliedProductQuantity);
+                            }
                             supliedProductQuantity.Quantity -= productCalculation.Quantity;
                             sContext.SaveChanges();
                         }

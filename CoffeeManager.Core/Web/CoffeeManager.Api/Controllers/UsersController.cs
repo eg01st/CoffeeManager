@@ -20,7 +20,7 @@ namespace CoffeeManager.Api.Controllers
         [HttpGet]
         public HttpResponseMessage Get([FromUri]int coffeeroomno)
         {
-            var users = new  CoffeeRoomEntities().Users.Where(u => u.CoffeeRoomNo == coffeeroomno).ToArray().Select(u => u.ToDTO());
+            var users = new  CoffeeRoomEntities().Users.ToArray().Select(u => u.ToDTO());
             return new HttpResponseMessage() { Content = new ObjectContent<IEnumerable<Models.User>>(users, new JsonMediaTypeFormatter())};
         }
 
@@ -28,7 +28,7 @@ namespace CoffeeManager.Api.Controllers
         [HttpGet]
         public HttpResponseMessage GetUser([FromUri]int coffeeroomno, [FromUri]int userId)
         {
-            var user = new CoffeeRoomEntities().Users.Include(u => u.UserPaymentStrategies).FirstOrDefault(u => u.CoffeeRoomNo == coffeeroomno && u.Id == userId)?.ToDTO();
+            var user = new CoffeeRoomEntities().Users.Include(u => u.UserPaymentStrategies).FirstOrDefault(u => u.Id == userId)?.ToDTO();
             return new HttpResponseMessage() { Content = new ObjectContent<Models.User>(user, new JsonMediaTypeFormatter()) };
         }
 
@@ -52,7 +52,7 @@ namespace CoffeeManager.Api.Controllers
             var request = await message.Content.ReadAsStringAsync();
             var user = JsonConvert.DeserializeObject<Models.User>(request);
             var entites = new CoffeeRoomEntities();
-            var userDb = entites.Users.FirstOrDefault(u => u.CoffeeRoomNo == coffeeroomno && u.Id == user.Id);
+            var userDb = entites.Users.First(u => u.Id == user.Id);
             userDb =  DbMapper.Update(user, userDb);
             entites.SaveChanges();
             return Request.CreateResponse(HttpStatusCode.OK);
@@ -63,7 +63,7 @@ namespace CoffeeManager.Api.Controllers
         public async Task<HttpResponseMessage> PenaltyUser([FromUri]int coffeeroomno, [FromUri]int userId, [FromUri]decimal amount, [FromUri]string reason, HttpRequestMessage message)
         {
             var entites = new CoffeeRoomEntities();
-            var userDb = entites.Users.First(u => u.CoffeeRoomNo == coffeeroomno && u.Id == userId);
+            var userDb = entites.Users.First(u => u.Id == userId);
             userDb.CurrentEarnedAmount -= amount;
             var penalty = new UserPenalty();
             penalty.Date = DateTime.Now;
@@ -94,28 +94,29 @@ namespace CoffeeManager.Api.Controllers
 
         [Route(RoutesConstants.PaySalary)]
         [HttpPost]
-        public async Task<HttpResponseMessage> PaySalary([FromUri]int coffeeroomno, [FromUri]int userId, [FromUri]int currentShifId, HttpRequestMessage message)
+        public async Task<HttpResponseMessage> PaySalary([FromUri]int coffeeroomno, [FromUri]int userId, [FromUri]int coffeeRoomToPay, HttpRequestMessage message)
         {
             var entites = new CoffeeRoomEntities();
-            var user = entites.Users.FirstOrDefault(u => u.Id == userId && u.CoffeeRoomNo == coffeeroomno);
+            var user = entites.Users.FirstOrDefault(u => u.Id == userId);
             if(user != null)
             {
+
+                var currentShift = entites.Shifts.First(s => s.CoffeeRoomNo == coffeeRoomToPay && !s.IsFinished.Value);
+                currentShift.TotalExprenses += user.CurrentEarnedAmount;
+                currentShift.TotalAmount -= user.CurrentEarnedAmount;
+
                 var expense = new Expense();
                 expense.ExpenseType = user.ExpenceId;
                 expense.Amount = user.CurrentEarnedAmount;
-                expense.CoffeeRoomNo = coffeeroomno;
+                expense.CoffeeRoomNo = coffeeRoomToPay;
                 expense.Quantity = 1;
-                expense.ShiftId = currentShifId;
-                expense.IsUserSalaryPayment = true; 
+                expense.ShiftId = currentShift.Id;
+                expense.IsUserSalaryPayment = true;
                 expense.UserId = userId;
                 entites.Expenses.Add(expense);
 
                 user.EntireEarnedAmount += user.CurrentEarnedAmount;
                 user.CurrentEarnedAmount = 0;
-
-                var currentShift = entites.Shifts.First(s => s.Id == currentShifId);
-                currentShift.TotalExprenses += expense.Amount;
-                currentShift.TotalAmount -= expense.Amount;
 
                 await entites.SaveChangesAsync();
             }
@@ -128,7 +129,7 @@ namespace CoffeeManager.Api.Controllers
         public async Task<HttpResponseMessage> ToggleUserEnabled([FromUri]int coffeeroomno, [FromUri]int userId, HttpRequestMessage message)
         {         
             var entites = new CoffeeRoomEntities();
-            var user = entites.Users.FirstOrDefault(u => u.CoffeeRoomNo == coffeeroomno && u.Id == userId);
+            var user = entites.Users.FirstOrDefault(u => u.Id == userId);
             if(user != null)
             {
                 user.IsActive = !user.IsActive;
