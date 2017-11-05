@@ -128,7 +128,7 @@ namespace CoffeeManager.Core.ViewModels
             catch (Exception ex)
             {
                 Alert("Произошла ошибка сервера. Мы работаем над решением проблемы");
-                await EmailService?.SendErrorEmail(ex.ToDiagnosticString());
+                await EmailService?.SendErrorEmail($"CoffeeRoomId: {Config.CoffeeRoomNo}", ex.ToDiagnosticString());
                 return false;
             }
             return loggedIn;

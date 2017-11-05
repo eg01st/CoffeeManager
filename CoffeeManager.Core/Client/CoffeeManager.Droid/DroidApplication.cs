@@ -9,6 +9,7 @@ using MailKit.Net.Smtp;
 using MimeKit;
 using MvvmCross.Platform;
 using CoffeManager.Common;
+using CoffeeManager.Common;
 
 namespace CoffeeManager.Droid
 {
@@ -42,7 +43,7 @@ namespace CoffeeManager.Droid
             }
             else
             {
-                Mvx.Resolve<IEmailService>().SendErrorEmail(exceptionObject.ToString());
+                Mvx.Resolve<IEmailService>().SendErrorEmail($"CoffeeRoomId: {Config.CoffeeRoomNo}",exceptionObject.ToString());
             }
         }
 
@@ -70,7 +71,7 @@ namespace CoffeeManager.Droid
                 return;
             }
             Mvx.Resolve<IUserDialogs>().Alert("Что-то пошло не так :(");
-            Mvx.Resolve<IEmailService>().SendErrorEmail(e.ToDiagnosticString());
+            Mvx.Resolve<IEmailService>().SendErrorEmail($"CoffeeRoomId: {Config.CoffeeRoomNo}", e.ToDiagnosticString());
         }
     }
 }

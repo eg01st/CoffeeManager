@@ -65,7 +65,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels
 
         public string ButtonTitle {get;set;} = "Добавить продукт";
         public string PriceTitle {get;set;} = "Цена: ";
-        public string PolicePriceTitle {get;set;} = "Цена для копов: ";        
+        public string PolicePriceTitle {get;set;} = "Цена по скидке: ";        
 
         public bool IsSaleByWeight
         {
@@ -74,7 +74,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels
             {
                 isSaleByWeight = value;
                 PriceTitle = isSaleByWeight ? "Цена за 100 грамм: " : "Цена: ";
-                PolicePriceTitle = isSaleByWeight ? "Цена для копов за 100 грамм: " : "Цена для копов:";
+                PolicePriceTitle = isSaleByWeight ? "Цена по скидке за 100 грамм: " : "Цена по скидке:";
                 RaisePropertyChanged(nameof(IsSaleByWeight));
                 RaisePropertyChanged(nameof(PriceTitle));
                 RaisePropertyChanged(nameof(PolicePriceTitle));

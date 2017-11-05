@@ -8,10 +8,10 @@ namespace CoffeeManager.Droid
 {
     public class EmailService : IEmailService
     {
-        public async Task SendErrorEmail(string message)
+        public async Task SendErrorEmail(string title, string message)
         {
             var email = new MimeMessage();
-            email.From.Add(new MailboxAddress("Info", "coffeemanager221@gmail.com"));
+            email.From.Add(new MailboxAddress(title, "coffeemanager221@gmail.com"));
             email.To.Add(new MailboxAddress("", "tertyshnykov@gmail.com"));
             email.Subject = "Error";
 

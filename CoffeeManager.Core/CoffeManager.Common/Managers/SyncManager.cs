@@ -117,7 +117,7 @@ namespace CoffeManager.Common
                 catch (Exception ex)
                 {
                     Debug.WriteLine(ex.ToDiagnosticString());
-                    await EmailService?.SendErrorEmail(ex.ToDiagnosticString());
+                    await EmailService?.SendErrorEmail($"CoffeeRoomId: {Config.CoffeeRoomNo}",ex.ToDiagnosticString());
                     return false;
                 }
             }

@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Net.Http;
 using System.Threading.Tasks;
+using CoffeeManager.Common;
 using CoffeeManager.Models;
 
 namespace CoffeManager.Common
@@ -91,7 +92,7 @@ namespace CoffeManager.Common
             catch(Exception ex)
             {
                 Debug.WriteLine(ex.ToDiagnosticString());
-                await EmailService?.SendErrorEmail(ex.ToDiagnosticString());
+                await EmailService?.SendErrorEmail($"CoffeeRoomId: {Config.CoffeeRoomNo}",ex.ToDiagnosticString());
                 return null;
             }
         }
@@ -106,7 +107,7 @@ namespace CoffeManager.Common
             catch (Exception ex)
             {
                 Debug.WriteLine(ex.ToDiagnosticString());
-                await EmailService?.SendErrorEmail(ex.ToDiagnosticString());
+                await EmailService?.SendErrorEmail($"CoffeeRoomId: {Config.CoffeeRoomNo}",ex.ToDiagnosticString());
                 return null;
             }
         }

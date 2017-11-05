@@ -6,7 +6,7 @@ namespace CoffeeManagerAdmin.iOS
 {
     public class EmailService : IEmailService
     {
-        public async Task SendErrorEmail(string message)
+        public async Task SendErrorEmail(string title, string message)
         {
         }
     }
