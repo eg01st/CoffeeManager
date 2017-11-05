@@ -10,6 +10,7 @@ using System.Windows.Input;
 using CoffeeManager.Models;
 using CoffeManager.Common.Managers;
 using MvvmCross.Core.Navigation;
+using CoffeeManager.Common;
 
 namespace CoffeManager.Common
 {
@@ -186,7 +187,7 @@ namespace CoffeManager.Common
                 UserDialogs.Alert(e.ToString());
 #else
                 Alert("Произошла ошибка сервера. Мы работаем над решением проблемы");
-                await EmailService?.SendErrorEmail(e.ToDiagnosticString());
+                await EmailService?.SendErrorEmail($"CoffeeRoomId: {Config.CoffeeRoomNo}",e.ToDiagnosticString());
 #endif
 
             }

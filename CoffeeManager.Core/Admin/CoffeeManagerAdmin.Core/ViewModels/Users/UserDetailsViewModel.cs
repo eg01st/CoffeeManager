@@ -279,7 +279,7 @@ namespace CoffeeManagerAdmin.Core
                     var item = ExpenseItems.FirstOrDefault(i => i.Id == user.ExpenceId);
                     if(item == null)
                     {
-                        Alert("Расход связанный с зарплатой сотрудника удалена, выберите новый расход");
+                        Alert("Расход связанный с зарплатой сотрудника удален, выберите новый расход");
                         return;
                     }
                     SelectedExpenseType = item;
@@ -319,7 +319,7 @@ namespace CoffeeManagerAdmin.Core
         {
             if(!user.ExpenceId.HasValue)
             {
-                UserDialogs.Alert("Не связана трата с пользователем!");
+                UserDialogs.Alert("Не связан расход с пользователем!");
                 return;
             }
             if(user.CurrentEarnedAmount <= 0)

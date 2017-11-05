@@ -1,6 +1,7 @@
 using System;
 using Android.Content;
 using Android.Runtime;
+using CoffeeManager.Common;
 using CoffeManager.Common;
 using Java.Lang;
 using MvvmCross.Platform;
@@ -32,7 +33,7 @@ namespace CoffeeManager.Droid
             var message = stringBuilder.ToString();
             var exceptionTolog = new System.Exception(message, ex);
 
-            Mvx.Resolve<IEmailService>().SendErrorEmail(exceptionTolog.ToDiagnosticString());
+            Mvx.Resolve<IEmailService>().SendErrorEmail($"CoffeeRoomId: {Config.CoffeeRoomNo}",exceptionTolog.ToDiagnosticString());
         }
     }
 }

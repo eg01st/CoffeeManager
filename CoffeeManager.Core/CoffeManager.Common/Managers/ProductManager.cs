@@ -97,7 +97,7 @@ namespace CoffeManager.Common
             catch(Exception ex)
             {
                 Debug.WriteLine(ex.ToDiagnosticString());
-                await EmailService?.SendErrorEmail(ex.ToDiagnosticString());
+                await EmailService?.SendErrorEmail($"CoffeeRoomId: {Config.CoffeeRoomNo}",ex.ToDiagnosticString());
                 syncManager.AddSaleToSync(sale, SaleAction.Add);
                 return;
             }
@@ -128,7 +128,7 @@ namespace CoffeManager.Common
             catch (Exception ex)
             {
                 Debug.WriteLine(ex.ToDiagnosticString());
-                await EmailService?.SendErrorEmail(ex.ToDiagnosticString());
+                await EmailService?.SendErrorEmail($"CoffeeRoomId: {Config.CoffeeRoomNo}",ex.ToDiagnosticString());
                 syncManager.AddSaleToSync(new SaleEntity() { Id = id, ShiftId = ShiftNo}, SaleAction.Dismiss);
             }
 
@@ -153,7 +153,7 @@ namespace CoffeManager.Common
             catch (Exception ex)
             {
                 Debug.WriteLine(ex.ToDiagnosticString());
-                await EmailService?.SendErrorEmail(ex.ToDiagnosticString());
+                await EmailService?.SendErrorEmail($"CoffeeRoomId: {Config.CoffeeRoomNo}",ex.ToDiagnosticString());
                 syncManager.AddSaleToSync(new SaleEntity() { Id = id, ShiftId = ShiftNo }, SaleAction.Utilize);
             }
         }
@@ -204,7 +204,7 @@ namespace CoffeManager.Common
             catch(Exception ex)
             {
                 Debug.WriteLine(ex.ToDiagnosticString());
-                await EmailService?.SendErrorEmail(ex.ToDiagnosticString());
+                await EmailService?.SendErrorEmail($"CoffeeRoomId: {Config.CoffeeRoomNo}",ex.ToDiagnosticString());
                 throw;
             }
             return products.ToArray();
