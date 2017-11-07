@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleDisplayName</key>
-	<string>CoffeeManagerAdmin.iOS</string>
+	<string>Coffee Manager</string>
 	<key>CFBundleIcons</key>
 	<dict/>
 	<key>CFBundleIcons~ipad</key>
@@ -11,7 +11,7 @@
 	<key>CFBundleIdentifier</key>
 	<string>com.companyname.CoffeeManagerAdmin.iOS1</string>
 	<key>CFBundleName</key>
-	<string>CoffeeManagerAdmin.iOS</string>
+	<string>Coffee Manager</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
