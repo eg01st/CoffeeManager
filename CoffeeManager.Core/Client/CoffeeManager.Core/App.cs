@@ -14,7 +14,8 @@ namespace CoffeeManager.Core
         public override void Initialize()
         {
             base.Initialize();
-            RegisterAppStart<LoginViewModel>();
+            RegisterNavigationServiceAppStart<SplashViewModel>();
+          //  RegisterAppStart<LoginViewModel>();
 
             Mvx.RegisterSingleton<IUserDialogs>(() => UserDialogs.Instance);
 

@@ -18,7 +18,7 @@ using System.Linq;
 
 namespace CoffeeManager.Droid.Views
 {
-    [Activity(Theme = "@style/Theme.AppCompat.Light", ScreenOrientation = ScreenOrientation.Portrait)]
+    [Activity(ScreenOrientation = ScreenOrientation.Portrait)]
     public class MainView : ActivityBase<MainViewModel>
     {
         private readonly int drawerGravity = GravityCompat.Start;

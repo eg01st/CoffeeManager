@@ -57,7 +57,7 @@ namespace CoffeeManager.Core.ViewModels
            {
                var info = await shiftManager.EndUserShift(_shiftId, decimal.Parse(RealAmount), int.Parse(EndCounter));
                Alert($"Касса за смену: {info.RealShiftAmount:F}\nЗаработано за смену: {info.EarnedAmount:F}\nОбщая сумма зп: {info.CurrentUserAmount:F}",
-                     () => ShowViewModel<LoginViewModel>(),
+                     () =>  NavigationService.Navigate<LoginViewModel>(),
                        "Окончание смены");
            });
         }

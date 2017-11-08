@@ -83,9 +83,6 @@
     <Reference Include="AndHUD">
       <HintPath>..\..\packages\AndHUD.1.2.0\lib\MonoAndroid\AndHUD.dll</HintPath>
     </Reference>
-    <Reference Include="Splat">
-      <HintPath>..\..\packages\Splat.1.6.2\lib\monoandroid\Splat.dll</HintPath>
-    </Reference>
     <Reference Include="SQLitePCLPlugin_esqlite3">
       <HintPath>..\..\packages\SQLitePCL.plugin.sqlite3.android.0.9.2\lib\MonoAndroid\SQLitePCLPlugin_esqlite3.dll</HintPath>
     </Reference>
@@ -171,17 +168,20 @@
     <Reference Include="Xamarin.Android.Support.Design">
       <HintPath>..\..\packages\Xamarin.Android.Support.Design.25.4.0.2\lib\MonoAndroid70\Xamarin.Android.Support.Design.dll</HintPath>
     </Reference>
-    <Reference Include="Acr.UserDialogs">
-      <HintPath>..\..\packages\Acr.UserDialogs.6.3.8\lib\MonoAndroid10\Acr.UserDialogs.dll</HintPath>
-    </Reference>
-    <Reference Include="Acr.UserDialogs.Interface">
-      <HintPath>..\..\packages\Acr.UserDialogs.6.3.8\lib\MonoAndroid10\Acr.UserDialogs.Interface.dll</HintPath>
-    </Reference>
     <Reference Include="MvvmCross.Droid.Support.Core.UI">
       <HintPath>..\..\packages\MvvmCross.Droid.Support.Core.UI.5.3.0\lib\MonoAndroid70\MvvmCross.Droid.Support.Core.UI.dll</HintPath>
     </Reference>
     <Reference Include="MvvmCross.Droid.Support.V7.AppCompat">
       <HintPath>..\..\packages\MvvmCross.Droid.Support.V7.AppCompat.5.3.0\lib\MonoAndroid70\MvvmCross.Droid.Support.V7.AppCompat.dll</HintPath>
+    </Reference>
+    <Reference Include="Splat">
+      <HintPath>..\..\packages\Splat.2.0.0\lib\MonoAndroid403\Splat.dll</HintPath>
+    </Reference>
+    <Reference Include="Acr.UserDialogs">
+      <HintPath>..\..\packages\Acr.UserDialogs.6.5.1\lib\MonoAndroid10\Acr.UserDialogs.dll</HintPath>
+    </Reference>
+    <Reference Include="Acr.UserDialogs.Interface">
+      <HintPath>..\..\packages\Acr.UserDialogs.6.5.1\lib\MonoAndroid10\Acr.UserDialogs.Interface.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -226,6 +226,8 @@
     <Compile Include="Views\UtilizeProductsView.cs" />
     <Compile Include="Views\SettingsView.cs" />
     <Compile Include="Bootstrap\MessengerPluginBootstrap.cs" />
+    <Compile Include="Views\SplashView.cs" />
+    <Compile Include="Views\InitialLoginView.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -314,6 +316,9 @@
     <AndroidResource Include="Resources\mipmap-xhdpi\ic_launcher.png" />
     <AndroidResource Include="Resources\mipmap-xxhdpi\ic_launcher.png" />
     <AndroidResource Include="Resources\mipmap-xxxhdpi\ic_launcher.png" />
+    <AndroidResource Include="Resources\drawable\take_cup_transparent.png" />
+    <AndroidResource Include="Resources\values\themes.xml" />
+    <AndroidResource Include="Resources\layout\initial_login.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />

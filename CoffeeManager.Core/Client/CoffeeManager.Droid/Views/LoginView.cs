@@ -7,12 +7,12 @@ using CoffeeManager.Core.ViewModels;
     
 namespace CoffeeManager.Droid.Views
 {
-    [Activity(Label = "", Theme = "@style/Theme.AppCompat.Light", ScreenOrientation = ScreenOrientation.Portrait)]
+    [Activity(Label = "", ScreenOrientation = ScreenOrientation.Portrait)]
     public class LoginView : ActivityBase<LoginViewModel>
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
-            UserDialogs.Init(this);
+           // UserDialogs.Init(this);
 
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.login);

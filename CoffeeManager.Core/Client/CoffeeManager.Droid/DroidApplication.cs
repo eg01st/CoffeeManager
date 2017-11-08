@@ -26,7 +26,7 @@ namespace CoffeeManager.Droid
         public override void OnCreate()
         {
             base.OnCreate();
-
+            UserDialogs.Init(this);
             AppDomain.CurrentDomain.UnhandledException += OnDomainUnhandledException;
             AndroidEnvironment.UnhandledExceptionRaiser += OnAndroidEnvironmentUnhandledExceptionRaiser;
             TaskScheduler.UnobservedTaskException += OnTaskSchedulerUnobservedTaskException;

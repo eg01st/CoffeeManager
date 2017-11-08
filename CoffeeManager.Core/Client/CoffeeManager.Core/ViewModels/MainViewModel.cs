@@ -7,15 +7,15 @@ using System.Linq;
 using System.Text;
 using CoffeManager.Common;
 using System;
+using CoffeeManager.Models;
 
 namespace CoffeeManager.Core.ViewModels
 {
-    public class MainViewModel : ViewModelBase
+    public class MainViewModel : ViewModelBase, IMvxViewModel<Shift>
     {
         private readonly IProductManager productManager;
 
-        private int _userId;
-        private int _shiftId;
+        private Shift shiftInfo;
 
         private bool _policeSaleEnabled;
         private bool _isCreditCardSaleEnabled;
@@ -175,7 +175,7 @@ namespace CoffeeManager.Core.ViewModels
             ShowCurrentShiftExpensesCommand = new MvxCommand(() => ShowViewModel<CurrentShiftExpensesViewModel>());
             ShowInventoryCommand= new MvxCommand(() => ShowViewModel<InventoryViewModel>());
             ShowUtilizeCommand = new MvxCommand(() => ShowViewModel<UtilizeProductsViewModel>());
-            ShowSettingsCommand = new MvxCommand(() => ShowViewModel<SettingsViewModel>(new { isInitialSetup = false }));
+            ShowSettingsCommand = new MvxCommand(() => NavigationService.Navigate<SettingsViewModel>());
             ShowChargeCommand = new MvxCommand<int>((sum) => DoShowCharge(sum));
         }
 
@@ -184,10 +184,8 @@ namespace CoffeeManager.Core.ViewModels
             ChangeSum = sum;
         }
 
-        public async Task Init(int userId, int shiftId)
+        public async override Task Initialize()
         {
-            _userId = userId;
-            _shiftId = shiftId;
             var tasks = new List<Task>();
             tasks.Add(CoffeeProducts.InitViewModel());
             tasks.Add(TeaProducts.InitViewModel());
@@ -197,7 +195,7 @@ namespace CoffeeManager.Core.ViewModels
             tasks.Add(MealsProducts.InitViewModel());
             tasks.Add(ColdDrinksProducts.InitViewModel());
             tasks.Add(IceCreamProducts.InitViewModel());
-            await ExecuteSafe( async () => 
+            await ExecuteSafe(async () =>
             {
                 await Task.WhenAll(tasks);
 
@@ -213,6 +211,7 @@ namespace CoffeeManager.Core.ViewModels
                 SubscribeToSelectProduct();
             });
         }
+
 
         private void SubscribeToSelectProduct()
         {
@@ -256,7 +255,7 @@ namespace CoffeeManager.Core.ViewModels
             }
             var tasks = SelectedProducts.Select(productViewModel =>
                                   productManager.SaleProduct(
-                                _shiftId,
+                                                    shiftInfo.Id,
                                 productViewModel.ProductId,
                                 productViewModel.Price,
                                 productViewModel.IsPoliceSale,
@@ -288,10 +287,15 @@ namespace CoffeeManager.Core.ViewModels
             }
             Confirm("Завершить смену?", () => 
             {
-                ShowViewModel<EndShiftViewModel>(new { shiftId = _shiftId });
+                ShowViewModel<EndShiftViewModel>(new { shiftId = shiftInfo.Id });
                 CloseCommand.Execute(null);
             });
         }
 
+        public void Prepare(Shift shiftInfo)
+        {
+            this.shiftInfo = shiftInfo;
+        }
     }
+
 }

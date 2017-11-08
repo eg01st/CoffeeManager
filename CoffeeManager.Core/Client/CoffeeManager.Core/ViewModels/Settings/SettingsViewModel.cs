@@ -5,7 +5,6 @@ using System.Windows.Input;
 using MvvmCross.Core.ViewModels;
 using System.Threading.Tasks;
 using System.Linq;
-using CoffeeManager.Core.ViewModels;
 
 namespace CoffeeManager.Core
 {
@@ -28,34 +27,26 @@ namespace CoffeeManager.Core
             CoffeeRoomSelectedCommand = new MvxCommand<CoffeeRoomItemViewModel>(DoSelectItem);
         }
 
-        public async Task Init(bool isInitialSetup)
+        public async override Task Initialize()
         {
-            this.isInitialSetup = isInitialSetup;
-
-            if(!isInitialSetup)
-            {
-               isLoggedIn = await ExecuteSafe(async () => await PromtLogin());
-
-                if (isLoggedIn == false)
-                {
-                    CloseCommand.Execute(null);
-                    return;
-                }
-            }
-
             await ExecuteSafe(async () =>
             {
                 var coffeeRomms = await adminManager.GetCoffeeRooms();
                 CoffeeRooms = coffeeRomms.Select(s => new CoffeeRoomItemViewModel(s.Id, s.Name)).ToList();
             });
             var currentCoffeeRoom = localStorage.GetCoffeeRoomId();
-            if(currentCoffeeRoom != -1)
+            if (currentCoffeeRoom != -1)
             {
                 var coffeeRoomVm = CoffeeRooms.First(c => c.Id == currentCoffeeRoom);
                 coffeeRoomVm.IsSelected = true;
             }
+            else
+            {
+                isInitialSetup = true;
+            }
             RaiseAllPropertiesChanged();
         }
+
 
         private void DoSelectItem(CoffeeRoomItemViewModel obj)
         {
@@ -67,21 +58,22 @@ namespace CoffeeManager.Core
             obj.IsSelected = true;
         }
 
-        protected override void DoClose()
+        protected async override void DoClose()
         {
-            if(!isInitialSetup && !isLoggedIn)
-            {
-                base.DoClose();
-                return;
-            }
             var coffeeRoomId = localStorage.GetCoffeeRoomId();
             if (coffeeRoomId == -1)
             {
                 Alert("Выберите кофейню для работы с программой");
                 return;
             }
-            ShowViewModel<LoginViewModel>();
-            base.DoClose();
+            if(isInitialSetup)
+            {
+                await NavigationService.Navigate<SplashViewModel>();
+            }
+            else
+            {
+                base.DoClose();
+            }
         }
     }
 }

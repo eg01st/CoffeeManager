@@ -4,7 +4,7 @@ using MvvmCross.Droid.Support.V7.AppCompat;
 
 namespace CoffeeManager.Droid.Views
 {
-    [Activity(Theme = "@style/Theme.AppCompat.Light")]
+    [Activity]
     public class ActivityBase <T> : MvxAppCompatActivity<T> where T : ViewModelBase
     {
         protected override void OnCreate(Android.OS.Bundle bundle)
@@ -15,8 +15,8 @@ namespace CoffeeManager.Droid.Views
 
         protected virtual void DoOnCreate()
         {
-            SupportActionBar.SetDisplayHomeAsUpEnabled(true);
-            SupportActionBar.SetHomeButtonEnabled(true);
+            SupportActionBar?.SetDisplayHomeAsUpEnabled(true);
+            SupportActionBar?.SetHomeButtonEnabled(true);
         }
 
         public override bool OnOptionsItemSelected(Android.Views.IMenuItem item)
