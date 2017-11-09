@@ -507,6 +507,7 @@
     <InterfaceDefinition Include="Views\TransferSuplyProduct\TransferSuplyProductsView.xib" />
     <InterfaceDefinition Include="Views\TransferSuplyProduct\SelectSuplyProductsView.xib" />
     <InterfaceDefinition Include="Views\TransferSuplyProduct\TransferProductItemCell.xib" />
+    <InterfaceDefinition Include="LaunchScreen.storyboard" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
