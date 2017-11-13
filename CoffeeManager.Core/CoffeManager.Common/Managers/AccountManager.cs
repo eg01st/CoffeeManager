@@ -4,6 +4,7 @@ using CoffeManager.Common.Providers;
 using CoffeeManager.Common;
 using System;
 using System.Linq;
+using System.Net;
 
 namespace CoffeManager.Common.Managers
 {
@@ -18,18 +19,24 @@ namespace CoffeManager.Common.Managers
 
         public async Task<string> AuthorizeInitial(string login, string password)
         {
-            return await _provider.AuthorizeInitial(login, password);
+            return "" ;//await _provider.AuthorizeInitial(login, password);
         }
 
         public async Task<UserAcount> Authorize(string login, string password)
         {
             var initialAccessToken = await _provider.AuthorizeInitial(login, password);
-            BaseServiceProvider.SetInitialAccessToken(initialAccessToken);
+            _provider.Credentials = new NetworkCredential(login, password);
+            var authenticator = new Authenticator(_provider);
+            authenticator.UserToken = initialAccessToken;
+            _provider.Authenticator = authenticator;
             var userInfo = await _provider.GetUserInfo();
             Config.ApiUrl = userInfo.ApiUrl;
 
             var token = await _provider.Authorize(login, password);
-            BaseServiceProvider.SetAccessToken(token);
+            authenticator = new Authenticator(_provider);
+            authenticator.UserToken = initialAccessToken;
+            _provider.Authenticator = authenticator;
+           // BaseServiceProvider.SetAccessToken(token);
 
             return userInfo;
         }

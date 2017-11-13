@@ -1,13 +1,19 @@
 ﻿using System.Threading.Tasks;
 using CoffeeManager.Models;
+using System.Net;
+using RestSharp.Portable;
 
 namespace CoffeManager.Common.Providers
 {
     public interface IAccountProvider
     {
-        Task<string> AuthorizeInitial(string login, string password);
+        IAuthenticator Authenticator { get; set; }
 
-        Task<string> Authorize(string login, string password);
+        ICredentials Credentials { get; set; }
+
+        Task<OAuthToken> AuthorizeInitial(string login, string password);
+
+        Task<OAuthToken> Authorize(string login, string password);
 
         Task<UserAcount> GetUserInfo();
 

@@ -8,36 +8,53 @@ using Newtonsoft.Json;
 
 namespace CoffeManager.Common.Providers
 {
-    public class AccountProvider : BaseServiceProvider, IAccountProvider
+    public class AccountProvider : ServiceBase, IAccountProvider
     {
-        public async Task<string> AuthorizeInitial(string login, string password)
+        public async Task<OAuthToken> AuthorizeInitial(string login, string password)
         {
-            _apiUrl = Config.AuthApiUrl;
-            var result = await Post<string>(RoutesConstants.Token, new Dictionary<string, string>()
-            {
-                {"grant_type", "password"},
-                {"username", login},
-                {"password", password},
+            BaseUrl = Config.AuthApiUrl;
+            var request = CreatePostRequest(RoutesConstants.Token);
+            request.Parameters.Add(new RestSharp.Portable.Parameter() { Name = "grant_type", Value = "password" });
+            request.Parameters.Add(new RestSharp.Portable.Parameter() { Name = "username", Value = login });
+            request.Parameters.Add(new RestSharp.Portable.Parameter() { Name = "password", Value = password });
 
-            });
-            var obj = JObject.Parse(result);
-            var token = obj["access_token"].Value<string>();
-            return token;
+            var token = await ExecuteRequestAsync<OAuthTokenDTO>(request);
+            return OAuthToken.FromDTO(token);
+            //_apiUrl = Config.AuthApiUrl;
+            //var result = await Post<string>(RoutesConstants.Token, new Dictionary<string, string>()
+            //{
+            //    {"grant_type", "password"},
+            //    {"username", login},
+            //    {"password", password},
+
+            //});
+            //var obj = JObject.Parse(result);
+            //var token = obj["access_token"].Value<string>();
+            //return token;
         }
 
-        public async Task<string> Authorize(string login, string password)
+        public async Task<OAuthToken> Authorize(string login, string password)
         {
-            _apiUrl = Config.ApiUrl;
-            var result = await Post<string>(RoutesConstants.Token, new Dictionary<string, string>() 
-            {
-                {"grant_type", "password"},
-                {"username", login},
-                {"password", password},
+            BaseUrl = Config.ApiUrl;
+            var request = CreatePostRequest(RoutesConstants.Token);
+            request.Parameters.Add(new RestSharp.Portable.Parameter() { Name = "grant_type", Value = "password" });
+            request.Parameters.Add(new RestSharp.Portable.Parameter() { Name = "username", Value = login });
+            request.Parameters.Add(new RestSharp.Portable.Parameter() { Name = "password", Value = password });
 
-            } );
-            var obj = JObject.Parse(result);
-            var token = obj["access_token"].Value<string>();
-            return token;
+            var token = await ExecuteRequestAsync<OAuthTokenDTO>(request);
+            return OAuthToken.FromDTO(token);
+
+            //_apiUrl = Config.ApiUrl;
+            //var result = await Post<string>(RoutesConstants.Token, new Dictionary<string, string>() 
+            //{
+            //    {"grant_type", "password"},
+            //    {"username", login},
+            //    {"password", password},
+
+            //} );
+            //var obj = JObject.Parse(result);
+            //var token = obj["access_token"].Value<string>();
+            //return token;
         }
 
         public async Task<UserAcount> GetUserInfo()
