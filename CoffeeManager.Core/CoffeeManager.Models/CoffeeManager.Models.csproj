@@ -61,7 +61,6 @@
     <Compile Include="ShiftInfo.cs" />
     <Compile Include="SupliedProduct.cs" />
     <Compile Include="TransferSuplyProductRequest.cs" />
-    <Compile Include="User.cs" />
     <Compile Include="UserAcount.cs" />
     <Compile Include="UserEarningsHistory.cs" />
     <Compile Include="UserInfo.cs" />
@@ -71,6 +70,16 @@
     <Compile Include="UserPaymentStrategy.cs" />
     <Compile Include="UserPenalty.cs" />
     <Compile Include="UtilizedSuplyProduct.cs" />
+    <Compile Include="Data\DTO\User\PenaltyUserDTO.cs" />
+    <Compile Include="Data\DTO\User\UserDTO.cs" />
+    <Compile Include="Data\DTO\User\DismissPenaltyDTO.cs" />
+    <Compile Include="Data\DTO\User\PaySalaryDTO.cs" />
+    <Compile Include="Data\DTO\User\ToggleUserEnabledDTO.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Data\" />
+    <Folder Include="Data\DTO\" />
+    <Folder Include="Data\DTO\User\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -14,17 +14,12 @@ namespace CoffeManager.Common
             this.provider = provider;
         }
 
-        public async Task<string> Login(string name, string password)
-        {
-            return await provider.Login(name, password);
-        }
-
-        public async Task<int> AddUser(User user)
+        public async Task<int> AddUser(UserDTO user)
         {
             return await provider.AddUser(user);
         }
 
-        public async Task<IEnumerable<User>> GetUsers()
+        public async Task<IEnumerable<UserDTO>> GetUsers()
         {
             return await provider.GetUsers();
         }
@@ -34,7 +29,7 @@ namespace CoffeManager.Common
             await provider.ToggleEnabled(userId);
         }
 
-        public async Task<User> GetUser(int userId)
+        public async Task<UserDTO> GetUser(int userId)
         {
             return await provider.GetUser(userId);
         }
@@ -44,7 +39,7 @@ namespace CoffeManager.Common
             await provider.PaySalary(userId, coffeeRoomToPay);
         }
 
-        public async Task UpdateUser(User user)
+        public async Task UpdateUser(UserDTO user)
         {
             await provider.UpdateUser(user);
         }

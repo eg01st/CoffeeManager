@@ -115,5 +115,10 @@ namespace CoffeeManager.Models
         public const string DeleteAdminUser = Account + "/DeleteAdminUser";
 
         public const string Token = "Token";
+
+
+        public const string UsersNew = Api + "/account";
+        public const string GetUserInfoNew = UsersNew + "/GetUserInfo";
+
     }
 }

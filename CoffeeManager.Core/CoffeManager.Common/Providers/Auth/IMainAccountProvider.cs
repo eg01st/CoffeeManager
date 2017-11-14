@@ -1,19 +1,17 @@
-﻿using System.Threading.Tasks;
+﻿using System.Net;
+using System.Threading.Tasks;
 using CoffeeManager.Models;
-using System.Net;
 using RestSharp.Portable;
 
-namespace CoffeManager.Common.Providers
+namespace CoffeManager.Common.Providers.Auth
 {
-    public interface IAccountProvider
+    public interface IMainAccountProvider
     {
         IAuthenticator Authenticator { get; set; }
 
         ICredentials Credentials { get; set; }
 
-        Task<OAuthToken> AuthorizeInitial(string login, string password);
-
-        Task<OAuthToken> Authorize(string login, string password);
+       // Task<OAuthToken> Authorize(string login, string password);
 
         Task<UserAcount> GetUserInfo();
 
@@ -25,12 +23,7 @@ namespace CoffeManager.Common.Providers
 
         Task<UserAcount[]> GetUsers();
 
-        Task<UserAcount[]> GetLocalUsers();
-
-        Task RegisterLocal(string email, string password, string apiUrl);
-
         Task DeleteAdminUser(string userId);
 
-        Task DeleteAdminUserLocal(string userId, string apiUrl);
     }
 }

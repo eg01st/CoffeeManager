@@ -7,19 +7,17 @@ namespace CoffeManager.Common
 {
     public interface IUserManager
     {
-        Task<string> Login(string name, string password);
+        Task<int> AddUser(UserDTO user);
 
-        Task<int> AddUser(User user);
-
-        Task<IEnumerable<User>> GetUsers();
+        Task<IEnumerable<UserDTO>> GetUsers();
 
         Task ToggleEnabled(int userId);
 
-        Task<User> GetUser(int userId);
+        Task<UserDTO> GetUser(int userId);
 
         Task PaySalary(int userId, int coffeeRoomToPay);
 
-        Task UpdateUser(User user);
+        Task UpdateUser(UserDTO user);
 
         Task PenaltyUser(int userId, decimal amount, string reason);
 

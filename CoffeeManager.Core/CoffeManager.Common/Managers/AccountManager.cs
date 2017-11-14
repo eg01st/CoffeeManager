@@ -5,37 +5,37 @@ using CoffeeManager.Common;
 using System;
 using System.Linq;
 using System.Net;
+using CoffeManager.Common.Providers.Auth;
 
 namespace CoffeManager.Common.Managers
 {
     public class AccountManager : BaseManager, IAccountManager
     {
-        private readonly IAccountProvider _provider;
+        private readonly ILocalAccountProvider localProvider;
+        readonly IMainAccountProvider mainProvider;
 
-        public AccountManager(IAccountProvider provider)
+        public AccountManager(ILocalAccountProvider provider, IMainAccountProvider mainProvider)
         {
-            _provider = provider;
+            this.mainProvider = mainProvider;
+            localProvider = provider;
         }
 
-        public async Task<string> AuthorizeInitial(string login, string password)
-        {
-            return "" ;//await _provider.AuthorizeInitial(login, password);
-        }
 
         public async Task<UserAcount> Authorize(string login, string password)
         {
-            var initialAccessToken = await _provider.AuthorizeInitial(login, password);
-            _provider.Credentials = new NetworkCredential(login, password);
-            var authenticator = new Authenticator(_provider);
-            authenticator.UserToken = initialAccessToken;
-            _provider.Authenticator = authenticator;
-            var userInfo = await _provider.GetUserInfo();
+            var credentials = new NetworkCredential(login, password);
+            mainProvider.Credentials = credentials;
+            var authenticator = new Authenticator((ITokenService)mainProvider);
+            mainProvider.Authenticator = authenticator;
+
+            var userInfo = await mainProvider.GetUserInfo();
             Config.ApiUrl = userInfo.ApiUrl;
 
-            var token = await _provider.Authorize(login, password);
-            authenticator = new Authenticator(_provider);
-            authenticator.UserToken = initialAccessToken;
-            _provider.Authenticator = authenticator;
+            authenticator = new Authenticator((ITokenService)localProvider);
+            localProvider.Authenticator = authenticator;
+            localProvider.Credentials = credentials;
+            ServiceBase.SetGlobalAuthenticator(authenticator);
+            ServiceBase.SetGlobalCredentials(credentials);
            // BaseServiceProvider.SetAccessToken(token);
 
             return userInfo;
@@ -43,44 +43,44 @@ namespace CoffeManager.Common.Managers
 
         public async Task<UserAcount> GetUserInfo()
         {
-            return await _provider.GetUserInfo();
+            return await mainProvider.GetUserInfo();
         }
 
         public async Task Register(string email, string password, string apiUrl)
         {
-            await _provider.Register(email, password, apiUrl);
+            await mainProvider.Register(email, password, apiUrl);
+            await localProvider.Register(email, password, apiUrl);
         }
 
-        public async Task RegisterLocal(string email, string password, string apiUrl)
-        {
-            await _provider.RegisterLocal(email, password, apiUrl);
-        }
 
         public async Task Logout()
         {
-            await _provider.Logout();
+            await mainProvider.Logout();
+            await localProvider.Logout();
         }
 
         public async Task ChangePassword(string oldPassword, string newPassword)
         {
-            await _provider.ChangePassword(oldPassword, newPassword);
+            await mainProvider.ChangePassword(oldPassword, newPassword);
+            await localProvider.ChangePassword(oldPassword, newPassword);
         }
 
         public async Task<UserAcount[]> GetUsers()
         {
-            return await _provider.GetUsers();
+            return await localProvider.GetUsers();
         }
 
 
         public async Task DeleteAdminUser(string userId, string email, string localApiUrl)
         {
-            var users = await _provider.GetLocalUsers();
+            var users = await localProvider.GetUsers();
             var localUser = users.FirstOrDefault(u => u.Email == email);
             if(localUser != null)
             {
-                await _provider.DeleteAdminUserLocal(localUser.Id, localApiUrl);
-                await _provider.DeleteAdminUser(userId);
+                await localProvider.DeleteAdminUser(localUser.Id, localApiUrl);
+                await mainProvider.DeleteAdminUser(userId);
             }
         }
+
     }
 }

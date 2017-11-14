@@ -3,70 +3,91 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using CoffeeManager.Common;
 using CoffeeManager.Models;
+using RestSharp.Portable;
 
 namespace CoffeManager.Common
 {
-    public class SuplyProductsProvider : BaseServiceProvider, ISuplyProductsProvider
+    public class SuplyProductsProvider : ServiceBase, ISuplyProductsProvider
     {
         public async Task<SupliedProduct[]> GetSuplyProducts()
         {
-            return await Get<SupliedProduct[]>(RoutesConstants.GetSuplyProducts);
+            var request = CreateGetRequest(RoutesConstants.GetSuplyProducts);
+            return await ExecuteRequestAsync<SupliedProduct[]>(request);
         }
 
         public async Task<SupliedProduct> GetSuplyProduct(int id)
         {
-            return await Get<SupliedProduct>(RoutesConstants.GetSuplyProduct, new Dictionary<string, string>() { { nameof(id), id.ToString() } });
+            var request = CreateGetRequest(RoutesConstants.GetSuplyProduct);
+            request.Parameters.Add(new Parameter(){ Name = nameof(id), Value = id});
+            return await ExecuteRequestAsync<SupliedProduct>(request);
         }
 
         public async Task EditSuplyProduct(SupliedProduct supliedProduct)
         {
-            await Post(RoutesConstants.EditSuplyProduct, supliedProduct);
+            var request = CreatePostRequest(RoutesConstants.EditSuplyProduct);
+            request.AddBody(supliedProduct);
+            await ExecuteRequestAsync(request);
         }
 
         public async Task AddSuplyProduct(string newProduct)
         {
-            await
-            Put(RoutesConstants.AddSuplyProduct,
-                    new SupliedProduct() { CoffeeRoomNo = Config.CoffeeRoomNo, Quatity = 0, Price = 0, Name = newProduct });
+            var request = CreatePutRequest(RoutesConstants.AddSuplyProduct);
+            request.AddBody(new SupliedProduct() 
+            { 
+                CoffeeRoomNo = Config.CoffeeRoomNo,
+                Quatity = 0,
+                Price = 0,
+                Name = newProduct
+            });
+            await ExecuteRequestAsync<SupliedProduct>(request);
         }
 
         public async Task DeleteSuplyProduct(int id)
         {
-            await Delete(RoutesConstants.DeleteSuplyProduct, new Dictionary<string, string>() { { nameof(id), id.ToString() } });
+            var request = CreateDeleteRequest(RoutesConstants.DeleteSuplyProduct);
+            request.Parameters.Add(new Parameter() { Name = nameof(id), Value = id });
+            await ExecuteRequestAsync<SupliedProduct>(request);
         }
 
         public async Task<ProductCalculationEntity> GetProductCalculationItems(int productId)
         {
-            return await
-                Get<ProductCalculationEntity>(RoutesConstants.GetProductCalculationItems,
-                    new Dictionary<string, string>() { { nameof(productId), productId.ToString() } });
+            var request = CreateGetRequest(RoutesConstants.GetProductCalculationItems);
+            request.Parameters.Add(new Parameter() { Name = nameof(productId), Value = productId });
+            return await ExecuteRequestAsync<ProductCalculationEntity>(request);
         }
 
         public async Task DeleteProductCalculationItem(int id)
         {
-            await
-            Delete(RoutesConstants.DeleteProductCalculationItem,
-                    new Dictionary<string, string>() { { nameof(id), id.ToString() } });
+            var request = CreateDeleteRequest(RoutesConstants.DeleteProductCalculationItem);
+            request.Parameters.Add(new Parameter() { Name = nameof(id), Value = id });
+            await ExecuteRequestAsync<SupliedProduct>(request);
         }
 
         public async Task AddProductCalculationItem(ProductCalculationEntity productCalculationEntity)
         {
-            await Put(RoutesConstants.AddProductCalculationItem, productCalculationEntity);
+            var request = CreatePutRequest(RoutesConstants.AddProductCalculationItem);
+            request.AddBody(productCalculationEntity);
+            await ExecuteRequestAsync(request);
         }
 
         public async Task UtilizeSuplyProduct(UtilizedSuplyProduct product)
         {
-            await Post(RoutesConstants.UtilizeSuplyProduct, product);
+            var request = CreatePostRequest(RoutesConstants.UtilizeSuplyProduct);
+            request.AddBody(product);
+            await ExecuteRequestAsync(request);
         }
 
         public async Task<IEnumerable<UtilizedSuplyProduct>> GetUtilizedProducts()
         {
-            return await Get<IEnumerable<UtilizedSuplyProduct>>(RoutesConstants.GetUtilizedSuplyProducts);
+            var request = CreateGetRequest(RoutesConstants.GetUtilizedSuplyProducts);
+            return await ExecuteRequestAsync<IEnumerable<UtilizedSuplyProduct>>(request);
         }
 
         public async Task TransferSuplyProducts(IEnumerable<TransferSuplyProductRequest> requests)
         {
-            await Post(RoutesConstants.TransferSuplyProduct, requests);
+            var request = CreatePostRequest(RoutesConstants.TransferSuplyProduct);
+            request.AddBody(requests);
+            await ExecuteRequestAsync(request);
         }
     }
 }

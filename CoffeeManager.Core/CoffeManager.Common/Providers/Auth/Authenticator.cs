@@ -8,9 +8,9 @@ namespace CoffeManager.Common
 {
     public class Authenticator : IAuthenticator
     {
-        readonly IAccountProvider tokenService;
+        readonly ITokenService tokenService;
 
-        public Authenticator(IAccountProvider tokenService)
+        public Authenticator(ITokenService tokenService)
         {
             this.tokenService = tokenService;
         }
@@ -19,17 +19,17 @@ namespace CoffeManager.Common
 
         public bool CanHandleChallenge(IHttpClient client, IHttpRequestMessage request, ICredentials credentials, IHttpResponseMessage response)
         {
-            throw new NotImplementedException();
+            return false;
         }
 
         public bool CanPreAuthenticate(IRestClient client, IRestRequest request, ICredentials credentials)
         {
-            throw new NotImplementedException();
+            return client.Authenticator != null;
         }
 
         public bool CanPreAuthenticate(IHttpClient client, IHttpRequestMessage request, ICredentials credentials)
         {
-            throw new NotImplementedException();
+            return false;
         }
 
         public Task HandleChallenge(IHttpClient client, IHttpRequestMessage request, ICredentials credentials, IHttpResponseMessage response)
@@ -41,9 +41,7 @@ namespace CoffeManager.Common
         {
             if (string.IsNullOrWhiteSpace(UserToken?.AccessToken) || UserToken.ExpirationDate <= DateTime.UtcNow)
             {
-                var networkCredentials = credentials as NetworkCredential;
-
-                var token = await tokenService.Authorize(networkCredentials.UserName, networkCredentials.Password);
+                var token = await tokenService.GetUserToken(credentials);
                 UserToken = token;
             }
 
