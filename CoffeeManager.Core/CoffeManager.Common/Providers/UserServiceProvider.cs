@@ -9,17 +9,17 @@ namespace CoffeManager.Common
 {
     public class UserServiceProvider : ServiceBase, IUserServiceProvider
     {
-        public async Task<IEnumerable<User>> GetUsers()
+        public async Task<IEnumerable<UserDTO>> GetUsers()
         {
             var request = CreateGetRequest(RoutesConstants.GetUsers);
-            return await ExecuteRequestAsync<IEnumerable<User>>(request);
+            return await ExecuteRequestAsync<IEnumerable<UserDTO>>(request);
         }
 
-        public async Task<User> GetUser(int userId)
+        public async Task<UserDTO> GetUser(int userId)
         {
             var request = CreateGetRequest(RoutesConstants.GetUser);
             request.Parameters.Add(new Parameter() { Name = nameof(userId), Value = userId });
-            return await ExecuteRequestAsync<User>(request);
+            return await ExecuteRequestAsync<UserDTO>(request);
         }
 
 
@@ -31,7 +31,7 @@ namespace CoffeManager.Common
         }
 
 
-        public async Task<int> AddUser(User user)
+        public async Task<int> AddUser(UserDTO user)
         {
             var request = CreatePutRequest(RoutesConstants.AddUser);
             request.AddBody(user);
@@ -41,11 +41,11 @@ namespace CoffeManager.Common
         public async Task ToggleEnabled(int userId)
         {
             var request = CreatePostRequest(RoutesConstants.ToggleUserEnabled);
-            request.Parameters.Add(new Parameter() { Name = nameof(userId), Value = userId });
+            request.AddBody(new ToggleUserEnabledDTO() { UserId = userId});
             await ExecuteRequestAsync(request);
         }
 
-        public async Task UpdateUser(User user)
+        public async Task UpdateUser(UserDTO user)
         {
             var request = CreatePostRequest(RoutesConstants.UpdateUser);
             request.AddBody(user);
@@ -55,8 +55,7 @@ namespace CoffeManager.Common
         public async Task PaySalary(int userId, int coffeeRoomToPay)
         {
             var request = CreatePostRequest(RoutesConstants.PaySalary);
-            request.Parameters.Add(new Parameter() { Name = nameof(userId), Value = userId });
-            request.Parameters.Add(new Parameter() { Name = nameof(coffeeRoomToPay), Value = coffeeRoomToPay });
+            request.AddBody(new PaySalaryDTO() { UserId = userId, CoffeeRoomIdToPay = coffeeRoomToPay });
             await ExecuteRequestAsync(request);
         }
 
@@ -69,8 +68,8 @@ namespace CoffeManager.Common
 
         public async Task DismissPenalty(int id)
         {
-            var request = CreatePostRequest(RoutesConstants.PenaltyUser);
-            request.Parameters.Add(new Parameter() { Name = nameof(id), Value = id });
+            var request = CreatePostRequest(RoutesConstants.DismisPenalty);
+            request.AddBody(new DismissPenaltyDTO{ PenaltyId = id});
             await ExecuteRequestAsync(request);
         }
 
