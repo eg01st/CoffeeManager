@@ -186,7 +186,7 @@ namespace CoffeManager.Common
 #if DEBUG
                 UserDialogs.Alert(e.ToString());
 #else
-                Alert("Произошла ошибка сервера. Мы работаем над решением проблемы");
+                Alert("Произошла ошибка сервера. Возможно нет подключения к интернету");
                 await EmailService?.SendErrorEmail($"CoffeeRoomId: {Config.CoffeeRoomNo}",e.ToDiagnosticString());
 #endif
 

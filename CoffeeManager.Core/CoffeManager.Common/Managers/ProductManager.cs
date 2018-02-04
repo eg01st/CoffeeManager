@@ -82,30 +82,30 @@ namespace CoffeManager.Common
             {
                 await productProvider.SaleProduct((Sale)sale);
             }
-            catch (HttpRequestException hrex)
-            {
-                Debug.WriteLine(hrex.ToDiagnosticString());
-                syncManager.AddSaleToSync(sale, SaleAction.Add);
-                return;
-            }
-            catch (TaskCanceledException tcex)
-            {
-                Debug.WriteLine(tcex.ToDiagnosticString());
-                syncManager.AddSaleToSync(sale, SaleAction.Add);
-                return;
-            }
+            //catch (HttpRequestException hrex)
+            //{
+            //    Debug.WriteLine(hrex.ToDiagnosticString());
+            //    syncManager.AddSaleToSync(sale, SaleAction.Add);
+            //    return;
+            //}
+            //catch (TaskCanceledException tcex)
+            //{
+            //    Debug.WriteLine(tcex.ToDiagnosticString());
+            //    syncManager.AddSaleToSync(sale, SaleAction.Add);
+            //    return;
+            //}
             catch(Exception ex)
             {
                 Debug.WriteLine(ex.ToDiagnosticString());
-                await EmailService?.SendErrorEmail($"CoffeeRoomId: {Config.CoffeeRoomNo}",ex.ToDiagnosticString());
-                syncManager.AddSaleToSync(sale, SaleAction.Add);
-                return;
+               // await EmailService?.SendErrorEmail($"CoffeeRoomId: {Config.CoffeeRoomNo}",ex.ToDiagnosticString());
+               // syncManager.AddSaleToSync(sale, SaleAction.Add);
+                throw;
             }
 
-            lock(salesSyncLock)
-            {
-                syncManager.SyncSales();
-            }
+            //lock(salesSyncLock)
+            //{
+            //    syncManager.SyncSales();
+            //}
         }
 
         public async Task DismisSaleProduct(int id)

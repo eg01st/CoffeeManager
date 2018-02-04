@@ -11,8 +11,8 @@ namespace CoffeManager.Common
         {
             return await Get<Expense[]>(RoutesConstants.StatisticGetExpenses, new Dictionary<string, string>()
             {
-                { nameof(from), from.ToString()},
-                { nameof(to), to.ToString()}
+                { nameof(from), from.ToString("yyyy-MM-dd HH:mm:ss \"GMT\"zzz")},
+                { nameof(to), to.ToString("yyyy-MM-dd HH:mm:ss \"GMT\"zzz")}
             });
         }
 

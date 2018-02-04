@@ -48,7 +48,7 @@
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <CodesignKey>iPhone Developer: tertyshnykov@gmail.com (B6W7MCB7GE)</CodesignKey>
     <MtouchDebug>true</MtouchDebug>
-    <CodesignProvision>iOS Team Provisioning Profile: com.companyname.CoffeeManagerAdmin.iOS1</CodesignProvision>
+    <CodesignProvision>iOS Team Provisioning Profile: com.companyname.CoffeeManagerAdmin.iOS4</CodesignProvision>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">

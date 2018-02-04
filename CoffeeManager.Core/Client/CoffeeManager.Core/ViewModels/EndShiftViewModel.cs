@@ -4,7 +4,7 @@ using MvvmCross.Core.ViewModels;
 
 namespace CoffeeManager.Core.ViewModels
 {
-    public class EndShiftViewModel :ViewModelBase
+    public class EndShiftViewModel : ViewModelBase
     {
         private readonly IShiftManager shiftManager;
 
@@ -39,9 +39,11 @@ namespace CoffeeManager.Core.ViewModels
 
         public ICommand FinishShiftCommand {get;}
 
+        readonly IPaymentManager paymentManager;
 
-        public EndShiftViewModel(IShiftManager shiftManager)
+        public EndShiftViewModel(IShiftManager shiftManager, IPaymentManager paymentManager)
         {
+            this.paymentManager = paymentManager;
             this.shiftManager = shiftManager;
             FinishShiftCommand  = new MvxCommand(DoFinishCommand);
         }
@@ -53,13 +55,25 @@ namespace CoffeeManager.Core.ViewModels
 
         private async void DoFinishCommand()
         {
-            await ExecuteSafe(async () =>
-           {
-               var info = await shiftManager.EndUserShift(_shiftId, decimal.Parse(RealAmount), int.Parse(EndCounter));
-               Alert($"Касса за смену: {info.RealShiftAmount:F}\nЗаработано за смену: {info.EarnedAmount:F}\nОбщая сумма зп: {info.CurrentUserAmount:F}",
-                     () =>  NavigationService.Navigate<LoginViewModel>(),
-                       "Окончание смены");
-           });
+            var currentAmount = await ExecuteSafe(paymentManager.GetCurrentShiftMoney);
+            var currentMin = currentAmount - 100;
+            var currentMax = currentAmount + 100;
+
+            var realAmount = decimal.Parse(RealAmount);
+            if(realAmount > currentMax || realAmount < currentMin)
+            {
+                if(await UserDialogs.ConfirmAsync("Текущая касса сильно отличается от реальной. Вы уверены что эта точная сумма?"))
+                {
+                    await ExecuteSafe(async () =>
+                    {
+                        var info = await shiftManager.EndUserShift(_shiftId, realAmount, int.Parse(EndCounter));
+                        Alert($"Касса за смену: {info.RealShiftAmount:F}\nЗаработано за смену: {info.EarnedAmount:F}\nОбщая сумма зп: {info.CurrentUserAmount:F}",
+                              () => NavigationService.Navigate<LoginViewModel>(),
+                                "Окончание смены");
+                    });
+                }
+            }
+           
         }
     }
 }
