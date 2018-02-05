@@ -125,6 +125,8 @@
     <Compile Include="ViewModels\TransferSuplyProduct\TransferSuplyProductsViewModel.cs" />
     <Compile Include="ViewModels\TransferSuplyProduct\SelectSuplyProductsViewModel.cs" />
     <Compile Include="ViewModels\TransferSuplyProduct\SelectSuplyProductItemViewModel.cs" />
+    <Compile Include="ViewModels\Inventory\Create\CreateInventoryViewModel.cs" />
+    <Compile Include="ViewModels\Inventory\Create\CreateInventoryItemViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">
@@ -185,6 +187,7 @@
     <Folder Include="ViewModels\CreditCard\" />
     <Folder Include="ViewModels\Home\" />
     <Folder Include="ViewModels\TransferSuplyProduct\" />
+    <Folder Include="ViewModels\Inventory\Create\" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

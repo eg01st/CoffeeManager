@@ -426,6 +426,15 @@
     <Compile Include="Views\TransferSuplyProduct\TransferProductItemCell.designer.cs">
       <DependentUpon>TransferProductItemCell.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Inventory\CreateInventoryView.cs" />
+    <Compile Include="Views\Inventory\CreateInventoryView.designer.cs">
+      <DependentUpon>CreateInventoryView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Inventory\CreateInventoryCell.cs" />
+    <Compile Include="Views\Inventory\CreateInventoryCell.designer.cs">
+      <DependentUpon>CreateInventoryCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TableSources\CreateInventoryTableSource.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Setup.cs" />
@@ -508,6 +517,8 @@
     <InterfaceDefinition Include="Views\TransferSuplyProduct\SelectSuplyProductsView.xib" />
     <InterfaceDefinition Include="Views\TransferSuplyProduct\TransferProductItemCell.xib" />
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
+    <InterfaceDefinition Include="Views\Inventory\CreateInventoryView.xib" />
+    <InterfaceDefinition Include="Views\Inventory\CreateInventoryCell.xib" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
