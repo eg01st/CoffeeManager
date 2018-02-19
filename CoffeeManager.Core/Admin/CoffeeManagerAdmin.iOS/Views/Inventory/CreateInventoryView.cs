@@ -8,7 +8,7 @@ namespace CoffeeManagerAdmin.iOS
 {
     public partial class CreateInventoryView : SearchViewController<CreateInventoryView, CreateInventoryViewModel, CreateInventoryItemViewModel>
     {
-        protected override SimpleTableSource TableSource => new CreateInventoryTableSource(TableView, CreateInventoryCell.Key, CreateInventoryCell.Nib, CreateInventoryHeader.Key, CreateInventoryHeader.Nib);
+        protected override SimpleTableSource TableSource => new CreateInventoryTableSource(TableView, CreateInventoryCell.Key, CreateInventoryCell.Nib);
 
         protected override UIView TableViewContainer => Container;
 

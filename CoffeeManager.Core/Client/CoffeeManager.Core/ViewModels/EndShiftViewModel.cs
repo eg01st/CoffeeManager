@@ -56,7 +56,7 @@ namespace CoffeeManager.Core.ViewModels
 
         private async Task DoFinishCommand()
         {
-            var currentAmount = await ExecuteSafe(paymentManager.GetCurrentShiftMoney);
+            var currentAmount = await ExecuteSafe(paymentManager.GetEntireMoney);
             var currentMin = currentAmount - 100;
             var currentMax = currentAmount + 100;
 

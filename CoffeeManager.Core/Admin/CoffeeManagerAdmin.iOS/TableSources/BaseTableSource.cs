@@ -19,6 +19,8 @@ namespace CoffeeManagerAdmin.iOS
         {
             tableView.RegisterNibForCellReuse(cellNib, reuseIdentifier);
             this.reuseIdentifier = reuseIdentifier;
+            tableView.RowHeight = UITableView.AutomaticDimension;
+            tableView.EstimatedRowHeight = 100f;
         }
 
         public BaseTableSource(UITableView tableView, NSString reuseIdentifier,
