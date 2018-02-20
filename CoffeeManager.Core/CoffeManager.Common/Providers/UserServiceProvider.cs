@@ -7,14 +7,14 @@ namespace CoffeManager.Common
 {
     public class UserServiceProvider : BaseServiceProvider, IUserServiceProvider
     {
-        public async Task<IEnumerable<User>> GetUsers()
+        public async Task<IEnumerable<UserDTO>> GetUsers()
         {
-            return await Get<IEnumerable<User>>(RoutesConstants.GetUsers);
+            return await Get<IEnumerable<UserDTO>>(RoutesConstants.GetUsers);
         }
 
-        public async Task<User> GetUser(int userId)
+        public async Task<UserDTO> GetUser(int userId)
         {
-            return await Get<User>(RoutesConstants.GetUser, new Dictionary<string, string>()
+            return await Get<UserDTO>(RoutesConstants.GetUser, new Dictionary<string, string>()
                 {
                     {nameof(userId), userId.ToString()}
                 });
@@ -35,9 +35,9 @@ namespace CoffeManager.Common
             return await Post(RoutesConstants.Login, new UserInfo() { Login = name, Password = password });
         }
 
-        public async Task<int> AddUser(User user)
+        public async Task<int> AddUser(UserDTO user)
         {
-            return await Put<int, User>(RoutesConstants.AddUser, user);
+            return await Put<int, UserDTO>(RoutesConstants.AddUser, user);
         }
 
         public async Task ToggleEnabled(int userId)
@@ -49,7 +49,7 @@ namespace CoffeManager.Common
             );
         }
 
-        public async Task UpdateUser(User user)
+        public async Task UpdateUser(UserDTO user)
         {
             await Post<object>(RoutesConstants.UpdateUser, user);
         }
