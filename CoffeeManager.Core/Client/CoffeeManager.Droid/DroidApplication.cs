@@ -10,6 +10,7 @@ using MimeKit;
 using MvvmCross.Platform;
 using CoffeManager.Common;
 using CoffeeManager.Common;
+using MobileCore.Email;
 
 namespace CoffeeManager.Droid
 {

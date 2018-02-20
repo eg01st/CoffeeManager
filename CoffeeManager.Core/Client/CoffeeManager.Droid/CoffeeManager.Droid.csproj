@@ -219,7 +219,6 @@
     <Compile Include="Views\LoginView.cs" />
     <Compile Include="Views\MainView.cs" />
     <Compile Include="Bootstrap\SqlitePluginBootstrap.cs" />
-    <Compile Include="Platform\EmailService.cs" />
     <Compile Include="Extensions\ViewListenersExtensions.cs" />
     <Compile Include="Listeners\ViewOnClickListener.cs" />
     <Compile Include="Converters\InvertedBoolToVisibilityConverter.cs" />
@@ -344,6 +343,14 @@
     <ProjectReference Include="..\..\CoffeManager.Common\CoffeManager.Common.csproj">
       <Project>{F630255E-C4A6-4DC6-ACC2-D9DE1E3D06F0}</Project>
       <Name>CoffeManager.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Projects\MobileCore\MobileCore.csproj">
+      <Project>{0B0AEA8C-1C13-48AA-975C-3933943D04DB}</Project>
+      <Name>MobileCore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Projects\MobileCore\MobileCore.Droid\MobileCore.Droid.csproj">
+      <Project>{A9299438-6DD9-4F94-9900-379E0EC2AFD0}</Project>
+      <Name>MobileCore.Droid</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

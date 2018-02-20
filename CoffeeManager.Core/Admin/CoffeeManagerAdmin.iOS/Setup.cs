@@ -5,11 +5,11 @@ using MvvmCross.Platform.Platform;
 using UIKit;
 using MvvmCross.Platform;
 using Acr.UserDialogs;
-using CoffeManager.Common;
+using MobileCore.iOS;
 
 namespace CoffeeManagerAdmin.iOS
 {
-    public class Setup : MvxIosSetup
+    public class Setup : MvxIosSetupBase
     {
         public Setup(MvxApplicationDelegate applicationDelegate, UIWindow window)
             : base(applicationDelegate, window)
@@ -31,14 +31,10 @@ namespace CoffeeManagerAdmin.iOS
             return new DebugTrace();
         }
 
-
-        protected override void InitializeLastChance()
+        protected override void DoRegisterInjections()
         {
             Mvx.RegisterSingleton<IUserDialogs>(new UserDialogsImpl());
-            Mvx.RegisterSingleton<IEmailService>(new EmailService());
-            base.InitializeLastChance();
-
-        }
+        } 
 
         protected override IMvxIosViewPresenter CreatePresenter()
         {

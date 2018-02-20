@@ -203,6 +203,10 @@
       <Project>{F630255E-C4A6-4DC6-ACC2-D9DE1E3D06F0}</Project>
       <Name>CoffeManager.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Projects\MobileCore\MobileCore.csproj">
+      <Project>{0B0AEA8C-1C13-48AA-975C-3933943D04DB}</Project>
+      <Name>MobileCore</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

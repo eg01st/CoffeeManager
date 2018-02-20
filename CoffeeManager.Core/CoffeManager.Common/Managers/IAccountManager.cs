@@ -7,7 +7,7 @@ namespace CoffeManager.Common.Managers
     {
         Task<string> AuthorizeInitial(string login, string password);
 
-        Task<UserAcount> Authorize(string login, string password);
+        Task<string> Authorize(string login, string password);
 
         Task<UserAcount> GetUserInfo();
 

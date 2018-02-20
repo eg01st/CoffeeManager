@@ -201,7 +201,6 @@
       <DependentUpon>SaleStatisticHeaderViewCell.cs</DependentUpon>
     </Compile>
     <Compile Include="Bootstrap\SqlitePluginBootstrap.cs" />
-    <Compile Include="Platform\EmailService.cs" />
     <Compile Include="Views\ManageExpenses\ExpenseTypeDetailsView.cs" />
     <Compile Include="Views\ManageExpenses\ExpenseTypeDetailsView.designer.cs">
       <DependentUpon>ExpenseTypeDetailsView.cs</DependentUpon>
@@ -610,6 +609,14 @@
     <ProjectReference Include="..\..\CoffeManager.Common\CoffeManager.Common.csproj">
       <Project>{F630255E-C4A6-4DC6-ACC2-D9DE1E3D06F0}</Project>
       <Name>CoffeManager.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Projects\MobileCore\MobileCore.csproj">
+      <Project>{0B0AEA8C-1C13-48AA-975C-3933943D04DB}</Project>
+      <Name>MobileCore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Projects\MobileCore\MobileCore.iOS\MobileCore.iOS.csproj">
+      <Project>{9873AC5E-F3A7-4A58-B228-23B54BA3AA46}</Project>
+      <Name>MobileCore.iOS</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

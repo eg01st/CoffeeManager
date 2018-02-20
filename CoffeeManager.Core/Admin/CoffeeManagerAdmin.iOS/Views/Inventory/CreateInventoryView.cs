@@ -22,13 +22,9 @@ namespace CoffeeManagerAdmin.iOS
 
             Title = "Переучет";
 
-            TableView.RowHeight = UITableView.AutomaticDimension;
-            TableView.EstimatedRowHeight = 100f;
-
             var btn = new UIBarButtonItem()
             {
                 Title = "Готово"
-                //Image = UIImage.FromBundle("ic_add_circle_outline")
             };
 
 

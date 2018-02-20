@@ -64,8 +64,8 @@ namespace CoffeeManager.Core
         {
             try
             {
-                await accountManager.Authorize(Login, Password);
-                localStorage.SetUserInfo(new Models.UserInfo(){Login = Login, Password = Password});
+                var token = await accountManager.Authorize(Login, Password);
+                localStorage.SetUserInfo(new Models.UserInfo(){Login = Login, Password = Password, AccessToken = token});
                 var coffeeRoomNo = localStorage.GetCoffeeRoomId();
                 if (coffeeRoomNo == -1)
                 {

@@ -59,10 +59,10 @@ namespace CoffeeManagerAdmin.Core.ViewModels
         {
             await ExecuteSafe(async () => 
             {           
-                 await _accountManager.Authorize(Name, Password);
+                var token = await _accountManager.Authorize(Name, Password);
 
-                localStorage.SetUserInfo(new UserInfo() { Login = Name, Password = Password });
-                NavigationService.Navigate<MainViewModel>();
+                localStorage.SetUserInfo(new UserInfo() { Login = Name, Password = Password, AccessToken = token });
+                await NavigationService.Navigate<MainViewModel>();
                 //ShowViewModelAsRoot<MainViewModel>();
             });
 

@@ -209,7 +209,7 @@ namespace CoffeeManager.Core.ViewModels
                 .Concat(IceCreamProducts.Items);
 
                 SubscribeToSelectProduct();
-            });
+            }, null, false);
         }
 
 
@@ -262,8 +262,10 @@ namespace CoffeeManager.Core.ViewModels
                                 productViewModel.IsCreditCardSale,
                                 productViewModel.IsSaleByWeight,
                                     productViewModel.Weight)
-                                               );
-            await ExecuteSafe(async () => await Task.WhenAll(tasks));
+                                               )
+                                        .Concat(new[] { syncManager.SyncSales()});
+            
+            await ExecuteSafe(async () => await Task.WhenAll(tasks), null, false);
             SelectedProducts.Clear();
             Sum = 0;
             ChangeSum = null;

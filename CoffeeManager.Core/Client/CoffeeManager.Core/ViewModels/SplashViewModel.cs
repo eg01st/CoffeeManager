@@ -5,6 +5,8 @@ using CoffeeManager.Core.ViewModels;
 using CoffeeManager.Models;
 using CoffeManager.Common;
 using CoffeManager.Common.Managers;
+using MobileCore.Connection;
+using MobileCore.Extensions;
 
 namespace CoffeeManager.Core
 {
@@ -14,8 +16,11 @@ namespace CoffeeManager.Core
         readonly ILocalStorage localStorage;
         readonly IShiftManager shiftManager;
 
-        public SplashViewModel(IAccountManager accountManager, ILocalStorage localStorage, IShiftManager shiftManager)
+        private readonly IConnectivity connectivity;
+
+        public SplashViewModel(IAccountManager accountManager, ILocalStorage localStorage, IShiftManager shiftManager, IConnectivity connectivity)
         {
+            this.connectivity = connectivity;
             this.shiftManager = shiftManager;
             this.localStorage = localStorage;
             this.accountManager = accountManager;
@@ -47,18 +52,29 @@ namespace CoffeeManager.Core
             }
             else if(!isLoggedIn)
             {
-                try
+                if(!await connectivity.HasInternetConnectionAsync && userInfo.AccessToken.IsNotNull())
                 {
-                    await accountManager.Authorize(userInfo.Login, userInfo.Password);
+                    BaseServiceProvider.SetAccessToken(userInfo.AccessToken, userInfo.ApiUrl);
+                    Config.ApiUrl = userInfo.ApiUrl;
                 }
-                catch (Exception ex)
+                else
                 {
-                    await NavigationService.Navigate<InitialLoginViewModel>();
-                    return;
+                    try
+                    {
+                        var token = await accountManager.Authorize(userInfo.Login, userInfo.Password);
+                        userInfo.AccessToken = token;
+                        userInfo.ApiUrl = Config.ApiUrl;
+                        localStorage.SetUserInfo(userInfo);
+                    }
+                    catch (Exception ex)
+                    {
+                        await NavigationService.Navigate<InitialLoginViewModel>();
+                        return;
+                    }
                 }
             }
 
-            var currentShift = await ExecuteSafe(shiftManager.GetCurrentShift);
+            var currentShift = await ExecuteSafe(shiftManager.GetCurrentShift, null, null, false);
             if (currentShift != null)
             {
                 await NavigationService.Navigate<MainViewModel, Shift>(currentShift);

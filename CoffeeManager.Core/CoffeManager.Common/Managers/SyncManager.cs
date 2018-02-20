@@ -89,6 +89,7 @@ namespace CoffeManager.Common
             {
                 try
                 {
+                    Debug.WriteLine($"SyncSales {item.Amount}");
                     switch (item.Action)
                     {
                         case SaleAction.Add:

@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using CoffeeManager.Common;
 using CoffeeManager.Models;
+using MobileCore.Connection;
 
 namespace CoffeManager.Common
 {
@@ -11,9 +12,11 @@ namespace CoffeManager.Common
     {
         private readonly IShiftServiceProvider shiftProvider;
         readonly ISyncManager syncManager;
+        readonly IConnectivity connectivity;
 
-        public ShiftManager(IShiftServiceProvider provider, ISyncManager syncManager)
+        public ShiftManager(IShiftServiceProvider provider, ISyncManager syncManager, IConnectivity connectivity)
         {
+            this.connectivity = connectivity;
             this.syncManager = syncManager;
             this.shiftProvider = provider;
         }
@@ -52,6 +55,11 @@ namespace CoffeManager.Common
 
         public async Task<Shift> GetCurrentShift()
         {
+            if(!await connectivity.HasInternetConnectionAsync)
+            {
+                return TryGetShiftFromCache();
+            }
+
             try
             {
                 var shift = await shiftProvider.GetCurrentShift();
@@ -65,34 +73,30 @@ namespace CoffeManager.Common
             }
             catch(HttpRequestException wex)
             {
-                var shiftDb = syncManager.GetCurrentShift();
-                if(shiftDb != null)
-                {
-                    ShiftNo = shiftDb.Id;
-                    return (Shift)shiftDb;
-                }
-                else
-                {
-                    return null;
-                }
+                return TryGetShiftFromCache();
             }
             catch (TaskCanceledException tcex)
             {
-                var shiftDb = syncManager.GetCurrentShift();
-                if (shiftDb != null)
-                {
-                    ShiftNo = shiftDb.Id;
-                    return (Shift)shiftDb;
-                }
-                else
-                {
-                    return null;
-                }
+                return TryGetShiftFromCache();
             }
             catch(Exception ex)
             {
                 Debug.WriteLine(ex.ToDiagnosticString());
                 await EmailService?.SendErrorEmail($"CoffeeRoomId: {Config.CoffeeRoomNo}",ex.ToDiagnosticString());
+                return null;
+            }
+        }
+
+        private Shift TryGetShiftFromCache()
+        {
+            var shiftDb = syncManager.GetCurrentShift();
+            if (shiftDb != null)
+            {
+                ShiftNo = shiftDb.Id;
+                return (Shift)shiftDb;
+            }
+            else
+            {
                 return null;
             }
         }

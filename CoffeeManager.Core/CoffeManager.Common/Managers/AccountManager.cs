@@ -21,7 +21,7 @@ namespace CoffeManager.Common.Managers
             return await _provider.AuthorizeInitial(login, password);
         }
 
-        public async Task<UserAcount> Authorize(string login, string password)
+        public async Task<string> Authorize(string login, string password)
         {
             var initialAccessToken = await _provider.AuthorizeInitial(login, password);
             BaseServiceProvider.SetInitialAccessToken(initialAccessToken);
@@ -31,7 +31,7 @@ namespace CoffeManager.Common.Managers
             var token = await _provider.Authorize(login, password);
             BaseServiceProvider.SetAccessToken(token);
 
-            return userInfo;
+            return token;
         }
 
         public async Task<UserAcount> GetUserInfo()

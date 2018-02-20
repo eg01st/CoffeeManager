@@ -7,6 +7,9 @@ using System.Text;
 using System.Threading.Tasks;
 using CoffeeManager.Common;
 using Newtonsoft.Json;
+using MobileCore.Connection;
+using MvvmCross.Platform;
+using MobileCore.Extensions;
 
 namespace CoffeManager.Common
 {
@@ -28,11 +31,16 @@ namespace CoffeManager.Common
                 new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
         }
 
-        public static void SetAccessToken(string token)
+        public static void SetAccessToken(string token, string apiUrl = null)
         {
             accessToken = token;
-            httpClient.DefaultRequestHeaders.Authorization =
+            var client = GetClient();
+            client.DefaultRequestHeaders.Authorization =
                 new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
+            if(apiUrl.IsNotNull())
+            {
+                _apiUrl = apiUrl;
+            }
         }
 
         protected async Task ExecuteWithAdminCredentials(Task functionToRun)
@@ -258,7 +266,7 @@ namespace CoffeManager.Common
         {
             string url = GetUrl(path, param);
             var client = GetClient();
-            var body = JsonConvert.SerializeObject(obj);
+            var body = JsonConvert.SerializeObject(obj, new JsonSerializerSettings() { DateFormatString = "MM/dd/yy H:mm:ss"});
             Debug.WriteLine("PUT");
             Debug.WriteLine(url);
             Debug.WriteLine(body);
@@ -305,7 +313,7 @@ namespace CoffeManager.Common
             return url;
         }
 
-        private HttpClient GetClient()
+        private static HttpClient GetClient()
         {
             if(httpClient == null)
             {

@@ -1,4 +1,5 @@
 ﻿using System;
+using MobileCore.Email;
 using MvvmCross.Platform;
 
 namespace CoffeManager.Common

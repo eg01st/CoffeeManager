@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using CoffeeManager.Common;
 using CoffeeManager.Models;
 using MvvmCross.Platform;
+using MobileCore.Connection;
 
 namespace CoffeManager.Common
 {
@@ -16,9 +17,11 @@ namespace CoffeManager.Common
         private readonly ISyncManager syncManager;
 
         private static readonly object salesSyncLock = new object();
+        readonly IConnectivity connectivity;
 
-        public ProductManager(IProductProvider productProvider, ISyncManager syncManager)
+        public ProductManager(IProductProvider productProvider, ISyncManager syncManager, IConnectivity connectivity)
         {
+            this.connectivity = connectivity;
             this.syncManager = syncManager;
             this.productProvider = productProvider;
         }
@@ -73,27 +76,34 @@ namespace CoffeManager.Common
                 ProductId = id,
                 IsPoliceSale = isPoliceSale,
                 CoffeeRoomNo = Config.CoffeeRoomNo,
-                Time = DateTime.Now,
+                Time = DateTime.Now.ToLocalTime(),
                 IsCreditCardSale = isCreditCardSale,
                 IsSaleByWeight = isSaleByWeight,
                 Weight = weight
             };
+
+            if (!await connectivity.HasInternetConnectionAsync)
+            {
+                syncManager.AddSaleToSync(sale, SaleAction.Add);
+                return;
+            }
+        
             try
             {
                 await productProvider.SaleProduct((Sale)sale);
             }
-            //catch (HttpRequestException hrex)
-            //{
-            //    Debug.WriteLine(hrex.ToDiagnosticString());
-            //    syncManager.AddSaleToSync(sale, SaleAction.Add);
-            //    return;
-            //}
-            //catch (TaskCanceledException tcex)
-            //{
-            //    Debug.WriteLine(tcex.ToDiagnosticString());
-            //    syncManager.AddSaleToSync(sale, SaleAction.Add);
-            //    return;
-            //}
+            catch (HttpRequestException hrex)
+            {
+                Debug.WriteLine(hrex.ToDiagnosticString());
+                syncManager.AddSaleToSync(sale, SaleAction.Add);
+                return;
+            }
+            catch (TaskCanceledException tcex)
+            {
+                Debug.WriteLine(tcex.ToDiagnosticString());
+                syncManager.AddSaleToSync(sale, SaleAction.Add);
+                return;
+            }
             catch(Exception ex)
             {
                 Debug.WriteLine(ex.ToDiagnosticString());
@@ -102,23 +112,24 @@ namespace CoffeManager.Common
                 throw;
             }
 
-            //lock(salesSyncLock)
-            //{
-            //    syncManager.SyncSales();
-            //}
+           
         }
 
         public async Task DismisSaleProduct(int id)
         {
+            if (!await connectivity.HasInternetConnectionAsync)
+            {
+                syncManager.AddSaleToSync(new SaleEntity() { Id = id, ShiftId = ShiftNo }, SaleAction.Dismiss);
+                return;
+            }
             try
             {
                 await productProvider.DeleteSale(ShiftNo, id);
-                await syncManager.SyncSales();
             }
             catch (HttpRequestException hrex)
             {
                 Debug.WriteLine(hrex.ToDiagnosticString());
-                syncManager.AddSaleToSync(new SaleEntity() { Id = id, ShiftId = ShiftNo }, SaleAction.Dismiss);
+
             }
             catch (TaskCanceledException tcex)
             {
@@ -135,10 +146,14 @@ namespace CoffeManager.Common
         }
         public async Task UtilizeSaleProduct(int id)
         {
+            if (!await connectivity.HasInternetConnectionAsync)
+            {
+                syncManager.AddSaleToSync(new SaleEntity() { Id = id, ShiftId = ShiftNo }, SaleAction.Utilize);
+                return;
+            }
             try
             {
                 await productProvider.UtilizeSaleProduct(ShiftNo, id);
-                await syncManager.SyncSales();
             }
             catch (HttpRequestException hrex)
             {
@@ -186,6 +201,12 @@ namespace CoffeManager.Common
         private async Task<Product[]> GetAndSyncProduct(ProductType type)
         {
             IEnumerable<ProductEntity> products;
+            if(! await connectivity.HasInternetConnectionAsync)
+            {
+                products = syncManager.GetProducts(type);
+                return products.ToArray();
+
+            }
             try
             {
                 products = await productProvider.GetProduct(type);

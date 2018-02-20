@@ -11,6 +11,8 @@ using CoffeeManager.Models;
 using CoffeManager.Common.Managers;
 using MvvmCross.Core.Navigation;
 using CoffeeManager.Common;
+using MobileCore.Email;
+using MobileCore.Connection;
 
 namespace CoffeManager.Common
 {
@@ -90,6 +92,14 @@ namespace CoffeManager.Common
             }
         }
 
+        protected IConnectivity Connectivity
+        {
+            get
+            {
+                return Mvx.Resolve<IConnectivity>();
+            }
+        }
+
         #endregion
         public ICommand CloseCommand { get; }
 
@@ -139,31 +149,44 @@ namespace CoffeManager.Common
             MvxMessenger.Publish(message);
         }
 
-        protected async Task ExecuteSafe(Task functionToRun, string globalExceptionMessage = null)
+        protected async Task ExecuteSafe(Task functionToRun, string globalExceptionMessage = null, bool checkInternetConnection = true)
         {
             Func<Task<bool>> runDelegate = async () => { await functionToRun; return true; };
 
             await ExecuteSafe(functionToRun: runDelegate,
-                                    globalExceptionMessage: globalExceptionMessage);
+                              globalExceptionMessage: globalExceptionMessage, checkInternetConnection: checkInternetConnection);
         }
 
-        protected async Task ExecuteSafe(Func<Task> functionToRun, string globalExceptionMessage = null)
+        protected async Task ExecuteSafe(Func<Task> functionToRun, string globalExceptionMessage = null, bool checkInternetConnection = true)
         {
             Func<Task<bool>> runDelegate = async () => { await functionToRun(); return true; };
 
             await ExecuteSafe(functionToRun: runDelegate,
-                                    globalExceptionMessage: globalExceptionMessage);
+                              globalExceptionMessage: globalExceptionMessage, checkInternetConnection : checkInternetConnection);
             
         }
 
-        protected async Task<T> ExecuteSafe<T>(Func<Task<T>> functionToRun, string globalExceptionMessage = null, T valueToReturnForError = default(T))
+        protected async Task<T> ExecuteSafe<T>(Func<Task<T>> functionToRun, string globalExceptionMessage = null, T valueToReturnForError = default(T), bool checkInternetConnection = true)
         {
             try
             {
+                if(checkInternetConnection)
+                {
+                    var hasConnection = await Connectivity.HasInternetConnectionAsync;
+                    if(!hasConnection)
+                    {
+                        throw new NoInternetConnectionException();
+                    }
+                }
+
                 IsLoading = true;
 
                 var result = await functionToRun();
                 return result;
+            }
+            catch (NoInternetConnectionException nice)
+            {
+                UserDialogs.Alert("Нет подключения к интернету, доступно только добавление продаж");
             }
             catch (HttpRequestException hrex)
             {
@@ -306,13 +329,6 @@ namespace CoffeManager.Common
             });
             return result.Value;
         }
-
-
-        //protected bool ShowViewModelAsRoot<TViewModel>(object parameter = null, MvxRequestedBy requestedBy = null) where TViewModel : IMvxViewModel
-        //{
-        //    var bundle = MvxNavigationExtensions.ProduceRootViewModelRequest();
-        //    return ShowViewModel<TViewModel>(parameter, bundle, requestedBy);
-        //}
 
 
         protected async Task<bool> PromtLogin()
