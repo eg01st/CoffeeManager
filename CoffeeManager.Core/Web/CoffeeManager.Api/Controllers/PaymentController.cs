@@ -71,7 +71,7 @@ namespace CoffeeManager.Api.Controllers
 
         [Route(RoutesConstants.RemoveExpenseType)]
         [HttpDelete]
-        public async Task<HttpResponseMessage> RemoveExpenseType([FromUri]int coffeeroomno, [FromUri] int expenseTypeId, HttpRequestMessage message)
+        public async Task<HttpResponseMessage> RemoveExpenseType([FromUri]int coffeeroomno, int expenseTypeId, HttpRequestMessage message)
         {
             var entities = new CoffeeRoomEntities();
             var type = entities.ExpenseTypes.First(t => t.Id == expenseTypeId);
@@ -82,7 +82,7 @@ namespace CoffeeManager.Api.Controllers
 
         [Route(RoutesConstants.ToggleExpenseEnabled)]
         [HttpPost]
-        public async Task<HttpResponseMessage> ToggleExpenseEnabled([FromUri]int coffeeroomno, [FromUri]int id, HttpRequestMessage message)
+        public async Task<HttpResponseMessage> ToggleExpenseEnabled([FromUri]int coffeeroomno, int id, HttpRequestMessage message)
         {
             var entities = new CoffeeRoomEntities();
             var type = entities.ExpenseTypes.FirstOrDefault(t => t.Id == id);
@@ -97,7 +97,7 @@ namespace CoffeeManager.Api.Controllers
 
         [Route(RoutesConstants.MapExpenseToSuplyProduct)]
         [HttpPost]
-        public async Task<HttpResponseMessage> MapExpenseToSuplyProduct([FromUri]int coffeeroomno, [FromUri]int expenseTypeId, [FromUri]int suplyProductId, HttpRequestMessage message)
+        public async Task<HttpResponseMessage> MapExpenseToSuplyProduct([FromUri]int coffeeroomno, int expenseTypeId, int suplyProductId, HttpRequestMessage message)
         {
             var entities = new CoffeeRoomEntities();
             var sp = entities.SupliedProducts.FirstOrDefault(t => t.Id == suplyProductId);
@@ -111,7 +111,7 @@ namespace CoffeeManager.Api.Controllers
 
         [Route(RoutesConstants.GetMappedSuplyProductsToExpense)]
         [HttpGet]
-        public async Task<HttpResponseMessage> GetMappedSuplyProductsToExpense([FromUri]int coffeeroomno, [FromUri]int expenseTypeId, HttpRequestMessage message)
+        public async Task<HttpResponseMessage> GetMappedSuplyProductsToExpense([FromUri]int coffeeroomno, int expenseTypeId, HttpRequestMessage message)
         {
             var entities = new CoffeeRoomEntities();
             var sp = entities.SupliedProducts.Include(p => p.SuplyProductQuantities).Where(t => t.ExprenseTypeId == expenseTypeId).ToList().Select(s => s.ToDTO(coffeeroomno));
@@ -121,7 +121,7 @@ namespace CoffeeManager.Api.Controllers
 
         [Route(RoutesConstants.RemoveMappedSuplyProductsToExpense)]
         [HttpDelete]
-        public async Task<HttpResponseMessage> RemoveMappedSuplyProductsToExpense([FromUri]int coffeeroomno, [FromUri]int expenseTypeId, [FromUri]int suplyProductId, HttpRequestMessage message)
+        public async Task<HttpResponseMessage> RemoveMappedSuplyProductsToExpense([FromUri]int coffeeroomno, int expenseTypeId, [FromUri]int suplyProductId, HttpRequestMessage message)
         {
             var entities = new CoffeeRoomEntities();
             var sp = entities.SupliedProducts.FirstOrDefault(t =>  t.Id == suplyProductId);
@@ -177,7 +177,7 @@ namespace CoffeeManager.Api.Controllers
 
         [Route(RoutesConstants.AddExpenseExtended)]
         [HttpPost]
-        public async Task<HttpResponseMessage> AddExpenseExtended([FromUri]int coffeeroomno, [FromUri]int shiftId, HttpRequestMessage message)
+        public async Task<HttpResponseMessage> AddExpenseExtended([FromUri]int coffeeroomno, int shiftId, HttpRequestMessage message)
         {
             var request = await message.Content.ReadAsStringAsync();
             var expenseEx = JsonConvert.DeserializeObject<Models.ExpenseType>(request);
@@ -245,7 +245,7 @@ namespace CoffeeManager.Api.Controllers
 
         [Route(RoutesConstants.GetExpenseDetails)]
         [HttpGet]
-        public async Task<HttpResponseMessage> GetExpenseDetails([FromUri]int coffeeroomno, [FromUri]int expenseId, HttpRequestMessage message)
+        public async Task<HttpResponseMessage> GetExpenseDetails([FromUri]int coffeeroomno, int expenseId, HttpRequestMessage message)
         {
             var entities = new CoffeeRoomEntities();
             var sp = entities.ExpenseSuplyProducts.Include(e => e.SupliedProduct).Where(t => t.CoffeeRoonNo == coffeeroomno && t.ExpenseId == expenseId).ToList().Select(s => s.ToDTO());
@@ -255,7 +255,7 @@ namespace CoffeeManager.Api.Controllers
 
         [Route(RoutesConstants.DeleteExpenseItem)]
         [HttpDelete]
-        public async Task<HttpResponseMessage> DeleteExpense([FromUri]int coffeeroomno, [FromUri]int id, HttpRequestMessage message)
+        public async Task<HttpResponseMessage> DeleteExpense([FromUri]int coffeeroomno, int id, HttpRequestMessage message)
         {
             var entities = new CoffeeRoomEntities();
             var expense = entities.Expenses.First(e => e.Id == id && e.CoffeeRoomNo.Value == coffeeroomno);
@@ -295,7 +295,7 @@ namespace CoffeeManager.Api.Controllers
 
         [Route(RoutesConstants.AddNewExpenseType)]
         [HttpPut]
-        public async Task<HttpResponseMessage> AddNewExpenseType([FromUri]int coffeeroomno, [FromUri]string typeName)
+        public async Task<HttpResponseMessage> AddNewExpenseType([FromUri]int coffeeroomno, string typeName)
         {
             var entities = new  CoffeeRoomEntities();
             var type = new ExpenseType() {CoffeeRoomNo = coffeeroomno, Name = typeName};
@@ -306,7 +306,7 @@ namespace CoffeeManager.Api.Controllers
 
         [Route(RoutesConstants.GetShiftExpenses)]
         [HttpGet]
-        public async Task<HttpResponseMessage> GetShiftExpenses([FromUri]int coffeeroomno, [FromUri]int id, HttpRequestMessage message)
+        public async Task<HttpResponseMessage> GetShiftExpenses([FromUri]int coffeeroomno, int id, HttpRequestMessage message)
         {
             var entities = new CoffeeRoomEntities();
             var expenses = entities.Expenses.Include("ExpenseType1").Where(e => e.CoffeeRoomNo == coffeeroomno && e.ShiftId.Value == id).ToList().Select(s => s.ToDTO());
@@ -315,7 +315,7 @@ namespace CoffeeManager.Api.Controllers
 
         [Route(RoutesConstants.GetExpenses)]
         [HttpGet]
-        public async Task<HttpResponseMessage> GetExpenses([FromUri]int coffeeroomno, [FromUri]DateTime from, [FromUri]DateTime to, HttpRequestMessage message)
+        public async Task<HttpResponseMessage> GetExpenses([FromUri]int coffeeroomno, DateTime from, DateTime to, HttpRequestMessage message)
         {
             var entities = new CoffeeRoomEntities();
             var expenses = entities.Expenses.Include(i => i.ExpenseType1).Include(i => i.Shift).Where(e => e.CoffeeRoomNo == coffeeroomno && e.Shift.Date > from && e.Shift.Date < to).ToList().Select(s => s.ToDTO());
@@ -324,7 +324,7 @@ namespace CoffeeManager.Api.Controllers
 
         [Route(RoutesConstants.GetSalesByDate)]
         [HttpGet]
-        public async Task<HttpResponseMessage> GetSalesByDate([FromUri]int coffeeroomno, [FromUri]DateTime from, [FromUri]DateTime to, HttpRequestMessage message)
+        public async Task<HttpResponseMessage> GetSalesByDate([FromUri]int coffeeroomno, DateTime from, DateTime to, HttpRequestMessage message)
         {
             var entities = new CoffeeRoomEntities();
             var sales = entities.Sales.Where(s => s.Time > from && s.Time < to && s.CoffeeRoomNo == coffeeroomno).Select(s => s.ToDTO());

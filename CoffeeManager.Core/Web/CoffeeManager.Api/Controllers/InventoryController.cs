@@ -61,8 +61,15 @@ namespace CoffeeManager.Api.Controllers
 
             foreach (var inv in inventoryItems)
             {
-                var suplyProduct = entities.SuplyProductQuantities.First(p => p.SuplyProductId == inv.SuplyProductId && p.CoffeeRoomId == coffeeroomno);
-                suplyProduct.Quantity = inv.QuantityAfer;
+                var suplyProductQuantity = entities.SuplyProductQuantities.FirstOrDefault(p => p.SuplyProductId == inv.SuplyProductId && p.CoffeeRoomId == coffeeroomno);
+                if (suplyProductQuantity == null)
+                {
+                    suplyProductQuantity = new SuplyProductQuantity();
+                    suplyProductQuantity.CoffeeRoomId = coffeeroomno;
+                    suplyProductQuantity.SuplyProductId = inv.SuplyProductId;
+                    entities.SuplyProductQuantities.Add(suplyProductQuantity);
+                }
+                suplyProductQuantity.Quantity = inv.QuantityAfer;
             }
             await entities.SaveChangesAsync();
 
@@ -71,7 +78,7 @@ namespace CoffeeManager.Api.Controllers
 
         [Route(RoutesConstants.ToggleItemInventoryEnabled)]
         [HttpPost]
-        public async Task<HttpResponseMessage> ToggleItemInventoryEnabled([FromUri]int coffeeroomno, [FromUri]int suplyProductId, HttpRequestMessage message)
+        public async Task<HttpResponseMessage> ToggleItemInventoryEnabled([FromUri]int coffeeroomno, int suplyProductId, HttpRequestMessage message)
         {
             var entities = new CoffeeRoomEntities();
             var suplyProduct = entities.SupliedProducts.First(s => s.Id == suplyProductId);
@@ -92,7 +99,7 @@ namespace CoffeeManager.Api.Controllers
 
         [Route(RoutesConstants.GetInventoryReportDetails)]
         [HttpGet]
-        public async Task<HttpResponseMessage> GetInventoryReportDetails([FromUri]int coffeeroomno, [FromUri]int reportId, HttpRequestMessage message)
+        public async Task<HttpResponseMessage> GetInventoryReportDetails([FromUri]int coffeeroomno, int reportId, HttpRequestMessage message)
         {
             var entities = new CoffeeRoomEntities();
             var items = entities.InventoryReportItems.Where(s => s.InventoryReportId == reportId && s.CoffeeRoomNo == coffeeroomno).ToList().Select(s => s.ToDTO());

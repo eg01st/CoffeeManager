@@ -17,7 +17,7 @@ namespace CoffeeManager.Api.Controllers
 
         private static readonly object ShiftAmountLock = new object();
 		// GET: api/Products
-		public async Task<HttpResponseMessage> Get ([FromUri]int coffeeroomno, [FromUri]int productType)
+		public async Task<HttpResponseMessage> Get ([FromUri]int coffeeroomno, int productType)
 		{
 			var entities = new CoffeeRoomEntities ();
 			var products = entities.Products.Where (p => p.ProductType.Value == productType && !p.Removed).ToList ().Select (s => s.ToDTO ());
@@ -75,7 +75,7 @@ namespace CoffeeManager.Api.Controllers
 
         [Route (RoutesConstants.DeleteProduct)]
 		[HttpDelete]
-		public async Task<HttpResponseMessage> DeleteProduct ([FromUri]int coffeeroomno, [FromUri] int id, HttpRequestMessage message)
+		public async Task<HttpResponseMessage> DeleteProduct ([FromUri]int coffeeroomno,  int id, HttpRequestMessage message)
 		{
 			var entities = new CoffeeRoomEntities ();
             var product = entities.Products.FirstOrDefault(p => p.Id == id && p.CoffeeRoomNo == coffeeroomno);
@@ -99,7 +99,8 @@ namespace CoffeeManager.Api.Controllers
                 lock (ShiftAmountLock)
                 {
                     var entities = new CoffeeRoomEntities();
-                    entities.Sales.Add(DbMapper.Map(sale));
+                    var saleDb = DbMapper.Map(sale);
+                    entities.Sales.Add(saleDb);
                     entities.SaveChanges();
 
                     using (var sContext = new CoffeeRoomEntities())
@@ -222,7 +223,7 @@ namespace CoffeeManager.Api.Controllers
 
         [Route(RoutesConstants.ToggleProductEnabled)]
         [HttpPost]
-        public async Task<HttpResponseMessage> ToggleProductEnabled([FromUri]int coffeeroomno, [FromUri]int id, HttpRequestMessage message)
+        public async Task<HttpResponseMessage> ToggleProductEnabled([FromUri]int coffeeroomno, int id, HttpRequestMessage message)
         {
             var entities = new CoffeeRoomEntities();
             var product = entities.Products.FirstOrDefault(t => t.CoffeeRoomNo == coffeeroomno && t.Id == id);

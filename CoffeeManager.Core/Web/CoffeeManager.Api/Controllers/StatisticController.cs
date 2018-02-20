@@ -17,7 +17,7 @@ namespace CoffeeManager.Api.Controllers
     {
         [Route(RoutesConstants.StatisticGetAllSales)]
         [HttpGet]
-        public async Task<HttpResponseMessage> GetAllSales([FromUri] int coffeeroomno, [FromUri] DateTime from, [FromUri] DateTime to, HttpRequestMessage message)
+        public async Task<HttpResponseMessage> GetAllSales([FromUri] int coffeeroomno,  DateTime from,  DateTime to, HttpRequestMessage message)
         {
             var ctx = new CoffeeRoomEntities();
             var sales = ctx.GetAllSales(from, to.AddDays(1), coffeeroomno).ToList();
@@ -26,7 +26,7 @@ namespace CoffeeManager.Api.Controllers
 
         [Route(RoutesConstants.StatisticGetExpenses)]
         [HttpGet]
-        public async Task<HttpResponseMessage> GetExpenses([FromUri] int coffeeroomno, [FromUri] DateTime from, [FromUri] DateTime to, HttpRequestMessage message)
+        public async Task<HttpResponseMessage> GetExpenses([FromUri] int coffeeroomno, DateTime from,  DateTime to, HttpRequestMessage message)
         {
             var ctx = new CoffeeRoomEntities();
             var expenses = ctx.GetExpenses(from, to.AddDays(1), coffeeroomno).ToList();
@@ -35,7 +35,7 @@ namespace CoffeeManager.Api.Controllers
 
         [Route(RoutesConstants.StatisticGetCreditCardSales)]
         [HttpGet]
-        public async Task<HttpResponseMessage> GetCreditCardSales([FromUri] int coffeeroomno, [FromUri] DateTime from, [FromUri] DateTime to, HttpRequestMessage message)
+        public async Task<HttpResponseMessage> GetCreditCardSales([FromUri] int coffeeroomno,  DateTime from,  DateTime to, HttpRequestMessage message)
         {
             var ctx = new CoffeeRoomEntities();
             to = to.AddDays(1);
@@ -45,7 +45,7 @@ namespace CoffeeManager.Api.Controllers
 
         [Route(RoutesConstants.StatisticGetSalesByName)]
         [HttpPost]
-        public async Task<HttpResponseMessage> GetSalesByName([FromUri] int coffeeroomno, [FromUri] DateTime from, [FromUri] DateTime to, HttpRequestMessage message)
+        public async Task<HttpResponseMessage> GetSalesByName([FromUri] int coffeeroomno,  DateTime from,  DateTime to, HttpRequestMessage message)
         {
             var request = await message.Content.ReadAsStringAsync();
             var items = JsonConvert.DeserializeObject<List<string>>(request);

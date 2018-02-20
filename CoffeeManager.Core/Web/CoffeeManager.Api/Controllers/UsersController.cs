@@ -10,6 +10,7 @@ using CoffeeManager.Api.Mappers;
 using CoffeeManager.Models;
 using Newtonsoft.Json;
 using System.Data.Entity;
+using CoffeeManager.Models.User;
 
 namespace CoffeeManager.Api.Controllers
 {
@@ -21,23 +22,21 @@ namespace CoffeeManager.Api.Controllers
         public HttpResponseMessage Get([FromUri]int coffeeroomno)
         {
             var users = new  CoffeeRoomEntities().Users.ToArray().Select(u => u.ToDTO());
-            return new HttpResponseMessage() { Content = new ObjectContent<IEnumerable<Models.User>>(users, new JsonMediaTypeFormatter())};
+            return new HttpResponseMessage() { Content = new ObjectContent<IEnumerable<UserDTO>>(users, new JsonMediaTypeFormatter())};
         }
 
         [Route(RoutesConstants.GetUser)]
         [HttpGet]
-        public HttpResponseMessage GetUser([FromUri]int coffeeroomno, [FromUri]int userId)
+        public HttpResponseMessage GetUser([FromUri]int coffeeroomno, int userId)
         {
             var user = new CoffeeRoomEntities().Users.Include(u => u.UserPaymentStrategies).FirstOrDefault(u => u.Id == userId)?.ToDTO();
-            return new HttpResponseMessage() { Content = new ObjectContent<Models.User>(user, new JsonMediaTypeFormatter()) };
+            return new HttpResponseMessage() { Content = new ObjectContent<UserDTO>(user, new JsonMediaTypeFormatter()) };
         }
 
         [Route(RoutesConstants.AddUser)]
         [HttpPut]
-        public async Task<HttpResponseMessage> AddUser([FromUri]int coffeeroomno, HttpRequestMessage message)
+        public async Task<HttpResponseMessage> AddUser([FromUri]int coffeeroomno, [FromBody]UserDTO user)
         {
-            var request = await message.Content.ReadAsStringAsync();
-            var user = JsonConvert.DeserializeObject<Models.User>(request);
             var entites = new  CoffeeRoomEntities();
             var userDb = DbMapper.Map(user);
             entites.Users.Add(userDb);
@@ -47,10 +46,8 @@ namespace CoffeeManager.Api.Controllers
 
         [Route(RoutesConstants.UpdateUser)]
         [HttpPost]
-        public async Task<HttpResponseMessage> UpdateUser([FromUri]int coffeeroomno, HttpRequestMessage message)
+        public async Task<HttpResponseMessage> UpdateUser([FromUri]int coffeeroomno, [FromBody]UserDTO user)
         {
-            var request = await message.Content.ReadAsStringAsync();
-            var user = JsonConvert.DeserializeObject<Models.User>(request);
             var entites = new CoffeeRoomEntities();
             var userDb = entites.Users.First(u => u.Id == user.Id);
             userDb =  DbMapper.Update(user, userDb);
@@ -60,15 +57,15 @@ namespace CoffeeManager.Api.Controllers
 
         [Route(RoutesConstants.PenaltyUser)]
         [HttpPost]
-        public async Task<HttpResponseMessage> PenaltyUser([FromUri]int coffeeroomno, [FromUri]int userId, [FromUri]decimal amount, [FromUri]string reason, HttpRequestMessage message)
+        public async Task<HttpResponseMessage> PenaltyUser([FromUri]int coffeeroomno, [FromBody] PenaltyUserDTO dto)
         {
             var entites = new CoffeeRoomEntities();
-            var userDb = entites.Users.First(u => u.Id == userId);
-            userDb.CurrentEarnedAmount -= amount;
+            var userDb = entites.Users.First(u => u.Id == dto.UserId);
+            userDb.CurrentEarnedAmount -= dto.Amount;
             var penalty = new UserPenalty();
             penalty.Date = DateTime.Now;
-            penalty.Amount = amount;
-            penalty.Reason = reason;
+            penalty.Amount = dto.Amount;
+            penalty.Reason = dto.Reason;
             userDb.UserPenalties.Add(penalty);
             entites.SaveChanges();
             return Request.CreateResponse(HttpStatusCode.OK);
@@ -77,15 +74,15 @@ namespace CoffeeManager.Api.Controllers
 
         [Route(RoutesConstants.DismisPenalty)]
         [HttpPost]
-        public async Task<HttpResponseMessage> DismisPenalty([FromUri]int coffeeroomno, [FromUri]int id, HttpRequestMessage message)
+        public async Task<HttpResponseMessage> DismisPenalty([FromUri]int coffeeroomno, [FromBody] DismissPenaltyDTO dto)
         {
             var entites = new CoffeeRoomEntities();
-            var penalty = entites.UserPenalties.Include(u => u.User).First(u => u.Id == id);
+            var penalty = entites.UserPenalties.Include(u => u.User).First(u => u.Id == dto.PenaltyId);
             penalty.User.CurrentEarnedAmount += penalty.Amount;
             await entites.SaveChangesAsync();
 
             entites = new CoffeeRoomEntities();
-            penalty = entites.UserPenalties.Include(u => u.User).First(u => u.Id == id);
+            penalty = entites.UserPenalties.Include(u => u.User).First(u => u.Id == dto.PenaltyId);
             entites.UserPenalties.Remove(penalty);
             await entites.SaveChangesAsync();
             return Request.CreateResponse(HttpStatusCode.OK);
@@ -94,25 +91,25 @@ namespace CoffeeManager.Api.Controllers
 
         [Route(RoutesConstants.PaySalary)]
         [HttpPost]
-        public async Task<HttpResponseMessage> PaySalary([FromUri]int coffeeroomno, [FromUri]int userId, [FromUri]int coffeeRoomToPay, HttpRequestMessage message)
+        public async Task<HttpResponseMessage> PaySalary([FromUri]int coffeeroomno, PaySalaryDTO dto)
         {
             var entites = new CoffeeRoomEntities();
-            var user = entites.Users.FirstOrDefault(u => u.Id == userId);
+            var user = entites.Users.FirstOrDefault(u => u.Id == dto.UserId);
             if(user != null)
             {
 
-                var currentShift = entites.Shifts.First(s => s.CoffeeRoomNo == coffeeRoomToPay && !s.IsFinished.Value);
+                var currentShift = entites.Shifts.First(s => s.CoffeeRoomNo == dto.CoffeeRoomIdToPay && !s.IsFinished.Value);
                 currentShift.TotalExprenses += user.CurrentEarnedAmount;
                 currentShift.TotalAmount -= user.CurrentEarnedAmount;
 
                 var expense = new Expense();
                 expense.ExpenseType = user.ExpenceId;
                 expense.Amount = user.CurrentEarnedAmount;
-                expense.CoffeeRoomNo = coffeeRoomToPay;
+                expense.CoffeeRoomNo = dto.CoffeeRoomIdToPay;
                 expense.Quantity = 1;
                 expense.ShiftId = currentShift.Id;
                 expense.IsUserSalaryPayment = true;
-                expense.UserId = userId;
+                expense.UserId = dto.UserId;
                 entites.Expenses.Add(expense);
 
                 user.EntireEarnedAmount += user.CurrentEarnedAmount;
@@ -126,10 +123,10 @@ namespace CoffeeManager.Api.Controllers
 
         [Route(RoutesConstants.ToggleUserEnabled)]
         [HttpPost]
-        public async Task<HttpResponseMessage> ToggleUserEnabled([FromUri]int coffeeroomno, [FromUri]int userId, HttpRequestMessage message)
+        public async Task<HttpResponseMessage> ToggleUserEnabled([FromUri]int coffeeroomno,ToggleUserEnabledDTO dto)
         {         
             var entites = new CoffeeRoomEntities();
-            var user = entites.Users.FirstOrDefault(u => u.Id == userId);
+            var user = entites.Users.FirstOrDefault(u => u.Id == dto.UserId);
             if(user != null)
             {
                 user.IsActive = !user.IsActive;
@@ -137,6 +134,16 @@ namespace CoffeeManager.Api.Controllers
             }
             
             return Request.CreateResponse(HttpStatusCode.OK);
+        }
+
+        [Route(RoutesConstants.GetSalaryAmountToPay)]
+        [HttpGet]
+        public async Task<HttpResponseMessage> GetSalaryAmountToPay([FromUri]int coffeeroomno)
+        {
+            var entites = new CoffeeRoomEntities();
+            var amount = entites.Users.Sum(s => s.CurrentEarnedAmount);
+           
+            return Request.CreateResponse(HttpStatusCode.OK, amount);
         }
     }
 }

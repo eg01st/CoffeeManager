@@ -30,7 +30,7 @@ namespace CoffeeManager.Api.Controllers
 
         [Route(RoutesConstants.GetSuplyProduct)]
         [HttpGet]
-        public async Task<HttpResponseMessage> GetSuplyProduct([FromUri] int coffeeroomno, [FromUri] int id, HttpRequestMessage message)
+        public async Task<HttpResponseMessage> GetSuplyProduct([FromUri] int coffeeroomno,  int id, HttpRequestMessage message)
         {
             var entites = new CoffeeRoomEntities();
             var item = entites.SupliedProducts.Include(p => p.SuplyProductQuantities).FirstOrDefault(p => p.Id == id);
@@ -98,7 +98,7 @@ namespace CoffeeManager.Api.Controllers
 
         [Route(RoutesConstants.DeleteSuplyProduct)]
         [HttpDelete]
-        public async Task<HttpResponseMessage> DeleteSuplyProduct([FromUri] int coffeeroomno, [FromUri] int id, HttpRequestMessage message)
+        public async Task<HttpResponseMessage> DeleteSuplyProduct([FromUri] int coffeeroomno,  int id, HttpRequestMessage message)
         {
             var entities = new CoffeeRoomEntities();
             var suplyProduct = entities.SupliedProducts.FirstOrDefault(r => r.Id == id);
@@ -113,7 +113,7 @@ namespace CoffeeManager.Api.Controllers
 
         [Route(RoutesConstants.GetProductCalculationItems)]
         [HttpGet]
-        public async Task<HttpResponseMessage> GetProductCalculationItems([FromUri] int coffeeroomno, [FromUri] int productId, HttpRequestMessage message)
+        public async Task<HttpResponseMessage> GetProductCalculationItems([FromUri] int coffeeroomno,  int productId, HttpRequestMessage message)
         {
             var entites = new CoffeeRoomEntities();
             var product = entites.Products.FirstOrDefault(p => p.Id == productId && p.CoffeeRoomNo == coffeeroomno);
@@ -146,7 +146,7 @@ namespace CoffeeManager.Api.Controllers
 
        [Route(RoutesConstants.DeleteProductCalculationItem)]
         [HttpDelete]
-        public async Task<HttpResponseMessage> DeleteProductCalculationItem([FromUri] int coffeeroomno, [FromUri] int id, HttpRequestMessage message)
+        public async Task<HttpResponseMessage> DeleteProductCalculationItem([FromUri] int coffeeroomno,  int id, HttpRequestMessage message)
         {
             var entities = new CoffeeRoomEntities();
             var productCalculationItem = entities.ProductCalculations.FirstOrDefault(r => r.Id == id && r.CoffeeRoomNo == coffeeroomno);

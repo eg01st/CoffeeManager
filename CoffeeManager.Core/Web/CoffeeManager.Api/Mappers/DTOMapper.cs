@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using CoffeeManager.Models;
 
 namespace CoffeeManager.Api.Mappers
 {
     public static class DTOMapper
     {
-        public static Models.User ToDTO(this User dbUser)
+        public static UserDTO ToDTO(this User dbUser)
         {
-            var user = new Models.User()
+            var user = new UserDTO()
             {
                 CoffeeRoomNo = dbUser.CoffeeRoomNo.Value,
                 Name = dbUser.Name,

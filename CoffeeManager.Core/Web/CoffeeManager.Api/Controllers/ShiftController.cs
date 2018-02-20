@@ -16,7 +16,7 @@ namespace CoffeeManager.Api.Controllers
     [Authorize]
     public class ShiftController : ApiController
     {
-        public async Task<HttpResponseMessage> Post([FromUri]int coffeeroomno, [FromUri]int userId, [FromUri] int counter)
+        public async Task<HttpResponseMessage> Post([FromUri]int coffeeroomno, int userId,  int counter)
         {
             var shiftToReturn = new Models.Shift();
             var entities = new  CoffeeRoomEntities();
@@ -120,7 +120,7 @@ namespace CoffeeManager.Api.Controllers
 
         [Route(RoutesConstants.GetCurrentShiftForCoffeeRoom)]
         [HttpGet]
-        public async Task<HttpResponseMessage> GetCurrentShiftForCoffeeRoom([FromUri]int coffeeroomno, [FromUri]int forCoffeeRoom, HttpRequestMessage message)
+        public async Task<HttpResponseMessage> GetCurrentShiftForCoffeeRoom([FromUri]int coffeeroomno, int forCoffeeRoom, HttpRequestMessage message)
         {
             var entities = new CoffeeRoomEntities();
             var shift = entities.Shifts.FirstOrDefault(s => s.CoffeeRoomNo == forCoffeeRoom && !s.IsFinished.Value);
@@ -137,7 +137,7 @@ namespace CoffeeManager.Api.Controllers
 
         [Route(RoutesConstants.GetShifts)]
         [HttpGet]
-        public async Task<HttpResponseMessage> GetShifts([FromUri]int coffeeroomno, [FromUri]int skip, HttpRequestMessage message)
+        public async Task<HttpResponseMessage> GetShifts([FromUri]int coffeeroomno, int skip, HttpRequestMessage message)
         {
             var entities = new CoffeeRoomEntities();
             var shifts = entities.Shifts.OrderByDescending(s => s.Id).Include(s => s.User).Where(s => s.CoffeeRoomNo == coffeeroomno).Skip(skip).Take(50);
@@ -169,13 +169,13 @@ namespace CoffeeManager.Api.Controllers
         {
             var entities = new  CoffeeRoomEntities();
             var shift = entities.Shifts.First(s => !s.IsFinished.Value && s.CoffeeRoomNo == coffeeroomno).Id;
-            var sales = entities.Sales.Where(s => s.CoffeeRoomNo == coffeeroomno && s.ShiftId == shift).OrderByDescending(s => s.Id).Take(10).ToList().Select(s => s.ToDTO());
+            var sales = entities.Sales.Where(s => s.CoffeeRoomNo == coffeeroomno && s.ShiftId == shift).OrderByDescending(s => s.Id).Take(100).ToList().Select(s => s.ToDTO());
             return Request.CreateResponse(HttpStatusCode.OK, sales);
         }
 
         [Route(RoutesConstants.GetShiftInfo)]
         [HttpGet]
-        public async Task<HttpResponseMessage> GetShiftInfo([FromUri]int coffeeroomno, [FromUri]int id)
+        public async Task<HttpResponseMessage> GetShiftInfo([FromUri]int coffeeroomno, int id)
         {
             var entities = new CoffeeRoomEntities();
             var shift = entities.Shifts.FirstOrDefault(s => s.Id == id && s.CoffeeRoomNo == coffeeroomno);
@@ -227,7 +227,7 @@ namespace CoffeeManager.Api.Controllers
 
         [Route(RoutesConstants.GetShiftSalesById)]
         [HttpGet]
-        public async Task<HttpResponseMessage> GetShiftSalesById([FromUri]int coffeeroomno, [FromUri]int id, HttpRequestMessage message)
+        public async Task<HttpResponseMessage> GetShiftSalesById([FromUri]int coffeeroomno, int id, HttpRequestMessage message)
         {
             var entities = new CoffeeRoomEntities();
             var shift = entities.Shifts.FirstOrDefault(s => s.Id == id && s.CoffeeRoomNo == coffeeroomno);

@@ -27,7 +27,7 @@ namespace CoffeeManager.Api.Controllers
 
         [Route(RoutesConstants.GetOrderItems)]
         [HttpGet]
-        public async Task<HttpResponseMessage> GetOrderItems([FromUri]int coffeeroomno, [FromUri] int id, HttpRequestMessage message)
+        public async Task<HttpResponseMessage> GetOrderItems([FromUri]int coffeeroomno,  int id, HttpRequestMessage message)
         {
             var entities = new CoffeeRoomEntities();
             var orders = entities.SuplyOrderItems.Include("SupliedProduct").Where(o => o.SuplyOrderId == id && o.CoffeeRoomNo == coffeeroomno).ToList().Select(s => s.ToDTO());
@@ -172,7 +172,7 @@ namespace CoffeeManager.Api.Controllers
 
         [Route(RoutesConstants.DeleteOrder)]
         [HttpDelete]
-        public async Task<HttpResponseMessage> DeleteOrder([FromUri]int coffeeroomno, [FromUri]int id, HttpRequestMessage message)
+        public async Task<HttpResponseMessage> DeleteOrder([FromUri]int coffeeroomno, int id, HttpRequestMessage message)
         {   
             var entities = new CoffeeRoomEntities();
             var orderDb = entities.SuplyOrders.First(o => o.Id == id && o.CoffeeRoomNo == coffeeroomno);
@@ -183,7 +183,7 @@ namespace CoffeeManager.Api.Controllers
 
         [Route(RoutesConstants.DeleteOrderItem)]
         [HttpDelete]
-        public async Task<HttpResponseMessage> DeleteOrderItem([FromUri]int coffeeroomno, [FromUri]int id, HttpRequestMessage message)
+        public async Task<HttpResponseMessage> DeleteOrderItem([FromUri]int coffeeroomno, int id, HttpRequestMessage message)
         {
             var entities = new CoffeeRoomEntities();
             var orderDb = entities.SuplyOrderItems.First(o => o.Id == id && o.CoffeeRoomNo == coffeeroomno);

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using CoffeeManager.Models;
 
 namespace CoffeeManager.Api.Mappers
 {
@@ -23,7 +24,7 @@ namespace CoffeeManager.Api.Mappers
 
 		}
 
-        public static User Map(Models.User user)
+        public static User Map(UserDTO user)
         {
             var us = new User()
             {
@@ -55,7 +56,7 @@ namespace CoffeeManager.Api.Mappers
 	    }
 
 
-        public static User Update(Models.User user, User userDb)
+        public static User Update(UserDTO user, User userDb)
         {
             userDb.Name = user.Name;
             userDb.IsActive = user.IsActive;

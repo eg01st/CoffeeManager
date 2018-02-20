@@ -88,6 +88,7 @@ namespace CoffeeManager.Models
         public const string DeleteUser = Users + "/deleteUser";
         public const string PenaltyUser = Users + "/penaltyUser";
         public const string DismisPenalty = Users + "/dismisPenalty";
+        public const string GetSalaryAmountToPay = Users + "/GetSalaryAmountToPay";
 
         public const string Inventory = Api + "/inventory";
         public const string GetInventoryItems = Inventory + "/getInventoryItems";
