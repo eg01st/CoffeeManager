@@ -83,5 +83,10 @@ namespace CoffeManager.Common
                 }
             );
         }
+
+        public async Task<decimal> GetSalaryAmountToPay()
+        {
+            return await Get<decimal>(RoutesConstants.GetSalaryAmountToPay);
+        }
     }
 }

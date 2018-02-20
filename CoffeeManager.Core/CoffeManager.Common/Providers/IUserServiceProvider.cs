@@ -25,5 +25,7 @@ namespace CoffeManager.Common
         Task PenaltyUser(int userId, decimal amount, string reason);
 
         Task DismissPenalty(int id);
+
+        Task<decimal> GetSalaryAmountToPay();
     }
 }

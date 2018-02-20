@@ -58,5 +58,11 @@ namespace CoffeManager.Common
         {
             await provider.DismissPenalty(id);
         }
+
+        public async Task<int> GetSalaryAmountToPay()
+        {
+            var result = await provider.GetSalaryAmountToPay();
+            return (int)result;
+        }
     }
 }

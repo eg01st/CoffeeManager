@@ -29,11 +29,15 @@ namespace CoffeeManagerAdmin.Core
             }
         }
 
+        public int AmountToPay { get; set; }
 
         public async Task Init()
         {
             await ExecuteSafe(async () => 
             {
+                AmountToPay = await manager.GetSalaryAmountToPay();
+                RaisePropertyChanged(nameof(AmountToPay));
+
                 var items = await manager.GetUsers();
                 Users = items.Select(s => new UserItemViewModel(manager){UserName = s.Name, IsActive = s.IsActive, Id = s.Id})
                     .OrderByDescending(o => o.IsActive).ToList();

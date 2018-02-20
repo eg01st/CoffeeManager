@@ -38,6 +38,7 @@ namespace CoffeeManagerAdmin.iOS
         
             var set = this.CreateBindingSet<UsersView, UsersViewModel>();
             set.Bind(source).To(vm => vm.Users);
+            set.Bind(AmountForSalaryPayLabel).To(vm => vm.AmountToPay);
             set.Apply();
             
       
