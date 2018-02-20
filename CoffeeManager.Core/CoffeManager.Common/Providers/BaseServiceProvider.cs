@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using CoffeeManager.Common;
 using Newtonsoft.Json;
+using RestSharp.Portable;
+using RestSharp.Portable.HttpClient;
 using MobileCore.Connection;
 using MvvmCross.Platform;
 using MobileCore.Extensions;
@@ -73,8 +76,10 @@ namespace CoffeManager.Common
             }
         }
 
+
         protected async Task<T> Get<T>(string path, Dictionary<string, string> param = null)
         {
+
             string url = GetUrl(path, param);
             string responseString;
             var client = GetClient();

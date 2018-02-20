@@ -2,86 +2,76 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using CoffeeManager.Models;
+using CoffeeManager.Models.User;
+using RestSharp.Portable;
 
 namespace CoffeManager.Common
 {
-    public class UserServiceProvider : BaseServiceProvider, IUserServiceProvider
+    public class UserServiceProvider : ServiceBase, IUserServiceProvider
     {
-        public async Task<IEnumerable<User>> GetUsers()
+        public async Task<IEnumerable<UserDTO>> GetUsers()
         {
-            return await Get<IEnumerable<User>>(RoutesConstants.GetUsers);
+            var request = CreateGetRequest(RoutesConstants.GetUsers);
+            return await ExecuteRequestAsync<IEnumerable<UserDTO>>(request);
         }
 
-        public async Task<User> GetUser(int userId)
+        public async Task<UserDTO> GetUser(int userId)
         {
-            return await Get<User>(RoutesConstants.GetUser, new Dictionary<string, string>()
-                {
-                    {nameof(userId), userId.ToString()}
-                });
+            var request = CreateGetRequest(RoutesConstants.GetUser);
+            request.Parameters.Add(new Parameter() { Name = nameof(userId), Value = userId });
+            return await ExecuteRequestAsync<UserDTO>(request);
         }
 
 
         public async Task DeleteUser(int userId)
         {
-            await Delete(RoutesConstants.DeleteUser, new Dictionary<string, string>()
-                {
-                    {nameof(userId), userId.ToString()}
-                });
+            var request = CreateDeleteRequest(RoutesConstants.DeleteUser);
+            request.Parameters.Add(new Parameter() { Name = nameof(userId), Value = userId });
+            await ExecuteRequestAsync(request);
         }
 
 
-        public async Task<string> Login(string name, string password)
+        public async Task<int> AddUser(UserDTO user)
         {
-            return await Post(RoutesConstants.Login, new UserInfo() { Login = name, Password = password });
-        }
-
-        public async Task<int> AddUser(User user)
-        {
-            return await Put<int, User>(RoutesConstants.AddUser, user);
+            var request = CreatePutRequest(RoutesConstants.AddUser);
+            request.AddBody(user);
+            return await ExecuteRequestAsync<int>(request);
         }
 
         public async Task ToggleEnabled(int userId)
         {
-            await Post<object>(RoutesConstants.ToggleUserEnabled, null, new Dictionary<string, string>()
-                {
-                    {nameof(userId), userId.ToString()}
-                }
-            );
+            var request = CreatePostRequest(RoutesConstants.ToggleUserEnabled);
+            request.AddBody(new ToggleUserEnabledDTO() { UserId = userId});
+            await ExecuteRequestAsync(request);
         }
 
-        public async Task UpdateUser(User user)
+        public async Task UpdateUser(UserDTO user)
         {
-            await Post<object>(RoutesConstants.UpdateUser, user);
+            var request = CreatePostRequest(RoutesConstants.UpdateUser);
+            request.AddBody(user);
+            await ExecuteRequestAsync(request);
         }
 
         public async Task PaySalary(int userId, int coffeeRoomToPay)
         {
-            await Post<object>(RoutesConstants.PaySalary, null, new Dictionary<string, string>()
-                {
-                    {nameof(userId), userId.ToString()},
-                    {nameof(coffeeRoomToPay), coffeeRoomToPay.ToString()},
-                }
-            );
+            var request = CreatePostRequest(RoutesConstants.PaySalary);
+            request.AddBody(new PaySalaryDTO() { UserId = userId, CoffeeRoomIdToPay = coffeeRoomToPay });
+            await ExecuteRequestAsync(request);
         }
 
         public async Task PenaltyUser(int userId, decimal amount, string reason)
         {
-            await Post<object>(RoutesConstants.PenaltyUser, null, new Dictionary<string, string>()
-                {
-                    {nameof(userId), userId.ToString()},
-                    {nameof(amount), amount.ToString()},
-                    {nameof(reason), reason.ToString()},
-                }
-            );
+            var request = CreatePostRequest(RoutesConstants.PenaltyUser);
+            request.AddBody(new PenaltyUserDTO() { Amount = amount, Reason = reason, UserId = userId });
+            await ExecuteRequestAsync(request);
         }
 
         public async Task DismissPenalty(int id)
         {
-            await Post<object>(RoutesConstants.DismisPenalty, null, new Dictionary<string, string>()
-                {
-                    {nameof(id), id.ToString()},
-                }
-            );
+            var request = CreatePostRequest(RoutesConstants.DismisPenalty);
+            request.AddBody(new DismissPenaltyDTO{ PenaltyId = id});
+            await ExecuteRequestAsync(request);
         }
+
     }
 }

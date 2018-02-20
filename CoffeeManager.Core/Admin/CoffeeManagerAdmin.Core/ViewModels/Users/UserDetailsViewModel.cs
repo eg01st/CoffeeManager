@@ -30,7 +30,7 @@ namespace CoffeeManagerAdmin.Core
         private int? _expenseTypeId;
         private string _expenseTypeName;
 
-        private User user;
+        private UserDTO user;
         private int useridParameter;
         public int UserId => user.Id;
         public string UserName {get;set;}
@@ -260,7 +260,7 @@ namespace CoffeeManagerAdmin.Core
             {
                 await InitCoffeeRooms();
 
-                user = new User();
+                user = new UserDTO();
                 await InitTypes();
                 UpdateCommand = new MvxCommand(DoCreateUser);
     

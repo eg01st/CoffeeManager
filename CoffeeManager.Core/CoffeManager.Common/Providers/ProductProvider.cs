@@ -3,59 +3,73 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CoffeeManager.Models;
+using RestSharp.Portable;
 
 namespace CoffeManager.Common
 {
-    public class ProductProvider : BaseServiceProvider, IProductProvider
+    public class ProductProvider : ServiceBase, IProductProvider
     {
         public async Task AddProduct(Product product)
         {
-            await Put(RoutesConstants.AddProduct, product);
+            var request = CreatePutRequest(RoutesConstants.AddProduct);
+            request.AddBody(product);
+            await ExecuteRequestAsync(request);
         }
 
         public async Task DeleteProduct(int id)
         {
-            await Delete(RoutesConstants.DeleteProduct, new Dictionary<string, string>() { { nameof(id), id.ToString() } });
+            var request = CreateDeleteRequest(RoutesConstants.DeleteProduct);
+            request.Parameters.Add(new Parameter() { Name = nameof(id), Value = id });
+            await ExecuteRequestAsync(request);
         }
 
         public async Task EditProduct(Product product)
         {
-            await Post(RoutesConstants.EditProduct, product);
+            var request = CreatePostRequest(RoutesConstants.EditProduct);
+            request.AddBody(product);
+            await ExecuteRequestAsync(request);
         }
 
         public async Task<Product[]> GetProducts()
         {
-            return await Get<Product[]>(RoutesConstants.GetAllProducts);
+            var request = CreateGetRequest(RoutesConstants.GetAllProducts);
+            return await ExecuteRequestAsync<Product[]>(request);
         }
 
         public async Task ToggleIsActiveProduct(int id)
         {
-            await Post<Object>(RoutesConstants.ToggleProductEnabled, null, new Dictionary<string, string>() { { nameof(id), id.ToString() } });
+            var request = CreatePostRequest(RoutesConstants.ToggleProductEnabled);
+            request.Parameters.Add(new Parameter() { Name = nameof(id), Value = id });
+            await ExecuteRequestAsync(request);
         }
 
         public async Task<ProductEntity[]> GetProduct(ProductType type)
         {
-            var prods = await Get<ProductEntity[]>(RoutesConstants.Products,
-                new Dictionary<string, string>()
-                {
-                    {nameof(ProductType), ((int) type).ToString()},
-                });
+            var request = CreateGetRequest(RoutesConstants.Products);
+            request.Parameters.Add(new Parameter() { Name = nameof(ProductType), Value = type });
+            var prods = await ExecuteRequestAsync<ProductEntity[]>(request);
             return prods.Where(p => p.IsActive).ToArray();
         }
 
         public async Task SaleProduct(Sale sale)
         {
-            await Put(RoutesConstants.SaleProduct, sale);
+            var request = CreatePutRequest(RoutesConstants.SaleProduct);
+            request.AddBody(sale);
+            await ExecuteRequestAsync(request);
         }
 
         public async Task DeleteSale(int shiftId, int id)
         {
-            await Post(RoutesConstants.DeleteSale, new Sale() { ShiftId = shiftId, Id = id });
+            var request = CreatePostRequest(RoutesConstants.DeleteSale);
+            request.AddBody(new Sale() { ShiftId = shiftId, Id = id });
+            await ExecuteRequestAsync(request);
         }
 
         public async Task UtilizeSaleProduct(int shiftId, int id)
         {
-            await Post(RoutesConstants.UtilizeSale, new Sale() { ShiftId = shiftId, Id = id });
+            var request = CreatePostRequest(RoutesConstants.UtilizeSale);
+            request.AddBody(new Sale() { ShiftId = shiftId, Id = id });
+            await ExecuteRequestAsync(request);
         }
     }
 }

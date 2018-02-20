@@ -14,7 +14,7 @@ namespace CoffeeManager.Core.ViewModels
     {
         private readonly IUserManager _userManager;
         private readonly IShiftManager _shiftManager;
-        private User[] _users;
+        private UserDTO[] _users;
 
         public ICommand SelectUserCommand { get; }
         public ICommand RefreshCommand { get; }
@@ -28,7 +28,7 @@ namespace CoffeeManager.Core.ViewModels
             this.accountManager = accountManager;
             _userManager = userManager;
             _shiftManager = shiftManager;
-            SelectUserCommand = new MvxCommand<User>(DoSelectUser);
+            SelectUserCommand = new MvxCommand<UserDTO>(DoSelectUser);
             RefreshCommand = new MvxAsyncCommand(DoRefresh);
         }
 
@@ -40,7 +40,7 @@ namespace CoffeeManager.Core.ViewModels
             });
         }
 
-        private async void DoSelectUser(User user)
+        private async void DoSelectUser(UserDTO user)
         {
             var counter = await PromtAsync("Введите показание счетчика на кофемолке");
             if(!counter.HasValue)
@@ -55,7 +55,7 @@ namespace CoffeeManager.Core.ViewModels
             });
         }
 
-        public User[] Users
+        public UserDTO[] Users
         {
             get { return _users; }
             set

@@ -15,8 +15,6 @@ namespace CoffeManager.Common.Managers
 
         Task Register(string email, string password, string apiUrl);
 
-        Task RegisterLocal(string email, string password, string apiUrl);
-
         Task Logout();
 
         Task ChangePassword(string oldPassword, string newPassword);

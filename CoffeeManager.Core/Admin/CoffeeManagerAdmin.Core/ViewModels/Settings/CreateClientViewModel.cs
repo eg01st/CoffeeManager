@@ -79,7 +79,7 @@ namespace CoffeeManagerAdmin.Core
             {
                 try
                 {
-                    await manager.RegisterLocal(email, password, apiUrl);
+                    await manager.Register(Email, Password, apiUrl);
                 }
                 catch (Exception ex)
                 {
@@ -92,7 +92,7 @@ namespace CoffeeManagerAdmin.Core
                     Alert("Сервис не отвечает!");
                     return;
                 }
-                await manager.Register(Email, Password, apiUrl);
+
                 Publish(new RefreshAdminUsersMessage(this));
                 CloseCommand.Execute(null);
             });

@@ -1,6 +1,7 @@
 ﻿using CoffeManager.Common.Managers;
 using CoffeManager.Common.Providers;
 using MobileCore;
+using CoffeManager.Common.Providers.Auth;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
 using MvvmCross.Plugins.File;
@@ -31,7 +32,8 @@ namespace CoffeManager.Common
             Mvx.RegisterSingleton<IDataBaseProvider>(new DataBaseProvider(Mvx.Resolve<IMvxSqliteConnectionFactory>()));
             Mvx.RegisterSingleton<IInventoryProvider>(new InventoryProvider());
             Mvx.RegisterSingleton<IAdminProvider>(new AdminProvider());
-            Mvx.RegisterSingleton<IAccountProvider>(new AccountProvider());
+            Mvx.RegisterSingleton<ILocalAccountProvider>(new LocalAccountProvider());
+            Mvx.RegisterSingleton<IMainAccountProvider>(new MainAccountProvider());
         }
 
         public virtual void RegisterManagers()
@@ -46,7 +48,7 @@ namespace CoffeManager.Common
             Mvx.RegisterSingleton<ISuplyProductsManager>(new SuplyProductsManager(Mvx.Resolve<ISuplyProductsProvider>()));
             Mvx.RegisterSingleton<IInventoryManager>(new InventoryManager(Mvx.Resolve<IInventoryProvider>(), Mvx.Resolve<IDataBaseProvider>()));
             Mvx.RegisterSingleton<IAdminManager>(new AdminManager(Mvx.Resolve<IAdminProvider>()));
-            Mvx.RegisterSingleton<IAccountManager>(new AccountManager(Mvx.Resolve<IAccountProvider>()));
+            Mvx.RegisterSingleton<IAccountManager>(new AccountManager(Mvx.Resolve<ILocalAccountProvider>(), Mvx.Resolve<IMainAccountProvider>()));
         }
     }
 }

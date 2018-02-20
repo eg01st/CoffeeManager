@@ -2,45 +2,43 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using CoffeeManager.Models;
+using RestSharp.Portable;
 
 namespace CoffeManager.Common
 {
-    public class StatisticProvider : BaseServiceProvider, IStatisticProvider
+    public class StatisticProvider : ServiceBase, IStatisticProvider
     {
         public async Task<IEnumerable<Expense>> GetExpenses(DateTime from, DateTime to)
         {
-            return await Get<Expense[]>(RoutesConstants.StatisticGetExpenses, new Dictionary<string, string>()
-            {
-                { nameof(from), from.ToString("yyyy-MM-dd HH:mm:ss \"GMT\"zzz")},
-                { nameof(to), to.ToString("yyyy-MM-dd HH:mm:ss \"GMT\"zzz")}
-            });
+            var request = CreateGetRequest(RoutesConstants.StatisticGetExpenses);
+            request.Parameters.Add(new Parameter() { Name = nameof(from), Value = from });
+            request.Parameters.Add(new Parameter() { Name = nameof(to), Value = to });
+            return await ExecuteRequestAsync<Expense[]>(request);
         }
 
         public async Task<IEnumerable<SaleInfo>> GetSales(DateTime from, DateTime to)
         {
-            return await Get<SaleInfo[]>(RoutesConstants.StatisticGetAllSales, new Dictionary<string, string>()
-            {
-                { nameof(from), from.ToString()},
-                { nameof(to), to.ToString()}
-            });
+            var request = CreateGetRequest(RoutesConstants.StatisticGetAllSales);
+            request.Parameters.Add(new Parameter() { Name = nameof(from), Value = from });
+            request.Parameters.Add(new Parameter() { Name = nameof(to), Value = to });
+            return await ExecuteRequestAsync<IEnumerable<SaleInfo>>(request);
         }
 
         public async Task<IEnumerable<Sale>> GetCreditCardSales(DateTime from, object to)
         {
-            return await Get<Sale[]>(RoutesConstants.StatisticGetCreditCardSales, new Dictionary<string, string>()
-            {
-                { nameof(from), from.ToString()},
-                { nameof(to), to.ToString()}
-            });
+            var request = CreateGetRequest(RoutesConstants.StatisticGetCreditCardSales);
+            request.Parameters.Add(new Parameter() { Name = nameof(from), Value = from });
+            request.Parameters.Add(new Parameter() { Name = nameof(to), Value = to });
+            return await ExecuteRequestAsync<IEnumerable<Sale>>(request);
         }
 
         public async Task<IEnumerable<Sale>> GetSalesByNames(IEnumerable<string> itemsNames, DateTime from, DateTime to)
         {
-                return await Post<Sale[], IEnumerable<string>>(RoutesConstants.StatisticGetSalesByName, itemsNames, new Dictionary<string, string>()
-            {
-                { nameof(from), from.ToString()},
-                { nameof(to), to.ToString()}
-            });
+            var request = CreatePostRequest(RoutesConstants.StatisticGetSalesByName);
+            request.Parameters.Add(new Parameter() { Name = nameof(from), Value = from });
+            request.Parameters.Add(new Parameter() { Name = nameof(to), Value = to });
+            request.AddBody(itemsNames);
+            return await ExecuteRequestAsync<IEnumerable<Sale>>(request);
         }
     }
 }
