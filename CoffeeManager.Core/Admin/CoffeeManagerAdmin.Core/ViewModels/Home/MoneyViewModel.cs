@@ -1,16 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using CoffeeManager.Common;
 using CoffeeManager.Models;
-using CoffeeManagerAdmin.Core.ViewModels;
 using CoffeManager.Common;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Messenger;
 
-namespace CoffeeManagerAdmin.Core
+namespace CoffeeManagerAdmin.Core.ViewModels.Home
 {
     public class MoneyViewModel : ViewModelBase
     {
@@ -18,13 +16,12 @@ namespace CoffeeManagerAdmin.Core
         private readonly MvxSubscriptionToken refreshAmountToken;
 
         private bool isNextPageLoading = false;
-        private int totalCount = 0;
 
-        private MvxObservableCollection<ShiftItemViewModel> _items = new MvxObservableCollection<ShiftItemViewModel>();
-        private string _currentBalance;
-        private string _currentShiftBalance;
-        private string _currentCreditCardBalance;
-        private Entity _currentCoffeeRoom;
+        private MvxObservableCollection<ShiftItemViewModel> items = new MvxObservableCollection<ShiftItemViewModel>();
+        private string currentBalance;
+        private string currentShiftBalance;
+        private string currentCreditCardBalance;
+        private Entity currentCoffeeRoom;
         private List<Entity> coffeeRooms;
         readonly IShiftManager shiftManager;
         readonly IAdminManager adminManager;
@@ -55,9 +52,10 @@ namespace CoffeeManagerAdmin.Core
 
             isNextPageLoading = true;
 
+            
             var itemsToSkip = Items.Count;
-            var items = await ExecuteSafe(async () => await shiftManager.GetShifts(itemsToSkip));
-            var vms = items.Select(s => new ShiftItemViewModel(s));
+            var shifts = await ExecuteSafe(async () => await shiftManager.GetShifts(itemsToSkip));
+            var vms = shifts.Select(s => new ShiftItemViewModel(s));
 
             Items.AddRange(vms);
 
@@ -67,10 +65,10 @@ namespace CoffeeManagerAdmin.Core
 
         public MvxObservableCollection<ShiftItemViewModel> Items
         {
-            get { return _items; }
-            set
+            get => items;
+            private set
             {
-                _items = value;
+                items = value;
                 RaisePropertyChanged(nameof(Items));
             }
         }
@@ -83,43 +81,43 @@ namespace CoffeeManagerAdmin.Core
 
         public string CurrentBalance
         {
-            get { return _currentBalance; }
-            set
+            get => currentBalance;
+            private set
             {
-                _currentBalance = value;
+                currentBalance = value;
                 RaisePropertyChanged(nameof(CurrentBalance));
             }
         }
 
         public string CurrentShiftBalance
         {
-            get { return _currentShiftBalance; }
-            set
+            get => currentShiftBalance;
+            private set
             {
-                _currentShiftBalance = value;
+                currentShiftBalance = value;
                 RaisePropertyChanged(nameof(CurrentShiftBalance));
             }
         }
 
         public string CurrentCreditCardBalance
         {
-            get { return _currentCreditCardBalance; }
-            set
+            get => currentCreditCardBalance;
+            private set
             {
-                _currentCreditCardBalance = value;
+                currentCreditCardBalance = value;
                 RaisePropertyChanged(nameof(CurrentCreditCardBalance));
             }
         }
 
         public Entity CurrentCoffeeRoom
         {
-            get { return _currentCoffeeRoom; }
-            set
+            get => currentCoffeeRoom;
+            private set
             {
-                _currentCoffeeRoom = value;
+                currentCoffeeRoom = value;
                 RaisePropertyChanged(nameof(CurrentCoffeeRoom));
                 RaisePropertyChanged(nameof(CurrentCoffeeRoomName));
-                Config.CoffeeRoomNo = _currentCoffeeRoom.Id;
+                Config.CoffeeRoomNo = currentCoffeeRoom.Id;
                 GetEntireMoney();
                 Publish(new CoffeeRoomChangedMessage(this));
             }
@@ -127,19 +125,15 @@ namespace CoffeeManagerAdmin.Core
 
         public List<Entity> CoffeeRooms
         {
-            get { return coffeeRooms; }
-            set
+            get => coffeeRooms;
+            private set
             {
                 coffeeRooms = value;
                 RaisePropertyChanged(nameof(CoffeeRooms));
             }
         }
 
-        public string CurrentCoffeeRoomName
-        {
-            get { return CurrentCoffeeRoom.Name; }
-
-        }
+        public string CurrentCoffeeRoomName => CurrentCoffeeRoom.Name;
 
 
         public async Task Init()
@@ -152,10 +146,10 @@ namespace CoffeeManagerAdmin.Core
         private async Task GetShifts()
         {
             Items.Clear();
-            var items = await shiftManager.GetShifts(0);
-            if (items != null)
+            var shifts = await shiftManager.GetShifts(0);
+            if (shifts != null)
             {
-                Items.AddRange(items.Select(s => new ShiftItemViewModel(s)));
+                Items.AddRange(shifts.Select(s => new ShiftItemViewModel(s)));
             }
             else
             {
@@ -172,8 +166,8 @@ namespace CoffeeManagerAdmin.Core
         {
             await ExecuteSafe(async () =>
             {
-                var currentBalance = await paymentManager.GetEntireMoney();
-                CurrentBalance = currentBalance.ToString("F1");
+                var currBalance = await paymentManager.GetEntireMoney();
+                CurrentBalance = currBalance.ToString("F1");
                 var shiftBalance = await paymentManager.GetCurrentShiftMoney();
                 CurrentShiftBalance = shiftBalance.ToString("F1");
                 var creditCardBalance = await paymentManager.GetCreditCardEntireMoney();
@@ -186,8 +180,8 @@ namespace CoffeeManagerAdmin.Core
         {
             await ExecuteSafe(async () =>
             {
-                var items = await adminManager.GetCoffeeRooms();
-                CoffeeRooms = items.ToList();
+                var rooms = await adminManager.GetCoffeeRooms();
+                CoffeeRooms = rooms.ToList();
                 CurrentCoffeeRoom = CoffeeRooms.First();
             });
         }

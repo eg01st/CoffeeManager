@@ -3,6 +3,7 @@ using Android.App;
 using Android.Content.PM;
 using Android.OS;
 using CoffeeManager.Core;
+using CoffeeManager.Core.ViewModels;
 using CoffeeManager.Droid.Views;
 
 namespace CoffeeManager.Droid

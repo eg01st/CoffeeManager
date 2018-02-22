@@ -116,5 +116,9 @@ namespace CoffeeManager.Models
         public const string DeleteAdminUser = Account + "/DeleteAdminUser";
 
         public const string Token = "Token";
+        
+        public const string Update = Api + "/update";
+        public const string GetCurrentAdnroidVersion = Update + "/getcurrentversion";
+        public const string GetAndroidPackage = Update + "/GetAndroidPackage";
     }
 }

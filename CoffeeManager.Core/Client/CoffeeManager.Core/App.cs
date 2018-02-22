@@ -1,4 +1,5 @@
 ﻿using Acr.UserDialogs;
+using CoffeeManager.Core.ViewModels;
 using CoffeManager.Common;
 using MvvmCross.Platform;
 

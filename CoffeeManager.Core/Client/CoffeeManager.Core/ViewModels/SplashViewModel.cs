@@ -1,33 +1,48 @@
 ﻿using System;
 using System.Threading.Tasks;
 using CoffeeManager.Common;
-using CoffeeManager.Core.ViewModels;
 using CoffeeManager.Models;
 using CoffeManager.Common;
 using CoffeManager.Common.Managers;
+using MobileCore.AutoUpdate;
 using MobileCore.Connection;
 using MobileCore.Extensions;
+using MobileCore.Logging;
 
-namespace CoffeeManager.Core
+namespace CoffeeManager.Core.ViewModels
 {
     public class SplashViewModel : ViewModelBase
     {
-        readonly IAccountManager accountManager;
-        readonly ILocalStorage localStorage;
-        readonly IShiftManager shiftManager;
+        private readonly IAccountManager accountManager;
+        private readonly ILocalStorage localStorage;
+        private readonly IShiftManager shiftManager;
 
         private readonly IConnectivity connectivity;
+        readonly IUpdateAppWorker updateWorker;
 
-        public SplashViewModel(IAccountManager accountManager, ILocalStorage localStorage, IShiftManager shiftManager, IConnectivity connectivity)
+        public SplashViewModel(IAccountManager accountManager,
+                               ILocalStorage localStorage,
+                               IShiftManager shiftManager,
+                               IConnectivity connectivity,
+                               IUpdateAppWorker updateWorker)
         {
+            this.updateWorker = updateWorker;
             this.connectivity = connectivity;
             this.shiftManager = shiftManager;
             this.localStorage = localStorage;
             this.accountManager = accountManager;
         }
 
-        public async override Task Initialize()
+        public override async Task Initialize()
         {
+            if(await updateWorker.IsNewVersionAvailable())
+            {
+                if(await UserDialogs.ConfirmAsync("Вышла новая версия программы, рекомендуется обновление", null, "Обновить", "Отмена"))
+                {
+                    await updateWorker.Update();
+                }
+            }
+
             bool isLoggedIn = false;
 
             var coffeeRoomNo = localStorage.GetCoffeeRoomId();
@@ -50,7 +65,7 @@ namespace CoffeeManager.Core
                     return;
                 }
             }
-            else if(!isLoggedIn)
+            else 
             {
                 if(!await connectivity.HasInternetConnectionAsync && userInfo.AccessToken.IsNotNull())
                 {
@@ -68,6 +83,7 @@ namespace CoffeeManager.Core
                     }
                     catch (Exception ex)
                     {
+                        ConsoleLogger.Exception(ex);
                         await NavigationService.Navigate<InitialLoginViewModel>();
                         return;
                     }

@@ -6,6 +6,7 @@ using CoffeeManagerAdmin.Core;
 using MvvmCross.Platform;
 using Foundation;
 using System.Collections.Generic;
+using CoffeeManagerAdmin.Core.ViewModels.Home;
 
 namespace CoffeeManagerAdmin.iOS
 {
