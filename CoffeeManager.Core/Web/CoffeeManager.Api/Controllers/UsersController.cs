@@ -141,7 +141,7 @@ namespace CoffeeManager.Api.Controllers
         public async Task<HttpResponseMessage> GetSalaryAmountToPay([FromUri]int coffeeroomno)
         {
             var entites = new CoffeeRoomEntities();
-            var amount = entites.Users.Sum(s => s.CurrentEarnedAmount);
+            var amount = entites.Users.Where(u => u.IsActive).Sum(s => s.CurrentEarnedAmount);
            
             return Request.CreateResponse(HttpStatusCode.OK, amount);
         }
