@@ -6,7 +6,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web;
 
-namespace CoffeeManager.Api.Helpers
+namespace CoffeeManager.Api.Helper
 {
     public class FileStreamEx
     {

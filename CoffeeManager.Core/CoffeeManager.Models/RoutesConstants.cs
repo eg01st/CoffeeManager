@@ -46,6 +46,7 @@ namespace CoffeeManager.Models
         public const string GetShiftSales = Shift + "/getShiftSales";
         public const string GetShiftInfo = Shift + "/getShiftInfo";
         public const string GetShiftSalesById = Shift + "/getShiftSalesById";
+        public const string DiscardShift = Shift + "/DiscardShift";
 
         public const string Statistic = Api + "/statistic";
         public const string StatisticGetAllSales = Statistic + "/getAllSales";

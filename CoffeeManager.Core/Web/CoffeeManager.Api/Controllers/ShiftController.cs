@@ -16,7 +16,7 @@ namespace CoffeeManager.Api.Controllers
     [Authorize]
     public class ShiftController : ApiController
     {
-        public async Task<HttpResponseMessage> Post([FromUri]int coffeeroomno, int userId,  int counter)
+        public async Task<HttpResponseMessage> Post([FromUri]int coffeeroomno, int userId,  int counter, DateTime startTime)
         {
             var shiftToReturn = new Models.Shift();
             var entities = new  CoffeeRoomEntities();
@@ -28,7 +28,7 @@ namespace CoffeeManager.Api.Controllers
                     CoffeeRoomNo = coffeeroomno,
                     IsFinished = false,
                     UserId = userId,
-                    Date = DateTime.Now,
+                    Date = startTime,
                     StartCounter = counter,
                     CreditCardAmount = 0,
                 };
@@ -239,5 +239,32 @@ namespace CoffeeManager.Api.Controllers
             return Request.CreateErrorResponse(HttpStatusCode.RequestedRangeNotSatisfiable, "Shift does not exists");
         }
 
+        [Route(RoutesConstants.DiscardShift)]
+        [HttpPost]
+        public async Task<HttpResponseMessage> DiscardShift([FromUri]int coffeeroomno, int shiftId, HttpRequestMessage message)
+        {
+            var entities = new CoffeeRoomEntities();
+            var shift = entities.Shifts.FirstOrDefault(s => s.Id == shiftId && s.CoffeeRoomNo == coffeeroomno);
+            if (shift != null)
+            {
+                var salesCount = entities.Sales.Count(s => s.CoffeeRoomNo == coffeeroomno && s.ShiftId == shiftId && (!s.IsRejected || !s.IsUtilized));
+                if (salesCount > 0)
+                {
+                    return Request.CreateErrorResponse(HttpStatusCode.RequestedRangeNotSatisfiable, "Sales exist");
+                }
+
+                var expenseCount = entities.Expenses.Count(e => e.ShiftId == shiftId);
+                if (expenseCount > 0)
+                {
+                    return Request.CreateErrorResponse(HttpStatusCode.RequestedRangeNotSatisfiable, "Expenses exist");
+                }
+
+                entities.Shifts.Remove(shift);
+                entities.SaveChanges();
+
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            return Request.CreateErrorResponse(HttpStatusCode.RequestedRangeNotSatisfiable, "Shift does not exists");
+        }
     }
 }

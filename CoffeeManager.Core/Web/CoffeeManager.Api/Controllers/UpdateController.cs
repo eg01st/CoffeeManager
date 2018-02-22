@@ -8,7 +8,7 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
-using CoffeeManager.Api.Helpers;
+using CoffeeManager.Api.Helper;
 using CoffeeManager.Api.Mappers;
 
 namespace CoffeeManager.Api.Controllers
@@ -19,7 +19,7 @@ namespace CoffeeManager.Api.Controllers
         [HttpGet]
         public async Task<HttpResponseMessage> GetCurrenVersion(HttpRequestMessage message)
         {
-            return Request.CreateResponse(HttpStatusCode.OK, 3);
+            return Request.CreateResponse(HttpStatusCode.OK, 4);
         }
 
 

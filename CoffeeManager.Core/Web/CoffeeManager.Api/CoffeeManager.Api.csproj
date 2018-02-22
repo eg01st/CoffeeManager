@@ -208,6 +208,7 @@
     <Compile Include="Controllers\StatisticController.cs" />
     <Compile Include="Controllers\SuplyOrderController.cs" />
     <Compile Include="Controllers\SuplyProductsController.cs" />
+    <Compile Include="Controllers\UpdateController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="CupSuply.cs">
       <DependentUpon>Model.tt</DependentUpon>
@@ -228,6 +229,7 @@
     <Compile Include="ExpenseType.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Helper\FileStreamEx.cs" />
     <Compile Include="GetAllSales_Result.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
