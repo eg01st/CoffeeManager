@@ -39,11 +39,11 @@ namespace CoffeeManager.Core.ViewModels
             {
                 if(await UserDialogs.ConfirmAsync("Вышла новая версия программы, рекомендуется обновление", null, "Обновить", "Отмена"))
                 {
+                    IsLoading = true;
                     await updateWorker.Update();
+                    return;
                 }
             }
-
-            bool isLoggedIn = false;
 
             var coffeeRoomNo = localStorage.GetCoffeeRoomId();
             if (coffeeRoomNo == -1)
@@ -59,7 +59,7 @@ namespace CoffeeManager.Core.ViewModels
             var userInfo = localStorage.GetUserInfo();
             if(userInfo == null)
             {
-                isLoggedIn = await NavigationService.Navigate<InitialLoginViewModel, bool>();
+                bool isLoggedIn = await NavigationService.Navigate<InitialLoginViewModel, bool>();
                 if(!isLoggedIn)
                 {
                     return;

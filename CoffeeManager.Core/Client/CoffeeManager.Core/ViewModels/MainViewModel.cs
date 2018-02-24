@@ -8,6 +8,7 @@ using System.Text;
 using CoffeManager.Common;
 using System;
 using CoffeeManager.Models;
+using CoffeManager.Common.Managers;
 
 namespace CoffeeManager.Core.ViewModels
 {
@@ -22,6 +23,7 @@ namespace CoffeeManager.Core.ViewModels
         private string _sumButtonText;
         private int _sum;
         private int? _changeSum;
+        private string userName;
         private ObservableCollection<SelectedProductViewModel> _selectedProducts = new ObservableCollection<SelectedProductViewModel>();
 
         public bool IsPoliceSaleEnabled
@@ -106,6 +108,16 @@ namespace CoffeeManager.Core.ViewModels
 
         public bool PayEnabled => SelectedProducts.Count > 0;
 
+        public string UserName 
+        {
+            get => userName;
+            set
+            {
+                userName = value;
+                RaisePropertyChanged();
+            }
+        }
+
         public ICommand EndShiftCommand { get; }
         public ICommand ShowCurrentSalesCommand { get; }
         public ICommand ShowExpenseCommand { get; }
@@ -141,9 +153,14 @@ namespace CoffeeManager.Core.ViewModels
 
         private IEnumerable<ProductItemViewModel> allProducts;
         readonly ISyncManager syncManager;
+        readonly IUserManager userManager;
 
-        public MainViewModel(IMvxViewModelLoader mvxViewModelLoader, IProductManager productManager, ISyncManager syncManager)
+        public MainViewModel(IMvxViewModelLoader mvxViewModelLoader,
+                             IProductManager productManager,
+                             ISyncManager syncManager,
+                             IUserManager userManager)
         {
+            this.userManager = userManager;
             this.syncManager = syncManager;
             this.productManager = productManager;
 
@@ -209,6 +226,10 @@ namespace CoffeeManager.Core.ViewModels
                 .Concat(IceCreamProducts.Items);
 
                 SubscribeToSelectProduct();
+
+                var user = await userManager.GetUser(shiftInfo.UserId);
+                UserName = user.Name;
+
             }, null, false);
         }
 
@@ -290,7 +311,6 @@ namespace CoffeeManager.Core.ViewModels
             Confirm("Завершить смену?", () => 
             {
                 ShowViewModel<EndShiftViewModel>(new { shiftId = shiftInfo.Id });
-                CloseCommand.Execute(null);
             });
         }
 

@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using CoffeeManager.Models;
 using CoffeeManager.Common;
+using CoffeeManager.Models;
 
-namespace CoffeManager.Common
+namespace CoffeManager.Common.Providers
 {
     public class ShiftServiceProvider : BaseServiceProvider, IShiftServiceProvider
     {
-        public async Task<int> StartUserShift(int userId, int counter)
+        public async Task<int> StartUserShift(int userId, int counter, DateTime startTime)
         {
             var result =
                 await
@@ -16,7 +16,8 @@ namespace CoffeManager.Common
                         new Dictionary<string, string>()
                         {
                             {nameof(userId), userId.ToString()},
-                            {nameof(counter), counter.ToString()}
+                            {nameof(counter), counter.ToString()},
+                            {nameof(startTime), startTime.ToString("G")}
                         });
             return result.Id;
         }
@@ -43,14 +44,12 @@ namespace CoffeManager.Common
                 Post<EndShiftUserInfo, EndShiftDTO>(RoutesConstants.EndShift,
                      new EndShiftDTO()
                      {
-                        CoffeeRoomNo = Config.CoffeeRoomNo,
+                         CoffeeRoomNo = Config.CoffeeRoomNo,
                          ShiftId = shiftId,
                          RealAmount = realAmount,
                          Counter = endCounter
                      });
         }
-
-
 
         public async Task<ShiftInfo[]> GetShifts(int skip)
         {
@@ -65,6 +64,11 @@ namespace CoffeManager.Common
         public async Task<ShiftInfo> GetShiftInfo(int id)
         {
             return await Get<ShiftInfo>(RoutesConstants.GetShiftInfo, new Dictionary<string, string>() { { nameof(id), id.ToString() } });
+        }
+        
+        public async Task DiscardShift(int shiftId)
+        {
+            await Delete(RoutesConstants.DiscardShift, new Dictionary<string, string>() { { nameof(shiftId), shiftId.ToString() } });
         }
 
     }

@@ -10,6 +10,7 @@ using CoffeeManager.Api.Mappers;
 using CoffeeManager.Models;
 using Newtonsoft.Json;
 using System.Data.Entity;
+using CoffeeManager.Models.Data.DTO.User;
 using CoffeeManager.Models.User;
 
 namespace CoffeeManager.Api.Controllers

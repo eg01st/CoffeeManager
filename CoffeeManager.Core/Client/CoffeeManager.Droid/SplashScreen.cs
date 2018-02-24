@@ -10,7 +10,7 @@ namespace CoffeeManager.Droid
               NoHistory = true,
               Theme = "@style/SplashTheme",
               Icon = "@mipmap/ic_launcher",
-              ScreenOrientation = ScreenOrientation.Portrait)]
+              ScreenOrientation = ScreenOrientation.SensorPortrait)]
     public class SplashScreen : MvxSplashScreenActivity
     {
         public SplashScreen() : base(Resource.Layout.SplashScreen)

@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using CoffeeManager.Models;
+using CoffeeManager.Models.Data.DTO.User;
 
-namespace CoffeManager.Common
+namespace CoffeManager.Common.Providers
 {
     public class UserServiceProvider : BaseServiceProvider, IUserServiceProvider
     {
@@ -54,14 +54,9 @@ namespace CoffeManager.Common
             await Post<object>(RoutesConstants.UpdateUser, user);
         }
 
-        public async Task PaySalary(int userId, int coffeeRoomToPay)
+        public async Task PaySalary(PaySalaryDTO dto)
         {
-            await Post<object>(RoutesConstants.PaySalary, null, new Dictionary<string, string>()
-                {
-                    {nameof(userId), userId.ToString()},
-                    {nameof(coffeeRoomToPay), coffeeRoomToPay.ToString()},
-                }
-            );
+            await Post<PaySalaryDTO>(RoutesConstants.PaySalary, dto);
         }
 
         public async Task PenaltyUser(int userId, decimal amount, string reason)

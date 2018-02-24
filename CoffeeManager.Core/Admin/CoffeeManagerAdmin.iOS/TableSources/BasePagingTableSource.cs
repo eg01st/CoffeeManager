@@ -20,7 +20,6 @@ namespace CoffeeManagerAdmin.iOS
 
         public PagingTableSource(UITableView tableView, NSString reuseIdentifier, UINib cellNib) : base(tableView, reuseIdentifier, cellNib)
         {
-
         }
 
         public PagingTableSource(UITableView tableView, NSString reuseIdentifier,

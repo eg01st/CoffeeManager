@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using CoffeeManager.Models;
 
-namespace CoffeManager.Common
+namespace CoffeManager.Common.Managers
 {
     public interface IUserManager
     {

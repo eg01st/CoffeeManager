@@ -11,6 +11,7 @@ namespace CoffeeManagerAdmin.Core
             IsCopSale = sale.IsPoliceSale;
             IsRejected = sale.IsRejected;
             IsUtilized = sale.IsUtilized;
+            IsCreditCardSale = sale.IsCreditCardSale;
 
             Name = sale.ProductName;
             Amount = sale.Amount.ToString("F");
@@ -28,6 +29,7 @@ namespace CoffeeManagerAdmin.Core
         public bool IsCopSale {get;set;}
         public bool IsRejected {get;set;}
         public bool IsUtilized {get;set;}
+        public bool IsCreditCardSale { get; set; }
 
         public string Amount {get;set;}
         public string Time {get;set;}

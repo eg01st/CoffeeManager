@@ -1,6 +1,9 @@
 ﻿using System.Windows.Input;
+using CoffeeManagerAdmin.Core.ViewModels.Users;
 using MvvmCross.Core.ViewModels;
 using CoffeManager.Common;
+using CoffeManager.Common.Managers;
+
 namespace CoffeeManagerAdmin.Core
 {
     public class UserItemViewModel : ListItemViewModelBase

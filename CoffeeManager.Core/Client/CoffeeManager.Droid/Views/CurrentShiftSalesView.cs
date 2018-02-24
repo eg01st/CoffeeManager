@@ -5,7 +5,7 @@ using CoffeeManager.Core.ViewModels;
 
 namespace CoffeeManager.Droid.Views
 {
-    [Activity(Theme = "@style/Theme.AppCompat.Light", Label = "Продажи за смену", ScreenOrientation = ScreenOrientation.Portrait)]
+    [Activity(Theme = "@style/Theme.AppCompat.Light", Label = "Продажи за смену", ScreenOrientation = ScreenOrientation.SensorPortrait)]
     public class CurrentShiftSalesView : ActivityBase<CurrentShiftSalesViewModel>
     {
         protected override void OnCreate(Bundle savedInstanceState)

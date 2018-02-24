@@ -13,38 +13,59 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="left"
-            android:orientation="horizontal">
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="18dp"
+                android:textColor="@android:color/black"
                 android:text="Точная сумма в кассе: " />
             <EditText
-                android:layout_marginLeft="30dp"
-                android:layout_width="100dp"
+                android:gravity="center"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:inputType="numberDecimal"
-                android:textSize="18dp"
+                android:textSize="24dp"
                 local:MvxBind="Text RealAmount" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="left"
-            android:orientation="horizontal">
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="18dp"
+                android:textColor="@android:color/black"
                 android:text="Показания счетчика на кофемолке: " />
             <EditText
-                android:layout_marginLeft="30dp"
-                android:layout_width="100dp"
+                android:gravity="center"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:inputType="numberDecimal"
-                android:textSize="18dp"
+                android:textSize="24dp"
                 local:MvxBind="Text EndCounter" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18dp"
+                android:textColor="@android:color/black"
+                android:text="Повторите показания счетчика на кофемолке еще раз: " />
+            <EditText
+                android:gravity="center"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:textSize="24dp"
+                local:MvxBind="Text EndCounterConfirm" />
         </LinearLayout>
         <Button
             android:layout_margin="50dp"
@@ -54,5 +75,13 @@
             android:text="Завершить смену"
             android:textSize="24dp"
             local:MvxBind="Click FinishShiftCommand; Enabled EndShiftButtonEnabled" />
+        <Button
+            android:layout_margin="50dp"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:text="Отменить смену"
+            android:textSize="24dp"
+            local:MvxBind="Click DiscardShiftCommand;" />
     </LinearLayout>
 </LinearLayout>

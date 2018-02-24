@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using CoffeeManager.Models;
+using CoffeeManager.Models.Data.DTO.User;
+using CoffeManager.Common.Managers;
+using CoffeManager.Common.Providers;
 
 namespace CoffeManager.Common
 {
@@ -41,7 +44,7 @@ namespace CoffeManager.Common
 
         public async Task PaySalary(int userId, int coffeeRoomToPay)
         {
-            await provider.PaySalary(userId, coffeeRoomToPay);
+            await provider.PaySalary(new PaySalaryDTO() {UserId = userId, CoffeeRoomIdToPay = coffeeRoomToPay});
         }
 
         public async Task UpdateUser(UserDTO user)

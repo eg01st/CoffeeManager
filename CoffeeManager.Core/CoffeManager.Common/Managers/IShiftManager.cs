@@ -23,5 +23,7 @@ namespace CoffeManager.Common
         Task<Shift> GetCurrentShiftAdmin();
 
         Task<Sale[]> GetCurrentShiftSales();
+
+        Task DiscardShift(int shiftId);
     }
 }

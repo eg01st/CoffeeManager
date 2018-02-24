@@ -7,7 +7,7 @@ using CoffeeManager.Core.ViewModels;
     
 namespace CoffeeManager.Droid.Views
 {
-    [Activity(Label = "", ScreenOrientation = ScreenOrientation.Portrait)]
+    [Activity(Label = "", ScreenOrientation = ScreenOrientation.SensorPortrait)]
     public class LoginView : ActivityBase<LoginViewModel>
     {
         protected override void OnCreate(Bundle savedInstanceState)

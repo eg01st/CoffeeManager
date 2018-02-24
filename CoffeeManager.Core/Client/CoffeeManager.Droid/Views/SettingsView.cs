@@ -8,7 +8,7 @@ using CoffeeManager.Droid.Views;
 
 namespace CoffeeManager.Droid
 {
-    [Activity(Theme = "@style/Theme.AppCompat.Light", Label = "Настройки", WindowSoftInputMode = SoftInput.AdjustPan, ScreenOrientation = ScreenOrientation.Portrait)]
+    [Activity(Theme = "@style/Theme.AppCompat.Light", Label = "Настройки", WindowSoftInputMode = SoftInput.AdjustPan, ScreenOrientation = ScreenOrientation.SensorPortrait)]
     public class SettingsView : ActivityBase<SettingsViewModel>
     {
         protected override void OnCreate(Bundle savedInstanceState)

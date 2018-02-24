@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="Hello">Hello World, Click Me!</string>
-    <string name="ApplicationName">CoffeeManager</string>
-  <string name="select_user">Выбор пользователя</string>
-  <string name="current_shift_money">Касса за смену</string>
-  <string name="entire_money">Общая касса</string>
-  <string name="capacity">Обьем</string>
+	<string name="Hello">Hello World, Click Me!</string>
+	<string name="ApplicationName">CoffeeManager</string>
+	<string name="select_user">Выбор пользователя</string>
+	<string name="current_shift_money">Касса за смену</string>
+	<string name="entire_money">Общая касса</string>
+	<string name="capacity">Обьем</string>
 	<string name="currency">грн</string>
-  <string name="ml"> мл</string>
+	<string name="ml"> мл</string>
+	<string name="user_name"> Бариста: </string>
 </resources>

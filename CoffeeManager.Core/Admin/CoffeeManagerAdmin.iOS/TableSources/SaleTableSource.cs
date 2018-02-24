@@ -14,6 +14,8 @@ namespace CoffeeManagerAdmin.iOS
 
         public SaleTableSource(UITableView tableView) : base(tableView)
         {
+            tableView.RowHeight = UITableView.AutomaticDimension;
+            tableView.EstimatedRowHeight = 100f;
             tableView.RegisterNibForCellReuse(UINib.FromName("SaleItemCell", NSBundle.MainBundle),
                                             SaleItemCellIdentifier);
             tableView.RegisterNibForCellReuse(UINib.FromName("GroupedSaleCell", NSBundle.MainBundle), GroupedSaleCellIdentifier);
