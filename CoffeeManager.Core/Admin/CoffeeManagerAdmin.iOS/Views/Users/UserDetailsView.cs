@@ -7,6 +7,7 @@ using MvvmCross.Binding.BindingContext;
 using CoffeeManagerAdmin.Core;
 using System.Collections.Generic;
 using CoffeeManagerAdmin.Core.ViewModels.Users;
+using CoffeeManagerAdmin.iOS.Converters;
 using CoreGraphics;
 
 namespace CoffeeManagerAdmin.iOS
@@ -70,10 +71,10 @@ namespace CoffeeManagerAdmin.iOS
             set.Bind(PenaltyButton).To(vm => vm.PenaltyCommand);
             set.Bind(EntireSalaryLabel).To(vm => vm.EntireEarnedAmount).WithConversion(new DecimalToStringConverter());
             set.Bind(CurrentSalaryLabel).To(vm => vm.CurrentEarnedAmount).WithConversion(new DecimalToStringConverter());
-            set.Bind(MinimimPaymentTextField).To(vm => vm.MinimumPayment);
-            set.Bind(SalaryRateTextField).To(vm => vm.SalaryRate);
-            set.Bind(DayPercentageTextField).To(vm => vm.DayShiftPersent);
-            set.Bind(NightPercentageTextField).To(vm => vm.NightShiftPercent);
+            set.Bind(MinimimPaymentTextField).To(vm => vm.MinimumPayment).WithConversion(new DecimalToStringConverter());
+            set.Bind(SalaryRateTextField).To(vm => vm.SalaryRate).WithConversion(new DecimalToStringConverter());
+            set.Bind(DayPercentageTextField).To(vm => vm.DayShiftPersent).WithConversion(new DecimalToStringConverter());
+            set.Bind(NightPercentageTextField).To(vm => vm.NightShiftPercent).WithConversion(new DecimalToStringConverter());
             set.Bind(ExpenseTypeTextField).To(vm => vm.ExpenseTypeName);
             set.Bind(expensePickerViewModel).For(p => p.ItemsSource).To(vm => vm.ExpenseItems);
             set.Bind(expensePickerViewModel).For(p => p.SelectedItem).To(vm => vm.SelectedExpenseType);

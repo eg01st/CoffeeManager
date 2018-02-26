@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using CoffeeManager.Common;
 using CoffeeManager.Models;
+using CoffeeManager.Models.Data.DTO.User;
 using CoffeeManagerAdmin.Core.Util;
 using CoffeManager.Common;
 using CoffeManager.Common.Managers;

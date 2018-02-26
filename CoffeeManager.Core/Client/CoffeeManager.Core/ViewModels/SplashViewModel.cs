@@ -34,13 +34,14 @@ namespace CoffeeManager.Core.ViewModels
         }
 
         public override async Task Initialize()
-        {
+        { 
+            updateWorker.ConfigureEndpoints(RoutesConstants.GetCurrentAdnroidVersion, RoutesConstants.GetAndroidPackage);
+            
             if(await updateWorker.IsNewVersionAvailable())
             {
                 if(await UserDialogs.ConfirmAsync("Вышла новая версия программы, рекомендуется обновление", null, "Обновить", "Отмена"))
                 {
-                    IsLoading = true;
-                    await updateWorker.Update();
+                    await ExecuteSafe(updateWorker.Update);
                     return;
                 }
             }

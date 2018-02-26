@@ -1,9 +1,8 @@
 ﻿using System.Threading.Tasks;
-using CoffeeManager.Core.ViewModels.Products;
 using CoffeeManager.Models;
 using CoffeManager.Common;
 
-namespace CoffeeManager.Core.ViewModels
+namespace CoffeeManager.Core.ViewModels.Products
 {
     public class CoffeeViewModel : ProductBaseViewModel
     {

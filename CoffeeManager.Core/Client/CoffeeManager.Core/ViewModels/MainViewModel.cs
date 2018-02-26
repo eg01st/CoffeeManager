@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using CoffeManager.Common;
 using System;
+using CoffeeManager.Core.ViewModels.Products;
 using CoffeeManager.Models;
 using CoffeManager.Common.Managers;
 

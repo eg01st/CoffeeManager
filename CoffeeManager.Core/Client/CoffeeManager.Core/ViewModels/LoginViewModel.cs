@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using CoffeManager.Common.Managers;
 using System;
 using CoffeeManager.Common;
+using CoffeeManager.Models.Data.DTO.User;
 
 namespace CoffeeManager.Core.ViewModels
 {

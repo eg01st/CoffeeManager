@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using CoffeeManager.Models;
 using CoffeeManager.Models.Data.DTO.User;
-using CoffeManager.Common.Managers;
+using CoffeeManager.Models.User;
 using CoffeManager.Common.Providers;
 
-namespace CoffeManager.Common
+namespace CoffeManager.Common.Managers
 {
     public class UserManager : BaseManager, IUserManager
     {
@@ -34,7 +32,7 @@ namespace CoffeManager.Common
 
         public async Task ToggleEnabled(int userId)
         {
-            await provider.ToggleEnabled(userId);
+            await provider.ToggleEnabled(new ToggleUserEnabledDTO() { UserId = userId});
         }
 
         public async Task<UserDTO> GetUser(int userId)
@@ -54,12 +52,12 @@ namespace CoffeManager.Common
 
         public async Task PenaltyUser(int userId, decimal amount, string reason)
         {
-            await provider.PenaltyUser(userId, amount, reason);
+            await provider.PenaltyUser(new PenaltyUserDTO() { UserId = userId, Amount = amount, Reason = reason });
         }
 
         public async Task DismissPenalty(int id)
         {
-            await provider.DismissPenalty(id);
+            await provider.DismissPenalty(new DismissPenaltyDTO(){ PenaltyId = id});
         }
 
         public async Task<int> GetSalaryAmountToPay()

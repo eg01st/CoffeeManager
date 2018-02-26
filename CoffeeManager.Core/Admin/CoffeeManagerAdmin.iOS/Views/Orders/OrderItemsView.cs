@@ -5,6 +5,7 @@ using MvvmCross.iOS.Views;
 using MvvmCross.Binding.BindingContext;
 using CoffeeManagerAdmin.Core.ViewModels.Orders;
 using System.Collections.Generic;
+using CoffeeManagerAdmin.iOS.Converters;
 using MvvmCross.Binding.iOS.Views;
 using CoreGraphics;
 

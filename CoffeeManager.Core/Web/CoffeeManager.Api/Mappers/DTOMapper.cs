@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using CoffeeManager.Models;
+using CoffeeManager.Models.Data.DTO.User;
 
 namespace CoffeeManager.Api.Mappers
 {
