@@ -49,6 +49,18 @@ namespace CoffeeManager.Core.ViewModels
                 return;
             }
 
+            var confirm = await PromtAsync("Повторите показание счетчика на кофемолке");
+            if(!confirm.HasValue)
+            {
+                return;
+            }
+
+            if (!string.Equals(counter, confirm))
+            {
+                Alert("Показания введены неверно, введите правильные показания счетчика");
+                return;
+            }
+
             await ExecuteSafe(async () =>
             {
                 int shiftId = await _shiftManager.StartUserShift(user.Id, counter.Value);

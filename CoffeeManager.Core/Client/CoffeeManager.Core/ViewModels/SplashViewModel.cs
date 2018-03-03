@@ -35,17 +35,6 @@ namespace CoffeeManager.Core.ViewModels
 
         public override async Task Initialize()
         { 
-            updateWorker.ConfigureEndpoints(RoutesConstants.GetCurrentAdnroidVersion, RoutesConstants.GetAndroidPackage);
-            
-            if(await updateWorker.IsNewVersionAvailable())
-            {
-                if(await UserDialogs.ConfirmAsync("Вышла новая версия программы, рекомендуется обновление", null, "Обновить", "Отмена"))
-                {
-                    await ExecuteSafe(updateWorker.Update);
-                    return;
-                }
-            }
-
             var coffeeRoomNo = localStorage.GetCoffeeRoomId();
             if (coffeeRoomNo == -1)
             {
@@ -81,9 +70,20 @@ namespace CoffeeManager.Core.ViewModels
                         userInfo.AccessToken = token;
                         userInfo.ApiUrl = Config.ApiUrl;
                         localStorage.SetUserInfo(userInfo);
+                        
+                        updateWorker.ConfigureEndpoints(Config.ApiUrl, RoutesConstants.GetCurrentAdnroidVersion, RoutesConstants.GetAndroidPackage);
+                        if(await updateWorker.IsNewVersionAvailable())
+                        {
+                            if(await UserDialogs.ConfirmAsync("Вышла новая версия программы, рекомендуется обновление", null, "Обновить", "Отмена"))
+                            {
+                                await ExecuteSafe(updateWorker.Update);
+                                return;
+                            }
+                        }
                     }
                     catch (Exception ex)
                     {
+                        await EmailService.SendErrorEmail($"CoffeeRoomNo {Config.CoffeeRoomNo}", ex.ToDiagnosticString());
                         ConsoleLogger.Exception(ex);
                         await NavigationService.Navigate<InitialLoginViewModel>();
                         return;

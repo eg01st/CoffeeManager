@@ -107,7 +107,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Users
                 {
                     return;
                 }
-                var strategy = user.PaymentStrategies.FirstOrDefault(s => s.CoffeeRoomId == currentCoffeeRoom.Id);
+                var strategy = user.PaymentStrategies?.FirstOrDefault(s => s.CoffeeRoomId == currentCoffeeRoom.Id);
 
                 DayShiftPersent = strategy?.DayShiftPersent ?? 0;
                 NightShiftPercent = strategy?.NightShiftPercent ?? 0;
@@ -184,11 +184,18 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Users
 
             user.ExpenceId = SelectedExpenseType?.Id;
 
-            var strategy = user.PaymentStrategies.FirstOrDefault(s => s.CoffeeRoomId == CurrentCoffeeRoom.Id);
+            var strategy = user.PaymentStrategies?.FirstOrDefault(s => s.CoffeeRoomId == CurrentCoffeeRoom.Id);
             if (strategy == null)
             {
                 strategy = new UserPaymentStrategy();
-                user.PaymentStrategies = user.PaymentStrategies.Concat(new [] { strategy}).ToArray();
+                if (user.PaymentStrategies != null)
+                {
+                    user.PaymentStrategies = user.PaymentStrategies.Concat(new [] { strategy}).ToArray();
+                }
+                else
+                {
+                    user.PaymentStrategies = new[] {strategy};
+                }
             }
 
             strategy.SimplePayment = SalaryRate;
@@ -237,7 +244,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Users
             {
                 user = await userManager.GetUser(useridParameter);
                 UserName = user.Name;
-                var strategy = user.PaymentStrategies.FirstOrDefault(s => s.CoffeeRoomId == Config.CoffeeRoomNo);
+                var strategy = user.PaymentStrategies?.FirstOrDefault(s => s.CoffeeRoomId == Config.CoffeeRoomNo);
                 if(strategy != null)
                 {
                     DayShiftPersent = strategy.DayShiftPersent;
