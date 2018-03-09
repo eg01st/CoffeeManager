@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/add_expense"
+            android:title="Добавить расход" />
+        <item
+            android:id="@+id/shift_expenses"
+            android:title="Расходы за смену" />
+        <item
+            android:id="@+id/shift_sales"
+            android:title="Продажи за смену" />
+        <item
+            android:id="@+id/utilize_suply_product"
+            android:title="Списание" />
+        <item
+                android:id="@+id/inventory"
+                android:title="Переучет" />
+        <item
+                android:id="@+id/settings"
+                android:title="Настройки" />
+        <item
+                android:id="@+id/end_shift"
+                android:title="Закрыть смену" />
+    </group>
+
+  <!--  <item android:title="Communicate">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Share" />
+            <item
+                android:id="@+id/nav_send"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Send" />
+        </menu>
+    </item>-->
+
+</menu>

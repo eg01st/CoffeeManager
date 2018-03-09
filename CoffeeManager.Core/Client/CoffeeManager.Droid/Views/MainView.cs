@@ -11,133 +11,81 @@ using CoffeeManager.Core.ViewModels;
 using CoffeeManager.Droid.Adapters;
 using CoffeeManager.Droid.Views.Fragments;
 using MvvmCross.Binding.BindingContext;
-using TabItem = CoffeeManager.Droid.Entities.TabItem;
 using Android.Support.V4.Widget;
 using Android.Support.V7.App;
 using System.Linq;
+using CoffeeManager.Core.ViewModels.Products;
+using MvvmCross.Core.ViewModels;
 
 namespace CoffeeManager.Droid.Views
 {
     [Activity(ScreenOrientation = ScreenOrientation.SensorPortrait)]
-    public class MainView : ActivityBase<MainViewModel>
+    public class MainView : ActivityBase<MainViewModel>, NavigationView.IOnNavigationItemSelectedListener
     {
         private readonly int drawerGravity = GravityCompat.Start;
 
         private DrawerLayout drawerLayout;
         private ViewPager viewPager;
-        private TabLayout tabLayout;
         private View policeSaveView;
         private View creditCardView;
         private ImageView policeButton;
         private ImageView creditCardButton;
         private TextView userNameTextView;
+        private MvxObservableCollection<CategoryItemViewModel> categoies;
+        private MvxObservableCollection<ProductViewModel> products;
 
-        private CoffeeFragment coffeeFragment;
-        private TeaFragment teaFragment;
-        private SweetsFragment sweetsFragment;
-        private WaterFragment waterFragment;
-        private AddsFragment addsFragment;
-        private MealsFragment mealsFragment;
-        private ColdDrinksFragment coldDrinksFragment;
-        private IceCreamFragment iceCreamFragment;
-
+        public MvxObservableCollection<CategoryItemViewModel> Categories
+        {
+            get => categoies;
+            set
+            {
+                categoies = value;
+                SetupViewPager(categoies.ToList());
+            }
+        }
+        
+        public MvxObservableCollection<ProductViewModel> Products
+        {
+            get => products;
+            set => products = value;
+        }
+        
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.main);
 
-            viewPager = FindViewById<ViewPager>(Resource.Id.main_viewpager);
-            tabLayout = FindViewById<TabLayout>(Resource.Id.main_tabs);
-
-            InitToolBarCommands();
-            SetTabLayout();
-
             InitLeftMenu();
-
+            viewPager = FindViewById<ViewPager>(Resource.Id.main_viewpager);
+            InitToolBarCommands();
             DoBind();
         }
 
-        private void InitLeftMenu()
-        {
-            drawerLayout = FindViewById<DrawerLayout>(Resource.Id.main_drawer);
-            var drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, Resource.Drawable.ic_menu_black_24dp, Resource.Drawable.ic_keyboard_backspace_black_24dp);
-            drawerLayout.SetDrawerListener(drawerToggle);
-            drawerToggle.SyncState();
-            var ids = GetMenuItemIds();
-            foreach (var id in ids)
-            {
-                var view = FindViewById(id);
-                view.SetOnClickListener(OnMenuitemClicked);
-            }
-        }
-
-        private int[] GetMenuItemIds()
-        {
-            return
-                new[]
-                {
-                    Resource.Id.add_expense,
-                    Resource.Id.shift_expenses,
-                    Resource.Id.shift_sales,
-                    Resource.Id.end_shift,
-                    Resource.Id.inventory,
-                    Resource.Id.utilize_suply_product,
-                    Resource.Id.settings
-                };
-        }
-
-        private void OnMenuitemClicked(View view)
-        {
-            OnMenuItemClicked(view.Id);
-
-            drawerLayout.CloseDrawers();
-        }
-
-        private void OnMenuItemClicked(int viewId)
-        {
-            switch (viewId)
-            {
-                case Resource.Id.shift_expenses:
-                    ViewModel.ShowCurrentShiftExpensesCommand.Execute(null);
-                    break;
-                case Resource.Id.shift_sales:
-                    ViewModel.ShowCurrentSalesCommand.Execute(null);
-                    break;
-                case Resource.Id.end_shift:
-                    ViewModel.EndShiftCommand.Execute(null);
-                    break;
-                case Resource.Id.add_expense:
-                    ViewModel.ShowExpenseCommand.Execute(null);
-                    break;
-                case Resource.Id.inventory:
-                    ViewModel.ShowInventoryCommand.Execute(null);
-                    break;
-                case Resource.Id.utilize_suply_product:
-                    ViewModel.ShowUtilizeCommand.Execute(null);
-                    break;
-                case Resource.Id.settings:
-                    ViewModel.ShowSettingsCommand.Execute(null);
-                    break;
-                default:
-                    break;
-            }
-        }
-
+      
+        
         private void DoBind()
         {
             var set = this.CreateBindingSet<MainView, MainViewModel>();
-
-            set.Bind(coffeeFragment).For(v => v.ViewModel).To(vm => vm.CoffeeProducts).OneWay();
-            set.Bind(teaFragment).For(v => v.ViewModel).To(vm => vm.TeaProducts).OneWay();
-            set.Bind(sweetsFragment).For(v => v.ViewModel).To(vm => vm.SweetsProducts).OneWay();
-            set.Bind(waterFragment).For(v => v.ViewModel).To(vm => vm.WaterProducts).OneWay();
-            set.Bind(addsFragment).For(v => v.ViewModel).To(vm => vm.AddsProducts).OneWay();
-            set.Bind(mealsFragment).For(v => v.ViewModel).To(vm => vm.MealsProducts).OneWay();
-            set.Bind(coldDrinksFragment).For(v => v.ViewModel).To(vm => vm.ColdDrinksProducts).OneWay();
-            set.Bind(iceCreamFragment).For(v => v.ViewModel).To(vm => vm.IceCreamProducts).OneWay();
+            set.Bind(this).For(c => c.Products).To(vm => vm.Products);
+            set.Bind(this).For(c => c.Categories).To(vm => vm.Categories);
+            set.Bind(this).For(c => c.SelectedCategoryId).To(vm => vm.SelectedCategoryId);
             set.Bind(userNameTextView).To(vm => vm.UserName).OneWay();
             set.Apply();
+        }
+
+        public int SelectedCategoryId
+        {
+            get => ViewModel.SelectedCategoryId;
+            set
+            {
+                if (value != default(int))
+                {
+                    var productTab = Categories.First(p => p.Id == value);
+                    var index = Categories.IndexOf(productTab);
+                    viewPager.CurrentItem = index;
+                }
+            }
         }
 
         private void InitToolBarCommands()
@@ -154,8 +102,6 @@ namespace CoffeeManager.Droid.Views
 
             creditCardButton = FindViewById<ImageView>(Resource.Id.credit_card);
             creditCardButton.Click += CreditCard_Click;
-
-            userNameTextView = FindViewById<TextView>(Resource.Id.user_name_text);
         }
 
         private void CreditCard_Click(object sender, EventArgs e)
@@ -170,77 +116,20 @@ namespace CoffeeManager.Droid.Views
             policeSaveView.Visibility = ViewModel.IsPoliceSaleEnabled ? ViewStates.Visible : ViewStates.Invisible;
         }
 
-        private void SetTabLayout()
-        {
-            var tabItems = ProduceTabItems();
-            SetupViewPager(tabItems);
-            tabLayout.SetupWithViewPager(viewPager);
-
-            for (var i = 0; i < tabItems.Length; i++)
-            {
-                var tab = tabLayout.GetTabAt(i);
-                var tabItem = tabItems[i];
-
-                var view = new LinearLayout(this.BaseContext);
-                view.SetGravity(GravityFlags.Center);
-                var param = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.MatchParent);
-                param.Gravity = GravityFlags.Left;
-                view.LayoutParameters = param;
-                var textView = new TextView(this.BaseContext);
-                textView.TextSize = 20;
-                textView.SetTextColor(Android.Graphics.Color.Black);
-                textView.LayoutParameters = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WrapContent, ViewGroup.LayoutParams.WrapContent); ;
-                textView.Text = tabItem.Title;
-                view.AddView(textView);
-                tab.SetCustomView(view);
-            }
-        }
-
-        private void SetupViewPager(IEnumerable<TabItem> tabItems)
+        private void SetupViewPager(List<CategoryItemViewModel> categories)
         {
             var adapter = new ViewPagerAdapter(SupportFragmentManager);
 
-            foreach (var tabItem in tabItems)
+            foreach (var category in categories)
             {
-                var fragment = tabItem.Fragment;
-                var title = tabItem.Title;
-                adapter.AddFragment(fragment, title);
+                var vm = ViewModel.Products.First(p => p.CategoryId == category.Id);
+                var fragment = new ProductFragment();
+                fragment.DataContext = vm;
+                adapter.AddFragment(fragment, category.Name);
             }
 
             viewPager.Adapter = adapter;
-            viewPager.OffscreenPageLimit = tabItems.Count();
-        }
-
-        private TabItem[] ProduceTabItems()
-        {
-            coffeeFragment = new CoffeeFragment();
-	        teaFragment = new TeaFragment();
-	        sweetsFragment = new SweetsFragment();
-	        waterFragment = new WaterFragment();
-	        addsFragment = new AddsFragment();
-	        mealsFragment = new MealsFragment();
-	        coldDrinksFragment= new ColdDrinksFragment();
-	        iceCreamFragment = new IceCreamFragment();
-
-            return new TabItem[]
-            {
-                new TabItem("Кофе", coffeeFragment),
-                new TabItem("Чай", teaFragment),
-                new TabItem("Сладости", sweetsFragment),
-                new TabItem("Вода", waterFragment),
-                new TabItem("Добавки", addsFragment),
-                new TabItem("Еда", mealsFragment),
-                new TabItem("Хол напитки", coldDrinksFragment),
-                new TabItem("Мороженое", iceCreamFragment),
-            };
-        }
-
-        public override void OnBackPressed()
-        {
-            if (drawerLayout.IsDrawerOpen(drawerGravity) == true)
-            {
-                drawerLayout.CloseDrawer(drawerGravity);
-            }
+            viewPager.OffscreenPageLimit = categories.Count();
         }
 
         public override void Finish()
@@ -250,6 +139,29 @@ namespace CoffeeManager.Droid.Views
 
             base.Finish();
 
+        }
+
+        #region DrawerLayout
+
+        private void InitLeftMenu()
+        {
+            drawerLayout = FindViewById<DrawerLayout>(Resource.Id.main_drawer);
+            var drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, Resource.Drawable.ic_menu_black_24dp, Resource.Drawable.ic_keyboard_backspace_black_24dp);
+            drawerLayout.SetDrawerListener(drawerToggle);
+            drawerToggle.SyncState();
+            
+            NavigationView navigationView = (NavigationView) FindViewById(Resource.Id.nav_view);
+            navigationView.SetNavigationItemSelectedListener(this);
+            
+            userNameTextView = navigationView.GetHeaderView(0).FindViewById<TextView>(Resource.Id.user_name_text);
+        }
+        
+        public override void OnBackPressed()
+        {
+            if (drawerLayout.IsDrawerOpen(drawerGravity) == true)
+            {
+                drawerLayout.CloseDrawer(drawerGravity);
+            }
         }
 
         public override bool OnOptionsItemSelected(IMenuItem item)
@@ -276,5 +188,41 @@ namespace CoffeeManager.Droid.Views
             drawerLayout.OpenDrawer(drawerGravity);
         }
 
+        public bool OnNavigationItemSelected(IMenuItem menuItem)
+        {
+            var viewId = menuItem.ItemId;
+            
+            switch (viewId)
+            {
+                case Resource.Id.shift_expenses:
+                    ViewModel.ShowCurrentShiftExpensesCommand.Execute(null);
+                    break;
+                case Resource.Id.shift_sales:
+                    ViewModel.ShowCurrentSalesCommand.Execute(null);
+                    break;
+                case Resource.Id.end_shift:
+                    ViewModel.EndShiftCommand.Execute(null);
+                    break;
+                case Resource.Id.add_expense:
+                    ViewModel.ShowExpenseCommand.Execute(null);
+                    break;
+                case Resource.Id.inventory:
+                    ViewModel.ShowInventoryCommand.Execute(null);
+                    break;
+                case Resource.Id.utilize_suply_product:
+                    ViewModel.ShowUtilizeCommand.Execute(null);
+                    break;
+                case Resource.Id.settings:
+                    ViewModel.ShowSettingsCommand.Execute(null);
+                    break;
+                default:
+                    break;
+            }
+            drawerLayout.CloseDrawer(GravityCompat.Start);
+            
+            return false;
+        }
+
+        #endregion
     }
 }

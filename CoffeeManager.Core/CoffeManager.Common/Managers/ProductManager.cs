@@ -6,17 +6,16 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using CoffeeManager.Common;
 using CoffeeManager.Models;
-using MvvmCross.Platform;
+using CoffeManager.Common.Providers;
 using MobileCore.Connection;
 
-namespace CoffeManager.Common
+namespace CoffeManager.Common.Managers
 {
     public class ProductManager : BaseManager, IProductManager
     {
         private readonly IProductProvider productProvider;
         private readonly ISyncManager syncManager;
 
-        private static readonly object salesSyncLock = new object();
         readonly IConnectivity connectivity;
 
         public ProductManager(IProductProvider productProvider, ISyncManager syncManager, IConnectivity connectivity)
@@ -26,45 +25,50 @@ namespace CoffeManager.Common
             this.productProvider = productProvider;
         }
 
-        public async Task<Product[]> GetCoffeeProducts()
+        public async Task<Product[]> GetProducts(int categoryId)
         {
-            return await GetAndSyncProduct(ProductType.Coffee);
+            return await GetAndSyncProduct(categoryId);
         }
 
-        public async Task<Product[]> GetTeaProducts()
-        {
-            return await GetAndSyncProduct(ProductType.Tea);
-        }
-
-        public async Task<Product[]> GetColdDrinksProducts()
-        {
-            return await GetAndSyncProduct(ProductType.ColdDrinks);
-        }
-
-        public async Task<Product[]> GetIceCreamProducts()
-        {
-            return await GetAndSyncProduct(ProductType.IceCream);
-        }
-
-        public async Task<Product[]> GetMealsProducts()
-        {
-            return await GetAndSyncProduct(ProductType.Meals);
-        }
-
-        public async Task<Product[]> GetWaterProducts()
-        {
-            return await GetAndSyncProduct(ProductType.Water);
-        }
-
-        public async Task<Product[]> GetSweetsProducts()
-        {
-            return await GetAndSyncProduct(ProductType.Sweets);
-        }
-
-        public async Task<Product[]> GetAddsProducts()
-        {
-            return await GetAndSyncProduct(ProductType.Adds);
-        }
+//        public async Task<Product[]> GetCoffeeProducts()
+//        {
+//            return await GetAndSyncProduct(ProductType.Coffee);
+//        }
+//
+//        public async Task<Product[]> GetTeaProducts()
+//        {
+//            return await GetAndSyncProduct(ProductType.Tea);
+//        }
+//
+//        public async Task<Product[]> GetColdDrinksProducts()
+//        {
+//            return await GetAndSyncProduct(ProductType.ColdDrinks);
+//        }
+//
+//        public async Task<Product[]> GetIceCreamProducts()
+//        {
+//            return await GetAndSyncProduct(ProductType.IceCream);
+//        }
+//
+//        public async Task<Product[]> GetMealsProducts()
+//        {
+//            return await GetAndSyncProduct(ProductType.Meals);
+//        }
+//
+//        public async Task<Product[]> GetWaterProducts()
+//        {
+//            return await GetAndSyncProduct(ProductType.Water);
+//        }
+//
+//        public async Task<Product[]> GetSweetsProducts()
+//        {
+//            return await GetAndSyncProduct(ProductType.Sweets);
+//        }
+//
+//        public async Task<Product[]> GetAddsProducts()
+//        {
+//            return await GetAndSyncProduct(ProductType.Adds);
+//        }
 
 
         public async Task SaleProduct(int shiftId, int id, decimal price, bool isPoliceSale, bool isCreditCardSale, bool isSaleByWeight, decimal? weight)
@@ -107,7 +111,7 @@ namespace CoffeManager.Common
             catch(Exception ex)
             {
                 Debug.WriteLine(ex.ToDiagnosticString());
-               // await EmailService?.SendErrorEmail($"CoffeeRoomId: {Config.CoffeeRoomNo}",ex.ToDiagnosticString());
+                //await EmailService?.SendErrorEmail($"CoffeeRoomId: {Config.CoffeeRoomNo}",ex.ToDiagnosticString());
                // syncManager.AddSaleToSync(sale, SaleAction.Add);
                 throw;
             }
@@ -198,29 +202,29 @@ namespace CoffeManager.Common
             await productProvider.ToggleIsActiveProduct(id);
         }
 
-        private async Task<Product[]> GetAndSyncProduct(ProductType type)
+        private async Task<Product[]> GetAndSyncProduct(int categoryId)
         {
             IEnumerable<ProductEntity> products;
             if(! await connectivity.HasInternetConnectionAsync)
             {
-                products = syncManager.GetProducts(type);
+                products = syncManager.GetProducts(categoryId);
                 return products.ToArray();
 
             }
             try
             {
-                products = await productProvider.GetProduct(type);
-                syncManager.AddProductsToSync(products, type);
+                products = await productProvider.GetProduct(categoryId);
+                syncManager.AddProductsToSync(products, categoryId);
             }
             catch (HttpRequestException hrex)
             {
                 Debug.WriteLine(hrex.ToDiagnosticString());
-                products = syncManager.GetProducts(type);
+                products = syncManager.GetProducts(categoryId);
             }
             catch (TaskCanceledException tcex)
             {
                 Debug.WriteLine(tcex.ToDiagnosticString());
-                products = syncManager.GetProducts(type);
+                products = syncManager.GetProducts(categoryId);
             }
             catch(Exception ex)
             {

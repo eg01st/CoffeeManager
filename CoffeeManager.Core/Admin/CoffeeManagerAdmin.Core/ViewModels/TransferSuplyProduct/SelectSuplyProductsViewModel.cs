@@ -6,6 +6,8 @@ using CoffeManager.Common;
 using System.Windows.Input;
 using MvvmCross.Core.ViewModels;
 using CoffeeManager.Models;
+using CoffeManager.Common.ViewModels;
+
 namespace CoffeeManagerAdmin.Core
 {
     public class SelectSuplyProductsViewModel : BaseSearchViewModel<ListItemViewModelBase>

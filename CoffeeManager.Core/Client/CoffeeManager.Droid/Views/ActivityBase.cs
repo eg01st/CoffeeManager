@@ -1,6 +1,10 @@
 using Android.App;
+using Android.Graphics.Drawables;
+using Android.Support.V7.Widget;
 using CoffeManager.Common;
+using CoffeManager.Common.ViewModels;
 using MvvmCross.Droid.Support.V7.AppCompat;
+using MvvmCross.Droid.Views;
 
 namespace CoffeeManager.Droid.Views
 {
@@ -15,6 +19,16 @@ namespace CoffeeManager.Droid.Views
 
         protected virtual void DoOnCreate()
         {
+            Toolbar toolbar = (Toolbar) FindViewById(Resource.Id.toolbar);
+            if (toolbar != null)
+            {
+                SetSupportActionBar(toolbar);
+            }
+
+            SupportActionBar?.SetCustomView(Resource.Layout.toolbar);
+            SupportActionBar?.SetDisplayShowCustomEnabled(true);
+
+          
             SupportActionBar?.SetDisplayHomeAsUpEnabled(true);
             SupportActionBar?.SetHomeButtonEnabled(true);
         }

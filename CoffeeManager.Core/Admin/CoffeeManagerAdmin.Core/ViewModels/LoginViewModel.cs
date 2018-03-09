@@ -6,6 +6,7 @@ using CoffeManager.Common;
 using System.Threading.Tasks;
 using CoffeeManager.Common;
 using CoffeManager.Common.Managers;
+using CoffeManager.Common.ViewModels;
 
 namespace CoffeeManagerAdmin.Core.ViewModels
 {

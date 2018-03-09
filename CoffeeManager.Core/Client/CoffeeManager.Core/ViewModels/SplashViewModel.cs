@@ -4,6 +4,7 @@ using CoffeeManager.Common;
 using CoffeeManager.Models;
 using CoffeManager.Common;
 using CoffeManager.Common.Managers;
+using CoffeManager.Common.ViewModels;
 using MobileCore.AutoUpdate;
 using MobileCore.Connection;
 using MobileCore.Extensions;
@@ -70,16 +71,20 @@ namespace CoffeeManager.Core.ViewModels
                         userInfo.AccessToken = token;
                         userInfo.ApiUrl = Config.ApiUrl;
                         localStorage.SetUserInfo(userInfo);
-                        
-                        updateWorker.ConfigureEndpoints(Config.ApiUrl, RoutesConstants.GetCurrentAdnroidVersion, RoutesConstants.GetAndroidPackage);
-                        if(await updateWorker.IsNewVersionAvailable())
+
+                        updateWorker.ConfigureEndpoints(Config.ApiUrl, RoutesConstants.GetCurrentAdnroidVersion,
+                            RoutesConstants.GetAndroidPackage);
+                        if (await ExecuteSafe(updateWorker.IsNewVersionAvailable))
                         {
-                            if(await UserDialogs.ConfirmAsync("Вышла новая версия программы, рекомендуется обновление", null, "Обновить", "Отмена"))
+                            if (await UserDialogs.ConfirmAsync(
+                                "Вышла новая версия программы, рекомендуется обновление", null, "Обновить",
+                                "Отмена"))
                             {
                                 await ExecuteSafe(updateWorker.Update);
                                 return;
                             }
                         }
+                        
                     }
                     catch (Exception ex)
                     {

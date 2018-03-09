@@ -2,6 +2,8 @@
 using CoffeeManager.Core.Messages;
 using CoffeeManager.Models;
 using CoffeManager.Common;
+using CoffeManager.Common.ViewModels;
+
 namespace CoffeeManager.Core
 {
     public class InventoryItemViewModel : ListItemViewModelBase

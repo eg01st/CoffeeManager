@@ -4,6 +4,7 @@ using UIKit;
 using CoffeManager.Common;
 using MvvmCross.Binding.BindingContext;
 using System.Drawing;
+using CoffeManager.Common.ViewModels;
 using Foundation;
 using CoreGraphics;
 

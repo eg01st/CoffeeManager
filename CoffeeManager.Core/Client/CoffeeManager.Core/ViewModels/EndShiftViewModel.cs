@@ -4,6 +4,7 @@ using CoffeManager.Common;
 using MvvmCross.Core.ViewModels;
 using System.Threading.Tasks;
 using CoffeeManager.Common;
+using CoffeManager.Common.ViewModels;
 using MobileCore.Logging;
 
 namespace CoffeeManager.Core.ViewModels

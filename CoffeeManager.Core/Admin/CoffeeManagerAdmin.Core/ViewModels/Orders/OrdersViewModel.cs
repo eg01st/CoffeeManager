@@ -9,6 +9,7 @@ using CoffeeManager.Models;
 using CoffeeManagerAdmin.Core.Util;
 using CoffeManager.Common;
 using CoffeeManager.Common;
+using CoffeManager.Common.ViewModels;
 
 namespace CoffeeManagerAdmin.Core.ViewModels.Orders
 {

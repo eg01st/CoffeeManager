@@ -1,6 +1,8 @@
 ﻿using System;
 using CoffeeManager.Models;
 using CoffeManager.Common;
+using CoffeManager.Common.ViewModels;
+
 namespace CoffeeManagerAdmin.Core
 {
     public class InventoryReportDetailsItemViewModel : ListItemViewModelBase

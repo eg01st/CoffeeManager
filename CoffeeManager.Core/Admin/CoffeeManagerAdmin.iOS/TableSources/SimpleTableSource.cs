@@ -1,5 +1,6 @@
 ﻿using CoffeeManagerAdmin.Core;
 using CoffeManager.Common;
+using CoffeManager.Common.ViewModels;
 using Foundation;
 using UIKit;
 

@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 using CoffeeManager.Common;
 using CoffeeManager.Models;
 using CoffeManager.Common.Database;
+using CoffeManager.Common.Providers;
 
-namespace CoffeManager.Common
+namespace CoffeManager.Common.Managers
 {
     public class SyncManager : BaseManager, ISyncManager
     {
@@ -27,11 +28,11 @@ namespace CoffeManager.Common
         }
 
 
-        public async Task AddProductsToSync(IEnumerable<ProductEntity> products, ProductType type)
+        public async Task AddProductsToSync(IEnumerable<ProductEntity> products, int categoryId)
         {
             await Task.Run(() =>
             {
-                var itemsToRemove = provider.Get<ProductEntity>().Where(p => p.ProductType == (int)type);
+                var itemsToRemove = provider.Get<ProductEntity>().Where(p => p.ProductType == categoryId);
                 foreach (var item in itemsToRemove)
                 {
                     provider.Remove(item);
@@ -72,9 +73,9 @@ namespace CoffeManager.Common
             return provider.Get<ShiftEntity>().FirstOrDefault();
         }
 
-        public IEnumerable<ProductEntity> GetProducts(ProductType type)
+        public IEnumerable<ProductEntity> GetProducts(int categoryId)
         {
-            return provider.Get<ProductEntity>().Where(p => p.ProductType == (int)type);
+            return provider.Get<ProductEntity>().Where(p => p.ProductType == categoryId);
         }
 
         public void InitDataBaseConnection()

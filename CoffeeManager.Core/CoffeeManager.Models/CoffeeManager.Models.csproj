@@ -41,6 +41,7 @@
     <Compile Include="CashoutHistory.cs" />
     <Compile Include="CupType.cs" />
     <Compile Include="CupTypeEnum.cs" />
+    <Compile Include="Data\DTO\Category\CategoryDTO.cs" />
     <Compile Include="EndShiftDTO.cs" />
     <Compile Include="EndShiftUserInfo.cs" />
     <Compile Include="Entity.cs" />

@@ -1,6 +1,8 @@
 ﻿using System;
 using CoffeManager.Common;
 using CoffeeManager.Models;
+using CoffeManager.Common.ViewModels;
+
 namespace CoffeeManagerAdmin.Core
 {
     public class CashoutHistoryItemViewModel : ListItemViewModelBase

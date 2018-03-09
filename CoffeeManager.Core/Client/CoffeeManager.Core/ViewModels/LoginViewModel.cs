@@ -8,6 +8,7 @@ using CoffeManager.Common.Managers;
 using System;
 using CoffeeManager.Common;
 using CoffeeManager.Models.Data.DTO.User;
+using CoffeManager.Common.ViewModels;
 
 namespace CoffeeManager.Core.ViewModels
 {

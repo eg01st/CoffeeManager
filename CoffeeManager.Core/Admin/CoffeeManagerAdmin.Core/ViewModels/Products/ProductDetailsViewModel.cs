@@ -6,6 +6,8 @@ using System;
 using System.Linq;
 using CoffeeManagerAdmin.Core.Util;
 using CoffeManager.Common;
+using CoffeManager.Common.Managers;
+using CoffeManager.Common.ViewModels;
 
 namespace CoffeeManagerAdmin.Core.ViewModels
 {

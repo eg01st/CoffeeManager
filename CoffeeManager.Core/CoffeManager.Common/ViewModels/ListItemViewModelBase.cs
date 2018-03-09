@@ -1,8 +1,7 @@
-﻿using System;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using MvvmCross.Core.ViewModels;
 
-namespace CoffeManager.Common
+namespace CoffeManager.Common.ViewModels
 {
     public abstract class ListItemViewModelBase : ViewModelBase
     {

@@ -4,6 +4,8 @@ using System.Windows.Input;
 using CoffeManager.Common.Managers;
 using MvvmCross.Core.ViewModels;
 using System.Diagnostics;
+using CoffeManager.Common.ViewModels;
+
 namespace CoffeeManagerAdmin.Core
 {
     public class CreateClientViewModel : ViewModelBase

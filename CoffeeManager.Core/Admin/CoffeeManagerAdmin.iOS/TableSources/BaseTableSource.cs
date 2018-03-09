@@ -5,6 +5,7 @@ using Foundation;
 using System.Collections.Generic;
 using UIKit;
 using CoffeManager.Common;
+using CoffeManager.Common.ViewModels;
 
 namespace CoffeeManagerAdmin.iOS
 {

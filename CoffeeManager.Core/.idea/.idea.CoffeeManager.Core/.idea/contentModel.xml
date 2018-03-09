@@ -633,6 +633,7 @@
           <e p="Timer.cs" t="Include" />
           <e p="ViewModels" t="Include">
             <e p="BaseItemViewModel.cs" t="Include" />
+            <e p="CategoryItemViewModel.cs" t="Include" />
             <e p="CurrentShiftExpensesViewModel.cs" t="Include" />
             <e p="CurrentShiftSalesViewModel.cs" t="Include" />
             <e p="EndShiftViewModel.cs" t="Include" />
@@ -654,6 +655,7 @@
               <e p="MealsViewModel.cs" t="Include" />
               <e p="ProductBaseViewModel.cs" t="Include" />
               <e p="ProductItemViewModel.cs" t="Include" />
+              <e p="ProductViewModel.cs" t="Include" />
               <e p="SelectedProductViewModel.cs" t="Include" />
               <e p="SweetsViewModel.cs" t="Include" />
               <e p="TeaViewModel.cs" t="Include" />
@@ -705,6 +707,7 @@
             <e p="TabItem.cs" t="Include" />
           </e>
           <e p="Extensions" t="Include">
+            <e p="Utils.cs" t="Include" />
             <e p="ViewListenersExtensions.cs" t="Include" />
           </e>
           <e p="GettingStarted.Xamarin" t="Include" />
@@ -730,6 +733,7 @@
               <e p="ic_power.png" t="Include" />
               <e p="ic_star_small.png" t="Include" />
               <e p="Icon.png" t="Include" />
+              <e p="side_nav_bar.xml" t="Include" />
               <e p="take_cup_transparent.png" t="Include" />
             </e>
             <e p="drawable-hdpi" t="Include">
@@ -759,6 +763,7 @@
             </e>
             <e p="layout" t="Include">
               <e p="action_bar.axml" t="Include" />
+              <e p="category_item.axml" t="Include" />
               <e p="coffee_room_card.axml" t="Include" />
               <e p="current_sales.axml" t="Include" />
               <e p="end_shift.axml" t="Include" />
@@ -772,7 +777,7 @@
               <e p="login.axml" t="Include" />
               <e p="main.axml" t="Include" />
               <e p="main_content.axml" t="Include" />
-              <e p="main_side_menu.axml" t="Include" />
+              <e p="nav_header_main.axml" t="Include" />
               <e p="product_card.axml" t="Include" />
               <e p="product_list.axml" t="Include" />
               <e p="request_card.axml" t="Include" />
@@ -782,11 +787,13 @@
               <e p="shift_expenses.axml" t="Include" />
               <e p="SplashScreen.axml" t="Include" />
               <e p="suply_product_card.axml" t="Include" />
+              <e p="toolbar.axml" t="Include" />
               <e p="user_card.axml" t="Include" />
               <e p="utilize_item.axml" t="Include" />
               <e p="utilize_layout.axml" t="Include" />
             </e>
             <e p="menu" t="Include">
+              <e p="activity_main_drawer.xml" t="Include" />
               <e p="toolbar_menu.xml" t="Include" />
             </e>
             <e p="mipmap-hdpi" t="Include">
@@ -810,6 +817,7 @@
             <e p="Resource.Designer.cs" t="Include" />
             <e p="values" t="Include">
               <e p="colors.xml" t="Include" />
+              <e p="dimens.xml" t="Include" />
               <e p="Strings.xml" t="Include" />
               <e p="styles.xml" t="Include" />
               <e p="themes.xml" t="Include" />
@@ -827,6 +835,7 @@
             <e p="CurrentShiftSalesView.cs" t="Include" />
             <e p="EndShiftView.cs" t="Include" />
             <e p="ExpenseView.cs" t="Include" />
+            <e p="FragmentActivityBase.cs" t="Include" />
             <e p="Fragments" t="Include">
               <e p="AddsFragment.cs" t="Include" />
               <e p="BaseFragment.cs" t="Include" />
@@ -834,6 +843,7 @@
               <e p="ColdDrinksFragment.cs" t="Include" />
               <e p="IceCreamFragment.cs" t="Include" />
               <e p="MealsFragment.cs" t="Include" />
+              <e p="ProductFragment.cs" t="Include" />
               <e p="SweetsFragment.cs" t="Include" />
               <e p="TeaFragment.cs" t="Include" />
               <e p="WaterFragment.cs" t="Include" />
@@ -904,6 +914,9 @@
         <e p="CupTypeEnum.cs" t="Include" />
         <e p="Data" t="Include">
           <e p="DTO" t="Include">
+            <e p="Category" t="Include">
+              <e p="CategoryDTO.cs" t="Include" />
+            </e>
             <e p="User" t="Include">
               <e p="DismissPenaltyDTO.cs" t="Include" />
               <e p="PaySalaryDTO.cs" t="Include" />
@@ -965,8 +978,10 @@
           <e p="AccountManager.cs" t="Include" />
           <e p="AdminManager.cs" t="Include" />
           <e p="BaseManager.cs" t="Include" />
+          <e p="CategoryManager.cs" t="Include" />
           <e p="IAccountManager.cs" t="Include" />
           <e p="IAdminManager.cs" t="Include" />
+          <e p="ICategoryManager.cs" t="Include" />
           <e p="IInventoryManager.cs" t="Include" />
           <e p="InventoryManager.cs" t="Include" />
           <e p="IPaymentManager.cs" t="Include" />
@@ -999,9 +1014,11 @@
           <e p="AccountProvider.cs" t="Include" />
           <e p="AdminProvider.cs" t="Include" />
           <e p="BaseServiceProvider.cs" t="Include" />
+          <e p="CategoryProvider.cs" t="Include" />
           <e p="DataBaseProvider.cs" t="Include" />
           <e p="IAccountProvider.cs" t="Include" />
           <e p="IAdminProvider.cs" t="Include" />
+          <e p="ICategoryProvider.cs" t="Include" />
           <e p="IDataBaseProvider.cs" t="Include" />
           <e p="IInventoryProvider.cs" t="Include" />
           <e p="InventoryProvider.cs" t="Include" />
@@ -1225,6 +1242,7 @@
       </e>
       <e p="Extensions" t="Include">
         <e p="ExceptionExtensions.cs" t="Include" />
+        <e p="FunctionalExtensions.cs" t="Include" />
         <e p="Maybe.cs" t="Include" />
         <e p="StringBuilderExtensions.cs" t="Include" />
         <e p="ThrowExtensions.cs" t="Include" />
@@ -1238,10 +1256,22 @@
       </e>
       <e p="MobileCore.csproj" t="IncludeRecursive" />
       <e p="MobileCore.Droid" t="IncludeRecursive">
+        <e p="Activities" t="Include">
+          <e p="ActivityBase.cs" t="Include" />
+        </e>
         <e p="AutoUpdate" t="Include">
           <e p="UpdateProvider.cs" t="Include" />
         </e>
         <e p="bin" t="ExcludeRecursive" />
+        <e p="Bindings" t="Include">
+          <e p="CustomAtts" t="Include">
+            <e p="BindingAttribute.cs" t="Include" />
+            <e p="FindByIdAttribute.cs" t="Include" />
+            <e p="MemberInfoExtensions.cs" t="Include" />
+            <e p="Unbinder.cs" t="Include" />
+            <e p="ViewBinder.cs" t="Include" />
+          </e>
+        </e>
         <e p="Connection" t="Include">
           <e p="Connectivity.cs" t="Include" />
           <e p="ConnectivityChangeBroadcastReceiver.cs" t="Include" />
@@ -1249,6 +1279,10 @@
         </e>
         <e p="Email" t="Include">
           <e p="EmailService.cs" t="Include" />
+        </e>
+        <e p="Extensions" t="Include">
+          <e p="ActivityExtensions.cs" t="Include" />
+          <e p="ContextExtensions.cs" t="Include" />
         </e>
         <e p="Logging" t="Include">
           <e p="ConsoleLogger.cs" t="Include" />
@@ -1299,6 +1333,10 @@
         <e p="AssemblyInfo.cs" t="Include" />
       </e>
       <e p="Storage" t="Include" />
+      <e p="ViewModels" t="Include">
+        <e p="PageViewModel.cs" t="Include" />
+        <e p="SimpleViewModel.cs" t="Include" />
+      </e>
     </e>
   </component>
   <component name="RiderRiderContentModelStore">

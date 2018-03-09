@@ -1,7 +1,7 @@
 ﻿using System;
 using Android.Views;
 
-namespace CoffeeManager.Droid
+namespace CoffeeManager.Droid.Extensions
 {
     public static class ViewListenersExtensions
     {

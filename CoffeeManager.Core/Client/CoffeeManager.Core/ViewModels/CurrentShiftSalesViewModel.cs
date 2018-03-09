@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using CoffeeManager.Core.Messages;
 using CoffeManager.Common;
+using CoffeManager.Common.Managers;
+using CoffeManager.Common.ViewModels;
 using MvvmCross.Plugins.Messenger;
 
 namespace CoffeeManager.Core.ViewModels

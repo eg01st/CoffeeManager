@@ -8,6 +8,8 @@ using CoffeeManagerAdmin.Core.Util;
 using CoffeManager.Common;
 using MvvmCross.Platform;
 using System.Threading.Tasks;
+using CoffeManager.Common.Managers;
+using CoffeManager.Common.ViewModels;
 
 namespace CoffeeManagerAdmin.Core
 {

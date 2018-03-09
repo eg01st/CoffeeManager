@@ -3,6 +3,7 @@ using UIKit;
 using MvvmCross.Binding.BindingContext;
 using System.Collections.Generic;
 using CoffeManager.Common;
+ using CoffeManager.Common.ViewModels;
 
 namespace CoffeeManagerAdmin.iOS
 {

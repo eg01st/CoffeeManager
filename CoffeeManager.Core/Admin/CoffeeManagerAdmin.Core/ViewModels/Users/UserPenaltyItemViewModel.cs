@@ -5,6 +5,7 @@ using CoffeeManager.Models;
 using MvvmCross.Core.ViewModels;
 using System.Threading.Tasks;
 using CoffeManager.Common.Managers;
+using CoffeManager.Common.ViewModels;
 using MvvmCross.Platform;
 namespace CoffeeManagerAdmin.Core
 {

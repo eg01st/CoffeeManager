@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CoffeeManager.Models;
+using CoffeManager.Common.Providers;
 
 namespace CoffeManager.Common
 {
@@ -33,12 +34,12 @@ namespace CoffeManager.Common
             await Post<Object>(RoutesConstants.ToggleProductEnabled, null, new Dictionary<string, string>() { { nameof(id), id.ToString() } });
         }
 
-        public async Task<ProductEntity[]> GetProduct(ProductType type)
+        public async Task<ProductEntity[]> GetProduct(int categoryId)
         {
             var prods = await Get<ProductEntity[]>(RoutesConstants.Products,
                 new Dictionary<string, string>()
                 {
-                    {nameof(ProductType), ((int) type).ToString()},
+                    {nameof(ProductType), categoryId.ToString()},
                 });
             return prods.Where(p => p.IsActive).ToArray();
         }

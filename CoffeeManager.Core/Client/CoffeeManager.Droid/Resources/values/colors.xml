@@ -4,4 +4,10 @@
   <color name="Violet">#ee82ee</color>
   <color name="LightGreen">#99ff99</color>
   <color name="Transparent">#FFFFFF</color>
+
+  <color name="colorPrimary">#3F51B5</color>
+  <color name="colorPrimaryDark">#303F9F</color>
+  <color name="colorAccent">#536DFE</color>
+  <color name="colorPrimary_text">#212121</color>
+  <color name="colorSecondary_text">#757575</color>
 </resources>

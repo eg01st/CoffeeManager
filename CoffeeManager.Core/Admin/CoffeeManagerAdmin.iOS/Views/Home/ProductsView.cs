@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using CoffeeManagerAdmin.Core;
 using CoffeManager.Common;
+using CoffeManager.Common.ViewModels;
 using MvvmCross.Binding.BindingContext;
 using UIKit;
 

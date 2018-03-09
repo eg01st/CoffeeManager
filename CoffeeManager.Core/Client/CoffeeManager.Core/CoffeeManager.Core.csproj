@@ -42,6 +42,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Timer.cs" />
     <Compile Include="ViewModels\BaseItemViewModel.cs" />
+    <Compile Include="ViewModels\CategoryItemViewModel.cs" />
     <Compile Include="ViewModels\CurrentShiftExpensesViewModel.cs" />
     <Compile Include="ViewModels\CurrentShiftSalesViewModel.cs" />
     <Compile Include="ViewModels\EndShiftViewModel.cs" />
@@ -49,6 +50,7 @@
     <Compile Include="ViewModels\ExpenseViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\Products\ProductBaseViewModel.cs" />
     <Compile Include="ViewModels\SaleItemViewModel.cs" />
     <Compile Include="ViewModels\Products\AddsViewModel.cs" />
     <Compile Include="ViewModels\Products\CoffeeViewModel.cs" />
@@ -58,7 +60,7 @@
     <Compile Include="ViewModels\Products\SweetsViewModel.cs" />
     <Compile Include="ViewModels\Products\TeaViewModel.cs" />
     <Compile Include="ViewModels\Products\WaterViewModel.cs" />
-    <Compile Include="ViewModels\Products\ProductBaseViewModel.cs" />
+    <Compile Include="ViewModels\Products\ProductViewModel.cs" />
     <Compile Include="ViewModels\Products\ProductItemViewModel.cs" />
     <Compile Include="ViewModels\Products\SelectedProductViewModel.cs" />
     <Compile Include="EventArgs\SaleItemEventArgs.cs" />

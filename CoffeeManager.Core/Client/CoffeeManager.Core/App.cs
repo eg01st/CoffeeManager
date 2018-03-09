@@ -1,6 +1,7 @@
 ﻿using Acr.UserDialogs;
 using CoffeeManager.Core.ViewModels;
 using CoffeManager.Common;
+using CoffeManager.Common.Managers;
 using MvvmCross.Platform;
 
 namespace CoffeeManager.Core

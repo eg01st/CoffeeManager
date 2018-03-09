@@ -4,6 +4,7 @@ using CoffeeManager.Models;
 using System.Linq;
 using CoffeeManagerAdmin.Core.Util;
 using CoffeManager.Common;
+using CoffeManager.Common.ViewModels;
 
 namespace CoffeeManagerAdmin.Core
 {

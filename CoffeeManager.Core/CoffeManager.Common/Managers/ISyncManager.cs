@@ -3,18 +3,18 @@ using System.Threading.Tasks;
 using CoffeeManager.Common;
 using CoffeeManager.Models;
 
-namespace CoffeManager.Common
+namespace CoffeManager.Common.Managers
 {
     public interface ISyncManager
     {
         void AddSaleToSync(SaleEntity item, SaleAction action);
         Task<bool> SyncSales();
 
-        Task AddProductsToSync(IEnumerable<ProductEntity> products, ProductType type);
+        Task AddProductsToSync(IEnumerable<ProductEntity> products, int categoryId);
         void AddCurrentShift(ShiftEntity shift);
         ShiftEntity GetCurrentShift();
         void ClearCurrentShift();
-        IEnumerable<ProductEntity> GetProducts(ProductType type);
+        IEnumerable<ProductEntity> GetProducts(int categoryId);
 
         void CreateSyncTables();
         void InitDataBaseConnection();

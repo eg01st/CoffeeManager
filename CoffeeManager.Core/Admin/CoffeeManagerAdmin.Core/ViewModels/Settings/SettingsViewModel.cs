@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using CoffeManager.Common.Managers;
 using System.Collections.Generic;
 using System.Linq;
+using CoffeManager.Common.ViewModels;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Messenger;
 

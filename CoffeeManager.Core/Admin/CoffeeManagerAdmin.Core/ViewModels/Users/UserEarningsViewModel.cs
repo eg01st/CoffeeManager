@@ -4,6 +4,8 @@ using CoffeManager.Common;
 using CoffeeManager.Models;
 using CoffeeManagerAdmin.Core.Util;
 using System.Linq;
+using CoffeManager.Common.ViewModels;
+
 namespace CoffeeManagerAdmin.Core
 {
     public class UserEarningsViewModel : ViewModelBase

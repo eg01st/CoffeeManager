@@ -4,6 +4,8 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using CoffeeManager.Models;
 using System.Linq;
+using CoffeManager.Common.ViewModels;
+
 namespace CoffeeManagerAdmin.Core
 {
     public class ShiftExpenseDetailsViewModel : ViewModelBase

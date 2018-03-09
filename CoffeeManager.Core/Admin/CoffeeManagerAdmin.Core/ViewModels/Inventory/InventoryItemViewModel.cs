@@ -1,6 +1,7 @@
 ﻿using System;
 using CoffeeManager.Models;
 using CoffeManager.Common;
+using CoffeManager.Common.ViewModels;
 using MvvmCross.Platform;
 namespace CoffeeManagerAdmin.Core
 {

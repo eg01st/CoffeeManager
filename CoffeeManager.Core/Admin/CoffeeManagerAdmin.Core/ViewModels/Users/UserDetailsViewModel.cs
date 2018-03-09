@@ -8,6 +8,7 @@ using CoffeeManager.Models.Data.DTO.User;
 using CoffeeManagerAdmin.Core.Util;
 using CoffeManager.Common;
 using CoffeManager.Common.Managers;
+using CoffeManager.Common.ViewModels;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Messenger;
 

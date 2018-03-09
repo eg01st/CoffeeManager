@@ -2,6 +2,8 @@
 using CoffeManager.Common;
 using CoffeeManager.Models;
 using System.Drawing;
+using CoffeManager.Common.ViewModels;
+
 namespace CoffeeManager.Core
 {
     public class SuplyProductViewModel : ViewModelBase

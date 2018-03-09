@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Windows.Input;
 using CoffeManager.Common;
+using CoffeManager.Common.ViewModels;
 using Foundation;
 using MvvmCross.Binding.ExtensionMethods;
 using UIKit;

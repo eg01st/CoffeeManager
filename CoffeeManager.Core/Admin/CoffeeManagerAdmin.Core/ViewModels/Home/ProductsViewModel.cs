@@ -8,6 +8,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using CoffeeManagerAdmin.Core.ViewModels;
 using CoffeManager.Common;
+using CoffeManager.Common.Managers;
+using CoffeManager.Common.ViewModels;
 
 namespace CoffeeManagerAdmin.Core
 {

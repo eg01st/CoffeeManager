@@ -1,10 +1,6 @@
 using System;
 using System.Collections.Generic;
 using Android.Support.V4.App;
-using Android.Views;
-using Java.Lang;
-using Object = Java.Lang.Object;
-
 
 namespace CoffeeManager.Droid.Adapters
 {

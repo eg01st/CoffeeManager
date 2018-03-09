@@ -1,8 +1,7 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using CoffeeManager.Models;
 
-namespace CoffeManager.Common
+namespace CoffeManager.Common.Providers
 {
     public interface IProductProvider
     {
@@ -16,7 +15,7 @@ namespace CoffeManager.Common
 
         Task ToggleIsActiveProduct(int id);
 
-        Task<ProductEntity[]> GetProduct(ProductType type);
+        Task<ProductEntity[]> GetProduct(int categoryId);
 
         Task SaleProduct(Sale sale);
 

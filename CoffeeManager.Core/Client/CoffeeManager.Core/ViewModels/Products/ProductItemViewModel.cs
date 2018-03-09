@@ -2,6 +2,7 @@
 using System.Windows.Input;
 using CoffeeManager.Models;
 using CoffeManager.Common;
+using CoffeManager.Common.ViewModels;
 using MvvmCross.Core.ViewModels;
 
 namespace CoffeeManager.Core.ViewModels

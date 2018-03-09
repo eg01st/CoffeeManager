@@ -10,6 +10,7 @@ using System;
 using CoffeeManager.Core.ViewModels.Products;
 using CoffeeManager.Models;
 using CoffeManager.Common.Managers;
+using CoffeManager.Common.ViewModels;
 
 namespace CoffeeManager.Core.ViewModels
 {
@@ -19,49 +20,53 @@ namespace CoffeeManager.Core.ViewModels
 
         private Shift shiftInfo;
 
-        private bool _policeSaleEnabled;
-        private bool _isCreditCardSaleEnabled;
-        private string _sumButtonText;
-        private int _sum;
-        private int? _changeSum;
+        private bool policeSaleEnabled;
+        private bool isCreditCardSaleEnabled;
+        private string sumButtonText;
+        private int sum;
+        private int? changeSum;
         private string userName;
-        private ObservableCollection<SelectedProductViewModel> _selectedProducts = new ObservableCollection<SelectedProductViewModel>();
+        private ObservableCollection<SelectedProductViewModel> selectedProducts = new ObservableCollection<SelectedProductViewModel>();
 
+        private MvxObservableCollection<CategoryItemViewModel> categoies = new MvxObservableCollection<CategoryItemViewModel>();
+        private MvxObservableCollection<ProductViewModel> products = new MvxObservableCollection<ProductViewModel>();
+
+        private readonly Action<int> onCategorySelectedAction;
+        
         public bool IsPoliceSaleEnabled
         {
-            get { return _policeSaleEnabled; }
+            get => policeSaleEnabled;
             set
             {
-                _policeSaleEnabled = value;
+                policeSaleEnabled = value;
                 RaisePropertyChanged(nameof(IsPoliceSaleEnabled));
                 foreach (var item in allProducts)
                 {
-                    item.IsPoliceSale = _policeSaleEnabled;
+                    item.IsPoliceSale = policeSaleEnabled;
                 }
             }
         }
 
         public bool IsCreditCardSaleEnabled
         {
-            get { return _isCreditCardSaleEnabled; }
+            get => isCreditCardSaleEnabled;
             set
             {
-                _isCreditCardSaleEnabled = value;
+                isCreditCardSaleEnabled = value;
                 RaisePropertyChanged(nameof(IsCreditCardSaleEnabled));
                 foreach (var item in allProducts)
                 {
-                    item.IsCreditCardSale = _isCreditCardSaleEnabled;
+                    item.IsCreditCardSale = isCreditCardSaleEnabled;
                 }
             }
         }
 
-
         public int Sum
         {
-            get => _sum;
+            get => sum;
             set
             {
-                _sum = value;
+                sum = value;
                 RaisePropertyChanged(nameof(Sum));
                 RaisePropertyChanged(nameof(PayEnabled));
                 RaisePropertyChanged(nameof(SumButtonText));
@@ -73,9 +78,9 @@ namespace CoffeeManager.Core.ViewModels
         {
             get 
             {
-                if (_changeSum.HasValue && Sum > 0)
+                if (changeSum.HasValue && Sum > 0)
                 {
-                    return Math.Abs(Sum - _changeSum.Value);
+                    return Math.Abs(Sum - changeSum.Value);
                 }
                 else
                 {
@@ -84,7 +89,7 @@ namespace CoffeeManager.Core.ViewModels
             }
             set
             {
-                _changeSum = value;
+                changeSum = value;
                 RaisePropertyChanged(nameof(ChangeSum));
             }
         }
@@ -101,7 +106,7 @@ namespace CoffeeManager.Core.ViewModels
             }
             set
             {
-                _sumButtonText = value;
+                sumButtonText = value;
                 RaisePropertyChanged(nameof(SumButtonText));
             }
         }
@@ -115,6 +120,16 @@ namespace CoffeeManager.Core.ViewModels
             set
             {
                 userName = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        public int SelectedCategoryId
+        {
+            get => selectedCategoryId;
+            set
+            {
+                selectedCategoryId = value;
                 RaisePropertyChanged();
             }
         }
@@ -135,53 +150,59 @@ namespace CoffeeManager.Core.ViewModels
 
         public ObservableCollection<SelectedProductViewModel> SelectedProducts
         {
-            get { return _selectedProducts; }
+            get => selectedProducts;
             set
             {
-                _selectedProducts = value;
+                selectedProducts = value;
                 RaisePropertyChanged(nameof(SelectedProducts));
             }
         }
-
-        public CoffeeViewModel CoffeeProducts {get;}
-        public TeaViewModel TeaProducts {get;}
-        public SweetsViewModel SweetsProducts {get;}
-        public WaterViewModel WaterProducts {get;}
-        public AddsViewModel AddsProducts {get;}
-        public MealsViewModel MealsProducts {get;}
-        public ColdDrinksViewModel ColdDrinksProducts {get;}
-        public IceCreamViewModel IceCreamProducts {get;}
-
+        
+        public MvxObservableCollection<CategoryItemViewModel> Categories
+        {
+            get => categoies;
+            set
+            {
+                categoies = value;
+                RaisePropertyChanged(nameof(Categories));
+            }
+        }
+        
+        public MvxObservableCollection<ProductViewModel> Products
+        {
+            get => products;
+            set
+            {
+                products = value;
+                RaisePropertyChanged(nameof(Products));
+            }
+        }
+        
         private IEnumerable<ProductItemViewModel> allProducts;
         readonly ISyncManager syncManager;
         readonly IUserManager userManager;
+        private readonly ICategoryManager categoryManager;
+        private int selectedCategoryId;
 
         public MainViewModel(IMvxViewModelLoader mvxViewModelLoader,
                              IProductManager productManager,
                              ISyncManager syncManager,
-                             IUserManager userManager)
+                             IUserManager userManager,
+                            ICategoryManager categoryManager)
         {
             this.userManager = userManager;
+            this.categoryManager = categoryManager;
             this.syncManager = syncManager;
             this.productManager = productManager;
-
-            var request = new MvxViewModelRequest(typeof(CoffeeViewModel));
-            CoffeeProducts = (CoffeeViewModel)mvxViewModelLoader.LoadViewModel(request, null);
-            request = new MvxViewModelRequest(typeof(TeaViewModel));
-            TeaProducts = (TeaViewModel)mvxViewModelLoader.LoadViewModel(request, null);
-            request = new MvxViewModelRequest(typeof(SweetsViewModel));
-            SweetsProducts = (SweetsViewModel)mvxViewModelLoader.LoadViewModel(request, null);
-            request = new MvxViewModelRequest(typeof(WaterViewModel));
-            WaterProducts = (WaterViewModel)mvxViewModelLoader.LoadViewModel(request, null);
-            request = new MvxViewModelRequest(typeof(AddsViewModel));
-            AddsProducts = (AddsViewModel)mvxViewModelLoader.LoadViewModel(request, null);
-            request = new MvxViewModelRequest(typeof(MealsViewModel));
-            MealsProducts = (MealsViewModel)mvxViewModelLoader.LoadViewModel(request, null);
-            request = new MvxViewModelRequest(typeof(ColdDrinksViewModel));
-            ColdDrinksProducts = (ColdDrinksViewModel)mvxViewModelLoader.LoadViewModel(request, null);
-            request = new MvxViewModelRequest(typeof(IceCreamViewModel));
-            IceCreamProducts = (IceCreamViewModel)mvxViewModelLoader.LoadViewModel(request, null);
-
+            
+            onCategorySelectedAction = i =>
+            {
+                foreach (var categoryItemViewModel in Categories)
+                {
+                    categoryItemViewModel.IsSelected = false;
+                }
+                SelectedCategoryId = i;
+            };
            
             EndShiftCommand = new MvxCommand(DoEndShift);
             ShowCurrentSalesCommand = new MvxCommand(() => ShowViewModel<CurrentShiftSalesViewModel>());
@@ -202,29 +223,31 @@ namespace CoffeeManager.Core.ViewModels
             ChangeSum = sum;
         }
 
-        public async override Task Initialize()
+        public override async Task Initialize()
         {
             var tasks = new List<Task>();
-            tasks.Add(CoffeeProducts.InitViewModel());
-            tasks.Add(TeaProducts.InitViewModel());
-            tasks.Add(SweetsProducts.InitViewModel());
-            tasks.Add(WaterProducts.InitViewModel());
-            tasks.Add(AddsProducts.InitViewModel());
-            tasks.Add(MealsProducts.InitViewModel());
-            tasks.Add(ColdDrinksProducts.InitViewModel());
-            tasks.Add(IceCreamProducts.InitViewModel());
+
+            var categories = await categoryManager.GetCategories();
+            foreach (var category in categories)
+            {
+                var vm = new ProductViewModel(category.Id);
+                Products.Add(vm);
+                tasks.Add(vm.InitViewModel());
+            }
+
+            Categories = new MvxObservableCollection<CategoryItemViewModel>(
+                categories.Select(s => new CategoryItemViewModel(onCategorySelectedAction)
+                {
+                    Id = s.Id,
+                    Name = s.Name
+                }));
+            Categories.First().IsSelected = true;
+            
             await ExecuteSafe(async () =>
             {
                 await Task.WhenAll(tasks);
 
-                allProducts = CoffeeProducts.Items
-                .Concat(TeaProducts.Items)
-                .Concat(SweetsProducts.Items)
-                .Concat(WaterProducts.Items)
-                .Concat(AddsProducts.Items)
-                .Concat(MealsProducts.Items)
-                .Concat(ColdDrinksProducts.Items)
-                .Concat(IceCreamProducts.Items);
+                allProducts = Products.SelectMany(s => s.Items);
 
                 SubscribeToSelectProduct();
 

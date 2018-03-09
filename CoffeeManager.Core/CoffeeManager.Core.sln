@@ -342,5 +342,13 @@ Global
 		$26.NamingStyle = None
 		$26.IncludeInstanceMembers = True
 		$26.IncludeStaticEntities = True
+		$0.TextStylePolicy = $27
+		$27.FileWidth = 80
+		$27.scope = application/xml
+		$0.XmlFormattingPolicy = $28
+		$28.DefaultFormat = $29
+		$29.AttributesInNewLine = True
+		$29.MaxAttributesPerLine = 1
+		$28.scope = application/xml
 	EndGlobalSection
 EndGlobal

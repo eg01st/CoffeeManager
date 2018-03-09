@@ -32,6 +32,7 @@ namespace CoffeManager.Common
             Mvx.RegisterSingleton<IInventoryProvider>(new InventoryProvider());
             Mvx.RegisterSingleton<IAdminProvider>(new AdminProvider());
             Mvx.RegisterSingleton<IAccountProvider>(new AccountProvider());
+            Mvx.RegisterSingleton<ICategoryProvider>(new CategoryProvider());
         }
 
         public virtual void RegisterManagers()
@@ -47,6 +48,7 @@ namespace CoffeManager.Common
             Mvx.RegisterSingleton<IInventoryManager>(new InventoryManager(Mvx.Resolve<IInventoryProvider>(), Mvx.Resolve<IDataBaseProvider>()));
             Mvx.RegisterSingleton<IAdminManager>(new AdminManager(Mvx.Resolve<IAdminProvider>()));
             Mvx.RegisterSingleton<IAccountManager>(new AccountManager(Mvx.Resolve<IAccountProvider>()));
+            Mvx.RegisterSingleton<ICategoryManager>(new CategoryManager(Mvx.Resolve<ICategoryProvider>()));
         }
     }
 }
