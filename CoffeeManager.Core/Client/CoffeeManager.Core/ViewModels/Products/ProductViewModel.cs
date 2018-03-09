@@ -2,6 +2,8 @@
 using System.Threading.Tasks;
 using CoffeeManager.Models;
 using CoffeManager.Common;
+using CoffeManager.Common.Managers;
+using CoffeManager.Common.ViewModels;
 using MvvmCross.Platform;
 
 namespace CoffeeManager.Core.ViewModels.Products
@@ -21,6 +23,8 @@ namespace CoffeeManager.Core.ViewModels.Products
                 RaisePropertyChanged(nameof(Items));
             }
         }
+
+        public int CategoryId => categoryId;
 
         public ProductViewModel(int categoryId)
         {
