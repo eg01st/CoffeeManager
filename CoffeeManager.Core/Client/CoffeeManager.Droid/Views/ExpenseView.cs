@@ -3,17 +3,19 @@ using Android.Content.PM;
 using Android.OS;
 using Android.Views;
 using CoffeeManager.Core.ViewModels;
+using MobileCore.Droid.Activities;
 
 namespace CoffeeManager.Droid.Views
 {
-    [Activity(Theme = "@style/Theme.AppCompat.Light", Label = "Расходы", WindowSoftInputMode = SoftInput.AdjustPan, ScreenOrientation = ScreenOrientation.SensorPortrait)]
-    public class ExpenseView : ActivityBase<ExpenseViewModel>
+    [Activity(WindowSoftInputMode = SoftInput.AdjustPan, ScreenOrientation = ScreenOrientation.SensorPortrait)]
+    public class ExpenseView : ActivityWithToolbar<ExpenseViewModel>
     {
-        protected override void OnCreate(Bundle savedInstanceState)
+        protected override string GetToolbarTitle() => "Расходы";
+
+        protected override int GetUpNavigationIconId() => Resource.Drawable.ic_arrow_back_white_24dp;
+
+        public ExpenseView() : base(Resource.Layout.exprense_layout)
         {
-            base.OnCreate(savedInstanceState);
-            SetContentView(Resource.Layout.exprense_layout);
-            // Create your application here
         }
     }
 }

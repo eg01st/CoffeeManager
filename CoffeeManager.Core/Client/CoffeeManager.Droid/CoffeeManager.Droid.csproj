@@ -211,7 +211,6 @@
     <Compile Include="Views\CurrentShiftSalesView.cs" />
     <Compile Include="Views\EndShiftView.cs" />
     <Compile Include="Views\ExpenseView.cs" />
-    <Compile Include="Views\FragmentActivityBase.cs" />
     <Compile Include="Views\Fragments\AddsFragment.cs" />
     <Compile Include="Views\Fragments\BaseFragment.cs" />
     <Compile Include="Views\Fragments\CoffeeFragment.cs" />
@@ -279,9 +278,6 @@
     <AndroidResource Include="Resources\layout\end_shift.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\errors.axml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
     <AndroidResource Include="Resources\layout\request_card.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
@@ -331,7 +327,16 @@
     <AndroidResource Include="Resources\layout\nav_header_main.axml" />
     <AndroidResource Include="Resources\drawable\side_nav_bar.xml" />
     <AndroidResource Include="Resources\layout\category_item.axml" />
-    <AndroidResource Include="Resources\layout\toolbar.axml" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_menu_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_menu_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_menu_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_menu_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_menu_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_arrow_back_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_arrow_back_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_arrow_back_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_arrow_back_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_arrow_back_white_24dp.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />

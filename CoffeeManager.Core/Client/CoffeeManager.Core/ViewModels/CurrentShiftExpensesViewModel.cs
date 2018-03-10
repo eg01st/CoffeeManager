@@ -4,11 +4,12 @@ using System.Threading.Tasks;
 using CoffeeManager.Core.Messages;
 using CoffeManager.Common;
 using CoffeManager.Common.ViewModels;
+using MobileCore.ViewModels;
 using MvvmCross.Plugins.Messenger;
 
 namespace CoffeeManager.Core.ViewModels
 {
-    public class CurrentShiftExpensesViewModel : ViewModelBase
+    public class CurrentShiftExpensesViewModel : PageViewModel
     {
         private readonly IPaymentManager manager;
         private List<ExpenseItemViewModel> _items = new List<ExpenseItemViewModel>();
@@ -27,7 +28,7 @@ namespace CoffeeManager.Core.ViewModels
         public CurrentShiftExpensesViewModel(IPaymentManager manager)
         {
             this.manager = manager;
-            _token = Subscribe<ExpenseDeletedMessage>(async (obj) => await LoadData());
+            _token = MvxMessenger.Subscribe<ExpenseDeletedMessage>(async (obj) => await LoadData());
         }
 
         public async void Init()
@@ -45,7 +46,7 @@ namespace CoffeeManager.Core.ViewModels
         }
         protected override void DoUnsubscribe()
         {
-            Unsubscribe<ExpenseDeletedMessage>(_token);
+            MvxMessenger.Unsubscribe<ExpenseDeletedMessage>(_token);
         }
     }
 }

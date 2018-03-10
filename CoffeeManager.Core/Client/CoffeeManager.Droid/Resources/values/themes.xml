@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <resources>
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- https://developer.android.com/training/material/theme.html -->
       
 <!--        <item name="android:windowContentTransitions">true</item>-->
@@ -10,6 +10,7 @@
         <item name="android:textColorPrimary">@color/colorPrimary_text</item>
         <item name="android:textColorSecondary">@color/colorSecondary_text</item>
 	  	<item name="android:statusBarColor">@color/colorPrimaryDark</item>
+        
         <!--<item name="android:windowBackground">@color/window_background</item>-->
         <!--<item name="drawerArrowStyle">@style/DrawerArrowStyle</item>-->
         <!--<item name="autoCompleteTextViewStyle">@style/autocomplete_search</item>-->

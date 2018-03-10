@@ -7,6 +7,7 @@ using CoffeeManagerAdmin.Core.Util;
 using MvvmCross.Core.ViewModels;
 using CoffeManager.Common;
 using System.Threading.Tasks;
+using CoffeManager.Common.ViewModels;
 
 namespace CoffeeManagerAdmin.Core
 {

@@ -1,12 +1,9 @@
-﻿
-using Android.App;
+﻿using Android.App;
 using Android.Content.PM;
 using Android.OS;
-using CoffeeManager.Core;
 using CoffeeManager.Core.ViewModels;
-using CoffeeManager.Droid.Views;
 
-namespace CoffeeManager.Droid
+namespace CoffeeManager.Droid.Views
 {
     [Activity(Theme = "@style/SplashTheme",
               NoHistory = true,

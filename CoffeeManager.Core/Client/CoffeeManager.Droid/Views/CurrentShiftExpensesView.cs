@@ -3,18 +3,20 @@ using Android.App;
 using Android.Content.PM;
 using Android.OS;
 using CoffeeManager.Core.ViewModels;
+using MobileCore.Droid.Activities;
 
 namespace CoffeeManager.Droid.Views
 {
-    [Activity(Theme = "@style/Theme.AppCompat.Light", Label = "Траты за смену", ScreenOrientation = ScreenOrientation.SensorPortrait)]
-
-    public class CurrentShiftExpensesView : ActivityBase<CurrentShiftExpensesViewModel>
+    [Activity(ScreenOrientation = ScreenOrientation.SensorPortrait)]
+    public class CurrentShiftExpensesView : ActivityWithToolbar<CurrentShiftExpensesViewModel>
     {
-        protected override void OnCreate(Bundle savedInstanceState)
+        protected override string GetToolbarTitle() => "Траты за смену";
+
+        protected override int GetUpNavigationIconId() => Resource.Drawable.ic_arrow_back_white_24dp;
+
+        public CurrentShiftExpensesView() : base(Resource.Layout.shift_expenses)
         {
-            base.OnCreate(savedInstanceState);
-            SetContentView(Resource.Layout.shift_expenses);
-            // Create your application here
         }
+        
     }
 }

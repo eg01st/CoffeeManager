@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using CoffeManager.Common;
+﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using CoffeeManager.Core.Messages;
-using MvvmCross.Core.ViewModels;
 using CoffeeManager.Models;
+using CoffeManager.Common;
+using CoffeManager.Common.ViewModels;
+using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Messenger;
 
-namespace CoffeeManager.Core
+namespace CoffeeManager.Core.ViewModels.Inventory
 {
     public class InventoryViewModel : BaseSearchViewModel<InventoryItemViewModel>
     {
@@ -24,7 +24,7 @@ namespace CoffeeManager.Core
             this.manager = manager;
             SendReportCommand = new MvxCommand(DoSendReport);
 
-            token = Subscribe<InventoryItemChangedMessage>(OnItemChanged);
+            token = MvxMessenger.Subscribe<InventoryItemChangedMessage>(OnItemChanged);
         }
 
         private void OnItemChanged(InventoryItemChangedMessage inventoryItemChangedMessage)
@@ -101,7 +101,7 @@ namespace CoffeeManager.Core
         protected override void DoUnsubscribe()
         {
             base.DoUnsubscribe();
-            Unsubscribe<InventoryItemChangedMessage>(token);
+            MvxMessenger.Unsubscribe<InventoryItemChangedMessage>(token);
         }
     }
 }

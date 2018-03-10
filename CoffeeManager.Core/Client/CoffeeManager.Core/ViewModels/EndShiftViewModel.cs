@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 using CoffeeManager.Common;
 using CoffeManager.Common.ViewModels;
 using MobileCore.Logging;
+using MobileCore.ViewModels;
 
 namespace CoffeeManager.Core.ViewModels
 {
-    public class EndShiftViewModel : ViewModelBase
+    public class EndShiftViewModel : PageViewModel
     {
         private readonly IShiftManager shiftManager;
 

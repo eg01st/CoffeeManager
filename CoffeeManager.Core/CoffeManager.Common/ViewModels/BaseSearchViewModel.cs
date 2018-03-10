@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using CoffeManager.Common.ViewModels;
+using MobileCore.ViewModels;
 
-namespace CoffeManager.Common
+namespace CoffeManager.Common.ViewModels
 {
-    public abstract class BaseSearchViewModel<TItem> : ViewModelBase where TItem : ListItemViewModelBase
+    public abstract class BaseSearchViewModel<TItem> : PageViewModel where TItem : ListItemViewModelBase
     {
         private List<TItem> _orginalItems;
         private List<TItem> _items;

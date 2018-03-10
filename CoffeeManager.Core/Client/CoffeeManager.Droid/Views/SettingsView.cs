@@ -1,21 +1,20 @@
-﻿using System;
-using Android.App;
+﻿using Android.App;
 using Android.Content.PM;
-using Android.OS;
 using Android.Views;
-using CoffeeManager.Core;
-using CoffeeManager.Droid.Views;
+using CoffeeManager.Core.ViewModels.Settings;
+using MobileCore.Droid.Activities;
 
-namespace CoffeeManager.Droid
+namespace CoffeeManager.Droid.Views
 {
-    [Activity(Theme = "@style/Theme.AppCompat.Light", Label = "Настройки", WindowSoftInputMode = SoftInput.AdjustPan, ScreenOrientation = ScreenOrientation.SensorPortrait)]
-    public class SettingsView : ActivityBase<SettingsViewModel>
+    [Activity(WindowSoftInputMode = SoftInput.AdjustPan, ScreenOrientation = ScreenOrientation.SensorPortrait)]
+    public class SettingsView : ActivityWithToolbar<SettingsViewModel>
     {
-        protected override void OnCreate(Bundle savedInstanceState)
+        protected override string GetToolbarTitle() => "Настройки";
+
+        protected override int GetUpNavigationIconId() => Resource.Drawable.ic_arrow_back_white_24dp;
+
+        public SettingsView() : base(Resource.Layout.settings)
         {
-            base.OnCreate(savedInstanceState);
-            SetContentView(Resource.Layout.settings);
-            // Create your application here
         }
     }
 }

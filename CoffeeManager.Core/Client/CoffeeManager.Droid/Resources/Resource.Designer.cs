@@ -63,6 +63,16 @@ namespace CoffeeManager.Droid
 			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahText = global::CoffeeManager.Droid.Resource.Styleable.ProgressWheel_ahText;
 			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahTextColor = global::CoffeeManager.Droid.Resource.Styleable.ProgressWheel_ahTextColor;
 			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahTextSize = global::CoffeeManager.Droid.Resource.Styleable.ProgressWheel_ahTextSize;
+			global::MobileCore.Droid.Resource.Animation.abc_fade_in = global::CoffeeManager.Droid.Resource.Animation.abc_fade_in;
+			global::MobileCore.Droid.Resource.Animation.abc_fade_out = global::CoffeeManager.Droid.Resource.Animation.abc_fade_out;
+			global::MobileCore.Droid.Resource.Animation.abc_grow_fade_in_from_bottom = global::CoffeeManager.Droid.Resource.Animation.abc_grow_fade_in_from_bottom;
+			global::MobileCore.Droid.Resource.Animation.abc_popup_enter = global::CoffeeManager.Droid.Resource.Animation.abc_popup_enter;
+			global::MobileCore.Droid.Resource.Animation.abc_popup_exit = global::CoffeeManager.Droid.Resource.Animation.abc_popup_exit;
+			global::MobileCore.Droid.Resource.Animation.abc_shrink_fade_out_from_bottom = global::CoffeeManager.Droid.Resource.Animation.abc_shrink_fade_out_from_bottom;
+			global::MobileCore.Droid.Resource.Animation.abc_slide_in_bottom = global::CoffeeManager.Droid.Resource.Animation.abc_slide_in_bottom;
+			global::MobileCore.Droid.Resource.Animation.abc_slide_in_top = global::CoffeeManager.Droid.Resource.Animation.abc_slide_in_top;
+			global::MobileCore.Droid.Resource.Animation.abc_slide_out_bottom = global::CoffeeManager.Droid.Resource.Animation.abc_slide_out_bottom;
+			global::MobileCore.Droid.Resource.Animation.abc_slide_out_top = global::CoffeeManager.Droid.Resource.Animation.abc_slide_out_top;
 			global::MobileCore.Droid.Resource.Attribute.MvxBind = global::CoffeeManager.Droid.Resource.Attribute.MvxBind;
 			global::MobileCore.Droid.Resource.Attribute.MvxDropDownItemTemplate = global::CoffeeManager.Droid.Resource.Attribute.MvxDropDownItemTemplate;
 			global::MobileCore.Droid.Resource.Attribute.MvxGroupItemTemplate = global::CoffeeManager.Droid.Resource.Attribute.MvxGroupItemTemplate;
@@ -70,9 +80,1327 @@ namespace CoffeeManager.Droid
 			global::MobileCore.Droid.Resource.Attribute.MvxLang = global::CoffeeManager.Droid.Resource.Attribute.MvxLang;
 			global::MobileCore.Droid.Resource.Attribute.MvxSource = global::CoffeeManager.Droid.Resource.Attribute.MvxSource;
 			global::MobileCore.Droid.Resource.Attribute.MvxTemplate = global::CoffeeManager.Droid.Resource.Attribute.MvxTemplate;
+			global::MobileCore.Droid.Resource.Attribute.actionBarDivider = global::CoffeeManager.Droid.Resource.Attribute.actionBarDivider;
+			global::MobileCore.Droid.Resource.Attribute.actionBarItemBackground = global::CoffeeManager.Droid.Resource.Attribute.actionBarItemBackground;
+			global::MobileCore.Droid.Resource.Attribute.actionBarPopupTheme = global::CoffeeManager.Droid.Resource.Attribute.actionBarPopupTheme;
+			global::MobileCore.Droid.Resource.Attribute.actionBarSize = global::CoffeeManager.Droid.Resource.Attribute.actionBarSize;
+			global::MobileCore.Droid.Resource.Attribute.actionBarSplitStyle = global::CoffeeManager.Droid.Resource.Attribute.actionBarSplitStyle;
+			global::MobileCore.Droid.Resource.Attribute.actionBarStyle = global::CoffeeManager.Droid.Resource.Attribute.actionBarStyle;
+			global::MobileCore.Droid.Resource.Attribute.actionBarTabBarStyle = global::CoffeeManager.Droid.Resource.Attribute.actionBarTabBarStyle;
+			global::MobileCore.Droid.Resource.Attribute.actionBarTabStyle = global::CoffeeManager.Droid.Resource.Attribute.actionBarTabStyle;
+			global::MobileCore.Droid.Resource.Attribute.actionBarTabTextStyle = global::CoffeeManager.Droid.Resource.Attribute.actionBarTabTextStyle;
+			global::MobileCore.Droid.Resource.Attribute.actionBarTheme = global::CoffeeManager.Droid.Resource.Attribute.actionBarTheme;
+			global::MobileCore.Droid.Resource.Attribute.actionBarWidgetTheme = global::CoffeeManager.Droid.Resource.Attribute.actionBarWidgetTheme;
+			global::MobileCore.Droid.Resource.Attribute.actionButtonStyle = global::CoffeeManager.Droid.Resource.Attribute.actionButtonStyle;
+			global::MobileCore.Droid.Resource.Attribute.actionDropDownStyle = global::CoffeeManager.Droid.Resource.Attribute.actionDropDownStyle;
+			global::MobileCore.Droid.Resource.Attribute.actionLayout = global::CoffeeManager.Droid.Resource.Attribute.actionLayout;
+			global::MobileCore.Droid.Resource.Attribute.actionMenuTextAppearance = global::CoffeeManager.Droid.Resource.Attribute.actionMenuTextAppearance;
+			global::MobileCore.Droid.Resource.Attribute.actionMenuTextColor = global::CoffeeManager.Droid.Resource.Attribute.actionMenuTextColor;
+			global::MobileCore.Droid.Resource.Attribute.actionModeBackground = global::CoffeeManager.Droid.Resource.Attribute.actionModeBackground;
+			global::MobileCore.Droid.Resource.Attribute.actionModeCloseButtonStyle = global::CoffeeManager.Droid.Resource.Attribute.actionModeCloseButtonStyle;
+			global::MobileCore.Droid.Resource.Attribute.actionModeCloseDrawable = global::CoffeeManager.Droid.Resource.Attribute.actionModeCloseDrawable;
+			global::MobileCore.Droid.Resource.Attribute.actionModeCopyDrawable = global::CoffeeManager.Droid.Resource.Attribute.actionModeCopyDrawable;
+			global::MobileCore.Droid.Resource.Attribute.actionModeCutDrawable = global::CoffeeManager.Droid.Resource.Attribute.actionModeCutDrawable;
+			global::MobileCore.Droid.Resource.Attribute.actionModeFindDrawable = global::CoffeeManager.Droid.Resource.Attribute.actionModeFindDrawable;
+			global::MobileCore.Droid.Resource.Attribute.actionModePasteDrawable = global::CoffeeManager.Droid.Resource.Attribute.actionModePasteDrawable;
+			global::MobileCore.Droid.Resource.Attribute.actionModePopupWindowStyle = global::CoffeeManager.Droid.Resource.Attribute.actionModePopupWindowStyle;
+			global::MobileCore.Droid.Resource.Attribute.actionModeSelectAllDrawable = global::CoffeeManager.Droid.Resource.Attribute.actionModeSelectAllDrawable;
+			global::MobileCore.Droid.Resource.Attribute.actionModeShareDrawable = global::CoffeeManager.Droid.Resource.Attribute.actionModeShareDrawable;
+			global::MobileCore.Droid.Resource.Attribute.actionModeSplitBackground = global::CoffeeManager.Droid.Resource.Attribute.actionModeSplitBackground;
+			global::MobileCore.Droid.Resource.Attribute.actionModeStyle = global::CoffeeManager.Droid.Resource.Attribute.actionModeStyle;
+			global::MobileCore.Droid.Resource.Attribute.actionModeWebSearchDrawable = global::CoffeeManager.Droid.Resource.Attribute.actionModeWebSearchDrawable;
+			global::MobileCore.Droid.Resource.Attribute.actionOverflowButtonStyle = global::CoffeeManager.Droid.Resource.Attribute.actionOverflowButtonStyle;
+			global::MobileCore.Droid.Resource.Attribute.actionOverflowMenuStyle = global::CoffeeManager.Droid.Resource.Attribute.actionOverflowMenuStyle;
+			global::MobileCore.Droid.Resource.Attribute.actionProviderClass = global::CoffeeManager.Droid.Resource.Attribute.actionProviderClass;
+			global::MobileCore.Droid.Resource.Attribute.actionViewClass = global::CoffeeManager.Droid.Resource.Attribute.actionViewClass;
+			global::MobileCore.Droid.Resource.Attribute.activityChooserViewStyle = global::CoffeeManager.Droid.Resource.Attribute.activityChooserViewStyle;
+			global::MobileCore.Droid.Resource.Attribute.alertDialogButtonGroupStyle = global::CoffeeManager.Droid.Resource.Attribute.alertDialogButtonGroupStyle;
+			global::MobileCore.Droid.Resource.Attribute.alertDialogCenterButtons = global::CoffeeManager.Droid.Resource.Attribute.alertDialogCenterButtons;
+			global::MobileCore.Droid.Resource.Attribute.alertDialogStyle = global::CoffeeManager.Droid.Resource.Attribute.alertDialogStyle;
+			global::MobileCore.Droid.Resource.Attribute.alertDialogTheme = global::CoffeeManager.Droid.Resource.Attribute.alertDialogTheme;
+			global::MobileCore.Droid.Resource.Attribute.allowStacking = global::CoffeeManager.Droid.Resource.Attribute.allowStacking;
+			global::MobileCore.Droid.Resource.Attribute.alpha = global::CoffeeManager.Droid.Resource.Attribute.alpha;
+			global::MobileCore.Droid.Resource.Attribute.arrowHeadLength = global::CoffeeManager.Droid.Resource.Attribute.arrowHeadLength;
+			global::MobileCore.Droid.Resource.Attribute.arrowShaftLength = global::CoffeeManager.Droid.Resource.Attribute.arrowShaftLength;
+			global::MobileCore.Droid.Resource.Attribute.autoCompleteTextViewStyle = global::CoffeeManager.Droid.Resource.Attribute.autoCompleteTextViewStyle;
+			global::MobileCore.Droid.Resource.Attribute.background = global::CoffeeManager.Droid.Resource.Attribute.background;
+			global::MobileCore.Droid.Resource.Attribute.backgroundSplit = global::CoffeeManager.Droid.Resource.Attribute.backgroundSplit;
+			global::MobileCore.Droid.Resource.Attribute.backgroundStacked = global::CoffeeManager.Droid.Resource.Attribute.backgroundStacked;
+			global::MobileCore.Droid.Resource.Attribute.backgroundTint = global::CoffeeManager.Droid.Resource.Attribute.backgroundTint;
+			global::MobileCore.Droid.Resource.Attribute.backgroundTintMode = global::CoffeeManager.Droid.Resource.Attribute.backgroundTintMode;
+			global::MobileCore.Droid.Resource.Attribute.barLength = global::CoffeeManager.Droid.Resource.Attribute.barLength;
+			global::MobileCore.Droid.Resource.Attribute.borderlessButtonStyle = global::CoffeeManager.Droid.Resource.Attribute.borderlessButtonStyle;
+			global::MobileCore.Droid.Resource.Attribute.buttonBarButtonStyle = global::CoffeeManager.Droid.Resource.Attribute.buttonBarButtonStyle;
+			global::MobileCore.Droid.Resource.Attribute.buttonBarNegativeButtonStyle = global::CoffeeManager.Droid.Resource.Attribute.buttonBarNegativeButtonStyle;
+			global::MobileCore.Droid.Resource.Attribute.buttonBarNeutralButtonStyle = global::CoffeeManager.Droid.Resource.Attribute.buttonBarNeutralButtonStyle;
+			global::MobileCore.Droid.Resource.Attribute.buttonBarPositiveButtonStyle = global::CoffeeManager.Droid.Resource.Attribute.buttonBarPositiveButtonStyle;
+			global::MobileCore.Droid.Resource.Attribute.buttonBarStyle = global::CoffeeManager.Droid.Resource.Attribute.buttonBarStyle;
+			global::MobileCore.Droid.Resource.Attribute.buttonGravity = global::CoffeeManager.Droid.Resource.Attribute.buttonGravity;
+			global::MobileCore.Droid.Resource.Attribute.buttonPanelSideLayout = global::CoffeeManager.Droid.Resource.Attribute.buttonPanelSideLayout;
+			global::MobileCore.Droid.Resource.Attribute.buttonStyle = global::CoffeeManager.Droid.Resource.Attribute.buttonStyle;
+			global::MobileCore.Droid.Resource.Attribute.buttonStyleSmall = global::CoffeeManager.Droid.Resource.Attribute.buttonStyleSmall;
+			global::MobileCore.Droid.Resource.Attribute.buttonTint = global::CoffeeManager.Droid.Resource.Attribute.buttonTint;
+			global::MobileCore.Droid.Resource.Attribute.buttonTintMode = global::CoffeeManager.Droid.Resource.Attribute.buttonTintMode;
+			global::MobileCore.Droid.Resource.Attribute.checkboxStyle = global::CoffeeManager.Droid.Resource.Attribute.checkboxStyle;
+			global::MobileCore.Droid.Resource.Attribute.checkedTextViewStyle = global::CoffeeManager.Droid.Resource.Attribute.checkedTextViewStyle;
+			global::MobileCore.Droid.Resource.Attribute.closeIcon = global::CoffeeManager.Droid.Resource.Attribute.closeIcon;
+			global::MobileCore.Droid.Resource.Attribute.closeItemLayout = global::CoffeeManager.Droid.Resource.Attribute.closeItemLayout;
+			global::MobileCore.Droid.Resource.Attribute.collapseContentDescription = global::CoffeeManager.Droid.Resource.Attribute.collapseContentDescription;
+			global::MobileCore.Droid.Resource.Attribute.collapseIcon = global::CoffeeManager.Droid.Resource.Attribute.collapseIcon;
+			global::MobileCore.Droid.Resource.Attribute.color = global::CoffeeManager.Droid.Resource.Attribute.color;
+			global::MobileCore.Droid.Resource.Attribute.colorAccent = global::CoffeeManager.Droid.Resource.Attribute.colorAccent;
+			global::MobileCore.Droid.Resource.Attribute.colorBackgroundFloating = global::CoffeeManager.Droid.Resource.Attribute.colorBackgroundFloating;
+			global::MobileCore.Droid.Resource.Attribute.colorButtonNormal = global::CoffeeManager.Droid.Resource.Attribute.colorButtonNormal;
+			global::MobileCore.Droid.Resource.Attribute.colorControlActivated = global::CoffeeManager.Droid.Resource.Attribute.colorControlActivated;
+			global::MobileCore.Droid.Resource.Attribute.colorControlHighlight = global::CoffeeManager.Droid.Resource.Attribute.colorControlHighlight;
+			global::MobileCore.Droid.Resource.Attribute.colorControlNormal = global::CoffeeManager.Droid.Resource.Attribute.colorControlNormal;
+			global::MobileCore.Droid.Resource.Attribute.colorPrimary = global::CoffeeManager.Droid.Resource.Attribute.colorPrimary;
+			global::MobileCore.Droid.Resource.Attribute.colorPrimaryDark = global::CoffeeManager.Droid.Resource.Attribute.colorPrimaryDark;
+			global::MobileCore.Droid.Resource.Attribute.colorSwitchThumbNormal = global::CoffeeManager.Droid.Resource.Attribute.colorSwitchThumbNormal;
+			global::MobileCore.Droid.Resource.Attribute.commitIcon = global::CoffeeManager.Droid.Resource.Attribute.commitIcon;
+			global::MobileCore.Droid.Resource.Attribute.contentInsetEnd = global::CoffeeManager.Droid.Resource.Attribute.contentInsetEnd;
+			global::MobileCore.Droid.Resource.Attribute.contentInsetEndWithActions = global::CoffeeManager.Droid.Resource.Attribute.contentInsetEndWithActions;
+			global::MobileCore.Droid.Resource.Attribute.contentInsetLeft = global::CoffeeManager.Droid.Resource.Attribute.contentInsetLeft;
+			global::MobileCore.Droid.Resource.Attribute.contentInsetRight = global::CoffeeManager.Droid.Resource.Attribute.contentInsetRight;
+			global::MobileCore.Droid.Resource.Attribute.contentInsetStart = global::CoffeeManager.Droid.Resource.Attribute.contentInsetStart;
+			global::MobileCore.Droid.Resource.Attribute.contentInsetStartWithNavigation = global::CoffeeManager.Droid.Resource.Attribute.contentInsetStartWithNavigation;
+			global::MobileCore.Droid.Resource.Attribute.controlBackground = global::CoffeeManager.Droid.Resource.Attribute.controlBackground;
+			global::MobileCore.Droid.Resource.Attribute.customNavigationLayout = global::CoffeeManager.Droid.Resource.Attribute.customNavigationLayout;
+			global::MobileCore.Droid.Resource.Attribute.defaultQueryHint = global::CoffeeManager.Droid.Resource.Attribute.defaultQueryHint;
+			global::MobileCore.Droid.Resource.Attribute.dialogPreferredPadding = global::CoffeeManager.Droid.Resource.Attribute.dialogPreferredPadding;
+			global::MobileCore.Droid.Resource.Attribute.dialogTheme = global::CoffeeManager.Droid.Resource.Attribute.dialogTheme;
+			global::MobileCore.Droid.Resource.Attribute.displayOptions = global::CoffeeManager.Droid.Resource.Attribute.displayOptions;
+			global::MobileCore.Droid.Resource.Attribute.divider = global::CoffeeManager.Droid.Resource.Attribute.divider;
+			global::MobileCore.Droid.Resource.Attribute.dividerHorizontal = global::CoffeeManager.Droid.Resource.Attribute.dividerHorizontal;
+			global::MobileCore.Droid.Resource.Attribute.dividerPadding = global::CoffeeManager.Droid.Resource.Attribute.dividerPadding;
+			global::MobileCore.Droid.Resource.Attribute.dividerVertical = global::CoffeeManager.Droid.Resource.Attribute.dividerVertical;
+			global::MobileCore.Droid.Resource.Attribute.drawableSize = global::CoffeeManager.Droid.Resource.Attribute.drawableSize;
+			global::MobileCore.Droid.Resource.Attribute.drawerArrowStyle = global::CoffeeManager.Droid.Resource.Attribute.drawerArrowStyle;
+			global::MobileCore.Droid.Resource.Attribute.dropDownListViewStyle = global::CoffeeManager.Droid.Resource.Attribute.dropDownListViewStyle;
+			global::MobileCore.Droid.Resource.Attribute.dropdownListPreferredItemHeight = global::CoffeeManager.Droid.Resource.Attribute.dropdownListPreferredItemHeight;
+			global::MobileCore.Droid.Resource.Attribute.editTextBackground = global::CoffeeManager.Droid.Resource.Attribute.editTextBackground;
+			global::MobileCore.Droid.Resource.Attribute.editTextColor = global::CoffeeManager.Droid.Resource.Attribute.editTextColor;
+			global::MobileCore.Droid.Resource.Attribute.editTextStyle = global::CoffeeManager.Droid.Resource.Attribute.editTextStyle;
+			global::MobileCore.Droid.Resource.Attribute.elevation = global::CoffeeManager.Droid.Resource.Attribute.elevation;
+			global::MobileCore.Droid.Resource.Attribute.expandActivityOverflowButtonDrawable = global::CoffeeManager.Droid.Resource.Attribute.expandActivityOverflowButtonDrawable;
+			global::MobileCore.Droid.Resource.Attribute.gapBetweenBars = global::CoffeeManager.Droid.Resource.Attribute.gapBetweenBars;
+			global::MobileCore.Droid.Resource.Attribute.goIcon = global::CoffeeManager.Droid.Resource.Attribute.goIcon;
+			global::MobileCore.Droid.Resource.Attribute.height = global::CoffeeManager.Droid.Resource.Attribute.height;
+			global::MobileCore.Droid.Resource.Attribute.hideOnContentScroll = global::CoffeeManager.Droid.Resource.Attribute.hideOnContentScroll;
+			global::MobileCore.Droid.Resource.Attribute.homeAsUpIndicator = global::CoffeeManager.Droid.Resource.Attribute.homeAsUpIndicator;
+			global::MobileCore.Droid.Resource.Attribute.homeLayout = global::CoffeeManager.Droid.Resource.Attribute.homeLayout;
+			global::MobileCore.Droid.Resource.Attribute.icon = global::CoffeeManager.Droid.Resource.Attribute.icon;
+			global::MobileCore.Droid.Resource.Attribute.iconifiedByDefault = global::CoffeeManager.Droid.Resource.Attribute.iconifiedByDefault;
+			global::MobileCore.Droid.Resource.Attribute.imageButtonStyle = global::CoffeeManager.Droid.Resource.Attribute.imageButtonStyle;
+			global::MobileCore.Droid.Resource.Attribute.indeterminateProgressStyle = global::CoffeeManager.Droid.Resource.Attribute.indeterminateProgressStyle;
+			global::MobileCore.Droid.Resource.Attribute.initialActivityCount = global::CoffeeManager.Droid.Resource.Attribute.initialActivityCount;
+			global::MobileCore.Droid.Resource.Attribute.isLightTheme = global::CoffeeManager.Droid.Resource.Attribute.isLightTheme;
+			global::MobileCore.Droid.Resource.Attribute.itemPadding = global::CoffeeManager.Droid.Resource.Attribute.itemPadding;
+			global::MobileCore.Droid.Resource.Attribute.layout = global::CoffeeManager.Droid.Resource.Attribute.layout;
+			global::MobileCore.Droid.Resource.Attribute.listChoiceBackgroundIndicator = global::CoffeeManager.Droid.Resource.Attribute.listChoiceBackgroundIndicator;
+			global::MobileCore.Droid.Resource.Attribute.listDividerAlertDialog = global::CoffeeManager.Droid.Resource.Attribute.listDividerAlertDialog;
+			global::MobileCore.Droid.Resource.Attribute.listItemLayout = global::CoffeeManager.Droid.Resource.Attribute.listItemLayout;
+			global::MobileCore.Droid.Resource.Attribute.listLayout = global::CoffeeManager.Droid.Resource.Attribute.listLayout;
+			global::MobileCore.Droid.Resource.Attribute.listMenuViewStyle = global::CoffeeManager.Droid.Resource.Attribute.listMenuViewStyle;
+			global::MobileCore.Droid.Resource.Attribute.listPopupWindowStyle = global::CoffeeManager.Droid.Resource.Attribute.listPopupWindowStyle;
+			global::MobileCore.Droid.Resource.Attribute.listPreferredItemHeight = global::CoffeeManager.Droid.Resource.Attribute.listPreferredItemHeight;
+			global::MobileCore.Droid.Resource.Attribute.listPreferredItemHeightLarge = global::CoffeeManager.Droid.Resource.Attribute.listPreferredItemHeightLarge;
+			global::MobileCore.Droid.Resource.Attribute.listPreferredItemHeightSmall = global::CoffeeManager.Droid.Resource.Attribute.listPreferredItemHeightSmall;
+			global::MobileCore.Droid.Resource.Attribute.listPreferredItemPaddingLeft = global::CoffeeManager.Droid.Resource.Attribute.listPreferredItemPaddingLeft;
+			global::MobileCore.Droid.Resource.Attribute.listPreferredItemPaddingRight = global::CoffeeManager.Droid.Resource.Attribute.listPreferredItemPaddingRight;
+			global::MobileCore.Droid.Resource.Attribute.logo = global::CoffeeManager.Droid.Resource.Attribute.logo;
+			global::MobileCore.Droid.Resource.Attribute.logoDescription = global::CoffeeManager.Droid.Resource.Attribute.logoDescription;
+			global::MobileCore.Droid.Resource.Attribute.maxButtonHeight = global::CoffeeManager.Droid.Resource.Attribute.maxButtonHeight;
+			global::MobileCore.Droid.Resource.Attribute.measureWithLargestChild = global::CoffeeManager.Droid.Resource.Attribute.measureWithLargestChild;
+			global::MobileCore.Droid.Resource.Attribute.multiChoiceItemLayout = global::CoffeeManager.Droid.Resource.Attribute.multiChoiceItemLayout;
+			global::MobileCore.Droid.Resource.Attribute.navigationContentDescription = global::CoffeeManager.Droid.Resource.Attribute.navigationContentDescription;
+			global::MobileCore.Droid.Resource.Attribute.navigationIcon = global::CoffeeManager.Droid.Resource.Attribute.navigationIcon;
+			global::MobileCore.Droid.Resource.Attribute.navigationMode = global::CoffeeManager.Droid.Resource.Attribute.navigationMode;
+			global::MobileCore.Droid.Resource.Attribute.overlapAnchor = global::CoffeeManager.Droid.Resource.Attribute.overlapAnchor;
+			global::MobileCore.Droid.Resource.Attribute.paddingBottomNoButtons = global::CoffeeManager.Droid.Resource.Attribute.paddingBottomNoButtons;
+			global::MobileCore.Droid.Resource.Attribute.paddingEnd = global::CoffeeManager.Droid.Resource.Attribute.paddingEnd;
+			global::MobileCore.Droid.Resource.Attribute.paddingStart = global::CoffeeManager.Droid.Resource.Attribute.paddingStart;
+			global::MobileCore.Droid.Resource.Attribute.paddingTopNoTitle = global::CoffeeManager.Droid.Resource.Attribute.paddingTopNoTitle;
+			global::MobileCore.Droid.Resource.Attribute.panelBackground = global::CoffeeManager.Droid.Resource.Attribute.panelBackground;
+			global::MobileCore.Droid.Resource.Attribute.panelMenuListTheme = global::CoffeeManager.Droid.Resource.Attribute.panelMenuListTheme;
+			global::MobileCore.Droid.Resource.Attribute.panelMenuListWidth = global::CoffeeManager.Droid.Resource.Attribute.panelMenuListWidth;
+			global::MobileCore.Droid.Resource.Attribute.popupMenuStyle = global::CoffeeManager.Droid.Resource.Attribute.popupMenuStyle;
+			global::MobileCore.Droid.Resource.Attribute.popupTheme = global::CoffeeManager.Droid.Resource.Attribute.popupTheme;
+			global::MobileCore.Droid.Resource.Attribute.popupWindowStyle = global::CoffeeManager.Droid.Resource.Attribute.popupWindowStyle;
+			global::MobileCore.Droid.Resource.Attribute.preserveIconSpacing = global::CoffeeManager.Droid.Resource.Attribute.preserveIconSpacing;
+			global::MobileCore.Droid.Resource.Attribute.progressBarPadding = global::CoffeeManager.Droid.Resource.Attribute.progressBarPadding;
+			global::MobileCore.Droid.Resource.Attribute.progressBarStyle = global::CoffeeManager.Droid.Resource.Attribute.progressBarStyle;
+			global::MobileCore.Droid.Resource.Attribute.queryBackground = global::CoffeeManager.Droid.Resource.Attribute.queryBackground;
+			global::MobileCore.Droid.Resource.Attribute.queryHint = global::CoffeeManager.Droid.Resource.Attribute.queryHint;
+			global::MobileCore.Droid.Resource.Attribute.radioButtonStyle = global::CoffeeManager.Droid.Resource.Attribute.radioButtonStyle;
+			global::MobileCore.Droid.Resource.Attribute.ratingBarStyle = global::CoffeeManager.Droid.Resource.Attribute.ratingBarStyle;
+			global::MobileCore.Droid.Resource.Attribute.ratingBarStyleIndicator = global::CoffeeManager.Droid.Resource.Attribute.ratingBarStyleIndicator;
+			global::MobileCore.Droid.Resource.Attribute.ratingBarStyleSmall = global::CoffeeManager.Droid.Resource.Attribute.ratingBarStyleSmall;
+			global::MobileCore.Droid.Resource.Attribute.searchHintIcon = global::CoffeeManager.Droid.Resource.Attribute.searchHintIcon;
+			global::MobileCore.Droid.Resource.Attribute.searchIcon = global::CoffeeManager.Droid.Resource.Attribute.searchIcon;
+			global::MobileCore.Droid.Resource.Attribute.searchViewStyle = global::CoffeeManager.Droid.Resource.Attribute.searchViewStyle;
+			global::MobileCore.Droid.Resource.Attribute.seekBarStyle = global::CoffeeManager.Droid.Resource.Attribute.seekBarStyle;
+			global::MobileCore.Droid.Resource.Attribute.selectableItemBackground = global::CoffeeManager.Droid.Resource.Attribute.selectableItemBackground;
+			global::MobileCore.Droid.Resource.Attribute.selectableItemBackgroundBorderless = global::CoffeeManager.Droid.Resource.Attribute.selectableItemBackgroundBorderless;
+			global::MobileCore.Droid.Resource.Attribute.showAsAction = global::CoffeeManager.Droid.Resource.Attribute.showAsAction;
+			global::MobileCore.Droid.Resource.Attribute.showDividers = global::CoffeeManager.Droid.Resource.Attribute.showDividers;
+			global::MobileCore.Droid.Resource.Attribute.showText = global::CoffeeManager.Droid.Resource.Attribute.showText;
+			global::MobileCore.Droid.Resource.Attribute.showTitle = global::CoffeeManager.Droid.Resource.Attribute.showTitle;
+			global::MobileCore.Droid.Resource.Attribute.singleChoiceItemLayout = global::CoffeeManager.Droid.Resource.Attribute.singleChoiceItemLayout;
+			global::MobileCore.Droid.Resource.Attribute.spinBars = global::CoffeeManager.Droid.Resource.Attribute.spinBars;
+			global::MobileCore.Droid.Resource.Attribute.spinnerDropDownItemStyle = global::CoffeeManager.Droid.Resource.Attribute.spinnerDropDownItemStyle;
+			global::MobileCore.Droid.Resource.Attribute.spinnerStyle = global::CoffeeManager.Droid.Resource.Attribute.spinnerStyle;
+			global::MobileCore.Droid.Resource.Attribute.splitTrack = global::CoffeeManager.Droid.Resource.Attribute.splitTrack;
+			global::MobileCore.Droid.Resource.Attribute.srcCompat = global::CoffeeManager.Droid.Resource.Attribute.srcCompat;
+			global::MobileCore.Droid.Resource.Attribute.state_above_anchor = global::CoffeeManager.Droid.Resource.Attribute.state_above_anchor;
+			global::MobileCore.Droid.Resource.Attribute.subMenuArrow = global::CoffeeManager.Droid.Resource.Attribute.subMenuArrow;
+			global::MobileCore.Droid.Resource.Attribute.submitBackground = global::CoffeeManager.Droid.Resource.Attribute.submitBackground;
+			global::MobileCore.Droid.Resource.Attribute.subtitle = global::CoffeeManager.Droid.Resource.Attribute.subtitle;
+			global::MobileCore.Droid.Resource.Attribute.subtitleTextAppearance = global::CoffeeManager.Droid.Resource.Attribute.subtitleTextAppearance;
+			global::MobileCore.Droid.Resource.Attribute.subtitleTextColor = global::CoffeeManager.Droid.Resource.Attribute.subtitleTextColor;
+			global::MobileCore.Droid.Resource.Attribute.subtitleTextStyle = global::CoffeeManager.Droid.Resource.Attribute.subtitleTextStyle;
+			global::MobileCore.Droid.Resource.Attribute.suggestionRowLayout = global::CoffeeManager.Droid.Resource.Attribute.suggestionRowLayout;
+			global::MobileCore.Droid.Resource.Attribute.switchMinWidth = global::CoffeeManager.Droid.Resource.Attribute.switchMinWidth;
+			global::MobileCore.Droid.Resource.Attribute.switchPadding = global::CoffeeManager.Droid.Resource.Attribute.switchPadding;
+			global::MobileCore.Droid.Resource.Attribute.switchStyle = global::CoffeeManager.Droid.Resource.Attribute.switchStyle;
+			global::MobileCore.Droid.Resource.Attribute.switchTextAppearance = global::CoffeeManager.Droid.Resource.Attribute.switchTextAppearance;
+			global::MobileCore.Droid.Resource.Attribute.textAllCaps = global::CoffeeManager.Droid.Resource.Attribute.textAllCaps;
+			global::MobileCore.Droid.Resource.Attribute.textAppearanceLargePopupMenu = global::CoffeeManager.Droid.Resource.Attribute.textAppearanceLargePopupMenu;
+			global::MobileCore.Droid.Resource.Attribute.textAppearanceListItem = global::CoffeeManager.Droid.Resource.Attribute.textAppearanceListItem;
+			global::MobileCore.Droid.Resource.Attribute.textAppearanceListItemSmall = global::CoffeeManager.Droid.Resource.Attribute.textAppearanceListItemSmall;
+			global::MobileCore.Droid.Resource.Attribute.textAppearancePopupMenuHeader = global::CoffeeManager.Droid.Resource.Attribute.textAppearancePopupMenuHeader;
+			global::MobileCore.Droid.Resource.Attribute.textAppearanceSearchResultSubtitle = global::CoffeeManager.Droid.Resource.Attribute.textAppearanceSearchResultSubtitle;
+			global::MobileCore.Droid.Resource.Attribute.textAppearanceSearchResultTitle = global::CoffeeManager.Droid.Resource.Attribute.textAppearanceSearchResultTitle;
+			global::MobileCore.Droid.Resource.Attribute.textAppearanceSmallPopupMenu = global::CoffeeManager.Droid.Resource.Attribute.textAppearanceSmallPopupMenu;
+			global::MobileCore.Droid.Resource.Attribute.textColorAlertDialogListItem = global::CoffeeManager.Droid.Resource.Attribute.textColorAlertDialogListItem;
+			global::MobileCore.Droid.Resource.Attribute.textColorSearchUrl = global::CoffeeManager.Droid.Resource.Attribute.textColorSearchUrl;
+			global::MobileCore.Droid.Resource.Attribute.theme = global::CoffeeManager.Droid.Resource.Attribute.theme;
+			global::MobileCore.Droid.Resource.Attribute.thickness = global::CoffeeManager.Droid.Resource.Attribute.thickness;
+			global::MobileCore.Droid.Resource.Attribute.thumbTextPadding = global::CoffeeManager.Droid.Resource.Attribute.thumbTextPadding;
+			global::MobileCore.Droid.Resource.Attribute.thumbTint = global::CoffeeManager.Droid.Resource.Attribute.thumbTint;
+			global::MobileCore.Droid.Resource.Attribute.thumbTintMode = global::CoffeeManager.Droid.Resource.Attribute.thumbTintMode;
+			global::MobileCore.Droid.Resource.Attribute.tickMark = global::CoffeeManager.Droid.Resource.Attribute.tickMark;
+			global::MobileCore.Droid.Resource.Attribute.tickMarkTint = global::CoffeeManager.Droid.Resource.Attribute.tickMarkTint;
+			global::MobileCore.Droid.Resource.Attribute.tickMarkTintMode = global::CoffeeManager.Droid.Resource.Attribute.tickMarkTintMode;
+			global::MobileCore.Droid.Resource.Attribute.title = global::CoffeeManager.Droid.Resource.Attribute.title;
+			global::MobileCore.Droid.Resource.Attribute.titleMargin = global::CoffeeManager.Droid.Resource.Attribute.titleMargin;
+			global::MobileCore.Droid.Resource.Attribute.titleMarginBottom = global::CoffeeManager.Droid.Resource.Attribute.titleMarginBottom;
+			global::MobileCore.Droid.Resource.Attribute.titleMarginEnd = global::CoffeeManager.Droid.Resource.Attribute.titleMarginEnd;
+			global::MobileCore.Droid.Resource.Attribute.titleMarginStart = global::CoffeeManager.Droid.Resource.Attribute.titleMarginStart;
+			global::MobileCore.Droid.Resource.Attribute.titleMarginTop = global::CoffeeManager.Droid.Resource.Attribute.titleMarginTop;
+			global::MobileCore.Droid.Resource.Attribute.titleMargins = global::CoffeeManager.Droid.Resource.Attribute.titleMargins;
+			global::MobileCore.Droid.Resource.Attribute.titleTextAppearance = global::CoffeeManager.Droid.Resource.Attribute.titleTextAppearance;
+			global::MobileCore.Droid.Resource.Attribute.titleTextColor = global::CoffeeManager.Droid.Resource.Attribute.titleTextColor;
+			global::MobileCore.Droid.Resource.Attribute.titleTextStyle = global::CoffeeManager.Droid.Resource.Attribute.titleTextStyle;
+			global::MobileCore.Droid.Resource.Attribute.toolbarNavigationButtonStyle = global::CoffeeManager.Droid.Resource.Attribute.toolbarNavigationButtonStyle;
+			global::MobileCore.Droid.Resource.Attribute.toolbarStyle = global::CoffeeManager.Droid.Resource.Attribute.toolbarStyle;
+			global::MobileCore.Droid.Resource.Attribute.track = global::CoffeeManager.Droid.Resource.Attribute.track;
+			global::MobileCore.Droid.Resource.Attribute.trackTint = global::CoffeeManager.Droid.Resource.Attribute.trackTint;
+			global::MobileCore.Droid.Resource.Attribute.trackTintMode = global::CoffeeManager.Droid.Resource.Attribute.trackTintMode;
+			global::MobileCore.Droid.Resource.Attribute.voiceIcon = global::CoffeeManager.Droid.Resource.Attribute.voiceIcon;
+			global::MobileCore.Droid.Resource.Attribute.windowActionBar = global::CoffeeManager.Droid.Resource.Attribute.windowActionBar;
+			global::MobileCore.Droid.Resource.Attribute.windowActionBarOverlay = global::CoffeeManager.Droid.Resource.Attribute.windowActionBarOverlay;
+			global::MobileCore.Droid.Resource.Attribute.windowActionModeOverlay = global::CoffeeManager.Droid.Resource.Attribute.windowActionModeOverlay;
+			global::MobileCore.Droid.Resource.Attribute.windowFixedHeightMajor = global::CoffeeManager.Droid.Resource.Attribute.windowFixedHeightMajor;
+			global::MobileCore.Droid.Resource.Attribute.windowFixedHeightMinor = global::CoffeeManager.Droid.Resource.Attribute.windowFixedHeightMinor;
+			global::MobileCore.Droid.Resource.Attribute.windowFixedWidthMajor = global::CoffeeManager.Droid.Resource.Attribute.windowFixedWidthMajor;
+			global::MobileCore.Droid.Resource.Attribute.windowFixedWidthMinor = global::CoffeeManager.Droid.Resource.Attribute.windowFixedWidthMinor;
+			global::MobileCore.Droid.Resource.Attribute.windowMinWidthMajor = global::CoffeeManager.Droid.Resource.Attribute.windowMinWidthMajor;
+			global::MobileCore.Droid.Resource.Attribute.windowMinWidthMinor = global::CoffeeManager.Droid.Resource.Attribute.windowMinWidthMinor;
+			global::MobileCore.Droid.Resource.Attribute.windowNoTitle = global::CoffeeManager.Droid.Resource.Attribute.windowNoTitle;
+			global::MobileCore.Droid.Resource.Boolean.abc_action_bar_embed_tabs = global::CoffeeManager.Droid.Resource.Boolean.abc_action_bar_embed_tabs;
+			global::MobileCore.Droid.Resource.Boolean.abc_allow_stacked_button_bar = global::CoffeeManager.Droid.Resource.Boolean.abc_allow_stacked_button_bar;
+			global::MobileCore.Droid.Resource.Boolean.abc_config_actionMenuItemAllCaps = global::CoffeeManager.Droid.Resource.Boolean.abc_config_actionMenuItemAllCaps;
+			global::MobileCore.Droid.Resource.Boolean.abc_config_closeDialogWhenTouchOutside = global::CoffeeManager.Droid.Resource.Boolean.abc_config_closeDialogWhenTouchOutside;
+			global::MobileCore.Droid.Resource.Boolean.abc_config_showMenuShortcutsWhenKeyboardPresent = global::CoffeeManager.Droid.Resource.Boolean.abc_config_showMenuShortcutsWhenKeyboardPresent;
+			global::MobileCore.Droid.Resource.Color.abc_background_cache_hint_selector_material_dark = global::CoffeeManager.Droid.Resource.Color.abc_background_cache_hint_selector_material_dark;
+			global::MobileCore.Droid.Resource.Color.abc_background_cache_hint_selector_material_light = global::CoffeeManager.Droid.Resource.Color.abc_background_cache_hint_selector_material_light;
+			global::MobileCore.Droid.Resource.Color.abc_btn_colored_borderless_text_material = global::CoffeeManager.Droid.Resource.Color.abc_btn_colored_borderless_text_material;
+			global::MobileCore.Droid.Resource.Color.abc_btn_colored_text_material = global::CoffeeManager.Droid.Resource.Color.abc_btn_colored_text_material;
+			global::MobileCore.Droid.Resource.Color.abc_color_highlight_material = global::CoffeeManager.Droid.Resource.Color.abc_color_highlight_material;
+			global::MobileCore.Droid.Resource.Color.abc_hint_foreground_material_dark = global::CoffeeManager.Droid.Resource.Color.abc_hint_foreground_material_dark;
+			global::MobileCore.Droid.Resource.Color.abc_hint_foreground_material_light = global::CoffeeManager.Droid.Resource.Color.abc_hint_foreground_material_light;
+			global::MobileCore.Droid.Resource.Color.abc_input_method_navigation_guard = global::CoffeeManager.Droid.Resource.Color.abc_input_method_navigation_guard;
+			global::MobileCore.Droid.Resource.Color.abc_primary_text_disable_only_material_dark = global::CoffeeManager.Droid.Resource.Color.abc_primary_text_disable_only_material_dark;
+			global::MobileCore.Droid.Resource.Color.abc_primary_text_disable_only_material_light = global::CoffeeManager.Droid.Resource.Color.abc_primary_text_disable_only_material_light;
+			global::MobileCore.Droid.Resource.Color.abc_primary_text_material_dark = global::CoffeeManager.Droid.Resource.Color.abc_primary_text_material_dark;
+			global::MobileCore.Droid.Resource.Color.abc_primary_text_material_light = global::CoffeeManager.Droid.Resource.Color.abc_primary_text_material_light;
+			global::MobileCore.Droid.Resource.Color.abc_search_url_text = global::CoffeeManager.Droid.Resource.Color.abc_search_url_text;
+			global::MobileCore.Droid.Resource.Color.abc_search_url_text_normal = global::CoffeeManager.Droid.Resource.Color.abc_search_url_text_normal;
+			global::MobileCore.Droid.Resource.Color.abc_search_url_text_pressed = global::CoffeeManager.Droid.Resource.Color.abc_search_url_text_pressed;
+			global::MobileCore.Droid.Resource.Color.abc_search_url_text_selected = global::CoffeeManager.Droid.Resource.Color.abc_search_url_text_selected;
+			global::MobileCore.Droid.Resource.Color.abc_secondary_text_material_dark = global::CoffeeManager.Droid.Resource.Color.abc_secondary_text_material_dark;
+			global::MobileCore.Droid.Resource.Color.abc_secondary_text_material_light = global::CoffeeManager.Droid.Resource.Color.abc_secondary_text_material_light;
+			global::MobileCore.Droid.Resource.Color.abc_tint_btn_checkable = global::CoffeeManager.Droid.Resource.Color.abc_tint_btn_checkable;
+			global::MobileCore.Droid.Resource.Color.abc_tint_default = global::CoffeeManager.Droid.Resource.Color.abc_tint_default;
+			global::MobileCore.Droid.Resource.Color.abc_tint_edittext = global::CoffeeManager.Droid.Resource.Color.abc_tint_edittext;
+			global::MobileCore.Droid.Resource.Color.abc_tint_seek_thumb = global::CoffeeManager.Droid.Resource.Color.abc_tint_seek_thumb;
+			global::MobileCore.Droid.Resource.Color.abc_tint_spinner = global::CoffeeManager.Droid.Resource.Color.abc_tint_spinner;
+			global::MobileCore.Droid.Resource.Color.abc_tint_switch_thumb = global::CoffeeManager.Droid.Resource.Color.abc_tint_switch_thumb;
+			global::MobileCore.Droid.Resource.Color.abc_tint_switch_track = global::CoffeeManager.Droid.Resource.Color.abc_tint_switch_track;
+			global::MobileCore.Droid.Resource.Color.accent_material_dark = global::CoffeeManager.Droid.Resource.Color.accent_material_dark;
+			global::MobileCore.Droid.Resource.Color.accent_material_light = global::CoffeeManager.Droid.Resource.Color.accent_material_light;
+			global::MobileCore.Droid.Resource.Color.background_floating_material_dark = global::CoffeeManager.Droid.Resource.Color.background_floating_material_dark;
+			global::MobileCore.Droid.Resource.Color.background_floating_material_light = global::CoffeeManager.Droid.Resource.Color.background_floating_material_light;
+			global::MobileCore.Droid.Resource.Color.background_material_dark = global::CoffeeManager.Droid.Resource.Color.background_material_dark;
+			global::MobileCore.Droid.Resource.Color.background_material_light = global::CoffeeManager.Droid.Resource.Color.background_material_light;
+			global::MobileCore.Droid.Resource.Color.bright_foreground_disabled_material_dark = global::CoffeeManager.Droid.Resource.Color.bright_foreground_disabled_material_dark;
+			global::MobileCore.Droid.Resource.Color.bright_foreground_disabled_material_light = global::CoffeeManager.Droid.Resource.Color.bright_foreground_disabled_material_light;
+			global::MobileCore.Droid.Resource.Color.bright_foreground_inverse_material_dark = global::CoffeeManager.Droid.Resource.Color.bright_foreground_inverse_material_dark;
+			global::MobileCore.Droid.Resource.Color.bright_foreground_inverse_material_light = global::CoffeeManager.Droid.Resource.Color.bright_foreground_inverse_material_light;
+			global::MobileCore.Droid.Resource.Color.bright_foreground_material_dark = global::CoffeeManager.Droid.Resource.Color.bright_foreground_material_dark;
+			global::MobileCore.Droid.Resource.Color.bright_foreground_material_light = global::CoffeeManager.Droid.Resource.Color.bright_foreground_material_light;
+			global::MobileCore.Droid.Resource.Color.button_material_dark = global::CoffeeManager.Droid.Resource.Color.button_material_dark;
+			global::MobileCore.Droid.Resource.Color.button_material_light = global::CoffeeManager.Droid.Resource.Color.button_material_light;
+			global::MobileCore.Droid.Resource.Color.dim_foreground_disabled_material_dark = global::CoffeeManager.Droid.Resource.Color.dim_foreground_disabled_material_dark;
+			global::MobileCore.Droid.Resource.Color.dim_foreground_disabled_material_light = global::CoffeeManager.Droid.Resource.Color.dim_foreground_disabled_material_light;
+			global::MobileCore.Droid.Resource.Color.dim_foreground_material_dark = global::CoffeeManager.Droid.Resource.Color.dim_foreground_material_dark;
+			global::MobileCore.Droid.Resource.Color.dim_foreground_material_light = global::CoffeeManager.Droid.Resource.Color.dim_foreground_material_light;
+			global::MobileCore.Droid.Resource.Color.foreground_material_dark = global::CoffeeManager.Droid.Resource.Color.foreground_material_dark;
+			global::MobileCore.Droid.Resource.Color.foreground_material_light = global::CoffeeManager.Droid.Resource.Color.foreground_material_light;
+			global::MobileCore.Droid.Resource.Color.highlighted_text_material_dark = global::CoffeeManager.Droid.Resource.Color.highlighted_text_material_dark;
+			global::MobileCore.Droid.Resource.Color.highlighted_text_material_light = global::CoffeeManager.Droid.Resource.Color.highlighted_text_material_light;
+			global::MobileCore.Droid.Resource.Color.material_blue_grey_800 = global::CoffeeManager.Droid.Resource.Color.material_blue_grey_800;
+			global::MobileCore.Droid.Resource.Color.material_blue_grey_900 = global::CoffeeManager.Droid.Resource.Color.material_blue_grey_900;
+			global::MobileCore.Droid.Resource.Color.material_blue_grey_950 = global::CoffeeManager.Droid.Resource.Color.material_blue_grey_950;
+			global::MobileCore.Droid.Resource.Color.material_deep_teal_200 = global::CoffeeManager.Droid.Resource.Color.material_deep_teal_200;
+			global::MobileCore.Droid.Resource.Color.material_deep_teal_500 = global::CoffeeManager.Droid.Resource.Color.material_deep_teal_500;
+			global::MobileCore.Droid.Resource.Color.material_grey_100 = global::CoffeeManager.Droid.Resource.Color.material_grey_100;
+			global::MobileCore.Droid.Resource.Color.material_grey_300 = global::CoffeeManager.Droid.Resource.Color.material_grey_300;
+			global::MobileCore.Droid.Resource.Color.material_grey_50 = global::CoffeeManager.Droid.Resource.Color.material_grey_50;
+			global::MobileCore.Droid.Resource.Color.material_grey_600 = global::CoffeeManager.Droid.Resource.Color.material_grey_600;
+			global::MobileCore.Droid.Resource.Color.material_grey_800 = global::CoffeeManager.Droid.Resource.Color.material_grey_800;
+			global::MobileCore.Droid.Resource.Color.material_grey_850 = global::CoffeeManager.Droid.Resource.Color.material_grey_850;
+			global::MobileCore.Droid.Resource.Color.material_grey_900 = global::CoffeeManager.Droid.Resource.Color.material_grey_900;
+			global::MobileCore.Droid.Resource.Color.notification_action_color_filter = global::CoffeeManager.Droid.Resource.Color.notification_action_color_filter;
+			global::MobileCore.Droid.Resource.Color.notification_icon_bg_color = global::CoffeeManager.Droid.Resource.Color.notification_icon_bg_color;
+			global::MobileCore.Droid.Resource.Color.notification_material_background_media_default_color = global::CoffeeManager.Droid.Resource.Color.notification_material_background_media_default_color;
+			global::MobileCore.Droid.Resource.Color.primary_dark_material_dark = global::CoffeeManager.Droid.Resource.Color.primary_dark_material_dark;
+			global::MobileCore.Droid.Resource.Color.primary_dark_material_light = global::CoffeeManager.Droid.Resource.Color.primary_dark_material_light;
+			global::MobileCore.Droid.Resource.Color.primary_material_dark = global::CoffeeManager.Droid.Resource.Color.primary_material_dark;
+			global::MobileCore.Droid.Resource.Color.primary_material_light = global::CoffeeManager.Droid.Resource.Color.primary_material_light;
+			global::MobileCore.Droid.Resource.Color.primary_text_default_material_dark = global::CoffeeManager.Droid.Resource.Color.primary_text_default_material_dark;
+			global::MobileCore.Droid.Resource.Color.primary_text_default_material_light = global::CoffeeManager.Droid.Resource.Color.primary_text_default_material_light;
+			global::MobileCore.Droid.Resource.Color.primary_text_disabled_material_dark = global::CoffeeManager.Droid.Resource.Color.primary_text_disabled_material_dark;
+			global::MobileCore.Droid.Resource.Color.primary_text_disabled_material_light = global::CoffeeManager.Droid.Resource.Color.primary_text_disabled_material_light;
+			global::MobileCore.Droid.Resource.Color.ripple_material_dark = global::CoffeeManager.Droid.Resource.Color.ripple_material_dark;
+			global::MobileCore.Droid.Resource.Color.ripple_material_light = global::CoffeeManager.Droid.Resource.Color.ripple_material_light;
+			global::MobileCore.Droid.Resource.Color.secondary_text_default_material_dark = global::CoffeeManager.Droid.Resource.Color.secondary_text_default_material_dark;
+			global::MobileCore.Droid.Resource.Color.secondary_text_default_material_light = global::CoffeeManager.Droid.Resource.Color.secondary_text_default_material_light;
+			global::MobileCore.Droid.Resource.Color.secondary_text_disabled_material_dark = global::CoffeeManager.Droid.Resource.Color.secondary_text_disabled_material_dark;
+			global::MobileCore.Droid.Resource.Color.secondary_text_disabled_material_light = global::CoffeeManager.Droid.Resource.Color.secondary_text_disabled_material_light;
+			global::MobileCore.Droid.Resource.Color.switch_thumb_disabled_material_dark = global::CoffeeManager.Droid.Resource.Color.switch_thumb_disabled_material_dark;
+			global::MobileCore.Droid.Resource.Color.switch_thumb_disabled_material_light = global::CoffeeManager.Droid.Resource.Color.switch_thumb_disabled_material_light;
+			global::MobileCore.Droid.Resource.Color.switch_thumb_material_dark = global::CoffeeManager.Droid.Resource.Color.switch_thumb_material_dark;
+			global::MobileCore.Droid.Resource.Color.switch_thumb_material_light = global::CoffeeManager.Droid.Resource.Color.switch_thumb_material_light;
+			global::MobileCore.Droid.Resource.Color.switch_thumb_normal_material_dark = global::CoffeeManager.Droid.Resource.Color.switch_thumb_normal_material_dark;
+			global::MobileCore.Droid.Resource.Color.switch_thumb_normal_material_light = global::CoffeeManager.Droid.Resource.Color.switch_thumb_normal_material_light;
+			global::MobileCore.Droid.Resource.Dimension.abc_action_bar_content_inset_material = global::CoffeeManager.Droid.Resource.Dimension.abc_action_bar_content_inset_material;
+			global::MobileCore.Droid.Resource.Dimension.abc_action_bar_content_inset_with_nav = global::CoffeeManager.Droid.Resource.Dimension.abc_action_bar_content_inset_with_nav;
+			global::MobileCore.Droid.Resource.Dimension.abc_action_bar_default_height_material = global::CoffeeManager.Droid.Resource.Dimension.abc_action_bar_default_height_material;
+			global::MobileCore.Droid.Resource.Dimension.abc_action_bar_default_padding_end_material = global::CoffeeManager.Droid.Resource.Dimension.abc_action_bar_default_padding_end_material;
+			global::MobileCore.Droid.Resource.Dimension.abc_action_bar_default_padding_start_material = global::CoffeeManager.Droid.Resource.Dimension.abc_action_bar_default_padding_start_material;
+			global::MobileCore.Droid.Resource.Dimension.abc_action_bar_elevation_material = global::CoffeeManager.Droid.Resource.Dimension.abc_action_bar_elevation_material;
+			global::MobileCore.Droid.Resource.Dimension.abc_action_bar_icon_vertical_padding_material = global::CoffeeManager.Droid.Resource.Dimension.abc_action_bar_icon_vertical_padding_material;
+			global::MobileCore.Droid.Resource.Dimension.abc_action_bar_overflow_padding_end_material = global::CoffeeManager.Droid.Resource.Dimension.abc_action_bar_overflow_padding_end_material;
+			global::MobileCore.Droid.Resource.Dimension.abc_action_bar_overflow_padding_start_material = global::CoffeeManager.Droid.Resource.Dimension.abc_action_bar_overflow_padding_start_material;
+			global::MobileCore.Droid.Resource.Dimension.abc_action_bar_progress_bar_size = global::CoffeeManager.Droid.Resource.Dimension.abc_action_bar_progress_bar_size;
+			global::MobileCore.Droid.Resource.Dimension.abc_action_bar_stacked_max_height = global::CoffeeManager.Droid.Resource.Dimension.abc_action_bar_stacked_max_height;
+			global::MobileCore.Droid.Resource.Dimension.abc_action_bar_stacked_tab_max_width = global::CoffeeManager.Droid.Resource.Dimension.abc_action_bar_stacked_tab_max_width;
+			global::MobileCore.Droid.Resource.Dimension.abc_action_bar_subtitle_bottom_margin_material = global::CoffeeManager.Droid.Resource.Dimension.abc_action_bar_subtitle_bottom_margin_material;
+			global::MobileCore.Droid.Resource.Dimension.abc_action_bar_subtitle_top_margin_material = global::CoffeeManager.Droid.Resource.Dimension.abc_action_bar_subtitle_top_margin_material;
+			global::MobileCore.Droid.Resource.Dimension.abc_action_button_min_height_material = global::CoffeeManager.Droid.Resource.Dimension.abc_action_button_min_height_material;
+			global::MobileCore.Droid.Resource.Dimension.abc_action_button_min_width_material = global::CoffeeManager.Droid.Resource.Dimension.abc_action_button_min_width_material;
+			global::MobileCore.Droid.Resource.Dimension.abc_action_button_min_width_overflow_material = global::CoffeeManager.Droid.Resource.Dimension.abc_action_button_min_width_overflow_material;
+			global::MobileCore.Droid.Resource.Dimension.abc_alert_dialog_button_bar_height = global::CoffeeManager.Droid.Resource.Dimension.abc_alert_dialog_button_bar_height;
+			global::MobileCore.Droid.Resource.Dimension.abc_button_inset_horizontal_material = global::CoffeeManager.Droid.Resource.Dimension.abc_button_inset_horizontal_material;
+			global::MobileCore.Droid.Resource.Dimension.abc_button_inset_vertical_material = global::CoffeeManager.Droid.Resource.Dimension.abc_button_inset_vertical_material;
+			global::MobileCore.Droid.Resource.Dimension.abc_button_padding_horizontal_material = global::CoffeeManager.Droid.Resource.Dimension.abc_button_padding_horizontal_material;
+			global::MobileCore.Droid.Resource.Dimension.abc_button_padding_vertical_material = global::CoffeeManager.Droid.Resource.Dimension.abc_button_padding_vertical_material;
+			global::MobileCore.Droid.Resource.Dimension.abc_cascading_menus_min_smallest_width = global::CoffeeManager.Droid.Resource.Dimension.abc_cascading_menus_min_smallest_width;
+			global::MobileCore.Droid.Resource.Dimension.abc_config_prefDialogWidth = global::CoffeeManager.Droid.Resource.Dimension.abc_config_prefDialogWidth;
+			global::MobileCore.Droid.Resource.Dimension.abc_control_corner_material = global::CoffeeManager.Droid.Resource.Dimension.abc_control_corner_material;
+			global::MobileCore.Droid.Resource.Dimension.abc_control_inset_material = global::CoffeeManager.Droid.Resource.Dimension.abc_control_inset_material;
+			global::MobileCore.Droid.Resource.Dimension.abc_control_padding_material = global::CoffeeManager.Droid.Resource.Dimension.abc_control_padding_material;
+			global::MobileCore.Droid.Resource.Dimension.abc_dialog_fixed_height_major = global::CoffeeManager.Droid.Resource.Dimension.abc_dialog_fixed_height_major;
+			global::MobileCore.Droid.Resource.Dimension.abc_dialog_fixed_height_minor = global::CoffeeManager.Droid.Resource.Dimension.abc_dialog_fixed_height_minor;
+			global::MobileCore.Droid.Resource.Dimension.abc_dialog_fixed_width_major = global::CoffeeManager.Droid.Resource.Dimension.abc_dialog_fixed_width_major;
+			global::MobileCore.Droid.Resource.Dimension.abc_dialog_fixed_width_minor = global::CoffeeManager.Droid.Resource.Dimension.abc_dialog_fixed_width_minor;
+			global::MobileCore.Droid.Resource.Dimension.abc_dialog_list_padding_bottom_no_buttons = global::CoffeeManager.Droid.Resource.Dimension.abc_dialog_list_padding_bottom_no_buttons;
+			global::MobileCore.Droid.Resource.Dimension.abc_dialog_list_padding_top_no_title = global::CoffeeManager.Droid.Resource.Dimension.abc_dialog_list_padding_top_no_title;
+			global::MobileCore.Droid.Resource.Dimension.abc_dialog_min_width_major = global::CoffeeManager.Droid.Resource.Dimension.abc_dialog_min_width_major;
+			global::MobileCore.Droid.Resource.Dimension.abc_dialog_min_width_minor = global::CoffeeManager.Droid.Resource.Dimension.abc_dialog_min_width_minor;
+			global::MobileCore.Droid.Resource.Dimension.abc_dialog_padding_material = global::CoffeeManager.Droid.Resource.Dimension.abc_dialog_padding_material;
+			global::MobileCore.Droid.Resource.Dimension.abc_dialog_padding_top_material = global::CoffeeManager.Droid.Resource.Dimension.abc_dialog_padding_top_material;
+			global::MobileCore.Droid.Resource.Dimension.abc_dialog_title_divider_material = global::CoffeeManager.Droid.Resource.Dimension.abc_dialog_title_divider_material;
+			global::MobileCore.Droid.Resource.Dimension.abc_disabled_alpha_material_dark = global::CoffeeManager.Droid.Resource.Dimension.abc_disabled_alpha_material_dark;
+			global::MobileCore.Droid.Resource.Dimension.abc_disabled_alpha_material_light = global::CoffeeManager.Droid.Resource.Dimension.abc_disabled_alpha_material_light;
+			global::MobileCore.Droid.Resource.Dimension.abc_dropdownitem_icon_width = global::CoffeeManager.Droid.Resource.Dimension.abc_dropdownitem_icon_width;
+			global::MobileCore.Droid.Resource.Dimension.abc_dropdownitem_text_padding_left = global::CoffeeManager.Droid.Resource.Dimension.abc_dropdownitem_text_padding_left;
+			global::MobileCore.Droid.Resource.Dimension.abc_dropdownitem_text_padding_right = global::CoffeeManager.Droid.Resource.Dimension.abc_dropdownitem_text_padding_right;
+			global::MobileCore.Droid.Resource.Dimension.abc_edit_text_inset_bottom_material = global::CoffeeManager.Droid.Resource.Dimension.abc_edit_text_inset_bottom_material;
+			global::MobileCore.Droid.Resource.Dimension.abc_edit_text_inset_horizontal_material = global::CoffeeManager.Droid.Resource.Dimension.abc_edit_text_inset_horizontal_material;
+			global::MobileCore.Droid.Resource.Dimension.abc_edit_text_inset_top_material = global::CoffeeManager.Droid.Resource.Dimension.abc_edit_text_inset_top_material;
+			global::MobileCore.Droid.Resource.Dimension.abc_floating_window_z = global::CoffeeManager.Droid.Resource.Dimension.abc_floating_window_z;
+			global::MobileCore.Droid.Resource.Dimension.abc_list_item_padding_horizontal_material = global::CoffeeManager.Droid.Resource.Dimension.abc_list_item_padding_horizontal_material;
+			global::MobileCore.Droid.Resource.Dimension.abc_panel_menu_list_width = global::CoffeeManager.Droid.Resource.Dimension.abc_panel_menu_list_width;
+			global::MobileCore.Droid.Resource.Dimension.abc_progress_bar_height_material = global::CoffeeManager.Droid.Resource.Dimension.abc_progress_bar_height_material;
+			global::MobileCore.Droid.Resource.Dimension.abc_search_view_preferred_height = global::CoffeeManager.Droid.Resource.Dimension.abc_search_view_preferred_height;
+			global::MobileCore.Droid.Resource.Dimension.abc_search_view_preferred_width = global::CoffeeManager.Droid.Resource.Dimension.abc_search_view_preferred_width;
+			global::MobileCore.Droid.Resource.Dimension.abc_seekbar_track_background_height_material = global::CoffeeManager.Droid.Resource.Dimension.abc_seekbar_track_background_height_material;
+			global::MobileCore.Droid.Resource.Dimension.abc_seekbar_track_progress_height_material = global::CoffeeManager.Droid.Resource.Dimension.abc_seekbar_track_progress_height_material;
+			global::MobileCore.Droid.Resource.Dimension.abc_select_dialog_padding_start_material = global::CoffeeManager.Droid.Resource.Dimension.abc_select_dialog_padding_start_material;
+			global::MobileCore.Droid.Resource.Dimension.abc_switch_padding = global::CoffeeManager.Droid.Resource.Dimension.abc_switch_padding;
+			global::MobileCore.Droid.Resource.Dimension.abc_text_size_body_1_material = global::CoffeeManager.Droid.Resource.Dimension.abc_text_size_body_1_material;
+			global::MobileCore.Droid.Resource.Dimension.abc_text_size_body_2_material = global::CoffeeManager.Droid.Resource.Dimension.abc_text_size_body_2_material;
+			global::MobileCore.Droid.Resource.Dimension.abc_text_size_button_material = global::CoffeeManager.Droid.Resource.Dimension.abc_text_size_button_material;
+			global::MobileCore.Droid.Resource.Dimension.abc_text_size_caption_material = global::CoffeeManager.Droid.Resource.Dimension.abc_text_size_caption_material;
+			global::MobileCore.Droid.Resource.Dimension.abc_text_size_display_1_material = global::CoffeeManager.Droid.Resource.Dimension.abc_text_size_display_1_material;
+			global::MobileCore.Droid.Resource.Dimension.abc_text_size_display_2_material = global::CoffeeManager.Droid.Resource.Dimension.abc_text_size_display_2_material;
+			global::MobileCore.Droid.Resource.Dimension.abc_text_size_display_3_material = global::CoffeeManager.Droid.Resource.Dimension.abc_text_size_display_3_material;
+			global::MobileCore.Droid.Resource.Dimension.abc_text_size_display_4_material = global::CoffeeManager.Droid.Resource.Dimension.abc_text_size_display_4_material;
+			global::MobileCore.Droid.Resource.Dimension.abc_text_size_headline_material = global::CoffeeManager.Droid.Resource.Dimension.abc_text_size_headline_material;
+			global::MobileCore.Droid.Resource.Dimension.abc_text_size_large_material = global::CoffeeManager.Droid.Resource.Dimension.abc_text_size_large_material;
+			global::MobileCore.Droid.Resource.Dimension.abc_text_size_medium_material = global::CoffeeManager.Droid.Resource.Dimension.abc_text_size_medium_material;
+			global::MobileCore.Droid.Resource.Dimension.abc_text_size_menu_header_material = global::CoffeeManager.Droid.Resource.Dimension.abc_text_size_menu_header_material;
+			global::MobileCore.Droid.Resource.Dimension.abc_text_size_menu_material = global::CoffeeManager.Droid.Resource.Dimension.abc_text_size_menu_material;
+			global::MobileCore.Droid.Resource.Dimension.abc_text_size_small_material = global::CoffeeManager.Droid.Resource.Dimension.abc_text_size_small_material;
+			global::MobileCore.Droid.Resource.Dimension.abc_text_size_subhead_material = global::CoffeeManager.Droid.Resource.Dimension.abc_text_size_subhead_material;
+			global::MobileCore.Droid.Resource.Dimension.abc_text_size_subtitle_material_toolbar = global::CoffeeManager.Droid.Resource.Dimension.abc_text_size_subtitle_material_toolbar;
+			global::MobileCore.Droid.Resource.Dimension.abc_text_size_title_material = global::CoffeeManager.Droid.Resource.Dimension.abc_text_size_title_material;
+			global::MobileCore.Droid.Resource.Dimension.abc_text_size_title_material_toolbar = global::CoffeeManager.Droid.Resource.Dimension.abc_text_size_title_material_toolbar;
+			global::MobileCore.Droid.Resource.Dimension.disabled_alpha_material_dark = global::CoffeeManager.Droid.Resource.Dimension.disabled_alpha_material_dark;
+			global::MobileCore.Droid.Resource.Dimension.disabled_alpha_material_light = global::CoffeeManager.Droid.Resource.Dimension.disabled_alpha_material_light;
+			global::MobileCore.Droid.Resource.Dimension.highlight_alpha_material_colored = global::CoffeeManager.Droid.Resource.Dimension.highlight_alpha_material_colored;
+			global::MobileCore.Droid.Resource.Dimension.highlight_alpha_material_dark = global::CoffeeManager.Droid.Resource.Dimension.highlight_alpha_material_dark;
+			global::MobileCore.Droid.Resource.Dimension.highlight_alpha_material_light = global::CoffeeManager.Droid.Resource.Dimension.highlight_alpha_material_light;
+			global::MobileCore.Droid.Resource.Dimension.hint_alpha_material_dark = global::CoffeeManager.Droid.Resource.Dimension.hint_alpha_material_dark;
+			global::MobileCore.Droid.Resource.Dimension.hint_alpha_material_light = global::CoffeeManager.Droid.Resource.Dimension.hint_alpha_material_light;
+			global::MobileCore.Droid.Resource.Dimension.hint_pressed_alpha_material_dark = global::CoffeeManager.Droid.Resource.Dimension.hint_pressed_alpha_material_dark;
+			global::MobileCore.Droid.Resource.Dimension.hint_pressed_alpha_material_light = global::CoffeeManager.Droid.Resource.Dimension.hint_pressed_alpha_material_light;
+			global::MobileCore.Droid.Resource.Dimension.notification_action_icon_size = global::CoffeeManager.Droid.Resource.Dimension.notification_action_icon_size;
+			global::MobileCore.Droid.Resource.Dimension.notification_action_text_size = global::CoffeeManager.Droid.Resource.Dimension.notification_action_text_size;
+			global::MobileCore.Droid.Resource.Dimension.notification_big_circle_margin = global::CoffeeManager.Droid.Resource.Dimension.notification_big_circle_margin;
+			global::MobileCore.Droid.Resource.Dimension.notification_content_margin_start = global::CoffeeManager.Droid.Resource.Dimension.notification_content_margin_start;
+			global::MobileCore.Droid.Resource.Dimension.notification_large_icon_height = global::CoffeeManager.Droid.Resource.Dimension.notification_large_icon_height;
+			global::MobileCore.Droid.Resource.Dimension.notification_large_icon_width = global::CoffeeManager.Droid.Resource.Dimension.notification_large_icon_width;
+			global::MobileCore.Droid.Resource.Dimension.notification_main_column_padding_top = global::CoffeeManager.Droid.Resource.Dimension.notification_main_column_padding_top;
+			global::MobileCore.Droid.Resource.Dimension.notification_media_narrow_margin = global::CoffeeManager.Droid.Resource.Dimension.notification_media_narrow_margin;
+			global::MobileCore.Droid.Resource.Dimension.notification_right_icon_size = global::CoffeeManager.Droid.Resource.Dimension.notification_right_icon_size;
+			global::MobileCore.Droid.Resource.Dimension.notification_right_side_padding_top = global::CoffeeManager.Droid.Resource.Dimension.notification_right_side_padding_top;
+			global::MobileCore.Droid.Resource.Dimension.notification_small_icon_background_padding = global::CoffeeManager.Droid.Resource.Dimension.notification_small_icon_background_padding;
+			global::MobileCore.Droid.Resource.Dimension.notification_small_icon_size_as_large = global::CoffeeManager.Droid.Resource.Dimension.notification_small_icon_size_as_large;
+			global::MobileCore.Droid.Resource.Dimension.notification_subtext_size = global::CoffeeManager.Droid.Resource.Dimension.notification_subtext_size;
+			global::MobileCore.Droid.Resource.Dimension.notification_top_pad = global::CoffeeManager.Droid.Resource.Dimension.notification_top_pad;
+			global::MobileCore.Droid.Resource.Dimension.notification_top_pad_large_text = global::CoffeeManager.Droid.Resource.Dimension.notification_top_pad_large_text;
+			global::MobileCore.Droid.Resource.Drawable.abc_ab_share_pack_mtrl_alpha = global::CoffeeManager.Droid.Resource.Drawable.abc_ab_share_pack_mtrl_alpha;
+			global::MobileCore.Droid.Resource.Drawable.abc_action_bar_item_background_material = global::CoffeeManager.Droid.Resource.Drawable.abc_action_bar_item_background_material;
+			global::MobileCore.Droid.Resource.Drawable.abc_btn_borderless_material = global::CoffeeManager.Droid.Resource.Drawable.abc_btn_borderless_material;
+			global::MobileCore.Droid.Resource.Drawable.abc_btn_check_material = global::CoffeeManager.Droid.Resource.Drawable.abc_btn_check_material;
+			global::MobileCore.Droid.Resource.Drawable.abc_btn_check_to_on_mtrl_000 = global::CoffeeManager.Droid.Resource.Drawable.abc_btn_check_to_on_mtrl_000;
+			global::MobileCore.Droid.Resource.Drawable.abc_btn_check_to_on_mtrl_015 = global::CoffeeManager.Droid.Resource.Drawable.abc_btn_check_to_on_mtrl_015;
+			global::MobileCore.Droid.Resource.Drawable.abc_btn_colored_material = global::CoffeeManager.Droid.Resource.Drawable.abc_btn_colored_material;
+			global::MobileCore.Droid.Resource.Drawable.abc_btn_default_mtrl_shape = global::CoffeeManager.Droid.Resource.Drawable.abc_btn_default_mtrl_shape;
+			global::MobileCore.Droid.Resource.Drawable.abc_btn_radio_material = global::CoffeeManager.Droid.Resource.Drawable.abc_btn_radio_material;
+			global::MobileCore.Droid.Resource.Drawable.abc_btn_radio_to_on_mtrl_000 = global::CoffeeManager.Droid.Resource.Drawable.abc_btn_radio_to_on_mtrl_000;
+			global::MobileCore.Droid.Resource.Drawable.abc_btn_radio_to_on_mtrl_015 = global::CoffeeManager.Droid.Resource.Drawable.abc_btn_radio_to_on_mtrl_015;
+			global::MobileCore.Droid.Resource.Drawable.abc_btn_switch_to_on_mtrl_00001 = global::CoffeeManager.Droid.Resource.Drawable.abc_btn_switch_to_on_mtrl_00001;
+			global::MobileCore.Droid.Resource.Drawable.abc_btn_switch_to_on_mtrl_00012 = global::CoffeeManager.Droid.Resource.Drawable.abc_btn_switch_to_on_mtrl_00012;
+			global::MobileCore.Droid.Resource.Drawable.abc_cab_background_internal_bg = global::CoffeeManager.Droid.Resource.Drawable.abc_cab_background_internal_bg;
+			global::MobileCore.Droid.Resource.Drawable.abc_cab_background_top_material = global::CoffeeManager.Droid.Resource.Drawable.abc_cab_background_top_material;
+			global::MobileCore.Droid.Resource.Drawable.abc_cab_background_top_mtrl_alpha = global::CoffeeManager.Droid.Resource.Drawable.abc_cab_background_top_mtrl_alpha;
+			global::MobileCore.Droid.Resource.Drawable.abc_control_background_material = global::CoffeeManager.Droid.Resource.Drawable.abc_control_background_material;
+			global::MobileCore.Droid.Resource.Drawable.abc_dialog_material_background = global::CoffeeManager.Droid.Resource.Drawable.abc_dialog_material_background;
+			global::MobileCore.Droid.Resource.Drawable.abc_edit_text_material = global::CoffeeManager.Droid.Resource.Drawable.abc_edit_text_material;
+			global::MobileCore.Droid.Resource.Drawable.abc_ic_ab_back_material = global::CoffeeManager.Droid.Resource.Drawable.abc_ic_ab_back_material;
+			global::MobileCore.Droid.Resource.Drawable.abc_ic_arrow_drop_right_black_24dp = global::CoffeeManager.Droid.Resource.Drawable.abc_ic_arrow_drop_right_black_24dp;
+			global::MobileCore.Droid.Resource.Drawable.abc_ic_clear_material = global::CoffeeManager.Droid.Resource.Drawable.abc_ic_clear_material;
+			global::MobileCore.Droid.Resource.Drawable.abc_ic_commit_search_api_mtrl_alpha = global::CoffeeManager.Droid.Resource.Drawable.abc_ic_commit_search_api_mtrl_alpha;
+			global::MobileCore.Droid.Resource.Drawable.abc_ic_go_search_api_material = global::CoffeeManager.Droid.Resource.Drawable.abc_ic_go_search_api_material;
+			global::MobileCore.Droid.Resource.Drawable.abc_ic_menu_copy_mtrl_am_alpha = global::CoffeeManager.Droid.Resource.Drawable.abc_ic_menu_copy_mtrl_am_alpha;
+			global::MobileCore.Droid.Resource.Drawable.abc_ic_menu_cut_mtrl_alpha = global::CoffeeManager.Droid.Resource.Drawable.abc_ic_menu_cut_mtrl_alpha;
+			global::MobileCore.Droid.Resource.Drawable.abc_ic_menu_overflow_material = global::CoffeeManager.Droid.Resource.Drawable.abc_ic_menu_overflow_material;
+			global::MobileCore.Droid.Resource.Drawable.abc_ic_menu_paste_mtrl_am_alpha = global::CoffeeManager.Droid.Resource.Drawable.abc_ic_menu_paste_mtrl_am_alpha;
+			global::MobileCore.Droid.Resource.Drawable.abc_ic_menu_selectall_mtrl_alpha = global::CoffeeManager.Droid.Resource.Drawable.abc_ic_menu_selectall_mtrl_alpha;
+			global::MobileCore.Droid.Resource.Drawable.abc_ic_menu_share_mtrl_alpha = global::CoffeeManager.Droid.Resource.Drawable.abc_ic_menu_share_mtrl_alpha;
+			global::MobileCore.Droid.Resource.Drawable.abc_ic_search_api_material = global::CoffeeManager.Droid.Resource.Drawable.abc_ic_search_api_material;
+			global::MobileCore.Droid.Resource.Drawable.abc_ic_star_black_16dp = global::CoffeeManager.Droid.Resource.Drawable.abc_ic_star_black_16dp;
+			global::MobileCore.Droid.Resource.Drawable.abc_ic_star_black_36dp = global::CoffeeManager.Droid.Resource.Drawable.abc_ic_star_black_36dp;
+			global::MobileCore.Droid.Resource.Drawable.abc_ic_star_black_48dp = global::CoffeeManager.Droid.Resource.Drawable.abc_ic_star_black_48dp;
+			global::MobileCore.Droid.Resource.Drawable.abc_ic_star_half_black_16dp = global::CoffeeManager.Droid.Resource.Drawable.abc_ic_star_half_black_16dp;
+			global::MobileCore.Droid.Resource.Drawable.abc_ic_star_half_black_36dp = global::CoffeeManager.Droid.Resource.Drawable.abc_ic_star_half_black_36dp;
+			global::MobileCore.Droid.Resource.Drawable.abc_ic_star_half_black_48dp = global::CoffeeManager.Droid.Resource.Drawable.abc_ic_star_half_black_48dp;
+			global::MobileCore.Droid.Resource.Drawable.abc_ic_voice_search_api_material = global::CoffeeManager.Droid.Resource.Drawable.abc_ic_voice_search_api_material;
+			global::MobileCore.Droid.Resource.Drawable.abc_item_background_holo_dark = global::CoffeeManager.Droid.Resource.Drawable.abc_item_background_holo_dark;
+			global::MobileCore.Droid.Resource.Drawable.abc_item_background_holo_light = global::CoffeeManager.Droid.Resource.Drawable.abc_item_background_holo_light;
+			global::MobileCore.Droid.Resource.Drawable.abc_list_divider_mtrl_alpha = global::CoffeeManager.Droid.Resource.Drawable.abc_list_divider_mtrl_alpha;
+			global::MobileCore.Droid.Resource.Drawable.abc_list_focused_holo = global::CoffeeManager.Droid.Resource.Drawable.abc_list_focused_holo;
+			global::MobileCore.Droid.Resource.Drawable.abc_list_longpressed_holo = global::CoffeeManager.Droid.Resource.Drawable.abc_list_longpressed_holo;
+			global::MobileCore.Droid.Resource.Drawable.abc_list_pressed_holo_dark = global::CoffeeManager.Droid.Resource.Drawable.abc_list_pressed_holo_dark;
+			global::MobileCore.Droid.Resource.Drawable.abc_list_pressed_holo_light = global::CoffeeManager.Droid.Resource.Drawable.abc_list_pressed_holo_light;
+			global::MobileCore.Droid.Resource.Drawable.abc_list_selector_background_transition_holo_dark = global::CoffeeManager.Droid.Resource.Drawable.abc_list_selector_background_transition_holo_dark;
+			global::MobileCore.Droid.Resource.Drawable.abc_list_selector_background_transition_holo_light = global::CoffeeManager.Droid.Resource.Drawable.abc_list_selector_background_transition_holo_light;
+			global::MobileCore.Droid.Resource.Drawable.abc_list_selector_disabled_holo_dark = global::CoffeeManager.Droid.Resource.Drawable.abc_list_selector_disabled_holo_dark;
+			global::MobileCore.Droid.Resource.Drawable.abc_list_selector_disabled_holo_light = global::CoffeeManager.Droid.Resource.Drawable.abc_list_selector_disabled_holo_light;
+			global::MobileCore.Droid.Resource.Drawable.abc_list_selector_holo_dark = global::CoffeeManager.Droid.Resource.Drawable.abc_list_selector_holo_dark;
+			global::MobileCore.Droid.Resource.Drawable.abc_list_selector_holo_light = global::CoffeeManager.Droid.Resource.Drawable.abc_list_selector_holo_light;
+			global::MobileCore.Droid.Resource.Drawable.abc_menu_hardkey_panel_mtrl_mult = global::CoffeeManager.Droid.Resource.Drawable.abc_menu_hardkey_panel_mtrl_mult;
+			global::MobileCore.Droid.Resource.Drawable.abc_popup_background_mtrl_mult = global::CoffeeManager.Droid.Resource.Drawable.abc_popup_background_mtrl_mult;
+			global::MobileCore.Droid.Resource.Drawable.abc_ratingbar_indicator_material = global::CoffeeManager.Droid.Resource.Drawable.abc_ratingbar_indicator_material;
+			global::MobileCore.Droid.Resource.Drawable.abc_ratingbar_material = global::CoffeeManager.Droid.Resource.Drawable.abc_ratingbar_material;
+			global::MobileCore.Droid.Resource.Drawable.abc_ratingbar_small_material = global::CoffeeManager.Droid.Resource.Drawable.abc_ratingbar_small_material;
+			global::MobileCore.Droid.Resource.Drawable.abc_scrubber_control_off_mtrl_alpha = global::CoffeeManager.Droid.Resource.Drawable.abc_scrubber_control_off_mtrl_alpha;
+			global::MobileCore.Droid.Resource.Drawable.abc_scrubber_control_to_pressed_mtrl_000 = global::CoffeeManager.Droid.Resource.Drawable.abc_scrubber_control_to_pressed_mtrl_000;
+			global::MobileCore.Droid.Resource.Drawable.abc_scrubber_control_to_pressed_mtrl_005 = global::CoffeeManager.Droid.Resource.Drawable.abc_scrubber_control_to_pressed_mtrl_005;
+			global::MobileCore.Droid.Resource.Drawable.abc_scrubber_primary_mtrl_alpha = global::CoffeeManager.Droid.Resource.Drawable.abc_scrubber_primary_mtrl_alpha;
+			global::MobileCore.Droid.Resource.Drawable.abc_scrubber_track_mtrl_alpha = global::CoffeeManager.Droid.Resource.Drawable.abc_scrubber_track_mtrl_alpha;
+			global::MobileCore.Droid.Resource.Drawable.abc_seekbar_thumb_material = global::CoffeeManager.Droid.Resource.Drawable.abc_seekbar_thumb_material;
+			global::MobileCore.Droid.Resource.Drawable.abc_seekbar_tick_mark_material = global::CoffeeManager.Droid.Resource.Drawable.abc_seekbar_tick_mark_material;
+			global::MobileCore.Droid.Resource.Drawable.abc_seekbar_track_material = global::CoffeeManager.Droid.Resource.Drawable.abc_seekbar_track_material;
+			global::MobileCore.Droid.Resource.Drawable.abc_spinner_mtrl_am_alpha = global::CoffeeManager.Droid.Resource.Drawable.abc_spinner_mtrl_am_alpha;
+			global::MobileCore.Droid.Resource.Drawable.abc_spinner_textfield_background_material = global::CoffeeManager.Droid.Resource.Drawable.abc_spinner_textfield_background_material;
+			global::MobileCore.Droid.Resource.Drawable.abc_switch_thumb_material = global::CoffeeManager.Droid.Resource.Drawable.abc_switch_thumb_material;
+			global::MobileCore.Droid.Resource.Drawable.abc_switch_track_mtrl_alpha = global::CoffeeManager.Droid.Resource.Drawable.abc_switch_track_mtrl_alpha;
+			global::MobileCore.Droid.Resource.Drawable.abc_tab_indicator_material = global::CoffeeManager.Droid.Resource.Drawable.abc_tab_indicator_material;
+			global::MobileCore.Droid.Resource.Drawable.abc_tab_indicator_mtrl_alpha = global::CoffeeManager.Droid.Resource.Drawable.abc_tab_indicator_mtrl_alpha;
+			global::MobileCore.Droid.Resource.Drawable.abc_text_cursor_material = global::CoffeeManager.Droid.Resource.Drawable.abc_text_cursor_material;
+			global::MobileCore.Droid.Resource.Drawable.abc_text_select_handle_left_mtrl_dark = global::CoffeeManager.Droid.Resource.Drawable.abc_text_select_handle_left_mtrl_dark;
+			global::MobileCore.Droid.Resource.Drawable.abc_text_select_handle_left_mtrl_light = global::CoffeeManager.Droid.Resource.Drawable.abc_text_select_handle_left_mtrl_light;
+			global::MobileCore.Droid.Resource.Drawable.abc_text_select_handle_middle_mtrl_dark = global::CoffeeManager.Droid.Resource.Drawable.abc_text_select_handle_middle_mtrl_dark;
+			global::MobileCore.Droid.Resource.Drawable.abc_text_select_handle_middle_mtrl_light = global::CoffeeManager.Droid.Resource.Drawable.abc_text_select_handle_middle_mtrl_light;
+			global::MobileCore.Droid.Resource.Drawable.abc_text_select_handle_right_mtrl_dark = global::CoffeeManager.Droid.Resource.Drawable.abc_text_select_handle_right_mtrl_dark;
+			global::MobileCore.Droid.Resource.Drawable.abc_text_select_handle_right_mtrl_light = global::CoffeeManager.Droid.Resource.Drawable.abc_text_select_handle_right_mtrl_light;
+			global::MobileCore.Droid.Resource.Drawable.abc_textfield_activated_mtrl_alpha = global::CoffeeManager.Droid.Resource.Drawable.abc_textfield_activated_mtrl_alpha;
+			global::MobileCore.Droid.Resource.Drawable.abc_textfield_default_mtrl_alpha = global::CoffeeManager.Droid.Resource.Drawable.abc_textfield_default_mtrl_alpha;
+			global::MobileCore.Droid.Resource.Drawable.abc_textfield_search_activated_mtrl_alpha = global::CoffeeManager.Droid.Resource.Drawable.abc_textfield_search_activated_mtrl_alpha;
+			global::MobileCore.Droid.Resource.Drawable.abc_textfield_search_default_mtrl_alpha = global::CoffeeManager.Droid.Resource.Drawable.abc_textfield_search_default_mtrl_alpha;
+			global::MobileCore.Droid.Resource.Drawable.abc_textfield_search_material = global::CoffeeManager.Droid.Resource.Drawable.abc_textfield_search_material;
+			global::MobileCore.Droid.Resource.Drawable.abc_vector_test = global::CoffeeManager.Droid.Resource.Drawable.abc_vector_test;
+			global::MobileCore.Droid.Resource.Drawable.notification_action_background = global::CoffeeManager.Droid.Resource.Drawable.notification_action_background;
+			global::MobileCore.Droid.Resource.Drawable.notification_bg = global::CoffeeManager.Droid.Resource.Drawable.notification_bg;
+			global::MobileCore.Droid.Resource.Drawable.notification_bg_low = global::CoffeeManager.Droid.Resource.Drawable.notification_bg_low;
+			global::MobileCore.Droid.Resource.Drawable.notification_bg_low_normal = global::CoffeeManager.Droid.Resource.Drawable.notification_bg_low_normal;
+			global::MobileCore.Droid.Resource.Drawable.notification_bg_low_pressed = global::CoffeeManager.Droid.Resource.Drawable.notification_bg_low_pressed;
+			global::MobileCore.Droid.Resource.Drawable.notification_bg_normal = global::CoffeeManager.Droid.Resource.Drawable.notification_bg_normal;
+			global::MobileCore.Droid.Resource.Drawable.notification_bg_normal_pressed = global::CoffeeManager.Droid.Resource.Drawable.notification_bg_normal_pressed;
+			global::MobileCore.Droid.Resource.Drawable.notification_icon_background = global::CoffeeManager.Droid.Resource.Drawable.notification_icon_background;
+			global::MobileCore.Droid.Resource.Drawable.notification_template_icon_bg = global::CoffeeManager.Droid.Resource.Drawable.notification_template_icon_bg;
+			global::MobileCore.Droid.Resource.Drawable.notification_template_icon_low_bg = global::CoffeeManager.Droid.Resource.Drawable.notification_template_icon_low_bg;
+			global::MobileCore.Droid.Resource.Drawable.notification_tile_bg = global::CoffeeManager.Droid.Resource.Drawable.notification_tile_bg;
+			global::MobileCore.Droid.Resource.Drawable.notify_panel_notification_icon_bg = global::CoffeeManager.Droid.Resource.Drawable.notify_panel_notification_icon_bg;
 			global::MobileCore.Droid.Resource.Id.MvvmCrossTagId = global::CoffeeManager.Droid.Resource.Id.MvvmCrossTagId;
 			global::MobileCore.Droid.Resource.Id.MvxBindingTagUnique = global::CoffeeManager.Droid.Resource.Id.MvxBindingTagUnique;
+			global::MobileCore.Droid.Resource.Id.action0 = global::CoffeeManager.Droid.Resource.Id.action0;
+			global::MobileCore.Droid.Resource.Id.action_bar = global::CoffeeManager.Droid.Resource.Id.action_bar;
+			global::MobileCore.Droid.Resource.Id.action_bar_activity_content = global::CoffeeManager.Droid.Resource.Id.action_bar_activity_content;
+			global::MobileCore.Droid.Resource.Id.action_bar_container = global::CoffeeManager.Droid.Resource.Id.action_bar_container;
+			global::MobileCore.Droid.Resource.Id.action_bar_root = global::CoffeeManager.Droid.Resource.Id.action_bar_root;
+			global::MobileCore.Droid.Resource.Id.action_bar_spinner = global::CoffeeManager.Droid.Resource.Id.action_bar_spinner;
+			global::MobileCore.Droid.Resource.Id.action_bar_subtitle = global::CoffeeManager.Droid.Resource.Id.action_bar_subtitle;
+			global::MobileCore.Droid.Resource.Id.action_bar_title = global::CoffeeManager.Droid.Resource.Id.action_bar_title;
+			global::MobileCore.Droid.Resource.Id.action_container = global::CoffeeManager.Droid.Resource.Id.action_container;
+			global::MobileCore.Droid.Resource.Id.action_context_bar = global::CoffeeManager.Droid.Resource.Id.action_context_bar;
+			global::MobileCore.Droid.Resource.Id.action_divider = global::CoffeeManager.Droid.Resource.Id.action_divider;
+			global::MobileCore.Droid.Resource.Id.action_image = global::CoffeeManager.Droid.Resource.Id.action_image;
+			global::MobileCore.Droid.Resource.Id.action_menu_divider = global::CoffeeManager.Droid.Resource.Id.action_menu_divider;
+			global::MobileCore.Droid.Resource.Id.action_menu_presenter = global::CoffeeManager.Droid.Resource.Id.action_menu_presenter;
+			global::MobileCore.Droid.Resource.Id.action_mode_bar = global::CoffeeManager.Droid.Resource.Id.action_mode_bar;
+			global::MobileCore.Droid.Resource.Id.action_mode_bar_stub = global::CoffeeManager.Droid.Resource.Id.action_mode_bar_stub;
+			global::MobileCore.Droid.Resource.Id.action_mode_close_button = global::CoffeeManager.Droid.Resource.Id.action_mode_close_button;
+			global::MobileCore.Droid.Resource.Id.action_text = global::CoffeeManager.Droid.Resource.Id.action_text;
+			global::MobileCore.Droid.Resource.Id.actions = global::CoffeeManager.Droid.Resource.Id.actions;
+			global::MobileCore.Droid.Resource.Id.activity_chooser_view_content = global::CoffeeManager.Droid.Resource.Id.activity_chooser_view_content;
+			global::MobileCore.Droid.Resource.Id.add = global::CoffeeManager.Droid.Resource.Id.add;
+			global::MobileCore.Droid.Resource.Id.alertTitle = global::CoffeeManager.Droid.Resource.Id.alertTitle;
+			global::MobileCore.Droid.Resource.Id.always = global::CoffeeManager.Droid.Resource.Id.always;
+			global::MobileCore.Droid.Resource.Id.beginning = global::CoffeeManager.Droid.Resource.Id.beginning;
+			global::MobileCore.Droid.Resource.Id.bottom = global::CoffeeManager.Droid.Resource.Id.bottom;
+			global::MobileCore.Droid.Resource.Id.buttonPanel = global::CoffeeManager.Droid.Resource.Id.buttonPanel;
+			global::MobileCore.Droid.Resource.Id.cancel_action = global::CoffeeManager.Droid.Resource.Id.cancel_action;
+			global::MobileCore.Droid.Resource.Id.checkbox = global::CoffeeManager.Droid.Resource.Id.checkbox;
+			global::MobileCore.Droid.Resource.Id.chronometer = global::CoffeeManager.Droid.Resource.Id.chronometer;
+			global::MobileCore.Droid.Resource.Id.collapseActionView = global::CoffeeManager.Droid.Resource.Id.collapseActionView;
+			global::MobileCore.Droid.Resource.Id.contentPanel = global::CoffeeManager.Droid.Resource.Id.contentPanel;
+			global::MobileCore.Droid.Resource.Id.custom = global::CoffeeManager.Droid.Resource.Id.custom;
+			global::MobileCore.Droid.Resource.Id.customPanel = global::CoffeeManager.Droid.Resource.Id.customPanel;
+			global::MobileCore.Droid.Resource.Id.decor_content_parent = global::CoffeeManager.Droid.Resource.Id.decor_content_parent;
+			global::MobileCore.Droid.Resource.Id.default_activity_button = global::CoffeeManager.Droid.Resource.Id.default_activity_button;
+			global::MobileCore.Droid.Resource.Id.disableHome = global::CoffeeManager.Droid.Resource.Id.disableHome;
+			global::MobileCore.Droid.Resource.Id.edit_query = global::CoffeeManager.Droid.Resource.Id.edit_query;
+			global::MobileCore.Droid.Resource.Id.end = global::CoffeeManager.Droid.Resource.Id.end;
+			global::MobileCore.Droid.Resource.Id.end_padder = global::CoffeeManager.Droid.Resource.Id.end_padder;
+			global::MobileCore.Droid.Resource.Id.expand_activities_button = global::CoffeeManager.Droid.Resource.Id.expand_activities_button;
+			global::MobileCore.Droid.Resource.Id.expanded_menu = global::CoffeeManager.Droid.Resource.Id.expanded_menu;
+			global::MobileCore.Droid.Resource.Id.home = global::CoffeeManager.Droid.Resource.Id.home;
+			global::MobileCore.Droid.Resource.Id.homeAsUp = global::CoffeeManager.Droid.Resource.Id.homeAsUp;
+			global::MobileCore.Droid.Resource.Id.icon = global::CoffeeManager.Droid.Resource.Id.icon;
+			global::MobileCore.Droid.Resource.Id.icon_group = global::CoffeeManager.Droid.Resource.Id.icon_group;
+			global::MobileCore.Droid.Resource.Id.ifRoom = global::CoffeeManager.Droid.Resource.Id.ifRoom;
+			global::MobileCore.Droid.Resource.Id.image = global::CoffeeManager.Droid.Resource.Id.image;
+			global::MobileCore.Droid.Resource.Id.info = global::CoffeeManager.Droid.Resource.Id.info;
+			global::MobileCore.Droid.Resource.Id.line1 = global::CoffeeManager.Droid.Resource.Id.line1;
+			global::MobileCore.Droid.Resource.Id.line3 = global::CoffeeManager.Droid.Resource.Id.line3;
+			global::MobileCore.Droid.Resource.Id.listMode = global::CoffeeManager.Droid.Resource.Id.listMode;
+			global::MobileCore.Droid.Resource.Id.list_item = global::CoffeeManager.Droid.Resource.Id.list_item;
+			global::MobileCore.Droid.Resource.Id.media_actions = global::CoffeeManager.Droid.Resource.Id.media_actions;
+			global::MobileCore.Droid.Resource.Id.middle = global::CoffeeManager.Droid.Resource.Id.middle;
+			global::MobileCore.Droid.Resource.Id.multiply = global::CoffeeManager.Droid.Resource.Id.multiply;
+			global::MobileCore.Droid.Resource.Id.never = global::CoffeeManager.Droid.Resource.Id.never;
+			global::MobileCore.Droid.Resource.Id.none = global::CoffeeManager.Droid.Resource.Id.none;
+			global::MobileCore.Droid.Resource.Id.normal = global::CoffeeManager.Droid.Resource.Id.normal;
+			global::MobileCore.Droid.Resource.Id.notification_background = global::CoffeeManager.Droid.Resource.Id.notification_background;
+			global::MobileCore.Droid.Resource.Id.notification_main_column = global::CoffeeManager.Droid.Resource.Id.notification_main_column;
+			global::MobileCore.Droid.Resource.Id.notification_main_column_container = global::CoffeeManager.Droid.Resource.Id.notification_main_column_container;
+			global::MobileCore.Droid.Resource.Id.parentPanel = global::CoffeeManager.Droid.Resource.Id.parentPanel;
+			global::MobileCore.Droid.Resource.Id.progress_circular = global::CoffeeManager.Droid.Resource.Id.progress_circular;
+			global::MobileCore.Droid.Resource.Id.progress_horizontal = global::CoffeeManager.Droid.Resource.Id.progress_horizontal;
+			global::MobileCore.Droid.Resource.Id.radio = global::CoffeeManager.Droid.Resource.Id.radio;
+			global::MobileCore.Droid.Resource.Id.right_icon = global::CoffeeManager.Droid.Resource.Id.right_icon;
+			global::MobileCore.Droid.Resource.Id.right_side = global::CoffeeManager.Droid.Resource.Id.right_side;
+			global::MobileCore.Droid.Resource.Id.screen = global::CoffeeManager.Droid.Resource.Id.screen;
+			global::MobileCore.Droid.Resource.Id.scrollIndicatorDown = global::CoffeeManager.Droid.Resource.Id.scrollIndicatorDown;
+			global::MobileCore.Droid.Resource.Id.scrollIndicatorUp = global::CoffeeManager.Droid.Resource.Id.scrollIndicatorUp;
+			global::MobileCore.Droid.Resource.Id.scrollView = global::CoffeeManager.Droid.Resource.Id.scrollView;
+			global::MobileCore.Droid.Resource.Id.search_badge = global::CoffeeManager.Droid.Resource.Id.search_badge;
+			global::MobileCore.Droid.Resource.Id.search_bar = global::CoffeeManager.Droid.Resource.Id.search_bar;
+			global::MobileCore.Droid.Resource.Id.search_button = global::CoffeeManager.Droid.Resource.Id.search_button;
+			global::MobileCore.Droid.Resource.Id.search_close_btn = global::CoffeeManager.Droid.Resource.Id.search_close_btn;
+			global::MobileCore.Droid.Resource.Id.search_edit_frame = global::CoffeeManager.Droid.Resource.Id.search_edit_frame;
+			global::MobileCore.Droid.Resource.Id.search_go_btn = global::CoffeeManager.Droid.Resource.Id.search_go_btn;
+			global::MobileCore.Droid.Resource.Id.search_mag_icon = global::CoffeeManager.Droid.Resource.Id.search_mag_icon;
+			global::MobileCore.Droid.Resource.Id.search_plate = global::CoffeeManager.Droid.Resource.Id.search_plate;
+			global::MobileCore.Droid.Resource.Id.search_src_text = global::CoffeeManager.Droid.Resource.Id.search_src_text;
+			global::MobileCore.Droid.Resource.Id.search_voice_btn = global::CoffeeManager.Droid.Resource.Id.search_voice_btn;
+			global::MobileCore.Droid.Resource.Id.select_dialog_listview = global::CoffeeManager.Droid.Resource.Id.select_dialog_listview;
+			global::MobileCore.Droid.Resource.Id.shortcut = global::CoffeeManager.Droid.Resource.Id.shortcut;
+			global::MobileCore.Droid.Resource.Id.showCustom = global::CoffeeManager.Droid.Resource.Id.showCustom;
+			global::MobileCore.Droid.Resource.Id.showHome = global::CoffeeManager.Droid.Resource.Id.showHome;
+			global::MobileCore.Droid.Resource.Id.showTitle = global::CoffeeManager.Droid.Resource.Id.showTitle;
+			global::MobileCore.Droid.Resource.Id.spacer = global::CoffeeManager.Droid.Resource.Id.spacer;
+			global::MobileCore.Droid.Resource.Id.split_action_bar = global::CoffeeManager.Droid.Resource.Id.split_action_bar;
+			global::MobileCore.Droid.Resource.Id.src_atop = global::CoffeeManager.Droid.Resource.Id.src_atop;
+			global::MobileCore.Droid.Resource.Id.src_in = global::CoffeeManager.Droid.Resource.Id.src_in;
+			global::MobileCore.Droid.Resource.Id.src_over = global::CoffeeManager.Droid.Resource.Id.src_over;
+			global::MobileCore.Droid.Resource.Id.status_bar_latest_event_content = global::CoffeeManager.Droid.Resource.Id.status_bar_latest_event_content;
+			global::MobileCore.Droid.Resource.Id.submenuarrow = global::CoffeeManager.Droid.Resource.Id.submenuarrow;
+			global::MobileCore.Droid.Resource.Id.submit_area = global::CoffeeManager.Droid.Resource.Id.submit_area;
+			global::MobileCore.Droid.Resource.Id.tabMode = global::CoffeeManager.Droid.Resource.Id.tabMode;
+			global::MobileCore.Droid.Resource.Id.text = global::CoffeeManager.Droid.Resource.Id.text;
+			global::MobileCore.Droid.Resource.Id.text2 = global::CoffeeManager.Droid.Resource.Id.text2;
+			global::MobileCore.Droid.Resource.Id.textSpacerNoButtons = global::CoffeeManager.Droid.Resource.Id.textSpacerNoButtons;
+			global::MobileCore.Droid.Resource.Id.textSpacerNoTitle = global::CoffeeManager.Droid.Resource.Id.textSpacerNoTitle;
+			global::MobileCore.Droid.Resource.Id.time = global::CoffeeManager.Droid.Resource.Id.time;
+			global::MobileCore.Droid.Resource.Id.title = global::CoffeeManager.Droid.Resource.Id.title;
+			global::MobileCore.Droid.Resource.Id.titleDividerNoCustom = global::CoffeeManager.Droid.Resource.Id.titleDividerNoCustom;
+			global::MobileCore.Droid.Resource.Id.title_template = global::CoffeeManager.Droid.Resource.Id.title_template;
+			global::MobileCore.Droid.Resource.Id.toolbar = global::CoffeeManager.Droid.Resource.Id.toolbar;
+			global::MobileCore.Droid.Resource.Id.toolbar_title = global::CoffeeManager.Droid.Resource.Id.toolbar_title;
+			global::MobileCore.Droid.Resource.Id.top = global::CoffeeManager.Droid.Resource.Id.top;
+			global::MobileCore.Droid.Resource.Id.topPanel = global::CoffeeManager.Droid.Resource.Id.topPanel;
+			global::MobileCore.Droid.Resource.Id.up = global::CoffeeManager.Droid.Resource.Id.up;
+			global::MobileCore.Droid.Resource.Id.useLogo = global::CoffeeManager.Droid.Resource.Id.useLogo;
+			global::MobileCore.Droid.Resource.Id.withText = global::CoffeeManager.Droid.Resource.Id.withText;
+			global::MobileCore.Droid.Resource.Id.wrap_content = global::CoffeeManager.Droid.Resource.Id.wrap_content;
+			global::MobileCore.Droid.Resource.Integer.abc_config_activityDefaultDur = global::CoffeeManager.Droid.Resource.Integer.abc_config_activityDefaultDur;
+			global::MobileCore.Droid.Resource.Integer.abc_config_activityShortDur = global::CoffeeManager.Droid.Resource.Integer.abc_config_activityShortDur;
+			global::MobileCore.Droid.Resource.Integer.cancel_button_image_alpha = global::CoffeeManager.Droid.Resource.Integer.cancel_button_image_alpha;
+			global::MobileCore.Droid.Resource.Integer.status_bar_notification_info_maxnum = global::CoffeeManager.Droid.Resource.Integer.status_bar_notification_info_maxnum;
+			global::MobileCore.Droid.Resource.Layout.abc_action_bar_title_item = global::CoffeeManager.Droid.Resource.Layout.abc_action_bar_title_item;
+			global::MobileCore.Droid.Resource.Layout.abc_action_bar_up_container = global::CoffeeManager.Droid.Resource.Layout.abc_action_bar_up_container;
+			global::MobileCore.Droid.Resource.Layout.abc_action_bar_view_list_nav_layout = global::CoffeeManager.Droid.Resource.Layout.abc_action_bar_view_list_nav_layout;
+			global::MobileCore.Droid.Resource.Layout.abc_action_menu_item_layout = global::CoffeeManager.Droid.Resource.Layout.abc_action_menu_item_layout;
+			global::MobileCore.Droid.Resource.Layout.abc_action_menu_layout = global::CoffeeManager.Droid.Resource.Layout.abc_action_menu_layout;
+			global::MobileCore.Droid.Resource.Layout.abc_action_mode_bar = global::CoffeeManager.Droid.Resource.Layout.abc_action_mode_bar;
+			global::MobileCore.Droid.Resource.Layout.abc_action_mode_close_item_material = global::CoffeeManager.Droid.Resource.Layout.abc_action_mode_close_item_material;
+			global::MobileCore.Droid.Resource.Layout.abc_activity_chooser_view = global::CoffeeManager.Droid.Resource.Layout.abc_activity_chooser_view;
+			global::MobileCore.Droid.Resource.Layout.abc_activity_chooser_view_list_item = global::CoffeeManager.Droid.Resource.Layout.abc_activity_chooser_view_list_item;
+			global::MobileCore.Droid.Resource.Layout.abc_alert_dialog_button_bar_material = global::CoffeeManager.Droid.Resource.Layout.abc_alert_dialog_button_bar_material;
+			global::MobileCore.Droid.Resource.Layout.abc_alert_dialog_material = global::CoffeeManager.Droid.Resource.Layout.abc_alert_dialog_material;
+			global::MobileCore.Droid.Resource.Layout.abc_alert_dialog_title_material = global::CoffeeManager.Droid.Resource.Layout.abc_alert_dialog_title_material;
+			global::MobileCore.Droid.Resource.Layout.abc_dialog_title_material = global::CoffeeManager.Droid.Resource.Layout.abc_dialog_title_material;
+			global::MobileCore.Droid.Resource.Layout.abc_expanded_menu_layout = global::CoffeeManager.Droid.Resource.Layout.abc_expanded_menu_layout;
+			global::MobileCore.Droid.Resource.Layout.abc_list_menu_item_checkbox = global::CoffeeManager.Droid.Resource.Layout.abc_list_menu_item_checkbox;
+			global::MobileCore.Droid.Resource.Layout.abc_list_menu_item_icon = global::CoffeeManager.Droid.Resource.Layout.abc_list_menu_item_icon;
+			global::MobileCore.Droid.Resource.Layout.abc_list_menu_item_layout = global::CoffeeManager.Droid.Resource.Layout.abc_list_menu_item_layout;
+			global::MobileCore.Droid.Resource.Layout.abc_list_menu_item_radio = global::CoffeeManager.Droid.Resource.Layout.abc_list_menu_item_radio;
+			global::MobileCore.Droid.Resource.Layout.abc_popup_menu_header_item_layout = global::CoffeeManager.Droid.Resource.Layout.abc_popup_menu_header_item_layout;
+			global::MobileCore.Droid.Resource.Layout.abc_popup_menu_item_layout = global::CoffeeManager.Droid.Resource.Layout.abc_popup_menu_item_layout;
+			global::MobileCore.Droid.Resource.Layout.abc_screen_content_include = global::CoffeeManager.Droid.Resource.Layout.abc_screen_content_include;
+			global::MobileCore.Droid.Resource.Layout.abc_screen_simple = global::CoffeeManager.Droid.Resource.Layout.abc_screen_simple;
+			global::MobileCore.Droid.Resource.Layout.abc_screen_simple_overlay_action_mode = global::CoffeeManager.Droid.Resource.Layout.abc_screen_simple_overlay_action_mode;
+			global::MobileCore.Droid.Resource.Layout.abc_screen_toolbar = global::CoffeeManager.Droid.Resource.Layout.abc_screen_toolbar;
+			global::MobileCore.Droid.Resource.Layout.abc_search_dropdown_item_icons_2line = global::CoffeeManager.Droid.Resource.Layout.abc_search_dropdown_item_icons_2line;
+			global::MobileCore.Droid.Resource.Layout.abc_search_view = global::CoffeeManager.Droid.Resource.Layout.abc_search_view;
+			global::MobileCore.Droid.Resource.Layout.abc_select_dialog_material = global::CoffeeManager.Droid.Resource.Layout.abc_select_dialog_material;
+			global::MobileCore.Droid.Resource.Layout.notification_action = global::CoffeeManager.Droid.Resource.Layout.notification_action;
+			global::MobileCore.Droid.Resource.Layout.notification_action_tombstone = global::CoffeeManager.Droid.Resource.Layout.notification_action_tombstone;
+			global::MobileCore.Droid.Resource.Layout.notification_media_action = global::CoffeeManager.Droid.Resource.Layout.notification_media_action;
+			global::MobileCore.Droid.Resource.Layout.notification_media_cancel_action = global::CoffeeManager.Droid.Resource.Layout.notification_media_cancel_action;
+			global::MobileCore.Droid.Resource.Layout.notification_template_big_media = global::CoffeeManager.Droid.Resource.Layout.notification_template_big_media;
+			global::MobileCore.Droid.Resource.Layout.notification_template_big_media_custom = global::CoffeeManager.Droid.Resource.Layout.notification_template_big_media_custom;
+			global::MobileCore.Droid.Resource.Layout.notification_template_big_media_narrow = global::CoffeeManager.Droid.Resource.Layout.notification_template_big_media_narrow;
+			global::MobileCore.Droid.Resource.Layout.notification_template_big_media_narrow_custom = global::CoffeeManager.Droid.Resource.Layout.notification_template_big_media_narrow_custom;
+			global::MobileCore.Droid.Resource.Layout.notification_template_custom_big = global::CoffeeManager.Droid.Resource.Layout.notification_template_custom_big;
+			global::MobileCore.Droid.Resource.Layout.notification_template_icon_group = global::CoffeeManager.Droid.Resource.Layout.notification_template_icon_group;
+			global::MobileCore.Droid.Resource.Layout.notification_template_lines_media = global::CoffeeManager.Droid.Resource.Layout.notification_template_lines_media;
+			global::MobileCore.Droid.Resource.Layout.notification_template_media = global::CoffeeManager.Droid.Resource.Layout.notification_template_media;
+			global::MobileCore.Droid.Resource.Layout.notification_template_media_custom = global::CoffeeManager.Droid.Resource.Layout.notification_template_media_custom;
+			global::MobileCore.Droid.Resource.Layout.notification_template_part_chronometer = global::CoffeeManager.Droid.Resource.Layout.notification_template_part_chronometer;
+			global::MobileCore.Droid.Resource.Layout.notification_template_part_time = global::CoffeeManager.Droid.Resource.Layout.notification_template_part_time;
+			global::MobileCore.Droid.Resource.Layout.select_dialog_item_material = global::CoffeeManager.Droid.Resource.Layout.select_dialog_item_material;
+			global::MobileCore.Droid.Resource.Layout.select_dialog_multichoice_material = global::CoffeeManager.Droid.Resource.Layout.select_dialog_multichoice_material;
+			global::MobileCore.Droid.Resource.Layout.select_dialog_singlechoice_material = global::CoffeeManager.Droid.Resource.Layout.select_dialog_singlechoice_material;
+			global::MobileCore.Droid.Resource.Layout.support_simple_spinner_dropdown_item = global::CoffeeManager.Droid.Resource.Layout.support_simple_spinner_dropdown_item;
+			global::MobileCore.Droid.Resource.Layout.toolbar = global::CoffeeManager.Droid.Resource.Layout.toolbar;
+			global::MobileCore.Droid.Resource.String.abc_action_bar_home_description = global::CoffeeManager.Droid.Resource.String.abc_action_bar_home_description;
+			global::MobileCore.Droid.Resource.String.abc_action_bar_home_description_format = global::CoffeeManager.Droid.Resource.String.abc_action_bar_home_description_format;
+			global::MobileCore.Droid.Resource.String.abc_action_bar_home_subtitle_description_format = global::CoffeeManager.Droid.Resource.String.abc_action_bar_home_subtitle_description_format;
+			global::MobileCore.Droid.Resource.String.abc_action_bar_up_description = global::CoffeeManager.Droid.Resource.String.abc_action_bar_up_description;
+			global::MobileCore.Droid.Resource.String.abc_action_menu_overflow_description = global::CoffeeManager.Droid.Resource.String.abc_action_menu_overflow_description;
+			global::MobileCore.Droid.Resource.String.abc_action_mode_done = global::CoffeeManager.Droid.Resource.String.abc_action_mode_done;
+			global::MobileCore.Droid.Resource.String.abc_activity_chooser_view_see_all = global::CoffeeManager.Droid.Resource.String.abc_activity_chooser_view_see_all;
+			global::MobileCore.Droid.Resource.String.abc_activitychooserview_choose_application = global::CoffeeManager.Droid.Resource.String.abc_activitychooserview_choose_application;
+			global::MobileCore.Droid.Resource.String.abc_capital_off = global::CoffeeManager.Droid.Resource.String.abc_capital_off;
+			global::MobileCore.Droid.Resource.String.abc_capital_on = global::CoffeeManager.Droid.Resource.String.abc_capital_on;
+			global::MobileCore.Droid.Resource.String.abc_font_family_body_1_material = global::CoffeeManager.Droid.Resource.String.abc_font_family_body_1_material;
+			global::MobileCore.Droid.Resource.String.abc_font_family_body_2_material = global::CoffeeManager.Droid.Resource.String.abc_font_family_body_2_material;
+			global::MobileCore.Droid.Resource.String.abc_font_family_button_material = global::CoffeeManager.Droid.Resource.String.abc_font_family_button_material;
+			global::MobileCore.Droid.Resource.String.abc_font_family_caption_material = global::CoffeeManager.Droid.Resource.String.abc_font_family_caption_material;
+			global::MobileCore.Droid.Resource.String.abc_font_family_display_1_material = global::CoffeeManager.Droid.Resource.String.abc_font_family_display_1_material;
+			global::MobileCore.Droid.Resource.String.abc_font_family_display_2_material = global::CoffeeManager.Droid.Resource.String.abc_font_family_display_2_material;
+			global::MobileCore.Droid.Resource.String.abc_font_family_display_3_material = global::CoffeeManager.Droid.Resource.String.abc_font_family_display_3_material;
+			global::MobileCore.Droid.Resource.String.abc_font_family_display_4_material = global::CoffeeManager.Droid.Resource.String.abc_font_family_display_4_material;
+			global::MobileCore.Droid.Resource.String.abc_font_family_headline_material = global::CoffeeManager.Droid.Resource.String.abc_font_family_headline_material;
+			global::MobileCore.Droid.Resource.String.abc_font_family_menu_material = global::CoffeeManager.Droid.Resource.String.abc_font_family_menu_material;
+			global::MobileCore.Droid.Resource.String.abc_font_family_subhead_material = global::CoffeeManager.Droid.Resource.String.abc_font_family_subhead_material;
+			global::MobileCore.Droid.Resource.String.abc_font_family_title_material = global::CoffeeManager.Droid.Resource.String.abc_font_family_title_material;
+			global::MobileCore.Droid.Resource.String.abc_search_hint = global::CoffeeManager.Droid.Resource.String.abc_search_hint;
+			global::MobileCore.Droid.Resource.String.abc_searchview_description_clear = global::CoffeeManager.Droid.Resource.String.abc_searchview_description_clear;
+			global::MobileCore.Droid.Resource.String.abc_searchview_description_query = global::CoffeeManager.Droid.Resource.String.abc_searchview_description_query;
+			global::MobileCore.Droid.Resource.String.abc_searchview_description_search = global::CoffeeManager.Droid.Resource.String.abc_searchview_description_search;
+			global::MobileCore.Droid.Resource.String.abc_searchview_description_submit = global::CoffeeManager.Droid.Resource.String.abc_searchview_description_submit;
+			global::MobileCore.Droid.Resource.String.abc_searchview_description_voice = global::CoffeeManager.Droid.Resource.String.abc_searchview_description_voice;
+			global::MobileCore.Droid.Resource.String.abc_shareactionprovider_share_with = global::CoffeeManager.Droid.Resource.String.abc_shareactionprovider_share_with;
+			global::MobileCore.Droid.Resource.String.abc_shareactionprovider_share_with_application = global::CoffeeManager.Droid.Resource.String.abc_shareactionprovider_share_with_application;
+			global::MobileCore.Droid.Resource.String.abc_toolbar_collapse_description = global::CoffeeManager.Droid.Resource.String.abc_toolbar_collapse_description;
 			global::MobileCore.Droid.Resource.String.library_name = global::CoffeeManager.Droid.Resource.String.library_name;
+			global::MobileCore.Droid.Resource.String.search_menu_title = global::CoffeeManager.Droid.Resource.String.search_menu_title;
+			global::MobileCore.Droid.Resource.String.status_bar_notification_info_overflow = global::CoffeeManager.Droid.Resource.String.status_bar_notification_info_overflow;
+			global::MobileCore.Droid.Resource.Style.AlertDialog_AppCompat = global::CoffeeManager.Droid.Resource.Style.AlertDialog_AppCompat;
+			global::MobileCore.Droid.Resource.Style.AlertDialog_AppCompat_Light = global::CoffeeManager.Droid.Resource.Style.AlertDialog_AppCompat_Light;
+			global::MobileCore.Droid.Resource.Style.Animation_AppCompat_Dialog = global::CoffeeManager.Droid.Resource.Style.Animation_AppCompat_Dialog;
+			global::MobileCore.Droid.Resource.Style.Animation_AppCompat_DropDownUp = global::CoffeeManager.Droid.Resource.Style.Animation_AppCompat_DropDownUp;
+			global::MobileCore.Droid.Resource.Style.Base_AlertDialog_AppCompat = global::CoffeeManager.Droid.Resource.Style.Base_AlertDialog_AppCompat;
+			global::MobileCore.Droid.Resource.Style.Base_AlertDialog_AppCompat_Light = global::CoffeeManager.Droid.Resource.Style.Base_AlertDialog_AppCompat_Light;
+			global::MobileCore.Droid.Resource.Style.Base_Animation_AppCompat_Dialog = global::CoffeeManager.Droid.Resource.Style.Base_Animation_AppCompat_Dialog;
+			global::MobileCore.Droid.Resource.Style.Base_Animation_AppCompat_DropDownUp = global::CoffeeManager.Droid.Resource.Style.Base_Animation_AppCompat_DropDownUp;
+			global::MobileCore.Droid.Resource.Style.Base_DialogWindowTitle_AppCompat = global::CoffeeManager.Droid.Resource.Style.Base_DialogWindowTitle_AppCompat;
+			global::MobileCore.Droid.Resource.Style.Base_DialogWindowTitleBackground_AppCompat = global::CoffeeManager.Droid.Resource.Style.Base_DialogWindowTitleBackground_AppCompat;
+			global::MobileCore.Droid.Resource.Style.Base_TextAppearance_AppCompat = global::CoffeeManager.Droid.Resource.Style.Base_TextAppearance_AppCompat;
+			global::MobileCore.Droid.Resource.Style.Base_TextAppearance_AppCompat_Body1 = global::CoffeeManager.Droid.Resource.Style.Base_TextAppearance_AppCompat_Body1;
+			global::MobileCore.Droid.Resource.Style.Base_TextAppearance_AppCompat_Body2 = global::CoffeeManager.Droid.Resource.Style.Base_TextAppearance_AppCompat_Body2;
+			global::MobileCore.Droid.Resource.Style.Base_TextAppearance_AppCompat_Button = global::CoffeeManager.Droid.Resource.Style.Base_TextAppearance_AppCompat_Button;
+			global::MobileCore.Droid.Resource.Style.Base_TextAppearance_AppCompat_Caption = global::CoffeeManager.Droid.Resource.Style.Base_TextAppearance_AppCompat_Caption;
+			global::MobileCore.Droid.Resource.Style.Base_TextAppearance_AppCompat_Display1 = global::CoffeeManager.Droid.Resource.Style.Base_TextAppearance_AppCompat_Display1;
+			global::MobileCore.Droid.Resource.Style.Base_TextAppearance_AppCompat_Display2 = global::CoffeeManager.Droid.Resource.Style.Base_TextAppearance_AppCompat_Display2;
+			global::MobileCore.Droid.Resource.Style.Base_TextAppearance_AppCompat_Display3 = global::CoffeeManager.Droid.Resource.Style.Base_TextAppearance_AppCompat_Display3;
+			global::MobileCore.Droid.Resource.Style.Base_TextAppearance_AppCompat_Display4 = global::CoffeeManager.Droid.Resource.Style.Base_TextAppearance_AppCompat_Display4;
+			global::MobileCore.Droid.Resource.Style.Base_TextAppearance_AppCompat_Headline = global::CoffeeManager.Droid.Resource.Style.Base_TextAppearance_AppCompat_Headline;
+			global::MobileCore.Droid.Resource.Style.Base_TextAppearance_AppCompat_Inverse = global::CoffeeManager.Droid.Resource.Style.Base_TextAppearance_AppCompat_Inverse;
+			global::MobileCore.Droid.Resource.Style.Base_TextAppearance_AppCompat_Large = global::CoffeeManager.Droid.Resource.Style.Base_TextAppearance_AppCompat_Large;
+			global::MobileCore.Droid.Resource.Style.Base_TextAppearance_AppCompat_Large_Inverse = global::CoffeeManager.Droid.Resource.Style.Base_TextAppearance_AppCompat_Large_Inverse;
+			global::MobileCore.Droid.Resource.Style.Base_TextAppearance_AppCompat_Light_Widget_PopupMenu_Large = global::CoffeeManager.Droid.Resource.Style.Base_TextAppearance_AppCompat_Light_Widget_PopupMenu_Large;
+			global::MobileCore.Droid.Resource.Style.Base_TextAppearance_AppCompat_Light_Widget_PopupMenu_Small = global::CoffeeManager.Droid.Resource.Style.Base_TextAppearance_AppCompat_Light_Widget_PopupMenu_Small;
+			global::MobileCore.Droid.Resource.Style.Base_TextAppearance_AppCompat_Medium = global::CoffeeManager.Droid.Resource.Style.Base_TextAppearance_AppCompat_Medium;
+			global::MobileCore.Droid.Resource.Style.Base_TextAppearance_AppCompat_Medium_Inverse = global::CoffeeManager.Droid.Resource.Style.Base_TextAppearance_AppCompat_Medium_Inverse;
+			global::MobileCore.Droid.Resource.Style.Base_TextAppearance_AppCompat_Menu = global::CoffeeManager.Droid.Resource.Style.Base_TextAppearance_AppCompat_Menu;
+			global::MobileCore.Droid.Resource.Style.Base_TextAppearance_AppCompat_SearchResult = global::CoffeeManager.Droid.Resource.Style.Base_TextAppearance_AppCompat_SearchResult;
+			global::MobileCore.Droid.Resource.Style.Base_TextAppearance_AppCompat_SearchResult_Subtitle = global::CoffeeManager.Droid.Resource.Style.Base_TextAppearance_AppCompat_SearchResult_Subtitle;
+			global::MobileCore.Droid.Resource.Style.Base_TextAppearance_AppCompat_SearchResult_Title = global::CoffeeManager.Droid.Resource.Style.Base_TextAppearance_AppCompat_SearchResult_Title;
+			global::MobileCore.Droid.Resource.Style.Base_TextAppearance_AppCompat_Small = global::CoffeeManager.Droid.Resource.Style.Base_TextAppearance_AppCompat_Small;
+			global::MobileCore.Droid.Resource.Style.Base_TextAppearance_AppCompat_Small_Inverse = global::CoffeeManager.Droid.Resource.Style.Base_TextAppearance_AppCompat_Small_Inverse;
+			global::MobileCore.Droid.Resource.Style.Base_TextAppearance_AppCompat_Subhead = global::CoffeeManager.Droid.Resource.Style.Base_TextAppearance_AppCompat_Subhead;
+			global::MobileCore.Droid.Resource.Style.Base_TextAppearance_AppCompat_Subhead_Inverse = global::CoffeeManager.Droid.Resource.Style.Base_TextAppearance_AppCompat_Subhead_Inverse;
+			global::MobileCore.Droid.Resource.Style.Base_TextAppearance_AppCompat_Title = global::CoffeeManager.Droid.Resource.Style.Base_TextAppearance_AppCompat_Title;
+			global::MobileCore.Droid.Resource.Style.Base_TextAppearance_AppCompat_Title_Inverse = global::CoffeeManager.Droid.Resource.Style.Base_TextAppearance_AppCompat_Title_Inverse;
+			global::MobileCore.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Menu = global::CoffeeManager.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Menu;
+			global::MobileCore.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Subtitle = global::CoffeeManager.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Subtitle;
+			global::MobileCore.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Subtitle_Inverse = global::CoffeeManager.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Subtitle_Inverse;
+			global::MobileCore.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Title = global::CoffeeManager.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Title;
+			global::MobileCore.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Title_Inverse = global::CoffeeManager.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Title_Inverse;
+			global::MobileCore.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionMode_Subtitle = global::CoffeeManager.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionMode_Subtitle;
+			global::MobileCore.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionMode_Title = global::CoffeeManager.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionMode_Title;
+			global::MobileCore.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button = global::CoffeeManager.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button;
+			global::MobileCore.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button_Borderless_Colored = global::CoffeeManager.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button_Borderless_Colored;
+			global::MobileCore.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button_Colored = global::CoffeeManager.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button_Colored;
+			global::MobileCore.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button_Inverse = global::CoffeeManager.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button_Inverse;
+			global::MobileCore.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_DropDownItem = global::CoffeeManager.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_DropDownItem;
+			global::MobileCore.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_PopupMenu_Header = global::CoffeeManager.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_PopupMenu_Header;
+			global::MobileCore.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_PopupMenu_Large = global::CoffeeManager.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_PopupMenu_Large;
+			global::MobileCore.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_PopupMenu_Small = global::CoffeeManager.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_PopupMenu_Small;
+			global::MobileCore.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Switch = global::CoffeeManager.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Switch;
+			global::MobileCore.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_TextView_SpinnerItem = global::CoffeeManager.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_TextView_SpinnerItem;
+			global::MobileCore.Droid.Resource.Style.Base_TextAppearance_Widget_AppCompat_ExpandedMenu_Item = global::CoffeeManager.Droid.Resource.Style.Base_TextAppearance_Widget_AppCompat_ExpandedMenu_Item;
+			global::MobileCore.Droid.Resource.Style.Base_TextAppearance_Widget_AppCompat_Toolbar_Subtitle = global::CoffeeManager.Droid.Resource.Style.Base_TextAppearance_Widget_AppCompat_Toolbar_Subtitle;
+			global::MobileCore.Droid.Resource.Style.Base_TextAppearance_Widget_AppCompat_Toolbar_Title = global::CoffeeManager.Droid.Resource.Style.Base_TextAppearance_Widget_AppCompat_Toolbar_Title;
+			global::MobileCore.Droid.Resource.Style.Base_Theme_AppCompat = global::CoffeeManager.Droid.Resource.Style.Base_Theme_AppCompat;
+			global::MobileCore.Droid.Resource.Style.Base_Theme_AppCompat_CompactMenu = global::CoffeeManager.Droid.Resource.Style.Base_Theme_AppCompat_CompactMenu;
+			global::MobileCore.Droid.Resource.Style.Base_Theme_AppCompat_Dialog = global::CoffeeManager.Droid.Resource.Style.Base_Theme_AppCompat_Dialog;
+			global::MobileCore.Droid.Resource.Style.Base_Theme_AppCompat_Dialog_Alert = global::CoffeeManager.Droid.Resource.Style.Base_Theme_AppCompat_Dialog_Alert;
+			global::MobileCore.Droid.Resource.Style.Base_Theme_AppCompat_Dialog_FixedSize = global::CoffeeManager.Droid.Resource.Style.Base_Theme_AppCompat_Dialog_FixedSize;
+			global::MobileCore.Droid.Resource.Style.Base_Theme_AppCompat_Dialog_MinWidth = global::CoffeeManager.Droid.Resource.Style.Base_Theme_AppCompat_Dialog_MinWidth;
+			global::MobileCore.Droid.Resource.Style.Base_Theme_AppCompat_DialogWhenLarge = global::CoffeeManager.Droid.Resource.Style.Base_Theme_AppCompat_DialogWhenLarge;
+			global::MobileCore.Droid.Resource.Style.Base_Theme_AppCompat_Light = global::CoffeeManager.Droid.Resource.Style.Base_Theme_AppCompat_Light;
+			global::MobileCore.Droid.Resource.Style.Base_Theme_AppCompat_Light_DarkActionBar = global::CoffeeManager.Droid.Resource.Style.Base_Theme_AppCompat_Light_DarkActionBar;
+			global::MobileCore.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog = global::CoffeeManager.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog;
+			global::MobileCore.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog_Alert = global::CoffeeManager.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog_Alert;
+			global::MobileCore.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog_FixedSize = global::CoffeeManager.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog_FixedSize;
+			global::MobileCore.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog_MinWidth = global::CoffeeManager.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog_MinWidth;
+			global::MobileCore.Droid.Resource.Style.Base_Theme_AppCompat_Light_DialogWhenLarge = global::CoffeeManager.Droid.Resource.Style.Base_Theme_AppCompat_Light_DialogWhenLarge;
+			global::MobileCore.Droid.Resource.Style.Base_ThemeOverlay_AppCompat = global::CoffeeManager.Droid.Resource.Style.Base_ThemeOverlay_AppCompat;
+			global::MobileCore.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_ActionBar = global::CoffeeManager.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_ActionBar;
+			global::MobileCore.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Dark = global::CoffeeManager.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Dark;
+			global::MobileCore.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Dark_ActionBar = global::CoffeeManager.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Dark_ActionBar;
+			global::MobileCore.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Dialog = global::CoffeeManager.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Dialog;
+			global::MobileCore.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Dialog_Alert = global::CoffeeManager.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Dialog_Alert;
+			global::MobileCore.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Light = global::CoffeeManager.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Light;
+			global::MobileCore.Droid.Resource.Style.Base_V11_Theme_AppCompat_Dialog = global::CoffeeManager.Droid.Resource.Style.Base_V11_Theme_AppCompat_Dialog;
+			global::MobileCore.Droid.Resource.Style.Base_V11_Theme_AppCompat_Light_Dialog = global::CoffeeManager.Droid.Resource.Style.Base_V11_Theme_AppCompat_Light_Dialog;
+			global::MobileCore.Droid.Resource.Style.Base_V11_ThemeOverlay_AppCompat_Dialog = global::CoffeeManager.Droid.Resource.Style.Base_V11_ThemeOverlay_AppCompat_Dialog;
+			global::MobileCore.Droid.Resource.Style.Base_V12_Widget_AppCompat_AutoCompleteTextView = global::CoffeeManager.Droid.Resource.Style.Base_V12_Widget_AppCompat_AutoCompleteTextView;
+			global::MobileCore.Droid.Resource.Style.Base_V12_Widget_AppCompat_EditText = global::CoffeeManager.Droid.Resource.Style.Base_V12_Widget_AppCompat_EditText;
+			global::MobileCore.Droid.Resource.Style.Base_V21_Theme_AppCompat = global::CoffeeManager.Droid.Resource.Style.Base_V21_Theme_AppCompat;
+			global::MobileCore.Droid.Resource.Style.Base_V21_Theme_AppCompat_Dialog = global::CoffeeManager.Droid.Resource.Style.Base_V21_Theme_AppCompat_Dialog;
+			global::MobileCore.Droid.Resource.Style.Base_V21_Theme_AppCompat_Light = global::CoffeeManager.Droid.Resource.Style.Base_V21_Theme_AppCompat_Light;
+			global::MobileCore.Droid.Resource.Style.Base_V21_Theme_AppCompat_Light_Dialog = global::CoffeeManager.Droid.Resource.Style.Base_V21_Theme_AppCompat_Light_Dialog;
+			global::MobileCore.Droid.Resource.Style.Base_V21_ThemeOverlay_AppCompat_Dialog = global::CoffeeManager.Droid.Resource.Style.Base_V21_ThemeOverlay_AppCompat_Dialog;
+			global::MobileCore.Droid.Resource.Style.Base_V22_Theme_AppCompat = global::CoffeeManager.Droid.Resource.Style.Base_V22_Theme_AppCompat;
+			global::MobileCore.Droid.Resource.Style.Base_V22_Theme_AppCompat_Light = global::CoffeeManager.Droid.Resource.Style.Base_V22_Theme_AppCompat_Light;
+			global::MobileCore.Droid.Resource.Style.Base_V23_Theme_AppCompat = global::CoffeeManager.Droid.Resource.Style.Base_V23_Theme_AppCompat;
+			global::MobileCore.Droid.Resource.Style.Base_V23_Theme_AppCompat_Light = global::CoffeeManager.Droid.Resource.Style.Base_V23_Theme_AppCompat_Light;
+			global::MobileCore.Droid.Resource.Style.Base_V7_Theme_AppCompat = global::CoffeeManager.Droid.Resource.Style.Base_V7_Theme_AppCompat;
+			global::MobileCore.Droid.Resource.Style.Base_V7_Theme_AppCompat_Dialog = global::CoffeeManager.Droid.Resource.Style.Base_V7_Theme_AppCompat_Dialog;
+			global::MobileCore.Droid.Resource.Style.Base_V7_Theme_AppCompat_Light = global::CoffeeManager.Droid.Resource.Style.Base_V7_Theme_AppCompat_Light;
+			global::MobileCore.Droid.Resource.Style.Base_V7_Theme_AppCompat_Light_Dialog = global::CoffeeManager.Droid.Resource.Style.Base_V7_Theme_AppCompat_Light_Dialog;
+			global::MobileCore.Droid.Resource.Style.Base_V7_ThemeOverlay_AppCompat_Dialog = global::CoffeeManager.Droid.Resource.Style.Base_V7_ThemeOverlay_AppCompat_Dialog;
+			global::MobileCore.Droid.Resource.Style.Base_V7_Widget_AppCompat_AutoCompleteTextView = global::CoffeeManager.Droid.Resource.Style.Base_V7_Widget_AppCompat_AutoCompleteTextView;
+			global::MobileCore.Droid.Resource.Style.Base_V7_Widget_AppCompat_EditText = global::CoffeeManager.Droid.Resource.Style.Base_V7_Widget_AppCompat_EditText;
+			global::MobileCore.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar = global::CoffeeManager.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar;
+			global::MobileCore.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar_Solid = global::CoffeeManager.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar_Solid;
+			global::MobileCore.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar_TabBar = global::CoffeeManager.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar_TabBar;
+			global::MobileCore.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar_TabText = global::CoffeeManager.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar_TabText;
+			global::MobileCore.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar_TabView = global::CoffeeManager.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar_TabView;
+			global::MobileCore.Droid.Resource.Style.Base_Widget_AppCompat_ActionButton = global::CoffeeManager.Droid.Resource.Style.Base_Widget_AppCompat_ActionButton;
+			global::MobileCore.Droid.Resource.Style.Base_Widget_AppCompat_ActionButton_CloseMode = global::CoffeeManager.Droid.Resource.Style.Base_Widget_AppCompat_ActionButton_CloseMode;
+			global::MobileCore.Droid.Resource.Style.Base_Widget_AppCompat_ActionButton_Overflow = global::CoffeeManager.Droid.Resource.Style.Base_Widget_AppCompat_ActionButton_Overflow;
+			global::MobileCore.Droid.Resource.Style.Base_Widget_AppCompat_ActionMode = global::CoffeeManager.Droid.Resource.Style.Base_Widget_AppCompat_ActionMode;
+			global::MobileCore.Droid.Resource.Style.Base_Widget_AppCompat_ActivityChooserView = global::CoffeeManager.Droid.Resource.Style.Base_Widget_AppCompat_ActivityChooserView;
+			global::MobileCore.Droid.Resource.Style.Base_Widget_AppCompat_AutoCompleteTextView = global::CoffeeManager.Droid.Resource.Style.Base_Widget_AppCompat_AutoCompleteTextView;
+			global::MobileCore.Droid.Resource.Style.Base_Widget_AppCompat_Button = global::CoffeeManager.Droid.Resource.Style.Base_Widget_AppCompat_Button;
+			global::MobileCore.Droid.Resource.Style.Base_Widget_AppCompat_Button_Borderless = global::CoffeeManager.Droid.Resource.Style.Base_Widget_AppCompat_Button_Borderless;
+			global::MobileCore.Droid.Resource.Style.Base_Widget_AppCompat_Button_Borderless_Colored = global::CoffeeManager.Droid.Resource.Style.Base_Widget_AppCompat_Button_Borderless_Colored;
+			global::MobileCore.Droid.Resource.Style.Base_Widget_AppCompat_Button_ButtonBar_AlertDialog = global::CoffeeManager.Droid.Resource.Style.Base_Widget_AppCompat_Button_ButtonBar_AlertDialog;
+			global::MobileCore.Droid.Resource.Style.Base_Widget_AppCompat_Button_Colored = global::CoffeeManager.Droid.Resource.Style.Base_Widget_AppCompat_Button_Colored;
+			global::MobileCore.Droid.Resource.Style.Base_Widget_AppCompat_Button_Small = global::CoffeeManager.Droid.Resource.Style.Base_Widget_AppCompat_Button_Small;
+			global::MobileCore.Droid.Resource.Style.Base_Widget_AppCompat_ButtonBar = global::CoffeeManager.Droid.Resource.Style.Base_Widget_AppCompat_ButtonBar;
+			global::MobileCore.Droid.Resource.Style.Base_Widget_AppCompat_ButtonBar_AlertDialog = global::CoffeeManager.Droid.Resource.Style.Base_Widget_AppCompat_ButtonBar_AlertDialog;
+			global::MobileCore.Droid.Resource.Style.Base_Widget_AppCompat_CompoundButton_CheckBox = global::CoffeeManager.Droid.Resource.Style.Base_Widget_AppCompat_CompoundButton_CheckBox;
+			global::MobileCore.Droid.Resource.Style.Base_Widget_AppCompat_CompoundButton_RadioButton = global::CoffeeManager.Droid.Resource.Style.Base_Widget_AppCompat_CompoundButton_RadioButton;
+			global::MobileCore.Droid.Resource.Style.Base_Widget_AppCompat_CompoundButton_Switch = global::CoffeeManager.Droid.Resource.Style.Base_Widget_AppCompat_CompoundButton_Switch;
+			global::MobileCore.Droid.Resource.Style.Base_Widget_AppCompat_DrawerArrowToggle = global::CoffeeManager.Droid.Resource.Style.Base_Widget_AppCompat_DrawerArrowToggle;
+			global::MobileCore.Droid.Resource.Style.Base_Widget_AppCompat_DrawerArrowToggle_Common = global::CoffeeManager.Droid.Resource.Style.Base_Widget_AppCompat_DrawerArrowToggle_Common;
+			global::MobileCore.Droid.Resource.Style.Base_Widget_AppCompat_DropDownItem_Spinner = global::CoffeeManager.Droid.Resource.Style.Base_Widget_AppCompat_DropDownItem_Spinner;
+			global::MobileCore.Droid.Resource.Style.Base_Widget_AppCompat_EditText = global::CoffeeManager.Droid.Resource.Style.Base_Widget_AppCompat_EditText;
+			global::MobileCore.Droid.Resource.Style.Base_Widget_AppCompat_ImageButton = global::CoffeeManager.Droid.Resource.Style.Base_Widget_AppCompat_ImageButton;
+			global::MobileCore.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar = global::CoffeeManager.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar;
+			global::MobileCore.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_Solid = global::CoffeeManager.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_Solid;
+			global::MobileCore.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabBar = global::CoffeeManager.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabBar;
+			global::MobileCore.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabText = global::CoffeeManager.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabText;
+			global::MobileCore.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabText_Inverse = global::CoffeeManager.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabText_Inverse;
+			global::MobileCore.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabView = global::CoffeeManager.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabView;
+			global::MobileCore.Droid.Resource.Style.Base_Widget_AppCompat_Light_PopupMenu = global::CoffeeManager.Droid.Resource.Style.Base_Widget_AppCompat_Light_PopupMenu;
+			global::MobileCore.Droid.Resource.Style.Base_Widget_AppCompat_Light_PopupMenu_Overflow = global::CoffeeManager.Droid.Resource.Style.Base_Widget_AppCompat_Light_PopupMenu_Overflow;
+			global::MobileCore.Droid.Resource.Style.Base_Widget_AppCompat_ListMenuView = global::CoffeeManager.Droid.Resource.Style.Base_Widget_AppCompat_ListMenuView;
+			global::MobileCore.Droid.Resource.Style.Base_Widget_AppCompat_ListPopupWindow = global::CoffeeManager.Droid.Resource.Style.Base_Widget_AppCompat_ListPopupWindow;
+			global::MobileCore.Droid.Resource.Style.Base_Widget_AppCompat_ListView = global::CoffeeManager.Droid.Resource.Style.Base_Widget_AppCompat_ListView;
+			global::MobileCore.Droid.Resource.Style.Base_Widget_AppCompat_ListView_DropDown = global::CoffeeManager.Droid.Resource.Style.Base_Widget_AppCompat_ListView_DropDown;
+			global::MobileCore.Droid.Resource.Style.Base_Widget_AppCompat_ListView_Menu = global::CoffeeManager.Droid.Resource.Style.Base_Widget_AppCompat_ListView_Menu;
+			global::MobileCore.Droid.Resource.Style.Base_Widget_AppCompat_PopupMenu = global::CoffeeManager.Droid.Resource.Style.Base_Widget_AppCompat_PopupMenu;
+			global::MobileCore.Droid.Resource.Style.Base_Widget_AppCompat_PopupMenu_Overflow = global::CoffeeManager.Droid.Resource.Style.Base_Widget_AppCompat_PopupMenu_Overflow;
+			global::MobileCore.Droid.Resource.Style.Base_Widget_AppCompat_PopupWindow = global::CoffeeManager.Droid.Resource.Style.Base_Widget_AppCompat_PopupWindow;
+			global::MobileCore.Droid.Resource.Style.Base_Widget_AppCompat_ProgressBar = global::CoffeeManager.Droid.Resource.Style.Base_Widget_AppCompat_ProgressBar;
+			global::MobileCore.Droid.Resource.Style.Base_Widget_AppCompat_ProgressBar_Horizontal = global::CoffeeManager.Droid.Resource.Style.Base_Widget_AppCompat_ProgressBar_Horizontal;
+			global::MobileCore.Droid.Resource.Style.Base_Widget_AppCompat_RatingBar = global::CoffeeManager.Droid.Resource.Style.Base_Widget_AppCompat_RatingBar;
+			global::MobileCore.Droid.Resource.Style.Base_Widget_AppCompat_RatingBar_Indicator = global::CoffeeManager.Droid.Resource.Style.Base_Widget_AppCompat_RatingBar_Indicator;
+			global::MobileCore.Droid.Resource.Style.Base_Widget_AppCompat_RatingBar_Small = global::CoffeeManager.Droid.Resource.Style.Base_Widget_AppCompat_RatingBar_Small;
+			global::MobileCore.Droid.Resource.Style.Base_Widget_AppCompat_SearchView = global::CoffeeManager.Droid.Resource.Style.Base_Widget_AppCompat_SearchView;
+			global::MobileCore.Droid.Resource.Style.Base_Widget_AppCompat_SearchView_ActionBar = global::CoffeeManager.Droid.Resource.Style.Base_Widget_AppCompat_SearchView_ActionBar;
+			global::MobileCore.Droid.Resource.Style.Base_Widget_AppCompat_SeekBar = global::CoffeeManager.Droid.Resource.Style.Base_Widget_AppCompat_SeekBar;
+			global::MobileCore.Droid.Resource.Style.Base_Widget_AppCompat_SeekBar_Discrete = global::CoffeeManager.Droid.Resource.Style.Base_Widget_AppCompat_SeekBar_Discrete;
+			global::MobileCore.Droid.Resource.Style.Base_Widget_AppCompat_Spinner = global::CoffeeManager.Droid.Resource.Style.Base_Widget_AppCompat_Spinner;
+			global::MobileCore.Droid.Resource.Style.Base_Widget_AppCompat_Spinner_Underlined = global::CoffeeManager.Droid.Resource.Style.Base_Widget_AppCompat_Spinner_Underlined;
+			global::MobileCore.Droid.Resource.Style.Base_Widget_AppCompat_TextView_SpinnerItem = global::CoffeeManager.Droid.Resource.Style.Base_Widget_AppCompat_TextView_SpinnerItem;
+			global::MobileCore.Droid.Resource.Style.Base_Widget_AppCompat_Toolbar = global::CoffeeManager.Droid.Resource.Style.Base_Widget_AppCompat_Toolbar;
+			global::MobileCore.Droid.Resource.Style.Base_Widget_AppCompat_Toolbar_Button_Navigation = global::CoffeeManager.Droid.Resource.Style.Base_Widget_AppCompat_Toolbar_Button_Navigation;
+			global::MobileCore.Droid.Resource.Style.Platform_AppCompat = global::CoffeeManager.Droid.Resource.Style.Platform_AppCompat;
+			global::MobileCore.Droid.Resource.Style.Platform_AppCompat_Light = global::CoffeeManager.Droid.Resource.Style.Platform_AppCompat_Light;
+			global::MobileCore.Droid.Resource.Style.Platform_ThemeOverlay_AppCompat = global::CoffeeManager.Droid.Resource.Style.Platform_ThemeOverlay_AppCompat;
+			global::MobileCore.Droid.Resource.Style.Platform_ThemeOverlay_AppCompat_Dark = global::CoffeeManager.Droid.Resource.Style.Platform_ThemeOverlay_AppCompat_Dark;
+			global::MobileCore.Droid.Resource.Style.Platform_ThemeOverlay_AppCompat_Light = global::CoffeeManager.Droid.Resource.Style.Platform_ThemeOverlay_AppCompat_Light;
+			global::MobileCore.Droid.Resource.Style.Platform_V11_AppCompat = global::CoffeeManager.Droid.Resource.Style.Platform_V11_AppCompat;
+			global::MobileCore.Droid.Resource.Style.Platform_V11_AppCompat_Light = global::CoffeeManager.Droid.Resource.Style.Platform_V11_AppCompat_Light;
+			global::MobileCore.Droid.Resource.Style.Platform_V14_AppCompat = global::CoffeeManager.Droid.Resource.Style.Platform_V14_AppCompat;
+			global::MobileCore.Droid.Resource.Style.Platform_V14_AppCompat_Light = global::CoffeeManager.Droid.Resource.Style.Platform_V14_AppCompat_Light;
+			global::MobileCore.Droid.Resource.Style.Platform_V21_AppCompat = global::CoffeeManager.Droid.Resource.Style.Platform_V21_AppCompat;
+			global::MobileCore.Droid.Resource.Style.Platform_V21_AppCompat_Light = global::CoffeeManager.Droid.Resource.Style.Platform_V21_AppCompat_Light;
+			global::MobileCore.Droid.Resource.Style.Platform_V25_AppCompat = global::CoffeeManager.Droid.Resource.Style.Platform_V25_AppCompat;
+			global::MobileCore.Droid.Resource.Style.Platform_V25_AppCompat_Light = global::CoffeeManager.Droid.Resource.Style.Platform_V25_AppCompat_Light;
+			global::MobileCore.Droid.Resource.Style.Platform_Widget_AppCompat_Spinner = global::CoffeeManager.Droid.Resource.Style.Platform_Widget_AppCompat_Spinner;
+			global::MobileCore.Droid.Resource.Style.RtlOverlay_DialogWindowTitle_AppCompat = global::CoffeeManager.Droid.Resource.Style.RtlOverlay_DialogWindowTitle_AppCompat;
+			global::MobileCore.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_ActionBar_TitleItem = global::CoffeeManager.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_ActionBar_TitleItem;
+			global::MobileCore.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_DialogTitle_Icon = global::CoffeeManager.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_DialogTitle_Icon;
+			global::MobileCore.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem = global::CoffeeManager.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem;
+			global::MobileCore.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_InternalGroup = global::CoffeeManager.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_InternalGroup;
+			global::MobileCore.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_Text = global::CoffeeManager.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_Text;
+			global::MobileCore.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown = global::CoffeeManager.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown;
+			global::MobileCore.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Icon1 = global::CoffeeManager.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Icon1;
+			global::MobileCore.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Icon2 = global::CoffeeManager.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Icon2;
+			global::MobileCore.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Query = global::CoffeeManager.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Query;
+			global::MobileCore.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Text = global::CoffeeManager.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Text;
+			global::MobileCore.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_SearchView_MagIcon = global::CoffeeManager.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_SearchView_MagIcon;
+			global::MobileCore.Droid.Resource.Style.RtlUnderlay_Widget_AppCompat_ActionButton = global::CoffeeManager.Droid.Resource.Style.RtlUnderlay_Widget_AppCompat_ActionButton;
+			global::MobileCore.Droid.Resource.Style.RtlUnderlay_Widget_AppCompat_ActionButton_Overflow = global::CoffeeManager.Droid.Resource.Style.RtlUnderlay_Widget_AppCompat_ActionButton_Overflow;
+			global::MobileCore.Droid.Resource.Style.TextAppearance_AppCompat = global::CoffeeManager.Droid.Resource.Style.TextAppearance_AppCompat;
+			global::MobileCore.Droid.Resource.Style.TextAppearance_AppCompat_Body1 = global::CoffeeManager.Droid.Resource.Style.TextAppearance_AppCompat_Body1;
+			global::MobileCore.Droid.Resource.Style.TextAppearance_AppCompat_Body2 = global::CoffeeManager.Droid.Resource.Style.TextAppearance_AppCompat_Body2;
+			global::MobileCore.Droid.Resource.Style.TextAppearance_AppCompat_Button = global::CoffeeManager.Droid.Resource.Style.TextAppearance_AppCompat_Button;
+			global::MobileCore.Droid.Resource.Style.TextAppearance_AppCompat_Caption = global::CoffeeManager.Droid.Resource.Style.TextAppearance_AppCompat_Caption;
+			global::MobileCore.Droid.Resource.Style.TextAppearance_AppCompat_Display1 = global::CoffeeManager.Droid.Resource.Style.TextAppearance_AppCompat_Display1;
+			global::MobileCore.Droid.Resource.Style.TextAppearance_AppCompat_Display2 = global::CoffeeManager.Droid.Resource.Style.TextAppearance_AppCompat_Display2;
+			global::MobileCore.Droid.Resource.Style.TextAppearance_AppCompat_Display3 = global::CoffeeManager.Droid.Resource.Style.TextAppearance_AppCompat_Display3;
+			global::MobileCore.Droid.Resource.Style.TextAppearance_AppCompat_Display4 = global::CoffeeManager.Droid.Resource.Style.TextAppearance_AppCompat_Display4;
+			global::MobileCore.Droid.Resource.Style.TextAppearance_AppCompat_Headline = global::CoffeeManager.Droid.Resource.Style.TextAppearance_AppCompat_Headline;
+			global::MobileCore.Droid.Resource.Style.TextAppearance_AppCompat_Inverse = global::CoffeeManager.Droid.Resource.Style.TextAppearance_AppCompat_Inverse;
+			global::MobileCore.Droid.Resource.Style.TextAppearance_AppCompat_Large = global::CoffeeManager.Droid.Resource.Style.TextAppearance_AppCompat_Large;
+			global::MobileCore.Droid.Resource.Style.TextAppearance_AppCompat_Large_Inverse = global::CoffeeManager.Droid.Resource.Style.TextAppearance_AppCompat_Large_Inverse;
+			global::MobileCore.Droid.Resource.Style.TextAppearance_AppCompat_Light_SearchResult_Subtitle = global::CoffeeManager.Droid.Resource.Style.TextAppearance_AppCompat_Light_SearchResult_Subtitle;
+			global::MobileCore.Droid.Resource.Style.TextAppearance_AppCompat_Light_SearchResult_Title = global::CoffeeManager.Droid.Resource.Style.TextAppearance_AppCompat_Light_SearchResult_Title;
+			global::MobileCore.Droid.Resource.Style.TextAppearance_AppCompat_Light_Widget_PopupMenu_Large = global::CoffeeManager.Droid.Resource.Style.TextAppearance_AppCompat_Light_Widget_PopupMenu_Large;
+			global::MobileCore.Droid.Resource.Style.TextAppearance_AppCompat_Light_Widget_PopupMenu_Small = global::CoffeeManager.Droid.Resource.Style.TextAppearance_AppCompat_Light_Widget_PopupMenu_Small;
+			global::MobileCore.Droid.Resource.Style.TextAppearance_AppCompat_Medium = global::CoffeeManager.Droid.Resource.Style.TextAppearance_AppCompat_Medium;
+			global::MobileCore.Droid.Resource.Style.TextAppearance_AppCompat_Medium_Inverse = global::CoffeeManager.Droid.Resource.Style.TextAppearance_AppCompat_Medium_Inverse;
+			global::MobileCore.Droid.Resource.Style.TextAppearance_AppCompat_Menu = global::CoffeeManager.Droid.Resource.Style.TextAppearance_AppCompat_Menu;
+			global::MobileCore.Droid.Resource.Style.TextAppearance_AppCompat_Notification = global::CoffeeManager.Droid.Resource.Style.TextAppearance_AppCompat_Notification;
+			global::MobileCore.Droid.Resource.Style.TextAppearance_AppCompat_Notification_Info = global::CoffeeManager.Droid.Resource.Style.TextAppearance_AppCompat_Notification_Info;
+			global::MobileCore.Droid.Resource.Style.TextAppearance_AppCompat_Notification_Info_Media = global::CoffeeManager.Droid.Resource.Style.TextAppearance_AppCompat_Notification_Info_Media;
+			global::MobileCore.Droid.Resource.Style.TextAppearance_AppCompat_Notification_Line2 = global::CoffeeManager.Droid.Resource.Style.TextAppearance_AppCompat_Notification_Line2;
+			global::MobileCore.Droid.Resource.Style.TextAppearance_AppCompat_Notification_Line2_Media = global::CoffeeManager.Droid.Resource.Style.TextAppearance_AppCompat_Notification_Line2_Media;
+			global::MobileCore.Droid.Resource.Style.TextAppearance_AppCompat_Notification_Media = global::CoffeeManager.Droid.Resource.Style.TextAppearance_AppCompat_Notification_Media;
+			global::MobileCore.Droid.Resource.Style.TextAppearance_AppCompat_Notification_Time = global::CoffeeManager.Droid.Resource.Style.TextAppearance_AppCompat_Notification_Time;
+			global::MobileCore.Droid.Resource.Style.TextAppearance_AppCompat_Notification_Time_Media = global::CoffeeManager.Droid.Resource.Style.TextAppearance_AppCompat_Notification_Time_Media;
+			global::MobileCore.Droid.Resource.Style.TextAppearance_AppCompat_Notification_Title = global::CoffeeManager.Droid.Resource.Style.TextAppearance_AppCompat_Notification_Title;
+			global::MobileCore.Droid.Resource.Style.TextAppearance_AppCompat_Notification_Title_Media = global::CoffeeManager.Droid.Resource.Style.TextAppearance_AppCompat_Notification_Title_Media;
+			global::MobileCore.Droid.Resource.Style.TextAppearance_AppCompat_SearchResult_Subtitle = global::CoffeeManager.Droid.Resource.Style.TextAppearance_AppCompat_SearchResult_Subtitle;
+			global::MobileCore.Droid.Resource.Style.TextAppearance_AppCompat_SearchResult_Title = global::CoffeeManager.Droid.Resource.Style.TextAppearance_AppCompat_SearchResult_Title;
+			global::MobileCore.Droid.Resource.Style.TextAppearance_AppCompat_Small = global::CoffeeManager.Droid.Resource.Style.TextAppearance_AppCompat_Small;
+			global::MobileCore.Droid.Resource.Style.TextAppearance_AppCompat_Small_Inverse = global::CoffeeManager.Droid.Resource.Style.TextAppearance_AppCompat_Small_Inverse;
+			global::MobileCore.Droid.Resource.Style.TextAppearance_AppCompat_Subhead = global::CoffeeManager.Droid.Resource.Style.TextAppearance_AppCompat_Subhead;
+			global::MobileCore.Droid.Resource.Style.TextAppearance_AppCompat_Subhead_Inverse = global::CoffeeManager.Droid.Resource.Style.TextAppearance_AppCompat_Subhead_Inverse;
+			global::MobileCore.Droid.Resource.Style.TextAppearance_AppCompat_Title = global::CoffeeManager.Droid.Resource.Style.TextAppearance_AppCompat_Title;
+			global::MobileCore.Droid.Resource.Style.TextAppearance_AppCompat_Title_Inverse = global::CoffeeManager.Droid.Resource.Style.TextAppearance_AppCompat_Title_Inverse;
+			global::MobileCore.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Menu = global::CoffeeManager.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Menu;
+			global::MobileCore.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Subtitle = global::CoffeeManager.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Subtitle;
+			global::MobileCore.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Subtitle_Inverse = global::CoffeeManager.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Subtitle_Inverse;
+			global::MobileCore.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Title = global::CoffeeManager.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Title;
+			global::MobileCore.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Title_Inverse = global::CoffeeManager.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Title_Inverse;
+			global::MobileCore.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Subtitle = global::CoffeeManager.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Subtitle;
+			global::MobileCore.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Subtitle_Inverse = global::CoffeeManager.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Subtitle_Inverse;
+			global::MobileCore.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Title = global::CoffeeManager.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Title;
+			global::MobileCore.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Title_Inverse = global::CoffeeManager.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Title_Inverse;
+			global::MobileCore.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Button = global::CoffeeManager.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Button;
+			global::MobileCore.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Button_Borderless_Colored = global::CoffeeManager.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Button_Borderless_Colored;
+			global::MobileCore.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Button_Colored = global::CoffeeManager.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Button_Colored;
+			global::MobileCore.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Button_Inverse = global::CoffeeManager.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Button_Inverse;
+			global::MobileCore.Droid.Resource.Style.TextAppearance_AppCompat_Widget_DropDownItem = global::CoffeeManager.Droid.Resource.Style.TextAppearance_AppCompat_Widget_DropDownItem;
+			global::MobileCore.Droid.Resource.Style.TextAppearance_AppCompat_Widget_PopupMenu_Header = global::CoffeeManager.Droid.Resource.Style.TextAppearance_AppCompat_Widget_PopupMenu_Header;
+			global::MobileCore.Droid.Resource.Style.TextAppearance_AppCompat_Widget_PopupMenu_Large = global::CoffeeManager.Droid.Resource.Style.TextAppearance_AppCompat_Widget_PopupMenu_Large;
+			global::MobileCore.Droid.Resource.Style.TextAppearance_AppCompat_Widget_PopupMenu_Small = global::CoffeeManager.Droid.Resource.Style.TextAppearance_AppCompat_Widget_PopupMenu_Small;
+			global::MobileCore.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Switch = global::CoffeeManager.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Switch;
+			global::MobileCore.Droid.Resource.Style.TextAppearance_AppCompat_Widget_TextView_SpinnerItem = global::CoffeeManager.Droid.Resource.Style.TextAppearance_AppCompat_Widget_TextView_SpinnerItem;
+			global::MobileCore.Droid.Resource.Style.TextAppearance_StatusBar_EventContent = global::CoffeeManager.Droid.Resource.Style.TextAppearance_StatusBar_EventContent;
+			global::MobileCore.Droid.Resource.Style.TextAppearance_StatusBar_EventContent_Info = global::CoffeeManager.Droid.Resource.Style.TextAppearance_StatusBar_EventContent_Info;
+			global::MobileCore.Droid.Resource.Style.TextAppearance_StatusBar_EventContent_Line2 = global::CoffeeManager.Droid.Resource.Style.TextAppearance_StatusBar_EventContent_Line2;
+			global::MobileCore.Droid.Resource.Style.TextAppearance_StatusBar_EventContent_Time = global::CoffeeManager.Droid.Resource.Style.TextAppearance_StatusBar_EventContent_Time;
+			global::MobileCore.Droid.Resource.Style.TextAppearance_StatusBar_EventContent_Title = global::CoffeeManager.Droid.Resource.Style.TextAppearance_StatusBar_EventContent_Title;
+			global::MobileCore.Droid.Resource.Style.TextAppearance_Widget_AppCompat_ExpandedMenu_Item = global::CoffeeManager.Droid.Resource.Style.TextAppearance_Widget_AppCompat_ExpandedMenu_Item;
+			global::MobileCore.Droid.Resource.Style.TextAppearance_Widget_AppCompat_Toolbar_Subtitle = global::CoffeeManager.Droid.Resource.Style.TextAppearance_Widget_AppCompat_Toolbar_Subtitle;
+			global::MobileCore.Droid.Resource.Style.TextAppearance_Widget_AppCompat_Toolbar_Title = global::CoffeeManager.Droid.Resource.Style.TextAppearance_Widget_AppCompat_Toolbar_Title;
+			global::MobileCore.Droid.Resource.Style.Theme_AppCompat = global::CoffeeManager.Droid.Resource.Style.Theme_AppCompat;
+			global::MobileCore.Droid.Resource.Style.Theme_AppCompat_CompactMenu = global::CoffeeManager.Droid.Resource.Style.Theme_AppCompat_CompactMenu;
+			global::MobileCore.Droid.Resource.Style.Theme_AppCompat_DayNight = global::CoffeeManager.Droid.Resource.Style.Theme_AppCompat_DayNight;
+			global::MobileCore.Droid.Resource.Style.Theme_AppCompat_DayNight_DarkActionBar = global::CoffeeManager.Droid.Resource.Style.Theme_AppCompat_DayNight_DarkActionBar;
+			global::MobileCore.Droid.Resource.Style.Theme_AppCompat_DayNight_Dialog = global::CoffeeManager.Droid.Resource.Style.Theme_AppCompat_DayNight_Dialog;
+			global::MobileCore.Droid.Resource.Style.Theme_AppCompat_DayNight_Dialog_Alert = global::CoffeeManager.Droid.Resource.Style.Theme_AppCompat_DayNight_Dialog_Alert;
+			global::MobileCore.Droid.Resource.Style.Theme_AppCompat_DayNight_Dialog_MinWidth = global::CoffeeManager.Droid.Resource.Style.Theme_AppCompat_DayNight_Dialog_MinWidth;
+			global::MobileCore.Droid.Resource.Style.Theme_AppCompat_DayNight_DialogWhenLarge = global::CoffeeManager.Droid.Resource.Style.Theme_AppCompat_DayNight_DialogWhenLarge;
+			global::MobileCore.Droid.Resource.Style.Theme_AppCompat_DayNight_NoActionBar = global::CoffeeManager.Droid.Resource.Style.Theme_AppCompat_DayNight_NoActionBar;
+			global::MobileCore.Droid.Resource.Style.Theme_AppCompat_Dialog = global::CoffeeManager.Droid.Resource.Style.Theme_AppCompat_Dialog;
+			global::MobileCore.Droid.Resource.Style.Theme_AppCompat_Dialog_Alert = global::CoffeeManager.Droid.Resource.Style.Theme_AppCompat_Dialog_Alert;
+			global::MobileCore.Droid.Resource.Style.Theme_AppCompat_Dialog_MinWidth = global::CoffeeManager.Droid.Resource.Style.Theme_AppCompat_Dialog_MinWidth;
+			global::MobileCore.Droid.Resource.Style.Theme_AppCompat_DialogWhenLarge = global::CoffeeManager.Droid.Resource.Style.Theme_AppCompat_DialogWhenLarge;
+			global::MobileCore.Droid.Resource.Style.Theme_AppCompat_Light = global::CoffeeManager.Droid.Resource.Style.Theme_AppCompat_Light;
+			global::MobileCore.Droid.Resource.Style.Theme_AppCompat_Light_DarkActionBar = global::CoffeeManager.Droid.Resource.Style.Theme_AppCompat_Light_DarkActionBar;
+			global::MobileCore.Droid.Resource.Style.Theme_AppCompat_Light_Dialog = global::CoffeeManager.Droid.Resource.Style.Theme_AppCompat_Light_Dialog;
+			global::MobileCore.Droid.Resource.Style.Theme_AppCompat_Light_Dialog_Alert = global::CoffeeManager.Droid.Resource.Style.Theme_AppCompat_Light_Dialog_Alert;
+			global::MobileCore.Droid.Resource.Style.Theme_AppCompat_Light_Dialog_MinWidth = global::CoffeeManager.Droid.Resource.Style.Theme_AppCompat_Light_Dialog_MinWidth;
+			global::MobileCore.Droid.Resource.Style.Theme_AppCompat_Light_DialogWhenLarge = global::CoffeeManager.Droid.Resource.Style.Theme_AppCompat_Light_DialogWhenLarge;
+			global::MobileCore.Droid.Resource.Style.Theme_AppCompat_Light_NoActionBar = global::CoffeeManager.Droid.Resource.Style.Theme_AppCompat_Light_NoActionBar;
+			global::MobileCore.Droid.Resource.Style.Theme_AppCompat_NoActionBar = global::CoffeeManager.Droid.Resource.Style.Theme_AppCompat_NoActionBar;
+			global::MobileCore.Droid.Resource.Style.ThemeOverlay_AppCompat = global::CoffeeManager.Droid.Resource.Style.ThemeOverlay_AppCompat;
+			global::MobileCore.Droid.Resource.Style.ThemeOverlay_AppCompat_ActionBar = global::CoffeeManager.Droid.Resource.Style.ThemeOverlay_AppCompat_ActionBar;
+			global::MobileCore.Droid.Resource.Style.ThemeOverlay_AppCompat_Dark = global::CoffeeManager.Droid.Resource.Style.ThemeOverlay_AppCompat_Dark;
+			global::MobileCore.Droid.Resource.Style.ThemeOverlay_AppCompat_Dark_ActionBar = global::CoffeeManager.Droid.Resource.Style.ThemeOverlay_AppCompat_Dark_ActionBar;
+			global::MobileCore.Droid.Resource.Style.ThemeOverlay_AppCompat_Dialog = global::CoffeeManager.Droid.Resource.Style.ThemeOverlay_AppCompat_Dialog;
+			global::MobileCore.Droid.Resource.Style.ThemeOverlay_AppCompat_Dialog_Alert = global::CoffeeManager.Droid.Resource.Style.ThemeOverlay_AppCompat_Dialog_Alert;
+			global::MobileCore.Droid.Resource.Style.ThemeOverlay_AppCompat_Light = global::CoffeeManager.Droid.Resource.Style.ThemeOverlay_AppCompat_Light;
+			global::MobileCore.Droid.Resource.Style.Toolbar_TitleText = global::CoffeeManager.Droid.Resource.Style.Toolbar_TitleText;
+			global::MobileCore.Droid.Resource.Style.Widget_AppCompat_ActionBar = global::CoffeeManager.Droid.Resource.Style.Widget_AppCompat_ActionBar;
+			global::MobileCore.Droid.Resource.Style.Widget_AppCompat_ActionBar_Solid = global::CoffeeManager.Droid.Resource.Style.Widget_AppCompat_ActionBar_Solid;
+			global::MobileCore.Droid.Resource.Style.Widget_AppCompat_ActionBar_TabBar = global::CoffeeManager.Droid.Resource.Style.Widget_AppCompat_ActionBar_TabBar;
+			global::MobileCore.Droid.Resource.Style.Widget_AppCompat_ActionBar_TabText = global::CoffeeManager.Droid.Resource.Style.Widget_AppCompat_ActionBar_TabText;
+			global::MobileCore.Droid.Resource.Style.Widget_AppCompat_ActionBar_TabView = global::CoffeeManager.Droid.Resource.Style.Widget_AppCompat_ActionBar_TabView;
+			global::MobileCore.Droid.Resource.Style.Widget_AppCompat_ActionButton = global::CoffeeManager.Droid.Resource.Style.Widget_AppCompat_ActionButton;
+			global::MobileCore.Droid.Resource.Style.Widget_AppCompat_ActionButton_CloseMode = global::CoffeeManager.Droid.Resource.Style.Widget_AppCompat_ActionButton_CloseMode;
+			global::MobileCore.Droid.Resource.Style.Widget_AppCompat_ActionButton_Overflow = global::CoffeeManager.Droid.Resource.Style.Widget_AppCompat_ActionButton_Overflow;
+			global::MobileCore.Droid.Resource.Style.Widget_AppCompat_ActionMode = global::CoffeeManager.Droid.Resource.Style.Widget_AppCompat_ActionMode;
+			global::MobileCore.Droid.Resource.Style.Widget_AppCompat_ActivityChooserView = global::CoffeeManager.Droid.Resource.Style.Widget_AppCompat_ActivityChooserView;
+			global::MobileCore.Droid.Resource.Style.Widget_AppCompat_AutoCompleteTextView = global::CoffeeManager.Droid.Resource.Style.Widget_AppCompat_AutoCompleteTextView;
+			global::MobileCore.Droid.Resource.Style.Widget_AppCompat_Button = global::CoffeeManager.Droid.Resource.Style.Widget_AppCompat_Button;
+			global::MobileCore.Droid.Resource.Style.Widget_AppCompat_Button_Borderless = global::CoffeeManager.Droid.Resource.Style.Widget_AppCompat_Button_Borderless;
+			global::MobileCore.Droid.Resource.Style.Widget_AppCompat_Button_Borderless_Colored = global::CoffeeManager.Droid.Resource.Style.Widget_AppCompat_Button_Borderless_Colored;
+			global::MobileCore.Droid.Resource.Style.Widget_AppCompat_Button_ButtonBar_AlertDialog = global::CoffeeManager.Droid.Resource.Style.Widget_AppCompat_Button_ButtonBar_AlertDialog;
+			global::MobileCore.Droid.Resource.Style.Widget_AppCompat_Button_Colored = global::CoffeeManager.Droid.Resource.Style.Widget_AppCompat_Button_Colored;
+			global::MobileCore.Droid.Resource.Style.Widget_AppCompat_Button_Small = global::CoffeeManager.Droid.Resource.Style.Widget_AppCompat_Button_Small;
+			global::MobileCore.Droid.Resource.Style.Widget_AppCompat_ButtonBar = global::CoffeeManager.Droid.Resource.Style.Widget_AppCompat_ButtonBar;
+			global::MobileCore.Droid.Resource.Style.Widget_AppCompat_ButtonBar_AlertDialog = global::CoffeeManager.Droid.Resource.Style.Widget_AppCompat_ButtonBar_AlertDialog;
+			global::MobileCore.Droid.Resource.Style.Widget_AppCompat_CompoundButton_CheckBox = global::CoffeeManager.Droid.Resource.Style.Widget_AppCompat_CompoundButton_CheckBox;
+			global::MobileCore.Droid.Resource.Style.Widget_AppCompat_CompoundButton_RadioButton = global::CoffeeManager.Droid.Resource.Style.Widget_AppCompat_CompoundButton_RadioButton;
+			global::MobileCore.Droid.Resource.Style.Widget_AppCompat_CompoundButton_Switch = global::CoffeeManager.Droid.Resource.Style.Widget_AppCompat_CompoundButton_Switch;
+			global::MobileCore.Droid.Resource.Style.Widget_AppCompat_DrawerArrowToggle = global::CoffeeManager.Droid.Resource.Style.Widget_AppCompat_DrawerArrowToggle;
+			global::MobileCore.Droid.Resource.Style.Widget_AppCompat_DropDownItem_Spinner = global::CoffeeManager.Droid.Resource.Style.Widget_AppCompat_DropDownItem_Spinner;
+			global::MobileCore.Droid.Resource.Style.Widget_AppCompat_EditText = global::CoffeeManager.Droid.Resource.Style.Widget_AppCompat_EditText;
+			global::MobileCore.Droid.Resource.Style.Widget_AppCompat_ImageButton = global::CoffeeManager.Droid.Resource.Style.Widget_AppCompat_ImageButton;
+			global::MobileCore.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar = global::CoffeeManager.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar;
+			global::MobileCore.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_Solid = global::CoffeeManager.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_Solid;
+			global::MobileCore.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_Solid_Inverse = global::CoffeeManager.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_Solid_Inverse;
+			global::MobileCore.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabBar = global::CoffeeManager.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabBar;
+			global::MobileCore.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabBar_Inverse = global::CoffeeManager.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabBar_Inverse;
+			global::MobileCore.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabText = global::CoffeeManager.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabText;
+			global::MobileCore.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabText_Inverse = global::CoffeeManager.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabText_Inverse;
+			global::MobileCore.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabView = global::CoffeeManager.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabView;
+			global::MobileCore.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabView_Inverse = global::CoffeeManager.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabView_Inverse;
+			global::MobileCore.Droid.Resource.Style.Widget_AppCompat_Light_ActionButton = global::CoffeeManager.Droid.Resource.Style.Widget_AppCompat_Light_ActionButton;
+			global::MobileCore.Droid.Resource.Style.Widget_AppCompat_Light_ActionButton_CloseMode = global::CoffeeManager.Droid.Resource.Style.Widget_AppCompat_Light_ActionButton_CloseMode;
+			global::MobileCore.Droid.Resource.Style.Widget_AppCompat_Light_ActionButton_Overflow = global::CoffeeManager.Droid.Resource.Style.Widget_AppCompat_Light_ActionButton_Overflow;
+			global::MobileCore.Droid.Resource.Style.Widget_AppCompat_Light_ActionMode_Inverse = global::CoffeeManager.Droid.Resource.Style.Widget_AppCompat_Light_ActionMode_Inverse;
+			global::MobileCore.Droid.Resource.Style.Widget_AppCompat_Light_ActivityChooserView = global::CoffeeManager.Droid.Resource.Style.Widget_AppCompat_Light_ActivityChooserView;
+			global::MobileCore.Droid.Resource.Style.Widget_AppCompat_Light_AutoCompleteTextView = global::CoffeeManager.Droid.Resource.Style.Widget_AppCompat_Light_AutoCompleteTextView;
+			global::MobileCore.Droid.Resource.Style.Widget_AppCompat_Light_DropDownItem_Spinner = global::CoffeeManager.Droid.Resource.Style.Widget_AppCompat_Light_DropDownItem_Spinner;
+			global::MobileCore.Droid.Resource.Style.Widget_AppCompat_Light_ListPopupWindow = global::CoffeeManager.Droid.Resource.Style.Widget_AppCompat_Light_ListPopupWindow;
+			global::MobileCore.Droid.Resource.Style.Widget_AppCompat_Light_ListView_DropDown = global::CoffeeManager.Droid.Resource.Style.Widget_AppCompat_Light_ListView_DropDown;
+			global::MobileCore.Droid.Resource.Style.Widget_AppCompat_Light_PopupMenu = global::CoffeeManager.Droid.Resource.Style.Widget_AppCompat_Light_PopupMenu;
+			global::MobileCore.Droid.Resource.Style.Widget_AppCompat_Light_PopupMenu_Overflow = global::CoffeeManager.Droid.Resource.Style.Widget_AppCompat_Light_PopupMenu_Overflow;
+			global::MobileCore.Droid.Resource.Style.Widget_AppCompat_Light_SearchView = global::CoffeeManager.Droid.Resource.Style.Widget_AppCompat_Light_SearchView;
+			global::MobileCore.Droid.Resource.Style.Widget_AppCompat_Light_Spinner_DropDown_ActionBar = global::CoffeeManager.Droid.Resource.Style.Widget_AppCompat_Light_Spinner_DropDown_ActionBar;
+			global::MobileCore.Droid.Resource.Style.Widget_AppCompat_ListMenuView = global::CoffeeManager.Droid.Resource.Style.Widget_AppCompat_ListMenuView;
+			global::MobileCore.Droid.Resource.Style.Widget_AppCompat_ListPopupWindow = global::CoffeeManager.Droid.Resource.Style.Widget_AppCompat_ListPopupWindow;
+			global::MobileCore.Droid.Resource.Style.Widget_AppCompat_ListView = global::CoffeeManager.Droid.Resource.Style.Widget_AppCompat_ListView;
+			global::MobileCore.Droid.Resource.Style.Widget_AppCompat_ListView_DropDown = global::CoffeeManager.Droid.Resource.Style.Widget_AppCompat_ListView_DropDown;
+			global::MobileCore.Droid.Resource.Style.Widget_AppCompat_ListView_Menu = global::CoffeeManager.Droid.Resource.Style.Widget_AppCompat_ListView_Menu;
+			global::MobileCore.Droid.Resource.Style.Widget_AppCompat_NotificationActionContainer = global::CoffeeManager.Droid.Resource.Style.Widget_AppCompat_NotificationActionContainer;
+			global::MobileCore.Droid.Resource.Style.Widget_AppCompat_NotificationActionText = global::CoffeeManager.Droid.Resource.Style.Widget_AppCompat_NotificationActionText;
+			global::MobileCore.Droid.Resource.Style.Widget_AppCompat_PopupMenu = global::CoffeeManager.Droid.Resource.Style.Widget_AppCompat_PopupMenu;
+			global::MobileCore.Droid.Resource.Style.Widget_AppCompat_PopupMenu_Overflow = global::CoffeeManager.Droid.Resource.Style.Widget_AppCompat_PopupMenu_Overflow;
+			global::MobileCore.Droid.Resource.Style.Widget_AppCompat_PopupWindow = global::CoffeeManager.Droid.Resource.Style.Widget_AppCompat_PopupWindow;
+			global::MobileCore.Droid.Resource.Style.Widget_AppCompat_ProgressBar = global::CoffeeManager.Droid.Resource.Style.Widget_AppCompat_ProgressBar;
+			global::MobileCore.Droid.Resource.Style.Widget_AppCompat_ProgressBar_Horizontal = global::CoffeeManager.Droid.Resource.Style.Widget_AppCompat_ProgressBar_Horizontal;
+			global::MobileCore.Droid.Resource.Style.Widget_AppCompat_RatingBar = global::CoffeeManager.Droid.Resource.Style.Widget_AppCompat_RatingBar;
+			global::MobileCore.Droid.Resource.Style.Widget_AppCompat_RatingBar_Indicator = global::CoffeeManager.Droid.Resource.Style.Widget_AppCompat_RatingBar_Indicator;
+			global::MobileCore.Droid.Resource.Style.Widget_AppCompat_RatingBar_Small = global::CoffeeManager.Droid.Resource.Style.Widget_AppCompat_RatingBar_Small;
+			global::MobileCore.Droid.Resource.Style.Widget_AppCompat_SearchView = global::CoffeeManager.Droid.Resource.Style.Widget_AppCompat_SearchView;
+			global::MobileCore.Droid.Resource.Style.Widget_AppCompat_SearchView_ActionBar = global::CoffeeManager.Droid.Resource.Style.Widget_AppCompat_SearchView_ActionBar;
+			global::MobileCore.Droid.Resource.Style.Widget_AppCompat_SeekBar = global::CoffeeManager.Droid.Resource.Style.Widget_AppCompat_SeekBar;
+			global::MobileCore.Droid.Resource.Style.Widget_AppCompat_SeekBar_Discrete = global::CoffeeManager.Droid.Resource.Style.Widget_AppCompat_SeekBar_Discrete;
+			global::MobileCore.Droid.Resource.Style.Widget_AppCompat_Spinner = global::CoffeeManager.Droid.Resource.Style.Widget_AppCompat_Spinner;
+			global::MobileCore.Droid.Resource.Style.Widget_AppCompat_Spinner_DropDown = global::CoffeeManager.Droid.Resource.Style.Widget_AppCompat_Spinner_DropDown;
+			global::MobileCore.Droid.Resource.Style.Widget_AppCompat_Spinner_DropDown_ActionBar = global::CoffeeManager.Droid.Resource.Style.Widget_AppCompat_Spinner_DropDown_ActionBar;
+			global::MobileCore.Droid.Resource.Style.Widget_AppCompat_Spinner_Underlined = global::CoffeeManager.Droid.Resource.Style.Widget_AppCompat_Spinner_Underlined;
+			global::MobileCore.Droid.Resource.Style.Widget_AppCompat_TextView_SpinnerItem = global::CoffeeManager.Droid.Resource.Style.Widget_AppCompat_TextView_SpinnerItem;
+			global::MobileCore.Droid.Resource.Style.Widget_AppCompat_Toolbar = global::CoffeeManager.Droid.Resource.Style.Widget_AppCompat_Toolbar;
+			global::MobileCore.Droid.Resource.Style.Widget_AppCompat_Toolbar_Button_Navigation = global::CoffeeManager.Droid.Resource.Style.Widget_AppCompat_Toolbar_Button_Navigation;
+			global::MobileCore.Droid.Resource.Style.toolbar_global = global::CoffeeManager.Droid.Resource.Style.toolbar_global;
+			global::MobileCore.Droid.Resource.Style.toolbar_title_fontify = global::CoffeeManager.Droid.Resource.Style.toolbar_title_fontify;
+			global::MobileCore.Droid.Resource.Xml.Empty = global::CoffeeManager.Droid.Resource.Xml.Empty;
+			global::MobileCore.Droid.Resource.Styleable.ActionBar = global::CoffeeManager.Droid.Resource.Styleable.ActionBar;
+			global::MobileCore.Droid.Resource.Styleable.ActionBar_background = global::CoffeeManager.Droid.Resource.Styleable.ActionBar_background;
+			global::MobileCore.Droid.Resource.Styleable.ActionBar_backgroundSplit = global::CoffeeManager.Droid.Resource.Styleable.ActionBar_backgroundSplit;
+			global::MobileCore.Droid.Resource.Styleable.ActionBar_backgroundStacked = global::CoffeeManager.Droid.Resource.Styleable.ActionBar_backgroundStacked;
+			global::MobileCore.Droid.Resource.Styleable.ActionBar_contentInsetEnd = global::CoffeeManager.Droid.Resource.Styleable.ActionBar_contentInsetEnd;
+			global::MobileCore.Droid.Resource.Styleable.ActionBar_contentInsetEndWithActions = global::CoffeeManager.Droid.Resource.Styleable.ActionBar_contentInsetEndWithActions;
+			global::MobileCore.Droid.Resource.Styleable.ActionBar_contentInsetLeft = global::CoffeeManager.Droid.Resource.Styleable.ActionBar_contentInsetLeft;
+			global::MobileCore.Droid.Resource.Styleable.ActionBar_contentInsetRight = global::CoffeeManager.Droid.Resource.Styleable.ActionBar_contentInsetRight;
+			global::MobileCore.Droid.Resource.Styleable.ActionBar_contentInsetStart = global::CoffeeManager.Droid.Resource.Styleable.ActionBar_contentInsetStart;
+			global::MobileCore.Droid.Resource.Styleable.ActionBar_contentInsetStartWithNavigation = global::CoffeeManager.Droid.Resource.Styleable.ActionBar_contentInsetStartWithNavigation;
+			global::MobileCore.Droid.Resource.Styleable.ActionBar_customNavigationLayout = global::CoffeeManager.Droid.Resource.Styleable.ActionBar_customNavigationLayout;
+			global::MobileCore.Droid.Resource.Styleable.ActionBar_displayOptions = global::CoffeeManager.Droid.Resource.Styleable.ActionBar_displayOptions;
+			global::MobileCore.Droid.Resource.Styleable.ActionBar_divider = global::CoffeeManager.Droid.Resource.Styleable.ActionBar_divider;
+			global::MobileCore.Droid.Resource.Styleable.ActionBar_elevation = global::CoffeeManager.Droid.Resource.Styleable.ActionBar_elevation;
+			global::MobileCore.Droid.Resource.Styleable.ActionBar_height = global::CoffeeManager.Droid.Resource.Styleable.ActionBar_height;
+			global::MobileCore.Droid.Resource.Styleable.ActionBar_hideOnContentScroll = global::CoffeeManager.Droid.Resource.Styleable.ActionBar_hideOnContentScroll;
+			global::MobileCore.Droid.Resource.Styleable.ActionBar_homeAsUpIndicator = global::CoffeeManager.Droid.Resource.Styleable.ActionBar_homeAsUpIndicator;
+			global::MobileCore.Droid.Resource.Styleable.ActionBar_homeLayout = global::CoffeeManager.Droid.Resource.Styleable.ActionBar_homeLayout;
+			global::MobileCore.Droid.Resource.Styleable.ActionBar_icon = global::CoffeeManager.Droid.Resource.Styleable.ActionBar_icon;
+			global::MobileCore.Droid.Resource.Styleable.ActionBar_indeterminateProgressStyle = global::CoffeeManager.Droid.Resource.Styleable.ActionBar_indeterminateProgressStyle;
+			global::MobileCore.Droid.Resource.Styleable.ActionBar_itemPadding = global::CoffeeManager.Droid.Resource.Styleable.ActionBar_itemPadding;
+			global::MobileCore.Droid.Resource.Styleable.ActionBar_logo = global::CoffeeManager.Droid.Resource.Styleable.ActionBar_logo;
+			global::MobileCore.Droid.Resource.Styleable.ActionBar_navigationMode = global::CoffeeManager.Droid.Resource.Styleable.ActionBar_navigationMode;
+			global::MobileCore.Droid.Resource.Styleable.ActionBar_popupTheme = global::CoffeeManager.Droid.Resource.Styleable.ActionBar_popupTheme;
+			global::MobileCore.Droid.Resource.Styleable.ActionBar_progressBarPadding = global::CoffeeManager.Droid.Resource.Styleable.ActionBar_progressBarPadding;
+			global::MobileCore.Droid.Resource.Styleable.ActionBar_progressBarStyle = global::CoffeeManager.Droid.Resource.Styleable.ActionBar_progressBarStyle;
+			global::MobileCore.Droid.Resource.Styleable.ActionBar_subtitle = global::CoffeeManager.Droid.Resource.Styleable.ActionBar_subtitle;
+			global::MobileCore.Droid.Resource.Styleable.ActionBar_subtitleTextStyle = global::CoffeeManager.Droid.Resource.Styleable.ActionBar_subtitleTextStyle;
+			global::MobileCore.Droid.Resource.Styleable.ActionBar_title = global::CoffeeManager.Droid.Resource.Styleable.ActionBar_title;
+			global::MobileCore.Droid.Resource.Styleable.ActionBar_titleTextStyle = global::CoffeeManager.Droid.Resource.Styleable.ActionBar_titleTextStyle;
+			global::MobileCore.Droid.Resource.Styleable.ActionBarLayout = global::CoffeeManager.Droid.Resource.Styleable.ActionBarLayout;
+			global::MobileCore.Droid.Resource.Styleable.ActionBarLayout_android_layout_gravity = global::CoffeeManager.Droid.Resource.Styleable.ActionBarLayout_android_layout_gravity;
+			global::MobileCore.Droid.Resource.Styleable.ActionMenuItemView = global::CoffeeManager.Droid.Resource.Styleable.ActionMenuItemView;
+			global::MobileCore.Droid.Resource.Styleable.ActionMenuItemView_android_minWidth = global::CoffeeManager.Droid.Resource.Styleable.ActionMenuItemView_android_minWidth;
+			global::MobileCore.Droid.Resource.Styleable.ActionMenuView = global::CoffeeManager.Droid.Resource.Styleable.ActionMenuView;
+			global::MobileCore.Droid.Resource.Styleable.ActionMode = global::CoffeeManager.Droid.Resource.Styleable.ActionMode;
+			global::MobileCore.Droid.Resource.Styleable.ActionMode_background = global::CoffeeManager.Droid.Resource.Styleable.ActionMode_background;
+			global::MobileCore.Droid.Resource.Styleable.ActionMode_backgroundSplit = global::CoffeeManager.Droid.Resource.Styleable.ActionMode_backgroundSplit;
+			global::MobileCore.Droid.Resource.Styleable.ActionMode_closeItemLayout = global::CoffeeManager.Droid.Resource.Styleable.ActionMode_closeItemLayout;
+			global::MobileCore.Droid.Resource.Styleable.ActionMode_height = global::CoffeeManager.Droid.Resource.Styleable.ActionMode_height;
+			global::MobileCore.Droid.Resource.Styleable.ActionMode_subtitleTextStyle = global::CoffeeManager.Droid.Resource.Styleable.ActionMode_subtitleTextStyle;
+			global::MobileCore.Droid.Resource.Styleable.ActionMode_titleTextStyle = global::CoffeeManager.Droid.Resource.Styleable.ActionMode_titleTextStyle;
+			global::MobileCore.Droid.Resource.Styleable.ActivityChooserView = global::CoffeeManager.Droid.Resource.Styleable.ActivityChooserView;
+			global::MobileCore.Droid.Resource.Styleable.ActivityChooserView_expandActivityOverflowButtonDrawable = global::CoffeeManager.Droid.Resource.Styleable.ActivityChooserView_expandActivityOverflowButtonDrawable;
+			global::MobileCore.Droid.Resource.Styleable.ActivityChooserView_initialActivityCount = global::CoffeeManager.Droid.Resource.Styleable.ActivityChooserView_initialActivityCount;
+			global::MobileCore.Droid.Resource.Styleable.AlertDialog = global::CoffeeManager.Droid.Resource.Styleable.AlertDialog;
+			global::MobileCore.Droid.Resource.Styleable.AlertDialog_android_layout = global::CoffeeManager.Droid.Resource.Styleable.AlertDialog_android_layout;
+			global::MobileCore.Droid.Resource.Styleable.AlertDialog_buttonPanelSideLayout = global::CoffeeManager.Droid.Resource.Styleable.AlertDialog_buttonPanelSideLayout;
+			global::MobileCore.Droid.Resource.Styleable.AlertDialog_listItemLayout = global::CoffeeManager.Droid.Resource.Styleable.AlertDialog_listItemLayout;
+			global::MobileCore.Droid.Resource.Styleable.AlertDialog_listLayout = global::CoffeeManager.Droid.Resource.Styleable.AlertDialog_listLayout;
+			global::MobileCore.Droid.Resource.Styleable.AlertDialog_multiChoiceItemLayout = global::CoffeeManager.Droid.Resource.Styleable.AlertDialog_multiChoiceItemLayout;
+			global::MobileCore.Droid.Resource.Styleable.AlertDialog_showTitle = global::CoffeeManager.Droid.Resource.Styleable.AlertDialog_showTitle;
+			global::MobileCore.Droid.Resource.Styleable.AlertDialog_singleChoiceItemLayout = global::CoffeeManager.Droid.Resource.Styleable.AlertDialog_singleChoiceItemLayout;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatImageView = global::CoffeeManager.Droid.Resource.Styleable.AppCompatImageView;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatImageView_android_src = global::CoffeeManager.Droid.Resource.Styleable.AppCompatImageView_android_src;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatImageView_srcCompat = global::CoffeeManager.Droid.Resource.Styleable.AppCompatImageView_srcCompat;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatSeekBar = global::CoffeeManager.Droid.Resource.Styleable.AppCompatSeekBar;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatSeekBar_android_thumb = global::CoffeeManager.Droid.Resource.Styleable.AppCompatSeekBar_android_thumb;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatSeekBar_tickMark = global::CoffeeManager.Droid.Resource.Styleable.AppCompatSeekBar_tickMark;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatSeekBar_tickMarkTint = global::CoffeeManager.Droid.Resource.Styleable.AppCompatSeekBar_tickMarkTint;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatSeekBar_tickMarkTintMode = global::CoffeeManager.Droid.Resource.Styleable.AppCompatSeekBar_tickMarkTintMode;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTextHelper = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTextHelper;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableBottom = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableBottom;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableEnd = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableEnd;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableLeft = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableLeft;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableRight = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableRight;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableStart = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableStart;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableTop = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableTop;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTextHelper_android_textAppearance = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTextHelper_android_textAppearance;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTextView = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTextView;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTextView_android_textAppearance = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTextView_android_textAppearance;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTextView_textAllCaps = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTextView_textAllCaps;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_actionBarDivider = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_actionBarDivider;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_actionBarItemBackground = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_actionBarItemBackground;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_actionBarPopupTheme = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_actionBarPopupTheme;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_actionBarSize = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_actionBarSize;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_actionBarSplitStyle = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_actionBarSplitStyle;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_actionBarStyle = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_actionBarStyle;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_actionBarTabBarStyle = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_actionBarTabBarStyle;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_actionBarTabStyle = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_actionBarTabStyle;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_actionBarTabTextStyle = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_actionBarTabTextStyle;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_actionBarTheme = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_actionBarTheme;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_actionBarWidgetTheme = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_actionBarWidgetTheme;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_actionButtonStyle = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_actionButtonStyle;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_actionDropDownStyle = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_actionDropDownStyle;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_actionMenuTextAppearance = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_actionMenuTextAppearance;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_actionMenuTextColor = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_actionMenuTextColor;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_actionModeBackground = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_actionModeBackground;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_actionModeCloseButtonStyle = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_actionModeCloseButtonStyle;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_actionModeCloseDrawable = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_actionModeCloseDrawable;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_actionModeCopyDrawable = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_actionModeCopyDrawable;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_actionModeCutDrawable = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_actionModeCutDrawable;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_actionModeFindDrawable = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_actionModeFindDrawable;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_actionModePasteDrawable = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_actionModePasteDrawable;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_actionModePopupWindowStyle = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_actionModePopupWindowStyle;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_actionModeSelectAllDrawable = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_actionModeSelectAllDrawable;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_actionModeShareDrawable = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_actionModeShareDrawable;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_actionModeSplitBackground = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_actionModeSplitBackground;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_actionModeStyle = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_actionModeStyle;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_actionModeWebSearchDrawable = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_actionModeWebSearchDrawable;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_actionOverflowButtonStyle = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_actionOverflowButtonStyle;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_actionOverflowMenuStyle = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_actionOverflowMenuStyle;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_activityChooserViewStyle = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_activityChooserViewStyle;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_alertDialogButtonGroupStyle = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_alertDialogButtonGroupStyle;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_alertDialogCenterButtons = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_alertDialogCenterButtons;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_alertDialogStyle = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_alertDialogStyle;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_alertDialogTheme = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_alertDialogTheme;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_android_windowAnimationStyle = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_android_windowAnimationStyle;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_android_windowIsFloating = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_android_windowIsFloating;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_autoCompleteTextViewStyle = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_autoCompleteTextViewStyle;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_borderlessButtonStyle = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_borderlessButtonStyle;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_buttonBarButtonStyle = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_buttonBarButtonStyle;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_buttonBarNegativeButtonStyle = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_buttonBarNegativeButtonStyle;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_buttonBarNeutralButtonStyle = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_buttonBarNeutralButtonStyle;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_buttonBarPositiveButtonStyle = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_buttonBarPositiveButtonStyle;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_buttonBarStyle = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_buttonBarStyle;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_buttonStyle = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_buttonStyle;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_buttonStyleSmall = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_buttonStyleSmall;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_checkboxStyle = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_checkboxStyle;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_checkedTextViewStyle = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_checkedTextViewStyle;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_colorAccent = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_colorAccent;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_colorBackgroundFloating = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_colorBackgroundFloating;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_colorButtonNormal = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_colorButtonNormal;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_colorControlActivated = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_colorControlActivated;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_colorControlHighlight = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_colorControlHighlight;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_colorControlNormal = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_colorControlNormal;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_colorPrimary = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_colorPrimary;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_colorPrimaryDark = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_colorPrimaryDark;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_colorSwitchThumbNormal = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_colorSwitchThumbNormal;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_controlBackground = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_controlBackground;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_dialogPreferredPadding = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_dialogPreferredPadding;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_dialogTheme = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_dialogTheme;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_dividerHorizontal = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_dividerHorizontal;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_dividerVertical = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_dividerVertical;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_dropDownListViewStyle = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_dropDownListViewStyle;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_dropdownListPreferredItemHeight = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_dropdownListPreferredItemHeight;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_editTextBackground = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_editTextBackground;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_editTextColor = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_editTextColor;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_editTextStyle = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_editTextStyle;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_homeAsUpIndicator = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_homeAsUpIndicator;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_imageButtonStyle = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_imageButtonStyle;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_listChoiceBackgroundIndicator = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_listChoiceBackgroundIndicator;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_listDividerAlertDialog = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_listDividerAlertDialog;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_listMenuViewStyle = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_listMenuViewStyle;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_listPopupWindowStyle = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_listPopupWindowStyle;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemHeight = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemHeight;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemHeightLarge = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemHeightLarge;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemHeightSmall = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemHeightSmall;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemPaddingLeft = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemPaddingLeft;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemPaddingRight = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemPaddingRight;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_panelBackground = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_panelBackground;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_panelMenuListTheme = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_panelMenuListTheme;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_panelMenuListWidth = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_panelMenuListWidth;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_popupMenuStyle = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_popupMenuStyle;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_popupWindowStyle = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_popupWindowStyle;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_radioButtonStyle = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_radioButtonStyle;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_ratingBarStyle = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_ratingBarStyle;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_ratingBarStyleIndicator = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_ratingBarStyleIndicator;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_ratingBarStyleSmall = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_ratingBarStyleSmall;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_searchViewStyle = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_searchViewStyle;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_seekBarStyle = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_seekBarStyle;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_selectableItemBackground = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_selectableItemBackground;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_selectableItemBackgroundBorderless = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_selectableItemBackgroundBorderless;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_spinnerDropDownItemStyle = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_spinnerDropDownItemStyle;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_spinnerStyle = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_spinnerStyle;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_switchStyle = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_switchStyle;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_textAppearanceLargePopupMenu = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_textAppearanceLargePopupMenu;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_textAppearanceListItem = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_textAppearanceListItem;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_textAppearanceListItemSmall = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_textAppearanceListItemSmall;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_textAppearancePopupMenuHeader = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_textAppearancePopupMenuHeader;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_textAppearanceSearchResultSubtitle = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_textAppearanceSearchResultSubtitle;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_textAppearanceSearchResultTitle = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_textAppearanceSearchResultTitle;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_textAppearanceSmallPopupMenu = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_textAppearanceSmallPopupMenu;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_textColorAlertDialogListItem = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_textColorAlertDialogListItem;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_textColorSearchUrl = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_textColorSearchUrl;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_toolbarNavigationButtonStyle = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_toolbarNavigationButtonStyle;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_toolbarStyle = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_toolbarStyle;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_windowActionBar = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_windowActionBar;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_windowActionBarOverlay = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_windowActionBarOverlay;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_windowActionModeOverlay = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_windowActionModeOverlay;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_windowFixedHeightMajor = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_windowFixedHeightMajor;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_windowFixedHeightMinor = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_windowFixedHeightMinor;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_windowFixedWidthMajor = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_windowFixedWidthMajor;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_windowFixedWidthMinor = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_windowFixedWidthMinor;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_windowMinWidthMajor = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_windowMinWidthMajor;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_windowMinWidthMinor = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_windowMinWidthMinor;
+			global::MobileCore.Droid.Resource.Styleable.AppCompatTheme_windowNoTitle = global::CoffeeManager.Droid.Resource.Styleable.AppCompatTheme_windowNoTitle;
+			global::MobileCore.Droid.Resource.Styleable.ButtonBarLayout = global::CoffeeManager.Droid.Resource.Styleable.ButtonBarLayout;
+			global::MobileCore.Droid.Resource.Styleable.ButtonBarLayout_allowStacking = global::CoffeeManager.Droid.Resource.Styleable.ButtonBarLayout_allowStacking;
+			global::MobileCore.Droid.Resource.Styleable.ColorStateListItem = global::CoffeeManager.Droid.Resource.Styleable.ColorStateListItem;
+			global::MobileCore.Droid.Resource.Styleable.ColorStateListItem_alpha = global::CoffeeManager.Droid.Resource.Styleable.ColorStateListItem_alpha;
+			global::MobileCore.Droid.Resource.Styleable.ColorStateListItem_android_alpha = global::CoffeeManager.Droid.Resource.Styleable.ColorStateListItem_android_alpha;
+			global::MobileCore.Droid.Resource.Styleable.ColorStateListItem_android_color = global::CoffeeManager.Droid.Resource.Styleable.ColorStateListItem_android_color;
+			global::MobileCore.Droid.Resource.Styleable.CompoundButton = global::CoffeeManager.Droid.Resource.Styleable.CompoundButton;
+			global::MobileCore.Droid.Resource.Styleable.CompoundButton_android_button = global::CoffeeManager.Droid.Resource.Styleable.CompoundButton_android_button;
+			global::MobileCore.Droid.Resource.Styleable.CompoundButton_buttonTint = global::CoffeeManager.Droid.Resource.Styleable.CompoundButton_buttonTint;
+			global::MobileCore.Droid.Resource.Styleable.CompoundButton_buttonTintMode = global::CoffeeManager.Droid.Resource.Styleable.CompoundButton_buttonTintMode;
+			global::MobileCore.Droid.Resource.Styleable.DrawerArrowToggle = global::CoffeeManager.Droid.Resource.Styleable.DrawerArrowToggle;
+			global::MobileCore.Droid.Resource.Styleable.DrawerArrowToggle_arrowHeadLength = global::CoffeeManager.Droid.Resource.Styleable.DrawerArrowToggle_arrowHeadLength;
+			global::MobileCore.Droid.Resource.Styleable.DrawerArrowToggle_arrowShaftLength = global::CoffeeManager.Droid.Resource.Styleable.DrawerArrowToggle_arrowShaftLength;
+			global::MobileCore.Droid.Resource.Styleable.DrawerArrowToggle_barLength = global::CoffeeManager.Droid.Resource.Styleable.DrawerArrowToggle_barLength;
+			global::MobileCore.Droid.Resource.Styleable.DrawerArrowToggle_color = global::CoffeeManager.Droid.Resource.Styleable.DrawerArrowToggle_color;
+			global::MobileCore.Droid.Resource.Styleable.DrawerArrowToggle_drawableSize = global::CoffeeManager.Droid.Resource.Styleable.DrawerArrowToggle_drawableSize;
+			global::MobileCore.Droid.Resource.Styleable.DrawerArrowToggle_gapBetweenBars = global::CoffeeManager.Droid.Resource.Styleable.DrawerArrowToggle_gapBetweenBars;
+			global::MobileCore.Droid.Resource.Styleable.DrawerArrowToggle_spinBars = global::CoffeeManager.Droid.Resource.Styleable.DrawerArrowToggle_spinBars;
+			global::MobileCore.Droid.Resource.Styleable.DrawerArrowToggle_thickness = global::CoffeeManager.Droid.Resource.Styleable.DrawerArrowToggle_thickness;
+			global::MobileCore.Droid.Resource.Styleable.LinearLayoutCompat = global::CoffeeManager.Droid.Resource.Styleable.LinearLayoutCompat;
+			global::MobileCore.Droid.Resource.Styleable.LinearLayoutCompat_android_baselineAligned = global::CoffeeManager.Droid.Resource.Styleable.LinearLayoutCompat_android_baselineAligned;
+			global::MobileCore.Droid.Resource.Styleable.LinearLayoutCompat_android_baselineAlignedChildIndex = global::CoffeeManager.Droid.Resource.Styleable.LinearLayoutCompat_android_baselineAlignedChildIndex;
+			global::MobileCore.Droid.Resource.Styleable.LinearLayoutCompat_android_gravity = global::CoffeeManager.Droid.Resource.Styleable.LinearLayoutCompat_android_gravity;
+			global::MobileCore.Droid.Resource.Styleable.LinearLayoutCompat_android_orientation = global::CoffeeManager.Droid.Resource.Styleable.LinearLayoutCompat_android_orientation;
+			global::MobileCore.Droid.Resource.Styleable.LinearLayoutCompat_android_weightSum = global::CoffeeManager.Droid.Resource.Styleable.LinearLayoutCompat_android_weightSum;
+			global::MobileCore.Droid.Resource.Styleable.LinearLayoutCompat_divider = global::CoffeeManager.Droid.Resource.Styleable.LinearLayoutCompat_divider;
+			global::MobileCore.Droid.Resource.Styleable.LinearLayoutCompat_dividerPadding = global::CoffeeManager.Droid.Resource.Styleable.LinearLayoutCompat_dividerPadding;
+			global::MobileCore.Droid.Resource.Styleable.LinearLayoutCompat_measureWithLargestChild = global::CoffeeManager.Droid.Resource.Styleable.LinearLayoutCompat_measureWithLargestChild;
+			global::MobileCore.Droid.Resource.Styleable.LinearLayoutCompat_showDividers = global::CoffeeManager.Droid.Resource.Styleable.LinearLayoutCompat_showDividers;
+			global::MobileCore.Droid.Resource.Styleable.LinearLayoutCompat_Layout = global::CoffeeManager.Droid.Resource.Styleable.LinearLayoutCompat_Layout;
+			global::MobileCore.Droid.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_gravity = global::CoffeeManager.Droid.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_gravity;
+			global::MobileCore.Droid.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_height = global::CoffeeManager.Droid.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_height;
+			global::MobileCore.Droid.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_weight = global::CoffeeManager.Droid.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_weight;
+			global::MobileCore.Droid.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_width = global::CoffeeManager.Droid.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_width;
+			global::MobileCore.Droid.Resource.Styleable.ListPopupWindow = global::CoffeeManager.Droid.Resource.Styleable.ListPopupWindow;
+			global::MobileCore.Droid.Resource.Styleable.ListPopupWindow_android_dropDownHorizontalOffset = global::CoffeeManager.Droid.Resource.Styleable.ListPopupWindow_android_dropDownHorizontalOffset;
+			global::MobileCore.Droid.Resource.Styleable.ListPopupWindow_android_dropDownVerticalOffset = global::CoffeeManager.Droid.Resource.Styleable.ListPopupWindow_android_dropDownVerticalOffset;
+			global::MobileCore.Droid.Resource.Styleable.MenuGroup = global::CoffeeManager.Droid.Resource.Styleable.MenuGroup;
+			global::MobileCore.Droid.Resource.Styleable.MenuGroup_android_checkableBehavior = global::CoffeeManager.Droid.Resource.Styleable.MenuGroup_android_checkableBehavior;
+			global::MobileCore.Droid.Resource.Styleable.MenuGroup_android_enabled = global::CoffeeManager.Droid.Resource.Styleable.MenuGroup_android_enabled;
+			global::MobileCore.Droid.Resource.Styleable.MenuGroup_android_id = global::CoffeeManager.Droid.Resource.Styleable.MenuGroup_android_id;
+			global::MobileCore.Droid.Resource.Styleable.MenuGroup_android_menuCategory = global::CoffeeManager.Droid.Resource.Styleable.MenuGroup_android_menuCategory;
+			global::MobileCore.Droid.Resource.Styleable.MenuGroup_android_orderInCategory = global::CoffeeManager.Droid.Resource.Styleable.MenuGroup_android_orderInCategory;
+			global::MobileCore.Droid.Resource.Styleable.MenuGroup_android_visible = global::CoffeeManager.Droid.Resource.Styleable.MenuGroup_android_visible;
+			global::MobileCore.Droid.Resource.Styleable.MenuItem = global::CoffeeManager.Droid.Resource.Styleable.MenuItem;
+			global::MobileCore.Droid.Resource.Styleable.MenuItem_actionLayout = global::CoffeeManager.Droid.Resource.Styleable.MenuItem_actionLayout;
+			global::MobileCore.Droid.Resource.Styleable.MenuItem_actionProviderClass = global::CoffeeManager.Droid.Resource.Styleable.MenuItem_actionProviderClass;
+			global::MobileCore.Droid.Resource.Styleable.MenuItem_actionViewClass = global::CoffeeManager.Droid.Resource.Styleable.MenuItem_actionViewClass;
+			global::MobileCore.Droid.Resource.Styleable.MenuItem_android_alphabeticShortcut = global::CoffeeManager.Droid.Resource.Styleable.MenuItem_android_alphabeticShortcut;
+			global::MobileCore.Droid.Resource.Styleable.MenuItem_android_checkable = global::CoffeeManager.Droid.Resource.Styleable.MenuItem_android_checkable;
+			global::MobileCore.Droid.Resource.Styleable.MenuItem_android_checked = global::CoffeeManager.Droid.Resource.Styleable.MenuItem_android_checked;
+			global::MobileCore.Droid.Resource.Styleable.MenuItem_android_enabled = global::CoffeeManager.Droid.Resource.Styleable.MenuItem_android_enabled;
+			global::MobileCore.Droid.Resource.Styleable.MenuItem_android_icon = global::CoffeeManager.Droid.Resource.Styleable.MenuItem_android_icon;
+			global::MobileCore.Droid.Resource.Styleable.MenuItem_android_id = global::CoffeeManager.Droid.Resource.Styleable.MenuItem_android_id;
+			global::MobileCore.Droid.Resource.Styleable.MenuItem_android_menuCategory = global::CoffeeManager.Droid.Resource.Styleable.MenuItem_android_menuCategory;
+			global::MobileCore.Droid.Resource.Styleable.MenuItem_android_numericShortcut = global::CoffeeManager.Droid.Resource.Styleable.MenuItem_android_numericShortcut;
+			global::MobileCore.Droid.Resource.Styleable.MenuItem_android_onClick = global::CoffeeManager.Droid.Resource.Styleable.MenuItem_android_onClick;
+			global::MobileCore.Droid.Resource.Styleable.MenuItem_android_orderInCategory = global::CoffeeManager.Droid.Resource.Styleable.MenuItem_android_orderInCategory;
+			global::MobileCore.Droid.Resource.Styleable.MenuItem_android_title = global::CoffeeManager.Droid.Resource.Styleable.MenuItem_android_title;
+			global::MobileCore.Droid.Resource.Styleable.MenuItem_android_titleCondensed = global::CoffeeManager.Droid.Resource.Styleable.MenuItem_android_titleCondensed;
+			global::MobileCore.Droid.Resource.Styleable.MenuItem_android_visible = global::CoffeeManager.Droid.Resource.Styleable.MenuItem_android_visible;
+			global::MobileCore.Droid.Resource.Styleable.MenuItem_showAsAction = global::CoffeeManager.Droid.Resource.Styleable.MenuItem_showAsAction;
+			global::MobileCore.Droid.Resource.Styleable.MenuView = global::CoffeeManager.Droid.Resource.Styleable.MenuView;
+			global::MobileCore.Droid.Resource.Styleable.MenuView_android_headerBackground = global::CoffeeManager.Droid.Resource.Styleable.MenuView_android_headerBackground;
+			global::MobileCore.Droid.Resource.Styleable.MenuView_android_horizontalDivider = global::CoffeeManager.Droid.Resource.Styleable.MenuView_android_horizontalDivider;
+			global::MobileCore.Droid.Resource.Styleable.MenuView_android_itemBackground = global::CoffeeManager.Droid.Resource.Styleable.MenuView_android_itemBackground;
+			global::MobileCore.Droid.Resource.Styleable.MenuView_android_itemIconDisabledAlpha = global::CoffeeManager.Droid.Resource.Styleable.MenuView_android_itemIconDisabledAlpha;
+			global::MobileCore.Droid.Resource.Styleable.MenuView_android_itemTextAppearance = global::CoffeeManager.Droid.Resource.Styleable.MenuView_android_itemTextAppearance;
+			global::MobileCore.Droid.Resource.Styleable.MenuView_android_verticalDivider = global::CoffeeManager.Droid.Resource.Styleable.MenuView_android_verticalDivider;
+			global::MobileCore.Droid.Resource.Styleable.MenuView_android_windowAnimationStyle = global::CoffeeManager.Droid.Resource.Styleable.MenuView_android_windowAnimationStyle;
+			global::MobileCore.Droid.Resource.Styleable.MenuView_preserveIconSpacing = global::CoffeeManager.Droid.Resource.Styleable.MenuView_preserveIconSpacing;
+			global::MobileCore.Droid.Resource.Styleable.MenuView_subMenuArrow = global::CoffeeManager.Droid.Resource.Styleable.MenuView_subMenuArrow;
 			global::MobileCore.Droid.Resource.Styleable.MvxBinding = global::CoffeeManager.Droid.Resource.Styleable.MvxBinding;
 			global::MobileCore.Droid.Resource.Styleable.MvxBinding_MvxBind = global::CoffeeManager.Droid.Resource.Styleable.MvxBinding_MvxBind;
 			global::MobileCore.Droid.Resource.Styleable.MvxBinding_MvxLang = global::CoffeeManager.Droid.Resource.Styleable.MvxBinding_MvxLang;
@@ -85,6 +1413,109 @@ namespace CoffeeManager.Droid
 			global::MobileCore.Droid.Resource.Styleable.MvxListView = global::CoffeeManager.Droid.Resource.Styleable.MvxListView;
 			global::MobileCore.Droid.Resource.Styleable.MvxListView_MvxDropDownItemTemplate = global::CoffeeManager.Droid.Resource.Styleable.MvxListView_MvxDropDownItemTemplate;
 			global::MobileCore.Droid.Resource.Styleable.MvxListView_MvxItemTemplate = global::CoffeeManager.Droid.Resource.Styleable.MvxListView_MvxItemTemplate;
+			global::MobileCore.Droid.Resource.Styleable.PopupWindow = global::CoffeeManager.Droid.Resource.Styleable.PopupWindow;
+			global::MobileCore.Droid.Resource.Styleable.PopupWindow_android_popupAnimationStyle = global::CoffeeManager.Droid.Resource.Styleable.PopupWindow_android_popupAnimationStyle;
+			global::MobileCore.Droid.Resource.Styleable.PopupWindow_android_popupBackground = global::CoffeeManager.Droid.Resource.Styleable.PopupWindow_android_popupBackground;
+			global::MobileCore.Droid.Resource.Styleable.PopupWindow_overlapAnchor = global::CoffeeManager.Droid.Resource.Styleable.PopupWindow_overlapAnchor;
+			global::MobileCore.Droid.Resource.Styleable.PopupWindowBackgroundState = global::CoffeeManager.Droid.Resource.Styleable.PopupWindowBackgroundState;
+			global::MobileCore.Droid.Resource.Styleable.PopupWindowBackgroundState_state_above_anchor = global::CoffeeManager.Droid.Resource.Styleable.PopupWindowBackgroundState_state_above_anchor;
+			global::MobileCore.Droid.Resource.Styleable.RecycleListView = global::CoffeeManager.Droid.Resource.Styleable.RecycleListView;
+			global::MobileCore.Droid.Resource.Styleable.RecycleListView_paddingBottomNoButtons = global::CoffeeManager.Droid.Resource.Styleable.RecycleListView_paddingBottomNoButtons;
+			global::MobileCore.Droid.Resource.Styleable.RecycleListView_paddingTopNoTitle = global::CoffeeManager.Droid.Resource.Styleable.RecycleListView_paddingTopNoTitle;
+			global::MobileCore.Droid.Resource.Styleable.SearchView = global::CoffeeManager.Droid.Resource.Styleable.SearchView;
+			global::MobileCore.Droid.Resource.Styleable.SearchView_android_focusable = global::CoffeeManager.Droid.Resource.Styleable.SearchView_android_focusable;
+			global::MobileCore.Droid.Resource.Styleable.SearchView_android_imeOptions = global::CoffeeManager.Droid.Resource.Styleable.SearchView_android_imeOptions;
+			global::MobileCore.Droid.Resource.Styleable.SearchView_android_inputType = global::CoffeeManager.Droid.Resource.Styleable.SearchView_android_inputType;
+			global::MobileCore.Droid.Resource.Styleable.SearchView_android_maxWidth = global::CoffeeManager.Droid.Resource.Styleable.SearchView_android_maxWidth;
+			global::MobileCore.Droid.Resource.Styleable.SearchView_closeIcon = global::CoffeeManager.Droid.Resource.Styleable.SearchView_closeIcon;
+			global::MobileCore.Droid.Resource.Styleable.SearchView_commitIcon = global::CoffeeManager.Droid.Resource.Styleable.SearchView_commitIcon;
+			global::MobileCore.Droid.Resource.Styleable.SearchView_defaultQueryHint = global::CoffeeManager.Droid.Resource.Styleable.SearchView_defaultQueryHint;
+			global::MobileCore.Droid.Resource.Styleable.SearchView_goIcon = global::CoffeeManager.Droid.Resource.Styleable.SearchView_goIcon;
+			global::MobileCore.Droid.Resource.Styleable.SearchView_iconifiedByDefault = global::CoffeeManager.Droid.Resource.Styleable.SearchView_iconifiedByDefault;
+			global::MobileCore.Droid.Resource.Styleable.SearchView_layout = global::CoffeeManager.Droid.Resource.Styleable.SearchView_layout;
+			global::MobileCore.Droid.Resource.Styleable.SearchView_queryBackground = global::CoffeeManager.Droid.Resource.Styleable.SearchView_queryBackground;
+			global::MobileCore.Droid.Resource.Styleable.SearchView_queryHint = global::CoffeeManager.Droid.Resource.Styleable.SearchView_queryHint;
+			global::MobileCore.Droid.Resource.Styleable.SearchView_searchHintIcon = global::CoffeeManager.Droid.Resource.Styleable.SearchView_searchHintIcon;
+			global::MobileCore.Droid.Resource.Styleable.SearchView_searchIcon = global::CoffeeManager.Droid.Resource.Styleable.SearchView_searchIcon;
+			global::MobileCore.Droid.Resource.Styleable.SearchView_submitBackground = global::CoffeeManager.Droid.Resource.Styleable.SearchView_submitBackground;
+			global::MobileCore.Droid.Resource.Styleable.SearchView_suggestionRowLayout = global::CoffeeManager.Droid.Resource.Styleable.SearchView_suggestionRowLayout;
+			global::MobileCore.Droid.Resource.Styleable.SearchView_voiceIcon = global::CoffeeManager.Droid.Resource.Styleable.SearchView_voiceIcon;
+			global::MobileCore.Droid.Resource.Styleable.Spinner = global::CoffeeManager.Droid.Resource.Styleable.Spinner;
+			global::MobileCore.Droid.Resource.Styleable.Spinner_android_dropDownWidth = global::CoffeeManager.Droid.Resource.Styleable.Spinner_android_dropDownWidth;
+			global::MobileCore.Droid.Resource.Styleable.Spinner_android_entries = global::CoffeeManager.Droid.Resource.Styleable.Spinner_android_entries;
+			global::MobileCore.Droid.Resource.Styleable.Spinner_android_popupBackground = global::CoffeeManager.Droid.Resource.Styleable.Spinner_android_popupBackground;
+			global::MobileCore.Droid.Resource.Styleable.Spinner_android_prompt = global::CoffeeManager.Droid.Resource.Styleable.Spinner_android_prompt;
+			global::MobileCore.Droid.Resource.Styleable.Spinner_popupTheme = global::CoffeeManager.Droid.Resource.Styleable.Spinner_popupTheme;
+			global::MobileCore.Droid.Resource.Styleable.SwitchCompat = global::CoffeeManager.Droid.Resource.Styleable.SwitchCompat;
+			global::MobileCore.Droid.Resource.Styleable.SwitchCompat_android_textOff = global::CoffeeManager.Droid.Resource.Styleable.SwitchCompat_android_textOff;
+			global::MobileCore.Droid.Resource.Styleable.SwitchCompat_android_textOn = global::CoffeeManager.Droid.Resource.Styleable.SwitchCompat_android_textOn;
+			global::MobileCore.Droid.Resource.Styleable.SwitchCompat_android_thumb = global::CoffeeManager.Droid.Resource.Styleable.SwitchCompat_android_thumb;
+			global::MobileCore.Droid.Resource.Styleable.SwitchCompat_showText = global::CoffeeManager.Droid.Resource.Styleable.SwitchCompat_showText;
+			global::MobileCore.Droid.Resource.Styleable.SwitchCompat_splitTrack = global::CoffeeManager.Droid.Resource.Styleable.SwitchCompat_splitTrack;
+			global::MobileCore.Droid.Resource.Styleable.SwitchCompat_switchMinWidth = global::CoffeeManager.Droid.Resource.Styleable.SwitchCompat_switchMinWidth;
+			global::MobileCore.Droid.Resource.Styleable.SwitchCompat_switchPadding = global::CoffeeManager.Droid.Resource.Styleable.SwitchCompat_switchPadding;
+			global::MobileCore.Droid.Resource.Styleable.SwitchCompat_switchTextAppearance = global::CoffeeManager.Droid.Resource.Styleable.SwitchCompat_switchTextAppearance;
+			global::MobileCore.Droid.Resource.Styleable.SwitchCompat_thumbTextPadding = global::CoffeeManager.Droid.Resource.Styleable.SwitchCompat_thumbTextPadding;
+			global::MobileCore.Droid.Resource.Styleable.SwitchCompat_thumbTint = global::CoffeeManager.Droid.Resource.Styleable.SwitchCompat_thumbTint;
+			global::MobileCore.Droid.Resource.Styleable.SwitchCompat_thumbTintMode = global::CoffeeManager.Droid.Resource.Styleable.SwitchCompat_thumbTintMode;
+			global::MobileCore.Droid.Resource.Styleable.SwitchCompat_track = global::CoffeeManager.Droid.Resource.Styleable.SwitchCompat_track;
+			global::MobileCore.Droid.Resource.Styleable.SwitchCompat_trackTint = global::CoffeeManager.Droid.Resource.Styleable.SwitchCompat_trackTint;
+			global::MobileCore.Droid.Resource.Styleable.SwitchCompat_trackTintMode = global::CoffeeManager.Droid.Resource.Styleable.SwitchCompat_trackTintMode;
+			global::MobileCore.Droid.Resource.Styleable.TextAppearance = global::CoffeeManager.Droid.Resource.Styleable.TextAppearance;
+			global::MobileCore.Droid.Resource.Styleable.TextAppearance_android_shadowColor = global::CoffeeManager.Droid.Resource.Styleable.TextAppearance_android_shadowColor;
+			global::MobileCore.Droid.Resource.Styleable.TextAppearance_android_shadowDx = global::CoffeeManager.Droid.Resource.Styleable.TextAppearance_android_shadowDx;
+			global::MobileCore.Droid.Resource.Styleable.TextAppearance_android_shadowDy = global::CoffeeManager.Droid.Resource.Styleable.TextAppearance_android_shadowDy;
+			global::MobileCore.Droid.Resource.Styleable.TextAppearance_android_shadowRadius = global::CoffeeManager.Droid.Resource.Styleable.TextAppearance_android_shadowRadius;
+			global::MobileCore.Droid.Resource.Styleable.TextAppearance_android_textColor = global::CoffeeManager.Droid.Resource.Styleable.TextAppearance_android_textColor;
+			global::MobileCore.Droid.Resource.Styleable.TextAppearance_android_textColorHint = global::CoffeeManager.Droid.Resource.Styleable.TextAppearance_android_textColorHint;
+			global::MobileCore.Droid.Resource.Styleable.TextAppearance_android_textSize = global::CoffeeManager.Droid.Resource.Styleable.TextAppearance_android_textSize;
+			global::MobileCore.Droid.Resource.Styleable.TextAppearance_android_textStyle = global::CoffeeManager.Droid.Resource.Styleable.TextAppearance_android_textStyle;
+			global::MobileCore.Droid.Resource.Styleable.TextAppearance_android_typeface = global::CoffeeManager.Droid.Resource.Styleable.TextAppearance_android_typeface;
+			global::MobileCore.Droid.Resource.Styleable.TextAppearance_textAllCaps = global::CoffeeManager.Droid.Resource.Styleable.TextAppearance_textAllCaps;
+			global::MobileCore.Droid.Resource.Styleable.Toolbar = global::CoffeeManager.Droid.Resource.Styleable.Toolbar;
+			global::MobileCore.Droid.Resource.Styleable.Toolbar_android_gravity = global::CoffeeManager.Droid.Resource.Styleable.Toolbar_android_gravity;
+			global::MobileCore.Droid.Resource.Styleable.Toolbar_android_minHeight = global::CoffeeManager.Droid.Resource.Styleable.Toolbar_android_minHeight;
+			global::MobileCore.Droid.Resource.Styleable.Toolbar_buttonGravity = global::CoffeeManager.Droid.Resource.Styleable.Toolbar_buttonGravity;
+			global::MobileCore.Droid.Resource.Styleable.Toolbar_collapseContentDescription = global::CoffeeManager.Droid.Resource.Styleable.Toolbar_collapseContentDescription;
+			global::MobileCore.Droid.Resource.Styleable.Toolbar_collapseIcon = global::CoffeeManager.Droid.Resource.Styleable.Toolbar_collapseIcon;
+			global::MobileCore.Droid.Resource.Styleable.Toolbar_contentInsetEnd = global::CoffeeManager.Droid.Resource.Styleable.Toolbar_contentInsetEnd;
+			global::MobileCore.Droid.Resource.Styleable.Toolbar_contentInsetEndWithActions = global::CoffeeManager.Droid.Resource.Styleable.Toolbar_contentInsetEndWithActions;
+			global::MobileCore.Droid.Resource.Styleable.Toolbar_contentInsetLeft = global::CoffeeManager.Droid.Resource.Styleable.Toolbar_contentInsetLeft;
+			global::MobileCore.Droid.Resource.Styleable.Toolbar_contentInsetRight = global::CoffeeManager.Droid.Resource.Styleable.Toolbar_contentInsetRight;
+			global::MobileCore.Droid.Resource.Styleable.Toolbar_contentInsetStart = global::CoffeeManager.Droid.Resource.Styleable.Toolbar_contentInsetStart;
+			global::MobileCore.Droid.Resource.Styleable.Toolbar_contentInsetStartWithNavigation = global::CoffeeManager.Droid.Resource.Styleable.Toolbar_contentInsetStartWithNavigation;
+			global::MobileCore.Droid.Resource.Styleable.Toolbar_logo = global::CoffeeManager.Droid.Resource.Styleable.Toolbar_logo;
+			global::MobileCore.Droid.Resource.Styleable.Toolbar_logoDescription = global::CoffeeManager.Droid.Resource.Styleable.Toolbar_logoDescription;
+			global::MobileCore.Droid.Resource.Styleable.Toolbar_maxButtonHeight = global::CoffeeManager.Droid.Resource.Styleable.Toolbar_maxButtonHeight;
+			global::MobileCore.Droid.Resource.Styleable.Toolbar_navigationContentDescription = global::CoffeeManager.Droid.Resource.Styleable.Toolbar_navigationContentDescription;
+			global::MobileCore.Droid.Resource.Styleable.Toolbar_navigationIcon = global::CoffeeManager.Droid.Resource.Styleable.Toolbar_navigationIcon;
+			global::MobileCore.Droid.Resource.Styleable.Toolbar_popupTheme = global::CoffeeManager.Droid.Resource.Styleable.Toolbar_popupTheme;
+			global::MobileCore.Droid.Resource.Styleable.Toolbar_subtitle = global::CoffeeManager.Droid.Resource.Styleable.Toolbar_subtitle;
+			global::MobileCore.Droid.Resource.Styleable.Toolbar_subtitleTextAppearance = global::CoffeeManager.Droid.Resource.Styleable.Toolbar_subtitleTextAppearance;
+			global::MobileCore.Droid.Resource.Styleable.Toolbar_subtitleTextColor = global::CoffeeManager.Droid.Resource.Styleable.Toolbar_subtitleTextColor;
+			global::MobileCore.Droid.Resource.Styleable.Toolbar_title = global::CoffeeManager.Droid.Resource.Styleable.Toolbar_title;
+			global::MobileCore.Droid.Resource.Styleable.Toolbar_titleMargin = global::CoffeeManager.Droid.Resource.Styleable.Toolbar_titleMargin;
+			global::MobileCore.Droid.Resource.Styleable.Toolbar_titleMarginBottom = global::CoffeeManager.Droid.Resource.Styleable.Toolbar_titleMarginBottom;
+			global::MobileCore.Droid.Resource.Styleable.Toolbar_titleMarginEnd = global::CoffeeManager.Droid.Resource.Styleable.Toolbar_titleMarginEnd;
+			global::MobileCore.Droid.Resource.Styleable.Toolbar_titleMarginStart = global::CoffeeManager.Droid.Resource.Styleable.Toolbar_titleMarginStart;
+			global::MobileCore.Droid.Resource.Styleable.Toolbar_titleMarginTop = global::CoffeeManager.Droid.Resource.Styleable.Toolbar_titleMarginTop;
+			global::MobileCore.Droid.Resource.Styleable.Toolbar_titleMargins = global::CoffeeManager.Droid.Resource.Styleable.Toolbar_titleMargins;
+			global::MobileCore.Droid.Resource.Styleable.Toolbar_titleTextAppearance = global::CoffeeManager.Droid.Resource.Styleable.Toolbar_titleTextAppearance;
+			global::MobileCore.Droid.Resource.Styleable.Toolbar_titleTextColor = global::CoffeeManager.Droid.Resource.Styleable.Toolbar_titleTextColor;
+			global::MobileCore.Droid.Resource.Styleable.View = global::CoffeeManager.Droid.Resource.Styleable.View;
+			global::MobileCore.Droid.Resource.Styleable.View_android_focusable = global::CoffeeManager.Droid.Resource.Styleable.View_android_focusable;
+			global::MobileCore.Droid.Resource.Styleable.View_android_theme = global::CoffeeManager.Droid.Resource.Styleable.View_android_theme;
+			global::MobileCore.Droid.Resource.Styleable.View_paddingEnd = global::CoffeeManager.Droid.Resource.Styleable.View_paddingEnd;
+			global::MobileCore.Droid.Resource.Styleable.View_paddingStart = global::CoffeeManager.Droid.Resource.Styleable.View_paddingStart;
+			global::MobileCore.Droid.Resource.Styleable.View_theme = global::CoffeeManager.Droid.Resource.Styleable.View_theme;
+			global::MobileCore.Droid.Resource.Styleable.ViewBackgroundHelper = global::CoffeeManager.Droid.Resource.Styleable.ViewBackgroundHelper;
+			global::MobileCore.Droid.Resource.Styleable.ViewBackgroundHelper_android_background = global::CoffeeManager.Droid.Resource.Styleable.ViewBackgroundHelper_android_background;
+			global::MobileCore.Droid.Resource.Styleable.ViewBackgroundHelper_backgroundTint = global::CoffeeManager.Droid.Resource.Styleable.ViewBackgroundHelper_backgroundTint;
+			global::MobileCore.Droid.Resource.Styleable.ViewBackgroundHelper_backgroundTintMode = global::CoffeeManager.Droid.Resource.Styleable.ViewBackgroundHelper_backgroundTintMode;
+			global::MobileCore.Droid.Resource.Styleable.ViewStubCompat = global::CoffeeManager.Droid.Resource.Styleable.ViewStubCompat;
+			global::MobileCore.Droid.Resource.Styleable.ViewStubCompat_android_id = global::CoffeeManager.Droid.Resource.Styleable.ViewStubCompat_android_id;
+			global::MobileCore.Droid.Resource.Styleable.ViewStubCompat_android_inflatedId = global::CoffeeManager.Droid.Resource.Styleable.ViewStubCompat_android_inflatedId;
+			global::MobileCore.Droid.Resource.Styleable.ViewStubCompat_android_layout = global::CoffeeManager.Droid.Resource.Styleable.ViewStubCompat_android_layout;
 			global::MvvmCross.Binding.Droid.Resource.Attribute.MvxBind = global::CoffeeManager.Droid.Resource.Attribute.MvxBind;
 			global::MvvmCross.Binding.Droid.Resource.Attribute.MvxDropDownItemTemplate = global::CoffeeManager.Droid.Resource.Attribute.MvxDropDownItemTemplate;
 			global::MvvmCross.Binding.Droid.Resource.Attribute.MvxGroupItemTemplate = global::CoffeeManager.Droid.Resource.Attribute.MvxGroupItemTemplate;
@@ -4194,26 +5625,26 @@ namespace CoffeeManager.Droid
 			// aapt resource value: 0x7f020053
 			public const int avd_hide_password = 2130837587;
 			
-			// aapt resource value: 0x7f020079
-			public const int avd_hide_password_1 = 2130837625;
-			
-			// aapt resource value: 0x7f02007a
-			public const int avd_hide_password_2 = 2130837626;
-			
 			// aapt resource value: 0x7f02007b
-			public const int avd_hide_password_3 = 2130837627;
+			public const int avd_hide_password_1 = 2130837627;
+			
+			// aapt resource value: 0x7f02007c
+			public const int avd_hide_password_2 = 2130837628;
+			
+			// aapt resource value: 0x7f02007d
+			public const int avd_hide_password_3 = 2130837629;
 			
 			// aapt resource value: 0x7f020054
 			public const int avd_show_password = 2130837588;
 			
-			// aapt resource value: 0x7f02007c
-			public const int avd_show_password_1 = 2130837628;
-			
-			// aapt resource value: 0x7f02007d
-			public const int avd_show_password_2 = 2130837629;
-			
 			// aapt resource value: 0x7f02007e
-			public const int avd_show_password_3 = 2130837630;
+			public const int avd_show_password_1 = 2130837630;
+			
+			// aapt resource value: 0x7f02007f
+			public const int avd_show_password_2 = 2130837631;
+			
+			// aapt resource value: 0x7f020080
+			public const int avd_show_password_3 = 2130837632;
 			
 			// aapt resource value: 0x7f020055
 			public const int design_bottom_navigation_item_background = 2130837589;
@@ -4234,94 +5665,100 @@ namespace CoffeeManager.Droid
 			public const int design_snackbar_background = 2130837594;
 			
 			// aapt resource value: 0x7f02005b
-			public const int ic_coin = 2130837595;
+			public const int ic_arrow_back_white_24dp = 2130837595;
 			
 			// aapt resource value: 0x7f02005c
-			public const int ic_credit_card = 2130837596;
+			public const int ic_coin = 2130837596;
 			
 			// aapt resource value: 0x7f02005d
-			public const int ic_credit_card_small = 2130837597;
+			public const int ic_credit_card = 2130837597;
 			
 			// aapt resource value: 0x7f02005e
-			public const int ic_cup_delete = 2130837598;
+			public const int ic_credit_card_small = 2130837598;
 			
 			// aapt resource value: 0x7f02005f
-			public const int ic_done_black_24dp = 2130837599;
+			public const int ic_cup_delete = 2130837599;
 			
 			// aapt resource value: 0x7f020060
-			public const int ic_errorstatus = 2130837600;
+			public const int ic_done_black_24dp = 2130837600;
 			
 			// aapt resource value: 0x7f020061
-			public const int ic_keyboard_backspace_black_24dp = 2130837601;
+			public const int ic_errorstatus = 2130837601;
 			
 			// aapt resource value: 0x7f020062
-			public const int ic_menu_black_24dp = 2130837602;
+			public const int ic_keyboard_backspace_black_24dp = 2130837602;
 			
 			// aapt resource value: 0x7f020063
-			public const int ic_police = 2130837603;
+			public const int ic_menu_black_24dp = 2130837603;
 			
 			// aapt resource value: 0x7f020064
-			public const int ic_power = 2130837604;
+			public const int ic_menu_white_24dp = 2130837604;
 			
 			// aapt resource value: 0x7f020065
-			public const int ic_star_small = 2130837605;
+			public const int ic_police = 2130837605;
 			
 			// aapt resource value: 0x7f020066
-			public const int ic_successstatus = 2130837606;
+			public const int ic_power = 2130837606;
 			
 			// aapt resource value: 0x7f020067
-			public const int Icon = 2130837607;
+			public const int ic_star_small = 2130837607;
 			
 			// aapt resource value: 0x7f020068
-			public const int navigation_empty_icon = 2130837608;
+			public const int ic_successstatus = 2130837608;
 			
 			// aapt resource value: 0x7f020069
-			public const int notification_action_background = 2130837609;
+			public const int Icon = 2130837609;
 			
 			// aapt resource value: 0x7f02006a
-			public const int notification_bg = 2130837610;
+			public const int navigation_empty_icon = 2130837610;
 			
 			// aapt resource value: 0x7f02006b
-			public const int notification_bg_low = 2130837611;
+			public const int notification_action_background = 2130837611;
 			
 			// aapt resource value: 0x7f02006c
-			public const int notification_bg_low_normal = 2130837612;
+			public const int notification_bg = 2130837612;
 			
 			// aapt resource value: 0x7f02006d
-			public const int notification_bg_low_pressed = 2130837613;
+			public const int notification_bg_low = 2130837613;
 			
 			// aapt resource value: 0x7f02006e
-			public const int notification_bg_normal = 2130837614;
+			public const int notification_bg_low_normal = 2130837614;
 			
 			// aapt resource value: 0x7f02006f
-			public const int notification_bg_normal_pressed = 2130837615;
+			public const int notification_bg_low_pressed = 2130837615;
 			
 			// aapt resource value: 0x7f020070
-			public const int notification_icon_background = 2130837616;
-			
-			// aapt resource value: 0x7f020077
-			public const int notification_template_icon_bg = 2130837623;
-			
-			// aapt resource value: 0x7f020078
-			public const int notification_template_icon_low_bg = 2130837624;
+			public const int notification_bg_normal = 2130837616;
 			
 			// aapt resource value: 0x7f020071
-			public const int notification_tile_bg = 2130837617;
+			public const int notification_bg_normal_pressed = 2130837617;
 			
 			// aapt resource value: 0x7f020072
-			public const int notify_panel_notification_icon_bg = 2130837618;
+			public const int notification_icon_background = 2130837618;
+			
+			// aapt resource value: 0x7f020079
+			public const int notification_template_icon_bg = 2130837625;
+			
+			// aapt resource value: 0x7f02007a
+			public const int notification_template_icon_low_bg = 2130837626;
 			
 			// aapt resource value: 0x7f020073
-			public const int roundedbg = 2130837619;
+			public const int notification_tile_bg = 2130837619;
 			
 			// aapt resource value: 0x7f020074
-			public const int roundedbgdark = 2130837620;
+			public const int notify_panel_notification_icon_bg = 2130837620;
 			
 			// aapt resource value: 0x7f020075
-			public const int side_nav_bar = 2130837621;
+			public const int roundedbg = 2130837621;
 			
 			// aapt resource value: 0x7f020076
-			public const int take_cup_transparent = 2130837622;
+			public const int roundedbgdark = 2130837622;
+			
+			// aapt resource value: 0x7f020077
+			public const int side_nav_bar = 2130837623;
+			
+			// aapt resource value: 0x7f020078
+			public const int take_cup_transparent = 2130837624;
 			
 			static Drawable()
 			{
@@ -4342,8 +5779,8 @@ namespace CoffeeManager.Droid
 			// aapt resource value: 0x7f0b0001
 			public const int MvxBindingTagUnique = 2131427329;
 			
-			// aapt resource value: 0x7f0b009b
-			public const int action0 = 2131427483;
+			// aapt resource value: 0x7f0b009a
+			public const int action0 = 2131427482;
 			
 			// aapt resource value: 0x7f0b0066
 			public const int action_bar = 2131427430;
@@ -4366,17 +5803,17 @@ namespace CoffeeManager.Droid
 			// aapt resource value: 0x7f0b0043
 			public const int action_bar_title = 2131427395;
 			
-			// aapt resource value: 0x7f0b0098
-			public const int action_container = 2131427480;
+			// aapt resource value: 0x7f0b0097
+			public const int action_container = 2131427479;
 			
 			// aapt resource value: 0x7f0b0067
 			public const int action_context_bar = 2131427431;
 			
-			// aapt resource value: 0x7f0b009f
-			public const int action_divider = 2131427487;
+			// aapt resource value: 0x7f0b009e
+			public const int action_divider = 2131427486;
 			
-			// aapt resource value: 0x7f0b0099
-			public const int action_image = 2131427481;
+			// aapt resource value: 0x7f0b0098
+			public const int action_image = 2131427480;
 			
 			// aapt resource value: 0x7f0b0005
 			public const int action_menu_divider = 2131427333;
@@ -4393,11 +5830,11 @@ namespace CoffeeManager.Droid
 			// aapt resource value: 0x7f0b0045
 			public const int action_mode_close_button = 2131427397;
 			
-			// aapt resource value: 0x7f0b009a
-			public const int action_text = 2131427482;
+			// aapt resource value: 0x7f0b0099
+			public const int action_text = 2131427481;
 			
-			// aapt resource value: 0x7f0b00a8
-			public const int actions = 2131427496;
+			// aapt resource value: 0x7f0b00a7
+			public const int actions = 2131427495;
 			
 			// aapt resource value: 0x7f0b0046
 			public const int activity_chooser_view_content = 2131427398;
@@ -4417,9 +5854,6 @@ namespace CoffeeManager.Droid
 			// aapt resource value: 0x7f0b0025
 			public const int always = 2131427365;
 			
-			// aapt resource value: 0x7f0b007b
-			public const int app_bar = 2131427451;
-			
 			// aapt resource value: 0x7f0b0031
 			public const int auto = 2131427377;
 			
@@ -4432,8 +5866,8 @@ namespace CoffeeManager.Droid
 			// aapt resource value: 0x7f0b004d
 			public const int buttonPanel = 2131427405;
 			
-			// aapt resource value: 0x7f0b009c
-			public const int cancel_action = 2131427484;
+			// aapt resource value: 0x7f0b009b
+			public const int cancel_action = 2131427483;
 			
 			// aapt resource value: 0x7f0b0032
 			public const int center = 2131427378;
@@ -4444,17 +5878,17 @@ namespace CoffeeManager.Droid
 			// aapt resource value: 0x7f0b0034
 			public const int center_vertical = 2131427380;
 			
-			// aapt resource value: 0x7f0b0095
-			public const int charge_amount = 2131427477;
-			
 			// aapt resource value: 0x7f0b0094
-			public const int charge_text = 2131427476;
+			public const int charge_amount = 2131427476;
+			
+			// aapt resource value: 0x7f0b0093
+			public const int charge_text = 2131427475;
 			
 			// aapt resource value: 0x7f0b005d
 			public const int checkbox = 2131427421;
 			
-			// aapt resource value: 0x7f0b00a4
-			public const int chronometer = 2131427492;
+			// aapt resource value: 0x7f0b00a3
+			public const int chronometer = 2131427491;
 			
 			// aapt resource value: 0x7f0b003b
 			public const int clip_horizontal = 2131427387;
@@ -4465,14 +5899,14 @@ namespace CoffeeManager.Droid
 			// aapt resource value: 0x7f0b0026
 			public const int collapseActionView = 2131427366;
 			
-			// aapt resource value: 0x7f0b007e
-			public const int container = 2131427454;
+			// aapt resource value: 0x7f0b007d
+			public const int container = 2131427453;
 			
 			// aapt resource value: 0x7f0b0050
 			public const int contentPanel = 2131427408;
 			
-			// aapt resource value: 0x7f0b007f
-			public const int coordinator = 2131427455;
+			// aapt resource value: 0x7f0b007e
+			public const int coordinator = 2131427454;
 			
 			// aapt resource value: 0x7f0b0078
 			public const int credit_card = 2131427448;
@@ -4495,20 +5929,20 @@ namespace CoffeeManager.Droid
 			// aapt resource value: 0x7f0b0049
 			public const int default_activity_button = 2131427401;
 			
-			// aapt resource value: 0x7f0b0081
-			public const int design_bottom_sheet = 2131427457;
-			
-			// aapt resource value: 0x7f0b0088
-			public const int design_menu_item_action_area = 2131427464;
+			// aapt resource value: 0x7f0b0080
+			public const int design_bottom_sheet = 2131427456;
 			
 			// aapt resource value: 0x7f0b0087
-			public const int design_menu_item_action_area_stub = 2131427463;
+			public const int design_menu_item_action_area = 2131427463;
 			
 			// aapt resource value: 0x7f0b0086
-			public const int design_menu_item_text = 2131427462;
+			public const int design_menu_item_action_area_stub = 2131427462;
 			
 			// aapt resource value: 0x7f0b0085
-			public const int design_navigation_view = 2131427461;
+			public const int design_menu_item_text = 2131427461;
+			
+			// aapt resource value: 0x7f0b0084
+			public const int design_navigation_view = 2131427460;
 			
 			// aapt resource value: 0x7f0b0014
 			public const int disableHome = 2131427348;
@@ -4519,8 +5953,8 @@ namespace CoffeeManager.Droid
 			// aapt resource value: 0x7f0b0023
 			public const int end = 2131427363;
 			
-			// aapt resource value: 0x7f0b00ae
-			public const int end_padder = 2131427502;
+			// aapt resource value: 0x7f0b00ad
+			public const int end_padder = 2131427501;
 			
 			// aapt resource value: 0x7f0b00b7
 			public const int end_shift = 2131427511;
@@ -4540,8 +5974,8 @@ namespace CoffeeManager.Droid
 			// aapt resource value: 0x7f0b005c
 			public const int expanded_menu = 2131427420;
 			
-			// aapt resource value: 0x7f0b008b
-			public const int expense_with_suply_products_template = 2131427467;
+			// aapt resource value: 0x7f0b008a
+			public const int expense_with_suply_products_template = 2131427466;
 			
 			// aapt resource value: 0x7f0b003d
 			public const int fill = 2131427389;
@@ -4567,8 +6001,8 @@ namespace CoffeeManager.Droid
 			// aapt resource value: 0x7f0b004b
 			public const int icon = 2131427403;
 			
-			// aapt resource value: 0x7f0b00a9
-			public const int icon_group = 2131427497;
+			// aapt resource value: 0x7f0b00a8
+			public const int icon_group = 2131427496;
 			
 			// aapt resource value: 0x7f0b0027
 			public const int ifRoom = 2131427367;
@@ -4576,11 +6010,11 @@ namespace CoffeeManager.Droid
 			// aapt resource value: 0x7f0b0048
 			public const int image = 2131427400;
 			
-			// aapt resource value: 0x7f0b0096
-			public const int imageView = 2131427478;
+			// aapt resource value: 0x7f0b0095
+			public const int imageView = 2131427477;
 			
-			// aapt resource value: 0x7f0b00a5
-			public const int info = 2131427493;
+			// aapt resource value: 0x7f0b00a4
+			public const int info = 2131427492;
 			
 			// aapt resource value: 0x7f0b00b5
 			public const int inventory = 2131427509;
@@ -4588,17 +6022,17 @@ namespace CoffeeManager.Droid
 			// aapt resource value: 0x7f0b0002
 			public const int item_touch_helper_previous_elevation = 2131427330;
 			
-			// aapt resource value: 0x7f0b007d
-			public const int largeLabel = 2131427453;
+			// aapt resource value: 0x7f0b007c
+			public const int largeLabel = 2131427452;
 			
 			// aapt resource value: 0x7f0b0036
 			public const int left = 2131427382;
 			
-			// aapt resource value: 0x7f0b00aa
-			public const int line1 = 2131427498;
+			// aapt resource value: 0x7f0b00a9
+			public const int line1 = 2131427497;
 			
-			// aapt resource value: 0x7f0b00ac
-			public const int line3 = 2131427500;
+			// aapt resource value: 0x7f0b00ab
+			public const int line3 = 2131427499;
 			
 			// aapt resource value: 0x7f0b0011
 			public const int listMode = 2131427345;
@@ -4606,26 +6040,26 @@ namespace CoffeeManager.Droid
 			// aapt resource value: 0x7f0b004a
 			public const int list_item = 2131427402;
 			
-			// aapt resource value: 0x7f0b008e
-			public const int loadingImage = 2131427470;
+			// aapt resource value: 0x7f0b008d
+			public const int loadingImage = 2131427469;
 			
-			// aapt resource value: 0x7f0b008c
-			public const int loadingProgressBar = 2131427468;
+			// aapt resource value: 0x7f0b008b
+			public const int loadingProgressBar = 2131427467;
+			
+			// aapt resource value: 0x7f0b008e
+			public const int loadingProgressWheel = 2131427470;
 			
 			// aapt resource value: 0x7f0b008f
-			public const int loadingProgressWheel = 2131427471;
+			public const int main_drawer = 2131427471;
 			
-			// aapt resource value: 0x7f0b0090
-			public const int main_drawer = 2131427472;
-			
-			// aapt resource value: 0x7f0b0092
-			public const int main_viewpager = 2131427474;
+			// aapt resource value: 0x7f0b0091
+			public const int main_viewpager = 2131427473;
 			
 			// aapt resource value: 0x7f0b00b0
 			public const int masked = 2131427504;
 			
-			// aapt resource value: 0x7f0b009e
-			public const int media_actions = 2131427486;
+			// aapt resource value: 0x7f0b009d
+			public const int media_actions = 2131427485;
 			
 			// aapt resource value: 0x7f0b0024
 			public const int middle = 2131427364;
@@ -4636,11 +6070,11 @@ namespace CoffeeManager.Droid
 			// aapt resource value: 0x7f0b001b
 			public const int multiply = 2131427355;
 			
-			// aapt resource value: 0x7f0b0091
-			public const int nav_view = 2131427473;
+			// aapt resource value: 0x7f0b0090
+			public const int nav_view = 2131427472;
 			
-			// aapt resource value: 0x7f0b0084
-			public const int navigation_header_container = 2131427460;
+			// aapt resource value: 0x7f0b0083
+			public const int navigation_header_container = 2131427459;
 			
 			// aapt resource value: 0x7f0b0028
 			public const int never = 2131427368;
@@ -4651,14 +6085,14 @@ namespace CoffeeManager.Droid
 			// aapt resource value: 0x7f0b0012
 			public const int normal = 2131427346;
 			
-			// aapt resource value: 0x7f0b00a7
-			public const int notification_background = 2131427495;
-			
-			// aapt resource value: 0x7f0b00a1
-			public const int notification_main_column = 2131427489;
+			// aapt resource value: 0x7f0b00a6
+			public const int notification_background = 2131427494;
 			
 			// aapt resource value: 0x7f0b00a0
-			public const int notification_main_column_container = 2131427488;
+			public const int notification_main_column = 2131427488;
+			
+			// aapt resource value: 0x7f0b009f
+			public const int notification_main_column_container = 2131427487;
 			
 			// aapt resource value: 0x7f0b0039
 			public const int parallax = 2131427385;
@@ -4687,14 +6121,14 @@ namespace CoffeeManager.Droid
 			// aapt resource value: 0x7f0b0037
 			public const int right = 2131427383;
 			
-			// aapt resource value: 0x7f0b00a6
-			public const int right_icon = 2131427494;
+			// aapt resource value: 0x7f0b00a5
+			public const int right_icon = 2131427493;
 			
-			// aapt resource value: 0x7f0b00a2
-			public const int right_side = 2131427490;
+			// aapt resource value: 0x7f0b00a1
+			public const int right_side = 2131427489;
 			
-			// aapt resource value: 0x7f0b0093
-			public const int sales_layout = 2131427475;
+			// aapt resource value: 0x7f0b0092
+			public const int sales_layout = 2131427474;
 			
 			// aapt resource value: 0x7f0b001c
 			public const int screen = 2131427356;
@@ -4768,17 +6202,17 @@ namespace CoffeeManager.Droid
 			// aapt resource value: 0x7f0b0019
 			public const int showTitle = 2131427353;
 			
-			// aapt resource value: 0x7f0b008a
-			public const int simple_expense_template = 2131427466;
+			// aapt resource value: 0x7f0b0089
+			public const int simple_expense_template = 2131427465;
 			
-			// aapt resource value: 0x7f0b007c
-			public const int smallLabel = 2131427452;
-			
-			// aapt resource value: 0x7f0b0083
-			public const int snackbar_action = 2131427459;
+			// aapt resource value: 0x7f0b007b
+			public const int smallLabel = 2131427451;
 			
 			// aapt resource value: 0x7f0b0082
-			public const int snackbar_text = 2131427458;
+			public const int snackbar_action = 2131427458;
+			
+			// aapt resource value: 0x7f0b0081
+			public const int snackbar_text = 2131427457;
 			
 			// aapt resource value: 0x7f0b0030
 			public const int snap = 2131427376;
@@ -4801,8 +6235,8 @@ namespace CoffeeManager.Droid
 			// aapt resource value: 0x7f0b0038
 			public const int start = 2131427384;
 			
-			// aapt resource value: 0x7f0b009d
-			public const int status_bar_latest_event_content = 2131427485;
+			// aapt resource value: 0x7f0b009c
+			public const int status_bar_latest_event_content = 2131427484;
 			
 			// aapt resource value: 0x7f0b0060
 			public const int submenuarrow = 2131427424;
@@ -4813,11 +6247,11 @@ namespace CoffeeManager.Droid
 			// aapt resource value: 0x7f0b0013
 			public const int tabMode = 2131427347;
 			
-			// aapt resource value: 0x7f0b00ad
-			public const int text = 2131427501;
+			// aapt resource value: 0x7f0b00ac
+			public const int text = 2131427500;
 			
-			// aapt resource value: 0x7f0b00ab
-			public const int text2 = 2131427499;
+			// aapt resource value: 0x7f0b00aa
+			public const int text2 = 2131427498;
 			
 			// aapt resource value: 0x7f0b0054
 			public const int textSpacerNoButtons = 2131427412;
@@ -4825,11 +6259,11 @@ namespace CoffeeManager.Droid
 			// aapt resource value: 0x7f0b0053
 			public const int textSpacerNoTitle = 2131427411;
 			
-			// aapt resource value: 0x7f0b008d
-			public const int textViewStatus = 2131427469;
+			// aapt resource value: 0x7f0b008c
+			public const int textViewStatus = 2131427468;
 			
-			// aapt resource value: 0x7f0b0089
-			public const int text_input_password_toggle = 2131427465;
+			// aapt resource value: 0x7f0b0088
+			public const int text_input_password_toggle = 2131427464;
 			
 			// aapt resource value: 0x7f0b000e
 			public const int textinput_counter = 2131427342;
@@ -4837,8 +6271,8 @@ namespace CoffeeManager.Droid
 			// aapt resource value: 0x7f0b000f
 			public const int textinput_error = 2131427343;
 			
-			// aapt resource value: 0x7f0b00a3
-			public const int time = 2131427491;
+			// aapt resource value: 0x7f0b00a2
+			public const int time = 2131427490;
 			
 			// aapt resource value: 0x7f0b004c
 			public const int title = 2131427404;
@@ -4852,14 +6286,17 @@ namespace CoffeeManager.Droid
 			// aapt resource value: 0x7f0b0075
 			public const int toolbar = 2131427445;
 			
+			// aapt resource value: 0x7f0b00ae
+			public const int toolbar_title = 2131427502;
+			
 			// aapt resource value: 0x7f0b002b
 			public const int top = 2131427371;
 			
 			// aapt resource value: 0x7f0b0058
 			public const int topPanel = 2131427416;
 			
-			// aapt resource value: 0x7f0b0080
-			public const int touch_outside = 2131427456;
+			// aapt resource value: 0x7f0b007f
+			public const int touch_outside = 2131427455;
 			
 			// aapt resource value: 0x7f0b000c
 			public const int transition_current_scene = 2131427340;
@@ -4873,8 +6310,8 @@ namespace CoffeeManager.Droid
 			// aapt resource value: 0x7f0b001a
 			public const int useLogo = 2131427354;
 			
-			// aapt resource value: 0x7f0b0097
-			public const int user_name_text = 2131427479;
+			// aapt resource value: 0x7f0b0096
+			public const int user_name_text = 2131427478;
 			
 			// aapt resource value: 0x7f0b00b4
 			public const int utilize_suply_product = 2131427508;
@@ -5083,142 +6520,139 @@ namespace CoffeeManager.Droid
 			public const int end_shift = 2130968621;
 			
 			// aapt resource value: 0x7f04002e
-			public const int errors = 2130968622;
+			public const int expense_item = 2130968622;
 			
 			// aapt resource value: 0x7f04002f
-			public const int expense_item = 2130968623;
+			public const int exprense_card = 2130968623;
 			
 			// aapt resource value: 0x7f040030
-			public const int exprense_card = 2130968624;
+			public const int exprense_layout = 2130968624;
 			
 			// aapt resource value: 0x7f040031
-			public const int exprense_layout = 2130968625;
+			public const int initial_login = 2130968625;
 			
 			// aapt resource value: 0x7f040032
-			public const int initial_login = 2130968626;
+			public const int inventory = 2130968626;
 			
 			// aapt resource value: 0x7f040033
-			public const int inventory = 2130968627;
+			public const int inventory_item = 2130968627;
 			
 			// aapt resource value: 0x7f040034
-			public const int inventory_item = 2130968628;
+			public const int loading = 2130968628;
 			
 			// aapt resource value: 0x7f040035
-			public const int loading = 2130968629;
+			public const int loadingimage = 2130968629;
 			
 			// aapt resource value: 0x7f040036
-			public const int loadingimage = 2130968630;
+			public const int loadingprogress = 2130968630;
 			
 			// aapt resource value: 0x7f040037
-			public const int loadingprogress = 2130968631;
+			public const int login = 2130968631;
 			
 			// aapt resource value: 0x7f040038
-			public const int login = 2130968632;
+			public const int main = 2130968632;
 			
 			// aapt resource value: 0x7f040039
-			public const int main = 2130968633;
+			public const int main_content = 2130968633;
 			
 			// aapt resource value: 0x7f04003a
-			public const int main_content = 2130968634;
+			public const int nav_header_main = 2130968634;
 			
 			// aapt resource value: 0x7f04003b
-			public const int nav_header_main = 2130968635;
+			public const int notification_action = 2130968635;
 			
 			// aapt resource value: 0x7f04003c
-			public const int notification_action = 2130968636;
+			public const int notification_action_tombstone = 2130968636;
 			
 			// aapt resource value: 0x7f04003d
-			public const int notification_action_tombstone = 2130968637;
+			public const int notification_media_action = 2130968637;
 			
 			// aapt resource value: 0x7f04003e
-			public const int notification_media_action = 2130968638;
+			public const int notification_media_cancel_action = 2130968638;
 			
 			// aapt resource value: 0x7f04003f
-			public const int notification_media_cancel_action = 2130968639;
+			public const int notification_template_big_media = 2130968639;
 			
 			// aapt resource value: 0x7f040040
-			public const int notification_template_big_media = 2130968640;
+			public const int notification_template_big_media_custom = 2130968640;
 			
 			// aapt resource value: 0x7f040041
-			public const int notification_template_big_media_custom = 2130968641;
+			public const int notification_template_big_media_narrow = 2130968641;
 			
 			// aapt resource value: 0x7f040042
-			public const int notification_template_big_media_narrow = 2130968642;
+			public const int notification_template_big_media_narrow_custom = 2130968642;
 			
 			// aapt resource value: 0x7f040043
-			public const int notification_template_big_media_narrow_custom = 2130968643;
+			public const int notification_template_custom_big = 2130968643;
 			
 			// aapt resource value: 0x7f040044
-			public const int notification_template_custom_big = 2130968644;
+			public const int notification_template_icon_group = 2130968644;
 			
 			// aapt resource value: 0x7f040045
-			public const int notification_template_icon_group = 2130968645;
+			public const int notification_template_lines_media = 2130968645;
 			
 			// aapt resource value: 0x7f040046
-			public const int notification_template_lines_media = 2130968646;
+			public const int notification_template_media = 2130968646;
 			
 			// aapt resource value: 0x7f040047
-			public const int notification_template_media = 2130968647;
+			public const int notification_template_media_custom = 2130968647;
 			
 			// aapt resource value: 0x7f040048
-			public const int notification_template_media_custom = 2130968648;
+			public const int notification_template_part_chronometer = 2130968648;
 			
 			// aapt resource value: 0x7f040049
-			public const int notification_template_part_chronometer = 2130968649;
+			public const int notification_template_part_time = 2130968649;
 			
 			// aapt resource value: 0x7f04004a
-			public const int notification_template_part_time = 2130968650;
+			public const int product_card = 2130968650;
 			
 			// aapt resource value: 0x7f04004b
-			public const int product_card = 2130968651;
+			public const int product_list = 2130968651;
 			
 			// aapt resource value: 0x7f04004c
-			public const int product_list = 2130968652;
+			public const int request_card = 2130968652;
 			
 			// aapt resource value: 0x7f04004d
-			public const int request_card = 2130968653;
+			public const int sale_card = 2130968653;
 			
 			// aapt resource value: 0x7f04004e
-			public const int sale_card = 2130968654;
+			public const int select_dialog_item_material = 2130968654;
 			
 			// aapt resource value: 0x7f04004f
-			public const int select_dialog_item_material = 2130968655;
+			public const int select_dialog_multichoice_material = 2130968655;
 			
 			// aapt resource value: 0x7f040050
-			public const int select_dialog_multichoice_material = 2130968656;
+			public const int select_dialog_singlechoice_material = 2130968656;
 			
 			// aapt resource value: 0x7f040051
-			public const int select_dialog_singlechoice_material = 2130968657;
+			public const int selected_product_card = 2130968657;
 			
 			// aapt resource value: 0x7f040052
-			public const int selected_product_card = 2130968658;
+			public const int settings = 2130968658;
 			
 			// aapt resource value: 0x7f040053
-			public const int settings = 2130968659;
+			public const int shift_expenses = 2130968659;
 			
 			// aapt resource value: 0x7f040054
-			public const int shift_expenses = 2130968660;
+			public const int SplashScreen = 2130968660;
 			
 			// aapt resource value: 0x7f040055
-			public const int SplashScreen = 2130968661;
+			public const int suply_product_card = 2130968661;
 			
 			// aapt resource value: 0x7f040056
-			public const int suply_product_card = 2130968662;
+			public const int support_simple_spinner_dropdown_item = 2130968662;
 			
 			// aapt resource value: 0x7f040057
-			public const int support_simple_spinner_dropdown_item = 2130968663;
+			public const int toolbar = 2130968663;
 			
 			// aapt resource value: 0x7f040058
-			public const int toolbar = 2130968664;
+			public const int user_card = 2130968664;
 			
 			// aapt resource value: 0x7f040059
-			public const int user_card = 2130968665;
+			public const int utilize_item = 2130968665;
 			
 			// aapt resource value: 0x7f04005a
-			public const int utilize_item = 2130968666;
-			
-			// aapt resource value: 0x7f04005b
-			public const int utilize_layout = 2130968667;
+			public const int utilize_layout = 2130968666;
 			
 			static Layout()
 			{
@@ -5434,8 +6868,8 @@ namespace CoffeeManager.Droid
 		public partial class Style
 		{
 			
-			// aapt resource value: 0x7f080182
-			public const int ActionBarTheme = 2131231106;
+			// aapt resource value: 0x7f080185
+			public const int ActionBarTheme = 2131231109;
 			
 			// aapt resource value: 0x7f0800a3
 			public const int AlertDialog_AppCompat = 2131230883;
@@ -5452,17 +6886,17 @@ namespace CoffeeManager.Droid
 			// aapt resource value: 0x7f080165
 			public const int Animation_Design_BottomSheetDialog = 2131231077;
 			
-			// aapt resource value: 0x7f080180
-			public const int AppTheme = 2131231104;
-			
-			// aapt resource value: 0x7f080184
-			public const int AppTheme_AppBarOverlay = 2131231108;
-			
 			// aapt resource value: 0x7f080183
-			public const int AppTheme_NoActionBar = 2131231107;
+			public const int AppTheme = 2131231107;
 			
-			// aapt resource value: 0x7f080185
-			public const int AppTheme_PopupOverlay = 2131231109;
+			// aapt resource value: 0x7f080187
+			public const int AppTheme_AppBarOverlay = 2131231111;
+			
+			// aapt resource value: 0x7f080186
+			public const int AppTheme_NoActionBar = 2131231110;
+			
+			// aapt resource value: 0x7f080188
+			public const int AppTheme_PopupOverlay = 2131231112;
 			
 			// aapt resource value: 0x7f0800a7
 			public const int Base_AlertDialog_AppCompat = 2131230887;
@@ -6022,8 +7456,8 @@ namespace CoffeeManager.Droid
 			// aapt resource value: 0x7f080042
 			public const int RtlUnderlay_Widget_AppCompat_ActionButton_Overflow = 2131230786;
 			
-			// aapt resource value: 0x7f080181
-			public const int SplashTheme = 2131231105;
+			// aapt resource value: 0x7f080184
+			public const int SplashTheme = 2131231108;
 			
 			// aapt resource value: 0x7f0800d2
 			public const int TextAppearance_AppCompat = 2131230930;
@@ -6343,6 +7777,9 @@ namespace CoffeeManager.Droid
 			// aapt resource value: 0x7f08011a
 			public const int ThemeOverlay_AppCompat_Light = 2131231002;
 			
+			// aapt resource value: 0x7f08017f
+			public const int Toolbar_TitleText = 2131231103;
+			
 			// aapt resource value: 0x7f08011b
 			public const int Widget_AppCompat_ActionBar = 2131231003;
 			
@@ -6598,11 +8035,17 @@ namespace CoffeeManager.Droid
 			// aapt resource value: 0x7f08017d
 			public const int Widget_Design_TextInputLayout = 2131231101;
 			
-			// aapt resource value: 0x7f08017e
-			public const int left_menu_button_layout = 2131231102;
+			// aapt resource value: 0x7f080181
+			public const int left_menu_button_layout = 2131231105;
 			
-			// aapt resource value: 0x7f08017f
-			public const int left_menu_button_text = 2131231103;
+			// aapt resource value: 0x7f080182
+			public const int left_menu_button_text = 2131231106;
+			
+			// aapt resource value: 0x7f08017e
+			public const int toolbar_global = 2131231102;
+			
+			// aapt resource value: 0x7f080180
+			public const int toolbar_title_fontify = 2131231104;
 			
 			static Style()
 			{

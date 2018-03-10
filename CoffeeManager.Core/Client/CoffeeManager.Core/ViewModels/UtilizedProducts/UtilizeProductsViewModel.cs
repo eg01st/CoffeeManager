@@ -1,9 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using CoffeManager.Common;
-using System.Linq;
-namespace CoffeeManager.Core
+using CoffeManager.Common.ViewModels;
+
+namespace CoffeeManager.Core.ViewModels.UtilizedProducts
 {
     public class UtilizeProductsViewModel : BaseSearchViewModel<UtilizeItemViewModel>
     {

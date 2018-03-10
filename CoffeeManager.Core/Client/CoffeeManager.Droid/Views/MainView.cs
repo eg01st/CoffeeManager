@@ -15,21 +15,35 @@ using Android.Support.V4.Widget;
 using Android.Support.V7.App;
 using System.Linq;
 using CoffeeManager.Core.ViewModels.Products;
+using MobileCore.Droid.Activities;
+using MobileCore.Droid.Bindings.CustomAtts;
 using MvvmCross.Core.ViewModels;
 
 namespace CoffeeManager.Droid.Views
 {
     [Activity(ScreenOrientation = ScreenOrientation.SensorPortrait)]
-    public class MainView : ActivityBase<MainViewModel>, NavigationView.IOnNavigationItemSelectedListener
+    public class MainView : MobileCore.Droid.Activities.ActivityBase<MainViewModel>, NavigationView.IOnNavigationItemSelectedListener
     {
         private readonly int drawerGravity = GravityCompat.Start;
 
+        [FindById(Resource.Id.main_drawer)]
         private DrawerLayout drawerLayout;
+        
+        [FindById(Resource.Id.main_viewpager)]
         private ViewPager viewPager;
+        
+        [FindById(Resource.Id.police_sale_enabled)]
         private View policeSaveView;
+        
+        [FindById(Resource.Id.credit_card_enabled)]
         private View creditCardView;
+        
+        [FindById(Resource.Id.police_sale)]
         private ImageView policeButton;
+        
+        [FindById(Resource.Id.credit_card)]
         private ImageView creditCardButton;
+        
         private TextView userNameTextView;
         private MvxObservableCollection<CategoryItemViewModel> categoies;
         private MvxObservableCollection<ProductViewModel> products;
@@ -49,22 +63,19 @@ namespace CoffeeManager.Droid.Views
             get => products;
             set => products = value;
         }
-        
 
-        protected override void OnCreate(Bundle savedInstanceState)
+        public MainView() : base(Resource.Layout.main)
         {
-            base.OnCreate(savedInstanceState);
-            SetContentView(Resource.Layout.main);
-
-            InitLeftMenu();
-            viewPager = FindViewById<ViewPager>(Resource.Id.main_viewpager);
-            InitToolBarCommands();
-            DoBind();
+            
         }
 
-      
-        
-        private void DoBind()
+        protected override void DoOnCreate(Bundle bundle)
+        {
+            InitLeftMenu();
+            InitToolBarCommands();
+        }
+
+        protected override void DoBind()
         {
             var set = this.CreateBindingSet<MainView, MainViewModel>();
             set.Bind(this).For(c => c.Products).To(vm => vm.Products);
@@ -90,8 +101,18 @@ namespace CoffeeManager.Droid.Views
 
         private void InitToolBarCommands()
         {
+            Android.Support.V7.Widget.Toolbar toolbar = (Android.Support.V7.Widget.Toolbar) FindViewById(Resource.Id.toolbar);
+            if (toolbar != null)
+            {
+                SetSupportActionBar(toolbar);
+            }
+
+            SupportActionBar.SetHomeAsUpIndicator(Resource.Drawable.ic_menu_white_24dp);
+            SupportActionBar.SetDisplayHomeAsUpEnabled(true);
+            
             SupportActionBar.SetCustomView(Resource.Layout.action_bar);
             SupportActionBar.SetDisplayShowCustomEnabled(true);
+            
 
             policeSaveView = FindViewById<View>(Resource.Id.police_sale_enabled);
 
@@ -145,7 +166,7 @@ namespace CoffeeManager.Droid.Views
 
         private void InitLeftMenu()
         {
-            drawerLayout = FindViewById<DrawerLayout>(Resource.Id.main_drawer);
+           // drawerLayout = FindViewById<DrawerLayout>(Resource.Id.main_drawer);
             var drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, Resource.Drawable.ic_menu_black_24dp, Resource.Drawable.ic_keyboard_backspace_black_24dp);
             drawerLayout.SetDrawerListener(drawerToggle);
             drawerToggle.SyncState();

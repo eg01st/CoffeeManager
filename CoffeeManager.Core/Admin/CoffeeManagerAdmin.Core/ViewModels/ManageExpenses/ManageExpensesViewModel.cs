@@ -3,6 +3,7 @@ using System.Linq;
 using CoffeManager.Common;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using CoffeManager.Common.ViewModels;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Messenger;
 

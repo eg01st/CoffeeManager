@@ -737,29 +737,39 @@
               <e p="take_cup_transparent.png" t="Include" />
             </e>
             <e p="drawable-hdpi" t="Include">
+              <e p="ic_arrow_back_white_24dp.png" t="Include" />
               <e p="ic_done_black_24dp.png" t="Include" />
               <e p="ic_keyboard_backspace_black_24dp.png" t="Include" />
               <e p="ic_menu_black_24dp.png" t="Include" />
+              <e p="ic_menu_white_24dp.png" t="Include" />
             </e>
             <e p="drawable-mdpi" t="Include">
+              <e p="ic_arrow_back_white_24dp.png" t="Include" />
               <e p="ic_done_black_24dp.png" t="Include" />
               <e p="ic_keyboard_backspace_black_24dp.png" t="Include" />
               <e p="ic_menu_black_24dp.png" t="Include" />
+              <e p="ic_menu_white_24dp.png" t="Include" />
             </e>
             <e p="drawable-xhdpi" t="Include">
+              <e p="ic_arrow_back_white_24dp.png" t="Include" />
               <e p="ic_done_black_24dp.png" t="Include" />
               <e p="ic_keyboard_backspace_black_24dp.png" t="Include" />
               <e p="ic_menu_black_24dp.png" t="Include" />
+              <e p="ic_menu_white_24dp.png" t="Include" />
             </e>
             <e p="drawable-xxhdpi" t="Include">
+              <e p="ic_arrow_back_white_24dp.png" t="Include" />
               <e p="ic_done_black_24dp.png" t="Include" />
               <e p="ic_keyboard_backspace_black_24dp.png" t="Include" />
               <e p="ic_menu_black_24dp.png" t="Include" />
+              <e p="ic_menu_white_24dp.png" t="Include" />
             </e>
             <e p="drawable-xxxhdpi" t="Include">
+              <e p="ic_arrow_back_white_24dp.png" t="Include" />
               <e p="ic_done_black_24dp.png" t="Include" />
               <e p="ic_keyboard_backspace_black_24dp.png" t="Include" />
               <e p="ic_menu_black_24dp.png" t="Include" />
+              <e p="ic_menu_white_24dp.png" t="Include" />
             </e>
             <e p="layout" t="Include">
               <e p="action_bar.axml" t="Include" />
@@ -767,7 +777,6 @@
               <e p="coffee_room_card.axml" t="Include" />
               <e p="current_sales.axml" t="Include" />
               <e p="end_shift.axml" t="Include" />
-              <e p="errors.axml" t="Include" />
               <e p="expense_item.axml" t="Include" />
               <e p="exprense_card.axml" t="Include" />
               <e p="exprense_layout.axml" t="Include" />
@@ -787,7 +796,6 @@
               <e p="shift_expenses.axml" t="Include" />
               <e p="SplashScreen.axml" t="Include" />
               <e p="suply_product_card.axml" t="Include" />
-              <e p="toolbar.axml" t="Include" />
               <e p="user_card.axml" t="Include" />
               <e p="utilize_item.axml" t="Include" />
               <e p="utilize_layout.axml" t="Include" />
@@ -835,7 +843,6 @@
             <e p="CurrentShiftSalesView.cs" t="Include" />
             <e p="EndShiftView.cs" t="Include" />
             <e p="ExpenseView.cs" t="Include" />
-            <e p="FragmentActivityBase.cs" t="Include" />
             <e p="Fragments" t="Include">
               <e p="AddsFragment.cs" t="Include" />
               <e p="BaseFragment.cs" t="Include" />
@@ -1258,6 +1265,7 @@
       <e p="MobileCore.Droid" t="IncludeRecursive">
         <e p="Activities" t="Include">
           <e p="ActivityBase.cs" t="Include" />
+          <e p="ActivityWithToolbar.cs" t="Include" />
         </e>
         <e p="AutoUpdate" t="Include">
           <e p="UpdateProvider.cs" t="Include" />
@@ -1297,9 +1305,13 @@
         </e>
         <e p="Resources" t="Include">
           <e p="AboutResources.txt" t="Include" />
+          <e p="layout" t="Include">
+            <e p="toolbar.axml" t="Include" />
+          </e>
           <e p="Resource.Designer.cs" t="Include" />
           <e p="values" t="Include">
             <e p="Strings.xml" t="Include" />
+            <e p="styles.xml" t="Include" />
           </e>
         </e>
       </e>

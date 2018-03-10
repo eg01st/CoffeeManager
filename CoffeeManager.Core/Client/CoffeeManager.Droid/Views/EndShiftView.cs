@@ -3,17 +3,20 @@ using Android.Content.PM;
 using Android.OS;
 using Android.Views;
 using CoffeeManager.Core.ViewModels;
+using MobileCore.Droid.Activities;
 
 namespace CoffeeManager.Droid.Views
 {
-    [Activity(Theme = "@style/Theme.AppCompat.Light", Label = "Окончание смены", WindowSoftInputMode = SoftInput.AdjustPan, ScreenOrientation = ScreenOrientation.SensorPortrait)]
-    public class EndShiftView : ActivityBase<EndShiftViewModel>
+    [Activity(WindowSoftInputMode = SoftInput.AdjustPan, ScreenOrientation = ScreenOrientation.SensorPortrait)]
+    public class EndShiftView : ActivityWithToolbar<EndShiftViewModel>
     {
-        protected override void OnCreate(Bundle savedInstanceState)
-        {
-            base.OnCreate(savedInstanceState);
+        protected override string GetToolbarTitle() => "Окончание смены";
 
-            SetContentView(Resource.Layout.end_shift);
+        protected override int GetUpNavigationIconId() => Resource.Drawable.ic_arrow_back_white_24dp;
+
+        public EndShiftView() : base(Resource.Layout.end_shift)
+        {
         }
+
     }
 }

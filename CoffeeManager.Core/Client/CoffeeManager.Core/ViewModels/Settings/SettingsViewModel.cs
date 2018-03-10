@@ -1,16 +1,14 @@
-﻿using System;
-using CoffeManager.Common;
-using System.Collections.Generic;
-using System.Windows.Input;
-using MvvmCross.Core.ViewModels;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Linq;
-using CoffeeManager.Core.ViewModels;
-using CoffeManager.Common.ViewModels;
+using System.Threading.Tasks;
+using System.Windows.Input;
+using CoffeManager.Common;
+using MobileCore.ViewModels;
+using MvvmCross.Core.ViewModels;
 
-namespace CoffeeManager.Core
+namespace CoffeeManager.Core.ViewModels.Settings
 {
-    public class SettingsViewModel : ViewModelBase
+    public class SettingsViewModel : PageViewModel
     {
         private bool isInitialSetup;
         private bool isLoggedIn;
@@ -60,7 +58,7 @@ namespace CoffeeManager.Core
             obj.IsSelected = true;
         }
 
-        protected async override void DoClose()
+        protected override async Task DoClose()
         {
             var coffeeRoomId = localStorage.GetCoffeeRoomId();
             if (coffeeRoomId == -1)
@@ -74,7 +72,7 @@ namespace CoffeeManager.Core
             }
             else
             {
-                base.DoClose();
+                await base.DoClose();
             }
         }
     }

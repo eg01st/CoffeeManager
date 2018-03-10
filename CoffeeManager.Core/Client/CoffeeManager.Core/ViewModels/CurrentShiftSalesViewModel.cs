@@ -6,11 +6,12 @@ using CoffeeManager.Core.Messages;
 using CoffeManager.Common;
 using CoffeManager.Common.Managers;
 using CoffeManager.Common.ViewModels;
+using MobileCore.ViewModels;
 using MvvmCross.Plugins.Messenger;
 
 namespace CoffeeManager.Core.ViewModels
 {
-    public class CurrentShiftSalesViewModel : ViewModelBase
+    public class CurrentShiftSalesViewModel : PageViewModel
     {
         private readonly IShiftManager shiftManager;
         private readonly IProductManager productManager;
@@ -32,7 +33,7 @@ namespace CoffeeManager.Core.ViewModels
         {
             this.productManager = productManager;
             this.shiftManager = shiftManager;
-            token = Subscribe<SaleRemovedMessage>((async message => { await LoadSales(); }));
+            token = MvxMessenger.Subscribe<SaleRemovedMessage>((async message => { await LoadSales(); }));
         }
 
         public async void Init()
@@ -51,7 +52,7 @@ namespace CoffeeManager.Core.ViewModels
 
         protected override void DoUnsubscribe()
         {
-            Unsubscribe<SaleRemovedMessage>(token);
+            MvxMessenger.Unsubscribe<SaleRemovedMessage>(token);
         }
     }
 }

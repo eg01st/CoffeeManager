@@ -7,10 +7,11 @@ using CoffeManager.Common;
 using MvvmCross.Core.ViewModels;
 using CoffeeManager.Models;
  using CoffeManager.Common.ViewModels;
+ using MobileCore.ViewModels;
 
 namespace CoffeeManager.Core.ViewModels
 {
-    public class ExpenseViewModel : ViewModelBase
+    public class ExpenseViewModel : PageViewModel
     {
         private readonly IPaymentManager manager;
 

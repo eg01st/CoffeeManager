@@ -1,21 +1,21 @@
-﻿using System;
-using Android.App;
+﻿using Android.App;
 using Android.Content.PM;
-using Android.OS;
 using Android.Views;
 using CoffeeManager.Core;
-using CoffeeManager.Droid.Views;
+using CoffeeManager.Core.ViewModels.Inventory;
+using MobileCore.Droid.Activities;
 
-namespace CoffeeManager.Droid
+namespace CoffeeManager.Droid.Views
 {
-    [Activity(Theme = "@style/Theme.AppCompat.Light", Label = "Переучет", WindowSoftInputMode = SoftInput.AdjustPan, ScreenOrientation = ScreenOrientation.SensorPortrait)]
-    public class InventoryView : ActivityBase<InventoryViewModel>
+    [Activity(WindowSoftInputMode = SoftInput.AdjustPan, ScreenOrientation = ScreenOrientation.SensorPortrait)]
+    public class InventoryView : ActivityWithToolbar<InventoryViewModel>
     {
-        protected override void OnCreate(Bundle savedInstanceState)
+        protected override string GetToolbarTitle() => "Переучет";
+
+        protected override int GetUpNavigationIconId() => Resource.Drawable.ic_arrow_back_white_24dp;
+
+        public InventoryView() : base(Resource.Layout.inventory)
         {
-            base.OnCreate(savedInstanceState);
-            SetContentView(Resource.Layout.inventory);
-            // Create your application here
         }
     }
 }

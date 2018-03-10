@@ -1,22 +1,21 @@
-﻿using System;
-using Android.App;
+﻿using Android.App;
 using Android.Content.PM;
 using Android.OS;
 using Android.Views;
-using CoffeeManager.Core;
-using CoffeeManager.Droid.Views;
+using CoffeeManager.Core.ViewModels.UtilizedProducts;
+using MobileCore.Droid.Activities;
 
-namespace CoffeeManager.Droid
+namespace CoffeeManager.Droid.Views
 {
-    [Activity(Theme = "@style/Theme.AppCompat.Light", Label = "Списание", WindowSoftInputMode = SoftInput.AdjustPan, ScreenOrientation = ScreenOrientation.SensorPortrait)]
-
-    public class UtilizeProductsView : ActivityBase<UtilizeProductsViewModel>
+    [Activity(WindowSoftInputMode = SoftInput.AdjustPan, ScreenOrientation = ScreenOrientation.SensorPortrait)]
+    public class UtilizeProductsView : ActivityWithToolbar<UtilizeProductsViewModel>
     {
-        protected override void OnCreate(Bundle savedInstanceState)
+        protected override string GetToolbarTitle() => "Списание";
+
+        protected override int GetUpNavigationIconId() => Resource.Drawable.ic_arrow_back_white_24dp;
+
+        public UtilizeProductsView() : base(Resource.Layout.utilize_layout)
         {
-            base.OnCreate(savedInstanceState);
-            SetContentView(Resource.Layout.utilize_layout);
-        // Create your application here
         }
     }
 }

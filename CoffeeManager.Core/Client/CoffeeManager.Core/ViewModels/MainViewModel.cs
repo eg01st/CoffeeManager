@@ -7,14 +7,18 @@ using System.Linq;
 using System.Text;
 using CoffeManager.Common;
 using System;
+using CoffeeManager.Core.ViewModels.Inventory;
 using CoffeeManager.Core.ViewModels.Products;
+using CoffeeManager.Core.ViewModels.Settings;
+using CoffeeManager.Core.ViewModels.UtilizedProducts;
 using CoffeeManager.Models;
 using CoffeManager.Common.Managers;
 using CoffeManager.Common.ViewModels;
+using MobileCore.ViewModels;
 
 namespace CoffeeManager.Core.ViewModels
 {
-    public class MainViewModel : ViewModelBase, IMvxViewModel<Shift>
+    public class MainViewModel : PageViewModel, IMvxViewModel<Shift>
     {
         private readonly IProductManager productManager;
 
