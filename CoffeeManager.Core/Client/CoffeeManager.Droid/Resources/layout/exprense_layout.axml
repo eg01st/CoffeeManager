@@ -5,17 +5,40 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:keepScreenOn="true">
-    <include
-            layout="@layout/toolbar" />
+    <android.support.v7.widget.Toolbar
+        style="@style/toolbar_global"
+        local:theme="@style/ToolbarTheme"
+        android:id="@+id/toolbar">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_centerVertical="true"
+                android:id="@+id/toolbar_title"
+                style="@style/toolbar_title_fontify"
+                android:layout_gravity="center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/add_expense_button"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:text="Записать"
+                local:MvxBind="Click AddExpenseCommand; Enabled IsAddButtomEnabled" />
+        </RelativeLayout>
+    </android.support.v7.widget.Toolbar>
     <LinearLayout
+        android:layout_margin="16dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:weightSum="100"
         android:orientation="horizontal">
-        <LinearLayout
-            android:layout_margin="16dp"
+        <LinearLayout   
             android:layout_width="0dp"
-            android:layout_weight="30"
+            android:layout_weight="35"
             android:layout_height="match_parent"
             android:orientation="vertical">
             <LinearLayout
@@ -35,6 +58,8 @@
                     local:MvxBind="Text SearchString" />
             </LinearLayout>
             <Mvx.MvxListView
+                android:dividerHeight="0dp"
+                android:divider="@null"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
@@ -43,24 +68,19 @@
         </LinearLayout>
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_weight="70"
+            android:layout_weight="65"
             android:layout_height="match_parent"
             android:orientation="vertical">
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="20dp"
-                android:text="Записать"
-                local:MvxBind="Click AddExpenseCommand; Enabled IsAddButtomEnabled" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <TextView
+                    android:layout_marginLeft="16dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="20dp"
-                    android:text="Выбраное: " />
+                    android:text="Выбраный расход: " />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -69,6 +89,7 @@
                     local:MvxBind="Text SelectedExpense.Name" />
             </LinearLayout>
             <LinearLayout
+                android:layout_marginLeft="16dp"
                 android:id="@+id/simple_expense_template"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -115,36 +136,9 @@
                 android:visibility="gone"
                 android:orientation="vertical"
                 local:MvxBind="Visibility InvertedBoolToVisibility(IsSimpleExpense)">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:weightSum="100"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="35"
-                        android:textColor="#000000"
-                        android:textSize="20dp"
-                        android:text="Товар" />
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="20"
-                        android:textColor="#000000"
-                        android:textSize="20dp"
-                        android:text="Сумма" />
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="45"
-                        android:textColor="#000000"
-                        android:textSize="20dp"
-                        android:text="Количество" />
-                </LinearLayout>
                 <Mvx.MvxListView
-                    android:layout_gravity="top"
-                    android:gravity="top"
+                    android:dividerHeight="0dp"
+                    android:divider="@null"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical"

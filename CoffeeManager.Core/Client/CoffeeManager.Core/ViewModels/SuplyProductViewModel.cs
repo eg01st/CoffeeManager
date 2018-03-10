@@ -52,6 +52,7 @@ namespace CoffeeManager.Core
             {
                 amount = value;
                 RaisePropertyChanged(nameof(Amount));
+                RaisePropertyChanged(nameof(HasValue));
             }
         }
 
@@ -62,6 +63,7 @@ namespace CoffeeManager.Core
             {
                 itemCount = value;
                 RaisePropertyChanged(nameof(ItemCount));
+                RaisePropertyChanged(nameof(HasValue));
             }
         }
 
@@ -74,5 +76,7 @@ namespace CoffeeManager.Core
                 RaisePropertyChanged(nameof(Id));
             }
         }
+
+        public bool HasValue => ItemCount > 0 && Amount > 0;
     }
 }

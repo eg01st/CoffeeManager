@@ -278,9 +278,6 @@
     <AndroidResource Include="Resources\layout\end_shift.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\request_card.axml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
     <AndroidResource Include="Resources\layout\shift_expenses.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
@@ -337,6 +334,12 @@
     <AndroidResource Include="Resources\drawable-xhdpi\ic_arrow_back_white_24dp.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\ic_arrow_back_white_24dp.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_arrow_back_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_check_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_check_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_check_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_check_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_check_white_24dp.png" />
+    <AndroidResource Include="Resources\menu\add_expense_menu.xml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />

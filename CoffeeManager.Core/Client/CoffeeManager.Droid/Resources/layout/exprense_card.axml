@@ -13,9 +13,11 @@
         local:cardUseCompatPadding="true"
         local:cardCornerRadius="5dp">
         <TextView
+            android:layout_margin="16dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:textColor="@color/black"
             android:gravity="center"
             android:textSize="24dp"
             local:MvxBind="Text Name" />

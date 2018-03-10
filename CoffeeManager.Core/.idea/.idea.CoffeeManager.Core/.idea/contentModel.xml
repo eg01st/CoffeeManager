@@ -738,6 +738,7 @@
             </e>
             <e p="drawable-hdpi" t="Include">
               <e p="ic_arrow_back_white_24dp.png" t="Include" />
+              <e p="ic_check_white_24dp.png" t="Include" />
               <e p="ic_done_black_24dp.png" t="Include" />
               <e p="ic_keyboard_backspace_black_24dp.png" t="Include" />
               <e p="ic_menu_black_24dp.png" t="Include" />
@@ -745,6 +746,7 @@
             </e>
             <e p="drawable-mdpi" t="Include">
               <e p="ic_arrow_back_white_24dp.png" t="Include" />
+              <e p="ic_check_white_24dp.png" t="Include" />
               <e p="ic_done_black_24dp.png" t="Include" />
               <e p="ic_keyboard_backspace_black_24dp.png" t="Include" />
               <e p="ic_menu_black_24dp.png" t="Include" />
@@ -752,6 +754,7 @@
             </e>
             <e p="drawable-xhdpi" t="Include">
               <e p="ic_arrow_back_white_24dp.png" t="Include" />
+              <e p="ic_check_white_24dp.png" t="Include" />
               <e p="ic_done_black_24dp.png" t="Include" />
               <e p="ic_keyboard_backspace_black_24dp.png" t="Include" />
               <e p="ic_menu_black_24dp.png" t="Include" />
@@ -759,6 +762,7 @@
             </e>
             <e p="drawable-xxhdpi" t="Include">
               <e p="ic_arrow_back_white_24dp.png" t="Include" />
+              <e p="ic_check_white_24dp.png" t="Include" />
               <e p="ic_done_black_24dp.png" t="Include" />
               <e p="ic_keyboard_backspace_black_24dp.png" t="Include" />
               <e p="ic_menu_black_24dp.png" t="Include" />
@@ -766,6 +770,7 @@
             </e>
             <e p="drawable-xxxhdpi" t="Include">
               <e p="ic_arrow_back_white_24dp.png" t="Include" />
+              <e p="ic_check_white_24dp.png" t="Include" />
               <e p="ic_done_black_24dp.png" t="Include" />
               <e p="ic_keyboard_backspace_black_24dp.png" t="Include" />
               <e p="ic_menu_black_24dp.png" t="Include" />
@@ -789,7 +794,6 @@
               <e p="nav_header_main.axml" t="Include" />
               <e p="product_card.axml" t="Include" />
               <e p="product_list.axml" t="Include" />
-              <e p="request_card.axml" t="Include" />
               <e p="sale_card.axml" t="Include" />
               <e p="selected_product_card.axml" t="Include" />
               <e p="settings.axml" t="Include" />
@@ -802,6 +806,7 @@
             </e>
             <e p="menu" t="Include">
               <e p="activity_main_drawer.xml" t="Include" />
+              <e p="add_expense_menu.xml" t="Include" />
               <e p="toolbar_menu.xml" t="Include" />
             </e>
             <e p="mipmap-hdpi" t="Include">
@@ -1310,6 +1315,7 @@
           </e>
           <e p="Resource.Designer.cs" t="Include" />
           <e p="values" t="Include">
+            <e p="colors.xml" t="Include" />
             <e p="Strings.xml" t="Include" />
             <e p="styles.xml" t="Include" />
           </e>

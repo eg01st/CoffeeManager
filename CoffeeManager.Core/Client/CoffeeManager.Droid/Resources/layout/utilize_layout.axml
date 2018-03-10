@@ -26,6 +26,8 @@
             local:MvxBind="Text SearchString" />
     </LinearLayout>
     <Mvx.MvxListView
+        android:dividerHeight="0dp"
+        android:divider="@null"
         android:gravity="top"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

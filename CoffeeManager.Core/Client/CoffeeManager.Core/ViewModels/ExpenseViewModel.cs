@@ -7,6 +7,7 @@ using CoffeManager.Common;
 using MvvmCross.Core.ViewModels;
 using CoffeeManager.Models;
  using CoffeManager.Common.ViewModels;
+ using MobileCore.Extensions;
  using MobileCore.ViewModels;
 
 namespace CoffeeManager.Core.ViewModels
@@ -93,7 +94,9 @@ namespace CoffeeManager.Core.ViewModels
         public ICommand SearchCommand { get; }
 
 
-        public bool IsAddButtomEnabled => IsSimpleExpense ? (!string.IsNullOrEmpty(Amount) && !string.IsNullOrEmpty(ItemCount)) :  SelectedExpense != null;
+        public bool IsAddButtomEnabled => IsSimpleExpense
+            ? (!string.IsNullOrEmpty(Amount) && !string.IsNullOrEmpty(ItemCount))
+            : SelectedExpense != null && SelectedExpense.ExpenseSuplyProducts.Count > 0;
 
         public bool IsSimpleExpense => SelectedExpense?.ExpenseSuplyProducts == null || SelectedExpense?.ExpenseSuplyProducts?.Count < 1;
 
@@ -120,7 +123,7 @@ namespace CoffeeManager.Core.ViewModels
         {
             if (IsSimpleExpense)
             {
-                Confirm($"Добавить сумму {Amount} как трату за {SelectedExpense.Name}?", () => AddExpense());
+                Confirm($"Добавить сумму {Amount} грн как трату за {SelectedExpense.Name}?", () => AddExpense());
             }
             else
             {
@@ -138,7 +141,7 @@ namespace CoffeeManager.Core.ViewModels
                 }
 
                 var sum = SelectedExpense.ExpenseSuplyProducts.Sum(s => s.Amount);
-                Confirm($"Добавить сумму {sum} как трату за {SelectedExpense.Name}?", () => AddExpense());
+                Confirm($"Добавить сумму {sum} грн как трату за {SelectedExpense.Name}?", () => AddExpense());
             }
         }
 

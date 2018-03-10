@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:local="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
     android:layout_width="match_parent"
@@ -11,43 +11,72 @@
         local:cardElevation="4dp"
         local:cardUseCompatPadding="true"
         local:cardCornerRadius="5dp">
-        <LinearLayout
-            android:layout_marginLeft="4dp"
+        <View
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:weightSum="100"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
+            android:background="@color/colorPrimary20Opaque"
+            local:MvxBind="Visibility BoolToVisibility(HasValue)"/>
+        <LinearLayout
+            android:layout_margin="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
             android:baselineAligned="false">
             <TextView
                 android:gravity="center_vertical"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="35"
                 android:textSize="20dp"
+                android:textColor="@color/black"
                 local:MvxBind="Text Name" />
-            <EditText
-                android:inputType="numberDecimal"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="20"
-                android:textSize="20dp"
-                local:MvxBind="Text DecimalToPrice(Amount)" />
-            <EditText
-                android:inputType="numberDecimal"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="15"
-                android:textSize="20dp"
-                local:MvxBind="Text DecimalToPrice(ItemCount)" />
-            <TextView
+            <RelativeLayout
                 android:gravity="center_vertical"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="35"
-                android:textColor="#000000"
-                android:textSize="20dp"
-                local:MvxBind="Text ExpenseMultiplierName" />
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/amount_text_input"
+                    android:layout_alignParentStart="true"
+                    android:layout_width="80dp"
+                    android:hint="Сумма"
+                    android:layout_height="wrap_content">
+                    <TextInputEditText
+                        android:inputType="numberDecimal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="20dp"
+                        local:MvxBind="Text DecimalToPrice(Amount)" />
+                </android.support.design.widget.TextInputLayout>
+                <TextView
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/amount_text_input"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="20dp"
+                    android:text="грн" />
+                <android.support.design.widget.TextInputLayout
+                    android:layout_toLeftOf="@+id/text_multiplier"
+                    android:layout_width="120dp"
+                    android:hint="Количество"
+                    android:layout_height="wrap_content">
+                    <TextInputEditText
+                        android:inputType="numberDecimal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="20dp"
+                        local:MvxBind="Text DecimalToPrice(ItemCount)" />
+                </android.support.design.widget.TextInputLayout>
+                <TextView
+                    android:layout_centerVertical="true"
+                    android:id="@+id/text_multiplier"
+                    android:layout_alignParentEnd="true"
+                    android:gravity="center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="20dp"
+                    local:MvxBind="Text ExpenseMultiplierName" />
+            </RelativeLayout>
         </LinearLayout>
     </CardView>
-</LinearLayout>
+</FrameLayout>

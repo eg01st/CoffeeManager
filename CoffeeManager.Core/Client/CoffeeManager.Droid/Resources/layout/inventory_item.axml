@@ -12,8 +12,13 @@
         local:cardElevation="4dp"
         local:cardUseCompatPadding="true"
         local:cardCornerRadius="5dp">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimary20Opaque"
+            local:MvxBind="Visibility BoolToVisibility(IsProceeded)"/>
         <LinearLayout
-            android:layout_marginLeft="4dp"
+            android:layout_margin="16dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:weightSum="100"
