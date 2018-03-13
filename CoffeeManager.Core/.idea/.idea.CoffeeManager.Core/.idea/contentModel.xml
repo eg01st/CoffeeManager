@@ -777,7 +777,6 @@
               <e p="ic_menu_white_24dp.png" t="Include" />
             </e>
             <e p="layout" t="Include">
-              <e p="action_bar.axml" t="Include" />
               <e p="category_item.axml" t="Include" />
               <e p="coffee_room_card.axml" t="Include" />
               <e p="current_sales.axml" t="Include" />

@@ -66,6 +66,7 @@ namespace CoffeeManager.Droid
         {
             text.TextChanged += (sender, args) => text.Text = "" + text.Text;
             text.Hint = "" + text.Hint;
+            text.DuplicateParentStateEnabled = true;
         }
 
         public void Include(CompoundButton cb)

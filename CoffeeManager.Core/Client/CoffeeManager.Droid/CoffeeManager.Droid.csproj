@@ -260,9 +260,6 @@
     <AndroidResource Include="Resources\layout\product_card.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\action_bar.axml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
     <AndroidResource Include="Resources\layout\current_sales.axml">
       <SubType>Designer</SubType>
     </AndroidResource>

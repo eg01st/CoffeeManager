@@ -33,16 +33,16 @@ namespace CoffeeManager.Droid.Views
         private ViewPager viewPager;
         
         [FindById(Resource.Id.police_sale_enabled)]
-        private View policeSaveView;
+        private View policeSaleView;
         
         [FindById(Resource.Id.credit_card_enabled)]
         private View creditCardView;
         
-        [FindById(Resource.Id.police_sale)]
-        private ImageView policeButton;
+        [FindById(Resource.Id.police_sale_frame)]
+        private FrameLayout policeSaleFrame;
         
-        [FindById(Resource.Id.credit_card)]
-        private ImageView creditCardButton;
+        [FindById(Resource.Id.credit_card_frame)]
+        private FrameLayout creditCardFrame;
         
         private TextView userNameTextView;
         private MvxObservableCollection<CategoryItemViewModel> categoies;
@@ -107,22 +107,21 @@ namespace CoffeeManager.Droid.Views
                 SetSupportActionBar(toolbar);
             }
 
+            SupportActionBar.Title = string.Empty;
             SupportActionBar.SetHomeAsUpIndicator(Resource.Drawable.ic_menu_white_24dp);
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
-            
-            SupportActionBar.SetCustomView(Resource.Layout.action_bar);
-            SupportActionBar.SetDisplayShowCustomEnabled(true);
-            
+        }
 
-            policeSaveView = FindViewById<View>(Resource.Id.police_sale_enabled);
+        protected override void SubscribeToLayoutEvents()
+        {
+            policeSaleFrame.Click += PoliceSale_Click;
+            creditCardFrame.Click += CreditCard_Click;
+        }
 
-            policeButton = FindViewById<ImageView>(Resource.Id.police_sale);
-            policeButton.Click += PoliceSale_Click;
-
-            creditCardView = FindViewById<View>(Resource.Id.credit_card_enabled);
-
-            creditCardButton = FindViewById<ImageView>(Resource.Id.credit_card);
-            creditCardButton.Click += CreditCard_Click;
+        protected override void UnSubscribeFromLayoutEvents()
+        {
+            policeSaleFrame.Click -= PoliceSale_Click;
+            creditCardFrame.Click -= CreditCard_Click;
         }
 
         private void CreditCard_Click(object sender, EventArgs e)
@@ -134,7 +133,7 @@ namespace CoffeeManager.Droid.Views
         private void PoliceSale_Click(object sender, System.EventArgs e)
         {
             ViewModel.EnablePoliceSaleCommand.Execute(null);
-            policeSaveView.Visibility = ViewModel.IsPoliceSaleEnabled ? ViewStates.Visible : ViewStates.Invisible;
+            policeSaleView.Visibility = ViewModel.IsPoliceSaleEnabled ? ViewStates.Visible : ViewStates.Invisible;
         }
 
         private void SetupViewPager(List<CategoryItemViewModel> categories)
@@ -153,20 +152,10 @@ namespace CoffeeManager.Droid.Views
             viewPager.OffscreenPageLimit = categories.Count();
         }
 
-        public override void Finish()
-        {
-            policeButton.Click -= PoliceSale_Click;
-            creditCardButton.Click -= CreditCard_Click;
-
-            base.Finish();
-
-        }
-
         #region DrawerLayout
 
         private void InitLeftMenu()
         {
-           // drawerLayout = FindViewById<DrawerLayout>(Resource.Id.main_drawer);
             var drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, Resource.Drawable.ic_menu_black_24dp, Resource.Drawable.ic_keyboard_backspace_black_24dp);
             drawerLayout.SetDrawerListener(drawerToggle);
             drawerToggle.SyncState();
@@ -202,11 +191,6 @@ namespace CoffeeManager.Droid.Views
             }
 
             return false;
-        }
-
-        private void OpenDrawer()
-        {
-            drawerLayout.OpenDrawer(drawerGravity);
         }
 
         public bool OnNavigationItemSelected(IMenuItem menuItem)
