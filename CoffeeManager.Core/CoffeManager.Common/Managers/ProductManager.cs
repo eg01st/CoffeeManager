@@ -27,49 +27,8 @@ namespace CoffeManager.Common.Managers
 
         public async Task<Product[]> GetProducts(int categoryId)
         {
-            return await GetAndSyncProduct(categoryId);
+            return await GetAndSyncProduct(categoryId).ConfigureAwait(false);
         }
-
-//        public async Task<Product[]> GetCoffeeProducts()
-//        {
-//            return await GetAndSyncProduct(ProductType.Coffee);
-//        }
-//
-//        public async Task<Product[]> GetTeaProducts()
-//        {
-//            return await GetAndSyncProduct(ProductType.Tea);
-//        }
-//
-//        public async Task<Product[]> GetColdDrinksProducts()
-//        {
-//            return await GetAndSyncProduct(ProductType.ColdDrinks);
-//        }
-//
-//        public async Task<Product[]> GetIceCreamProducts()
-//        {
-//            return await GetAndSyncProduct(ProductType.IceCream);
-//        }
-//
-//        public async Task<Product[]> GetMealsProducts()
-//        {
-//            return await GetAndSyncProduct(ProductType.Meals);
-//        }
-//
-//        public async Task<Product[]> GetWaterProducts()
-//        {
-//            return await GetAndSyncProduct(ProductType.Water);
-//        }
-//
-//        public async Task<Product[]> GetSweetsProducts()
-//        {
-//            return await GetAndSyncProduct(ProductType.Sweets);
-//        }
-//
-//        public async Task<Product[]> GetAddsProducts()
-//        {
-//            return await GetAndSyncProduct(ProductType.Adds);
-//        }
-
 
         public async Task SaleProduct(int shiftId, int id, decimal price, bool isPoliceSale, bool isCreditCardSale, bool isSaleByWeight, decimal? weight)
         {

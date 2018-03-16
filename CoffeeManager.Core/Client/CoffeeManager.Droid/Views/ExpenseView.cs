@@ -1,9 +1,5 @@
 using Android.App;
 using Android.Content.PM;
-using Android.Graphics;
-using Android.OS;
-using Android.Text;
-using Android.Text.Style;
 using Android.Views;
 using Android.Widget;
 using CoffeeManager.Core.ViewModels;
@@ -13,7 +9,7 @@ using MvvmCross.Binding.BindingContext;
 
 namespace CoffeeManager.Droid.Views
 {
-    [Activity(WindowSoftInputMode = SoftInput.AdjustResize, ScreenOrientation = ScreenOrientation.SensorPortrait)]
+    [Activity(WindowSoftInputMode = SoftInput.AdjustPan, ScreenOrientation = ScreenOrientation.SensorPortrait)]
     public class ExpenseView : ActivityWithToolbar<ExpenseViewModel>
     {
         [FindById(Resource.Id.add_expense_button)]

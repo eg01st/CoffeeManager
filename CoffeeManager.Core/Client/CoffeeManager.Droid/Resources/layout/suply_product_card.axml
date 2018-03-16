@@ -15,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/colorPrimary20Opaque"
-            local:MvxBind="Visibility BoolToVisibility(HasValue)"/>
+            local:MvxBind="Visibility BoolToVisibility(HasValue)" />
         <LinearLayout
             android:layout_margin="16dp"
             android:layout_width="match_parent"
@@ -36,17 +36,17 @@
                 <android.support.design.widget.TextInputLayout
                     android:id="@+id/amount_text_input"
                     android:layout_alignParentStart="true"
-                    android:layout_width="80dp"
-                    android:hint="Сумма"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
                     <TextInputEditText
                         android:inputType="numberDecimal"
-                        android:layout_width="match_parent"
+                        android:hint="Сумма"
+                        android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:textSize="20dp"
                         local:MvxBind="Text DecimalToPrice(Amount)" />
                 </android.support.design.widget.TextInputLayout>
-                <TextView
+               <TextView
                     android:layout_centerVertical="true"
                     android:layout_toRightOf="@id/amount_text_input"
                     android:layout_width="wrap_content"
@@ -60,8 +60,9 @@
                     android:hint="Количество"
                     android:layout_height="wrap_content">
                     <TextInputEditText
+                        android:hint="Количество"
                         android:inputType="numberDecimal"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="20dp"
                         local:MvxBind="Text DecimalToPrice(ItemCount)" />

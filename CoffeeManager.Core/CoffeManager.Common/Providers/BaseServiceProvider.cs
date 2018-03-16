@@ -79,7 +79,7 @@ namespace CoffeManager.Common
             string responseString;
             var client = GetClient();
 
-            using (var response = await client.GetAsync(url))
+            using (var response = await client.GetAsync(url).ConfigureAwait(false))
             {
                 responseString = await response.Content.ReadAsStringAsync();
                 if (response.StatusCode != System.Net.HttpStatusCode.OK)
@@ -103,7 +103,7 @@ namespace CoffeManager.Common
             string body = JsonConvert.SerializeObject(obj);
 
  
-            using (var response = await client.PostAsync(url, new StringContent(body)))
+            using (var response = await client.PostAsync(url, new StringContent(body)).ConfigureAwait(false))
             {
                 responseString = await response.Content.ReadAsStringAsync();
                 if (response.StatusCode != System.Net.HttpStatusCode.OK)
@@ -128,7 +128,7 @@ namespace CoffeManager.Common
 
 
                 using (var response = await client.PostAsync(url, new StringContent(body, Encoding.UTF8,
-                                                                                    "application/json")))
+                                                                                    "application/json")).ConfigureAwait(false))
             {
                 var responseString = await response.Content.ReadAsStringAsync();
                 if (response.StatusCode != System.Net.HttpStatusCode.OK)
@@ -152,7 +152,7 @@ namespace CoffeManager.Common
 
 
                 using (var response = await client.PostAsync(url, new StringContent(stringContent, Encoding.UTF8,
-                                        "application/json")))
+                                        "application/json")).ConfigureAwait(false))
                 {
                     var responseString = await response.Content.ReadAsStringAsync();
                     if (response.StatusCode != System.Net.HttpStatusCode.OK)
@@ -182,7 +182,7 @@ namespace CoffeManager.Common
                 }
             }
 
-            using (var response = await client.PostAsync(url, new StringContent(body)))
+            using (var response = await client.PostAsync(url, new StringContent(body)).ConfigureAwait(false))
             {
                 var responseString = await response.Content.ReadAsStringAsync();
                 if (response.StatusCode != System.Net.HttpStatusCode.OK)
@@ -218,7 +218,7 @@ namespace CoffeManager.Common
                 }
             }
 
-            using (var response = await client.PostAsync(url, new StringContent(body)))
+            using (var response = await client.PostAsync(url, new StringContent(body)).ConfigureAwait(false))
             {
                 var responseString = await response.Content.ReadAsStringAsync();
                 if (response.StatusCode != System.Net.HttpStatusCode.OK)
@@ -248,7 +248,7 @@ namespace CoffeManager.Common
             Debug.WriteLine("PUT");
             Debug.WriteLine(url);
             Debug.WriteLine(body);
-            using (var response = await client.PutAsync(url, new StringContent(body)))
+            using (var response = await client.PutAsync(url, new StringContent(body)).ConfigureAwait(false))
             {
                 responseString = await response.Content.ReadAsStringAsync();
                 if (response.StatusCode != System.Net.HttpStatusCode.OK)
@@ -270,7 +270,7 @@ namespace CoffeManager.Common
             Debug.WriteLine("PUT");
             Debug.WriteLine(url);
             Debug.WriteLine(body);
-            using (var response = await client.PutAsync(url, new StringContent(body)))
+            using (var response = await client.PutAsync(url, new StringContent(body)).ConfigureAwait(false))
             {
                 var responseString = await response.Content.ReadAsStringAsync();
                 if (response.StatusCode != System.Net.HttpStatusCode.OK)
@@ -289,7 +289,7 @@ namespace CoffeManager.Common
             Debug.WriteLine("Delete");
             Debug.WriteLine(url);
 
-            using (var response = await client.DeleteAsync(url))
+            using (var response = await client.DeleteAsync(url).ConfigureAwait(false))
             { 
                 var responseString = await response.Content.ReadAsStringAsync();
                 if (response.StatusCode != System.Net.HttpStatusCode.OK)
