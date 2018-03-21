@@ -6,7 +6,7 @@ using CoffeeManager.Core.ViewModels;
 
 namespace CoffeeManager.Droid.Views
 {
-    [Activity(Theme = "@style/Theme.AppCompat.Light", Label = "Окончание смены", WindowSoftInputMode = SoftInput.AdjustPan, ScreenOrientation = ScreenOrientation.Portrait)]
+    [Activity(Theme = "@style/Theme.AppCompat.Light", Label = "Окончание смены", WindowSoftInputMode = SoftInput.AdjustPan, ScreenOrientation = ScreenOrientation.SensorPortrait)]
     public class EndShiftView : ActivityBase<EndShiftViewModel>
     {
         protected override void OnCreate(Bundle savedInstanceState)
@@ -14,16 +14,6 @@ namespace CoffeeManager.Droid.Views
             base.OnCreate(savedInstanceState);
 
             SetContentView(Resource.Layout.end_shift);
-        }
-
-        public override void OnBackPressed()
-        {
-
-        }
-
-        public override bool OnOptionsItemSelected(IMenuItem item)
-        {
-            return false;
         }
     }
 }

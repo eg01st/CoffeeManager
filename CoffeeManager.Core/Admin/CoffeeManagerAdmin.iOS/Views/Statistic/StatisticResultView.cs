@@ -4,6 +4,7 @@ using UIKit;
 using MvvmCross.Binding.BindingContext;
 using CoffeeManagerAdmin.Core;
 using System.Collections.Generic;
+using CoffeeManagerAdmin.iOS.Converters;
 
 namespace CoffeeManagerAdmin.iOS
 {

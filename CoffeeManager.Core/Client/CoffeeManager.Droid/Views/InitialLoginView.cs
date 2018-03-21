@@ -9,7 +9,7 @@ namespace CoffeeManager.Droid
 {
     [Activity(Theme = "@style/SplashTheme",
               NoHistory = true,
-              ScreenOrientation = ScreenOrientation.Portrait)]
+              ScreenOrientation = ScreenOrientation.SensorPortrait)]
     public class InitialLoginView : ActivityBase<InitialLoginViewModel>
     {
         protected override void OnCreate(Bundle savedInstanceState)

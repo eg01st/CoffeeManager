@@ -5,6 +5,8 @@ using System.Linq;
 using CoffeManager.Common;
 using MvvmCross.Plugins.Messenger;
 using System.Threading.Tasks;
+using CoffeeManagerAdmin.Core.ViewModels.Users;
+using CoffeManager.Common.Managers;
 
 namespace CoffeeManagerAdmin.Core
 {

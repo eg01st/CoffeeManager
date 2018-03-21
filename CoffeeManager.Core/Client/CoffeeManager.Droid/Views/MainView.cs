@@ -18,7 +18,7 @@ using System.Linq;
 
 namespace CoffeeManager.Droid.Views
 {
-    [Activity(ScreenOrientation = ScreenOrientation.Portrait)]
+    [Activity(ScreenOrientation = ScreenOrientation.SensorPortrait)]
     public class MainView : ActivityBase<MainViewModel>
     {
         private readonly int drawerGravity = GravityCompat.Start;
@@ -26,10 +26,11 @@ namespace CoffeeManager.Droid.Views
         private DrawerLayout drawerLayout;
         private ViewPager viewPager;
         private TabLayout tabLayout;
-        private View _policeSaveView;
-        private View _creditCardView;
-        private ImageView _policeButton;
-        private ImageView _creditCardButton;
+        private View policeSaveView;
+        private View creditCardView;
+        private ImageView policeButton;
+        private ImageView creditCardButton;
+        private TextView userNameTextView;
 
         private CoffeeFragment coffeeFragment;
         private TeaFragment teaFragment;
@@ -135,6 +136,7 @@ namespace CoffeeManager.Droid.Views
             set.Bind(mealsFragment).For(v => v.ViewModel).To(vm => vm.MealsProducts).OneWay();
             set.Bind(coldDrinksFragment).For(v => v.ViewModel).To(vm => vm.ColdDrinksProducts).OneWay();
             set.Bind(iceCreamFragment).For(v => v.ViewModel).To(vm => vm.IceCreamProducts).OneWay();
+            set.Bind(userNameTextView).To(vm => vm.UserName).OneWay();
             set.Apply();
         }
 
@@ -143,27 +145,29 @@ namespace CoffeeManager.Droid.Views
             SupportActionBar.SetCustomView(Resource.Layout.action_bar);
             SupportActionBar.SetDisplayShowCustomEnabled(true);
 
-            _policeSaveView = FindViewById<View>(Resource.Id.police_sale_enabled);
+            policeSaveView = FindViewById<View>(Resource.Id.police_sale_enabled);
 
-            _policeButton = FindViewById<ImageView>(Resource.Id.police_sale);
-            _policeButton.Click += PoliceSale_Click;
+            policeButton = FindViewById<ImageView>(Resource.Id.police_sale);
+            policeButton.Click += PoliceSale_Click;
 
-            _creditCardView = FindViewById<View>(Resource.Id.credit_card_enabled);
+            creditCardView = FindViewById<View>(Resource.Id.credit_card_enabled);
 
-            _creditCardButton = FindViewById<ImageView>(Resource.Id.credit_card);
-            _creditCardButton.Click += CreditCard_Click;
+            creditCardButton = FindViewById<ImageView>(Resource.Id.credit_card);
+            creditCardButton.Click += CreditCard_Click;
+
+            userNameTextView = FindViewById<TextView>(Resource.Id.user_name_text);
         }
 
         private void CreditCard_Click(object sender, EventArgs e)
         {
             ViewModel.EnableCreditCardSaleCommand.Execute(null);
-            _creditCardView.Visibility = ViewModel.IsCreditCardSaleEnabled ? ViewStates.Visible : ViewStates.Invisible;
+            creditCardView.Visibility = ViewModel.IsCreditCardSaleEnabled ? ViewStates.Visible : ViewStates.Invisible;
         }
 
         private void PoliceSale_Click(object sender, System.EventArgs e)
         {
             ViewModel.EnablePoliceSaleCommand.Execute(null);
-            _policeSaveView.Visibility = ViewModel.IsPoliceSaleEnabled ? ViewStates.Visible : ViewStates.Invisible;
+            policeSaveView.Visibility = ViewModel.IsPoliceSaleEnabled ? ViewStates.Visible : ViewStates.Invisible;
         }
 
         private void SetTabLayout()
@@ -241,8 +245,8 @@ namespace CoffeeManager.Droid.Views
 
         public override void Finish()
         {
-            _policeButton.Click -= PoliceSale_Click;
-            _creditCardButton.Click -= CreditCard_Click;
+            policeButton.Click -= PoliceSale_Click;
+            creditCardButton.Click -= CreditCard_Click;
 
             base.Finish();
 

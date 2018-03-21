@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using CoffeeManager.Models;
+using CoffeeManager.Models.Data.DTO.User;
+using CoffeeManager.Models.User;
 
-namespace CoffeManager.Common
+namespace CoffeManager.Common.Providers
 {
     public interface IUserServiceProvider
     {
@@ -16,15 +17,15 @@ namespace CoffeManager.Common
 
         Task<int> AddUser(UserDTO user);
 
-        Task ToggleEnabled(int userId);
+        Task ToggleEnabled(ToggleUserEnabledDTO dto);
 
         Task UpdateUser(UserDTO user);
 
-        Task PaySalary(int userId, int coffeeRoomToPay);
+        Task PaySalary(PaySalaryDTO dto);
 
-        Task PenaltyUser(int userId, decimal amount, string reason);
+        Task PenaltyUser(PenaltyUserDTO dto);
 
-        Task DismissPenalty(int id);
+        Task DismissPenalty(DismissPenaltyDTO dto);
 
         Task<decimal> GetSalaryAmountToPay();
     }

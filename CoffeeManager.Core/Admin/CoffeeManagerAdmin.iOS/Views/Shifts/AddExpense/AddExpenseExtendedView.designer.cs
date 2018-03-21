@@ -1,29 +1,35 @@
 // WARNING
 //
-// This file has been generated automatically by Visual Studio from the outlets and
-// actions declared in your storyboard file.
-// Manual changes to this file will not be maintained.
+// This file has been generated automatically by Visual Studio to store outlets and
+// actions made in the UI designer. If it is removed, they will be lost.
+// Manual changes to this file may not be handled correctly.
 //
 using Foundation;
-using System;
 using System.CodeDom.Compiler;
-using UIKit;
 
 namespace CoffeeManagerAdmin.iOS
 {
-    [Register ("AddExpenseExtendedView")]
-    partial class AddExpenseExtendedView
-    {
-        [Outlet]
-        [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UITableView TableView { get; set; }
+	[Register ("AddExpenseExtendedView")]
+	partial class AddExpenseExtendedView
+	{
+		[Outlet]
+		UIKit.NSLayoutConstraint BottomConstraint { get; set; }
 
-        void ReleaseDesignerOutlets ()
-        {
-            if (TableView != null) {
-                TableView.Dispose ();
-                TableView = null;
-            }
-        }
-    }
+		[Outlet]
+		[GeneratedCode ("iOS Designer", "1.0")]
+		UIKit.UITableView TableView { get; set; }
+		
+		void ReleaseDesignerOutlets ()
+		{
+			if (TableView != null) {
+				TableView.Dispose ();
+				TableView = null;
+			}
+
+			if (BottomConstraint != null) {
+				BottomConstraint.Dispose ();
+				BottomConstraint = null;
+			}
+		}
+	}
 }

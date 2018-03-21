@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using CoffeManager.Common.Managers;
 using System;
 using CoffeeManager.Common;
+using CoffeeManager.Models.Data.DTO.User;
 
 namespace CoffeeManager.Core.ViewModels
 {
@@ -45,6 +46,18 @@ namespace CoffeeManager.Core.ViewModels
             var counter = await PromtAsync("Введите показание счетчика на кофемолке");
             if(!counter.HasValue)
             {
+                return;
+            }
+
+            var confirm = await PromtAsync("Повторите показание счетчика на кофемолке");
+            if(!confirm.HasValue)
+            {
+                return;
+            }
+
+            if (!string.Equals(counter, confirm))
+            {
+                Alert("Показания введены неверно, введите правильные показания счетчика");
                 return;
             }
 

@@ -1,5 +1,4 @@
-﻿using System;
-namespace CoffeeManager.Models
+﻿namespace CoffeeManager.Models.Data.DTO.User
 {
     public class PaySalaryDTO
     {

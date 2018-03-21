@@ -1,16 +1,17 @@
-﻿using System.Windows.Input;
-using MvvmCross.Core.ViewModels;
-using CoffeeManager.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using CoffeManager.Common;
+using System.Windows.Input;
 using CoffeeManager.Common;
-using System;
-using MvvmCross.Plugins.Messenger;
+using CoffeeManager.Models;
+using CoffeeManager.Models.Data.DTO.User;
 using CoffeeManagerAdmin.Core.Util;
+using CoffeManager.Common;
+using CoffeManager.Common.Managers;
+using MvvmCross.Core.ViewModels;
+using MvvmCross.Plugins.Messenger;
 
-namespace CoffeeManagerAdmin.Core
+namespace CoffeeManagerAdmin.Core.ViewModels.Users
 {
     public class UserDetailsViewModel : ViewModelBase
     {
@@ -22,13 +23,13 @@ namespace CoffeeManagerAdmin.Core
         private readonly IAdminManager adminManager;
 
 
-        private Entity _currentCoffeeRoom;
+        private Entity currentCoffeeRoom;
         private List<Entity> coffeeRooms;
 
-        private List<Entity> _expenseItems = new List<Entity>();
-        private Entity _selectedExpenseType;
-        private int? _expenseTypeId;
-        private string _expenseTypeName;
+        private List<Entity> expenseItems = new List<Entity>();
+        private Entity selectedExpenseType;
+        private int? expenseTypeId;
+        private string expenseTypeName;
 
         private UserDTO user;
         private int useridParameter;
@@ -51,62 +52,62 @@ namespace CoffeeManagerAdmin.Core
 
         public List<Entity> ExpenseItems
         {
-            get { return _expenseItems; }
+            get { return expenseItems; }
             set
             {
-                _expenseItems = value;
+                expenseItems = value;
                 RaisePropertyChanged(nameof(ExpenseItems));
             }
         }
 
         public Entity SelectedExpenseType
         {
-            get { return _selectedExpenseType; }
+            get { return selectedExpenseType; }
             set
             {
-                if (_selectedExpenseType != value)
+                if (selectedExpenseType != value)
                 {
-                    _selectedExpenseType = value;
+                    selectedExpenseType = value;
                     RaisePropertyChanged(nameof(SelectedExpenseType));
-                    ExpenseTypeId = _selectedExpenseType.Id;
-                    ExpenseTypeName = _selectedExpenseType.Name;
+                    ExpenseTypeId = selectedExpenseType.Id;
+                    ExpenseTypeName = selectedExpenseType.Name;
                 }
             }
         }
 
         public int? ExpenseTypeId
         {
-            get { return _expenseTypeId; }
+            get { return expenseTypeId; }
             set
             {
-                _expenseTypeId = value;
+                expenseTypeId = value;
                 RaisePropertyChanged(nameof(ExpenseTypeId));
             }
         }
 
         public string ExpenseTypeName
         {
-            get { return _expenseTypeName; }
+            get { return expenseTypeName; }
             set
             {
-                _expenseTypeName = value;
+                expenseTypeName = value;
                 RaisePropertyChanged(nameof(ExpenseTypeName));
             }
         }
 
         public Entity CurrentCoffeeRoom
         {
-            get { return _currentCoffeeRoom; }
+            get { return currentCoffeeRoom; }
             set
             {
-                _currentCoffeeRoom = value;
+                currentCoffeeRoom = value;
                 RaisePropertyChanged(nameof(CurrentCoffeeRoom));
                 RaisePropertyChanged(nameof(CurrentCoffeeRoomName));
                 if(useridParameter == 0)
                 {
                     return;
                 }
-                var strategy = user.PaymentStrategies.FirstOrDefault(s => s.CoffeeRoomId == _currentCoffeeRoom.Id);
+                var strategy = user.PaymentStrategies?.FirstOrDefault(s => s.CoffeeRoomId == currentCoffeeRoom.Id);
 
                 DayShiftPersent = strategy?.DayShiftPersent ?? 0;
                 NightShiftPercent = strategy?.NightShiftPercent ?? 0;
@@ -183,11 +184,18 @@ namespace CoffeeManagerAdmin.Core
 
             user.ExpenceId = SelectedExpenseType?.Id;
 
-            var strategy = user.PaymentStrategies.FirstOrDefault(s => s.CoffeeRoomId == CurrentCoffeeRoom.Id);
+            var strategy = user.PaymentStrategies?.FirstOrDefault(s => s.CoffeeRoomId == CurrentCoffeeRoom.Id);
             if (strategy == null)
             {
                 strategy = new UserPaymentStrategy();
-                user.PaymentStrategies = user.PaymentStrategies.Concat(new [] { strategy}).ToArray();
+                if (user.PaymentStrategies != null)
+                {
+                    user.PaymentStrategies = user.PaymentStrategies.Concat(new [] { strategy}).ToArray();
+                }
+                else
+                {
+                    user.PaymentStrategies = new[] {strategy};
+                }
             }
 
             strategy.SimplePayment = SalaryRate;
@@ -236,7 +244,7 @@ namespace CoffeeManagerAdmin.Core
             {
                 user = await userManager.GetUser(useridParameter);
                 UserName = user.Name;
-                var strategy = user.PaymentStrategies.FirstOrDefault(s => s.CoffeeRoomId == Config.CoffeeRoomNo);
+                var strategy = user.PaymentStrategies?.FirstOrDefault(s => s.CoffeeRoomId == Config.CoffeeRoomNo);
                 if(strategy != null)
                 {
                     DayShiftPersent = strategy.DayShiftPersent;

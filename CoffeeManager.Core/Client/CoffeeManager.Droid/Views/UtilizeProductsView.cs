@@ -8,7 +8,7 @@ using CoffeeManager.Droid.Views;
 
 namespace CoffeeManager.Droid
 {
-    [Activity(Theme = "@style/Theme.AppCompat.Light", Label = "Списание", WindowSoftInputMode = SoftInput.AdjustPan, ScreenOrientation = ScreenOrientation.Portrait)]
+    [Activity(Theme = "@style/Theme.AppCompat.Light", Label = "Списание", WindowSoftInputMode = SoftInput.AdjustPan, ScreenOrientation = ScreenOrientation.SensorPortrait)]
 
     public class UtilizeProductsView : ActivityBase<UtilizeProductsViewModel>
     {

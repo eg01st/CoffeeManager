@@ -1118,6 +1118,7 @@
             <e p="StatisticController.cs" t="Include" />
             <e p="SuplyOrderController.cs" t="Include" />
             <e p="SuplyProductsController.cs" t="Include" />
+            <e p="UpdateController.cs" t="Include" />
             <e p="UsersController.cs" t="Include" />
           </e>
           <e p="CupSuply.cs" t="Include" />
@@ -1140,6 +1141,9 @@
           <e p="GetSales_Result.cs" t="Include" />
           <e p="Global.asax" t="Include" />
           <e p="Global.asax.cs" t="Include" />
+          <e p="Helper" t="Include">
+            <e p="FileStreamEx.cs" t="Include" />
+          </e>
           <e p="InventoryReport.cs" t="Include" />
           <e p="InventoryReportItem.cs" t="Include" />
           <e p="Mappers" t="Include">

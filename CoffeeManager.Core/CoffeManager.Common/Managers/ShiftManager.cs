@@ -4,9 +4,10 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using CoffeeManager.Common;
 using CoffeeManager.Models;
+using CoffeManager.Common.Providers;
 using MobileCore.Connection;
 
-namespace CoffeManager.Common
+namespace CoffeManager.Common.Managers
 {
     public class ShiftManager : BaseManager, IShiftManager
     {
@@ -40,7 +41,7 @@ namespace CoffeManager.Common
 
         public async Task<int> StartUserShift(int userId, int counter)
         {
-            var shiftId = await shiftProvider.StartUserShift(userId, counter);
+            var shiftId = await shiftProvider.StartUserShift(userId, counter, DateTime.Now);
             syncManager.AddCurrentShift(new ShiftEntity() { Id = shiftId, UserId = userId });
             ShiftNo = shiftId;
             return shiftId;
@@ -119,6 +120,11 @@ namespace CoffeManager.Common
         public async Task<Sale[]> GetCurrentShiftSales()
         {
             return await shiftProvider.GetCurrentShiftSales();
+        }
+
+        public async Task DiscardShift(int shiftId)
+        {
+            await shiftProvider.DiscardShift(shiftId);
         }
 
         public async Task<Shift> GetCurrentShiftForCoffeeRoom(int forCoffeeRoom)

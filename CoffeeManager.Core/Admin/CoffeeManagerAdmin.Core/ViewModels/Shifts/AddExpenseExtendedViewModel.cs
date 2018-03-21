@@ -27,6 +27,12 @@ namespace CoffeeManagerAdmin.Core
         {
             var itemsToSend = Items.Where(i => i.Quantity > 0 && i.Amount > 0);
 
+            if(!itemsToSend.Any())
+            {
+                DoClose();
+                return;
+            }
+
             var expense = new ExpenseType();
             var products = new List<SupliedProduct>();
             expense.Id = expenseType.Id;

@@ -2,11 +2,11 @@
 using System.Threading.Tasks;
 using CoffeeManager.Models;
 
-namespace CoffeManager.Common
+namespace CoffeManager.Common.Providers
 {
     public interface IShiftServiceProvider
     {
-        Task<int> StartUserShift(int userId, int counter);
+        Task<int> StartUserShift(int userId, int counter, DateTime startTime);
 
         Task<Shift> GetCurrentShift();
 
@@ -21,5 +21,7 @@ namespace CoffeManager.Common
         Task<Sale[]> GetShiftSales(int id);
 
         Task<ShiftInfo> GetShiftInfo(int id);
+
+        Task DiscardShift(int shiftId);
     }
 }

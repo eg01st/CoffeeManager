@@ -37,6 +37,8 @@ namespace CoffeeManagerAdmin.iOS
                 Title = "Готово"
             };
 
+            StickBottomButtonToKeyboard(BottomConstraint);
+
 
             NavigationItem.SetRightBarButtonItem(btn, false);
             this.AddBindings(new Dictionary<object, string>

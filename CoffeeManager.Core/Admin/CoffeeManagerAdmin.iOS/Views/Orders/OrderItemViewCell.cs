@@ -7,6 +7,7 @@ using MvvmCross.Binding.BindingContext;
 using CoffeeManagerAdmin.Core.ViewModels.Orders;
 using MvvmCross.Binding.iOS.Views.Gestures;
 using System.Windows.Input;
+using CoffeeManagerAdmin.iOS.Converters;
 using MvvmCross.Platform.UI;
 using MvvmCross.Plugins.Visibility;
 

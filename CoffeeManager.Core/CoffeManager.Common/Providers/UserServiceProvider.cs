@@ -1,9 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using CoffeeManager.Models;
+using CoffeeManager.Models.Data.DTO.User;
+using CoffeeManager.Models.User;
 
-namespace CoffeManager.Common
+namespace CoffeManager.Common.Providers
 {
     public class UserServiceProvider : BaseServiceProvider, IUserServiceProvider
     {
@@ -40,48 +41,29 @@ namespace CoffeManager.Common
             return await Put<int, UserDTO>(RoutesConstants.AddUser, user);
         }
 
-        public async Task ToggleEnabled(int userId)
+        public async Task ToggleEnabled(ToggleUserEnabledDTO dto)
         {
-            await Post<object>(RoutesConstants.ToggleUserEnabled, null, new Dictionary<string, string>()
-                {
-                    {nameof(userId), userId.ToString()}
-                }
-            );
+            await Post(RoutesConstants.ToggleUserEnabled, dto);
         }
 
         public async Task UpdateUser(UserDTO user)
         {
-            await Post<object>(RoutesConstants.UpdateUser, user);
+            await Post(RoutesConstants.UpdateUser, user);
         }
 
-        public async Task PaySalary(int userId, int coffeeRoomToPay)
+        public async Task PaySalary(PaySalaryDTO dto)
         {
-            await Post<object>(RoutesConstants.PaySalary, null, new Dictionary<string, string>()
-                {
-                    {nameof(userId), userId.ToString()},
-                    {nameof(coffeeRoomToPay), coffeeRoomToPay.ToString()},
-                }
-            );
+            await Post(RoutesConstants.PaySalary, dto);
         }
 
-        public async Task PenaltyUser(int userId, decimal amount, string reason)
+        public async Task PenaltyUser(PenaltyUserDTO dto)
         {
-            await Post<object>(RoutesConstants.PenaltyUser, null, new Dictionary<string, string>()
-                {
-                    {nameof(userId), userId.ToString()},
-                    {nameof(amount), amount.ToString()},
-                    {nameof(reason), reason.ToString()},
-                }
-            );
+            await Post(RoutesConstants.PenaltyUser, dto);
         }
 
-        public async Task DismissPenalty(int id)
+        public async Task DismissPenalty(DismissPenaltyDTO dto)
         {
-            await Post<object>(RoutesConstants.DismisPenalty, null, new Dictionary<string, string>()
-                {
-                    {nameof(id), id.ToString()},
-                }
-            );
+            await Post(RoutesConstants.DismisPenalty, dto);
         }
 
         public async Task<decimal> GetSalaryAmountToPay()

@@ -10,7 +10,7 @@ namespace CoffeeManager.Droid
 {
     [Activity(Theme = "@style/SplashTheme",
               NoHistory = true,
-              ScreenOrientation = ScreenOrientation.Portrait)]
+              ScreenOrientation = ScreenOrientation.SensorPortrait)]
     public class SplashView : ActivityBase<SplashViewModel>
     {
         protected override void OnCreate(Bundle savedInstanceState)

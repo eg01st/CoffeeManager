@@ -8,7 +8,7 @@ using CoffeeManager.Droid.Views;
 
 namespace CoffeeManager.Droid
 {
-    [Activity(Theme = "@style/Theme.AppCompat.Light", Label = "Переучет", WindowSoftInputMode = SoftInput.AdjustPan, ScreenOrientation = ScreenOrientation.Portrait)]
+    [Activity(Theme = "@style/Theme.AppCompat.Light", Label = "Переучет", WindowSoftInputMode = SoftInput.AdjustPan, ScreenOrientation = ScreenOrientation.SensorPortrait)]
     public class InventoryView : ActivityBase<InventoryViewModel>
     {
         protected override void OnCreate(Bundle savedInstanceState)

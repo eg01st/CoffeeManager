@@ -8,38 +8,65 @@
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
     android:gravity="right">
-    <FrameLayout
-        android:layout_marginLeft="100dp"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content">
-        <View
-            android:id="@+id/credit_card_enabled"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#d3d3d3"
-            android:visibility="invisible" />
-        <ImageView
-            android:layout_gravity="center"
-            android:id="@+id/credit_card"
-            android:layout_width="45dp"
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/user_name_text"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_credit_card" />
-    </FrameLayout>
-    <FrameLayout
-        android:layout_marginLeft="10dp"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content">
-        <View
-            android:id="@+id/police_sale_enabled"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#d3d3d3"
-            android:visibility="invisible" />
-        <ImageView
-            android:layout_gravity="center"
-            android:id="@+id/police_sale"
-            android:layout_width="45dp"
+            android:textSize="20dp"
+            android:textColor="@android:color/black"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true" />
+        <TextView
+            android:textStyle="bold"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:id="@+id/user_name"
+            android:layout_toLeftOf="@id/user_name_text"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_police" />
-    </FrameLayout>
+            android:text="@string/user_name"
+            android:textSize="20dp"
+            android:textColor="@android:color/black"
+            android:layout_centerVertical="true" />
+        <FrameLayout
+            android:layout_marginLeft="25dp"
+            android:id="@+id/credit_card_frame"
+            android:layout_toLeftOf="@id/user_name"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content">
+            <View
+                android:id="@+id/credit_card_enabled"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#d3d3d3"
+                android:visibility="invisible" />
+            <ImageView
+                android:layout_gravity="center"
+                android:id="@+id/credit_card"
+                android:layout_width="45dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_credit_card" />
+        </FrameLayout>
+        <FrameLayout
+            android:layout_marginLeft="25dp"
+            android:layout_toLeftOf="@id/credit_card_frame"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content">
+            <View
+                android:id="@+id/police_sale_enabled"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#d3d3d3"
+                android:visibility="invisible" />
+            <ImageView
+                android:layout_gravity="center"
+                android:id="@+id/police_sale"
+                android:layout_width="45dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_police" />
+        </FrameLayout>
+    </RelativeLayout>
 </android.support.v7.widget.Toolbar>
