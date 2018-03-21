@@ -5,6 +5,7 @@ using CoffeeManagerAdmin.Core;
 using MvvmCross.Binding.BindingContext;
 using System.Collections.Generic;
 using CoffeeManagerAdmin.Core.ViewModels.Home;
+using CoffeeManagerAdmin.iOS.Views.Abstract;
 using CoreGraphics;
 using MvvmCross.Binding.iOS.Views;
 

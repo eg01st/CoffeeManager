@@ -22,7 +22,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels
         public SuplyProductsViewModel(ISuplyProductsManager manager)
         {
             this.manager = manager;
-            _listChanged = Subscribe<SuplyListChangedMessage>((obj) => base.Init());
+            _listChanged = MvxMessenger.Subscribe<SuplyListChangedMessage>((obj) => base.Init());
             AddNewSuplyProductCommand = new MvxCommand(() => ShowViewModel<AddSuplyProductViewModel>());
         }
 
@@ -43,7 +43,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels
 
         protected override void DoUnsubscribe()
         {
-            Unsubscribe<SuplyListChangedMessage>(_listChanged);
+            MvxMessenger.Unsubscribe<SuplyListChangedMessage>(_listChanged);
         }
     }
 }

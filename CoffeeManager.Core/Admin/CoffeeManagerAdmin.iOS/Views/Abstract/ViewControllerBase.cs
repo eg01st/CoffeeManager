@@ -1,18 +1,14 @@
 ﻿using System;
 using CoreGraphics;
 using Foundation;
+using MobileCore.ViewModels;
 using MvvmCross.iOS.Views;
 using UIKit;
-using CoffeManager.Common;
-using System.Linq;
-using MvvmCross.Binding.BindingContext;
-using System.Collections.Generic;
-using CoffeManager.Common.ViewModels;
 
-namespace CoffeeManagerAdmin.iOS
+namespace CoffeeManagerAdmin.iOS.Views.Abstract
 {
     public abstract class ViewControllerBase<TViewModel> :  MvxViewController<TViewModel> , IUITextFieldDelegate
-        where TViewModel : ViewModelBase
+        where TViewModel : PageViewModel
     {
         private NSLayoutConstraint buttonBottomConstraint;
         private nfloat buttonBottomMargin;

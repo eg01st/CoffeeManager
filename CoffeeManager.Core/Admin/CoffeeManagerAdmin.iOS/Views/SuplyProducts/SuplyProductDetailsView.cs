@@ -4,6 +4,7 @@ using UIKit;
 using MvvmCross.iOS.Views;
 using MvvmCross.Binding.BindingContext;
 using CoffeeManagerAdmin.Core;
+using CoffeeManagerAdmin.iOS.Views.Abstract;
 using Foundation;
 
 namespace CoffeeManagerAdmin.iOS

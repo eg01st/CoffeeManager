@@ -45,8 +45,8 @@ namespace CoffeeManagerAdmin.Core
             expense.SuplyProducts = products.ToArray();
 
             await ExecuteSafe(manager.AddExpense(expense));
-            Publish(new UpdateCashAmountMessage(this));
-            Publish(new UpdateShiftMessage(this));
+            MvxMessenger.Publish(new UpdateCashAmountMessage(this));
+            MvxMessenger.Publish(new UpdateShiftMessage(this));
             DoClose();
         }
 

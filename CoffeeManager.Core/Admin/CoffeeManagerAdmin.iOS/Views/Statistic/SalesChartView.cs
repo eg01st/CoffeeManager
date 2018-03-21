@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using CoffeeManager.Models;
 using Alliance.Charts;
 using System.Linq;
+using CoffeeManagerAdmin.iOS.Views.Abstract;
 using Foundation;
 
 namespace CoffeeManagerAdmin.iOS

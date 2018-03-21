@@ -8,6 +8,7 @@ using CoffeeManager.Common;
 using CoffeeManager.Models;
 using CoffeManager.Common.Database;
 using CoffeManager.Common.Providers;
+using MobileCore.Connection;
 
 namespace CoffeManager.Common.Managers
 {
@@ -15,10 +16,12 @@ namespace CoffeManager.Common.Managers
     {
         readonly IDataBaseProvider provider;
         readonly IProductProvider productProiver;
+        private readonly IConnectivity connectivity;
 
-        public SyncManager(IDataBaseProvider provider, IProductProvider productProiver)
+        public SyncManager(IDataBaseProvider provider, IProductProvider productProiver, IConnectivity connectivity)
         {
             this.productProiver = productProiver;
+            this.connectivity = connectivity;
             this.provider = provider;
         }
 
@@ -85,6 +88,11 @@ namespace CoffeManager.Common.Managers
 
         public async Task<bool> SyncSales()
         {
+            if (!await connectivity.HasInternetConnectionAsync)
+            {
+                return true;
+            }
+            
             var storedItems = provider.Get<SaleEntity>();
             foreach (var item in storedItems)
             {

@@ -8,6 +8,7 @@ using CoffeeManagerAdmin.Core;
 using System.Collections.Generic;
 using CoffeeManagerAdmin.Core.ViewModels.Users;
 using CoffeeManagerAdmin.iOS.Converters;
+using CoffeeManagerAdmin.iOS.Views.Abstract;
 using CoreGraphics;
 
 namespace CoffeeManagerAdmin.iOS

@@ -11,7 +11,7 @@ using MvvmCross.Plugins.Messenger;
 
 namespace CoffeManager.Common.ViewModels
 {
-    public abstract class ViewModelBase : SimpleViewModel
+    public abstract class ViewModelBase : PageViewModel
     {
         
         private IAccountManager AccountManager

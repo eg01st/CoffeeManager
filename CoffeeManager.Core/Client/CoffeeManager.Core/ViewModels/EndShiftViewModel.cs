@@ -52,7 +52,10 @@ namespace CoffeeManager.Core.ViewModels
         }
 
         public bool EndShiftButtonEnabled
-        => !string.IsNullOrEmpty(RealAmount) && !string.IsNullOrEmpty(EndCounter) && string.Equals(EndCounter, EndCounterConfirm);
+        => !string.IsNullOrEmpty(RealAmount) 
+           && !string.IsNullOrEmpty(EndCounter) 
+           && string.Equals(EndCounter, EndCounterConfirm);
+          // && !IsLoading;
 
 
         public ICommand FinishShiftCommand {get;}

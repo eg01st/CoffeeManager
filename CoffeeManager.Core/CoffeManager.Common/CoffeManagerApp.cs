@@ -37,7 +37,7 @@ namespace CoffeManager.Common
 
         public virtual void RegisterManagers()
         {
-            Mvx.RegisterSingleton<ISyncManager>(new SyncManager(Mvx.Resolve<IDataBaseProvider>(),Mvx.Resolve<IProductProvider>()));
+            Mvx.RegisterSingleton<ISyncManager>(new SyncManager(Mvx.Resolve<IDataBaseProvider>(),Mvx.Resolve<IProductProvider>(), Mvx.Resolve<IConnectivity>()));
             Mvx.RegisterSingleton<IUserManager>(new UserManager(Mvx.Resolve<IUserServiceProvider>()));
             Mvx.RegisterSingleton<IShiftManager>(new ShiftManager(Mvx.Resolve<IShiftServiceProvider>(), Mvx.Resolve<ISyncManager>(), Mvx.Resolve<IConnectivity>()));
             Mvx.RegisterSingleton<IPaymentManager>(new PaymentManager(Mvx.Resolve<IPaymentServiceProvider>()));

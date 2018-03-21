@@ -1,14 +1,11 @@
 ﻿using System;
-
-using UIKit;
-using CoffeManager.Common;
-using MvvmCross.Binding.BindingContext;
 using System.Drawing;
 using CoffeManager.Common.ViewModels;
 using Foundation;
-using CoreGraphics;
+using MvvmCross.Binding.BindingContext;
+using UIKit;
 
-namespace CoffeeManagerAdmin.iOS
+namespace CoffeeManagerAdmin.iOS.Views.Abstract
 {
     public abstract partial class SearchViewController<TView, TViewModel, TItemViewModel> : ViewControllerBase<TViewModel> 
         where TView : SearchViewController<TView, TViewModel, TItemViewModel>

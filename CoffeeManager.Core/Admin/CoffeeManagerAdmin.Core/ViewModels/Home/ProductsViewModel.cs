@@ -25,11 +25,11 @@ namespace CoffeeManagerAdmin.Core
         {
             this.manager = manager;
             _addProductCommand = new MvxCommand(DoAddProduct);
-            _productListChangedToken = Subscribe<ProductListChangedMessage>( async(obj) =>
+            _productListChangedToken = MvxMessenger.Subscribe<ProductListChangedMessage>( async(obj) =>
             {
                 await Init();
             });
-            _coffeeRoomChangedToken = Subscribe<CoffeeRoomChangedMessage>(async (obj) =>
+            _coffeeRoomChangedToken = MvxMessenger.Subscribe<CoffeeRoomChangedMessage>(async (obj) =>
             {
                 await Init();
             });
@@ -61,8 +61,8 @@ namespace CoffeeManagerAdmin.Core
 
         protected override void DoUnsubscribe()
         {
-            Unsubscribe<ProductListChangedMessage>(_productListChangedToken);
-            Unsubscribe<CoffeeRoomChangedMessage>(_coffeeRoomChangedToken);
+            MvxMessenger.Unsubscribe<ProductListChangedMessage>(_productListChangedToken);
+            MvxMessenger.Unsubscribe<CoffeeRoomChangedMessage>(_coffeeRoomChangedToken);
         }
       
     }

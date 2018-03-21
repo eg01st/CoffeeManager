@@ -1,5 +1,6 @@
 ﻿using System;
 using CoffeeManagerAdmin.Core;
+using CoffeeManagerAdmin.iOS.Views.Abstract;
 using UIKit;
 using MvvmCross.Binding.BindingContext;
 

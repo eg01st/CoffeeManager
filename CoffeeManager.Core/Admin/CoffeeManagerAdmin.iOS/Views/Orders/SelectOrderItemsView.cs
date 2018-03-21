@@ -6,6 +6,7 @@ using MvvmCross.Binding.BindingContext;
 using CoffeeManagerAdmin.Core.ViewModels.Orders;
 using System.Collections.Generic;
 using System.Drawing;
+using CoffeeManagerAdmin.iOS.Views.Abstract;
 
 namespace CoffeeManagerAdmin.iOS
 {
