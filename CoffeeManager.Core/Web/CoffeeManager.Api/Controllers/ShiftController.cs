@@ -16,7 +16,9 @@ namespace CoffeeManager.Api.Controllers
     [Authorize]
     public class ShiftController : ApiController
     {
-        public async Task<HttpResponseMessage> Post([FromUri]int coffeeroomno, int userId,  int counter, DateTime startTime)
+        public static readonly object LockEndShift = new object();
+
+        public async Task<HttpResponseMessage> Post([FromUri]int coffeeroomno, int userId,  int counter)
         {
             var shiftToReturn = new Models.Shift();
             var entities = new  CoffeeRoomEntities();
@@ -28,7 +30,7 @@ namespace CoffeeManager.Api.Controllers
                     CoffeeRoomNo = coffeeroomno,
                     IsFinished = false,
                     UserId = userId,
-                    Date = startTime,
+                    Date = DateTime.Now,
                     StartCounter = counter,
                     CreditCardAmount = 0,
                 };
@@ -68,37 +70,54 @@ namespace CoffeeManager.Api.Controllers
             var request = await message.Content.ReadAsStringAsync();
             var shiftInfo = JsonConvert.DeserializeObject<EndShiftDTO>(request);
             int shiftId = shiftInfo.ShiftId;
-                
-            var enities = new  CoffeeRoomEntities();
-            var shift = enities.Shifts.Include(s => s.User).Include(s => s.User.UserPaymentStrategies).First(s => s.Id == shiftId && s.CoffeeRoomNo == coffeeroomno);
-            shift.IsFinished = true;
-            shift.RealAmount = shiftInfo.RealAmount;
-            shift.EndCounter = shiftInfo.Counter;
-
-            var userPaymentStrategy = shift.User.UserPaymentStrategies.First(s => s.CoffeeRoomId == coffeeroomno);
-
-            var diff = shift.RealAmount - shift.TotalAmount;
-            var realShiftAmount = shift.CurrentAmount + diff + shift.CreditCardAmount.Value;
-            bool isDayShift = shift.Date.Value.TimeOfDay.Hours < 12;
-
-            var user = shift.User;
-            var userEarnedAmount = userPaymentStrategy.SimplePayment + (realShiftAmount / 100 * (isDayShift ? userPaymentStrategy.DayShiftPersent : userPaymentStrategy.NightShiftPercent));
-            if(userEarnedAmount < userPaymentStrategy.MinimumPayment)
+            lock (LockEndShift)
             {
-                userEarnedAmount = userPaymentStrategy.MinimumPayment;
+                var enities = new CoffeeRoomEntities();
+                var shift = enities.Shifts.Include(s => s.User).Include(s => s.User.UserPaymentStrategies)
+                    .First(s => s.Id == shiftId && s.CoffeeRoomNo == coffeeroomno);
+                if (shift.IsFinished == true)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK);
+                }
+                shift.IsFinished = true;
+                shift.RealAmount = shiftInfo.RealAmount;
+                shift.EndCounter = shiftInfo.Counter;
+
+                var userPaymentStrategy = shift.User.UserPaymentStrategies.First(s => s.CoffeeRoomId == coffeeroomno);
+
+                var diff = shift.RealAmount - shift.TotalAmount;
+                var realShiftAmount = shift.CurrentAmount + diff + shift.CreditCardAmount.Value;
+                bool isDayShift = shift.Date.Value.TimeOfDay.Hours < 12;
+
+                var user = shift.User;
+                var userEarnedAmount = userPaymentStrategy.SimplePayment +
+                                       (realShiftAmount / 100 * (isDayShift
+                                            ? userPaymentStrategy.DayShiftPersent
+                                            : userPaymentStrategy.NightShiftPercent));
+                if (userEarnedAmount < userPaymentStrategy.MinimumPayment)
+                {
+                    userEarnedAmount = userPaymentStrategy.MinimumPayment;
+                }
+                user.CurrentEarnedAmount += userEarnedAmount;
+
+                var userEarneingHistory = new UserEarningsHistory();
+                userEarneingHistory.Amount = userEarnedAmount;
+                userEarneingHistory.Date = shift.Date.Value;
+                userEarneingHistory.IsDayShift = isDayShift;
+                userEarneingHistory.ShiftId = shift.Id;
+                userEarneingHistory.UserId = shift.UserId.Value;
+                enities.UserEarningsHistories.Add(userEarneingHistory);
+
+                enities.SaveChanges();
+
+                return Request.CreateResponse<Models.EndShiftUserInfo>(HttpStatusCode.OK,
+                    new EndShiftUserInfo()
+                    {
+                        EarnedAmount = userEarnedAmount,
+                        RealShiftAmount = realShiftAmount,
+                        CurrentUserAmount = user.CurrentEarnedAmount
+                    });
             }
-            user.CurrentEarnedAmount += userEarnedAmount;
-
-            var userEarneingHistory = new UserEarningsHistory();
-            userEarneingHistory.Amount = userEarnedAmount;
-            userEarneingHistory.Date = shift.Date.Value;
-            userEarneingHistory.IsDayShift = isDayShift;
-            userEarneingHistory.ShiftId = shift.Id;
-            userEarneingHistory.UserId = shift.UserId.Value;
-            enities.UserEarningsHistories.Add(userEarneingHistory);
-
-            await enities.SaveChangesAsync();
-            return Request.CreateResponse<Models.EndShiftUserInfo>(HttpStatusCode.OK, new EndShiftUserInfo() {EarnedAmount = userEarnedAmount, RealShiftAmount = realShiftAmount, CurrentUserAmount = user.CurrentEarnedAmount });
         }
 
         [Route(RoutesConstants.GetCurrentShift)]
@@ -240,14 +259,14 @@ namespace CoffeeManager.Api.Controllers
         }
 
         [Route(RoutesConstants.DiscardShift)]
-        [HttpPost]
-        public async Task<HttpResponseMessage> DiscardShift([FromUri]int coffeeroomno, int shiftId, HttpRequestMessage message)
+        [HttpDelete]
+        public async Task<HttpResponseMessage> DiscardShift([FromUri]int coffeeroomno, [FromUri]int shiftId, HttpRequestMessage message)
         {
             var entities = new CoffeeRoomEntities();
             var shift = entities.Shifts.FirstOrDefault(s => s.Id == shiftId && s.CoffeeRoomNo == coffeeroomno);
             if (shift != null)
             {
-                var salesCount = entities.Sales.Count(s => s.CoffeeRoomNo == coffeeroomno && s.ShiftId == shiftId && (!s.IsRejected || !s.IsUtilized));
+                var salesCount = entities.Sales.Count(s => s.CoffeeRoomNo == coffeeroomno && s.ShiftId == shiftId && !s.IsRejected);
                 if (salesCount > 0)
                 {
                     return Request.CreateErrorResponse(HttpStatusCode.RequestedRangeNotSatisfiable, "Sales exist");
@@ -258,7 +277,7 @@ namespace CoffeeManager.Api.Controllers
                 {
                     return Request.CreateErrorResponse(HttpStatusCode.RequestedRangeNotSatisfiable, "Expenses exist");
                 }
-
+                entities.Sales.RemoveRange(shift.Sales);
                 entities.Shifts.Remove(shift);
                 entities.SaveChanges();
 
