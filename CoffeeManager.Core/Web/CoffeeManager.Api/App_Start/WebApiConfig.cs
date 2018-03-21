@@ -1,4 +1,5 @@
-﻿using System.Web.Http;
+﻿using System.Net.Http.Headers;
+using System.Web.Http;
 using Microsoft.Owin.Security.OAuth;
 
 namespace CoffeeManager.Api
@@ -10,6 +11,8 @@ namespace CoffeeManager.Api
             // Web API configuration and services
             config.SuppressDefaultHostAuthentication();
             config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
+            config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/plain"));
+
             // Web API routes
             config.MapHttpAttributeRoutes();
 

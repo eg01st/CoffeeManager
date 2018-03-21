@@ -62,9 +62,23 @@ namespace CoffeeManager.Api.Mappers
             userDb.Name = user.Name;
             userDb.IsActive = user.IsActive;
             userDb.ExpenceId= user.ExpenceId;
+
             if (user.PaymentStrategies != null && user.PaymentStrategies.Any())
             {
-                userDb.UserPaymentStrategies = user.PaymentStrategies.Select(s => Map(s)).ToArray();
+                foreach (var strategy in user.PaymentStrategies)
+                {
+                    var strategyDb = userDb.UserPaymentStrategies.FirstOrDefault(s => s.Id == strategy.Id);
+                    if (strategyDb == null)
+                    {
+                        var newStrategy = Map(strategy);
+                        userDb.UserPaymentStrategies.Add(newStrategy);
+                    }
+                    else
+                    {
+                        Update(strategy, strategyDb);
+                    }
+                }
+               // userDb.UserPaymentStrategies = user.PaymentStrategies.Select(s => Map(s)).ToArray();
             }
             return userDb;
         }
@@ -136,5 +150,16 @@ namespace CoffeeManager.Api.Mappers
                 DateTime = product.Date
             };
         }
+
+	    public static void Update(Models.UserPaymentStrategy strategy, UserPaymentStrategy strategyDb)
+	    {
+
+	        strategyDb.UserId = strategy.UserId;
+	        strategyDb.CoffeeRoomId = strategy.CoffeeRoomId;
+	        strategyDb.DayShiftPersent = strategy.DayShiftPersent;
+	        strategyDb.NightShiftPercent = strategy.NightShiftPercent;
+	        strategyDb.MinimumPayment = strategy.MinimumPayment;
+	        strategyDb.SimplePayment = strategy.SimplePayment;
+	    }
     }
 }
