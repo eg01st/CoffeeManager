@@ -1,4 +1,6 @@
+using Acr.UserDialogs;
 using CoffeManager.Common;
+using MvvmCross.Platform;
 using MvvmCross.Platform.IoC;
 
 namespace CoffeeManagerAdmin.Core
@@ -9,7 +11,13 @@ namespace CoffeeManagerAdmin.Core
         {
             base.Initialize();
 
-            RegisterAppStart<ViewModels.LoginViewModel>();
+            RegisterNavigationServiceAppStart<ViewModels.LoginViewModel>();
+        }
+
+        public override void DoRegisterInjections()
+        {
+            base.DoRegisterInjections();
+            Mvx.RegisterSingleton<IUserDialogs>(() => UserDialogs.Instance);
         }
 
     }

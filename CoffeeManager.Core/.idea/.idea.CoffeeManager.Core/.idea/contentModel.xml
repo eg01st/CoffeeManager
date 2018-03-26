@@ -147,10 +147,13 @@
           </e>
           <e p="bin" t="ExcludeRecursive" />
           <e p="Bootstrap" t="Include">
+            <e p="FilePluginBootstrap.cs" t="Include" />
             <e p="JsonPluginBootstrap.cs" t="Include" />
+            <e p="SqlitePluginBootstrap.cs" t="Include" />
           </e>
           <e p="CoffeeManagerAdmin.Droid.csproj" t="IncludeRecursive" />
           <e p="DebugTrace.cs" t="Include" />
+          <e p="DroidApplication.cs" t="Include" />
           <e p="LinkerPleaseInclude.cs" t="Include" />
           <e p="obj" t="ExcludeRecursive" />
           <e p="packages.config" t="Include" />
@@ -160,30 +163,102 @@
           </e>
           <e p="Resources" t="Include">
             <e p="AboutResources.txt" t="Include" />
+            <e p="color" t="Include">
+              <e p="tabtext_color_selector.xml" t="Include" />
+            </e>
             <e p="drawable" t="Include">
+              <e p="expenses_tab_selector.xml" t="Include" />
+              <e p="finance_tab_selector.xml" t="Include" />
               <e p="Icon.png" t="Include" />
-              <e p="splash.png" t="Include" />
+              <e p="products_tab_selector.xml" t="Include" />
+              <e p="statistic_tab_selector.xml" t="Include" />
+              <e p="storage_tab_selector.xml" t="Include" />
+              <e p="take_cup_transparent.png" t="Include" />
             </e>
             <e p="drawable-hdpi" t="Include">
+              <e p="ic_account_circle_black_24dp.png" t="Include" />
+              <e p="ic_arrow_upward_black_24dp.png" t="Include" />
+              <e p="ic_attach_money_black_24dp.png" t="Include" />
+              <e p="ic_credit_card_black_24dp.png" t="Include" />
+              <e p="ic_local_cafe_black_24dp.png" t="Include" />
+              <e p="ic_settings_black_24dp.png" t="Include" />
+              <e p="ic_shopping_basket_black_24dp.png" t="Include" />
+              <e p="ic_trending_up_black_24dp.png" t="Include" />
               <e p="Icon.png" t="Include" />
             </e>
             <e p="drawable-mdpi" t="Include">
+              <e p="ic_account_circle_black_24dp.png" t="Include" />
+              <e p="ic_arrow_upward_black_24dp.png" t="Include" />
+              <e p="ic_attach_money_black_24dp.png" t="Include" />
+              <e p="ic_credit_card_black_24dp.png" t="Include" />
+              <e p="ic_local_cafe_black_24dp.png" t="Include" />
+              <e p="ic_settings_black_24dp.png" t="Include" />
+              <e p="ic_shopping_basket_black_24dp.png" t="Include" />
+              <e p="ic_trending_up_black_24dp.png" t="Include" />
               <e p="Icon.png" t="Include" />
             </e>
             <e p="drawable-xhdpi" t="Include">
+              <e p="ic_account_circle_black_24dp.png" t="Include" />
+              <e p="ic_arrow_upward_black_24dp.png" t="Include" />
+              <e p="ic_attach_money_black_24dp.png" t="Include" />
+              <e p="ic_credit_card_black_24dp.png" t="Include" />
+              <e p="ic_local_cafe_black_24dp.png" t="Include" />
+              <e p="ic_settings_black_24dp.png" t="Include" />
+              <e p="ic_shopping_basket_black_24dp.png" t="Include" />
+              <e p="ic_trending_up_black_24dp.png" t="Include" />
               <e p="Icon.png" t="Include" />
             </e>
             <e p="drawable-xxhdpi" t="Include">
+              <e p="ic_account_circle_black_24dp.png" t="Include" />
+              <e p="ic_arrow_upward_black_24dp.png" t="Include" />
+              <e p="ic_attach_money_black_24dp.png" t="Include" />
+              <e p="ic_credit_card_black_24dp.png" t="Include" />
+              <e p="ic_local_cafe_black_24dp.png" t="Include" />
+              <e p="ic_settings_black_24dp.png" t="Include" />
+              <e p="ic_shopping_basket_black_24dp.png" t="Include" />
+              <e p="ic_trending_up_black_24dp.png" t="Include" />
               <e p="Icon.png" t="Include" />
             </e>
             <e p="drawable-xxxhdpi" t="Include">
+              <e p="ic_account_circle_black_24dp.png" t="Include" />
+              <e p="ic_arrow_upward_black_24dp.png" t="Include" />
+              <e p="ic_attach_money_black_24dp.png" t="Include" />
+              <e p="ic_credit_card_black_24dp.png" t="Include" />
+              <e p="ic_local_cafe_black_24dp.png" t="Include" />
+              <e p="ic_settings_black_24dp.png" t="Include" />
+              <e p="ic_shopping_basket_black_24dp.png" t="Include" />
+              <e p="ic_trending_up_black_24dp.png" t="Include" />
               <e p="Icon.png" t="Include" />
             </e>
             <e p="layout" t="Include">
-              <e p="FirstView.axml" t="Include" />
+              <e p="fragment_expenses.axml" t="Include" />
+              <e p="fragment_finance.axml" t="Include" />
+              <e p="fragment_products.axml" t="Include" />
+              <e p="fragment_statistic.axml" t="Include" />
+              <e p="fragment_store.axml" t="Include" />
               <e p="login.axml" t="Include" />
+              <e p="main.axml" t="Include" />
               <e p="SplashScreen.axml" t="Include" />
+              <e p="tab_item_main.axml" t="Include" />
               <e p="toolbar.axml" t="Include" />
+            </e>
+            <e p="mipmap-hdpi" t="Include">
+              <e p="ic_launcher.png" t="Include" />
+            </e>
+            <e p="mipmap-ldpi" t="Include">
+              <e p="ic_launcher.png" t="Include" />
+            </e>
+            <e p="mipmap-mdpi" t="Include">
+              <e p="ic_launcher.png" t="Include" />
+            </e>
+            <e p="mipmap-xhdpi" t="Include">
+              <e p="ic_launcher.png" t="Include" />
+            </e>
+            <e p="mipmap-xxhdpi" t="Include">
+              <e p="ic_launcher.png" t="Include" />
+            </e>
+            <e p="mipmap-xxxhdpi" t="Include">
+              <e p="ic_launcher.png" t="Include" />
             </e>
             <e p="Resource.Designer.cs" t="Include" />
             <e p="values" t="Include">
@@ -191,9 +266,9 @@
               <e p="colors.xml" t="Include" />
               <e p="dimens.xml" t="Include" />
               <e p="integers.xml" t="Include" />
-              <e p="SplashStyle.xml" t="Include" />
               <e p="Strings.xml" t="Include" />
               <e p="styles.xml" t="Include" />
+              <e p="themes.xml" t="Include" />
             </e>
             <e p="values-v21" t="Include">
               <e p="styles.xml" t="Include" />
@@ -201,10 +276,17 @@
           </e>
           <e p="Setup.cs" t="Include" />
           <e p="SplashScreen.cs" t="Include" />
+          <e p="UncaughtExceptionHandler.cs" t="Include" />
           <e p="Views" t="Include">
-            <e p="BaseView.cs" t="Include" />
-            <e p="FirstView.cs" t="Include" />
+            <e p="Fragments" t="Include">
+              <e p="ExpensesFragment.cs" t="Include" />
+              <e p="FinanceFragment.cs" t="Include" />
+              <e p="ProductsFragment.cs" t="Include" />
+              <e p="StatisticFragment.cs" t="Include" />
+              <e p="StoreFragment.cs" t="Include" />
+            </e>
             <e p="LoginView.cs" t="Include" />
+            <e p="MainView.cs" t="Include" />
           </e>
         </e>
         <e p="CoffeeManagerAdmin.iOS" t="IncludeRecursive">
@@ -1284,6 +1366,9 @@
             <e p="ViewBinder.cs" t="Include" />
           </e>
         </e>
+        <e p="Bootstrap" t="Include">
+          <e p="FilePluginBootstrap.cs" t="Include" />
+        </e>
         <e p="Connection" t="Include">
           <e p="Connectivity.cs" t="Include" />
           <e p="ConnectivityChangeBroadcastReceiver.cs" t="Include" />
@@ -1295,6 +1380,12 @@
         <e p="Extensions" t="Include">
           <e p="ActivityExtensions.cs" t="Include" />
           <e p="ContextExtensions.cs" t="Include" />
+        </e>
+        <e p="Fragments" t="Include">
+          <e p="FragmentBase.cs" t="Include" />
+        </e>
+        <e p="Listeners" t="Include">
+          <e p="ViewOnClickListener.cs" t="Include" />
         </e>
         <e p="Logging" t="Include">
           <e p="ConsoleLogger.cs" t="Include" />

@@ -1138,6 +1138,8 @@ namespace CoffeeManager.Droid
 			global::MobileCore.Droid.Resource.Style.Widget_AppCompat_TextView_SpinnerItem = global::CoffeeManager.Droid.Resource.Style.Widget_AppCompat_TextView_SpinnerItem;
 			global::MobileCore.Droid.Resource.Style.Widget_AppCompat_Toolbar = global::CoffeeManager.Droid.Resource.Style.Widget_AppCompat_Toolbar;
 			global::MobileCore.Droid.Resource.Style.Widget_AppCompat_Toolbar_Button_Navigation = global::CoffeeManager.Droid.Resource.Style.Widget_AppCompat_Toolbar_Button_Navigation;
+			global::MobileCore.Droid.Resource.Style.icon_24 = global::CoffeeManager.Droid.Resource.Style.icon_24;
+			global::MobileCore.Droid.Resource.Style.icon_base = global::CoffeeManager.Droid.Resource.Style.icon_base;
 			global::MobileCore.Droid.Resource.Style.toolbar_global = global::CoffeeManager.Droid.Resource.Style.toolbar_global;
 			global::MobileCore.Droid.Resource.Style.toolbar_title_fontify = global::CoffeeManager.Droid.Resource.Style.toolbar_title_fontify;
 			global::MobileCore.Droid.Resource.Xml.Empty = global::CoffeeManager.Droid.Resource.Xml.Empty;
@@ -6997,8 +6999,8 @@ namespace CoffeeManager.Droid
 		public partial class Style
 		{
 			
-			// aapt resource value: 0x7f080186
-			public const int ActionBarTheme = 2131231110;
+			// aapt resource value: 0x7f080188
+			public const int ActionBarTheme = 2131231112;
 			
 			// aapt resource value: 0x7f0800a3
 			public const int AlertDialog_AppCompat = 2131230883;
@@ -7015,17 +7017,17 @@ namespace CoffeeManager.Droid
 			// aapt resource value: 0x7f080165
 			public const int Animation_Design_BottomSheetDialog = 2131231077;
 			
-			// aapt resource value: 0x7f080183
-			public const int AppTheme = 2131231107;
+			// aapt resource value: 0x7f080185
+			public const int AppTheme = 2131231109;
 			
-			// aapt resource value: 0x7f080188
-			public const int AppTheme_AppBarOverlay = 2131231112;
-			
-			// aapt resource value: 0x7f080187
-			public const int AppTheme_NoActionBar = 2131231111;
+			// aapt resource value: 0x7f08018a
+			public const int AppTheme_AppBarOverlay = 2131231114;
 			
 			// aapt resource value: 0x7f080189
-			public const int AppTheme_PopupOverlay = 2131231113;
+			public const int AppTheme_NoActionBar = 2131231113;
+			
+			// aapt resource value: 0x7f08018b
+			public const int AppTheme_PopupOverlay = 2131231115;
 			
 			// aapt resource value: 0x7f0800a7
 			public const int Base_AlertDialog_AppCompat = 2131230887;
@@ -7585,8 +7587,8 @@ namespace CoffeeManager.Droid
 			// aapt resource value: 0x7f080042
 			public const int RtlUnderlay_Widget_AppCompat_ActionButton_Overflow = 2131230786;
 			
-			// aapt resource value: 0x7f080185
-			public const int SplashTheme = 2131231109;
+			// aapt resource value: 0x7f080187
+			public const int SplashTheme = 2131231111;
 			
 			// aapt resource value: 0x7f0800d2
 			public const int TextAppearance_AppCompat = 2131230930;
@@ -7909,8 +7911,8 @@ namespace CoffeeManager.Droid
 			// aapt resource value: 0x7f08017f
 			public const int Toolbar_TitleText = 2131231103;
 			
-			// aapt resource value: 0x7f080184
-			public const int ToolbarTheme = 2131231108;
+			// aapt resource value: 0x7f080186
+			public const int ToolbarTheme = 2131231110;
 			
 			// aapt resource value: 0x7f08011b
 			public const int Widget_AppCompat_ActionBar = 2131231003;
@@ -8168,10 +8170,16 @@ namespace CoffeeManager.Droid
 			public const int Widget_Design_TextInputLayout = 2131231101;
 			
 			// aapt resource value: 0x7f080181
-			public const int left_menu_button_layout = 2131231105;
+			public const int icon_24 = 2131231105;
 			
 			// aapt resource value: 0x7f080182
-			public const int left_menu_button_text = 2131231106;
+			public const int icon_base = 2131231106;
+			
+			// aapt resource value: 0x7f080183
+			public const int left_menu_button_layout = 2131231107;
+			
+			// aapt resource value: 0x7f080184
+			public const int left_menu_button_text = 2131231108;
 			
 			// aapt resource value: 0x7f08017e
 			public const int toolbar_global = 2131231102;

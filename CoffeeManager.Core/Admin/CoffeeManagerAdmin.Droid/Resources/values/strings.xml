@@ -3,4 +3,11 @@
     <string name="Hello">Hello World, Click Me!</string>
     <string name="Navigation">Click to Navigate</string>
     <string name="ApplicationName">CoffeeManagerAdmin.Droid</string>
+
+    <string name="finance_tab_title">Финансы</string>
+    <string name="store_tab_title">Склад</string>
+    <string name="expenses_tab_title">Расходы</string>
+    <string name="products_tab_title">Товары</string>
+    <string name="statistic_tab_title">Статистика</string>
+    
 </resources>

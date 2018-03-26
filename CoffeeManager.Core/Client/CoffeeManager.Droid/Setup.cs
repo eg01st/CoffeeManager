@@ -8,6 +8,7 @@ using CoffeeManager.Droid.Bindings;
 using MobileCore.Droid;
 using MvvmCross.Binding.Bindings.Target.Construction;
 using MvvmCross.Core.ViewModels;
+using MvvmCross.Droid.Support.V7.AppCompat;
 
 namespace CoffeeManager.Droid
 {
@@ -39,6 +40,7 @@ namespace CoffeeManager.Droid
         protected override void FillTargetFactories(IMvxTargetBindingFactoryRegistry registry)
         {
             base.FillTargetFactories(registry);
+            MvxAppCompatSetupHelper.FillTargetFactories(registry);  
             registry.RegisterFactory(new MvxCustomBindingFactory<View>("LongPress", view => new LongPressEventBinding(view)));
         }
 

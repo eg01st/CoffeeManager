@@ -12,25 +12,27 @@ using Android.Support.V4.View;
 namespace CoffeeManagerAdmin.Droid
 {
     [MvxActivityPresentation]
-    [Activity(ScreenOrientation = ScreenOrientation.Portrait, Label = "MainActivity", Theme = "@style/AppTheme", WindowSoftInputMode = Android.Views.SoftInput.AdjustNothing)]
-    public class MainView : ActivityWithToolbar<MainViewModel>
+    [Activity(ScreenOrientation = ScreenOrientation.Portrait,  WindowSoftInputMode = Android.Views.SoftInput.AdjustNothing)]
+    public class MainView : ActivityBase<MainViewModel>
     {
-        private const int ViewPagerOffscreenPageLimit = 4;
+        private const int ViewPagerOffscreenPageLimit = 5;
 
         private readonly IList<int> tabIcons = new List<int>
         {
-            //Resource.Drawable.news_tab_selector,
-            //Resource.Drawable.topics_tab_selector,
-            //Resource.Drawable.profile_tab_selector,
-            //Resource.Drawable.more_tab_selector
+            Resource.Drawable.finance_tab_selector,
+            Resource.Drawable.storage_tab_selector,
+            Resource.Drawable.expenses_tab_selector,
+            Resource.Drawable.products_tab_selector,
+            Resource.Drawable.statistic_tab_selector
         };
 
         private readonly IList<int> tabTitles = new List<int>
         {
-            //Resource.String.fragment_news,
-            //Resource.String.fragment_topics,
-            //Resource.String.fragment_poeple,
-            //Resource.String.fragment_more
+            Resource.String.finance_tab_title,
+            Resource.String.store_tab_title,
+            Resource.String.expenses_tab_title,
+            Resource.String.products_tab_title,
+            Resource.String.statistic_tab_title,
         };
 
         [FindById(Resource.Id.home_tab_layout)]
