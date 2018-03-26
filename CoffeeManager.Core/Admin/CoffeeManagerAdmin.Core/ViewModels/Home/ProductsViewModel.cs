@@ -27,11 +27,11 @@ namespace CoffeeManagerAdmin.Core
             _addProductCommand = new MvxCommand(DoAddProduct);
             _productListChangedToken = MvxMessenger.Subscribe<ProductListChangedMessage>( async(obj) =>
             {
-                await Init();
+                await Initialize();
             });
             _coffeeRoomChangedToken = MvxMessenger.Subscribe<CoffeeRoomChangedMessage>(async (obj) =>
             {
-                await Init();
+                await Initialize();
             });
 
         }

@@ -34,9 +34,9 @@ namespace CoffeeManagerAdmin.Core
                 SalesVm = new SalesStatisticViewModel(manager, from, to);
                 var tasks = new[]
                 {
-                    ExpensesVm.Init(),
-                    CreditCardSalesVm.Init(),
-                    SalesVm.Init()
+                    ExpensesVm.Initialize(),
+                    CreditCardSalesVm.Initialize(),
+                    SalesVm.Initialize()
 
                 };
                 await Task.WhenAll(tasks);

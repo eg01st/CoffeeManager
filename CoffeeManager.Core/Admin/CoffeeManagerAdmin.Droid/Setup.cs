@@ -1,6 +1,8 @@
 using Android.Content;
 using MvvmCross.Core.ViewModels;
 using MobileCore.Droid;
+using MvvmCross.Droid.Support.V7.AppCompat;
+using MvvmCross.Droid.Views;
 
 namespace CoffeeManagerAdmin.Droid
 {
@@ -13,6 +15,11 @@ namespace CoffeeManagerAdmin.Droid
         protected override IMvxApplication CreateApp()
         {
             return new Core.App();
+        }
+        
+        protected override IMvxAndroidViewPresenter CreateViewPresenter()
+        {
+            return new MvxAppCompatViewPresenter(AndroidViewAssemblies);
         }
 
     }

@@ -21,7 +21,7 @@ namespace CoffeeManagerAdmin.Core
         public MapExpenseToSuplyProductViewModel(ISuplyProductsManager suplyProductManager)
         {
             this.suplyProductManager = suplyProductManager;
-            _listChanged = MvxMessenger.Subscribe<SuplyListChangedMessage>((obj) => base.Init());
+            _listChanged = MvxMessenger.Subscribe<SuplyListChangedMessage>((obj) => base.Initialize());
             AddNewSuplyProductCommand = new MvxCommand(() => ShowViewModel<AddSuplyProductViewModel>());
         }
 

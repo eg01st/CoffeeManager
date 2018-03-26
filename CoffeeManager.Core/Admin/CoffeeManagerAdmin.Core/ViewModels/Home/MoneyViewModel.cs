@@ -136,13 +136,13 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Home
 
         public string CurrentCoffeeRoomName => CurrentCoffeeRoom.Name;
 
-
-        public async Task Init()
+        public override async Task Initialize()
         {
             await GetEntireMoney();
             await GetCoffeeRooms();
             await ExecuteSafe(GetShifts);
         }
+
 
         private async Task GetShifts()
         {

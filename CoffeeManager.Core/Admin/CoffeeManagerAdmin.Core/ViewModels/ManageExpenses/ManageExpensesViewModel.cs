@@ -20,7 +20,7 @@ namespace CoffeeManagerAdmin.Core
         {
             this.manager = manager;
             AddExpenseTypeCommand = new MvxCommand(() => ShowViewModel<AddExpenseTypeViewModel>());
-            reloadListToken = MvxMessenger.Subscribe<ExpenseListChangedMessage>(async (obj) => await Init());
+            reloadListToken = MvxMessenger.Subscribe<ExpenseListChangedMessage>(async (obj) => await Initialize());
         }
 
         public async override Task<List<ManageExpenseItemViewModel>> LoadData()

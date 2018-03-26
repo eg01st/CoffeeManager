@@ -22,7 +22,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels
         public SuplyProductsViewModel(ISuplyProductsManager manager)
         {
             this.manager = manager;
-            _listChanged = MvxMessenger.Subscribe<SuplyListChangedMessage>((obj) => base.Init());
+            _listChanged = MvxMessenger.Subscribe<SuplyListChangedMessage>((obj) => base.Initialize());
             AddNewSuplyProductCommand = new MvxCommand(() => ShowViewModel<AddSuplyProductViewModel>());
         }
 
