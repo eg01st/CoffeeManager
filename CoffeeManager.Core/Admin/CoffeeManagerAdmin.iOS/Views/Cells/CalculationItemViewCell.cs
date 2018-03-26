@@ -1,12 +1,11 @@
 ﻿using System;
-
-using Foundation;
-using UIKit;
-using MvvmCross.Binding.iOS.Views;
-using MvvmCross.Binding.BindingContext;
 using CoffeeManagerAdmin.Core.ViewModels;
+using Foundation;
+using MvvmCross.Binding.BindingContext;
+using MvvmCross.Binding.iOS.Views;
+using UIKit;
 
-namespace CoffeeManagerAdmin.iOS
+namespace CoffeeManagerAdmin.iOS.Views.Cells
 {
     public partial class CalculationItemViewCell : MvxTableViewCell
     {

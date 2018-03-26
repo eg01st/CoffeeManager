@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using CoffeeManager.Models;
 
-namespace CoffeManager.Common
+namespace CoffeManager.Common.Providers
 {
     public class StatisticProvider : BaseServiceProvider, IStatisticProvider
     {
@@ -11,8 +11,10 @@ namespace CoffeManager.Common
         {
             return await Get<Expense[]>(RoutesConstants.StatisticGetExpenses, new Dictionary<string, string>()
             {
-                { nameof(from), from.ToString("yyyy-MM-dd HH:mm:ss \"GMT\"zzz")},
-                { nameof(to), to.ToString("yyyy-MM-dd HH:mm:ss \"GMT\"zzz")}
+                { nameof(from), from.ToString()},
+                { nameof(to), to.ToString()}
+//                { nameof(from), from.ToString("yyyy-MM-dd HH:mm:ss \"GMT\"zzz")},
+//                { nameof(to), to.ToString("yyyy-MM-dd HH:mm:ss \"GMT\"zzz")}
             });
         }
 

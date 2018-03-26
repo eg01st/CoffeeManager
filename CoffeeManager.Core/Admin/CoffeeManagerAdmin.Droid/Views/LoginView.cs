@@ -1,14 +1,13 @@
 ﻿using System;
-using CoffeeManagerAdmin.Droid.Views;
+using CoffeeManagerAdmin.Core.ViewModels;
+using MobileCore.Droid.Activities;
 
 namespace CoffeeManagerAdmin.Droid
 {
-    public class LoginView : BaseView
+    public class LoginView : ActivityBase<LoginViewModel>
     {
-        public LoginView()
+        public LoginView() : base(Resource.Layout.login)
         {
         }
-
-        protected override int LayoutResource => throw new NotImplementedException();
     }
 }

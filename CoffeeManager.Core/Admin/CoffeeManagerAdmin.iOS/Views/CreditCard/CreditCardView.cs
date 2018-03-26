@@ -1,10 +1,9 @@
-﻿using System;
-using CoffeeManagerAdmin.Core;
+﻿using CoffeeManagerAdmin.Core;
 using CoffeeManagerAdmin.iOS.Views.Abstract;
-using UIKit;
 using MvvmCross.Binding.BindingContext;
+using UIKit;
 
-namespace CoffeeManagerAdmin.iOS
+namespace CoffeeManagerAdmin.iOS.Views.CreditCard
 {
     public partial class CreditCardView : ViewControllerBase<CreditCardViewModel>
     {

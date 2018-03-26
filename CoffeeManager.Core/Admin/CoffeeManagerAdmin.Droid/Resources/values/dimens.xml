@@ -1,4 +1,22 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <resources>
   <dimen name="drawer_width">240dp</dimen>
+	
+	<dimen name="page_indicator_default_size">5dp</dimen>
+    <dimen name="fontSize10">10sp</dimen>
+    <dimen name="app_bar_height">110dp</dimen>
+
+    <!-- Standard dimensions -->
+
+    <dimen name="margin_tinier">2dp</dimen>
+    <dimen name="margin_tiny">4dp</dimen>
+    <dimen name="margin_small">8dp</dimen>
+    <dimen name="margin_medium">16dp</dimen>
+    <dimen name="margin_large">32dp</dimen>
+    <dimen name="margin_huge">64dp</dimen>
+
+    <!-- Semantic definitions -->
+
+    <dimen name="base_icon_size">24dp</dimen>
+    <dimen name="base_cell_height">52dp</dimen>
 </resources>

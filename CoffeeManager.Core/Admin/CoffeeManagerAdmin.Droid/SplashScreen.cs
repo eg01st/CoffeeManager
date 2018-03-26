@@ -4,13 +4,11 @@ using MvvmCross.Droid.Views;
 
 namespace CoffeeManagerAdmin.Droid
 {
-    [Activity(
-        Label = "CoffeeManagerAdmin.Droid"
-        , MainLauncher = true
-        , Icon = "@drawable/icon"
-        , Theme = "@style/Theme.Splash"
-        , NoHistory = true
-        , ScreenOrientation = ScreenOrientation.Portrait)]
+    [Activity(MainLauncher = true,
+              NoHistory = true,
+              Theme = "@style/SplashTheme",
+              Icon = "@mipmap/ic_launcher",
+              ScreenOrientation = ScreenOrientation.SensorPortrait)]
     public class SplashScreen : MvxSplashScreenActivity
     {
         public SplashScreen()

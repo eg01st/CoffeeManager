@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Windows.Input;
-using MvvmCross.Core.ViewModels;
 using CoffeManager.Common;
 using CoffeManager.Common.ViewModels;
+using MvvmCross.Core.ViewModels;
 
-namespace CoffeeManagerAdmin.Core
+namespace CoffeeManagerAdmin.Core.ViewModels.Home
 {
     public class StatisticViewModel : ViewModelBase
     {
-
-        public string Name { get; set; } = "StatisticViewModel";
 
         private readonly IStatisticManager manager;
 
@@ -18,8 +16,16 @@ namespace CoffeeManagerAdmin.Core
     
         public ICommand GetDataCommand { get; set; }
 
-        public DateTime From { get { return from; }  set { from = value;  RaisePropertyChanged(nameof(From));} }
-        public DateTime To { get { return to; } set { to = value; RaisePropertyChanged(nameof(To)); } }
+        public DateTime From 
+        { 
+            get => from;
+            set { from = value;  RaisePropertyChanged(nameof(From));}
+            
+        }
+        public DateTime To 
+        { 
+            get => to;
+            set { to = value; RaisePropertyChanged(nameof(To)); } }
 
         public StatisticViewModel(IStatisticManager manager)
         {

@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+         android:state_selected="true">
+        <bitmap android:src="@drawable/ic_shopping_basket_black_24dp"
+            android:tint="@color/white"/> 
+    </item> 
+     <item>
+        <bitmap android:src="@drawable/ic_shopping_basket_black_24dp"
+            android:tint="@color/darkGrayishBlue"/> 
+     </item>
+</selector>

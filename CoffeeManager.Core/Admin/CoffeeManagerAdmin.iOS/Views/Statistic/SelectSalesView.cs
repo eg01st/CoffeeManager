@@ -1,11 +1,10 @@
-﻿
-using UIKit;
+﻿using System.Collections.Generic;
 using CoffeeManagerAdmin.Core;
-using MvvmCross.Binding.BindingContext;
-using System.Collections.Generic;
 using CoffeeManagerAdmin.iOS.Views.Abstract;
+using MvvmCross.Binding.BindingContext;
+using UIKit;
 
-namespace CoffeeManagerAdmin.iOS
+namespace CoffeeManagerAdmin.iOS.Views.Statistic
 {
     public partial class SelectSalesView : SearchViewController<SelectSalesView, SelectSalesViewModel, SelectSaleItemViewModel>
     {

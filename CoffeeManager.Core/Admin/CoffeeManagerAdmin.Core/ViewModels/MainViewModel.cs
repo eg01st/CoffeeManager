@@ -1,19 +1,25 @@
-﻿using CoffeManager.Common;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using CoffeManager.Common;
 using CoffeManager.Common.ViewModels;
+using CoffeeManagerAdmin.Core.ViewModels.Home;
 
 namespace CoffeeManagerAdmin.Core.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
-
-        public void ShowErrorMessage(string v)
+        public async Task ShowInitialViewModelsAsync()
         {
-            UserDialogs.Alert(v);
+            await Task.WhenAll(GetPageVmTypesForInitialNavigate());
         }
 
-
-        public MainViewModel()
+        private IEnumerable<Task> GetPageVmTypesForInitialNavigate()
         {
+            yield return NavigationService.Navigate<MoneyViewModel>();
+            yield return NavigationService.Navigate<StorageViewModel>();
+            yield return NavigationService.Navigate<ManageExpensesViewModel>();
+            yield return NavigationService.Navigate<ProductsViewModel>();
+            yield return NavigationService.Navigate<StatisticViewModel>();
 
         }
 

@@ -1,15 +1,12 @@
 ﻿using System;
-
-using UIKit;
-using MvvmCross.iOS.Views;
-using MvvmCross.Binding.iOS.Views;
-using CoreGraphics;
-using CoffeeManagerAdmin.Core;
+using CoffeeManagerAdmin.Core.ViewModels.Home;
 using CoffeeManagerAdmin.iOS.Views.Abstract;
+using CoreGraphics;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.Platform.iOS;
+using UIKit;
 
-namespace CoffeeManagerAdmin.iOS
+namespace CoffeeManagerAdmin.iOS.Views.Home
 {
     public partial class StatisticView : ViewControllerBase<StatisticViewModel>
     {
