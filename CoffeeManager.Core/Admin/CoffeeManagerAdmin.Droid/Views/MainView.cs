@@ -1,15 +1,14 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using Android.App;
 using Android.Content.PM;
-using MvvmCross.Droid.Views.Attributes;
-using MobileCore.Droid.Activities;
-using CoffeeManagerAdmin.Core.ViewModels;
-using System.Collections.Generic;
-using MobileCore.Droid.Bindings.CustomAtts;
-using Android.Widget;
 using Android.Support.V4.View;
+using Android.Widget;
+using CoffeeManagerAdmin.Core.ViewModels;
+using MobileCore.Droid.Activities;
+using MobileCore.Droid.Bindings.CustomAtts;
+using MvvmCross.Droid.Views.Attributes;
 
-namespace CoffeeManagerAdmin.Droid
+namespace CoffeeManagerAdmin.Droid.Views
 {
     [MvxActivityPresentation]
     [Activity(ScreenOrientation = ScreenOrientation.Portrait,  WindowSoftInputMode = Android.Views.SoftInput.AdjustNothing)]

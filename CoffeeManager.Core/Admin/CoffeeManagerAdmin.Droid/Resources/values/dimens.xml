@@ -5,6 +5,7 @@
 	<dimen name="page_indicator_default_size">5dp</dimen>
     <dimen name="fontSize10">10sp</dimen>
     <dimen name="app_bar_height">110dp</dimen>
+  <dimen name="app_bar_height_collapsed">110dp</dimen>
 
     <!-- Standard dimensions -->
 

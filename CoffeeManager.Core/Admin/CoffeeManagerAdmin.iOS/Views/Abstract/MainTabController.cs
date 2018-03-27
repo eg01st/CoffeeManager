@@ -83,6 +83,7 @@ namespace CoffeeManagerAdmin.iOS
             })
             {
                 var vm = ProduceViewModel(item.Type);
+                vm.Initialize();
                 var view = ProduceView(vm);
 
                 var icon = UIImage.FromBundle(item.Icon);

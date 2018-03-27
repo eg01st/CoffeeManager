@@ -142,6 +142,11 @@
           </e>
         </e>
         <e p="CoffeeManagerAdmin.Droid" t="IncludeRecursive">
+          <e p="Adapters" t="Include">
+            <e p="ViewHolders" t="Include">
+              <e p="ShiftItemViewHolder.cs" t="Include" />
+            </e>
+          </e>
           <e p="Assets" t="Include">
             <e p="AboutAssets.txt" t="Include" />
           </e>
@@ -239,6 +244,8 @@
               <e p="fragment_store.axml" t="Include" />
               <e p="login.axml" t="Include" />
               <e p="main.axml" t="Include" />
+              <e p="shift_info_header.axml" t="Include" />
+              <e p="shift_info_item.axml" t="Include" />
               <e p="SplashScreen.axml" t="Include" />
               <e p="tab_item_main.axml" t="Include" />
               <e p="toolbar.axml" t="Include" />
@@ -1357,11 +1364,24 @@
           <e p="ActivityBase.cs" t="Include" />
           <e p="ActivityWithToolbar.cs" t="Include" />
         </e>
+        <e p="Adapters" t="Include">
+          <e p="RecycleViewBindableAdapter.cs" t="Include" />
+          <e p="TemplateSelectors" t="Include">
+            <e p="ITemplateSelector.cs" t="Include" />
+            <e p="TemplateSelector.cs" t="Include" />
+            <e p="TemplateSelectorItem.cs" t="Include" />
+          </e>
+          <e p="ViewHolders" t="Include">
+            <e p="CardViewHolder.cs" t="Include" />
+          </e>
+        </e>
         <e p="AutoUpdate" t="Include">
           <e p="UpdateProvider.cs" t="Include" />
         </e>
         <e p="bin" t="ExcludeRecursive" />
         <e p="Bindings" t="Include">
+          <e p="BaseCommandTargetBinding.cs" t="Include" />
+          <e p="BaseTargetBinding.cs" t="Include" />
           <e p="CustomAtts" t="Include">
             <e p="BindingAttribute.cs" t="Include" />
             <e p="FindByIdAttribute.cs" t="Include" />
@@ -1369,14 +1389,21 @@
             <e p="Unbinder.cs" t="Include" />
             <e p="ViewBinder.cs" t="Include" />
           </e>
+          <e p="EndlessListLoadMoreTargetBinding.cs" t="Include" />
         </e>
         <e p="Bootstrap" t="Include">
           <e p="FilePluginBootstrap.cs" t="Include" />
+        </e>
+        <e p="Common" t="Include">
+          <e p="BindingConstants.cs" t="Include" />
         </e>
         <e p="Connection" t="Include">
           <e p="Connectivity.cs" t="Include" />
           <e p="ConnectivityChangeBroadcastReceiver.cs" t="Include" />
           <e p="ConnectivityManagerExtensions.cs" t="Include" />
+        </e>
+        <e p="Controls" t="Include">
+          <e p="EndlessRecyclerView.cs" t="Include" />
         </e>
         <e p="Email" t="Include">
           <e p="EmailService.cs" t="Include" />
@@ -1389,6 +1416,8 @@
           <e p="FragmentBase.cs" t="Include" />
         </e>
         <e p="Listeners" t="Include">
+          <e p="EndlessScrollChangedListener.cs" t="Include" />
+          <e p="OnLoadMoreListener.cs" t="Include" />
           <e p="ViewOnClickListener.cs" t="Include" />
         </e>
         <e p="Logging" t="Include">
@@ -1446,6 +1475,7 @@
       </e>
       <e p="Storage" t="Include" />
       <e p="ViewModels" t="Include">
+        <e p="FeedItemElementViewModel.cs" t="Include" />
         <e p="PageViewModel.cs" t="Include" />
         <e p="SimpleViewModel.cs" t="Include" />
       </e>

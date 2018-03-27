@@ -5,6 +5,7 @@ using UIKit;
 using MvvmCross.Binding.iOS.Views;
 using MvvmCross.Binding.BindingContext;
 using CoffeeManagerAdmin.Core.ViewModels;
+using CoffeeManagerAdmin.Core.ViewModels.Shifts;
 using MvvmCross.Binding.iOS.Views.Gestures;
 
 namespace CoffeeManagerAdmin.iOS

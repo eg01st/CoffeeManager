@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:weightSum="100"
+        android:layout_margin="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="22-22"
+            android:layout_weight="14"
+            android:gravity="center"
+            android:id="@+id/date"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:text="namename"
+            android:layout_weight="20"
+            android:gravity="center"
+            android:id="@+id/name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:text="2222"
+            android:layout_weight="13"
+            android:gravity="right"
+            android:id="@+id/expenses"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:text="2222"
+            android:layout_weight="13"
+            android:gravity="right"
+            android:id="@+id/earned"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:text="2222"
+            android:layout_weight="13"
+            android:gravity="right"
+            android:id="@+id/read_shift"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:text="2222"
+            android:layout_weight="13"
+            android:gravity="right"
+            android:id="@+id/card"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:text="2222"
+            android:gravity="right"
+            android:layout_weight="13"
+            android:id="@+id/real_amount"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+</LinearLayout>

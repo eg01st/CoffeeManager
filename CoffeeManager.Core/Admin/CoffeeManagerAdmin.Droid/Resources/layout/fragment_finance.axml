@@ -1,10 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:local="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <TextView
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:text="finance" />
+    <android.support.v7.widget.Toolbar
+        style="@style/toolbar_global"
+        android:id="@+id/toolbar" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="100"
+            local:MvxBind="Click SelectCoffeeRoomCommand">
+            <TextView
+                android:layout_marginRight="8dp"
+                android:gravity="right"
+                android:layout_weight="50"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/store" />
+            <EditText
+                android:layout_marginLeft="8dp"
+                android:layout_weight="50"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:enabled="false"
+                local:MvxBind="Text CurrentCoffeeRoomName" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="8dp"
+            android:weightSum="100"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_marginRight="8dp"
+                android:gravity="right"
+                android:layout_weight="50"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/entire_money" />
+            <TextView
+                android:layout_marginLeft="8dp"
+                android:layout_weight="50"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                local:MvxBind="Text CurrentBalance" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="8dp"
+            android:weightSum="100"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_marginRight="8dp"
+                android:gravity="right"
+                android:layout_weight="50"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/current_shift_money" />
+            <TextView
+                android:layout_marginLeft="8dp"
+                android:layout_weight="50"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                local:MvxBind="Text CurrentShiftBalance" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="8dp"
+            android:weightSum="100"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_marginRight="8dp"
+                android:gravity="right"
+                android:layout_weight="50"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/credit_card_money" />
+            <TextView
+                android:layout_marginLeft="8dp"
+                android:layout_weight="50"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                local:MvxBind="Text CurrentCreditCardBalance" />
+        </LinearLayout>
+        <TextView
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/shifts_title" />
+        <include
+            layout="@layout/shift_info_header" />
+        <EndlessRecyclerView
+            android:layout_marginTop="8dp"
+            android:id="@+id/recyclerview_shifts"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
 </LinearLayout>

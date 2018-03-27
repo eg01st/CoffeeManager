@@ -9,5 +9,21 @@
     <string name="expenses_tab_title">Расходы</string>
     <string name="products_tab_title">Товары</string>
     <string name="statistic_tab_title">Статистика</string>
-    
+
+
+	<string name="store">Заведение</string>
+	<string name="current_shift_money">Текущая смена</string>
+	<string name="entire_money">Текущая касса</string>
+	<string name="credit_card_money">Карта</string>
+
+	<string name="shifts_title">Смены</string>
+
+	<string name="date">Дата</string>
+	<string name="user_name">Имя</string>
+	<string name="expenses">Расход</string>
+	<string name="earned_amount">Смена</string>
+	<string name="real_shift">Реальная</string>
+	<string name="card">+Карта</string>
+	<string name="real_amount">Касса</string>
+	
 </resources>

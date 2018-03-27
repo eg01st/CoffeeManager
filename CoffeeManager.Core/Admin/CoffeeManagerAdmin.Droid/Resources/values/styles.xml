@@ -1,5 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <resources>
+
+ <style name="toolbar_global">
+  <item name="android:layout_width">match_parent</item>
+  <item name="android:layout_height">?android:actionBarSize</item>
+  <!--<item name="android:background">@color/window_background</item>-->
+  <!--<item name="android:theme">@style/ActionBarTheme</item>-->
+  <!--<item name="titleTextAppearance">@style/Toolbar.TitleText</item>-->
+ </style>
  <!-- <style name="MyTheme" parent="Theme.AppCompat.Light">
   </style>-->
   <!-- Base theme applied no matter what API -->

@@ -1,11 +1,7 @@
-﻿using System;
-using System.Windows.Input;
-using CoffeeManager.Models;
-using MvvmCross.Core.ViewModels;
-using CoffeManager.Common;
+﻿using CoffeeManager.Models;
 using CoffeManager.Common.ViewModels;
 
-namespace CoffeeManagerAdmin.Core.ViewModels
+namespace CoffeeManagerAdmin.Core.ViewModels.Shifts
 {
     public class ShiftItemViewModel : ListItemViewModelBase
     {

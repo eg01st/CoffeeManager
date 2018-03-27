@@ -2,10 +2,14 @@
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Acr.UserDialogs;
 using CoffeeManager.Common;
 using CoffeeManager.Models;
+using CoffeeManagerAdmin.Core.ViewModels.Shifts;
 using CoffeManager.Common;
 using CoffeManager.Common.ViewModels;
+using MobileCore.Extensions;
+using MobileCore.ViewModels;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Messenger;
 
@@ -39,9 +43,41 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Home
             ShowUsersCommand = new MvxCommand(() => ShowViewModel<UsersViewModel>());
             ShowCreditCardCommand = new MvxCommand(() => ShowViewModel<CreditCardViewModel>());
             LoadNextPageCommand = new MvxAsyncCommand(DoLoadNextPage);
+            SelectCoffeeRoomCommand = new MvxCommand(DoSelectCoffeeRoom);
+            
+            ItemSelectedCommand = new MvxAsyncCommand<ShiftItemViewModel>(OnItemSelectedAsync);
 
             refreshCoffeeroomsToken = Subscribe<RefreshCoffeeRoomsMessage>(async (obj) => await GetCoffeeRooms());
             refreshAmountToken = Subscribe<UpdateCashAmountMessage>(async (obj) => await GetEntireMoney());
+        }
+
+        private async Task OnItemSelectedAsync(ShiftItemViewModel item)
+        {
+            item.ThrowIfNull(nameof(item));
+            
+            item.SelectCommand.Execute();
+
+            await Task.Yield();
+        }
+
+        private void DoSelectCoffeeRoom()
+        {
+            if (CoffeeRooms.Count <= 1)
+            {
+                return;
+            }
+            var optionList = new List<ActionSheetOption>();
+            foreach (var cr in CoffeeRooms)
+            {
+                optionList.Add(new ActionSheetOption(cr.Name, () => { CurrentCoffeeRoom = CoffeeRooms.First(c => c.Id == cr.Id); }));
+            }
+
+            UserDialogs.ActionSheet(new ActionSheetConfig
+            {
+                Options = optionList,
+                Message = "Выбор заведения",
+                UseBottomSheet = true
+            });
         }
 
         private async Task DoLoadNextPage()
@@ -67,7 +103,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Home
         public MvxObservableCollection<ShiftItemViewModel> Items
         {
             get => items;
-            private set
+            set
             {
                 items = value;
                 RaisePropertyChanged(nameof(Items));
@@ -79,11 +115,14 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Home
         public ICommand ShowSettingsCommand { get; }
         public ICommand ShowUsersCommand { get; }
         public ICommand LoadNextPageCommand { get; }
+        public ICommand SelectCoffeeRoomCommand { get; }
+
+        public MvxAsyncCommand<ShiftItemViewModel> ItemSelectedCommand { get; }
 
         public string CurrentBalance
         {
             get => currentBalance;
-            private set
+            set
             {
                 currentBalance = value;
                 RaisePropertyChanged(nameof(CurrentBalance));
@@ -93,7 +132,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Home
         public string CurrentShiftBalance
         {
             get => currentShiftBalance;
-            private set
+            set
             {
                 currentShiftBalance = value;
                 RaisePropertyChanged(nameof(CurrentShiftBalance));
@@ -103,7 +142,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Home
         public string CurrentCreditCardBalance
         {
             get => currentCreditCardBalance;
-            private set
+            set
             {
                 currentCreditCardBalance = value;
                 RaisePropertyChanged(nameof(CurrentCreditCardBalance));
@@ -113,7 +152,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Home
         public Entity CurrentCoffeeRoom
         {
             get => currentCoffeeRoom;
-            private set
+            set
             {
                 currentCoffeeRoom = value;
                 RaisePropertyChanged(nameof(CurrentCoffeeRoom));
@@ -127,7 +166,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Home
         public List<Entity> CoffeeRooms
         {
             get => coffeeRooms;
-            private set
+            set
             {
                 coffeeRooms = value;
                 RaisePropertyChanged(nameof(CoffeeRooms));
