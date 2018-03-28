@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Acr.UserDialogs;
 using CoffeeManager.Common;
 using CoffeeManager.Models;
 using CoffeeManager.Models.Data.DTO.User;
@@ -47,7 +48,9 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Users
         public ICommand UpdateCommand {get;set;}
         public ICommand PenaltyCommand { get; set; }
         public ICommand ShowEarningsCommand { get; set; }
-
+        public ICommand SelectCoffeeRoomCommand { get; }
+        public ICommand SelectExpenseCommand { get; }
+        
         public List<UserPenaltyItemViewModel> Penalties { get; set; } = new List<UserPenaltyItemViewModel>();
 
 
@@ -145,8 +148,48 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Users
             UpdateCommand = new MvxCommand(DoUpdateUser);
             PenaltyCommand = new MvxCommand(DoPenalty);
             ShowEarningsCommand = new MvxCommand(DoShowEarnings);
+            SelectCoffeeRoomCommand = new MvxCommand(DoSelectCoffeeRoom);
+            SelectExpenseCommand = new MvxCommand(DoSelectExpense);
 
             token = Subscribe<UserAmountChangedMessage>(async (obj) => await Init(useridParameter));
+        }
+        
+        private void DoSelectCoffeeRoom()
+        {
+            if (CoffeeRooms.Count <= 1)
+            {
+                return;
+            }
+            var optionList = new List<ActionSheetOption>();
+            foreach (var cr in CoffeeRooms)
+            {
+                optionList.Add(new ActionSheetOption(cr.Name, () => { CurrentCoffeeRoom = CoffeeRooms.First(c => c.Id == cr.Id); }));
+            }
+
+            UserDialogs.ActionSheet(new ActionSheetConfig
+            {
+                Options = optionList,
+                Title = "Выбор заведения",
+            });
+        }
+        
+        private void DoSelectExpense()
+        {
+            if (ExpenseItems.Count <= 1)
+            {
+                return;
+            }
+            var optionList = new List<ActionSheetOption>();
+            foreach (var cr in ExpenseItems)
+            {
+                optionList.Add(new ActionSheetOption(cr.Name, () => { SelectedExpenseType = ExpenseItems.First(c => c.Id == cr.Id); }));
+            }
+
+            UserDialogs.ActionSheet(new ActionSheetConfig
+            {
+                Options = optionList,
+                Title = "Выбор расхода",
+            });
         }
 
         private void DoShowEarnings()
@@ -336,7 +379,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Users
                 UserDialogs.Alert("Пустой баланс!");
                 return;
             }
-            Confirm($"Выдать зарплату баристе {UserName}\nв размере {CurrentEarnedAmount} грн\nс кофейни {CurrentCoffeeRoomName}?", PaySalary);
+            Confirm($"Выдать зарплату баристе {UserName}\nв размере {CurrentEarnedAmount} грн\nс заведения {CurrentCoffeeRoomName}?", PaySalary);
        
         }
 

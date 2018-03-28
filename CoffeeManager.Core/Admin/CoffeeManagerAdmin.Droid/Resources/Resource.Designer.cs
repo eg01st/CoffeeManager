@@ -4658,44 +4658,44 @@ namespace CoffeeManagerAdmin.Droid
 		public partial class Color
 		{
 			
-			// aapt resource value: 0x7f0b005d
-			public const int abc_background_cache_hint_selector_material_dark = 2131427421;
-			
 			// aapt resource value: 0x7f0b005e
-			public const int abc_background_cache_hint_selector_material_light = 2131427422;
+			public const int abc_background_cache_hint_selector_material_dark = 2131427422;
 			
 			// aapt resource value: 0x7f0b005f
-			public const int abc_btn_colored_borderless_text_material = 2131427423;
+			public const int abc_background_cache_hint_selector_material_light = 2131427423;
 			
 			// aapt resource value: 0x7f0b0060
-			public const int abc_btn_colored_text_material = 2131427424;
+			public const int abc_btn_colored_borderless_text_material = 2131427424;
 			
 			// aapt resource value: 0x7f0b0061
-			public const int abc_color_highlight_material = 2131427425;
+			public const int abc_btn_colored_text_material = 2131427425;
 			
 			// aapt resource value: 0x7f0b0062
-			public const int abc_hint_foreground_material_dark = 2131427426;
+			public const int abc_color_highlight_material = 2131427426;
 			
 			// aapt resource value: 0x7f0b0063
-			public const int abc_hint_foreground_material_light = 2131427427;
+			public const int abc_hint_foreground_material_dark = 2131427427;
+			
+			// aapt resource value: 0x7f0b0064
+			public const int abc_hint_foreground_material_light = 2131427428;
 			
 			// aapt resource value: 0x7f0b0004
 			public const int abc_input_method_navigation_guard = 2131427332;
 			
-			// aapt resource value: 0x7f0b0064
-			public const int abc_primary_text_disable_only_material_dark = 2131427428;
-			
 			// aapt resource value: 0x7f0b0065
-			public const int abc_primary_text_disable_only_material_light = 2131427429;
+			public const int abc_primary_text_disable_only_material_dark = 2131427429;
 			
 			// aapt resource value: 0x7f0b0066
-			public const int abc_primary_text_material_dark = 2131427430;
+			public const int abc_primary_text_disable_only_material_light = 2131427430;
 			
 			// aapt resource value: 0x7f0b0067
-			public const int abc_primary_text_material_light = 2131427431;
+			public const int abc_primary_text_material_dark = 2131427431;
 			
 			// aapt resource value: 0x7f0b0068
-			public const int abc_search_url_text = 2131427432;
+			public const int abc_primary_text_material_light = 2131427432;
+			
+			// aapt resource value: 0x7f0b0069
+			public const int abc_search_url_text = 2131427433;
 			
 			// aapt resource value: 0x7f0b0005
 			public const int abc_search_url_text_normal = 2131427333;
@@ -4706,29 +4706,29 @@ namespace CoffeeManagerAdmin.Droid
 			// aapt resource value: 0x7f0b0007
 			public const int abc_search_url_text_selected = 2131427335;
 			
-			// aapt resource value: 0x7f0b0069
-			public const int abc_secondary_text_material_dark = 2131427433;
-			
 			// aapt resource value: 0x7f0b006a
-			public const int abc_secondary_text_material_light = 2131427434;
+			public const int abc_secondary_text_material_dark = 2131427434;
 			
 			// aapt resource value: 0x7f0b006b
-			public const int abc_tint_btn_checkable = 2131427435;
+			public const int abc_secondary_text_material_light = 2131427435;
 			
 			// aapt resource value: 0x7f0b006c
-			public const int abc_tint_default = 2131427436;
+			public const int abc_tint_btn_checkable = 2131427436;
 			
 			// aapt resource value: 0x7f0b006d
-			public const int abc_tint_edittext = 2131427437;
+			public const int abc_tint_default = 2131427437;
 			
 			// aapt resource value: 0x7f0b006e
-			public const int abc_tint_seek_thumb = 2131427438;
+			public const int abc_tint_edittext = 2131427438;
 			
 			// aapt resource value: 0x7f0b006f
-			public const int abc_tint_spinner = 2131427439;
+			public const int abc_tint_seek_thumb = 2131427439;
 			
 			// aapt resource value: 0x7f0b0070
-			public const int abc_tint_switch_track = 2131427440;
+			public const int abc_tint_spinner = 2131427440;
+			
+			// aapt resource value: 0x7f0b0071
+			public const int abc_tint_switch_track = 2131427441;
 			
 			// aapt resource value: 0x7f0b004d
 			public const int accent = 2131427405;
@@ -4817,8 +4817,8 @@ namespace CoffeeManagerAdmin.Droid
 			// aapt resource value: 0x7f0b0040
 			public const int design_bottom_navigation_shadow_color = 2131427392;
 			
-			// aapt resource value: 0x7f0b0071
-			public const int design_error = 2131427441;
+			// aapt resource value: 0x7f0b0072
+			public const int design_error = 2131427442;
 			
 			// aapt resource value: 0x7f0b0041
 			public const int design_fab_shadow_end_color = 2131427393;
@@ -4844,8 +4844,8 @@ namespace CoffeeManagerAdmin.Droid
 			// aapt resource value: 0x7f0b0048
 			public const int design_snackbar_background_color = 2131427400;
 			
-			// aapt resource value: 0x7f0b0072
-			public const int design_tint_password_toggle = 2131427442;
+			// aapt resource value: 0x7f0b0073
+			public const int design_tint_password_toggle = 2131427443;
 			
 			// aapt resource value: 0x7f0b0016
 			public const int dim_foreground_disabled_material_dark = 2131427350;
@@ -4870,6 +4870,9 @@ namespace CoffeeManagerAdmin.Droid
 			
 			// aapt resource value: 0x7f0b001c
 			public const int foreground_material_light = 2131427356;
+			
+			// aapt resource value: 0x7f0b005d
+			public const int grayishCyan = 2131427421;
 			
 			// aapt resource value: 0x7f0b001d
 			public const int highlighted_text_material_dark = 2131427357;
@@ -4985,11 +4988,11 @@ namespace CoffeeManagerAdmin.Droid
 			// aapt resource value: 0x7f0b003a
 			public const int switch_thumb_disabled_material_light = 2131427386;
 			
-			// aapt resource value: 0x7f0b0073
-			public const int switch_thumb_material_dark = 2131427443;
-			
 			// aapt resource value: 0x7f0b0074
-			public const int switch_thumb_material_light = 2131427444;
+			public const int switch_thumb_material_dark = 2131427444;
+			
+			// aapt resource value: 0x7f0b0075
+			public const int switch_thumb_material_light = 2131427445;
 			
 			// aapt resource value: 0x7f0b003b
 			public const int switch_thumb_normal_material_dark = 2131427387;
@@ -4997,8 +5000,8 @@ namespace CoffeeManagerAdmin.Droid
 			// aapt resource value: 0x7f0b003c
 			public const int switch_thumb_normal_material_light = 2131427388;
 			
-			// aapt resource value: 0x7f0b0075
-			public const int tabtext_color_selector = 2131427445;
+			// aapt resource value: 0x7f0b0076
+			public const int tabtext_color_selector = 2131427446;
 			
 			// aapt resource value: 0x7f0b004f
 			public const int textIcon = 2131427407;
@@ -5803,26 +5806,26 @@ namespace CoffeeManagerAdmin.Droid
 			// aapt resource value: 0x7f020053
 			public const int avd_hide_password = 2130837587;
 			
-			// aapt resource value: 0x7f02007e
-			public const int avd_hide_password_1 = 2130837630;
-			
 			// aapt resource value: 0x7f02007f
-			public const int avd_hide_password_2 = 2130837631;
+			public const int avd_hide_password_1 = 2130837631;
 			
 			// aapt resource value: 0x7f020080
-			public const int avd_hide_password_3 = 2130837632;
+			public const int avd_hide_password_2 = 2130837632;
+			
+			// aapt resource value: 0x7f020081
+			public const int avd_hide_password_3 = 2130837633;
 			
 			// aapt resource value: 0x7f020054
 			public const int avd_show_password = 2130837588;
 			
-			// aapt resource value: 0x7f020081
-			public const int avd_show_password_1 = 2130837633;
-			
 			// aapt resource value: 0x7f020082
-			public const int avd_show_password_2 = 2130837634;
+			public const int avd_show_password_1 = 2130837634;
 			
 			// aapt resource value: 0x7f020083
-			public const int avd_show_password_3 = 2130837635;
+			public const int avd_show_password_2 = 2130837635;
+			
+			// aapt resource value: 0x7f020084
+			public const int avd_show_password_3 = 2130837636;
 			
 			// aapt resource value: 0x7f020055
 			public const int design_bottom_navigation_item_background = 2130837589;
@@ -5870,82 +5873,85 @@ namespace CoffeeManagerAdmin.Droid
 			public const int ic_local_cafe_black_24dp = 2130837603;
 			
 			// aapt resource value: 0x7f020064
-			public const int ic_settings_black_24dp = 2130837604;
+			public const int ic_save_white_24dp = 2130837604;
 			
 			// aapt resource value: 0x7f020065
-			public const int ic_shopping_basket_black_24dp = 2130837605;
+			public const int ic_settings_black_24dp = 2130837605;
 			
 			// aapt resource value: 0x7f020066
-			public const int ic_successstatus = 2130837606;
+			public const int ic_shopping_basket_black_24dp = 2130837606;
 			
 			// aapt resource value: 0x7f020067
-			public const int ic_trending_up_black_24dp = 2130837607;
+			public const int ic_successstatus = 2130837607;
 			
 			// aapt resource value: 0x7f020068
-			public const int Icon = 2130837608;
+			public const int ic_trending_up_black_24dp = 2130837608;
 			
 			// aapt resource value: 0x7f020069
-			public const int navigation_empty_icon = 2130837609;
+			public const int Icon = 2130837609;
 			
 			// aapt resource value: 0x7f02006a
-			public const int notification_action_background = 2130837610;
+			public const int navigation_empty_icon = 2130837610;
 			
 			// aapt resource value: 0x7f02006b
-			public const int notification_bg = 2130837611;
+			public const int notification_action_background = 2130837611;
 			
 			// aapt resource value: 0x7f02006c
-			public const int notification_bg_low = 2130837612;
+			public const int notification_bg = 2130837612;
 			
 			// aapt resource value: 0x7f02006d
-			public const int notification_bg_low_normal = 2130837613;
+			public const int notification_bg_low = 2130837613;
 			
 			// aapt resource value: 0x7f02006e
-			public const int notification_bg_low_pressed = 2130837614;
+			public const int notification_bg_low_normal = 2130837614;
 			
 			// aapt resource value: 0x7f02006f
-			public const int notification_bg_normal = 2130837615;
+			public const int notification_bg_low_pressed = 2130837615;
 			
 			// aapt resource value: 0x7f020070
-			public const int notification_bg_normal_pressed = 2130837616;
+			public const int notification_bg_normal = 2130837616;
 			
 			// aapt resource value: 0x7f020071
-			public const int notification_icon_background = 2130837617;
-			
-			// aapt resource value: 0x7f02007c
-			public const int notification_template_icon_bg = 2130837628;
-			
-			// aapt resource value: 0x7f02007d
-			public const int notification_template_icon_low_bg = 2130837629;
+			public const int notification_bg_normal_pressed = 2130837617;
 			
 			// aapt resource value: 0x7f020072
-			public const int notification_tile_bg = 2130837618;
+			public const int notification_icon_background = 2130837618;
+			
+			// aapt resource value: 0x7f02007d
+			public const int notification_template_icon_bg = 2130837629;
+			
+			// aapt resource value: 0x7f02007e
+			public const int notification_template_icon_low_bg = 2130837630;
 			
 			// aapt resource value: 0x7f020073
-			public const int notify_panel_notification_icon_bg = 2130837619;
+			public const int notification_tile_bg = 2130837619;
 			
 			// aapt resource value: 0x7f020074
-			public const int products_tab_selector = 2130837620;
+			public const int notify_panel_notification_icon_bg = 2130837620;
 			
 			// aapt resource value: 0x7f020075
-			public const int roundedbg = 2130837621;
+			public const int products_tab_selector = 2130837621;
 			
 			// aapt resource value: 0x7f020076
-			public const int roundedbgdark = 2130837622;
+			public const int roundedbg = 2130837622;
 			
 			// aapt resource value: 0x7f020077
-			public const int statistic_tab_selector = 2130837623;
+			public const int roundedbgdark = 2130837623;
 			
 			// aapt resource value: 0x7f020078
-			public const int storage_tab_selector = 2130837624;
+			public const int statistic_tab_selector = 2130837624;
 			
 			// aapt resource value: 0x7f020079
-			public const int take_cup_transparent = 2130837625;
+			public const int storage_tab_selector = 2130837625;
 			
 			// aapt resource value: 0x7f02007a
-			public const int tooltip_frame_dark = 2130837626;
+			public const int take_cup_transparent = 2130837626;
 			
 			// aapt resource value: 0x7f02007b
-			public const int tooltip_frame_light = 2130837627;
+			public const int tooltip_frame_dark = 2130837627;
+			
+			// aapt resource value: 0x7f02007c
+			public const int tooltip_frame_light = 2130837628;
 			
 			static Drawable()
 			{
@@ -6116,8 +6122,8 @@ namespace CoffeeManagerAdmin.Droid
 			// aapt resource value: 0x7f090090
 			public const int coordinator = 2131296400;
 			
-			// aapt resource value: 0x7f0900c6
-			public const int currency_text = 2131296454;
+			// aapt resource value: 0x7f0900ca
+			public const int currency_text = 2131296458;
 			
 			// aapt resource value: 0x7f09006f
 			public const int custom = 2131296367;
@@ -6227,8 +6233,8 @@ namespace CoffeeManagerAdmin.Droid
 			// aapt resource value: 0x7f0900b3
 			public const int info = 2131296435;
 			
-			// aapt resource value: 0x7f0900c4
-			public const int is_active_checkbox = 2131296452;
+			// aapt resource value: 0x7f0900c8
+			public const int is_active_checkbox = 2131296456;
 			
 			// aapt resource value: 0x7f09005b
 			public const int italic = 2131296347;
@@ -6266,8 +6272,8 @@ namespace CoffeeManagerAdmin.Droid
 			// aapt resource value: 0x7f0900a3
 			public const int main_view_pager_holder = 2131296419;
 			
-			// aapt resource value: 0x7f0900c9
-			public const int masked = 2131296457;
+			// aapt resource value: 0x7f0900cd
+			public const int masked = 2131296461;
 			
 			// aapt resource value: 0x7f0900ac
 			public const int media_actions = 2131296428;
@@ -6287,8 +6293,8 @@ namespace CoffeeManagerAdmin.Droid
 			// aapt resource value: 0x7f0900ba
 			public const int name = 2131296442;
 			
-			// aapt resource value: 0x7f0900c3
-			public const int name_text = 2131296451;
+			// aapt resource value: 0x7f0900c7
+			public const int name_text = 2131296455;
 			
 			// aapt resource value: 0x7f090095
 			public const int navigation_header_container = 2131296405;
@@ -6320,6 +6326,9 @@ namespace CoffeeManagerAdmin.Droid
 			// aapt resource value: 0x7f09000b
 			public const int parent_matrix = 2131296267;
 			
+			// aapt resource value: 0x7f0900c4
+			public const int payment_on_store_text = 2131296452;
+			
 			// aapt resource value: 0x7f09004f
 			public const int pin = 2131296335;
 			
@@ -6338,11 +6347,14 @@ namespace CoffeeManagerAdmin.Droid
 			// aapt resource value: 0x7f0900bf
 			public const int real_amount = 2131296447;
 			
+			// aapt resource value: 0x7f0900c6
+			public const int recyclerview_penalties = 2131296454;
+			
 			// aapt resource value: 0x7f09009c
 			public const int recyclerview_shifts = 2131296412;
 			
-			// aapt resource value: 0x7f0900c7
-			public const int recyclerview_users = 2131296455;
+			// aapt resource value: 0x7f0900cb
+			public const int recyclerview_users = 2131296459;
 			
 			// aapt resource value: 0x7f09004c
 			public const int right = 2131296332;
@@ -6353,8 +6365,11 @@ namespace CoffeeManagerAdmin.Droid
 			// aapt resource value: 0x7f0900b0
 			public const int right_side = 2131296432;
 			
-			// aapt resource value: 0x7f0900c5
-			public const int salary_text = 2131296453;
+			// aapt resource value: 0x7f0900c9
+			public const int salary_text = 2131296457;
+			
+			// aapt resource value: 0x7f0900cf
+			public const int save = 2131296463;
 			
 			// aapt resource value: 0x7f09000c
 			public const int save_image_matrix = 2131296268;
@@ -6415,6 +6430,9 @@ namespace CoffeeManagerAdmin.Droid
 			
 			// aapt resource value: 0x7f09008c
 			public const int select_dialog_listview = 2131296396;
+			
+			// aapt resource value: 0x7f0900c5
+			public const int select_store_button = 2131296453;
 			
 			// aapt resource value: 0x7f090076
 			public const int shortcut = 2131296374;
@@ -6554,14 +6572,17 @@ namespace CoffeeManagerAdmin.Droid
 			// aapt resource value: 0x7f090028
 			public const int useLogo = 2131296296;
 			
-			// aapt resource value: 0x7f0900ca
-			public const int user = 2131296458;
+			// aapt resource value: 0x7f0900ce
+			public const int user = 2131296462;
+			
+			// aapt resource value: 0x7f0900c3
+			public const int user_expense_text = 2131296451;
 			
 			// aapt resource value: 0x7f090016
 			public const int view_offset_helper = 2131296278;
 			
-			// aapt resource value: 0x7f0900c8
-			public const int visible = 2131296456;
+			// aapt resource value: 0x7f0900cc
+			public const int visible = 2131296460;
 			
 			// aapt resource value: 0x7f09003e
 			public const int withText = 2131296318;
@@ -6854,10 +6875,13 @@ namespace CoffeeManagerAdmin.Droid
 			public const int tooltip = 2130968650;
 			
 			// aapt resource value: 0x7f04004b
-			public const int user_item = 2130968651;
+			public const int user_detail = 2130968651;
 			
 			// aapt resource value: 0x7f04004c
-			public const int users = 2130968652;
+			public const int user_item = 2130968652;
+			
+			// aapt resource value: 0x7f04004d
+			public const int users = 2130968653;
 			
 			static Layout()
 			{
@@ -6874,6 +6898,9 @@ namespace CoffeeManagerAdmin.Droid
 			
 			// aapt resource value: 0x7f100000
 			public const int main_menu = 2131755008;
+			
+			// aapt resource value: 0x7f100001
+			public const int user_details_menu = 2131755009;
 			
 			static Menu()
 			{
@@ -7000,6 +7027,9 @@ namespace CoffeeManagerAdmin.Droid
 			// aapt resource value: 0x7f0c0010
 			public const int abc_toolbar_collapse_description = 2131492880;
 			
+			// aapt resource value: 0x7f0c0052
+			public const int amount = 2131492946;
+			
 			// aapt resource value: 0x7f0c0041
 			public const int amount_to_salary_pay = 2131492929;
 			
@@ -7021,11 +7051,17 @@ namespace CoffeeManagerAdmin.Droid
 			// aapt resource value: 0x7f0c0042
 			public const int currency = 2131492930;
 			
+			// aapt resource value: 0x7f0c0046
+			public const int current_salary = 2131492934;
+			
 			// aapt resource value: 0x7f0c0034
 			public const int current_shift_money = 2131492916;
 			
 			// aapt resource value: 0x7f0c0038
 			public const int date = 2131492920;
+			
+			// aapt resource value: 0x7f0c004c
+			public const int day_percent = 2131492940;
 			
 			// aapt resource value: 0x7f0c003b
 			public const int earned_amount = 2131492923;
@@ -7035,6 +7071,9 @@ namespace CoffeeManagerAdmin.Droid
 			
 			// aapt resource value: 0x7f0c0035
 			public const int entire_money = 2131492917;
+			
+			// aapt resource value: 0x7f0c0047
+			public const int entire_salary = 2131492935;
 			
 			// aapt resource value: 0x7f0c003a
 			public const int expenses = 2131492922;
@@ -7050,6 +7089,15 @@ namespace CoffeeManagerAdmin.Droid
 			
 			// aapt resource value: 0x7f0c002d
 			public const int login = 2131492909;
+			
+			// aapt resource value: 0x7f0c004a
+			public const int minimun_payment = 2131492938;
+			
+			// aapt resource value: 0x7f0c0045
+			public const int name = 2131492933;
+			
+			// aapt resource value: 0x7f0c004d
+			public const int night_percent = 2131492941;
 			
 			// aapt resource value: 0x7f0c002c
 			public const int password = 2131492908;
@@ -7068,6 +7116,24 @@ namespace CoffeeManagerAdmin.Droid
 			
 			// aapt resource value: 0x7f0c0025
 			public const int path_password_strike_through = 2131492901;
+			
+			// aapt resource value: 0x7f0c0050
+			public const int pay_salary = 2131492944;
+			
+			// aapt resource value: 0x7f0c004b
+			public const int payment = 2131492939;
+			
+			// aapt resource value: 0x7f0c0049
+			public const int payment_on_store = 2131492937;
+			
+			// aapt resource value: 0x7f0c004f
+			public const int payments = 2131492943;
+			
+			// aapt resource value: 0x7f0c0051
+			public const int penalties = 2131492945;
+			
+			// aapt resource value: 0x7f0c004e
+			public const int penalty = 2131492942;
 			
 			// aapt resource value: 0x7f0c0031
 			public const int products_tab_title = 2131492913;
@@ -7102,8 +7168,17 @@ namespace CoffeeManagerAdmin.Droid
 			// aapt resource value: 0x7f0c002f
 			public const int store_tab_title = 2131492911;
 			
+			// aapt resource value: 0x7f0c0044
+			public const int user_detail = 2131492932;
+			
+			// aapt resource value: 0x7f0c0048
+			public const int user_expense = 2131492936;
+			
 			// aapt resource value: 0x7f0c0039
 			public const int user_name = 2131492921;
+			
+			// aapt resource value: 0x7f0c0043
+			public const int users = 2131492931;
 			
 			static String()
 			{

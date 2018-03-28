@@ -37,5 +37,23 @@
 	<string name="amount_to_salary_pay">Сумма к выплате зарплат: </string>
 	<string name="currency"> грн</string>
 
+	<string name="users">Персонал</string>	
+
+		<string name="user_detail">Детали</string>	
 	
+	<string name="name">Имя:</string>	
+	<string name="current_salary">Текущая зп:</string>	
+	<string name="entire_salary">Общая зп:</string>	
+	<string name="user_expense">Расход для зп:</string>	
+	<string name="payment_on_store">Оплата в заведении: </string>	
+	<string name="minimun_payment">Минимальная оплата:</string>	
+	<string name="payment">Ставка:</string>	
+	<string name="day_percent">Дневной процент:</string>	
+	<string name="night_percent">Ночной процент:</string>	
+	<string name="penalty">Оштрафовать</string>	
+	<string name="payments">Зачисления</string>	
+	<string name="pay_salary">Выдать зп</string>	
+	<string name="penalties">Штрафы</string>	
+	<string name="date">Дата</string>	
+	<string name="amount">Сумма</string>	
 </resources>

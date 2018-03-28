@@ -20,6 +20,7 @@ namespace CoffeeManagerAdmin.Droid.Views.Users
     [Activity(ScreenOrientation = ScreenOrientation.Portrait)]
     public class UsersView : ActivityWithToolbar<UsersViewModel>
     {
+        protected override int GetToolbarTitleStringResourceId() => Resource.String.users;
 
         protected override int GetUpNavigationIconId() => Resource.Drawable.ic_arrow_back_white_24dp;
 

@@ -189,6 +189,7 @@
               <e p="ic_attach_money_black_24dp.png" t="Include" />
               <e p="ic_credit_card_black_24dp.png" t="Include" />
               <e p="ic_local_cafe_black_24dp.png" t="Include" />
+              <e p="ic_save_white_24dp.png" t="Include" />
               <e p="ic_settings_black_24dp.png" t="Include" />
               <e p="ic_shopping_basket_black_24dp.png" t="Include" />
               <e p="ic_trending_up_black_24dp.png" t="Include" />
@@ -201,6 +202,7 @@
               <e p="ic_attach_money_black_24dp.png" t="Include" />
               <e p="ic_credit_card_black_24dp.png" t="Include" />
               <e p="ic_local_cafe_black_24dp.png" t="Include" />
+              <e p="ic_save_white_24dp.png" t="Include" />
               <e p="ic_settings_black_24dp.png" t="Include" />
               <e p="ic_shopping_basket_black_24dp.png" t="Include" />
               <e p="ic_trending_up_black_24dp.png" t="Include" />
@@ -213,6 +215,7 @@
               <e p="ic_attach_money_black_24dp.png" t="Include" />
               <e p="ic_credit_card_black_24dp.png" t="Include" />
               <e p="ic_local_cafe_black_24dp.png" t="Include" />
+              <e p="ic_save_white_24dp.png" t="Include" />
               <e p="ic_settings_black_24dp.png" t="Include" />
               <e p="ic_shopping_basket_black_24dp.png" t="Include" />
               <e p="ic_trending_up_black_24dp.png" t="Include" />
@@ -225,6 +228,7 @@
               <e p="ic_attach_money_black_24dp.png" t="Include" />
               <e p="ic_credit_card_black_24dp.png" t="Include" />
               <e p="ic_local_cafe_black_24dp.png" t="Include" />
+              <e p="ic_save_white_24dp.png" t="Include" />
               <e p="ic_settings_black_24dp.png" t="Include" />
               <e p="ic_shopping_basket_black_24dp.png" t="Include" />
               <e p="ic_trending_up_black_24dp.png" t="Include" />
@@ -237,6 +241,7 @@
               <e p="ic_attach_money_black_24dp.png" t="Include" />
               <e p="ic_credit_card_black_24dp.png" t="Include" />
               <e p="ic_local_cafe_black_24dp.png" t="Include" />
+              <e p="ic_save_white_24dp.png" t="Include" />
               <e p="ic_settings_black_24dp.png" t="Include" />
               <e p="ic_shopping_basket_black_24dp.png" t="Include" />
               <e p="ic_trending_up_black_24dp.png" t="Include" />
@@ -255,11 +260,13 @@
               <e p="SplashScreen.axml" t="Include" />
               <e p="tab_item_main.axml" t="Include" />
               <e p="toolbar.axml" t="Include" />
+              <e p="user_detail.axml" t="Include" />
               <e p="user_item.axml" t="Include" />
               <e p="users.axml" t="Include" />
             </e>
             <e p="menu" t="Include">
               <e p="main_menu.xml" t="Include" />
+              <e p="user_details_menu.xml" t="Include" />
             </e>
             <e p="mipmap-hdpi" t="Include">
               <e p="ic_launcher.png" t="Include" />
@@ -307,6 +314,7 @@
             <e p="LoginView.cs" t="Include" />
             <e p="MainView.cs" t="Include" />
             <e p="Users" t="Include">
+              <e p="UserDetailView.cs" t="Include" />
               <e p="UsersView.cs" t="Include" />
             </e>
           </e>

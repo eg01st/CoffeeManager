@@ -226,6 +226,7 @@
     <Compile Include="Bootstrap\FilePluginBootstrap.cs" />
     <Compile Include="Bootstrap\JsonPluginBootstrap.cs" />
     <Compile Include="Bootstrap\MessengerPluginBootstrap.cs" />
+    <Compile Include="Views\Users\UserDetailView.cs" />
     <Compile Include="Views\Users\UsersView.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -306,6 +307,13 @@
     <AndroidResource Include="Resources\drawable-xhdpi\ic_arrow_back_white_24dp.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\ic_arrow_back_white_24dp.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_arrow_back_white_24dp.png" />
+    <AndroidResource Include="Resources\layout\user_detail.axml" />
+    <AndroidResource Include="Resources\menu\user_details_menu.xml" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_save_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_save_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_save_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_save_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_save_white_24dp.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\strings.xml" />
