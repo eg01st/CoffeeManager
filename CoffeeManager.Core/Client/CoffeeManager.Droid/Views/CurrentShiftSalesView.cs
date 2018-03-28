@@ -1,6 +1,7 @@
 using Android.App;
 using Android.Content.PM;
 using Android.OS;
+using Android.Support.Design.Widget;
 using CoffeeManager.Core.ViewModels;
 using MobileCore.Droid.Activities;
 
@@ -15,6 +16,7 @@ namespace CoffeeManager.Droid.Views
 
         public CurrentShiftSalesView() : base(Resource.Layout.current_sales)
         {
+            
         }
     }
 }

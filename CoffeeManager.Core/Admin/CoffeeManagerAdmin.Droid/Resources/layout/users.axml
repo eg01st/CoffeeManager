@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:local="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include
+            layout="@layout/toolbar" />
+    <RelativeLayout
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"    
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/salary_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:text="@string/amount_to_salary_pay" />
+        <TextView
+            android:layout_toLeftOf="@+id/currency_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1243"
+            local:MvxBind="Text AmountToPay" />
+        <TextView
+            android:id="@+id/currency_text"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/currency" />
+    </RelativeLayout>
+    <EndlessRecyclerView
+            android:layout_marginTop="8dp"
+        android:id="@+id/recyclerview_users"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>

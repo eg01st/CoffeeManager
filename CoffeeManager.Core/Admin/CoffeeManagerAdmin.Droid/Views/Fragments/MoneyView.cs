@@ -27,8 +27,12 @@ namespace CoffeeManagerAdmin.Droid.Views.Fragments
         protected override int GetToolbarId() => Resource.Id.toolbar;
 
         protected override int GetToolbarTitleStringId() => Resource.String.finance_tab_title;
-        
-        protected override bool HasNavigationIcon() => false;
+
+        protected override int GetNavigationIconId() => Resource.Drawable.ic_settings_black_24dp;
+
+        protected override bool HasNavigationIcon() => true;
+
+        protected override int GetMenuResourceId() => Resource.Menu.main_menu;
 
         public MoneyView() : base(Resource.Layout.fragment_finance)
         {
@@ -38,7 +42,10 @@ namespace CoffeeManagerAdmin.Droid.Views.Fragments
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             var view = base.OnCreateView(inflater, container, savedInstanceState);
+            HasOptionsMenu = true;
             InitRecyclerView();
+
+            OnCreateOptionsMenu(Toolbar.Menu, Activity.MenuInflater);
 
             return view;
         }
@@ -52,12 +59,35 @@ namespace CoffeeManagerAdmin.Droid.Views.Fragments
             bindingSet.Apply();
         }
 
+        protected override void OnNavigationIconClick()    
+        {
+            ViewModel.ShowSettingsCommand.Execute(null);
+        }
+
         private void InitRecyclerView()
         {
             shiftsRecyclerView.Adapter = new RecycleViewBindableAdapter((IMvxAndroidBindingContext)BindingContext);
 
             var templateItem = TemplateSelectorItem.Produce<ShiftItemViewModel, ShiftItemViewHolder>(Resource.Layout.shift_info_item);
             shiftsRecyclerView.Adapter.ItemTemplateSelector = new TemplateSelector(templateItem);
+            shiftsRecyclerView.HasNextPage = true;
+        }
+
+        public override bool OnMenuItemClick(IMenuItem item)
+        {
+            var id = item.ItemId;
+
+            if (id == Resource.Id.card)
+            {
+                ViewModel.ShowCreditCardCommand.Execute(null);
+                return true;
+            } 
+            if (id == Resource.Id.user)
+            {
+                ViewModel.ShowUsersCommand.Execute(null);
+                return true;
+            }
+            return base.OnMenuItemClick(item);
         }
     }
 }

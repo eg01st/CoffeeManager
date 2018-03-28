@@ -206,6 +206,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Adapters\ViewHolders\ShiftItemViewHolder.cs" />
+    <Compile Include="Adapters\ViewHolders\UserItemViewHolder.cs" />
     <Compile Include="DebugTrace.cs" />
     <Compile Include="LinkerPleaseInclude.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
@@ -225,6 +226,7 @@
     <Compile Include="Bootstrap\FilePluginBootstrap.cs" />
     <Compile Include="Bootstrap\JsonPluginBootstrap.cs" />
     <Compile Include="Bootstrap\MessengerPluginBootstrap.cs" />
+    <Compile Include="Views\Users\UsersView.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -296,6 +298,14 @@
     <AndroidResource Include="Resources\layout\fragment_store.axml" />
     <AndroidResource Include="Resources\layout\shift_info_item.axml" />
     <AndroidResource Include="Resources\layout\shift_info_header.axml" />
+    <AndroidResource Include="Resources\menu\main_menu.xml" />
+    <AndroidResource Include="Resources\layout\user_item.axml" />
+    <AndroidResource Include="Resources\layout\users.axml" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_arrow_back_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_arrow_back_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_arrow_back_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_arrow_back_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_arrow_back_white_24dp.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\strings.xml" />
@@ -346,6 +356,7 @@
     <Folder Include="Resources\mipmap-xxhdpi\" />
     <Folder Include="Resources\mipmap-xxxhdpi\" />
     <Folder Include="Resources\color\" />
+    <Folder Include="Resources\menu\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\..\packages\Xamarin.Android.Arch.Core.Common.1.0.0\build\MonoAndroid80\Xamarin.Android.Arch.Core.Common.targets" Condition="Exists('..\..\packages\Xamarin.Android.Arch.Core.Common.1.0.0\build\MonoAndroid80\Xamarin.Android.Arch.Core.Common.targets')" />

@@ -1,20 +1,18 @@
-﻿using System.Windows.Input;
-using MvvmCross.Core.ViewModels;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using CoffeManager.Common;
-using MvvmCross.Plugins.Messenger;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using CoffeeManagerAdmin.Core.ViewModels.Users;
 using CoffeManager.Common.Managers;
 using CoffeManager.Common.ViewModels;
+using MobileCore.Extensions;
+using MvvmCross.Core.ViewModels;
+using MvvmCross.Plugins.Messenger;
 
-namespace CoffeeManagerAdmin.Core
+namespace CoffeeManagerAdmin.Core.ViewModels.Home
 {
     public class UsersViewModel : ViewModelBase
     {
-        public string Name { get; set; } = "UsersViewModel";
-
         private MvxSubscriptionToken refreshUsersToken;
 
         private readonly IUserManager manager;
@@ -49,13 +47,24 @@ namespace CoffeeManagerAdmin.Core
 
         public ICommand AddUserCommand => _addUserCommand;
               
+        public MvxAsyncCommand<UserItemViewModel> ItemSelectedCommand { get; }
 
         public UsersViewModel(IUserManager manager)
         {
             this.manager = manager;
             _addUserCommand = new MvxCommand(DoAddUser);
+            ItemSelectedCommand = new MvxAsyncCommand<UserItemViewModel>(OnItemSelectedAsync);
 
             refreshUsersToken = Subscribe<RefreshUserListMessage>(async (obj) => await Init());
+        }
+        
+        private async Task OnItemSelectedAsync(UserItemViewModel item)
+        {
+            item.ThrowIfNull(nameof(item));
+            
+            item.SelectCommand.Execute();
+
+            await Task.Yield();
         }
 
         private void DoAddUser()

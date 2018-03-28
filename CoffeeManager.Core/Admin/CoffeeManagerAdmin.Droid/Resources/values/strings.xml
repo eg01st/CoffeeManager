@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+	
     <string name="Hello">Hello World, Click Me!</string>
     <string name="Navigation">Click to Navigate</string>
     <string name="ApplicationName">CoffeeManagerAdmin.Droid</string>
 
+    <string name="email">Имейл</string>
+	<string name="password">Пароль</string>
+	<string name="login">Войти</string>
+	
     <string name="finance_tab_title">Финансы</string>
     <string name="store_tab_title">Склад</string>
     <string name="expenses_tab_title">Расходы</string>
@@ -11,10 +16,10 @@
     <string name="statistic_tab_title">Статистика</string>
 
 
-	<string name="store">Заведение</string>
-	<string name="current_shift_money">Текущая смена</string>
-	<string name="entire_money">Текущая касса</string>
-	<string name="credit_card_money">Карта</string>
+	<string name="store">Заведение:</string>
+	<string name="current_shift_money">Текущая смена:</string>
+	<string name="entire_money">Текущая касса:</string>
+	<string name="credit_card_money">Карта:</string>
 
 	<string name="shifts_title">Смены</string>
 
@@ -25,5 +30,12 @@
 	<string name="real_shift">Реальная</string>
 	<string name="card">+Карта</string>
 	<string name="real_amount">Касса</string>
+
+	<string name="select">Выбрать</string>
+	<string name="refresh">Обновить</string>
+
+	<string name="amount_to_salary_pay">Сумма к выплате зарплат: </string>
+	<string name="currency"> грн</string>
+
 	
 </resources>

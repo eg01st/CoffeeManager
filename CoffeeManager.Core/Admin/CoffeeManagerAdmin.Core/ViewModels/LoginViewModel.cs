@@ -45,7 +45,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels
             _loginCommand = new MvxAsyncCommand(DoLogin);
         }
 
-        public async Task Init()
+        public override async Task Initialize()
         {
             var userinfo = localStorage.GetUserInfo();
             Name = userinfo.Login;

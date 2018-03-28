@@ -18,23 +18,37 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <LinearLayout
+            android:layout_margin="16dp"
             android:orientation="vertical"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
-            <EditText
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:textSize="40dp"
-                local:MvxBind="Text Name" />
-            <EditText
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:textSize="40dp"
-                local:MvxBind="Text Password" />
+            android:layout_height="fill_parent"
+            android:gravity="center">
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <android.support.design.widget.TextInputEditText
+                    android:hint="@string/email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    local:MvxBind="Text Name" />
+            </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <android.support.design.widget.TextInputEditText
+                    android:inputType="textPassword"
+                    android:hint="@string/password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    local:MvxBind="Text Password" />
+            </android.support.design.widget.TextInputLayout>
             <Button
-                android:layout_width="fill_parent"
+                style="@style/button"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Login"
+                android:text="@string/login"
                 local:MvxBind="Click LoginCommand" />
         </LinearLayout>
     </FrameLayout>

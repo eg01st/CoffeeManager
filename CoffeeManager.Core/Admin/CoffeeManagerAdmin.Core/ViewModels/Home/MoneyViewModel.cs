@@ -75,8 +75,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Home
             UserDialogs.ActionSheet(new ActionSheetConfig
             {
                 Options = optionList,
-                Message = "Выбор заведения",
-                UseBottomSheet = true
+                 Title = "Выбор заведения",
             });
         }
 

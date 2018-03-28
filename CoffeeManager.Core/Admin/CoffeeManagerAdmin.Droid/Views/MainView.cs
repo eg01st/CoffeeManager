@@ -55,7 +55,6 @@ namespace CoffeeManagerAdmin.Droid.Views
         protected override void OnCreate(Android.OS.Bundle bundle)
         {
             base.OnCreate(bundle);
-
             ViewPager.OffscreenPageLimit = ViewPagerOffscreenPageLimit;
 
             if (bundle == null)

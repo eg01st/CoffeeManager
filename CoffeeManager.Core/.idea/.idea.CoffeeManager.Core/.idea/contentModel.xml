@@ -145,6 +145,7 @@
           <e p="Adapters" t="Include">
             <e p="ViewHolders" t="Include">
               <e p="ShiftItemViewHolder.cs" t="Include" />
+              <e p="UserItemViewHolder.cs" t="Include" />
             </e>
           </e>
           <e p="Assets" t="Include">
@@ -183,6 +184,7 @@
             </e>
             <e p="drawable-hdpi" t="Include">
               <e p="ic_account_circle_black_24dp.png" t="Include" />
+              <e p="ic_arrow_back_white_24dp.png" t="Include" />
               <e p="ic_arrow_upward_black_24dp.png" t="Include" />
               <e p="ic_attach_money_black_24dp.png" t="Include" />
               <e p="ic_credit_card_black_24dp.png" t="Include" />
@@ -194,6 +196,7 @@
             </e>
             <e p="drawable-mdpi" t="Include">
               <e p="ic_account_circle_black_24dp.png" t="Include" />
+              <e p="ic_arrow_back_white_24dp.png" t="Include" />
               <e p="ic_arrow_upward_black_24dp.png" t="Include" />
               <e p="ic_attach_money_black_24dp.png" t="Include" />
               <e p="ic_credit_card_black_24dp.png" t="Include" />
@@ -205,6 +208,7 @@
             </e>
             <e p="drawable-xhdpi" t="Include">
               <e p="ic_account_circle_black_24dp.png" t="Include" />
+              <e p="ic_arrow_back_white_24dp.png" t="Include" />
               <e p="ic_arrow_upward_black_24dp.png" t="Include" />
               <e p="ic_attach_money_black_24dp.png" t="Include" />
               <e p="ic_credit_card_black_24dp.png" t="Include" />
@@ -216,6 +220,7 @@
             </e>
             <e p="drawable-xxhdpi" t="Include">
               <e p="ic_account_circle_black_24dp.png" t="Include" />
+              <e p="ic_arrow_back_white_24dp.png" t="Include" />
               <e p="ic_arrow_upward_black_24dp.png" t="Include" />
               <e p="ic_attach_money_black_24dp.png" t="Include" />
               <e p="ic_credit_card_black_24dp.png" t="Include" />
@@ -227,6 +232,7 @@
             </e>
             <e p="drawable-xxxhdpi" t="Include">
               <e p="ic_account_circle_black_24dp.png" t="Include" />
+              <e p="ic_arrow_back_white_24dp.png" t="Include" />
               <e p="ic_arrow_upward_black_24dp.png" t="Include" />
               <e p="ic_attach_money_black_24dp.png" t="Include" />
               <e p="ic_credit_card_black_24dp.png" t="Include" />
@@ -249,6 +255,11 @@
               <e p="SplashScreen.axml" t="Include" />
               <e p="tab_item_main.axml" t="Include" />
               <e p="toolbar.axml" t="Include" />
+              <e p="user_item.axml" t="Include" />
+              <e p="users.axml" t="Include" />
+            </e>
+            <e p="menu" t="Include">
+              <e p="main_menu.xml" t="Include" />
             </e>
             <e p="mipmap-hdpi" t="Include">
               <e p="ic_launcher.png" t="Include" />
@@ -295,6 +306,9 @@
             </e>
             <e p="LoginView.cs" t="Include" />
             <e p="MainView.cs" t="Include" />
+            <e p="Users" t="Include">
+              <e p="UsersView.cs" t="Include" />
+            </e>
           </e>
         </e>
         <e p="CoffeeManagerAdmin.iOS" t="IncludeRecursive">
