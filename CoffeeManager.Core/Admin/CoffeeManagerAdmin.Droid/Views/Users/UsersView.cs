@@ -1,6 +1,7 @@
 ﻿using Android.App;
 using Android.Content.PM;
 using Android.OS;
+using Android.Views;
 using CoffeeManagerAdmin.Core;
 using CoffeeManagerAdmin.Core.ViewModels.Home;
 using CoffeeManagerAdmin.Core.ViewModels.Shifts;
@@ -20,6 +21,8 @@ namespace CoffeeManagerAdmin.Droid.Views.Users
     [Activity(ScreenOrientation = ScreenOrientation.Portrait)]
     public class UsersView : ActivityWithToolbar<UsersViewModel>
     {
+        protected override int GetMenuResourceId() => Resource.Menu.users_menu;
+        
         protected override int GetToolbarTitleStringResourceId() => Resource.String.users;
 
         protected override int GetUpNavigationIconId() => Resource.Drawable.ic_arrow_back_white_24dp;
@@ -36,6 +39,17 @@ namespace CoffeeManagerAdmin.Droid.Views.Users
         {
             base.DoOnCreate(bundle);
             InitRecyclerView();
+        }
+        
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            if (item.ItemId == Resource.Id.add)
+            {
+                ViewModel.AddUserCommand.Execute(null);
+                return true;
+            }
+            
+            return base.OnOptionsItemSelected(item);
         }
         
         

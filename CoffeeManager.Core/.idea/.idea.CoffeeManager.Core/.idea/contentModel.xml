@@ -7,6 +7,9 @@
           <e p="App.cs" t="Include" />
           <e p="bin" t="ExcludeRecursive" />
           <e p="CoffeeManagerAdmin.Core.csproj" t="IncludeRecursive" />
+          <e p="Converters" t="Include">
+            <e p="GenericConverter.cs" t="Include" />
+          </e>
           <e p="Messages" t="Include">
             <e p="BaseMessage.cs" t="Include" />
             <e p="CalculationListChangedMessage.cs" t="Include" />
@@ -144,8 +147,10 @@
         <e p="CoffeeManagerAdmin.Droid" t="IncludeRecursive">
           <e p="Adapters" t="Include">
             <e p="ViewHolders" t="Include">
+              <e p="CoffeeRoomItemViewHolder.cs" t="Include" />
               <e p="PenaltyItemViewHolder.cs" t="Include" />
               <e p="ShiftItemViewHolder.cs" t="Include" />
+              <e p="UserEarningViewHolder.cs" t="Include" />
               <e p="UserItemViewHolder.cs" t="Include" />
             </e>
           </e>
@@ -185,6 +190,7 @@
             </e>
             <e p="drawable-hdpi" t="Include">
               <e p="ic_account_circle_black_24dp.png" t="Include" />
+              <e p="ic_add_circle_outline_white_24dp.png" t="Include" />
               <e p="ic_arrow_back_white_24dp.png" t="Include" />
               <e p="ic_arrow_upward_black_24dp.png" t="Include" />
               <e p="ic_attach_money_black_24dp.png" t="Include" />
@@ -198,6 +204,7 @@
             </e>
             <e p="drawable-mdpi" t="Include">
               <e p="ic_account_circle_black_24dp.png" t="Include" />
+              <e p="ic_add_circle_outline_white_24dp.png" t="Include" />
               <e p="ic_arrow_back_white_24dp.png" t="Include" />
               <e p="ic_arrow_upward_black_24dp.png" t="Include" />
               <e p="ic_attach_money_black_24dp.png" t="Include" />
@@ -211,6 +218,7 @@
             </e>
             <e p="drawable-xhdpi" t="Include">
               <e p="ic_account_circle_black_24dp.png" t="Include" />
+              <e p="ic_add_circle_outline_white_24dp.png" t="Include" />
               <e p="ic_arrow_back_white_24dp.png" t="Include" />
               <e p="ic_arrow_upward_black_24dp.png" t="Include" />
               <e p="ic_attach_money_black_24dp.png" t="Include" />
@@ -224,6 +232,7 @@
             </e>
             <e p="drawable-xxhdpi" t="Include">
               <e p="ic_account_circle_black_24dp.png" t="Include" />
+              <e p="ic_add_circle_outline_white_24dp.png" t="Include" />
               <e p="ic_arrow_back_white_24dp.png" t="Include" />
               <e p="ic_arrow_upward_black_24dp.png" t="Include" />
               <e p="ic_attach_money_black_24dp.png" t="Include" />
@@ -237,6 +246,7 @@
             </e>
             <e p="drawable-xxxhdpi" t="Include">
               <e p="ic_account_circle_black_24dp.png" t="Include" />
+              <e p="ic_add_circle_outline_white_24dp.png" t="Include" />
               <e p="ic_arrow_back_white_24dp.png" t="Include" />
               <e p="ic_arrow_upward_black_24dp.png" t="Include" />
               <e p="ic_attach_money_black_24dp.png" t="Include" />
@@ -257,18 +267,24 @@
               <e p="login.axml" t="Include" />
               <e p="main.axml" t="Include" />
               <e p="penalty_item.axml" t="Include" />
+              <e p="settings.axml" t="Include" />
               <e p="shift_info_header.axml" t="Include" />
               <e p="shift_info_item.axml" t="Include" />
               <e p="SplashScreen.axml" t="Include" />
+              <e p="store_item.axml" t="Include" />
               <e p="tab_item_main.axml" t="Include" />
               <e p="toolbar.axml" t="Include" />
               <e p="user_detail.axml" t="Include" />
+              <e p="user_earnings.axml" t="Include" />
+              <e p="user_earnings_header.axml" t="Include" />
+              <e p="user_earnings_item.axml" t="Include" />
               <e p="user_item.axml" t="Include" />
               <e p="users.axml" t="Include" />
             </e>
             <e p="menu" t="Include">
               <e p="main_menu.xml" t="Include" />
               <e p="user_details_menu.xml" t="Include" />
+              <e p="users_menu.xml" t="Include" />
             </e>
             <e p="mipmap-hdpi" t="Include">
               <e p="ic_launcher.png" t="Include" />
@@ -315,6 +331,9 @@
             </e>
             <e p="LoginView.cs" t="Include" />
             <e p="MainView.cs" t="Include" />
+            <e p="Settings" t="Include">
+              <e p="SettingsView.cs" t="Include" />
+            </e>
             <e p="Users" t="Include">
               <e p="UserDetailView.cs" t="Include" />
               <e p="UserEarningsView.cs" t="Include" />

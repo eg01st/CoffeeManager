@@ -1,10 +1,9 @@
-﻿using System;
+﻿using System.Threading.Tasks;
 using CoffeManager.Common;
-using MvvmCross.Platform;
-using System.Threading.Tasks;
 using CoffeManager.Common.ViewModels;
+using MvvmCross.Platform;
 
-namespace CoffeeManagerAdmin.Core
+namespace CoffeeManagerAdmin.Core.ViewModels.Settings
 {
     public class CoffeeRoomItemViewModel : ListItemViewModelBase
     {
@@ -18,7 +17,7 @@ namespace CoffeeManagerAdmin.Core
 
         protected override void DoGoToDetails()
         {
-            Confirm($"Удалить кофейню {Name}?", DeleteCoffeeRoom);
+            Confirm($"Удалить заведение {Name}?", DeleteCoffeeRoom);
         }
 
         private async Task DeleteCoffeeRoom()

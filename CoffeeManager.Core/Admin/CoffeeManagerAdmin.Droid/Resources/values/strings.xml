@@ -56,4 +56,12 @@
 	<string name="penalties">Штрафы</string>	
 	<string name="date">Дата</string>	
 	<string name="amount">Сумма</string>	
+
+	<string name="shift">Смена</string>	
+
+	<string name="add_store">Добавить заведение: </string>	
+	<string name="address">Адрес</string>	
+	<string name="add">Добавить</string>	
+	<string name="stores">Заведения</string>	
+	<string name="settings">Настройки</string>	
 </resources>

@@ -1,15 +1,15 @@
-﻿using System;
-using CoffeManager.Common;
-using System.Windows.Input;
-using System.Threading.Tasks;
-using CoffeManager.Common.Managers;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Input;
+using CoffeManager.Common;
+using CoffeManager.Common.Managers;
 using CoffeManager.Common.ViewModels;
+using MobileCore.Extensions;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Messenger;
 
-namespace CoffeeManagerAdmin.Core
+namespace CoffeeManagerAdmin.Core.ViewModels.Settings
 {
     public class SettingsViewModel : ViewModelBase
     {
@@ -69,6 +69,8 @@ namespace CoffeeManagerAdmin.Core
         readonly IAccountManager manager;
         readonly IAdminManager adminManager;
 
+        public MvxAsyncCommand<CoffeeRoomItemViewModel> ItemSelectedCommand { get; }
+        
         public SettingsViewModel(IAccountManager manager, IAdminManager adminManager)
         {
             this.adminManager = adminManager;
@@ -76,9 +78,19 @@ namespace CoffeeManagerAdmin.Core
 
             AddUserCommand = new MvxCommand(DoAddUser);
             AddCoffeeRoomCommand = new MvxCommand(DoAddCoffeeRoom);
-
+            ItemSelectedCommand = new MvxAsyncCommand<CoffeeRoomItemViewModel>(OnItemSelectedAsync);
+            
             refreshUsersToken = Subscribe<RefreshAdminUsersMessage>(async (obj) => await Init());
             refreshCoffeeroomsToken = Subscribe<RefreshCoffeeRoomsMessage>(async (obj) => await Init());
+        }
+        
+        private async Task OnItemSelectedAsync(CoffeeRoomItemViewModel item)
+        {
+            item.ThrowIfNull(nameof(item));
+            
+            item.SelectCommand.Execute();
+
+            await Task.Yield();
         }
 
         private async void DoAddCoffeeRoom()
@@ -87,7 +99,7 @@ namespace CoffeeManagerAdmin.Core
             {
                 if(string.IsNullOrWhiteSpace(NewCoffeeroomName))
                 {
-                    Alert("Укажите адресс кофейни!");
+                    Alert("Укажите адрес заведения!");
                     return;
                 }
                 await adminManager.AddCoffeeRoom(NewCoffeeroomName);

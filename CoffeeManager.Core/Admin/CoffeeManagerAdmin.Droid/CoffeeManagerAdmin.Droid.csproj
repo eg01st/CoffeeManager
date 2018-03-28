@@ -205,8 +205,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Adapters\ViewHolders\CoffeeRoomItemViewHolder.cs" />
     <Compile Include="Adapters\ViewHolders\PenaltyItemViewHolder.cs" />
     <Compile Include="Adapters\ViewHolders\ShiftItemViewHolder.cs" />
+    <Compile Include="Adapters\ViewHolders\UserEarningViewHolder.cs" />
     <Compile Include="Adapters\ViewHolders\UserItemViewHolder.cs" />
     <Compile Include="DebugTrace.cs" />
     <Compile Include="LinkerPleaseInclude.cs" />
@@ -227,6 +229,7 @@
     <Compile Include="Bootstrap\FilePluginBootstrap.cs" />
     <Compile Include="Bootstrap\JsonPluginBootstrap.cs" />
     <Compile Include="Bootstrap\MessengerPluginBootstrap.cs" />
+    <Compile Include="Views\Settings\SettingsView.cs" />
     <Compile Include="Views\Users\UserDetailView.cs" />
     <Compile Include="Views\Users\UserEarningsView.cs" />
     <Compile Include="Views\Users\UsersView.cs" />
@@ -317,6 +320,17 @@
     <AndroidResource Include="Resources\drawable-xxhdpi\ic_save_white_24dp.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_save_white_24dp.png" />
     <AndroidResource Include="Resources\layout\penalty_item.axml" />
+    <AndroidResource Include="Resources\layout\user_earnings.axml" />
+    <AndroidResource Include="Resources\layout\user_earnings_item.axml" />
+    <AndroidResource Include="Resources\layout\user_earnings_header.axml" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_add_circle_outline_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_add_circle_outline_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_add_circle_outline_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_add_circle_outline_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_add_circle_outline_white_24dp.png" />
+    <AndroidResource Include="Resources\menu\users_menu.xml" />
+    <AndroidResource Include="Resources\layout\settings.axml" />
+    <AndroidResource Include="Resources\layout\store_item.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\strings.xml" />

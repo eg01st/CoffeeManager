@@ -1,7 +1,9 @@
 ﻿using Android.App;
 using Android.Content.PM;
 using Android.OS;
+using Android.Support.Design.Widget;
 using Android.Views;
+using CoffeeManagerAdmin.Core.Converters;
 using CoffeeManagerAdmin.Core.ViewModels.Users;
 using CoffeeManagerAdmin.Droid.Adapters.ViewHolders;
 using MobileCore.Droid.Activities;
@@ -28,6 +30,8 @@ namespace CoffeeManagerAdmin.Droid.Views.Users
         [FindById(Resource.Id.recyclerview_penalties)]
         private EndlessRecyclerView usersRecyclerView;
 
+        [FindById(Resource.Id.name_edit_text)]
+        private TextInputEditText userNameEditText;
         
         public UserDetailView() : base(Resource.Layout.user_detail)
         {
@@ -43,6 +47,8 @@ namespace CoffeeManagerAdmin.Droid.Views.Users
         protected override void DoBind()
         {
             var bindingSet = this.CreateBindingSet<UserDetailView, UserDetailsViewModel>();
+            bindingSet.Bind(userNameEditText).For(e => e.Enabled).To(vm => vm.UserId).WithConversion(new GenericConverter<int, bool>((arg) => arg < 1));
+            
             bindingSet.Bind(usersRecyclerView).For(v => v.ItemsSource).To(vm => vm.Penalties);
             bindingSet.Bind(usersRecyclerView.Adapter).For(v => v.ItemClick).To(vm => vm.ItemSelectedCommand);
             bindingSet.Apply();
