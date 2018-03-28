@@ -10,6 +10,7 @@ using CoffeeManagerAdmin.Core.Util;
 using CoffeManager.Common;
 using CoffeManager.Common.Managers;
 using CoffeManager.Common.ViewModels;
+using MobileCore.Extensions;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Messenger;
 
@@ -50,6 +51,9 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Users
         public ICommand ShowEarningsCommand { get; set; }
         public ICommand SelectCoffeeRoomCommand { get; }
         public ICommand SelectExpenseCommand { get; }
+        
+                
+        public MvxAsyncCommand<UserPenaltyItemViewModel> ItemSelectedCommand { get; }
         
         public List<UserPenaltyItemViewModel> Penalties { get; set; } = new List<UserPenaltyItemViewModel>();
 
@@ -150,8 +154,19 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Users
             ShowEarningsCommand = new MvxCommand(DoShowEarnings);
             SelectCoffeeRoomCommand = new MvxCommand(DoSelectCoffeeRoom);
             SelectExpenseCommand = new MvxCommand(DoSelectExpense);
+            
+            ItemSelectedCommand = new MvxAsyncCommand<UserPenaltyItemViewModel>(OnItemSelectedAsync);
 
             token = Subscribe<UserAmountChangedMessage>(async (obj) => await Init(useridParameter));
+        }
+        
+        private async Task OnItemSelectedAsync(UserPenaltyItemViewModel item)
+        {
+            item.ThrowIfNull(nameof(item));
+            
+            item.SelectCommand.Execute();
+
+            await Task.Yield();
         }
         
         private void DoSelectCoffeeRoom()

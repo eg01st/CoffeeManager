@@ -144,6 +144,7 @@
         <e p="CoffeeManagerAdmin.Droid" t="IncludeRecursive">
           <e p="Adapters" t="Include">
             <e p="ViewHolders" t="Include">
+              <e p="PenaltyItemViewHolder.cs" t="Include" />
               <e p="ShiftItemViewHolder.cs" t="Include" />
               <e p="UserItemViewHolder.cs" t="Include" />
             </e>
@@ -255,6 +256,7 @@
               <e p="fragment_store.axml" t="Include" />
               <e p="login.axml" t="Include" />
               <e p="main.axml" t="Include" />
+              <e p="penalty_item.axml" t="Include" />
               <e p="shift_info_header.axml" t="Include" />
               <e p="shift_info_item.axml" t="Include" />
               <e p="SplashScreen.axml" t="Include" />
@@ -315,6 +317,7 @@
             <e p="MainView.cs" t="Include" />
             <e p="Users" t="Include">
               <e p="UserDetailView.cs" t="Include" />
+              <e p="UserEarningsView.cs" t="Include" />
               <e p="UsersView.cs" t="Include" />
             </e>
           </e>
@@ -1498,6 +1501,7 @@
       <e p="Storage" t="Include" />
       <e p="ViewModels" t="Include">
         <e p="FeedItemElementViewModel.cs" t="Include" />
+        <e p="FeedViewModel.cs" t="Include" />
         <e p="PageViewModel.cs" t="Include" />
         <e p="SimpleViewModel.cs" t="Include" />
       </e>

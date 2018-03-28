@@ -1,26 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3d4f112c-bf80-4e61-be66-0795c74fbe0b" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Droid/Resources/drawable-hdpi/ic_save_white_24dp.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Droid/Resources/drawable-mdpi/ic_save_white_24dp.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Droid/Resources/drawable-xhdpi/ic_save_white_24dp.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Droid/Resources/drawable-xxhdpi/ic_save_white_24dp.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Droid/Resources/drawable-xxxhdpi/ic_save_white_24dp.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Droid/Resources/layout/user_detail.axml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Droid/Resources/menu/user_details_menu.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Droid/Views/Users/UserDetailView.cs" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.CoffeeManager.Core/.idea/contentModel.xml" afterPath="$PROJECT_DIR$/.idea/.idea.CoffeeManager.Core/.idea/contentModel.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.CoffeeManager.Core/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/.idea.CoffeeManager.Core/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Core/ViewModels/Users/UserDetailsViewModel.cs" afterPath="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Core/ViewModels/Users/UserDetailsViewModel.cs" />
-      <change beforePath="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Droid/CoffeeManagerAdmin.Droid.csproj" afterPath="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Droid/CoffeeManagerAdmin.Droid.csproj" />
-      <change beforePath="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Droid/Resources/Resource.Designer.cs" afterPath="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Droid/Resources/Resource.Designer.cs" />
-      <change beforePath="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Droid/Resources/layout/shift_info_item.axml" afterPath="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Droid/Resources/layout/shift_info_item.axml" />
-      <change beforePath="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Droid/Resources/layout/user_item.axml" afterPath="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Droid/Resources/layout/user_item.axml" />
-      <change beforePath="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Droid/Resources/values/colors.xml" afterPath="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Droid/Resources/values/colors.xml" />
-      <change beforePath="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Droid/Resources/values/strings.xml" afterPath="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Droid/Resources/values/strings.xml" />
-      <change beforePath="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Droid/Views/Users/UsersView.cs" afterPath="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Droid/Views/Users/UsersView.cs" />
-    </list>
+    <list default="true" id="3d4f112c-bf80-4e61-be66-0795c74fbe0b" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/.idea/httpRequests/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -46,11 +27,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="UserDetailView.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Droid/Views/Users/UserDetailView.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="285">
+              <caret line="19" column="74" lean-forward="false" selection-start-line="19" selection-start-column="31" selection-end-line="19" selection-end-column="74" />
+              <folding>
+                <marker date="1522247460000" expanded="true" signature="6:506" ph="..." />
+                <marker date="1522247460000" expanded="true" signature="554:2580" ph="{...}" />
+                <marker date="1522247460000" expanded="true" signature="767:2578" ph="{...}" />
+                <marker date="1522247460000" expanded="true" signature="1250:1270" ph="{...}" />
+                <marker date="1522247460000" expanded="true" signature="1346:1435" ph="{...}" />
+                <marker date="1522247460000" expanded="true" signature="1485:1835" ph="{...}" />
+                <marker date="1522247460000" expanded="true" signature="1884:2257" ph="{...}" />
+                <marker date="1522247460000" expanded="true" signature="2325:2572" ph="{...}" />
+                <marker date="1522247460000" expanded="true" signature="2384:2496" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="UsersView.cs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Droid/Views/Users/UsersView.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+            <state relative-caret-position="180">
+              <caret line="26" column="3" lean-forward="false" selection-start-line="26" selection-start-column="3" selection-end-line="28" selection-end-column="0" />
               <folding>
                 <marker date="1522242161000" expanded="false" signature="6:564" ph="..." />
                 <marker date="1522242161000" expanded="true" signature="612:2119" ph="{...}" />
@@ -64,61 +65,53 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MoneyViewModel.cs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Core/ViewModels/Home/MoneyViewModel.cs">
+      <file leaf-file-name="UsersViewModel.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Core/ViewModels/Home/UsersViewModel.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="418">
-              <caret line="79" column="9" lean-forward="false" selection-start-line="62" selection-start-column="6" selection-end-line="79" selection-end-column="9" />
+            <state relative-caret-position="476">
+              <caret line="67" column="9" lean-forward="false" selection-start-line="60" selection-start-column="5" selection-end-line="67" selection-end-column="9" />
               <folding>
-                <marker date="1522185073000" expanded="false" signature="6:429" ph="..." />
-                <marker date="1522185073000" expanded="true" signature="480:7439" ph="{...}" />
-                <marker date="1522185073000" expanded="true" signature="530:7437" ph="{...}" />
-                <marker date="1522185073000" expanded="true" signature="1316:2309" ph="{...}" />
-                <marker date="1522185073000" expanded="true" signature="2382:2534" ph="{...}" />
-                <marker date="1522185073000" expanded="true" signature="2577:3126" ph="{...}" />
-                <marker date="1522185073000" expanded="true" signature="2627:2679" ph="{...}" />
-                <marker date="1522185073000" expanded="true" signature="2783:2945" ph="{...}" />
-                <marker date="1522185073000" expanded="true" signature="3017:3114" ph="{...}" />
-                <marker date="1522185073000" expanded="true" signature="3171:3625" ph="{...}" />
-                <marker date="1522185073000" expanded="true" signature="3224:3276" ph="{...}" />
-                <marker date="1522185073000" expanded="true" signature="3691:3865" ph="{...}" />
-                <marker date="1522185073000" expanded="true" signature="3743:3855" ph="{...}" />
-                <marker date="1522185073000" expanded="true" signature="4311:4512" ph="{...}" />
-                <marker date="1522185073000" expanded="true" signature="4372:4502" ph="{...}" />
-                <marker date="1522185073000" expanded="true" signature="4555:4771" ph="{...}" />
-                <marker date="1522185073000" expanded="true" signature="4621:4761" ph="{...}" />
-                <marker date="1522185073000" expanded="true" signature="4819:5050" ph="{...}" />
-                <marker date="1522185073000" expanded="true" signature="4890:5040" ph="{...}" />
-                <marker date="1522185073000" expanded="true" signature="5091:5525" ph="{...}" />
-                <marker date="1522185073000" expanded="true" signature="5155:5515" ph="{...}" />
-                <marker date="1522185073000" expanded="true" signature="5566:5758" ph="{...}" />
-                <marker date="1522185073000" expanded="true" signature="5624:5748" ph="{...}" />
-                <marker date="1522185073000" expanded="true" signature="5879:6013" ph="{...}" />
-                <marker date="1522185073000" expanded="true" signature="6054:6404" ph="{...}" />
-                <marker date="1522185073000" expanded="true" signature="6181:6288" ph="{...}" />
-                <marker date="1522185073000" expanded="true" signature="6305:6394" ph="{...}" />
-                <marker date="1522185073000" expanded="true" signature="6451:6507" ph="{...}" />
-                <marker date="1522185073000" expanded="true" signature="6552:7126" ph="{...}" />
-                <marker date="1522185073000" expanded="true" signature="6604:7114" ph="{...}" />
-                <marker date="1522185073000" expanded="true" signature="7171:7431" ph="{...}" />
-                <marker date="1522185073000" expanded="true" signature="7223:7419" ph="{...}" />
+                <marker date="1522234949000" expanded="false" signature="6:329" ph="..." />
+                <marker date="1522234949000" expanded="true" signature="380:2434" ph="{...}" />
+                <marker date="1522234949000" expanded="true" signature="430:2432" ph="{...}" />
+                <marker date="1522234949000" expanded="true" signature="676:858" ph="{...}" />
+                <marker date="1522234949000" expanded="true" signature="736:848" ph="{...}" />
+                <marker date="1522234949000" expanded="true" signature="938:1406" ph="{...}" />
+                <marker date="1522234949000" expanded="true" signature="991:1394" ph="{...}" />
+                <marker date="1522234949000" expanded="true" signature="1613:1918" ph="{...}" />
+                <marker date="1522234949000" expanded="true" signature="1998:2150" ph="{...}" />
+                <marker date="1522234949000" expanded="true" signature="2184:2255" ph="{...}" />
+                <marker date="1522234949000" expanded="true" signature="2304:2426" ph="{...}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UserDetailView.cs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Droid/Views/Users/UserDetailView.cs">
+      <file leaf-file-name="ViewModelBase.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/CoffeManager.Common/ViewModels/ViewModelBase.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="132">
-              <caret line="11" column="57" lean-forward="false" selection-start-line="11" selection-start-column="57" selection-end-line="11" selection-end-column="57" />
+            <state relative-caret-position="105">
+              <caret line="16" column="46" lean-forward="false" selection-start-line="16" selection-start-column="46" selection-end-line="16" selection-end-column="46" />
               <folding>
-                <marker date="1522245690000" expanded="true" signature="6:188" ph="..." />
-                <marker date="1522245690000" expanded="true" signature="236:1164" ph="{...}" />
-                <marker date="1522245690000" expanded="true" signature="449:1162" ph="{...}" />
-                <marker date="1522245690000" expanded="true" signature="821:841" ph="{...}" />
-                <marker date="1522245690000" expanded="true" signature="909:1156" ph="{...}" />
-                <marker date="1522245690000" expanded="true" signature="968:1080" ph="{...}" />
+                <marker date="1521655976000" expanded="false" signature="6:281" ph="..." />
+                <marker date="1521655976000" expanded="true" signature="323:2568" ph="{...}" />
+                <marker date="1521655976000" expanded="true" signature="381:2566" ph="{...}" />
+                <marker date="1521655976000" expanded="true" signature="443:562" ph="{...}" />
+                <marker date="1521655976000" expanded="true" signature="469:552" ph="{...}" />
+                <marker date="1521655976000" expanded="true" signature="606:723" ph="{...}" />
+                <marker date="1521655976000" expanded="true" signature="632:713" ph="{...}" />
+                <marker date="1521655976000" expanded="true" signature="808:880" ph="{...}" />
+                <marker date="1521655976000" expanded="true" signature="922:1019" ph="{...}" />
+                <marker date="1521655976000" expanded="true" signature="1063:1144" ph="{...}" />
+                <marker date="1521655976000" expanded="true" signature="1187:1207" ph="{...}" />
+                <marker date="1521655976000" expanded="true" signature="1255:1275" ph="{...}" />
+                <marker date="1521655976000" expanded="true" signature="1400:1500" ph="{...}" />
+                <marker date="1521655976000" expanded="true" signature="1611:1683" ph="{...}" />
+                <marker date="1521655976000" expanded="true" signature="1750:1813" ph="{...}" />
+                <marker date="1521655976000" expanded="true" signature="1874:1945" ph="{...}" />
+                <marker date="1521655976000" expanded="true" signature="1998:2560" ph="{...}" />
+                <marker date="1521655976000" expanded="true" signature="2118:2176" ph="{...}" />
+                <marker date="1521655976000" expanded="true" signature="2313:2371" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -155,100 +148,116 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UserDetailsViewModel.cs" pinned="false" current-in-tab="true">
+      <file leaf-file-name="UserDetailsViewModel.cs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Core/ViewModels/Users/UserDetailsViewModel.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="23" column="56" lean-forward="true" selection-start-line="23" selection-start-column="56" selection-end-line="23" selection-end-column="56" />
+            <state relative-caret-position="154">
+              <caret line="212" column="39" lean-forward="false" selection-start-line="212" selection-start-column="39" selection-end-line="212" selection-end-column="39" />
               <folding>
-                <marker date="1522245991000" expanded="false" signature="6:436" ph="..." />
-                <marker date="1522245991000" expanded="true" signature="488:12943" ph="{...}" />
-                <marker date="1522245991000" expanded="true" signature="544:12941" ph="{...}" />
-                <marker date="1522245991000" expanded="true" signature="2069:2272" ph="{...}" />
-                <marker date="1522245991000" expanded="true" signature="2136:2262" ph="{...}" />
-                <marker date="1522245991000" expanded="true" signature="2315:2757" ph="{...}" />
-                <marker date="1522245991000" expanded="true" signature="2389:2747" ph="{...}" />
-                <marker date="1522245991000" expanded="true" signature="2453:2733" ph="{...}" />
-                <marker date="1522245991000" expanded="true" signature="2792:2998" ph="{...}" />
-                <marker date="1522245991000" expanded="true" signature="2860:2988" ph="{...}" />
-                <marker date="1522245991000" expanded="true" signature="3037:3249" ph="{...}" />
-                <marker date="1522245991000" expanded="true" signature="3107:3239" ph="{...}" />
-                <marker date="1522245991000" expanded="true" signature="3290:4104" ph="{...}" />
-                <marker date="1522245991000" expanded="true" signature="3362:4094" ph="{...}" />
-                <marker date="1522245991000" expanded="true" signature="3594:3658" ph="{...}" />
-                <marker date="1522245991000" expanded="true" signature="4145:4345" ph="{...}" />
-                <marker date="1522245991000" expanded="true" signature="4211:4335" ph="{...}" />
-                <marker date="1522245991000" expanded="true" signature="4390:4462" ph="{...}" />
-                <marker date="1522245991000" expanded="true" signature="4613:5303" ph="{...}" />
-                <marker date="1522245991000" expanded="true" signature="5354:5902" ph="{...}" />
-                <marker date="1522245991000" expanded="true" signature="5404:5456" ph="{...}" />
-                <marker date="1522245991000" expanded="true" signature="5560:5722" ph="{...}" />
-                <marker date="1522245991000" expanded="true" signature="5794:5890" ph="{...}" />
-                <marker date="1522245991000" expanded="true" signature="5950:6501" ph="{...}" />
-                <marker date="1522245991000" expanded="true" signature="6001:6053" ph="{...}" />
-                <marker date="1522245991000" expanded="true" signature="6158:6323" ph="{...}" />
-                <marker date="1522245991000" expanded="true" signature="6395:6489" ph="{...}" />
-                <marker date="1522245991000" expanded="true" signature="6540:6692" ph="{...}" />
-                <marker date="1522245991000" expanded="true" signature="6732:7277" ph="{...}" />
-                <marker date="1522245991000" expanded="true" signature="6849:6901" ph="{...}" />
-                <marker date="1522245991000" expanded="true" signature="7020:7072" ph="{...}" />
-                <marker date="1522245991000" expanded="true" signature="7114:7264" ph="{...}" />
-                <marker date="1522245991000" expanded="true" signature="7314:7391" ph="{...}" />
-                <marker date="1522245991000" expanded="true" signature="7432:8410" ph="{...}" />
-                <marker date="1522245991000" expanded="true" signature="7644:8040" ph="{...}" />
-                <marker date="1522245991000" expanded="true" signature="7764:7906" ph="{...}" />
-                <marker date="1522245991000" expanded="true" signature="7927:8026" ph="{...}" />
-                <marker date="1522245991000" expanded="false" signature="8453:9174" ph="{...}" />
-                <marker date="1522245991000" expanded="true" signature="9214:10199" ph="{...}" />
-                <marker date="1522245991000" expanded="true" signature="9297:9349" ph="{...}" />
-                <marker date="1522245991000" expanded="true" signature="9392:10187" ph="{...}" />
-                <marker date="1522245991000" expanded="true" signature="9663:9950" ph="{...}" />
-                <marker date="1522245991000" expanded="true" signature="10233:10545" ph="{...}" />
-                <marker date="1522245991000" expanded="true" signature="10280:10535" ph="{...}" />
-                <marker date="1522245991000" expanded="true" signature="10585:11276" ph="{...}" />
-                <marker date="1522245991000" expanded="true" signature="10638:11264" ph="{...}" />
-                <marker date="1522245991000" expanded="true" signature="10860:11250" ph="{...}" />
-                <marker date="1522245991000" expanded="true" signature="11004:11184" ph="{...}" />
-                <marker date="1522245991000" expanded="true" signature="11322:11614" ph="{...}" />
-                <marker date="1522245991000" expanded="true" signature="11374:11602" ph="{...}" />
-                <marker date="1522245991000" expanded="true" signature="11654:12283" ph="{...}" />
-                <marker date="1522245991000" expanded="true" signature="11706:12271" ph="{...}" />
-                <marker date="1522245991000" expanded="true" signature="11854:11983" ph="{...}" />
-                <marker date="1522245991000" expanded="true" signature="12319:12809" ph="{...}" />
-                <marker date="1522245991000" expanded="true" signature="12370:12494" ph="{...}" />
-                <marker date="1522245991000" expanded="true" signature="12540:12645" ph="{...}" />
-                <marker date="1522245991000" expanded="true" signature="12858:12936" ph="{...}" />
+                <marker date="1522247417000" expanded="false" signature="6:465" ph="..." />
+                <marker date="1522247417000" expanded="true" signature="517:13438" ph="{...}" />
+                <marker date="1522247417000" expanded="true" signature="573:13436" ph="{...}" />
+                <marker date="1522247417000" expanded="true" signature="2210:2413" ph="{...}" />
+                <marker date="1522247417000" expanded="true" signature="2277:2403" ph="{...}" />
+                <marker date="1522247417000" expanded="true" signature="2456:2898" ph="{...}" />
+                <marker date="1522247417000" expanded="true" signature="2530:2888" ph="{...}" />
+                <marker date="1522247417000" expanded="true" signature="2594:2874" ph="{...}" />
+                <marker date="1522247417000" expanded="true" signature="2933:3139" ph="{...}" />
+                <marker date="1522247417000" expanded="true" signature="3001:3129" ph="{...}" />
+                <marker date="1522247417000" expanded="true" signature="3178:3390" ph="{...}" />
+                <marker date="1522247417000" expanded="true" signature="3248:3380" ph="{...}" />
+                <marker date="1522247417000" expanded="true" signature="3431:4245" ph="{...}" />
+                <marker date="1522247417000" expanded="true" signature="3503:4235" ph="{...}" />
+                <marker date="1522247417000" expanded="true" signature="3735:3799" ph="{...}" />
+                <marker date="1522247417000" expanded="true" signature="4286:4486" ph="{...}" />
+                <marker date="1522247417000" expanded="true" signature="4352:4476" ph="{...}" />
+                <marker date="1522247417000" expanded="true" signature="4531:4603" ph="{...}" />
+                <marker date="1522247417000" expanded="true" signature="4754:5559" ph="{...}" />
+                <marker date="1522247417000" expanded="true" signature="5646:5798" ph="{...}" />
+                <marker date="1522247417000" expanded="true" signature="5849:6397" ph="{...}" />
+                <marker date="1522247417000" expanded="true" signature="5899:5951" ph="{...}" />
+                <marker date="1522247417000" expanded="true" signature="6055:6217" ph="{...}" />
+                <marker date="1522247417000" expanded="true" signature="6289:6385" ph="{...}" />
+                <marker date="1522247417000" expanded="true" signature="6445:6996" ph="{...}" />
+                <marker date="1522247417000" expanded="true" signature="6496:6548" ph="{...}" />
+                <marker date="1522247417000" expanded="true" signature="6653:6818" ph="{...}" />
+                <marker date="1522247417000" expanded="true" signature="6890:6984" ph="{...}" />
+                <marker date="1522247417000" expanded="true" signature="7035:7187" ph="{...}" />
+                <marker date="1522247417000" expanded="true" signature="7227:7772" ph="{...}" />
+                <marker date="1522247417000" expanded="true" signature="7344:7396" ph="{...}" />
+                <marker date="1522247417000" expanded="true" signature="7515:7567" ph="{...}" />
+                <marker date="1522247417000" expanded="true" signature="7609:7759" ph="{...}" />
+                <marker date="1522247417000" expanded="true" signature="7809:7886" ph="{...}" />
+                <marker date="1522247417000" expanded="true" signature="7927:8905" ph="{...}" />
+                <marker date="1522247417000" expanded="true" signature="8139:8535" ph="{...}" />
+                <marker date="1522247417000" expanded="true" signature="8259:8401" ph="{...}" />
+                <marker date="1522247417000" expanded="true" signature="8422:8521" ph="{...}" />
+                <marker date="1522247417000" expanded="false" signature="8948:9669" ph="{...}" />
+                <marker date="1522247417000" expanded="true" signature="9709:10694" ph="{...}" />
+                <marker date="1522247417000" expanded="true" signature="9792:9844" ph="{...}" />
+                <marker date="1522247417000" expanded="true" signature="9887:10682" ph="{...}" />
+                <marker date="1522247417000" expanded="true" signature="10158:10445" ph="{...}" />
+                <marker date="1522247417000" expanded="true" signature="10728:11040" ph="{...}" />
+                <marker date="1522247417000" expanded="true" signature="10775:11030" ph="{...}" />
+                <marker date="1522247417000" expanded="true" signature="11080:11771" ph="{...}" />
+                <marker date="1522247417000" expanded="true" signature="11133:11759" ph="{...}" />
+                <marker date="1522247417000" expanded="true" signature="11355:11745" ph="{...}" />
+                <marker date="1522247417000" expanded="true" signature="11499:11679" ph="{...}" />
+                <marker date="1522247417000" expanded="true" signature="11817:12109" ph="{...}" />
+                <marker date="1522247417000" expanded="true" signature="11869:12097" ph="{...}" />
+                <marker date="1522247417000" expanded="true" signature="12149:12778" ph="{...}" />
+                <marker date="1522247417000" expanded="true" signature="12201:12766" ph="{...}" />
+                <marker date="1522247417000" expanded="true" signature="12349:12478" ph="{...}" />
+                <marker date="1522247417000" expanded="true" signature="12814:13304" ph="{...}" />
+                <marker date="1522247417000" expanded="true" signature="12865:12989" ph="{...}" />
+                <marker date="1522247417000" expanded="true" signature="13035:13140" ph="{...}" />
+                <marker date="1522247417000" expanded="true" signature="13353:13431" ph="{...}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="login.axml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Droid/Resources/layout/login.axml">
+      <file leaf-file-name="UserEarningsViewModel.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Core/ViewModels/Users/UserEarningsViewModel.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="327">
-              <caret line="46" column="0" lean-forward="false" selection-start-line="46" selection-start-column="0" selection-end-line="51" selection-end-column="53" />
-              <folding />
+            <state relative-caret-position="60">
+              <caret line="9" column="38" lean-forward="false" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="38" />
+              <folding>
+                <marker date="1522247999000" expanded="false" signature="6:168" ph="..." />
+                <marker date="1522247999000" expanded="true" signature="220:649" ph="{...}" />
+                <marker date="1522247999000" expanded="true" signature="277:647" ph="{...}" />
+                <marker date="1522247999000" expanded="true" signature="384:641" ph="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="user_detail.axml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Droid/Resources/layout/user_detail.axml">
+      <file leaf-file-name="UserEarningsView.cs" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Droid/Views/Users/UserEarningsView.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="245">
-              <caret line="75" column="37" lean-forward="false" selection-start-line="75" selection-start-column="37" selection-end-line="75" selection-end-column="37" />
-              <folding />
+            <state relative-caret-position="105">
+              <caret line="7" column="1" lean-forward="true" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
+              <folding>
+                <marker date="1522247999000" expanded="true" signature="6:167" ph="..." />
+                <marker date="1522247999000" expanded="true" signature="215:412" ph="{...}" />
+                <marker date="1522247999000" expanded="true" signature="389:410" ph="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="colors.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/Projects/MobileCore/MobileCore.Droid/Resources/values/colors.xml">
+      <file leaf-file-name="PenaltyItemViewHolder.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Droid/Adapters/ViewHolders/PenaltyItemViewHolder.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="20" column="28" lean-forward="false" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="28" />
-              <folding />
+            <state relative-caret-position="135">
+              <caret line="10" column="48" lean-forward="false" selection-start-line="10" selection-start-column="27" selection-end-line="10" selection-end-column="48" />
+              <folding>
+                <marker date="1522246840000" expanded="true" signature="6:327" ph="..." />
+                <marker date="1522246840000" expanded="true" signature="384:1038" ph="{...}" />
+                <marker date="1522246840000" expanded="true" signature="441:1036" ph="{...}" />
+                <marker date="1522246840000" expanded="true" signature="552:572" ph="{...}" />
+                <marker date="1522246840000" expanded="true" signature="765:1030" ph="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -256,8 +265,8 @@
       <file leaf-file-name="UserItemViewHolder.cs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Droid/Adapters/ViewHolders/UserItemViewHolder.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+            <state relative-caret-position="330">
+              <caret line="29" column="5" lean-forward="false" selection-start-line="11" selection-start-column="36" selection-end-line="29" selection-end-column="5" />
               <folding>
                 <marker date="1522237127000" expanded="false" signature="6:279" ph="..." />
                 <marker date="1522237127000" expanded="true" signature="336:1129" ph="{...}" />
@@ -295,6 +304,7 @@
       <find>gr</find>
       <find>android:textSize=&quot;20dp&quot;</find>
       <find>selectable</find>
+      <find>showview</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -313,12 +323,15 @@
     <setting file="file://$USER_HOME$/Projects/MobileCore/MobileCore.Droid/Activities/ActivityBase.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Client/CoffeeManager.Droid/SplashScreen.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/Projects/MobileCore/Email/IEmailService.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Core/ViewModels/Users/UserEarningsViewModel.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Core/ViewModels/Users/UserItemViewModel.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/Projects/MobileCore/ViewModels/SimpleViewModel.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Core/ViewModels/Users/UserPenaltyItemViewModel.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/Projects/MobileCore/Connection/ConnectivityBase.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/Projects/MobileCore/ViewModels/PageViewModel.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Client/CoffeeManager.Droid/UncaughtExceptionHandler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Core/ViewModels/Shifts/AddExpenseExtendedViewModel.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Droid/Adapters/ViewHolders/PenaltyItemViewHolder.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Client/CoffeeManager.Droid/LinkerPleaseInclude.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Core/ViewModels/Shifts/ShiftItemViewModel.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Core/ViewModels/Inventory/Create/CreateInventoryItemViewModel.cs" root0="FORCE_HIGHLIGHTING" />
@@ -427,6 +440,7 @@
     <setting file="file://$PROJECT_DIR$/CoffeManager.Common/Managers/ICategoryManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CoffeManager.Common/Managers/AccountManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CoffeManager.Common/Managers/ProductManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Droid/Views/Users/UserEarningsView.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/Projects/MobileCore/MobileCore.Droid/Bindings/BaseTargetBinding.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Droid/DroidApplication.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/Projects/MobileCore/MobileCore.Droid/Bindings/BaseCommandTargetBinding.cs" root0="FORCE_HIGHLIGHTING" />
@@ -512,14 +526,11 @@
     <setting file="file://$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Core/ViewModels/LoginViewModel.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/1E89C43D-3C7D-48B5-BA69-BFC0B1BDF114/43/917709c5/FragmentPagerAdapter.cs" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/Client/CoffeeManager.Core/ViewModels/UtilizedProducts/UtilizeProductsViewModel.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$USER_HOME$/Projects/MobileCore/ViewModels/FeedViewModel.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Droid/Views/Fragments/StatisticFragment.cs" />
-        <option value="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Droid/Views/Fragments/StoreFragment.cs" />
-        <option value="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Droid/Views/Fragments/ProductsFragment.cs" />
-        <option value="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Droid/Views/Fragments/FinanceFragment.cs" />
         <option value="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Droid/Views/Fragments/ExpensesFragment.cs" />
         <option value="$PROJECT_DIR$/Client/CoffeeManager.Droid/Setup.cs" />
         <option value="$PROJECT_DIR$/Client/CoffeeManager.Droid/Resources/layout/suply_product_card.axml" />
@@ -536,7 +547,6 @@
         <option value="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Core/ViewModels/Shifts/ShiftItemViewModel.cs" />
         <option value="$PROJECT_DIR$/CoffeManager.Common/ViewModels/ListItemViewModelBase.cs" />
         <option value="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Droid/Adapters/ViewHolders/ShiftItemViewHolder.cs" />
-        <option value="$USER_HOME$/Projects/MobileCore/ViewModels/FeedViewModel.cs" />
         <option value="$USER_HOME$/Projects/MobileCore/ViewModels/PageViewModel.cs" />
         <option value="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Droid/Resources/layout/shift_info_item.axml" />
         <option value="$USER_HOME$/Projects/MobileCore/MobileCore.Droid/Bindings/BaseTargetBinding.cs" />
@@ -565,8 +575,13 @@
         <option value="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Droid/Resources/values/strings.xml" />
         <option value="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Droid/Views/Users/UsersView.cs" />
         <option value="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Droid/Resources/layout/user_detail.axml" />
-        <option value="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Droid/Views/Users/UserDetailView.cs" />
+        <option value="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Droid/Adapters/ViewHolders/PenaltyItemViewHolder.cs" />
+        <option value="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Core/ViewModels/Users/UserPenaltyItemViewModel.cs" />
+        <option value="$USER_HOME$/Projects/MobileCore/ViewModels/FeedViewModel.cs" />
         <option value="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Core/ViewModels/Users/UserDetailsViewModel.cs" />
+        <option value="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Droid/Views/Users/UserDetailView.cs" />
+        <option value="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Core/ViewModels/Users/UserEarningsViewModel.cs" />
+        <option value="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Droid/Views/Users/UserEarningsView.cs" />
       </list>
     </option>
   </component>
@@ -651,44 +666,6 @@
               <item name="CoffeeManager.Core (12 projects)" type="977d5f41:SolutionExplorerNodeRider" />
               <item name="Admin" type="977d5f41:SolutionExplorerNodeRider" />
               <item name="CoffeeManagerAdmin.Droid" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="Adapters" type="977d5f41:SolutionExplorerNodeRider" />
-            </path>
-            <path>
-              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
-              <item name="CoffeeManager.Core (12 projects)" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="Admin" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="CoffeeManagerAdmin.Droid" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="Adapters" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="ViewHolders" type="977d5f41:SolutionExplorerNodeRider" />
-            </path>
-            <path>
-              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
-              <item name="CoffeeManager.Core (12 projects)" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="Admin" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="CoffeeManagerAdmin.Droid" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="Resources" type="977d5f41:SolutionExplorerNodeRider" />
-            </path>
-            <path>
-              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
-              <item name="CoffeeManager.Core (12 projects)" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="Admin" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="CoffeeManagerAdmin.Droid" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="Resources" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="layout" type="977d5f41:SolutionExplorerNodeRider" />
-            </path>
-            <path>
-              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
-              <item name="CoffeeManager.Core (12 projects)" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="Admin" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="CoffeeManagerAdmin.Droid" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="Resources" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="values" type="977d5f41:SolutionExplorerNodeRider" />
-            </path>
-            <path>
-              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
-              <item name="CoffeeManager.Core (12 projects)" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="Admin" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="CoffeeManagerAdmin.Droid" type="977d5f41:SolutionExplorerNodeRider" />
               <item name="Views" type="977d5f41:SolutionExplorerNodeRider" />
             </path>
             <path>
@@ -708,29 +685,20 @@
               <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
               <item name="CoffeeManager.Core (12 projects)" type="977d5f41:SolutionExplorerNodeRider" />
               <item name="Core" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="MobileCore.Droid" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="MobileCore" type="977d5f41:SolutionExplorerNodeRider" />
+            </path>
+            <path>
+              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+              <item name="CoffeeManager.Core (12 projects)" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Core" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="MobileCore" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="ViewModels" type="977d5f41:SolutionExplorerNodeRider" />
             </path>
             <path>
               <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
               <item name="CoffeeManager.Core (12 projects)" type="977d5f41:SolutionExplorerNodeRider" />
               <item name="Core" type="977d5f41:SolutionExplorerNodeRider" />
               <item name="MobileCore.Droid" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="Common" type="977d5f41:SolutionExplorerNodeRider" />
-            </path>
-            <path>
-              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
-              <item name="CoffeeManager.Core (12 projects)" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="Core" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="MobileCore.Droid" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="Resources" type="977d5f41:SolutionExplorerNodeRider" />
-            </path>
-            <path>
-              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
-              <item name="CoffeeManager.Core (12 projects)" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="Core" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="MobileCore.Droid" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="Resources" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="layout" type="977d5f41:SolutionExplorerNodeRider" />
             </path>
             <path>
               <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
@@ -738,7 +706,6 @@
               <item name="Core" type="977d5f41:SolutionExplorerNodeRider" />
               <item name="MobileCore.Droid" type="977d5f41:SolutionExplorerNodeRider" />
               <item name="Resources" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="values" type="977d5f41:SolutionExplorerNodeRider" />
             </path>
           </expand>
           <select />
@@ -929,12 +896,12 @@
       <workItem from="1522099858476" duration="2603000" />
       <workItem from="1522144714106" duration="20247000" />
       <workItem from="1522230543754" duration="2615000" />
-      <workItem from="1522236120311" duration="6411000" />
+      <workItem from="1522236120311" duration="7845000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="139824000" />
+    <option name="totallyTimeSpent" value="141258000" />
   </component>
   <component name="TodoView" selected-index="1">
     <todo-panel id="selected-file">
@@ -1084,93 +1051,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Admin/CoffeeManagerAdmin.iOS/Platform/CoffeeManagerAdminNavigationContoller.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="11" column="53" lean-forward="true" selection-start-line="11" selection-start-column="53" selection-end-line="11" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Admin/CoffeeManagerAdmin.iOS/Views/Abstract/MainTabController.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="111" column="0" lean-forward="true" selection-start-line="111" selection-start-column="0" selection-end-line="111" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Admin/CoffeeManagerAdmin.iOS/Views/MainView.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="9" column="42" lean-forward="false" selection-start-line="9" selection-start-column="42" selection-end-line="9" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Projects/MobileCore/ViewModels/SimpleViewModel.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="70">
-          <caret line="175" column="37" lean-forward="false" selection-start-line="175" selection-start-column="37" selection-end-line="175" selection-end-column="37" />
-          <folding>
-            <marker date="1520972935000" expanded="false" signature="6:295" ph="..." />
-            <marker date="1520972935000" expanded="true" signature="378:7514" ph="{...}" />
-            <marker date="1520972935000" expanded="true" signature="446:896" ph="{...}" />
-            <marker date="1520972935000" expanded="true" signature="502:886" ph="{...}" />
-            <marker date="1520972935000" expanded="true" signature="582:711" ph="{...}" />
-            <marker date="1520972935000" expanded="true" signature="732:815" ph="{...}" />
-            <marker date="1520972935000" expanded="true" signature="914:1399" ph="IOC" />
-            <marker date="1520972935000" expanded="true" signature="1409:4571" ph="dialogs" />
-            <marker date="1520972935000" expanded="true" signature="1488:1555" ph="{...}" />
-            <marker date="1520972935000" expanded="true" signature="1634:1877" ph="{...}" />
-            <marker date="1520972935000" expanded="true" signature="1705:1865" ph="{...}" />
-            <marker date="1520972935000" expanded="true" signature="1937:2387" ph="{...}" />
-            <marker date="1520972935000" expanded="true" signature="2017:2375" ph="{...}" />
-            <marker date="1520972935000" expanded="true" signature="2131:2357" ph="{...}" />
-            <marker date="1520972935000" expanded="true" signature="2198:2331" ph="{...}" />
-            <marker date="1520972935000" expanded="true" signature="2451:2838" ph="{...}" />
-            <marker date="1520972935000" expanded="true" signature="2526:2826" ph="{...}" />
-            <marker date="1520972935000" expanded="true" signature="2628:2812" ph="{...}" />
-            <marker date="1520972935000" expanded="true" signature="2679:2794" ph="{...}" />
-            <marker date="1520972935000" expanded="true" signature="2916:3307" ph="{...}" />
-            <marker date="1520972935000" expanded="true" signature="2991:3295" ph="{...}" />
-            <marker date="1520972935000" expanded="true" signature="3093:3281" ph="{...}" />
-            <marker date="1520972935000" expanded="true" signature="3144:3263" ph="{...}" />
-            <marker date="1520972935000" expanded="true" signature="3367:3765" ph="{...}" />
-            <marker date="1520972935000" expanded="true" signature="3467:3596" ph="{...}" />
-            <marker date="1520972935000" expanded="true" signature="3654:3711" ph="{...}" />
-            <marker date="1520972935000" expanded="true" signature="3836:4211" ph="{...}" />
-            <marker date="1520972935000" expanded="true" signature="3933:4037" ph="{...}" />
-            <marker date="1520972935000" expanded="true" signature="4096:4153" ph="{...}" />
-            <marker date="1520972935000" expanded="true" signature="4320:4551" ph="{...}" />
-            <marker date="1520972935000" expanded="true" signature="4417:4506" ph="{...}" />
-            <marker date="1520972935000" expanded="true" signature="4717:5019" ph="{...}" />
-            <marker date="1520972935000" expanded="true" signature="5162:5480" ph="{...}" />
-            <marker date="1520972935000" expanded="true" signature="5670:7508" ph="{...}" />
-            <marker date="1520972935000" expanded="true" signature="5696:6160" ph="{...}" />
-            <marker date="1520972935000" expanded="true" signature="5754:6027" ph="{...}" />
-            <marker date="1520972935000" expanded="true" signature="5898:6009" ph="{...}" />
-            <marker date="1520972935000" expanded="true" signature="6215:6344" ph="{...}" />
-            <marker date="1520972935000" expanded="true" signature="6390:6579" ph="{...}" />
-            <marker date="1520972935000" expanded="true" signature="6626:6815" ph="{...}" />
-            <marker date="1520972935000" expanded="true" signature="6868:7021" ph="{...}" />
-            <marker date="1520972935000" expanded="true" signature="7053:7357" ph="{...}" />
-            <marker date="1520972935000" expanded="true" signature="7377:7456" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Projects/MobileCore/MobileCore.Droid/Listeners/EndlessScrollChangedListener.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="241">
-          <caret line="48" column="27" lean-forward="false" selection-start-line="48" selection-start-column="27" selection-end-line="48" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Projects/MobileCore/MobileCore.Droid/Controls/EndlessRecyclerView.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="347">
-          <caret line="71" column="12" lean-forward="false" selection-start-line="71" selection-start-column="12" selection-end-line="71" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Core/ViewModels/Shifts/ShiftItemViewModel.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="185">
@@ -1419,26 +1299,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Core/ViewModels/Home/UsersViewModel.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="461">
-          <caret line="62" column="23" lean-forward="false" selection-start-line="62" selection-start-column="23" selection-end-line="62" selection-end-column="23" />
-          <folding>
-            <marker date="1522234949000" expanded="false" signature="6:329" ph="..." />
-            <marker date="1522234949000" expanded="true" signature="380:2434" ph="{...}" />
-            <marker date="1522234949000" expanded="true" signature="430:2432" ph="{...}" />
-            <marker date="1522234949000" expanded="true" signature="676:858" ph="{...}" />
-            <marker date="1522234949000" expanded="true" signature="736:848" ph="{...}" />
-            <marker date="1522234949000" expanded="true" signature="938:1406" ph="{...}" />
-            <marker date="1522234949000" expanded="true" signature="991:1394" ph="{...}" />
-            <marker date="1522234949000" expanded="true" signature="1613:1918" ph="{...}" />
-            <marker date="1522234949000" expanded="true" signature="1998:2150" ph="{...}" />
-            <marker date="1522234949000" expanded="true" signature="2184:2255" ph="{...}" />
-            <marker date="1522234949000" expanded="true" signature="2304:2426" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/Projects/MobileCore/MobileCore.Droid/Adapters/TemplateSelectors/TemplateSelector.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="236">
@@ -1472,20 +1332,6 @@
           <folding>
             <marker date="1522237118000" expanded="true" signature="33:179" ph="{...}" />
             <marker date="1522237118000" expanded="true" signature="69:177" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Droid/Adapters/ViewHolders/UserItemViewHolder.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-          <folding>
-            <marker date="1522237127000" expanded="false" signature="6:279" ph="..." />
-            <marker date="1522237127000" expanded="true" signature="336:1129" ph="{...}" />
-            <marker date="1522237127000" expanded="true" signature="391:1122" ph="{...}" />
-            <marker date="1522237127000" expanded="true" signature="499:519" ph="{...}" />
-            <marker date="1522237127000" expanded="true" signature="731:1116" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1527,22 +1373,6 @@
         <state relative-caret-position="150">
           <caret line="10" column="38" lean-forward="true" selection-start-line="10" selection-start-column="38" selection-end-line="10" selection-end-column="38" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Droid/Views/Users/UsersView.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-          <folding>
-            <marker date="1522242161000" expanded="false" signature="6:564" ph="..." />
-            <marker date="1522242161000" expanded="true" signature="612:2119" ph="{...}" />
-            <marker date="1522242161000" expanded="true" signature="772:2117" ph="{...}" />
-            <marker date="1522242161000" expanded="true" signature="1138:1158" ph="{...}" />
-            <marker date="1522242161000" expanded="true" signature="1217:1306" ph="{...}" />
-            <marker date="1522242161000" expanded="true" signature="1365:1702" ph="{...}" />
-            <marker date="1522242161000" expanded="true" signature="1751:2111" ph="{...}" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1656,83 +1486,234 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Droid/Views/Users/UserDetailView.cs">
+    <entry file="file://$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Droid/Adapters/ViewHolders/UserItemViewHolder.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="11" column="57" lean-forward="false" selection-start-line="11" selection-start-column="57" selection-end-line="11" selection-end-column="57" />
+        <state relative-caret-position="330">
+          <caret line="29" column="5" lean-forward="false" selection-start-line="11" selection-start-column="36" selection-end-line="29" selection-end-column="5" />
           <folding>
-            <marker date="1522245690000" expanded="true" signature="6:188" ph="..." />
-            <marker date="1522245690000" expanded="true" signature="236:1164" ph="{...}" />
-            <marker date="1522245690000" expanded="true" signature="449:1162" ph="{...}" />
-            <marker date="1522245690000" expanded="true" signature="821:841" ph="{...}" />
-            <marker date="1522245690000" expanded="true" signature="909:1156" ph="{...}" />
-            <marker date="1522245690000" expanded="true" signature="968:1080" ph="{...}" />
+            <marker date="1522237127000" expanded="false" signature="6:279" ph="..." />
+            <marker date="1522237127000" expanded="true" signature="336:1129" ph="{...}" />
+            <marker date="1522237127000" expanded="true" signature="391:1122" ph="{...}" />
+            <marker date="1522237127000" expanded="true" signature="499:519" ph="{...}" />
+            <marker date="1522237127000" expanded="true" signature="731:1116" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Core/ViewModels/Users/UserPenaltyItemViewModel.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="141">
+          <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <folding>
+            <marker date="1522246840000" expanded="true" signature="6:232" ph="..." />
+            <marker date="1522246840000" expanded="true" signature="284:1427" ph="{...}" />
+            <marker date="1522246840000" expanded="true" signature="352:1425" ph="{...}" />
+            <marker date="1522246840000" expanded="true" signature="741:1019" ph="{...}" />
+            <marker date="1522246840000" expanded="true" signature="1060:1144" ph="{...}" />
+            <marker date="1522246840000" expanded="true" signature="1189:1312" ph="{...}" />
+            <marker date="1522246840000" expanded="true" signature="1361:1419" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Droid/Adapters/ViewHolders/PenaltyItemViewHolder.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="10" column="48" lean-forward="false" selection-start-line="10" selection-start-column="27" selection-end-line="10" selection-end-column="48" />
+          <folding>
+            <marker date="1522246840000" expanded="true" signature="6:327" ph="..." />
+            <marker date="1522246840000" expanded="true" signature="384:1038" ph="{...}" />
+            <marker date="1522246840000" expanded="true" signature="441:1036" ph="{...}" />
+            <marker date="1522246840000" expanded="true" signature="552:572" ph="{...}" />
+            <marker date="1522246840000" expanded="true" signature="765:1030" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Projects/MobileCore/ViewModels/FeedViewModel.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="57" lean-forward="false" selection-start-line="6" selection-start-column="57" selection-end-line="6" selection-end-column="57" />
+          <folding>
+            <marker date="1522247194000" expanded="true" signature="6:91" ph="..." />
+            <marker date="1522247194000" expanded="true" signature="124:722" ph="{...}" />
+            <marker date="1522247194000" expanded="true" signature="245:720" ph="{...}" />
+            <marker date="1522247194000" expanded="true" signature="285:401" ph="{...}" />
+            <marker date="1522247194000" expanded="true" signature="574:714" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CoffeManager.Common/ViewModels/ViewModelBase.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="16" column="46" lean-forward="false" selection-start-line="16" selection-start-column="46" selection-end-line="16" selection-end-column="46" />
+          <folding>
+            <marker date="1521655976000" expanded="false" signature="6:281" ph="..." />
+            <marker date="1521655976000" expanded="true" signature="323:2568" ph="{...}" />
+            <marker date="1521655976000" expanded="true" signature="381:2566" ph="{...}" />
+            <marker date="1521655976000" expanded="true" signature="443:562" ph="{...}" />
+            <marker date="1521655976000" expanded="true" signature="469:552" ph="{...}" />
+            <marker date="1521655976000" expanded="true" signature="606:723" ph="{...}" />
+            <marker date="1521655976000" expanded="true" signature="632:713" ph="{...}" />
+            <marker date="1521655976000" expanded="true" signature="808:880" ph="{...}" />
+            <marker date="1521655976000" expanded="true" signature="922:1019" ph="{...}" />
+            <marker date="1521655976000" expanded="true" signature="1063:1144" ph="{...}" />
+            <marker date="1521655976000" expanded="true" signature="1187:1207" ph="{...}" />
+            <marker date="1521655976000" expanded="true" signature="1255:1275" ph="{...}" />
+            <marker date="1521655976000" expanded="true" signature="1400:1500" ph="{...}" />
+            <marker date="1521655976000" expanded="true" signature="1611:1683" ph="{...}" />
+            <marker date="1521655976000" expanded="true" signature="1750:1813" ph="{...}" />
+            <marker date="1521655976000" expanded="true" signature="1874:1945" ph="{...}" />
+            <marker date="1521655976000" expanded="true" signature="1998:2560" ph="{...}" />
+            <marker date="1521655976000" expanded="true" signature="2118:2176" ph="{...}" />
+            <marker date="1521655976000" expanded="true" signature="2313:2371" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Core/ViewModels/Home/UsersViewModel.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="67" column="9" lean-forward="false" selection-start-line="60" selection-start-column="5" selection-end-line="67" selection-end-column="9" />
+          <folding>
+            <marker date="1522234949000" expanded="false" signature="6:329" ph="..." />
+            <marker date="1522234949000" expanded="true" signature="380:2434" ph="{...}" />
+            <marker date="1522234949000" expanded="true" signature="430:2432" ph="{...}" />
+            <marker date="1522234949000" expanded="true" signature="676:858" ph="{...}" />
+            <marker date="1522234949000" expanded="true" signature="736:848" ph="{...}" />
+            <marker date="1522234949000" expanded="true" signature="938:1406" ph="{...}" />
+            <marker date="1522234949000" expanded="true" signature="991:1394" ph="{...}" />
+            <marker date="1522234949000" expanded="true" signature="1613:1918" ph="{...}" />
+            <marker date="1522234949000" expanded="true" signature="1998:2150" ph="{...}" />
+            <marker date="1522234949000" expanded="true" signature="2184:2255" ph="{...}" />
+            <marker date="1522234949000" expanded="true" signature="2304:2426" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Droid/Views/Users/UsersView.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="26" column="3" lean-forward="false" selection-start-line="26" selection-start-column="3" selection-end-line="28" selection-end-column="0" />
+          <folding>
+            <marker date="1522242161000" expanded="false" signature="6:564" ph="..." />
+            <marker date="1522242161000" expanded="true" signature="612:2119" ph="{...}" />
+            <marker date="1522242161000" expanded="true" signature="772:2117" ph="{...}" />
+            <marker date="1522242161000" expanded="true" signature="1138:1158" ph="{...}" />
+            <marker date="1522242161000" expanded="true" signature="1217:1306" ph="{...}" />
+            <marker date="1522242161000" expanded="true" signature="1365:1702" ph="{...}" />
+            <marker date="1522242161000" expanded="true" signature="1751:2111" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Core/ViewModels/Users/UserDetailsViewModel.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="23" column="56" lean-forward="true" selection-start-line="23" selection-start-column="56" selection-end-line="23" selection-end-column="56" />
+        <state relative-caret-position="154">
+          <caret line="212" column="39" lean-forward="false" selection-start-line="212" selection-start-column="39" selection-end-line="212" selection-end-column="39" />
           <folding>
-            <marker date="1522245991000" expanded="false" signature="6:436" ph="..." />
-            <marker date="1522245991000" expanded="true" signature="488:12943" ph="{...}" />
-            <marker date="1522245991000" expanded="true" signature="544:12941" ph="{...}" />
-            <marker date="1522245991000" expanded="true" signature="2069:2272" ph="{...}" />
-            <marker date="1522245991000" expanded="true" signature="2136:2262" ph="{...}" />
-            <marker date="1522245991000" expanded="true" signature="2315:2757" ph="{...}" />
-            <marker date="1522245991000" expanded="true" signature="2389:2747" ph="{...}" />
-            <marker date="1522245991000" expanded="true" signature="2453:2733" ph="{...}" />
-            <marker date="1522245991000" expanded="true" signature="2792:2998" ph="{...}" />
-            <marker date="1522245991000" expanded="true" signature="2860:2988" ph="{...}" />
-            <marker date="1522245991000" expanded="true" signature="3037:3249" ph="{...}" />
-            <marker date="1522245991000" expanded="true" signature="3107:3239" ph="{...}" />
-            <marker date="1522245991000" expanded="true" signature="3290:4104" ph="{...}" />
-            <marker date="1522245991000" expanded="true" signature="3362:4094" ph="{...}" />
-            <marker date="1522245991000" expanded="true" signature="3594:3658" ph="{...}" />
-            <marker date="1522245991000" expanded="true" signature="4145:4345" ph="{...}" />
-            <marker date="1522245991000" expanded="true" signature="4211:4335" ph="{...}" />
-            <marker date="1522245991000" expanded="true" signature="4390:4462" ph="{...}" />
-            <marker date="1522245991000" expanded="true" signature="4613:5303" ph="{...}" />
-            <marker date="1522245991000" expanded="true" signature="5354:5902" ph="{...}" />
-            <marker date="1522245991000" expanded="true" signature="5404:5456" ph="{...}" />
-            <marker date="1522245991000" expanded="true" signature="5560:5722" ph="{...}" />
-            <marker date="1522245991000" expanded="true" signature="5794:5890" ph="{...}" />
-            <marker date="1522245991000" expanded="true" signature="5950:6501" ph="{...}" />
-            <marker date="1522245991000" expanded="true" signature="6001:6053" ph="{...}" />
-            <marker date="1522245991000" expanded="true" signature="6158:6323" ph="{...}" />
-            <marker date="1522245991000" expanded="true" signature="6395:6489" ph="{...}" />
-            <marker date="1522245991000" expanded="true" signature="6540:6692" ph="{...}" />
-            <marker date="1522245991000" expanded="true" signature="6732:7277" ph="{...}" />
-            <marker date="1522245991000" expanded="true" signature="6849:6901" ph="{...}" />
-            <marker date="1522245991000" expanded="true" signature="7020:7072" ph="{...}" />
-            <marker date="1522245991000" expanded="true" signature="7114:7264" ph="{...}" />
-            <marker date="1522245991000" expanded="true" signature="7314:7391" ph="{...}" />
-            <marker date="1522245991000" expanded="true" signature="7432:8410" ph="{...}" />
-            <marker date="1522245991000" expanded="true" signature="7644:8040" ph="{...}" />
-            <marker date="1522245991000" expanded="true" signature="7764:7906" ph="{...}" />
-            <marker date="1522245991000" expanded="true" signature="7927:8026" ph="{...}" />
-            <marker date="1522245991000" expanded="false" signature="8453:9174" ph="{...}" />
-            <marker date="1522245991000" expanded="true" signature="9214:10199" ph="{...}" />
-            <marker date="1522245991000" expanded="true" signature="9297:9349" ph="{...}" />
-            <marker date="1522245991000" expanded="true" signature="9392:10187" ph="{...}" />
-            <marker date="1522245991000" expanded="true" signature="9663:9950" ph="{...}" />
-            <marker date="1522245991000" expanded="true" signature="10233:10545" ph="{...}" />
-            <marker date="1522245991000" expanded="true" signature="10280:10535" ph="{...}" />
-            <marker date="1522245991000" expanded="true" signature="10585:11276" ph="{...}" />
-            <marker date="1522245991000" expanded="true" signature="10638:11264" ph="{...}" />
-            <marker date="1522245991000" expanded="true" signature="10860:11250" ph="{...}" />
-            <marker date="1522245991000" expanded="true" signature="11004:11184" ph="{...}" />
-            <marker date="1522245991000" expanded="true" signature="11322:11614" ph="{...}" />
-            <marker date="1522245991000" expanded="true" signature="11374:11602" ph="{...}" />
-            <marker date="1522245991000" expanded="true" signature="11654:12283" ph="{...}" />
-            <marker date="1522245991000" expanded="true" signature="11706:12271" ph="{...}" />
-            <marker date="1522245991000" expanded="true" signature="11854:11983" ph="{...}" />
-            <marker date="1522245991000" expanded="true" signature="12319:12809" ph="{...}" />
-            <marker date="1522245991000" expanded="true" signature="12370:12494" ph="{...}" />
-            <marker date="1522245991000" expanded="true" signature="12540:12645" ph="{...}" />
-            <marker date="1522245991000" expanded="true" signature="12858:12936" ph="{...}" />
+            <marker date="1522247417000" expanded="false" signature="6:465" ph="..." />
+            <marker date="1522247417000" expanded="true" signature="517:13438" ph="{...}" />
+            <marker date="1522247417000" expanded="true" signature="573:13436" ph="{...}" />
+            <marker date="1522247417000" expanded="true" signature="2210:2413" ph="{...}" />
+            <marker date="1522247417000" expanded="true" signature="2277:2403" ph="{...}" />
+            <marker date="1522247417000" expanded="true" signature="2456:2898" ph="{...}" />
+            <marker date="1522247417000" expanded="true" signature="2530:2888" ph="{...}" />
+            <marker date="1522247417000" expanded="true" signature="2594:2874" ph="{...}" />
+            <marker date="1522247417000" expanded="true" signature="2933:3139" ph="{...}" />
+            <marker date="1522247417000" expanded="true" signature="3001:3129" ph="{...}" />
+            <marker date="1522247417000" expanded="true" signature="3178:3390" ph="{...}" />
+            <marker date="1522247417000" expanded="true" signature="3248:3380" ph="{...}" />
+            <marker date="1522247417000" expanded="true" signature="3431:4245" ph="{...}" />
+            <marker date="1522247417000" expanded="true" signature="3503:4235" ph="{...}" />
+            <marker date="1522247417000" expanded="true" signature="3735:3799" ph="{...}" />
+            <marker date="1522247417000" expanded="true" signature="4286:4486" ph="{...}" />
+            <marker date="1522247417000" expanded="true" signature="4352:4476" ph="{...}" />
+            <marker date="1522247417000" expanded="true" signature="4531:4603" ph="{...}" />
+            <marker date="1522247417000" expanded="true" signature="4754:5559" ph="{...}" />
+            <marker date="1522247417000" expanded="true" signature="5646:5798" ph="{...}" />
+            <marker date="1522247417000" expanded="true" signature="5849:6397" ph="{...}" />
+            <marker date="1522247417000" expanded="true" signature="5899:5951" ph="{...}" />
+            <marker date="1522247417000" expanded="true" signature="6055:6217" ph="{...}" />
+            <marker date="1522247417000" expanded="true" signature="6289:6385" ph="{...}" />
+            <marker date="1522247417000" expanded="true" signature="6445:6996" ph="{...}" />
+            <marker date="1522247417000" expanded="true" signature="6496:6548" ph="{...}" />
+            <marker date="1522247417000" expanded="true" signature="6653:6818" ph="{...}" />
+            <marker date="1522247417000" expanded="true" signature="6890:6984" ph="{...}" />
+            <marker date="1522247417000" expanded="true" signature="7035:7187" ph="{...}" />
+            <marker date="1522247417000" expanded="true" signature="7227:7772" ph="{...}" />
+            <marker date="1522247417000" expanded="true" signature="7344:7396" ph="{...}" />
+            <marker date="1522247417000" expanded="true" signature="7515:7567" ph="{...}" />
+            <marker date="1522247417000" expanded="true" signature="7609:7759" ph="{...}" />
+            <marker date="1522247417000" expanded="true" signature="7809:7886" ph="{...}" />
+            <marker date="1522247417000" expanded="true" signature="7927:8905" ph="{...}" />
+            <marker date="1522247417000" expanded="true" signature="8139:8535" ph="{...}" />
+            <marker date="1522247417000" expanded="true" signature="8259:8401" ph="{...}" />
+            <marker date="1522247417000" expanded="true" signature="8422:8521" ph="{...}" />
+            <marker date="1522247417000" expanded="false" signature="8948:9669" ph="{...}" />
+            <marker date="1522247417000" expanded="true" signature="9709:10694" ph="{...}" />
+            <marker date="1522247417000" expanded="true" signature="9792:9844" ph="{...}" />
+            <marker date="1522247417000" expanded="true" signature="9887:10682" ph="{...}" />
+            <marker date="1522247417000" expanded="true" signature="10158:10445" ph="{...}" />
+            <marker date="1522247417000" expanded="true" signature="10728:11040" ph="{...}" />
+            <marker date="1522247417000" expanded="true" signature="10775:11030" ph="{...}" />
+            <marker date="1522247417000" expanded="true" signature="11080:11771" ph="{...}" />
+            <marker date="1522247417000" expanded="true" signature="11133:11759" ph="{...}" />
+            <marker date="1522247417000" expanded="true" signature="11355:11745" ph="{...}" />
+            <marker date="1522247417000" expanded="true" signature="11499:11679" ph="{...}" />
+            <marker date="1522247417000" expanded="true" signature="11817:12109" ph="{...}" />
+            <marker date="1522247417000" expanded="true" signature="11869:12097" ph="{...}" />
+            <marker date="1522247417000" expanded="true" signature="12149:12778" ph="{...}" />
+            <marker date="1522247417000" expanded="true" signature="12201:12766" ph="{...}" />
+            <marker date="1522247417000" expanded="true" signature="12349:12478" ph="{...}" />
+            <marker date="1522247417000" expanded="true" signature="12814:13304" ph="{...}" />
+            <marker date="1522247417000" expanded="true" signature="12865:12989" ph="{...}" />
+            <marker date="1522247417000" expanded="true" signature="13035:13140" ph="{...}" />
+            <marker date="1522247417000" expanded="true" signature="13353:13431" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Core/ViewModels/Users/UserEarningsViewModel.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="9" column="38" lean-forward="false" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="38" />
+          <folding>
+            <marker date="1522247999000" expanded="false" signature="6:168" ph="..." />
+            <marker date="1522247999000" expanded="true" signature="220:649" ph="{...}" />
+            <marker date="1522247999000" expanded="true" signature="277:647" ph="{...}" />
+            <marker date="1522247999000" expanded="true" signature="384:641" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Droid/Views/Users/UserDetailView.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="19" column="74" lean-forward="false" selection-start-line="19" selection-start-column="31" selection-end-line="19" selection-end-column="74" />
+          <folding>
+            <marker date="1522247460000" expanded="true" signature="6:506" ph="..." />
+            <marker date="1522247460000" expanded="true" signature="554:2580" ph="{...}" />
+            <marker date="1522247460000" expanded="true" signature="767:2578" ph="{...}" />
+            <marker date="1522247460000" expanded="true" signature="1250:1270" ph="{...}" />
+            <marker date="1522247460000" expanded="true" signature="1346:1435" ph="{...}" />
+            <marker date="1522247460000" expanded="true" signature="1485:1835" ph="{...}" />
+            <marker date="1522247460000" expanded="true" signature="1884:2257" ph="{...}" />
+            <marker date="1522247460000" expanded="true" signature="2325:2572" ph="{...}" />
+            <marker date="1522247460000" expanded="true" signature="2384:2496" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Droid/Views/Users/UserEarningsView.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="1" lean-forward="true" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
+          <folding>
+            <marker date="1522247999000" expanded="true" signature="6:167" ph="..." />
+            <marker date="1522247999000" expanded="true" signature="215:412" ph="{...}" />
+            <marker date="1522247999000" expanded="true" signature="389:410" ph="{...}" />
           </folding>
         </state>
       </provider>

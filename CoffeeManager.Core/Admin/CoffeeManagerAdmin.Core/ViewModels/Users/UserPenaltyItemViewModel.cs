@@ -1,13 +1,13 @@
 ﻿using System;
-using CoffeManager.Common;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using CoffeeManager.Models;
-using MvvmCross.Core.ViewModels;
-using System.Threading.Tasks;
 using CoffeManager.Common.Managers;
 using CoffeManager.Common.ViewModels;
+using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
-namespace CoffeeManagerAdmin.Core
+
+namespace CoffeeManagerAdmin.Core.ViewModels.Users
 {
     public class UserPenaltyItemViewModel : ListItemViewModelBase
     {

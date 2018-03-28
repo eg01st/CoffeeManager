@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using CoffeManager.Common;
+using System.Linq;
 using CoffeeManager.Models;
 using CoffeeManagerAdmin.Core.Util;
-using System.Linq;
 using CoffeManager.Common.ViewModels;
 
-namespace CoffeeManagerAdmin.Core
+namespace CoffeeManagerAdmin.Core.ViewModels.Users
 {
     public class UserEarningsViewModel : ViewModelBase
     {
