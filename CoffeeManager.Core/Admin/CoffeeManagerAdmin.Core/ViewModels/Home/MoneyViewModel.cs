@@ -5,6 +5,7 @@ using System.Windows.Input;
 using Acr.UserDialogs;
 using CoffeeManager.Common;
 using CoffeeManager.Models;
+using CoffeeManagerAdmin.Core.ViewModels.CreditCard;
 using CoffeeManagerAdmin.Core.ViewModels.Settings;
 using CoffeeManagerAdmin.Core.ViewModels.Shifts;
 using CoffeManager.Common;

@@ -147,6 +147,7 @@
         <e p="CoffeeManagerAdmin.Droid" t="IncludeRecursive">
           <e p="Adapters" t="Include">
             <e p="ViewHolders" t="Include">
+              <e p="CashoutHistoryItemViewHolder.cs" t="Include" />
               <e p="CoffeeRoomItemViewHolder.cs" t="Include" />
               <e p="PenaltyItemViewHolder.cs" t="Include" />
               <e p="ShiftItemViewHolder.cs" t="Include" />
@@ -259,6 +260,9 @@
               <e p="Icon.png" t="Include" />
             </e>
             <e p="layout" t="Include">
+              <e p="credit_card.axml" t="Include" />
+              <e p="credit_card_cashout_header.axml" t="Include" />
+              <e p="credit_card_cashout_item.axml" t="Include" />
               <e p="fragment_expenses.axml" t="Include" />
               <e p="fragment_finance.axml" t="Include" />
               <e p="fragment_products.axml" t="Include" />
@@ -322,6 +326,9 @@
           <e p="SplashScreen.cs" t="Include" />
           <e p="UncaughtExceptionHandler.cs" t="Include" />
           <e p="Views" t="Include">
+            <e p="CreditCard" t="Include">
+              <e p="CreditCardView.cs" t="Include" />
+            </e>
             <e p="Fragments" t="Include">
               <e p="ManageExpensesView.cs" t="Include" />
               <e p="MoneyView.cs" t="Include" />
@@ -1276,6 +1283,7 @@
           <e p="Controllers" t="Include">
             <e p="AccountController.cs" t="Include" />
             <e p="AdminController.cs" t="Include" />
+            <e p="CategoriesController.cs" t="Include" />
             <e p="InventoryController.cs" t="Include" />
             <e p="PaymentController.cs" t="Include" />
             <e p="ProductsController.cs" t="Include" />

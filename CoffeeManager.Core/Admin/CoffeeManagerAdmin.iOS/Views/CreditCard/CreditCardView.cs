@@ -1,4 +1,5 @@
 ﻿using CoffeeManagerAdmin.Core;
+using CoffeeManagerAdmin.Core.ViewModels.CreditCard;
 using CoffeeManagerAdmin.iOS.Views.Abstract;
 using MvvmCross.Binding.BindingContext;
 using UIKit;

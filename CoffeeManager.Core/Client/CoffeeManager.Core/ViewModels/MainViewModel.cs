@@ -234,7 +234,7 @@ namespace CoffeeManager.Core.ViewModels
             var categories = await categoryManager.GetCategories();
             foreach (var category in categories)
             {
-                var vm = new ProductViewModel(category.Id);
+                var vm = new ProductViewModel(category);
                 Products.Add(vm);
                 tasks.Add(vm.InitViewModel());
             }
@@ -251,7 +251,23 @@ namespace CoffeeManager.Core.ViewModels
             {
                 await Task.WhenAll(tasks);
 
-                allProducts = Products.SelectMany(s => s.Items);
+                List<ProductItemViewModel> prods = new List<ProductItemViewModel>();
+                foreach (var p in Products)
+                {
+                    if (p.HasSubCategories)
+                    {
+                        foreach (var subCategory in p.SubCategories)
+                        {
+                            prods.AddRange(subCategory.Items);
+                        }
+                    }
+                    else
+                    {
+                        prods.AddRange(p.Items);
+                    }
+                }
+
+                allProducts = prods;
 
                 SubscribeToSelectProduct();
 

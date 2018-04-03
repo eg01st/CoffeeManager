@@ -11,6 +11,22 @@
         android:orientation="horizontal"
         android:numColumns="3"
         android:columnWidth="200dp"
-        local:MvxBind="ItemsSource Items"
+        local:MvxBind="ItemsSource Items; Visibility InvertedBoolToVisibility(HasSubCategories)"
         local:MvxItemTemplate="@layout/product_card" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        local:MvxBind="Visibility BoolToVisibility(HasSubCategories)">
+        <android.support.design.widget.TabLayout
+            android:id="@+id/sub_category_tab_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            local:tabMode="fixed" />
+        <android.support.v4.view.ViewPager
+            android:id="@+id/sub_category_viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/white" />
+    </LinearLayout>
 </LinearLayout>

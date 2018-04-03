@@ -121,5 +121,12 @@ namespace CoffeeManager.Models
         public const string Update = Api + "/update";
         public const string GetCurrentAdnroidVersion = Update + "/getcurrentversion";
         public const string GetAndroidPackage = Update + "/GetAndroidPackage";
+
+        public const string Categories = Api + "/categories";
+        public const string GetCategories = Categories + "/GetCategories";
+        public const string GetCategory = Categories + "/GetCategory";
+        public const string AddCategory = Categories + "/AddCategory";
+        public const string UpdateCategory = Categories + "/UpdateCategory";
+        public const string DeleteCategory = Categories + "/DeleteCategory";
     }
 }

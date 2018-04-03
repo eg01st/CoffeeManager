@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using CoffeeManager.Models;
 using CoffeeManager.Models.Data.DTO.Category;
 
 namespace CoffeManager.Common.Providers
@@ -10,7 +11,11 @@ namespace CoffeManager.Common.Providers
         {
             return new[]
             {
-                new CategoryDTO() {Id = 1, Name = "Кофе"},
+                new CategoryDTO()
+                {
+                    Id = 1,
+                    Name = "Кофе",
+                },
                 new CategoryDTO() {Id = 2, Name = "Чай"},
                 new CategoryDTO() {Id = 3, Name = "Холодные напитки"},
                 new CategoryDTO() {Id = 4, Name = "Мороженое"},
@@ -18,27 +23,35 @@ namespace CoffeManager.Common.Providers
                 new CategoryDTO() {Id = 6, Name = "Вода"},
                 new CategoryDTO() {Id = 7, Name = "Сладости"},
                 new CategoryDTO() {Id = 8, Name = "Добавки"},
+                new CategoryDTO() {Id = 1, Name = "Lavaza", ParentId = 1} , 
+                new CategoryDTO() {Id = 2, Name = "Арабика", ParentId = 1} , 
             };
         }
 
-        public async Task<CategoryDTO> GetCategory(int id)
+        public async Task<CategoryDTO> GetCategory(int categoryId)
         {
-            return new CategoryDTO();
+            return await Get<CategoryDTO>(RoutesConstants.GetCategory, new Dictionary<string, string>()
+            {
+                {nameof(categoryId), categoryId.ToString()}
+            });
         }
 
-        public async Task AddCategory(CategoryDTO dto)
+        public async Task<int> AddCategory(CategoryDTO category)
         {
-
+            return await Put<int, CategoryDTO>(RoutesConstants.AddCategory, category);
         }
 
-        public async Task UpdateCategory(CategoryDTO dto)
+        public async Task UpdateCategory(CategoryDTO category)
         {
-
+            await Post(RoutesConstants.UpdateCategory, category);
         }
 
-        public async Task DeleteCategory(int id)
+        public async Task DeleteCategory(int categoryId)
         {
-
+            await Delete(RoutesConstants.DeleteCategory, new Dictionary<string, string>()
+            {
+                {nameof(categoryId), categoryId.ToString()}
+            });
         }
     }
 }

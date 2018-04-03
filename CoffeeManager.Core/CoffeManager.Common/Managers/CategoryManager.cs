@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using CoffeeManager.Models.Data.DTO.Category;
 using CoffeManager.Common.Providers;
@@ -16,7 +17,20 @@ namespace CoffeManager.Common.Managers
         
         public async Task<IEnumerable<CategoryDTO>> GetCategories()
         {
-            return await categoryProvider.GetCategories();
+            var result = await categoryProvider.GetCategories();
+            var categories = result.ToList();
+            var subCategories = categories.Where(c => c.ParentId.HasValue).GroupBy(g => g.ParentId);
+            foreach (var subCategory in subCategories)
+            {
+                var parentCategory = categories.First(c => c.Id == subCategory.Key);
+                parentCategory.SubCategories = subCategory.ToArray();
+                foreach (var s in subCategory)
+                {
+                    categories.Remove(s);
+                }
+            }
+
+            return categories;
         }
 
         public async Task<CategoryDTO> GetCategory(int id)

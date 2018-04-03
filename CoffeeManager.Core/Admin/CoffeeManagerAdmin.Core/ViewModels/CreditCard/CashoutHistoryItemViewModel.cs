@@ -1,9 +1,7 @@
-﻿using System;
-using CoffeManager.Common;
-using CoffeeManager.Models;
+﻿using CoffeeManager.Models;
 using CoffeManager.Common.ViewModels;
 
-namespace CoffeeManagerAdmin.Core
+namespace CoffeeManagerAdmin.Core.ViewModels.CreditCard
 {
     public class CashoutHistoryItemViewModel : ListItemViewModelBase
     {

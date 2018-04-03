@@ -1,13 +1,13 @@
-﻿using System;
-using CoffeManager.Common;
-using System.Windows.Input;
-using MvvmCross.Core.ViewModels;
-using System.Threading.Tasks;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Input;
+using CoffeManager.Common;
 using CoffeManager.Common.ViewModels;
+using MobileCore.Extensions;
+using MvvmCross.Core.ViewModels;
 
-namespace CoffeeManagerAdmin.Core
+namespace CoffeeManagerAdmin.Core.ViewModels.CreditCard
 {
     public class CreditCardViewModel : ViewModelBase
     {
@@ -52,11 +52,24 @@ namespace CoffeeManagerAdmin.Core
 
         public ICommand SetAmountCommand { get; }
 
+        public MvxAsyncCommand<CashoutHistoryItemViewModel> ItemSelectedCommand { get; }
+        
         public CreditCardViewModel(IPaymentManager manager)
         {
             this.manager = manager;
             CashoutCommand = new MvxCommand(DoCashOut);
             SetAmountCommand = new MvxCommand(DoSetAmount);
+            ItemSelectedCommand = new MvxAsyncCommand<CashoutHistoryItemViewModel>(OnItemSelectedAsync);
+
+        }
+        
+        private async Task OnItemSelectedAsync(CashoutHistoryItemViewModel item)
+        {
+            item.ThrowIfNull(nameof(item));
+            
+            item.SelectCommand.Execute();
+
+            await Task.Yield();
         }
 
         public async Task Init()

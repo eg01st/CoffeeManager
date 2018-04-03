@@ -205,6 +205,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Adapters\ViewHolders\CashoutHistoryItemViewHolder.cs" />
     <Compile Include="Adapters\ViewHolders\CoffeeRoomItemViewHolder.cs" />
     <Compile Include="Adapters\ViewHolders\PenaltyItemViewHolder.cs" />
     <Compile Include="Adapters\ViewHolders\ShiftItemViewHolder.cs" />
@@ -216,6 +217,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Setup.cs" />
     <Compile Include="SplashScreen.cs" />
+    <Compile Include="Views\CreditCard\CreditCardView.cs" />
     <Compile Include="Views\Fragments\ManageExpensesView.cs" />
     <Compile Include="Views\Fragments\MoneyView.cs" />
     <Compile Include="Views\Fragments\ProductsView.cs" />
@@ -331,6 +333,9 @@
     <AndroidResource Include="Resources\menu\users_menu.xml" />
     <AndroidResource Include="Resources\layout\settings.axml" />
     <AndroidResource Include="Resources\layout\store_item.axml" />
+    <AndroidResource Include="Resources\layout\credit_card.axml" />
+    <AndroidResource Include="Resources\layout\credit_card_cashout_item.axml" />
+    <AndroidResource Include="Resources\layout\credit_card_cashout_header.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\strings.xml" />

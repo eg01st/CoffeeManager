@@ -64,4 +64,11 @@
 	<string name="add">Добавить</string>	
 	<string name="stores">Заведения</string>	
 	<string name="settings">Настройки</string>	
+
+		<string name="card">Карта</string>	
+		<string name="current_balance">Текущий баланс: </string>	
+		<string name="cashout">Обналичить сумму: </string>	
+		<string name="cashout_history">История обналички</string>	
+		<string name="save">Сохранить</string>	
+		<string name="cashout_action">Обналичить</string>	
 </resources>

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Android.Support.V4.App;
+using Java.Lang;
 
 namespace CoffeeManager.Droid.Adapters
 {
@@ -29,14 +30,14 @@ namespace CoffeeManager.Droid.Adapters
             fragments.Add(keyValuePair);
         }
 
-        //public override ICharSequence GetPageTitleFormatted(int position)
-        //{
-        //    var element = GetElementAt(position);
-        //    var titleStr = element.Item1;
-        //    var javaStr = new Java.Lang.String(titleStr);
+        public override ICharSequence GetPageTitleFormatted(int position)
+        {
+            var element = GetElementAt(position);
+            var titleStr = element.Item1;
+            var javaStr = new Java.Lang.String(titleStr);
 
-        //    return javaStr;
-        //}
+            return javaStr;
+        }
 
         private Tuple<string, Fragment> GetElementAt(int position)
         {

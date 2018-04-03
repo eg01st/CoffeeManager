@@ -10,7 +10,7 @@ namespace CoffeManager.Common.Providers
 
         Task<CategoryDTO> GetCategory(int id);
 
-        Task AddCategory(CategoryDTO dto);
+        Task<int> AddCategory(CategoryDTO dto);
 
         Task UpdateCategory(CategoryDTO dto);
 

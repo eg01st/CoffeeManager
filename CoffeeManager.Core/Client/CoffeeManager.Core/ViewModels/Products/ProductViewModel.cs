@@ -1,34 +1,51 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
-using CoffeeManager.Models;
-using CoffeManager.Common;
+using CoffeeManager.Models.Data.DTO.Category;
 using CoffeManager.Common.Managers;
 using CoffeManager.Common.ViewModels;
+using MobileCore.Extensions;
 using MvvmCross.Platform;
 
 namespace CoffeeManager.Core.ViewModels.Products
 {
     public class ProductViewModel : ViewModelBase
     {
-        private readonly int categoryId;
+        private readonly CategoryDTO category;
         private readonly IProductManager productManager;
         private ProductItemViewModel[] items;
+        private List<ProductViewModel> subCategories;
 
         public ProductItemViewModel[] Items
         {
-            get { return items; }
+            get => items;
             set
             {
                 items = value;
                 RaisePropertyChanged(nameof(Items));
             }
         }
-
-        public int CategoryId => categoryId;
-
-        public ProductViewModel(int categoryId)
+        
+        public List<ProductViewModel> SubCategories
         {
-            this.categoryId = categoryId;
+            get => subCategories;
+            set
+            {
+                subCategories = value;
+                RaisePropertyChanged(nameof(SubCategories));
+                RaisePropertyChanged(nameof(HasSubCategories));
+            }
+        }
+
+        public bool HasSubCategories => SubCategories.IsNotNullNorEmpty();
+
+        public int CategoryId => category.Id;
+
+        public string CategoryName => category.Name;
+
+        public ProductViewModel(CategoryDTO category)
+        {
+            this.category = category;
             this.productManager = Mvx.Resolve<IProductManager>();
         }
         
@@ -39,8 +56,25 @@ namespace CoffeeManager.Core.ViewModels.Products
 
         private async Task GetItems()
         {
-            var items = await productManager.GetProducts(categoryId);
-            Items = items.Select(s => new ProductItemViewModel(s)).ToArray();
+            if (category.SubCategories.IsNotNullNorEmpty())
+            {
+                var subCategories = new List<ProductViewModel>();
+                var tasks = new List<Task>();
+                foreach (var subCategory in category.SubCategories)
+                {
+                    var vm = new ProductViewModel(subCategory);
+                    subCategories.Add(vm);
+                    tasks.Add(vm.InitViewModel());
+                }
+
+                await Task.WhenAll(tasks);
+                SubCategories = subCategories;
+            }
+            else
+            {
+                var items = await productManager.GetProducts(category.Id);
+                Items = items.Select(s => new ProductItemViewModel(s)).ToArray();
+            }
         }
     }
 }
