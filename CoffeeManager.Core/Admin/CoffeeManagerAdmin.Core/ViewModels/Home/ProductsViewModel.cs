@@ -1,39 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using CoffeeManager.Models;
-using System.Windows.Input;
-using MvvmCross.Core.ViewModels;
-using MvvmCross.Plugins.Messenger;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using CoffeeManagerAdmin.Core.ViewModels;
-using CoffeManager.Common;
+using System.Windows.Input;
+using CoffeeManagerAdmin.Core.ViewModels.Categories;
 using CoffeManager.Common.Managers;
 using CoffeManager.Common.ViewModels;
+using MvvmCross.Core.ViewModels;
+using MvvmCross.Plugins.Messenger;
 
-namespace CoffeeManagerAdmin.Core
+namespace CoffeeManagerAdmin.Core.ViewModels.Home
 {
     public class ProductsViewModel : BaseSearchViewModel<ListItemViewModelBase>
     {
-        private MvxSubscriptionToken _productListChangedToken;
+        private readonly MvxSubscriptionToken productListChangedToken;
 
-        private ICommand _addProductCommand;
-        readonly IProductManager manager;
-        private readonly MvxSubscriptionToken _coffeeRoomChangedToken;
+        
+        private readonly IProductManager manager;
+        private readonly MvxSubscriptionToken coffeeRoomChangedToken;
 
+        public ICommand AddProductCommand { get; }
+        public ICommand ShowCategoriesCommand { get; }
+
+        
         public ProductsViewModel(IProductManager manager)
         {
             this.manager = manager;
-            _addProductCommand = new MvxCommand(DoAddProduct);
-            _productListChangedToken = MvxMessenger.Subscribe<ProductListChangedMessage>( async(obj) =>
-            {
-                await Initialize();
-            });
-            _coffeeRoomChangedToken = MvxMessenger.Subscribe<CoffeeRoomChangedMessage>(async (obj) =>
-            {
-                await Initialize();
-            });
-
+            AddProductCommand = new MvxCommand(DoAddProduct);
+            ShowCategoriesCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<CategoriesViewModel>());
+            productListChangedToken = MvxMessenger.Subscribe<ProductListChangedMessage>( async(obj) => await Initialize());
+            coffeeRoomChangedToken = MvxMessenger.Subscribe<CoffeeRoomChangedMessage>(async (obj) =>await Initialize());
         }
 
 
@@ -42,7 +37,7 @@ namespace CoffeeManagerAdmin.Core
             ShowViewModel<ProductDetailsViewModel>();
         }
 
-        public async override Task<List<ListItemViewModelBase>> LoadData()
+        public override async Task<List<ListItemViewModelBase>> LoadData()
         {
             var items = await manager.GetProducts();
             var result = new List<ListItemViewModelBase>();
@@ -57,12 +52,11 @@ namespace CoffeeManagerAdmin.Core
             return result;
         }
 
-        public ICommand AddProductCommand => _addProductCommand;
 
         protected override void DoUnsubscribe()
         {
-            MvxMessenger.Unsubscribe<ProductListChangedMessage>(_productListChangedToken);
-            MvxMessenger.Unsubscribe<CoffeeRoomChangedMessage>(_coffeeRoomChangedToken);
+            MvxMessenger.Unsubscribe<ProductListChangedMessage>(productListChangedToken);
+            MvxMessenger.Unsubscribe<CoffeeRoomChangedMessage>(coffeeRoomChangedToken);
         }
       
     }

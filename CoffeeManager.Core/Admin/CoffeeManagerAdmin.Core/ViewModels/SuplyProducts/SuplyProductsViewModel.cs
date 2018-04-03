@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using MvvmCross.Plugins.Messenger;
-using CoffeManager.Common;
 using System.Windows.Input;
+using CoffeManager.Common;
 using CoffeManager.Common.ViewModels;
 using MvvmCross.Core.ViewModels;
+using MvvmCross.Plugins.Messenger;
 
-namespace CoffeeManagerAdmin.Core.ViewModels
+namespace CoffeeManagerAdmin.Core.ViewModels.SuplyProducts
 {
     public class SuplyProductsViewModel : BaseSearchViewModel<ListItemViewModelBase>
     {

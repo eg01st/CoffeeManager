@@ -9,6 +9,7 @@ using MvvmCross.Platform.Converters;
 using CoffeeManagerAdmin.Core.ViewModels;
 using MvvmCross.Binding.iOS.Views.Gestures;
 using System.Windows.Input;
+using CoffeeManagerAdmin.Core.ViewModels.SuplyProducts;
 
 namespace CoffeeManagerAdmin.iOS
 {

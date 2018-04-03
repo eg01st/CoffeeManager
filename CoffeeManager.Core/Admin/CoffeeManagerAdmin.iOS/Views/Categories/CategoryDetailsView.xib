@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CategoryDetailsView">
+            <connections>
+                <outlet property="AddSubCategoryButton" destination="Obe-9V-Ags" id="j2b-bL-8cq"/>
+                <outlet property="NameTextField" destination="rvI-WT-Rfg" id="09N-tS-cEp"/>
+                <outlet property="SubCategoriesTableView" destination="DKk-VA-HIz" id="7c6-uT-wbd"/>
+                <outlet property="view" destination="2" id="RRd-Eg-VrN"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="2">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Название:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yk5-h5-acG">
+                    <rect key="frame" x="16" y="16" width="83" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rvI-WT-Rfg">
+                    <rect key="frame" x="115" y="12" width="244" height="30"/>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Подкатегории" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y8K-Jc-LZC">
+                    <rect key="frame" x="130" y="74" width="115" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="DKk-VA-HIz">
+                    <rect key="frame" x="0.0" y="111" width="375" height="556"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Obe-9V-Ags">
+                    <rect key="frame" x="335" y="72.5" width="24" height="24"/>
+                    <state key="normal" image="ic_add_circle_outline.png"/>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="DKk-VA-HIz" secondAttribute="bottom" id="0Us-fO-2dV"/>
+                <constraint firstItem="Obe-9V-Ags" firstAttribute="centerY" secondItem="Y8K-Jc-LZC" secondAttribute="centerY" id="Ct2-bR-Uxw"/>
+                <constraint firstItem="DKk-VA-HIz" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="D9Q-Jb-b86"/>
+                <constraint firstItem="rvI-WT-Rfg" firstAttribute="leading" secondItem="Yk5-h5-acG" secondAttribute="trailing" constant="16" id="OAx-As-ptT"/>
+                <constraint firstItem="Y8K-Jc-LZC" firstAttribute="top" secondItem="rvI-WT-Rfg" secondAttribute="bottom" constant="32" id="QKu-Le-5Rv"/>
+                <constraint firstItem="Yk5-h5-acG" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="16" id="S9k-x2-8HO"/>
+                <constraint firstItem="rvI-WT-Rfg" firstAttribute="centerY" secondItem="Yk5-h5-acG" secondAttribute="centerY" id="SLX-Lr-pMO"/>
+                <constraint firstAttribute="trailing" secondItem="DKk-VA-HIz" secondAttribute="trailing" id="Toj-CC-oTz"/>
+                <constraint firstAttribute="trailing" secondItem="rvI-WT-Rfg" secondAttribute="trailing" constant="16" id="bP4-Ka-T4W"/>
+                <constraint firstAttribute="trailing" secondItem="Obe-9V-Ags" secondAttribute="trailing" constant="16" id="fGN-nJ-iok"/>
+                <constraint firstItem="Yk5-h5-acG" firstAttribute="top" secondItem="2" secondAttribute="top" constant="16" id="gGP-a7-GC0"/>
+                <constraint firstItem="DKk-VA-HIz" firstAttribute="top" secondItem="Y8K-Jc-LZC" secondAttribute="bottom" constant="16" id="nK0-H8-IyZ"/>
+                <constraint firstItem="Y8K-Jc-LZC" firstAttribute="centerX" secondItem="2" secondAttribute="centerX" id="nRa-Q9-xHr"/>
+            </constraints>
+        </view>
+    </objects>
+    <resources>
+        <image name="ic_add_circle_outline.png" width="24" height="24"/>
+    </resources>
+</document>

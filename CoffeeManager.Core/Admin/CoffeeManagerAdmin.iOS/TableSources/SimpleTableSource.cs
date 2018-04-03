@@ -1,12 +1,9 @@
-﻿using CoffeeManagerAdmin.Core;
-using CoffeManager.Common;
-using CoffeManager.Common.ViewModels;
-using Foundation;
+﻿using Foundation;
 using UIKit;
 
 namespace CoffeeManagerAdmin.iOS
 {
-    public class SimpleTableSource : BaseTableSource<ListItemViewModelBase>
+    public class SimpleTableSource : BaseTableSource<MobileCore.ViewModels.FeedItemElementViewModel>
     {
         public SimpleTableSource(UITableView tableView, NSString reuseIdentifier, UINib cellNib) : base(tableView, reuseIdentifier, cellNib)
         {

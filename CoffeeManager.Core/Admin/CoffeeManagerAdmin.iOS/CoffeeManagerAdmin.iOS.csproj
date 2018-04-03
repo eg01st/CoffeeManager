@@ -439,6 +439,18 @@
       <DependentUpon>CreateInventoryCell.cs</DependentUpon>
     </Compile>
     <Compile Include="TableSources\CreateInventoryTableSource.cs" />
+    <Compile Include="Views\Categories\CategoriesView.cs" />
+    <Compile Include="Views\Categories\CategoriesView.designer.cs">
+      <DependentUpon>CategoriesView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Categories\CategoryTableViewCell.cs" />
+    <Compile Include="Views\Categories\CategoryTableViewCell.designer.cs">
+      <DependentUpon>CategoryTableViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Categories\CategoryDetailsView.cs" />
+    <Compile Include="Views\Categories\CategoryDetailsView.designer.cs">
+      <DependentUpon>CategoryDetailsView.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Setup.cs" />
@@ -523,6 +535,9 @@
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
     <InterfaceDefinition Include="Views\Inventory\CreateInventoryView.xib" />
     <InterfaceDefinition Include="Views\Inventory\CreateInventoryCell.xib" />
+    <InterfaceDefinition Include="Views\Categories\CategoriesView.xib" />
+    <InterfaceDefinition Include="Views\Categories\CategoryTableViewCell.xib" />
+    <InterfaceDefinition Include="Views\Categories\CategoryDetailsView.xib" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -666,6 +681,7 @@
     <Folder Include="Views\Home\" />
     <Folder Include="Views\Controls\" />
     <Folder Include="Views\TransferSuplyProduct\" />
+    <Folder Include="Views\Categories\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\ic_check.png" />

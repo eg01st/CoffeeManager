@@ -1,15 +1,14 @@
 ﻿using System;
 using MvvmCross.Binding.iOS.Views;
-using CoffeeManagerAdmin.Core;
 using Foundation;
 using System.Collections.Generic;
 using UIKit;
-using CoffeManager.Common;
 using CoffeManager.Common.ViewModels;
+using MobileCore.ViewModels;
 
 namespace CoffeeManagerAdmin.iOS
 {
-    public class BaseTableSource<T> : MvxTableViewSource where T: ListItemViewModelBase
+    public class BaseTableSource<T> : MvxTableViewSource where T: FeedItemElementViewModel
     {
         protected readonly NSString reuseIdentifier;
         protected readonly NSString headerReuseIdentifier;
@@ -34,10 +33,10 @@ namespace CoffeeManagerAdmin.iOS
         public override void RowSelected(UITableView tableView, Foundation.NSIndexPath indexPath)
         {
             var item = GetItemAt(indexPath);
-            var vm = item as ListItemViewModelBase;
+            var vm = item as FeedItemElementViewModel;
             if(vm != null)
             {
-                vm.GoToDetailsCommand.Execute(null);
+                vm.SelectCommand.Execute(null);
                 tableView.DeselectRow(indexPath, true);
             }
         }

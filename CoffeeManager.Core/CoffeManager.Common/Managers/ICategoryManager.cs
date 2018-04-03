@@ -7,10 +7,12 @@ namespace CoffeManager.Common.Managers
     public interface ICategoryManager
     {
         Task<IEnumerable<CategoryDTO>> GetCategories();
+        
+        Task<IEnumerable<CategoryDTO>> GetCategoriesPlain();
 
         Task<CategoryDTO> GetCategory(int id);
 
-        Task AddCategory(CategoryDTO dto);
+        Task<int> AddCategory(CategoryDTO dto);
 
         Task UpdateCategory(CategoryDTO dto);
 

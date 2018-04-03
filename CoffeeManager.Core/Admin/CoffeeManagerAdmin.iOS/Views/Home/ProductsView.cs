@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using CoffeeManagerAdmin.Core;
+using CoffeeManagerAdmin.Core.ViewModels.Home;
 using CoffeeManagerAdmin.iOS.Views.Abstract;
 using CoffeManager.Common;
 using CoffeManager.Common.ViewModels;
@@ -23,15 +24,22 @@ namespace CoffeeManagerAdmin.iOS
            
             Title = "Товары";
 
-            var btn = new UIBarButtonItem()
+            var addProductButtonItem = new UIBarButtonItem()
             {
                 Image = UIImage.FromBundle("ic_add_circle_outline")
             };
+            
+            var categoriesButton = new UIBarButtonItem()
+            {
+                Title = "Категории"
+            };
 
-            NavigationItem.SetRightBarButtonItem(btn, true);
+            NavigationItem.SetRightBarButtonItem(addProductButtonItem, true);
+            NavigationItem.SetLeftBarButtonItem(categoriesButton, true);
             this.AddBindings(new Dictionary<object, string>
             {
-                {btn, "Clicked AddProductCommand"},
+                {addProductButtonItem, "Clicked AddProductCommand"},
+                {categoriesButton, "Clicked ShowCategoriesCommand"},
             });
         }
 

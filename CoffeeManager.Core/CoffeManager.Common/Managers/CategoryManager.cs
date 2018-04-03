@@ -33,14 +33,19 @@ namespace CoffeManager.Common.Managers
             return categories;
         }
 
+        public async Task<IEnumerable<CategoryDTO>> GetCategoriesPlain()
+        {
+            return await categoryProvider.GetCategories();
+        }
+
         public async Task<CategoryDTO> GetCategory(int id)
         {
             return await categoryProvider.GetCategory(id);
         }
 
-        public async Task AddCategory(CategoryDTO dto)
+        public async Task<int> AddCategory(CategoryDTO dto)
         {
-            await categoryProvider.AddCategory(dto);
+            return await categoryProvider.AddCategory(dto);
         }
 
         public async Task UpdateCategory(CategoryDTO dto)

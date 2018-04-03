@@ -13,6 +13,7 @@
           <e p="Messages" t="Include">
             <e p="BaseMessage.cs" t="Include" />
             <e p="CalculationListChangedMessage.cs" t="Include" />
+            <e p="CategoriesUpdatedMessage.cs" t="Include" />
             <e p="CoffeeRoomChangedMessage.cs" t="Include" />
             <e p="ExpenseListChangedMessage.cs" t="Include" />
             <e p="MappedSuplyProductChangedMessage.cs" t="Include" />
@@ -23,6 +24,8 @@
             <e p="RefreshAdminUsersMessage.cs" t="Include" />
             <e p="RefreshCoffeeRoomsMessage.cs" t="Include" />
             <e p="RefreshUserListMessage.cs" t="Include" />
+            <e p="SubCategoryAddMessage.cs" t="Include" />
+            <e p="SubCategoryDeleteMessage.cs" t="Include" />
             <e p="SuplyListChangedMessage.cs" t="Include" />
             <e p="UpdateCashAmountMessage.cs" t="Include" />
             <e p="UpdateShiftMessage.cs" t="Include" />
@@ -43,6 +46,13 @@
               <e p="CalculationViewModel.cs" t="Include" />
               <e p="SelectCalculationItemViewModel.cs" t="Include" />
               <e p="SelectCalculationListViewModel.cs" t="Include" />
+            </e>
+            <e p="Categories" t="Include">
+              <e p="AddCategoryViewModel.cs" t="Include" />
+              <e p="CategoriesViewModel.cs" t="Include" />
+              <e p="CategoryDetailsViewModel.cs" t="Include" />
+              <e p="CategoryItemViewModel.cs" t="Include" />
+              <e p="SubCategoryItemViewModel.cs" t="Include" />
             </e>
             <e p="CreditCard" t="Include">
               <e p="CashoutHistoryItemViewModel.cs" t="Include" />
@@ -483,6 +493,17 @@
             <e p="CalculationView.cs" t="Include" />
             <e p="CalculationView.designer.cs" t="Include" />
             <e p="CalculationView.xib" t="Include" />
+            <e p="Categories" t="Include">
+              <e p="CategoriesView.cs" t="Include" />
+              <e p="CategoriesView.designer.cs" t="Include" />
+              <e p="CategoriesView.xib" t="Include" />
+              <e p="CategoryDetailsView.cs" t="Include" />
+              <e p="CategoryDetailsView.designer.cs" t="Include" />
+              <e p="CategoryDetailsView.xib" t="Include" />
+              <e p="CategoryTableViewCell.cs" t="Include" />
+              <e p="CategoryTableViewCell.designer.cs" t="Include" />
+              <e p="CategoryTableViewCell.xib" t="Include" />
+            </e>
             <e p="Cells" t="Include">
               <e p="CalculationItemViewCell.cs" t="Include" />
               <e p="CalculationItemViewCell.designer.cs" t="Include" />
@@ -1381,6 +1402,10 @@
         <e p="UpdateAppWorker.cs" t="Include" />
       </e>
       <e p="bin" t="ExcludeRecursive" />
+      <e p="Collections" t="Include">
+        <e p="PageContainer.cs" t="Include" />
+        <e p="PageContainerExtensions.cs" t="Include" />
+      </e>
       <e p="Connection" t="Include">
         <e p="ConnectionType.cs" t="Include" />
         <e p="ConnectivityBase.cs" t="Include" />

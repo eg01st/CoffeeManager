@@ -13,10 +13,15 @@ namespace CoffeManager.Common.ViewModels
 
         private string _searchString;
 
-        public async override Task Initialize()
+        public override async Task Initialize()
         {
             var loadedItems = await ExecuteSafe(LoadData);
             _orginalItems = Items = loadedItems;
+        }
+
+        public async Task Init()
+        {
+            await Initialize();
         }
 
         public abstract Task<List<TItem>> LoadData();

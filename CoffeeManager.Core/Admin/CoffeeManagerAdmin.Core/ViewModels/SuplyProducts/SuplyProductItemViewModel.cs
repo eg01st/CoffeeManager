@@ -1,12 +1,12 @@
-﻿using System.Windows.Input;
+﻿using System.Threading.Tasks;
+using System.Windows.Input;
 using CoffeeManager.Models;
-using MvvmCross.Core.ViewModels;
 using CoffeManager.Common;
-using MvvmCross.Platform;
-using System.Threading.Tasks;
 using CoffeManager.Common.ViewModels;
+using MvvmCross.Core.ViewModels;
+using MvvmCross.Platform;
 
-namespace CoffeeManagerAdmin.Core.ViewModels
+namespace CoffeeManagerAdmin.Core.ViewModels.SuplyProducts
 {
     public class SuplyProductItemViewModel : ListItemViewModelBase
     {

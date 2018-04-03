@@ -2,6 +2,7 @@
 using System.Windows.Input;
 using CoffeeManagerAdmin.Core.ViewModels;
 using CoffeeManagerAdmin.Core.ViewModels.Orders;
+using CoffeeManagerAdmin.Core.ViewModels.SuplyProducts;
 using CoffeManager.Common;
 using CoffeManager.Common.ViewModels;
 using MvvmCross.Core.ViewModels;

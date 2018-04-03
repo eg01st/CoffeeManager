@@ -1,11 +1,12 @@
 ﻿using System;
 using CoffeeManager.Models;
+using CoffeeManagerAdmin.Core.ViewModels.SuplyProducts;
 using CoffeManager.Common;
 using MvvmCross.Platform;
 
 namespace CoffeeManagerAdmin.Core
 {
-    public class MappedSuplyProductItemViewModel : ViewModels.SuplyProductItemViewModel
+    public class MappedSuplyProductItemViewModel : SuplyProductItemViewModel
     {
         readonly int expenseTypeId;
         readonly IPaymentManager paymentManager;
