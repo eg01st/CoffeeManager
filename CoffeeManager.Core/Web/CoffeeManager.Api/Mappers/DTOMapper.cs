@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using CoffeeManager.Models;
+using CoffeeManager.Models.Data.DTO.Category;
 using CoffeeManager.Models.Data.DTO.User;
 
 namespace CoffeeManager.Api.Mappers
@@ -251,6 +252,16 @@ namespace CoffeeManager.Api.Mappers
                 Amount = item.Amount,
                 ShiftId = item.ShiftId,
                 Date = item.Date,
+            };
+        }
+
+        public static CategoryDTO ToDTO(this Category item)
+        {
+            return new CategoryDTO()
+            {
+                Id = item.Id,
+                CoffeeRoomNo = item.CoffeeRoomNo,
+                Name = item.Name    
             };
         }
     }

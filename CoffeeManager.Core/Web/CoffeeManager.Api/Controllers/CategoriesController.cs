@@ -7,7 +7,6 @@ using System.Web.Http;
 using CoffeeManager.Api.Mappers;
 using CoffeeManager.Models;
 using CoffeeManager.Models.Data.DTO.Category;
-using CoffeeManager.Models.Data.DTO.User;
 
 namespace CoffeeManager.Api.Controllers
 {
@@ -26,7 +25,7 @@ namespace CoffeeManager.Api.Controllers
         [HttpGet]
         public HttpResponseMessage GetCategory([FromUri]int coffeeroomno, [FromUri]int categoryId)
         {
-            var category = new CoffeeRoomEntities().Categories.FirstOrDefault(c => c.Id = categoryId);
+            var category = new CoffeeRoomEntities().Categories.FirstOrDefault(c => c.Id == categoryId);
             return new HttpResponseMessage() { Content = new ObjectContent<CategoryDTO>(category.ToDTO(), new JsonMediaTypeFormatter())};
         }
         
@@ -47,7 +46,28 @@ namespace CoffeeManager.Api.Controllers
         {
             var entites = new CoffeeRoomEntities();
             var categoryDb = entites.Categories.First(u => u.Id == category.Id);
-            categoryDb =  DbMapper.Update(category, categoryDb);
+            DbMapper.Update(category, categoryDb);
+           
+            var newSubsIds = category.SubCategories?.Select(s => s.Id);
+            if (newSubsIds == null || !newSubsIds.Any())
+            {
+                var subs = entites.Categories.Where(s => s.ParentId != null && s.ParentId == category.Id);
+                foreach (var sub in subs)
+                {
+                    sub.ParentId = null;
+                }
+            }
+            else
+            {
+                foreach (var cat in entites.Categories)
+                {
+                    if (newSubsIds.Contains(cat.Id))
+                    {
+                        cat.ParentId = category.Id;
+                    }
+                }
+            }
+
             entites.SaveChanges();
             return Request.CreateResponse(HttpStatusCode.OK);
         }

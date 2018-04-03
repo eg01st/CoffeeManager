@@ -196,6 +196,9 @@
     <Compile Include="CashoutHistory.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Category.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="CoffeeRoom.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using CoffeeManager.Models;
+using CoffeeManager.Models.Data.DTO.Category;
 using CoffeeManager.Models.Data.DTO.User;
 
 namespace CoffeeManager.Api.Mappers
@@ -160,6 +161,22 @@ namespace CoffeeManager.Api.Mappers
 	        strategyDb.NightShiftPercent = strategy.NightShiftPercent;
 	        strategyDb.MinimumPayment = strategy.MinimumPayment;
 	        strategyDb.SimplePayment = strategy.SimplePayment;
+	    }
+
+	    public static Category Map(this CategoryDTO category)
+	    {
+	        return new Category()
+	        {
+	            Id = category.Id,
+	            CoffeeRoomNo = category.CoffeeRoomNo,
+	            Name = category.Name
+	        };
+	    }
+
+	    public static void Update(CategoryDTO category, Category categoryyDb)
+	    {
+	        categoryyDb.Name = category.Name;
+	        categoryyDb.ParentId = category.ParentId;
 	    }
     }
 }
