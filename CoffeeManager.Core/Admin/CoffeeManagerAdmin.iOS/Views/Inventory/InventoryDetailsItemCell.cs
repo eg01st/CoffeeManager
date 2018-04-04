@@ -5,6 +5,7 @@ using UIKit;
 using MvvmCross.Binding.iOS.Views;
 using MvvmCross.Binding.BindingContext;
 using CoffeeManagerAdmin.Core;
+using CoffeeManagerAdmin.iOS.Converters;
 
 namespace CoffeeManagerAdmin.iOS
 {
@@ -30,9 +31,9 @@ namespace CoffeeManagerAdmin.iOS
             {
                 var set = this.CreateBindingSet<InventoryDetailsItemCell, InventoryReportDetailsItemViewModel>();
                 set.Bind(NameLabel).To(vm => vm.SuplyProductName);
-                set.Bind(BeforeLabel).To(vm => vm.QuantityBefore);
-                set.Bind(AfterLabel).To(vm => vm.QuantityAfer);
-                set.Bind(DiffLabel).To(vm => vm.QuantityDiff);
+                set.Bind(BeforeLabel).To(vm => vm.QuantityBefore).WithConversion(new DecimalToStringConverter());;
+                set.Bind(AfterLabel).To(vm => vm.QuantityAfer).WithConversion(new DecimalToStringConverter());;
+                set.Bind(DiffLabel).To(vm => vm.QuantityDiff).WithConversion(new DecimalToStringConverter());;
                 set.Apply();
             });
         }

@@ -25,10 +25,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Products
             this.prod = prod;
             Name = prod.Name;
             IsActive = prod.IsActive;
-
-            var category = TypesLists.ProductTypesList.First(i => i.Id == prod.ProductType);
-            Category = category.Name;
-
+            Category = prod.CategoryName;
 
             var type = (CupTypeEnum)prod.CupType;
             CupType = type == CupTypeEnum.Unknown ? string.Empty : type.ToString();

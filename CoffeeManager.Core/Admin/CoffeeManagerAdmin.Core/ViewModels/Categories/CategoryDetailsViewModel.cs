@@ -63,6 +63,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Categories
             dto.SubCategories = subCategories.ToArray();
             dto.CoffeeRoomNo = Config.CoffeeRoomNo;
             await categoryManager.UpdateCategory(dto);
+            MvxMessenger.Publish(new CategoriesUpdatedMessage(this));
             CloseCommand.Execute(null);
         }
 
