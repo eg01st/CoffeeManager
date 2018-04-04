@@ -24,5 +24,10 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Categories
         {
             await NavigationService.Navigate<CategoryDetailsViewModel, int>(Id);
         }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

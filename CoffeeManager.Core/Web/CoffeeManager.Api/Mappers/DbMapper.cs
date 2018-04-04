@@ -96,7 +96,8 @@ namespace CoffeeManager.Api.Mappers
 				Price = product.Price,
 				ProductType = product.ProductType,
                 IsActive = product.IsActive,
-                IsSaleByWeight = product.IsSaleByWeight
+                IsSaleByWeight = product.IsSaleByWeight,
+				CategoryId = product.CategoryId
 			};
 			if (product.SuplyId.HasValue) {
 				prod.SuplyProductId = product.SuplyId;
@@ -169,7 +170,7 @@ namespace CoffeeManager.Api.Mappers
 	        {
 	            Id = category.Id,
 	            CoffeeRoomNo = category.CoffeeRoomNo,
-	            Name = category.Name
+	            Name = category.Name,
 	        };
 	    }
 

@@ -494,6 +494,9 @@
             <e p="CalculationView.designer.cs" t="Include" />
             <e p="CalculationView.xib" t="Include" />
             <e p="Categories" t="Include">
+              <e p="AddCategoryView.cs" t="Include" />
+              <e p="AddCategoryView.designer.cs" t="Include" />
+              <e p="AddCategoryView.xib" t="Include" />
               <e p="CategoriesView.cs" t="Include" />
               <e p="CategoriesView.designer.cs" t="Include" />
               <e p="CategoriesView.xib" t="Include" />
@@ -1299,6 +1302,7 @@
           </e>
           <e p="bin" t="ExcludeRecursive" />
           <e p="CashoutHistory.cs" t="Include" />
+          <e p="Category.cs" t="Include" />
           <e p="CoffeeManager.Api.csproj" t="IncludeRecursive" />
           <e p="CoffeeRoom.cs" t="Include" />
           <e p="Controllers" t="Include">
@@ -1403,6 +1407,11 @@
       </e>
       <e p="bin" t="ExcludeRecursive" />
       <e p="Collections" t="Include">
+        <e p="CollectionChangedAction.cs" t="Include" />
+        <e p="CollectionChangedEventArgs.cs" t="Include" />
+        <e p="ExtendedObservableCollection.cs" t="Include" />
+        <e p="IExtendedObservableCollection.cs" t="Include" />
+        <e p="IExtendedObservableCollection{T}.cs" t="Include" />
         <e p="PageContainer.cs" t="Include" />
         <e p="PageContainerExtensions.cs" t="Include" />
       </e>

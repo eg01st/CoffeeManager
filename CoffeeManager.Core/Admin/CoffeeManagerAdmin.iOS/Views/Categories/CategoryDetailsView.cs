@@ -1,6 +1,8 @@
-﻿using CoffeeManagerAdmin.Core.ViewModels.Categories;
+﻿using System.Collections.Generic;
+using CoffeeManagerAdmin.Core.ViewModels.Categories;
 using CoffeeManagerAdmin.iOS.Views.Abstract;
 using MvvmCross.Binding.BindingContext;
+using UIKit;
 
 namespace CoffeeManagerAdmin.iOS.Views.Categories
 {
@@ -12,13 +14,32 @@ namespace CoffeeManagerAdmin.iOS.Views.Categories
         {
         }
 
+        protected override void InitNavigationItem(UINavigationItem navigationItem)
+        {
+            base.InitNavigationItem(navigationItem);
+            
+            var saveButton = new UIBarButtonItem()
+            {
+                Title = "Сохранить"
+            };
+
+            NavigationItem.SetRightBarButtonItem(saveButton, true);
+            this.AddBindings(new Dictionary<object, string>
+            {
+                {saveButton, "Clicked SaveChangesCommand"},
+            });
+        }
+
         protected override void InitStylesAndContent()
         {
             base.InitStylesAndContent();
+
+            Title = "Детали категории";
             
             dataSource = new SimpleTableSource(SubCategoriesTableView,
                 CategoryTableViewCell.Key, CategoryTableViewCell.Nib);
-            
+            SubCategoriesTableView.Source = dataSource;
+
         }
 
         protected override void DoBind()

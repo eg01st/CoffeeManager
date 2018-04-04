@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using CoffeeManagerAdmin.Core.ViewModels.Categories;
+using CoffeeManagerAdmin.Core.ViewModels.Products;
 using CoffeManager.Common.Managers;
 using CoffeManager.Common.ViewModels;
 using MvvmCross.Core.ViewModels;

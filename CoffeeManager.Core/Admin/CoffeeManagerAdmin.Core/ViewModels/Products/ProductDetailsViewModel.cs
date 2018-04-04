@@ -1,66 +1,67 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using CoffeeManager.Models;
-using MvvmCross.Core.ViewModels;
-using System;
-using System.Linq;
 using CoffeeManagerAdmin.Core.Util;
-using CoffeManager.Common;
+using CoffeeManagerAdmin.Core.ViewModels.Categories;
 using CoffeManager.Common.Managers;
 using CoffeManager.Common.ViewModels;
+using MvvmCross.Core.ViewModels;
 
-namespace CoffeeManagerAdmin.Core.ViewModels
+namespace CoffeeManagerAdmin.Core.ViewModels.Products
 {
     public class ProductDetailsViewModel : ViewModelBase
     {
    
-        private int _id;
-        private string _name;
-        private string _price;
-        private string _policePrice;
-        private int _cupType;
-        private string _cupTypeName;
-        private int _productType;
-        private string _productTypeName;
-        private ICommand _addProductCommand;
-        private Entity _selectedCupType;
-        private Entity _selectedProductType;
+        private int id;
+        private string name;
+        private string price;
+        private string policePrice;
+        private int cupType;
+        private string cupTypeName;
+        private int productType;
+        private string productTypeName;
+
+        private Entity selectedCupType;
+        private CategoryItemViewModel selectedProductType;
         private bool isSaleByWeight;
 
         #region Properties
         public List<Entity> CupTypesList => TypesLists.CupTypesList;
-        public List<Entity> ProductTypesList => TypesLists.ProductTypesList;
-        public ICommand AddProductCommand => _addProductCommand;
+        public List<CategoryItemViewModel> ProductTypesList { get; set; } = new List<CategoryItemViewModel>();
+        public ICommand AddProductCommand { get; set; }
         public bool IsAddEnabled => !string.IsNullOrEmpty(Name) && !string.IsNullOrEmpty(Price) && !string.IsNullOrEmpty(PolicePrice) && !string.IsNullOrEmpty(CupTypeName) && !string.IsNullOrEmpty(ProductTypeName);
 
         public Entity SelectedCupType
         {
-            get { return _selectedCupType; }
+            get { return selectedCupType; }
             set
             {
-                if (_selectedCupType != value)
+                if (selectedCupType != value)
                 {
-                    _selectedCupType = value;
+                    selectedCupType = value;
                     RaisePropertyChanged(nameof(SelectedCupType));
                     RaisePropertyChanged(nameof(IsAddEnabled));
-                    CupType = _selectedCupType.Id;
-                    CupTypeName = _selectedCupType.Name;
+                    CupType = selectedCupType.Id;
+                    CupTypeName = selectedCupType.Name;
                 }
             }
         }
 
-        public Entity SelectedProductType
+        public CategoryItemViewModel SelectedProductType
         {
-            get { return _selectedProductType; }
+            get { return selectedProductType; }
             set
             {
-                if (_selectedProductType != value)
+                if (selectedProductType != value)
                 {
-                    _selectedProductType = value;
+                    selectedProductType = value;
                     RaisePropertyChanged(nameof(SelectedProductType));
                     RaisePropertyChanged(nameof(IsAddEnabled));
-                    ProductTypeId = _selectedProductType.Id;
-                    ProductTypeName = _selectedProductType.Name;
+                    ProductTypeId = selectedProductType.Id;
+                    ProductTypeName = selectedProductType.Name;
                 }
             }
         }
@@ -86,10 +87,10 @@ namespace CoffeeManagerAdmin.Core.ViewModels
 
         public string Name
         {
-            get { return _name; }
+            get { return name; }
             set
             {
-                _name = value;
+                name = value;
                 RaisePropertyChanged(nameof(Name));
                 RaisePropertyChanged(nameof(IsAddEnabled));
             }
@@ -97,10 +98,10 @@ namespace CoffeeManagerAdmin.Core.ViewModels
 
         public string Price
         {
-            get { return _price; }
+            get { return price; }
             set
             {
-                _price = value;
+                price = value;
                 RaisePropertyChanged(nameof(Price));
                 RaisePropertyChanged(nameof(IsAddEnabled));
             }
@@ -108,10 +109,10 @@ namespace CoffeeManagerAdmin.Core.ViewModels
 
         public string PolicePrice
         {
-            get { return _policePrice; }
+            get { return policePrice; }
             set
             {
-                _policePrice = value;
+                policePrice = value;
                 RaisePropertyChanged(nameof(PolicePrice));
                 RaisePropertyChanged(nameof(IsAddEnabled));
             }
@@ -119,10 +120,10 @@ namespace CoffeeManagerAdmin.Core.ViewModels
 
         public int CupType
         {
-            get { return _cupType; }
+            get { return cupType; }
             set
             {
-                _cupType = value;
+                cupType = value;
                 RaisePropertyChanged(nameof(CupType));
                 RaisePropertyChanged(nameof(SelectedCupType));
             }
@@ -130,20 +131,20 @@ namespace CoffeeManagerAdmin.Core.ViewModels
 
         public string CupTypeName
         {
-            get { return _cupTypeName; }
+            get { return cupTypeName; }
             set
             {
-                _cupTypeName = value;
+                cupTypeName = value;
                 RaisePropertyChanged(nameof(CupTypeName));
             }
         }
 
         public int ProductTypeId
         {
-            get { return _productType; }
+            get { return productType; }
             set
             {
-                _productType = value;
+                productType = value;
                 RaisePropertyChanged(nameof(ProductTypeId));
                 RaisePropertyChanged(nameof(SelectedProductType));
             }
@@ -151,37 +152,43 @@ namespace CoffeeManagerAdmin.Core.ViewModels
 
         public string ProductTypeName
         {
-            get { return _productTypeName; }
+            get { return productTypeName; }
             set
             {
-                _productTypeName = value;
+                productTypeName = value;
                 RaisePropertyChanged(nameof(ProductTypeName));
             }
         }
 
         readonly IProductManager manager;
+        private readonly ICategoryManager categoryManager;
 
         public ICommand SelectCalculationItemsCommand { get; }
 
         #endregion
 
 
-        public ProductDetailsViewModel(IProductManager manager)
+        public ProductDetailsViewModel(IProductManager manager, ICategoryManager categoryManager)
         {
             this.manager = manager;
-            _addProductCommand = new MvxCommand(DoAddProduct);
+            this.categoryManager = categoryManager;
+            AddProductCommand = new MvxCommand(DoAddProduct);
             SelectCalculationItemsCommand = new MvxCommand(DoSelectCalculationItems);
         }
 
-        public void Init(Guid id)
+        public async Task Init(Guid id)
         {
+            var categories = await categoryManager.GetCategoriesPlain();
+            ProductTypesList = categories.Select(s => new CategoryItemViewModel(s)).ToList();
+            RaisePropertyChanged(nameof(ProductTypesList));
+            
             if(id != Guid.Empty)
             {
-                _addProductCommand = new MvxCommand(DoEditProduct);
+                AddProductCommand = new MvxCommand(DoEditProduct);
                 
                 Product product;
                 ParameterTransmitter.TryGetParameter(id, out product);
-                _id = product.Id;
+                this.id = product.Id;
                 Name = product.Name;
                 Price = product.Price.ToString("F");
                 PolicePrice = product.PolicePrice.ToString("F");
@@ -211,7 +218,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels
                 {
                     if (obj)
                     {
-                        await manager.AddProduct(Name, Price, PolicePrice, CupType, ProductTypeId, IsSaleByWeight);
+                        await manager.AddProduct(Name, Price, PolicePrice, CupType, ProductTypeId, IsSaleByWeight, ProductTypeId);
                         Publish(new ProductListChangedMessage(this));
                         Close(this);
                     }
@@ -228,9 +235,13 @@ namespace CoffeeManagerAdmin.Core.ViewModels
                 {
                     if (obj)
                     {
-                        await manager.EditProduct(_id, Name, Price, PolicePrice, CupType, ProductTypeId, IsSaleByWeight);
-                        Publish(new ProductListChangedMessage(this));
-                        Close(this);
+                        await ExecuteSafe(async () =>
+                        {
+                            await manager.EditProduct(id, Name, Price, PolicePrice, CupType, ProductTypeId,
+                                IsSaleByWeight, ProductTypeId);
+                            Publish(new ProductListChangedMessage(this));
+                            Close(this);
+                        });
                     }
                 }
             });
@@ -238,7 +249,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels
 
         private void DoSelectCalculationItems()
         {
-            ShowViewModel<CalculationViewModel>(new { id = _id });
+            ShowViewModel<CalculationViewModel>(new { id = id });
         }
      
     }

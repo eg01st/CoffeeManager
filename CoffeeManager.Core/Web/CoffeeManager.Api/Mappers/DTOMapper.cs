@@ -89,7 +89,8 @@ namespace CoffeeManager.Api.Mappers
                 CupType = prodDb.CupType.Value,
                 SuplyId = prodDb.SuplyProductId,
                 IsActive = prodDb.IsActive,
-                IsSaleByWeight = prodDb.IsSaleByWeight
+                IsSaleByWeight = prodDb.IsSaleByWeight,
+                CategoryId = prodDb.CategoryId
             };
         }
 

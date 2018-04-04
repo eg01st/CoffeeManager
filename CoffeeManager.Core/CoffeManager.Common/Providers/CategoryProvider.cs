@@ -9,23 +9,25 @@ namespace CoffeManager.Common.Providers
     {
         public async Task<IEnumerable<CategoryDTO>> GetCategories()
         {
-            return new[]
-            {
-                new CategoryDTO()
-                {
-                    Id = 1,
-                    Name = "Кофе",
-                },
-                new CategoryDTO() {Id = 2, Name = "Чай"},
-                new CategoryDTO() {Id = 3, Name = "Холодные напитки"},
-                new CategoryDTO() {Id = 4, Name = "Мороженое"},
-                new CategoryDTO() {Id = 5, Name = "Еда"},
-                new CategoryDTO() {Id = 6, Name = "Вода"},
-                new CategoryDTO() {Id = 7, Name = "Сладости"},
-                new CategoryDTO() {Id = 8, Name = "Добавки"},
-                new CategoryDTO() {Id = 1, Name = "Lavaza", ParentId = 1} , 
-                new CategoryDTO() {Id = 2, Name = "Арабика", ParentId = 1} , 
-            };
+            return await Get<IEnumerable<CategoryDTO>>(RoutesConstants.GetCategories);
+            
+//            return new[]
+//            {
+//                new CategoryDTO()
+//                {
+//                    Id = 1,
+//                    Name = "Кофе",
+//                },
+//                new CategoryDTO() {Id = 2, Name = "Чай"},
+//                new CategoryDTO() {Id = 3, Name = "Холодные напитки"},
+//                new CategoryDTO() {Id = 4, Name = "Мороженое"},
+//                new CategoryDTO() {Id = 5, Name = "Еда"},
+//                new CategoryDTO() {Id = 6, Name = "Вода"},
+//                new CategoryDTO() {Id = 7, Name = "Сладости"},
+//                new CategoryDTO() {Id = 8, Name = "Добавки"},
+//                new CategoryDTO() {Id = 1, Name = "Lavaza", ParentId = 1} , 
+//                new CategoryDTO() {Id = 2, Name = "Арабика", ParentId = 1} , 
+//            };
         }
 
         public async Task<CategoryDTO> GetCategory(int categoryId)

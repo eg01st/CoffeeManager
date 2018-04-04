@@ -451,6 +451,10 @@
     <Compile Include="Views\Categories\CategoryDetailsView.designer.cs">
       <DependentUpon>CategoryDetailsView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Categories\AddCategoryView.cs" />
+    <Compile Include="Views\Categories\AddCategoryView.designer.cs">
+      <DependentUpon>AddCategoryView.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Setup.cs" />
@@ -538,6 +542,7 @@
     <InterfaceDefinition Include="Views\Categories\CategoriesView.xib" />
     <InterfaceDefinition Include="Views\Categories\CategoryTableViewCell.xib" />
     <InterfaceDefinition Include="Views\Categories\CategoryDetailsView.xib" />
+    <InterfaceDefinition Include="Views\Categories\AddCategoryView.xib" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

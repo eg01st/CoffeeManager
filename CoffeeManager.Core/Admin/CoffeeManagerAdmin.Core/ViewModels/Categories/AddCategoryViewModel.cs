@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using System.Windows.Input;
+using CoffeeManager.Common;
 using CoffeeManager.Models.Data.DTO.Category;
 using CoffeeManagerAdmin.Core.Messages;
 using CoffeManager.Common.Managers;
@@ -34,13 +35,14 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Categories
 
         private bool CanAddCategory()
         {
-            return string.IsNullOrWhiteSpace(CategoryName);
+            return !string.IsNullOrWhiteSpace(CategoryName);
         }
 
         private async Task DoAddCategory()
         {
             var dto = new CategoryDTO();
             dto.Name = CategoryName;
+            dto.CoffeeRoomNo = Config.CoffeeRoomNo;
             var categoryId = await categoryManager.AddCategory(dto);
             MvxMessenger.Publish(new CategoriesUpdatedMessage(this));
             CloseCommand.Execute(null);

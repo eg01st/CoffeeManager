@@ -1,12 +1,11 @@
 ﻿using System;
-
+using CoffeeManagerAdmin.Core.ViewModels.Categories;
 using Foundation;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.Binding.iOS.Views;
 using UIKit;
-using CoffeeManagerAdmin.Core.ViewModels.Categories;
 
-namespace CoffeeManagerAdmin.iOS
+namespace CoffeeManagerAdmin.iOS.Views.Categories
 {
     public partial class CategoryTableViewCell : MvxTableViewCell
     {

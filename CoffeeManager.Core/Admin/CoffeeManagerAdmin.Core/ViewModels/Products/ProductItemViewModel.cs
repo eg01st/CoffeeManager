@@ -1,25 +1,20 @@
-﻿using System;
-using CoffeeManager.Models;
-using System.Windows.Input;
-using MvvmCross.Core.ViewModels;
-using CoffeeManagerAdmin.Core.ViewModels;
-using System.Linq;
-using CoffeeManagerAdmin.Core.Util;
-using CoffeManager.Common;
-using MvvmCross.Platform;
+﻿using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using CoffeeManager.Models;
+using CoffeeManagerAdmin.Core.Util;
 using CoffeManager.Common.Managers;
 using CoffeManager.Common.ViewModels;
+using MvvmCross.Core.ViewModels;
+using MvvmCross.Platform;
 
-namespace CoffeeManagerAdmin.Core
+namespace CoffeeManagerAdmin.Core.ViewModels.Products
 {
     public class ProductItemViewModel : ListItemViewModelBase
     {
-
-        private Product _prod;
-        private ICommand _deleteProductCommand;
-        public ICommand DeleteProductCommand => _deleteProductCommand;
-        public ICommand ToggleIsActiveCommand {get;set;}
+        private Product prod;
+        public ICommand DeleteProductCommand { get; }
+        public ICommand ToggleIsActiveCommand {get;}
 
         public string Category { get; set; }
         public string CupType {get;set;}
@@ -27,7 +22,7 @@ namespace CoffeeManagerAdmin.Core
 
         public ProductItemViewModel(Product prod)
         {
-            _prod = prod;
+            this.prod = prod;
             Name = prod.Name;
             IsActive = prod.IsActive;
 
@@ -39,31 +34,31 @@ namespace CoffeeManagerAdmin.Core
             CupType = type == CupTypeEnum.Unknown ? string.Empty : type.ToString();
             RaiseAllPropertiesChanged();
 
-            _deleteProductCommand = new MvxCommand(DoDeleCommand);
+            DeleteProductCommand = new MvxCommand(DoDeleCommand);
             ToggleIsActiveCommand = new MvxCommand(DoToggleIsActive);
         }
 
         private async void DoToggleIsActive()
         {
             IProductManager manager = Mvx.Resolve<IProductManager>();
-            await manager.ToggleIsActiveProduct(_prod.Id);
+            await manager.ToggleIsActiveProduct(prod.Id);
         }
 
         protected override void DoGoToDetails()
         {
-            var id = ParameterTransmitter.PutParameter(_prod);
+            var id = ParameterTransmitter.PutParameter(prod);
             ShowViewModel<ProductDetailsViewModel>(new {id});
         }
 
         private void DoDeleCommand()
         {
-            Confirm($"Действительно удалить продукт \"{_prod.Name}\"?", DeleteProduct);
+            Confirm($"Действительно удалить продукт \"{prod.Name}\"?", DeleteProduct);
         }
 
         private async Task DeleteProduct()
         {
             IProductManager manager = Mvx.Resolve<IProductManager>();
-            await manager.DeleteProduct(_prod.Id);
+            await manager.DeleteProduct(prod.Id);
             Publish(new ProductListChangedMessage(this));
         }
 

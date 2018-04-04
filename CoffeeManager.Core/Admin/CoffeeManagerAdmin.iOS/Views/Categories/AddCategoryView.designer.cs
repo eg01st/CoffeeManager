@@ -4,22 +4,30 @@
 // actions made in the UI designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
-
 using Foundation;
+using System.CodeDom.Compiler;
 
 namespace CoffeeManagerAdmin.iOS.Views.Categories
 {
-	[Register ("CategoryTableViewCell")]
-	partial class CategoryTableViewCell
+	[Register ("AddCategoryView")]
+	partial class AddCategoryView
 	{
 		[Outlet]
-		UIKit.UILabel CategoryLabel { get; set; }
+		UIKit.UIButton AddButton { get; set; }
+
+		[Outlet]
+		UIKit.UITextField NameTextFiled { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (CategoryLabel != null) {
-				CategoryLabel.Dispose ();
-				CategoryLabel = null;
+			if (NameTextFiled != null) {
+				NameTextFiled.Dispose ();
+				NameTextFiled = null;
+			}
+
+			if (AddButton != null) {
+				AddButton.Dispose ();
+				AddButton = null;
 			}
 		}
 	}

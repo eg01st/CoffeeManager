@@ -6,6 +6,7 @@ using MvvmCross.Binding.iOS.Views;
 using MvvmCross.Binding.BindingContext;
 using CoffeeManagerAdmin.Core;
 using System.Windows.Input;
+using CoffeeManagerAdmin.Core.ViewModels.Products;
 
 namespace CoffeeManagerAdmin.iOS
 {

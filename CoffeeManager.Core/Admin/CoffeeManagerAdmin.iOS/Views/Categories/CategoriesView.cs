@@ -1,12 +1,10 @@
-﻿using System;
-
-using UIKit;
-using CoffeeManagerAdmin.iOS.Views.Abstract;
+﻿using System.Collections.Generic;
 using CoffeeManagerAdmin.Core.ViewModels.Categories;
+using CoffeeManagerAdmin.iOS.Views.Abstract;
 using MvvmCross.Binding.BindingContext;
-using System.Collections.Generic;
+using UIKit;
 
-namespace CoffeeManagerAdmin.iOS
+namespace CoffeeManagerAdmin.iOS.Views.Categories
 {
     public partial class CategoriesView : ViewControllerBase<CategoriesViewModel>
     {
