@@ -31,7 +31,8 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Products
         #region Properties
         public List<Entity> CupTypesList => TypesLists.CupTypesList;
         public List<CategoryItemViewModel> ProductTypesList { get; set; } = new List<CategoryItemViewModel>();
-        public ICommand AddProductCommand { get; set; }
+        public ICommand AddProductCommand => addProductCommand;
+        private ICommand addProductCommand;
         public bool IsAddEnabled => !string.IsNullOrEmpty(Name) && !string.IsNullOrEmpty(Price) && !string.IsNullOrEmpty(PolicePrice) && !string.IsNullOrEmpty(CupTypeName) && !string.IsNullOrEmpty(ProductTypeName);
 
         public Entity SelectedCupType
@@ -172,7 +173,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Products
         {
             this.manager = manager;
             this.categoryManager = categoryManager;
-            AddProductCommand = new MvxCommand(DoAddProduct);
+         
             SelectCalculationItemsCommand = new MvxCommand(DoSelectCalculationItems);
         }
 
@@ -184,7 +185,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Products
             
             if(id != Guid.Empty)
             {
-                AddProductCommand = new MvxCommand(DoEditProduct);
+                addProductCommand = new MvxCommand(DoEditProduct);
                 
                 Product product;
                 ParameterTransmitter.TryGetParameter(id, out product);
@@ -207,6 +208,11 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Products
                 ButtonTitle = "Сохранить изменения";
                 RaisePropertyChanged(nameof(ButtonTitle));
             }
+            else
+            {
+                addProductCommand = new MvxCommand(DoAddProduct);
+            }
+            RaisePropertyChanged(nameof(AddProductCommand));
         }
 
         private void DoAddProduct()
@@ -218,9 +224,12 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Products
                 {
                     if (obj)
                     {
-                        await manager.AddProduct(Name, Price, PolicePrice, CupType, ProductTypeId, IsSaleByWeight, ProductTypeId);
-                        Publish(new ProductListChangedMessage(this));
-                        Close(this);
+                        await ExecuteSafe(async () =>
+                        {
+                            await manager.AddProduct(Name, Price, PolicePrice, CupType, ProductTypeId, IsSaleByWeight, ProductTypeId);
+                            Publish(new ProductListChangedMessage(this));
+                            Close(this);
+                        });
                     }
                 }
             });
