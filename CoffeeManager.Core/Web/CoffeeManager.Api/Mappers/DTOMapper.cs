@@ -261,6 +261,7 @@ namespace CoffeeManager.Api.Mappers
             return new CategoryDTO()
             {
                 Id = item.Id,
+                ParentId = item.ParentId,
                 CoffeeRoomNo = item.CoffeeRoomNo,
                 Name = item.Name    
             };
