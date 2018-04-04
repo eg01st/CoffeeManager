@@ -30,7 +30,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Categories
 
         protected override async Task<PageContainer<CategoryItemViewModel>> GetPageAsync(int skip)
         {
-            var categories = await categoryManager.GetCategories();
+            var categories = await ExecuteSafe(categoryManager.GetCategories);
             return categories.Select(s => new CategoryItemViewModel(s)).ToPageContainer();
         }
 

@@ -43,10 +43,13 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Categories
             var dto = new CategoryDTO();
             dto.Name = CategoryName;
             dto.CoffeeRoomNo = Config.CoffeeRoomNo;
-            var categoryId = await categoryManager.AddCategory(dto);
-            MvxMessenger.Publish(new CategoriesUpdatedMessage(this));
-            CloseCommand.Execute(null);
-            await NavigationService.Navigate<CategoryDetailsViewModel, int>(categoryId);
+            await ExecuteSafe(async () =>
+            {
+                var categoryId = await categoryManager.AddCategory(dto);
+                MvxMessenger.Publish(new CategoriesUpdatedMessage(this));
+                await NavigationService.Navigate<CategoryDetailsViewModel, int>(categoryId);
+                CloseCommand.Execute(null);
+            });
         }
     }
 }

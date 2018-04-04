@@ -62,9 +62,12 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Categories
 
             dto.SubCategories = subCategories.ToArray();
             dto.CoffeeRoomNo = Config.CoffeeRoomNo;
-            await categoryManager.UpdateCategory(dto);
-            MvxMessenger.Publish(new CategoriesUpdatedMessage(this));
-            CloseCommand.Execute(null);
+            await ExecuteSafe(async () =>
+            {
+                await categoryManager.UpdateCategory(dto);
+                MvxMessenger.Publish(new CategoriesUpdatedMessage(this));
+                CloseCommand.Execute(null);
+            });
         }
 
         private void DoAddSubCategory()
@@ -89,19 +92,22 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Categories
 
         protected override async Task DoLoadDataImplAsync()
         {
-            var category = await categoryManager.GetCategory(categoryId);
-
-            Name = category.Name;
-            if (category.SubCategories != null)
+            await ExecuteSafe(async () =>
             {
-                SubCategories.AddRange(category.SubCategories?
-                    .Select(s => new SubCategoryItemViewModel(s)));
-            }
-   
-            var categories = await categoryManager.GetCategories();
-            allCategories = categories.ToList();
-            
-            RefreshCategories();
+                var category = await categoryManager.GetCategory(categoryId);
+
+                Name = category.Name;
+                if (category.SubCategories != null)
+                {
+                    SubCategories.AddRange(category.SubCategories?
+                        .Select(s => new SubCategoryItemViewModel(s)));
+                }
+
+                var categories = await categoryManager.GetCategories();
+                allCategories = categories.ToList();
+
+                RefreshCategories();
+            });
         }
         
         private void DeleteCategory(SubCategoryDeleteMessage obj)
