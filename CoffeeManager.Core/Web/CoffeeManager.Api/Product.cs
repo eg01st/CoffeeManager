@@ -33,6 +33,7 @@ namespace CoffeeManager.Api
         public bool IsActive { get; set; }
         public bool IsSaleByWeight { get; set; }
         public bool Removed { get; set; }
+        public int CategoryId { get; set; }
     
         public virtual CupType CupType1 { get; set; }
         public virtual ProductType ProductType1 { get; set; }
@@ -42,5 +43,6 @@ namespace CoffeeManager.Api
         public virtual ICollection<SupliedProduct> SupliedProducts { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductCalculation> ProductCalculations { get; set; }
+        public virtual Category Category { get; set; }
     }
 }

@@ -73,6 +73,7 @@
         <AssociationConnector Association="CoffeeRoomModel.FK__UserPayme__Coffe__503BEA1C" />
         <AssociationConnector Association="CoffeeRoomModel.FK__UserPayme__UserI__4F47C5E3" />
         <EntityTypeShape EntityType="CoffeeRoomModel.Category" Width="1.5" PointX="10.375" PointY="3.75" />
+        <AssociationConnector Association="CoffeeRoomModel.FK_Product_Category" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

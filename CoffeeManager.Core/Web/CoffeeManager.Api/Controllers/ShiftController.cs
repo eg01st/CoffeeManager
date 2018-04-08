@@ -77,7 +77,7 @@ namespace CoffeeManager.Api.Controllers
                     .First(s => s.Id == shiftId && s.CoffeeRoomNo == coffeeroomno);
                 if (shift.IsFinished == true)
                 {
-                    return Request.CreateResponse(HttpStatusCode.OK);
+                    return Request.CreateResponse(HttpStatusCode.OK, new EndShiftUserInfo());
                 }
                 shift.IsFinished = true;
                 shift.RealAmount = shiftInfo.RealAmount;
@@ -110,7 +110,7 @@ namespace CoffeeManager.Api.Controllers
 
                 enities.SaveChanges();
 
-                return Request.CreateResponse<Models.EndShiftUserInfo>(HttpStatusCode.OK,
+                return Request.CreateResponse(HttpStatusCode.OK,
                     new EndShiftUserInfo()
                     {
                         EarnedAmount = userEarnedAmount,

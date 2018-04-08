@@ -186,6 +186,7 @@
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="IsSaleByWeight" Type="bit" Nullable="false" />
           <Property Name="Removed" Type="bit" Nullable="false" />
+          <Property Name="CategoryId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="ProductCalculation">
           <Key>
@@ -813,6 +814,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Product_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_SupliedProduct_ExpenseType">
           <End Role="ExpenseType" Type="Self.ExpenseType" Multiplicity="0..1" />
           <End Role="SupliedProduct" Type="Self.SupliedProduct" Multiplicity="*" />
@@ -1047,6 +1060,10 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="Expense" EntitySet="Expense" />
           </AssociationSet>
+          <AssociationSet Name="FK_Product_Category" Association="Self.FK_Product_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
           <AssociationSet Name="FK_SupliedProduct_ExpenseType" Association="Self.FK_SupliedProduct_ExpenseType">
             <End Role="ExpenseType" EntitySet="ExpenseType" />
             <End Role="SupliedProduct" EntitySet="SupliedProduct" />
@@ -1138,6 +1155,8 @@
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="IsSaleByWeight" Type="Boolean" Nullable="false" />
           <Property Name="Removed" Type="Boolean" Nullable="false" />
+          <Property Name="CategoryId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Category" Relationship="CoffeeRoomModel.FK_Product_Category" FromRole="Product" ToRole="Category" />
         </EntityType>
         <EntityType Name="ProductType">
           <Key>
@@ -1524,6 +1543,10 @@
             <End Role="UserPaymentStrategy" EntitySet="UserPaymentStrategies" />
           </AssociationSet>
           <EntitySet Name="Categories" EntityType="CoffeeRoomModel.Category" />
+          <AssociationSet Name="FK_Product_Category" Association="CoffeeRoomModel.FK_Product_Category">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="UsedProductsPerShift">
           <Key>
@@ -2157,7 +2180,20 @@
           <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ParentId" Type="Int32" />
           <Property Name="CoffeeRoomNo" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Products" Relationship="CoffeeRoomModel.FK_Product_Category" FromRole="Category" ToRole="Product" />
         </EntityType>
+        <Association Name="FK_Product_Category">
+          <End Type="CoffeeRoomModel.Category" Role="Category" Multiplicity="1" />
+          <End Type="CoffeeRoomModel.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2215,6 +2251,7 @@
           <EntitySetMapping Name="Products">
             <EntityTypeMapping TypeName="CoffeeRoomModel.Product">
               <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
                 <ScalarProperty Name="Removed" ColumnName="Removed" />
                 <ScalarProperty Name="IsSaleByWeight" ColumnName="IsSaleByWeight" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />

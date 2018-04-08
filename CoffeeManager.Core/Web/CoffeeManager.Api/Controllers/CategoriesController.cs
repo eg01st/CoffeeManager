@@ -25,8 +25,12 @@ namespace CoffeeManager.Api.Controllers
         [HttpGet]
         public HttpResponseMessage GetCategory([FromUri]int coffeeroomno, [FromUri]int categoryId)
         {
-            var category = new CoffeeRoomEntities().Categories.FirstOrDefault(c => c.Id == categoryId);
-            return new HttpResponseMessage() { Content = new ObjectContent<CategoryDTO>(category.ToDTO(), new JsonMediaTypeFormatter())};
+            var ctx = new CoffeeRoomEntities();
+            var categoryDb = ctx.Categories.FirstOrDefault(c => c.Id == categoryId);
+            var category = categoryDb.ToDTO();
+            var subs = ctx.Categories.Where(c => c.ParentId != null && c.ParentId.Value == categoryId).ToList().Select(s => s.ToDTO());
+            category.SubCategories = subs.ToArray();
+            return new HttpResponseMessage() { Content = new ObjectContent<CategoryDTO>(category, new JsonMediaTypeFormatter())};
         }
         
         [Route(RoutesConstants.AddCategory)]
@@ -59,6 +63,13 @@ namespace CoffeeManager.Api.Controllers
             }
             else
             {
+                foreach (var subCategory in entites.Categories.Where(c => c.ParentId != null && c.ParentId.Value == category.Id))
+                {
+                    if (!newSubsIds.Contains(subCategory.Id))
+                    {
+                        subCategory.ParentId = null;
+                    }
+                }
                 foreach (var cat in entites.Categories)
                 {
                     if (newSubsIds.Contains(cat.Id))
@@ -73,7 +84,7 @@ namespace CoffeeManager.Api.Controllers
         }
         
         [Route(RoutesConstants.DeleteCategory)]
-        [HttpPost]
+        [HttpDelete]
         public HttpResponseMessage DeleteCategory([FromUri]int coffeeroomno,[FromUri]int categoryId)
         {
             var entites = new CoffeeRoomEntities();

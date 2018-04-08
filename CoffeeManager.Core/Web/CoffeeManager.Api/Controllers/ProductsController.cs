@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -20,7 +21,7 @@ namespace CoffeeManager.Api.Controllers
 		public async Task<HttpResponseMessage> Get ([FromUri]int coffeeroomno, int productType)
 		{
 			var entities = new CoffeeRoomEntities ();
-			var products = entities.Products.Where (p => p.ProductType.Value == productType && !p.Removed).ToList ().Select (s => s.ToDTO ());
+			var products = entities.Products.Include(i => i.Category).Where (p => p.ProductType.Value == productType && !p.Removed).ToList ().Select (s => s.ToDTO ());
 			return Request.CreateResponse (HttpStatusCode.OK, products);
 		}
 
@@ -29,7 +30,7 @@ namespace CoffeeManager.Api.Controllers
 		public async Task<HttpResponseMessage> GetAll ([FromUri]int coffeeroomno, HttpRequestMessage message)
 		{
 			var entities = new CoffeeRoomEntities ();
-			var products = entities.Products.Where (p => !p.Removed).ToList ().Select (s => s.ToDTO ());
+			var products = entities.Products.Include(i => i.Category).Where (p => !p.Removed).ToList ().Select (s => s.ToDTO ());
 			return Request.CreateResponse (HttpStatusCode.OK, products);
 		}
 
