@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using CoffeeManager.Api.Mappers;
 using CoffeeManager.Models;
+using CoffeeManager.Models.Data.DTO.CoffeeRoomCounter;
 using Newtonsoft.Json;
 
 namespace CoffeeManager.Api.Controllers
@@ -18,7 +19,7 @@ namespace CoffeeManager.Api.Controllers
     {
         public static readonly object LockEndShift = new object();
 
-        public async Task<HttpResponseMessage> Post([FromUri]int coffeeroomno, int userId,  int counter)
+        public async Task<HttpResponseMessage> Post([FromUri]int coffeeroomno, int userId, HttpRequestMessage message)
         {
             var shiftToReturn = new Models.Shift();
             var entities = new  CoffeeRoomEntities();
@@ -31,7 +32,7 @@ namespace CoffeeManager.Api.Controllers
                     IsFinished = false,
                     UserId = userId,
                     Date = DateTime.Now,
-                    StartCounter = counter,
+                   // StartCounter = counter,
                     CreditCardAmount = 0,
                 };
                 var lastShift =
@@ -54,6 +55,23 @@ namespace CoffeeManager.Api.Controllers
                 await entities.SaveChangesAsync();
                 shiftToReturn.Id = shift.Id;
                 shiftToReturn.UserId = shift.UserId.Value;
+
+                var request = await message.Content.ReadAsStringAsync();
+                var coffeeCounters = JsonConvert.DeserializeObject<List<CoffeeCounterDTO>>(request);
+                if (coffeeCounters?.Count > 0)
+                {
+                    entities = new CoffeeRoomEntities();
+                    foreach (var coffeeCounterDTO in coffeeCounters)
+                    {
+                        var counterInfo = new CoffeeCounter();
+                        counterInfo.CoffeeRoomNo = coffeeroomno;
+                        counterInfo.ShiftId = shift.Id;
+                        counterInfo.SuplyProductId = coffeeCounterDTO.SuplyProductId;
+                        counterInfo.StartCounter = coffeeCounterDTO.StartCounter;
+                        entities.CoffeeCounters.Add(counterInfo);
+                        await entities.SaveChangesAsync();
+                    }
+                }
             }
             else
             {
@@ -81,7 +99,19 @@ namespace CoffeeManager.Api.Controllers
                 }
                 shift.IsFinished = true;
                 shift.RealAmount = shiftInfo.RealAmount;
-                shift.EndCounter = shiftInfo.Counter;
+               // shift.EndCounter = shiftInfo.Counter;
+
+
+                foreach (var coffeeCounter in shiftInfo.CoffeeCounters)
+                {
+                    var counter = enities.CoffeeCounters.First(c =>
+                        c.CoffeeRoomNo == coffeeroomno && c.ShiftId == shiftId &&
+                        c.SuplyProductId == coffeeCounter.SuplyProductId);
+                    counter.EndCounter = coffeeCounter.EndCounter;
+                    counter.UsedPortionsCount = counter.EndCounter - counter.StartCounter;
+                    enities.SaveChanges();
+                }
+
 
                 var userPaymentStrategy = shift.User.UserPaymentStrategies.First(s => s.CoffeeRoomId == coffeeroomno);
 

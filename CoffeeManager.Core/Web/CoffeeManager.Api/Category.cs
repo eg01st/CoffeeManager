@@ -18,6 +18,7 @@ namespace CoffeeManager.Api
         public Category()
         {
             this.Products = new HashSet<Product>();
+            this.CoffeeCounterForCoffeeRooms = new HashSet<CoffeeCounterForCoffeeRoom>();
         }
     
         public int Id { get; set; }
@@ -27,5 +28,7 @@ namespace CoffeeManager.Api
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Product> Products { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CoffeeCounterForCoffeeRoom> CoffeeCounterForCoffeeRooms { get; set; }
     }
 }

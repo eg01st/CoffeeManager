@@ -78,6 +78,28 @@
           <Property Name="ParentId" Type="int" />
           <Property Name="CoffeeRoomNo" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="CoffeeCounter">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ShiftId" Type="int" Nullable="false" />
+          <Property Name="CoffeeRoomNo" Type="int" Nullable="false" />
+          <Property Name="SuplyProductId" Type="int" Nullable="false" />
+          <Property Name="StartCounter" Type="int" Nullable="false" />
+          <Property Name="EndCounter" Type="int" />
+          <Property Name="UsedPortionsCount" Type="int" />
+        </EntityType>
+        <EntityType Name="CoffeeCounterForCoffeeRoom">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryId" Type="int" Nullable="false" />
+          <Property Name="CoffeeRoomNo" Type="int" Nullable="false" />
+          <Property Name="SuplyProductId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
         <EntityType Name="CoffeeRoom">
           <Key>
             <PropertyRef Name="Id" />
@@ -394,6 +416,78 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__CoffeeCou__Categ__43D61337">
+          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="CoffeeCounterForCoffeeRoom" Type="Self.CoffeeCounterForCoffeeRoom" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CoffeeCounterForCoffeeRoom">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CoffeeCou__Coffe__40058253">
+          <End Role="CoffeeRoom" Type="Self.CoffeeRoom" Multiplicity="1" />
+          <End Role="CoffeeCounter" Type="Self.CoffeeCounter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CoffeeRoom">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CoffeeCounter">
+              <PropertyRef Name="CoffeeRoomNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CoffeeCou__Coffe__44CA3770">
+          <End Role="CoffeeRoom" Type="Self.CoffeeRoom" Multiplicity="1" />
+          <End Role="CoffeeCounterForCoffeeRoom" Type="Self.CoffeeCounterForCoffeeRoom" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CoffeeRoom">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CoffeeCounterForCoffeeRoom">
+              <PropertyRef Name="CoffeeRoomNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CoffeeCou__Shift__3F115E1A">
+          <End Role="Shifts" Type="Self.Shifts" Multiplicity="1" />
+          <End Role="CoffeeCounter" Type="Self.CoffeeCounter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shifts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CoffeeCounter">
+              <PropertyRef Name="ShiftId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CoffeeCou__Suply__40F9A68C">
+          <End Role="SupliedProduct" Type="Self.SupliedProduct" Multiplicity="1" />
+          <End Role="CoffeeCounter" Type="Self.CoffeeCounter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SupliedProduct">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CoffeeCounter">
+              <PropertyRef Name="SuplyProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CoffeeCou__Suply__45BE5BA9">
+          <End Role="SupliedProduct" Type="Self.SupliedProduct" Multiplicity="1" />
+          <End Role="CoffeeCounterForCoffeeRoom" Type="Self.CoffeeCounterForCoffeeRoom" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SupliedProduct">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CoffeeCounterForCoffeeRoom">
+              <PropertyRef Name="SuplyProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Expense__Expense__37A5467C">
           <End Role="ExpenseType" Type="Self.ExpenseType" Multiplicity="0..1" />
           <End Role="Expense" Type="Self.Expense" Multiplicity="*" />
@@ -475,18 +569,6 @@
             </Principal>
             <Dependent Role="Product">
               <PropertyRef Name="CupType" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Product__Product__33D4B598">
-          <End Role="ProductType" Type="Self.ProductType" Multiplicity="0..1" />
-          <End Role="Product" Type="Self.Product" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ProductType">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Product">
-              <PropertyRef Name="ProductType" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -891,6 +973,8 @@
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CashoutHistory" EntityType="Self.CashoutHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CoffeeCounter" EntityType="Self.CoffeeCounter" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CoffeeCounterForCoffeeRoom" EntityType="Self.CoffeeCounterForCoffeeRoom" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CoffeeRoom" EntityType="Self.CoffeeRoom" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CupSuply" EntityType="Self.CupSuply" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CupType" EntityType="Self.CupType" Schema="dbo" store:Type="Tables" />
@@ -924,6 +1008,30 @@
             <End Role="Shifts" EntitySet="Shifts" />
             <End Role="CashoutHistory" EntitySet="CashoutHistory" />
           </AssociationSet>
+          <AssociationSet Name="FK__CoffeeCou__Categ__43D61337" Association="Self.FK__CoffeeCou__Categ__43D61337">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="CoffeeCounterForCoffeeRoom" EntitySet="CoffeeCounterForCoffeeRoom" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CoffeeCou__Coffe__40058253" Association="Self.FK__CoffeeCou__Coffe__40058253">
+            <End Role="CoffeeRoom" EntitySet="CoffeeRoom" />
+            <End Role="CoffeeCounter" EntitySet="CoffeeCounter" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CoffeeCou__Coffe__44CA3770" Association="Self.FK__CoffeeCou__Coffe__44CA3770">
+            <End Role="CoffeeRoom" EntitySet="CoffeeRoom" />
+            <End Role="CoffeeCounterForCoffeeRoom" EntitySet="CoffeeCounterForCoffeeRoom" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CoffeeCou__Shift__3F115E1A" Association="Self.FK__CoffeeCou__Shift__3F115E1A">
+            <End Role="Shifts" EntitySet="Shifts" />
+            <End Role="CoffeeCounter" EntitySet="CoffeeCounter" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CoffeeCou__Suply__40F9A68C" Association="Self.FK__CoffeeCou__Suply__40F9A68C">
+            <End Role="SupliedProduct" EntitySet="SupliedProduct" />
+            <End Role="CoffeeCounter" EntitySet="CoffeeCounter" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CoffeeCou__Suply__45BE5BA9" Association="Self.FK__CoffeeCou__Suply__45BE5BA9">
+            <End Role="SupliedProduct" EntitySet="SupliedProduct" />
+            <End Role="CoffeeCounterForCoffeeRoom" EntitySet="CoffeeCounterForCoffeeRoom" />
+          </AssociationSet>
           <AssociationSet Name="FK__Expense__Expense__37A5467C" Association="Self.FK__Expense__Expense__37A5467C">
             <End Role="ExpenseType" EntitySet="ExpenseType" />
             <End Role="Expense" EntitySet="Expense" />
@@ -950,10 +1058,6 @@
           </AssociationSet>
           <AssociationSet Name="FK__Product__CupType__32E0915F" Association="Self.FK__Product__CupType__32E0915F">
             <End Role="CupType" EntitySet="CupType" />
-            <End Role="Product" EntitySet="Product" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Product__Product__33D4B598" Association="Self.FK__Product__Product__33D4B598">
-            <End Role="ProductType" EntitySet="ProductType" />
             <End Role="Product" EntitySet="Product" />
           </AssociationSet>
           <AssociationSet Name="FK__ProductCa__Produ__793DFFAF" Association="Self.FK__ProductCa__Produ__793DFFAF">
@@ -1212,6 +1316,7 @@
           <NavigationProperty Name="UserEarningsHistories" Relationship="CoffeeRoomModel.FK__UserEarni__Shift__10E07F16" FromRole="Shift" ToRole="UserEarningsHistory" />
           <Property Name="TotalCreditCardAmount" Type="Decimal" Precision="19" Scale="4" />
           <NavigationProperty Name="CashoutHistories" Relationship="CoffeeRoomModel.FK__CashoutHi__Shift__2645B050" FromRole="Shift" ToRole="CashoutHistory" />
+          <NavigationProperty Name="CoffeeCounters" Relationship="CoffeeRoomModel.FK__CoffeeCou__Shift__3F115E1A" FromRole="Shift" ToRole="CoffeeCounter" />
         </EntityType>
         <EntityType Name="UsedCupsPerShift">
           <Key>
@@ -1547,6 +1652,32 @@
             <End Role="Category" EntitySet="Categories" />
             <End Role="Product" EntitySet="Products" />
           </AssociationSet>
+          <EntitySet Name="CoffeeCounters" EntityType="CoffeeRoomModel.CoffeeCounter" />
+          <EntitySet Name="CoffeeCounterForCoffeeRooms" EntityType="CoffeeRoomModel.CoffeeCounterForCoffeeRoom" />
+          <AssociationSet Name="FK__CoffeeCou__Categ__43D61337" Association="CoffeeRoomModel.FK__CoffeeCou__Categ__43D61337">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="CoffeeCounterForCoffeeRoom" EntitySet="CoffeeCounterForCoffeeRooms" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CoffeeCou__Coffe__40058253" Association="CoffeeRoomModel.FK__CoffeeCou__Coffe__40058253">
+            <End Role="CoffeeRoom" EntitySet="CoffeeRooms" />
+            <End Role="CoffeeCounter" EntitySet="CoffeeCounters" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CoffeeCou__Shift__3F115E1A" Association="CoffeeRoomModel.FK__CoffeeCou__Shift__3F115E1A">
+            <End Role="Shift" EntitySet="Shifts" />
+            <End Role="CoffeeCounter" EntitySet="CoffeeCounters" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CoffeeCou__Suply__40F9A68C" Association="CoffeeRoomModel.FK__CoffeeCou__Suply__40F9A68C">
+            <End Role="SupliedProduct" EntitySet="SupliedProducts" />
+            <End Role="CoffeeCounter" EntitySet="CoffeeCounters" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CoffeeCou__Coffe__44CA3770" Association="CoffeeRoomModel.FK__CoffeeCou__Coffe__44CA3770">
+            <End Role="CoffeeRoom" EntitySet="CoffeeRooms" />
+            <End Role="CoffeeCounterForCoffeeRoom" EntitySet="CoffeeCounterForCoffeeRooms" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CoffeeCou__Suply__45BE5BA9" Association="CoffeeRoomModel.FK__CoffeeCou__Suply__45BE5BA9">
+            <End Role="SupliedProduct" EntitySet="SupliedProducts" />
+            <End Role="CoffeeCounterForCoffeeRoom" EntitySet="CoffeeCounterForCoffeeRooms" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="UsedProductsPerShift">
           <Key>
@@ -1604,6 +1735,8 @@
           <Property Name="InventoryNumerationName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="InventoryNumerationMultyplier" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <NavigationProperty Name="SuplyProductQuantities" Relationship="CoffeeRoomModel.FK__SuplyProd__Suply__3F115E1A" FromRole="SupliedProduct" ToRole="SuplyProductQuantity" />
+          <NavigationProperty Name="CoffeeCounters" Relationship="CoffeeRoomModel.FK__CoffeeCou__Suply__40F9A68C" FromRole="SupliedProduct" ToRole="CoffeeCounter" />
+          <NavigationProperty Name="CoffeeCounterForCoffeeRooms" Relationship="CoffeeRoomModel.FK__CoffeeCou__Suply__45BE5BA9" FromRole="SupliedProduct" ToRole="CoffeeCounterForCoffeeRoom" />
         </EntityType>
         <Association Name="FK_SupliedProduct_ExpenseType">
           <End Type="CoffeeRoomModel.ExpenseType" Role="ExpenseType" Multiplicity="0..1" />
@@ -1929,6 +2062,8 @@
           <NavigationProperty Name="CashoutHistories" Relationship="CoffeeRoomModel.FK__CashoutHi__Coffe__2739D489" FromRole="CoffeeRoom" ToRole="CashoutHistory" />
           <NavigationProperty Name="SuplyProductQuantities" Relationship="CoffeeRoomModel.FK__SuplyProd__Coffe__3E1D39E1" FromRole="CoffeeRoom" ToRole="SuplyProductQuantity" />
           <NavigationProperty Name="UserPaymentStrategies" Relationship="CoffeeRoomModel.FK__UserPayme__Coffe__503BEA1C" FromRole="CoffeeRoom" ToRole="UserPaymentStrategy" />
+          <NavigationProperty Name="CoffeeCounters" Relationship="CoffeeRoomModel.FK__CoffeeCou__Coffe__40058253" FromRole="CoffeeRoom" ToRole="CoffeeCounter" />
+          <NavigationProperty Name="CoffeeCounterForCoffeeRooms" Relationship="CoffeeRoomModel.FK__CoffeeCou__Coffe__44CA3770" FromRole="CoffeeRoom" ToRole="CoffeeCounterForCoffeeRoom" />
         </EntityType>
         <EntityType Name="UserEarningsHistory">
           <Key>
@@ -2181,6 +2316,7 @@
           <Property Name="ParentId" Type="Int32" />
           <Property Name="CoffeeRoomNo" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Products" Relationship="CoffeeRoomModel.FK_Product_Category" FromRole="Category" ToRole="Product" />
+          <NavigationProperty Name="CoffeeCounterForCoffeeRooms" Relationship="CoffeeRoomModel.FK__CoffeeCou__Categ__43D61337" FromRole="Category" ToRole="CoffeeCounterForCoffeeRoom" />
         </EntityType>
         <Association Name="FK_Product_Category">
           <End Type="CoffeeRoomModel.Category" Role="Category" Multiplicity="1" />
@@ -2191,6 +2327,106 @@
             </Principal>
             <Dependent Role="Product">
               <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="CoffeeCounter">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ShiftId" Type="Int32" Nullable="false" />
+          <Property Name="CoffeeRoomNo" Type="Int32" Nullable="false" />
+          <Property Name="SuplyProductId" Type="Int32" Nullable="false" />
+          <Property Name="StartCounter" Type="Int32" Nullable="false" />
+          <Property Name="EndCounter" Type="Int32" />
+          <Property Name="UsedPortionsCount" Type="Int32" />
+          <NavigationProperty Name="CoffeeRoom" Relationship="CoffeeRoomModel.FK__CoffeeCou__Coffe__40058253" FromRole="CoffeeCounter" ToRole="CoffeeRoom" />
+          <NavigationProperty Name="Shift" Relationship="CoffeeRoomModel.FK__CoffeeCou__Shift__3F115E1A" FromRole="CoffeeCounter" ToRole="Shift" />
+          <NavigationProperty Name="SupliedProduct" Relationship="CoffeeRoomModel.FK__CoffeeCou__Suply__40F9A68C" FromRole="CoffeeCounter" ToRole="SupliedProduct" />
+        </EntityType>
+        <EntityType Name="CoffeeCounterForCoffeeRoom">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryId" Type="Int32" Nullable="false" />
+          <Property Name="CoffeeRoomNo" Type="Int32" Nullable="false" />
+          <Property Name="SuplyProductId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Category" Relationship="CoffeeRoomModel.FK__CoffeeCou__Categ__43D61337" FromRole="CoffeeCounterForCoffeeRoom" ToRole="Category" />
+          <NavigationProperty Name="CoffeeRoom" Relationship="CoffeeRoomModel.FK__CoffeeCou__Coffe__44CA3770" FromRole="CoffeeCounterForCoffeeRoom" ToRole="CoffeeRoom" />
+          <NavigationProperty Name="SupliedProduct" Relationship="CoffeeRoomModel.FK__CoffeeCou__Suply__45BE5BA9" FromRole="CoffeeCounterForCoffeeRoom" ToRole="SupliedProduct" />
+        </EntityType>
+        <Association Name="FK__CoffeeCou__Categ__43D61337">
+          <End Type="CoffeeRoomModel.Category" Role="Category" Multiplicity="1" />
+          <End Type="CoffeeRoomModel.CoffeeCounterForCoffeeRoom" Role="CoffeeCounterForCoffeeRoom" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CoffeeCounterForCoffeeRoom">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CoffeeCou__Coffe__40058253">
+          <End Type="CoffeeRoomModel.CoffeeRoom" Role="CoffeeRoom" Multiplicity="1" />
+          <End Type="CoffeeRoomModel.CoffeeCounter" Role="CoffeeCounter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CoffeeRoom">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CoffeeCounter">
+              <PropertyRef Name="CoffeeRoomNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CoffeeCou__Shift__3F115E1A">
+          <End Type="CoffeeRoomModel.Shift" Role="Shift" Multiplicity="1" />
+          <End Type="CoffeeRoomModel.CoffeeCounter" Role="CoffeeCounter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shift">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CoffeeCounter">
+              <PropertyRef Name="ShiftId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CoffeeCou__Suply__40F9A68C">
+          <End Type="CoffeeRoomModel.SupliedProduct" Role="SupliedProduct" Multiplicity="1" />
+          <End Type="CoffeeRoomModel.CoffeeCounter" Role="CoffeeCounter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SupliedProduct">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CoffeeCounter">
+              <PropertyRef Name="SuplyProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CoffeeCou__Coffe__44CA3770">
+          <End Type="CoffeeRoomModel.CoffeeRoom" Role="CoffeeRoom" Multiplicity="1" />
+          <End Type="CoffeeRoomModel.CoffeeCounterForCoffeeRoom" Role="CoffeeCounterForCoffeeRoom" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CoffeeRoom">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CoffeeCounterForCoffeeRoom">
+              <PropertyRef Name="CoffeeRoomNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CoffeeCou__Suply__45BE5BA9">
+          <End Type="CoffeeRoomModel.SupliedProduct" Role="SupliedProduct" Multiplicity="1" />
+          <End Type="CoffeeRoomModel.CoffeeCounterForCoffeeRoom" Role="CoffeeCounterForCoffeeRoom" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SupliedProduct">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CoffeeCounterForCoffeeRoom">
+              <PropertyRef Name="SuplyProductId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2628,6 +2864,30 @@
                 <ScalarProperty Name="CoffeeRoomNo" ColumnName="CoffeeRoomNo" />
                 <ScalarProperty Name="ParentId" ColumnName="ParentId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CoffeeCounters">
+            <EntityTypeMapping TypeName="CoffeeRoomModel.CoffeeCounter">
+              <MappingFragment StoreEntitySet="CoffeeCounter">
+                <ScalarProperty Name="UsedPortionsCount" ColumnName="UsedPortionsCount" />
+                <ScalarProperty Name="EndCounter" ColumnName="EndCounter" />
+                <ScalarProperty Name="StartCounter" ColumnName="StartCounter" />
+                <ScalarProperty Name="SuplyProductId" ColumnName="SuplyProductId" />
+                <ScalarProperty Name="CoffeeRoomNo" ColumnName="CoffeeRoomNo" />
+                <ScalarProperty Name="ShiftId" ColumnName="ShiftId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CoffeeCounterForCoffeeRooms">
+            <EntityTypeMapping TypeName="CoffeeRoomModel.CoffeeCounterForCoffeeRoom">
+              <MappingFragment StoreEntitySet="CoffeeCounterForCoffeeRoom">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="SuplyProductId" ColumnName="SuplyProductId" />
+                <ScalarProperty Name="CoffeeRoomNo" ColumnName="CoffeeRoomNo" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

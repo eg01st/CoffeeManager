@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using CoffeeManager.Models;
 using CoffeeManager.Models.Data.DTO.Category;
+using CoffeeManager.Models.Data.DTO.CoffeeRoomCounter;
 using CoffeeManager.Models.Data.DTO.User;
 
 namespace CoffeeManager.Api.Mappers
@@ -179,5 +180,24 @@ namespace CoffeeManager.Api.Mappers
 	        categoryyDb.Name = category.Name;
 	        categoryyDb.ParentId = category.ParentId;
 	    }
+
+	    public static CoffeeCounterForCoffeeRoom Map(this CoffeeCounterForCoffeeRoomDTO counter)
+	    {
+	        return new CoffeeCounterForCoffeeRoom()
+	        {
+	            Id = counter.Id,
+	            CoffeeRoomNo = counter.CoffeeRoomNo,
+	            Name = counter.Name,
+                CategoryId = counter.CategoryId,
+                SuplyProductId = counter.SuplyProductId
+	        };
+	    }
+
+	    public static void Update(CoffeeCounterForCoffeeRoomDTO counter, CoffeeCounterForCoffeeRoom counterDb)
+	    {
+	        counterDb.Name = counter.Name;
+	        counterDb.CategoryId = counter.CategoryId;
+	        counterDb.SuplyProductId = counter.SuplyProductId;
+        }
     }
 }

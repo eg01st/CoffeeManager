@@ -24,6 +24,7 @@ namespace CoffeeManager.Api
             this.UtilizedSuplyProducts = new HashSet<UtilizedSuplyProduct>();
             this.UserEarningsHistories = new HashSet<UserEarningsHistory>();
             this.CashoutHistories = new HashSet<CashoutHistory>();
+            this.CoffeeCounters = new HashSet<CoffeeCounter>();
         }
     
         public int Id { get; set; }
@@ -56,5 +57,7 @@ namespace CoffeeManager.Api
         public virtual ICollection<UserEarningsHistory> UserEarningsHistories { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CashoutHistory> CashoutHistories { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CoffeeCounter> CoffeeCounters { get; set; }
     }
 }

@@ -42,6 +42,8 @@
     <Compile Include="CupType.cs" />
     <Compile Include="CupTypeEnum.cs" />
     <Compile Include="Data\DTO\Category\CategoryDTO.cs" />
+    <Compile Include="Data\DTO\CoffeeRoomCounter\CoffeeCounterDTO.cs" />
+    <Compile Include="Data\DTO\CoffeeRoomCounter\CoffeeCounterForCoffeeRoomDTO.cs" />
     <Compile Include="EndShiftDTO.cs" />
     <Compile Include="EndShiftUserInfo.cs" />
     <Compile Include="Entity.cs" />
@@ -77,11 +79,7 @@
     <Compile Include="Data\DTO\User\PaySalaryDTO.cs" />
     <Compile Include="Data\DTO\User\ToggleUserEnabledDTO.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Data\" />
-    <Folder Include="Data\DTO\" />
-    <Folder Include="Data\DTO\User\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
