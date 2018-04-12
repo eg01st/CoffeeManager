@@ -61,7 +61,8 @@
     <OutputPath>bin\iPhone\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodesignEntitlements></CodesignEntitlements>
+    <CodesignEntitlements>
+    </CodesignEntitlements>
     <MtouchArch>ARMv7, ARM64</MtouchArch>
     <ConsolePause>false</ConsolePause>
     <CodesignKey>iPhone Developer: tertyshnykov@gmail.com (B6W7MCB7GE)</CodesignKey>
@@ -100,9 +101,13 @@
     <Compile Include="LinkerPleaseInclude.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="Views\Counter\CoffeeCounterDetailView.designer.cs">
+      <DependentUpon>CoffeeCounterDetailView.cs</DependentUpon>
+    </Compile>
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="packages.config" />
+    <Compile Include="Views\Counter\CoffeeCounterDetailView.cs" />
     <Compile Include="Views\LoginView.cs" />
     <Compile Include="Views\LoginView.designer.cs">
       <DependentUpon>LoginView.cs</DependentUpon>
@@ -455,10 +460,23 @@
     <Compile Include="Views\Categories\AddCategoryView.designer.cs">
       <DependentUpon>AddCategoryView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Counter\AddCoffeeCounterView.cs" />
+    <Compile Include="Views\Counter\AddCoffeeCounterView.designer.cs">
+      <DependentUpon>AddCoffeeCounterView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Counter\CoffeeCountersView.cs" />
+    <Compile Include="Views\Counter\CoffeeCountersView.designer.cs">
+      <DependentUpon>CoffeeCountersView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Counter\CounterTableViewCell.cs" />
+    <Compile Include="Views\Counter\CounterTableViewCell.designer.cs">
+      <DependentUpon>CounterTableViewCell.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Setup.cs" />
     <InterfaceDefinition Include="Resources\LaunchScreen.xib" />
+    <InterfaceDefinition Include="Views\Counter\CoffeeCounterDetailView.xib" />
     <InterfaceDefinition Include="Views\LoginView.xib" />
     <InterfaceDefinition Include="Views\CalculationView.xib" />
     <InterfaceDefinition Include="Views\Cells\CalculationItemViewCell.xib" />
@@ -543,6 +561,9 @@
     <InterfaceDefinition Include="Views\Categories\CategoryTableViewCell.xib" />
     <InterfaceDefinition Include="Views\Categories\CategoryDetailsView.xib" />
     <InterfaceDefinition Include="Views\Categories\AddCategoryView.xib" />
+    <InterfaceDefinition Include="Views\Counter\AddCoffeeCounterView.xib" />
+    <InterfaceDefinition Include="Views\Counter\CoffeeCountersView.xib" />
+    <InterfaceDefinition Include="Views\Counter\CounterTableViewCell.xib" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -687,6 +708,7 @@
     <Folder Include="Views\Controls\" />
     <Folder Include="Views\TransferSuplyProduct\" />
     <Folder Include="Views\Categories\" />
+    <Folder Include="Views\Counter\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\ic_check.png" />

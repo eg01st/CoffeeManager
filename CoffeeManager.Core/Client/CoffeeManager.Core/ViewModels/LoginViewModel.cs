@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using CoffeManager.Common.Managers;
 using System;
 using CoffeeManager.Common;
+using CoffeeManager.Core.ViewModels.CoffeeCounter;
 using CoffeeManager.Models.Data.DTO.User;
 using CoffeManager.Common.ViewModels;
 
@@ -55,29 +56,7 @@ namespace CoffeeManager.Core.ViewModels
 
         private async void DoSelectUser(UserDTO user)
         {
-            var counter = await PromtAsync("Введите показание счетчика на кофемолке");
-            if(!counter.HasValue)
-            {
-                return;
-            }
-
-            var confirm = await PromtAsync("Повторите показание счетчика на кофемолке");
-            if(!confirm.HasValue)
-            {
-                return;
-            }
-
-            if (!string.Equals(counter, confirm))
-            {
-                Alert("Показания введены неверно, введите правильные показания счетчика");
-                return;
-            }
-
-            await ExecuteSafe(async () =>
-            {
-                int shiftId = await shiftManager.StartUserShift(user.Id, counter.Value);
-                await NavigationService.Navigate<MainViewModel, Shift>(new Shift {  UserId = user.Id, Id = shiftId });
-            });
+            await NavigationService.Navigate<CoffeeCounterViewModel, int>(user.Id);
         }
     }
 }

@@ -1,16 +1,22 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Input;
 using CoffeManager.Common;
 using MvvmCross.Core.ViewModels;
 using System.Threading.Tasks;
 using CoffeeManager.Common;
+using CoffeeManager.Core.ViewModels.CoffeeCounter;
+using CoffeeManager.Models.Data.DTO.CoffeeRoomCounter;
+using CoffeManager.Common.Managers;
 using CoffeManager.Common.ViewModels;
+using MobileCore.Collections;
 using MobileCore.Logging;
 using MobileCore.ViewModels;
 
 namespace CoffeeManager.Core.ViewModels
 {
-    public class EndShiftViewModel : PageViewModel
+    public class EndShiftViewModel : FeedViewModel<CoffeeCounterItemViewModel>, IMvxViewModel<int>
     {
         private readonly IShiftManager shiftManager;
 
@@ -29,32 +35,32 @@ namespace CoffeeManager.Core.ViewModels
             }
         }
 
-        public string EndCounter
-        {
-            get { return endCounter; }
-            set
-            {
-                endCounter = value;
-                RaisePropertyChanged(nameof(EndCounter));
-                RaisePropertyChanged(nameof(EndShiftButtonEnabled));
-            }
-        }
-
-        public string EndCounterConfirm
-        {
-            get { return endCounterConfirm; }
-            set
-            {
-                endCounterConfirm = value;
-                RaisePropertyChanged(nameof(EndCounterConfirm));
-                RaisePropertyChanged(nameof(EndShiftButtonEnabled));
-            }
-        }
+//        public string EndCounter
+//        {
+//            get { return endCounter; }
+//            set
+//            {
+//                endCounter = value;
+//                RaisePropertyChanged(nameof(EndCounter));
+//                RaisePropertyChanged(nameof(EndShiftButtonEnabled));
+//            }
+//        }
+//
+//        public string EndCounterConfirm
+//        {
+//            get { return endCounterConfirm; }
+//            set
+//            {
+//                endCounterConfirm = value;
+//                RaisePropertyChanged(nameof(EndCounterConfirm));
+//                RaisePropertyChanged(nameof(EndShiftButtonEnabled));
+//            }
+//        }
 
         public bool EndShiftButtonEnabled
-        => !string.IsNullOrEmpty(RealAmount) 
-           && !string.IsNullOrEmpty(EndCounter) 
-           && string.Equals(EndCounter, EndCounterConfirm);
+            => !string.IsNullOrEmpty(RealAmount);
+//           && !string.IsNullOrEmpty(EndCounter) 
+//           && string.Equals(EndCounter, EndCounterConfirm);
           // && !IsLoading;
 
 
@@ -63,13 +69,23 @@ namespace CoffeeManager.Core.ViewModels
         public ICommand DiscardShiftCommand {get;}
 
         readonly IPaymentManager paymentManager;
+        private readonly ICoffeeCounterManager coffeeCounterManager;
 
-        public EndShiftViewModel(IShiftManager shiftManager, IPaymentManager paymentManager)
+        public EndShiftViewModel(IShiftManager shiftManager,
+            IPaymentManager paymentManager,
+            ICoffeeCounterManager coffeeCounterManager)
         {
             this.paymentManager = paymentManager;
+            this.coffeeCounterManager = coffeeCounterManager;
             this.shiftManager = shiftManager;
             FinishShiftCommand  = new MvxAsyncCommand(DoFinishCommand);
             DiscardShiftCommand = new MvxAsyncCommand(DoDiscardShift);
+        }
+
+        protected override async Task<PageContainer<CoffeeCounterItemViewModel>> GetPageAsync(int skip)
+        {
+            var items = await coffeeCounterManager.GetCounters();
+            return items.Select(s => new CoffeeCounterItemViewModel(s)).ToPageContainer();
         }
 
         private async Task DoDiscardShift()
@@ -112,11 +128,6 @@ namespace CoffeeManager.Core.ViewModels
             }
         }
 
-        public void Init(int shiftId)
-        {
-            this.shiftId = shiftId;
-        }
-
         private async Task DoFinishCommand()
         {
             var currentAmount = await ExecuteSafe(paymentManager.GetEntireMoney);
@@ -140,13 +151,35 @@ namespace CoffeeManager.Core.ViewModels
 
         private async Task FinishShift(decimal realAmount)
         {
+            if (ItemsCollection.Any(i => i.Counter != i.Confirm))
+            {
+                UserDialogs.Alert("Показания счетчиков не сходятся! Перепроверьте показания");
+                return;
+            }
+
+            var counters = new List<CoffeeCounterDTO>();
+            foreach (var counter in ItemsCollection)
+            {
+                counters.Add(new CoffeeCounterDTO()
+                {
+                    Id = counter.Id,
+                    EndCounter = counter.Counter,
+                    SuplyProductId = counter.SuplyProductId
+                });
+            }
+            
             await ExecuteSafe(async () =>
             {
-                var info = await shiftManager.EndUserShift(shiftId, realAmount, int.Parse(EndCounter));
+                var info = await shiftManager.EndUserShift(shiftId, realAmount, counters);
                 Alert($"Касса за смену: {info.RealShiftAmount:F}\nЗаработано за смену: {info.EarnedAmount:F}\nОбщая сумма зп: {info.CurrentUserAmount:F}",
                       () => NavigationService.Navigate<LoginViewModel>(),
                         "Окончание смены");
             });
+        }
+
+        public void Prepare(int parameter)
+        {
+            shiftId = parameter;
         }
     }
 }

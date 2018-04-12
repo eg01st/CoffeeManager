@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net.Http;
 using System.Threading.Tasks;
 using CoffeeManager.Common;
 using CoffeeManager.Models;
+using CoffeeManager.Models.Data.DTO.CoffeeRoomCounter;
 using CoffeManager.Common.Providers;
 using MobileCore.Connection;
 
@@ -39,19 +41,19 @@ namespace CoffeManager.Common.Managers
         }
 
 
-        public async Task<int> StartUserShift(int userId, int counter)
+        public async Task<int> StartUserShift(int userId, List<CoffeeCounterDTO> couters)
         {
-            var shiftId = await shiftProvider.StartUserShift(userId, counter, DateTime.Now);
+            var shiftId = await shiftProvider.StartUserShift(userId, couters, DateTime.Now);
             syncManager.AddCurrentShift(new ShiftEntity() { Id = shiftId, UserId = userId });
             ShiftNo = shiftId;
             return shiftId;
 
         }
 
-        public async Task<EndShiftUserInfo> EndUserShift(int shiftId, decimal realAmount, int endCounter)
+        public async Task<EndShiftUserInfo> EndUserShift(int shiftId, decimal realAmount, List<CoffeeCounterDTO> couters)
         {
             syncManager.ClearCurrentShift();
-            return await shiftProvider.EndShift(shiftId, realAmount, endCounter);
+            return await shiftProvider.EndShift(shiftId, realAmount, couters);
         }
 
         public async Task<Shift> GetCurrentShift()

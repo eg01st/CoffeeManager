@@ -1,8 +1,9 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using CoffeeManager.Models;
+using CoffeeManager.Models.Data.DTO.CoffeeRoomCounter;
 
-namespace CoffeManager.Common
+namespace CoffeManager.Common.Managers
 {
     public interface IShiftManager
     {
@@ -12,9 +13,9 @@ namespace CoffeManager.Common
 
         Task<ShiftInfo> GetShiftInfo(int id);
 
-        Task<int> StartUserShift(int userId, int counter);
+        Task<int> StartUserShift(int userId, List<CoffeeCounterDTO> couters);
 
-        Task<EndShiftUserInfo> EndUserShift(int shiftId, decimal realAmount, int endCounter);
+        Task<EndShiftUserInfo> EndUserShift(int shiftId, decimal realAmount, List<CoffeeCounterDTO> couters);
 
         Task<Shift> GetCurrentShift();
 

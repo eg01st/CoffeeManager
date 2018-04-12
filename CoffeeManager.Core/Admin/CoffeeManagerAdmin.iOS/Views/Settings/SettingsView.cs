@@ -69,6 +69,7 @@ namespace CoffeeManagerAdmin.iOS
             set.Bind(coffeeRoomsTableSource).To(vm => vm.CoffeeRooms);
             set.Bind(ClientsTableView).For(t => t.Hidden).To(vm => vm.IsAdmin).WithConversion(new InvertedBoolConverter());
             set.Bind(this).For(nameof(IsAdmin)).To(vm => vm.IsAdmin);
+            set.Bind(CountersButton).To(vm => vm.ShowCountersCommand);
             set.Apply();
         }
     }

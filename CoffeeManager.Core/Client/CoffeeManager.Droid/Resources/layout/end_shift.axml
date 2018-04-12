@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:keepScreenOn="true">
     <include
-            layout="@layout/toolbar" />
+        layout="@layout/toolbar" />
     <LinearLayout
         android:layout_margin="16dp"
         android:orientation="vertical"
@@ -31,44 +31,18 @@
                 android:textSize="24dp"
                 local:MvxBind="Text RealAmount" />
         </LinearLayout>
-        <LinearLayout
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:textSize="20dp"
+            android:gravity="center_horizontal"
+            android:layout_width="match_parent"
+            android:text="Введите показания счетчиков кофемолок" />
+        <MobileCore.Droid.Controls.EndlessRecyclerView
+            android:layout_marginTop="16dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:orientation="vertical">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="18dp"
-                android:textColor="@android:color/black"
-                android:text="Показания счетчика на кофемолке: " />
-            <EditText
-                android:gravity="center"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:inputType="numberDecimal"
-                android:textSize="24dp"
-                local:MvxBind="Text EndCounter" />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:orientation="vertical">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="18dp"
-                android:textColor="@android:color/black"
-                android:text="Повторите показания счетчика на кофемолке еще раз: " />
-            <EditText
-                android:gravity="center"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:inputType="numberDecimal"
-                android:textSize="24dp"
-                local:MvxBind="Text EndCounterConfirm" />
-        </LinearLayout>
+            android:id="@+id/counters_recycler" />
         <Button
             android:layout_margin="50dp"
             android:layout_gravity="center"

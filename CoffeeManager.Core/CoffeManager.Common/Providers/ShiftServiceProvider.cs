@@ -3,20 +3,20 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using CoffeeManager.Common;
 using CoffeeManager.Models;
+using CoffeeManager.Models.Data.DTO.CoffeeRoomCounter;
 
 namespace CoffeManager.Common.Providers
 {
     public class ShiftServiceProvider : BaseServiceProvider, IShiftServiceProvider
     {
-        public async Task<int> StartUserShift(int userId, int counter, DateTime startTime)
+        public async Task<int> StartUserShift(int userId, List<CoffeeCounterDTO> couters, DateTime startTime)
         {
             var result =
                 await
-                Post<Shift, object>(RoutesConstants.Shift, null,
+                Post<Shift, object>(RoutesConstants.Shift, couters,
                         new Dictionary<string, string>()
                         {
                             {nameof(userId), userId.ToString()},
-                            {nameof(counter), counter.ToString()},
                             {nameof(startTime), startTime.ToString("G")}
                         });
             return result.Id;
@@ -38,7 +38,7 @@ namespace CoffeManager.Common.Providers
             return await Get<Sale[]>(RoutesConstants.GetShiftSales);
         }
 
-        public async Task<EndShiftUserInfo> EndShift(int shiftId, decimal realAmount, int endCounter)
+        public async Task<EndShiftUserInfo> EndShift(int shiftId, decimal realAmount, List<CoffeeCounterDTO> couters)
         {
             return await
                 Post<EndShiftUserInfo, EndShiftDTO>(RoutesConstants.EndShift,
@@ -47,7 +47,7 @@ namespace CoffeManager.Common.Providers
                          CoffeeRoomNo = Config.CoffeeRoomNo,
                          ShiftId = shiftId,
                          RealAmount = realAmount,
-                         Counter = endCounter
+                         CoffeeCounters = couters
                      });
         }
 

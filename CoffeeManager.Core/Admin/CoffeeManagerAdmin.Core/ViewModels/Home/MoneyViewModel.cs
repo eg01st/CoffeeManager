@@ -9,6 +9,7 @@ using CoffeeManagerAdmin.Core.ViewModels.CreditCard;
 using CoffeeManagerAdmin.Core.ViewModels.Settings;
 using CoffeeManagerAdmin.Core.ViewModels.Shifts;
 using CoffeManager.Common;
+using CoffeManager.Common.Managers;
 using CoffeManager.Common.ViewModels;
 using MobileCore.Extensions;
 using MobileCore.ViewModels;
