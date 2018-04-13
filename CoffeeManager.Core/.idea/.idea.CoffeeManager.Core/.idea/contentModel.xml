@@ -491,7 +491,6 @@
             <e p="BasePagingTableSource.cs" t="Include" />
             <e p="BaseTableSource.cs" t="Include" />
             <e p="CreateInventoryTableSource.cs" t="Include" />
-            <e p="MenuTableSource.cs" t="Include" />
             <e p="SalesStatisticTableSource.cs" t="Include" />
             <e p="SaleTableSource.cs" t="Include" />
             <e p="ShiftInfoTableSource.cs" t="Include" />
@@ -564,17 +563,6 @@
               <e p="ProductsView.cs" t="Include" />
               <e p="ProductsView.designer.cs" t="Include" />
               <e p="ProductsView.xib" t="Include" />
-              <e p="SideMenu" t="Include">
-                <e p="MenuCell.cs" t="Include" />
-                <e p="MenuCell.designer.cs" t="Include" />
-                <e p="MenuCell.xib" t="Include" />
-                <e p="MenuHeaderCell.cs" t="Include" />
-                <e p="MenuHeaderCell.designer.cs" t="Include" />
-                <e p="MenuHeaderCell.xib" t="Include" />
-                <e p="SideMenuView.cs" t="Include" />
-                <e p="SideMenuView.designer.cs" t="Include" />
-                <e p="SideMenuView.xib" t="Include" />
-              </e>
               <e p="StatisticView.cs" t="Include" />
               <e p="StatisticView.designer.cs" t="Include" />
               <e p="StatisticView.xib" t="Include" />
@@ -1595,9 +1583,11 @@
         <e p="bin" t="ExcludeRecursive" />
         <e p="Cells" t="Include">
           <e p="BaseTableViewCell.cs" t="Include" />
+          <e p="PageTitleViewCell.xib" t="Include" />
         </e>
         <e p="Common" t="Include">
           <e p="BindingConstants.cs" t="Include" />
+          <e p="Colors.cs" t="Include" />
         </e>
         <e p="Connection" t="Include">
           <e p="Connectivity.cs" t="Include" />
@@ -1620,7 +1610,6 @@
         </e>
         <e p="Resources" t="Include" />
         <e p="ViewControllers" t="Include">
-          <e p="BaseMenuViewController.cs" t="Include" />
           <e p="ViewControllerBase.cs" t="Include" />
         </e>
       </e>

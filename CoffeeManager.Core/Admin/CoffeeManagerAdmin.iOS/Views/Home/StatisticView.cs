@@ -4,11 +4,15 @@ using CoffeeManagerAdmin.iOS.Views.Abstract;
 using CoreGraphics;
 using MobileCore.iOS.ViewControllers;
 using MvvmCross.Binding.BindingContext;
+using MvvmCross.iOS.Views.Presenters.Attributes;
 using MvvmCross.Platform.iOS;
 using UIKit;
 
 namespace CoffeeManagerAdmin.iOS.Views.Home
 {
+    [MvxTabPresentation(WrapInNavigationController = true, TabName = "Статистика",
+                        TabIconName = "ic_trending_up.png",
+                        TabSelectedIconName = "ic_trending_up.png")]
     public partial class StatisticView : ViewControllerBase<StatisticViewModel>
     {
         protected override bool UseCustomBackButton => false;

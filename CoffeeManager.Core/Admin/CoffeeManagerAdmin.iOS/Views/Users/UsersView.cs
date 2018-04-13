@@ -1,17 +1,16 @@
-﻿using System;
-
+﻿
 using UIKit;
-using MvvmCross.iOS.Views;
 using MvvmCross.Binding.BindingContext;
-using CoffeeManagerAdmin.Core;
-using System.Windows.Input;
 using System.Collections.Generic;
 using CoffeeManagerAdmin.Core.ViewModels.Home;
-using CoffeeManagerAdmin.iOS.Views.Abstract;
 using MobileCore.iOS.ViewControllers;
+using MvvmCross.iOS.Views.Presenters.Attributes;
 
 namespace CoffeeManagerAdmin.iOS
 {
+    [MvxTabPresentation(WrapInNavigationController = true, TabName = "UsersView",
+                TabIconName = "ic_attach_money.png",
+                TabSelectedIconName = "ic_attach_money.png")]
     public partial class UsersView : ViewControllerBase<UsersViewModel>
     {
         protected override bool UseCustomBackButton => false;

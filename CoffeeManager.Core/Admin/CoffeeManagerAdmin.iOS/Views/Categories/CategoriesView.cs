@@ -3,12 +3,18 @@ using CoffeeManagerAdmin.Core.ViewModels.Categories;
 using CoffeeManagerAdmin.iOS.Views.Abstract;
 using MobileCore.iOS.ViewControllers;
 using MvvmCross.Binding.BindingContext;
+using MvvmCross.iOS.Views.Presenters.Attributes;
 using UIKit;
 
 namespace CoffeeManagerAdmin.iOS.Views.Categories
 {
+    [MvxTabPresentation(WrapInNavigationController = true, TabName = "Категории товаров",
+    TabIconName = "ic_attach_money.png",
+    TabSelectedIconName = "ic_attach_money.png")]
     public partial class CategoriesView : ViewControllerBase<CategoriesViewModel>
     {
+        protected override bool UseCustomBackButton => false;
+
         private SimpleTableSource datasource;
 
         public CategoriesView() : base("CategoriesView", null)

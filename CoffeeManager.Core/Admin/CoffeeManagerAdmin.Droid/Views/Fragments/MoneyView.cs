@@ -61,7 +61,7 @@ namespace CoffeeManagerAdmin.Droid.Views.Fragments
 
         protected override void OnNavigationIconClick()    
         {
-            ViewModel.ShowSettingsCommand.Execute(null);
+            ViewModel.ShowMenuCommand.Execute(null);
         }
 
         private void InitRecyclerView()

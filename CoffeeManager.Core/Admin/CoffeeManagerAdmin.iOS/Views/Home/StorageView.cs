@@ -4,10 +4,14 @@ using CoffeeManagerAdmin.Core;
 using CoffeeManagerAdmin.iOS.Views.Abstract;
 using MobileCore.iOS.ViewControllers;
 using MvvmCross.Binding.BindingContext;
+using MvvmCross.iOS.Views.Presenters.Attributes;
 using UIKit;
 
 namespace CoffeeManagerAdmin.iOS
 {
+    [MvxTabPresentation(WrapInNavigationController = true, TabName = "Склад",
+                        TabIconName = "ic_shopping_basket.png",
+                        TabSelectedIconName = "ic_shopping_basket.png")]
     public partial class StorageView : ViewControllerBase<StorageViewModel>
     {
         protected override bool UseCustomBackButton => false;

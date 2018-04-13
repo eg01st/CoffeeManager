@@ -4,10 +4,14 @@ using CoreGraphics;
 using MobileCore.iOS.ViewControllers;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.Binding.iOS.Views;
+using MvvmCross.iOS.Views.Presenters.Attributes;
 using UIKit;
 
 namespace CoffeeManagerAdmin.iOS.Views.Home
 {
+    [MvxTabPresentation(WrapInNavigationController = true, TabName = "Финансы",
+                        TabIconName = "ic_attach_money.png",
+                        TabSelectedIconName = "ic_attach_money.png")]
     public partial class MoneyView : ViewControllerBase<MoneyViewModel>
     {
         private MvxPickerViewModel coffeeRoomPickerViewModel;
@@ -23,31 +27,33 @@ namespace CoffeeManagerAdmin.iOS.Views.Home
         {
             base.DoViewDidLoad();
 
-            var settingsButton = new UIBarButtonItem()
-            {
-                Image = UIImage.FromBundle("ic_settings")
-            };
+            Title = "Финансы";
+            
+//            var settingsButton = new UIBarButtonItem()
+//            {
+//                Image = UIImage.FromBundle("ic_hamburger_black")
+//            };
+//
+//            var usersButton = new UIBarButtonItem()
+//            {
+//                Image = UIImage.FromBundle("ic_account_circle")
+//            };
+//
+//            var creditCardButton = new UIBarButtonItem()
+//            {
+//                Image = UIImage.FromBundle("ic_credit_card")
+//            };
+//
+//            this.AddBindings(new Dictionary<object, string>
+//            {
+//                {settingsButton, "Clicked ShowMenuCommand"},
+//                {usersButton, "Clicked ShowUsersCommand"}, 
+//                {creditCardButton, "Clicked ShowCreditCardCommand"},
+//            });
 
-            var usersButton = new UIBarButtonItem()
-            {
-                Image = UIImage.FromBundle("ic_account_circle")
-            };
+          //  NavigationItem.SetRightBarButtonItems(new [] { creditCardButton, usersButton}, true);
 
-            var creditCardButton = new UIBarButtonItem()
-            {
-                Image = UIImage.FromBundle("ic_credit_card")
-            };
-
-            this.AddBindings(new Dictionary<object, string>
-            {
-                {settingsButton, "Clicked ShowSettingsCommand"},
-                {usersButton, "Clicked ShowUsersCommand"}, 
-                {creditCardButton, "Clicked ShowCreditCardCommand"},
-            });
-
-           // NavigationItem.SetRightBarButtonItems(new [] { creditCardButton, usersButton}, true);
-
-          //  NavigationItem.SetLeftBarButtonItem(settingsButton, false);
+            //NavigationItem.SetLeftBarButtonItem(settingsButton, false);
 
             var toolbar = new UIToolbar(new CGRect(0, 0, this.View.Frame.Width, 44));
             toolbar.UserInteractionEnabled = true;

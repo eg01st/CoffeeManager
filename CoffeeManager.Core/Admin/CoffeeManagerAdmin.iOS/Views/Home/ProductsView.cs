@@ -6,10 +6,14 @@ using CoffeeManagerAdmin.iOS.Views.Abstract;
 using CoffeManager.Common;
 using CoffeManager.Common.ViewModels;
 using MvvmCross.Binding.BindingContext;
+using MvvmCross.iOS.Views.Presenters.Attributes;
 using UIKit;
 
 namespace CoffeeManagerAdmin.iOS
 {
+    [MvxTabPresentation(WrapInNavigationController = true, TabName = "Товары",
+                        TabIconName = "ic_local_cafe.png",
+                        TabSelectedIconName = "ic_local_cafe.png")]
     public partial class ProductsView : SearchViewController<ProductsView, ProductsViewModel, ListItemViewModelBase>
     {
         protected override SimpleTableSource TableSource => new SuplyProductTableSource(TableView, ProductItemCell.Key, ProductItemCell.Nib, SuplyProductHeaderCell.Key, SuplyProductHeaderCell.Nib);

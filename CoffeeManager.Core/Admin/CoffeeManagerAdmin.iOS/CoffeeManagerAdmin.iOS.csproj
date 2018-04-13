@@ -471,19 +471,6 @@
     </Compile>
     <Compile Include="Bootstrap\FilePluginBootstrap.cs" />
     <Compile Include="Bootstrap\MessengerPluginBootstrap.cs" />
-    <Compile Include="TableSources\MenuTableSource.cs" />
-    <Compile Include="Views\Home\SideMenu\MenuCell.cs" />
-    <Compile Include="Views\Home\SideMenu\MenuCell.designer.cs">
-      <DependentUpon>MenuCell.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Home\SideMenu\MenuHeaderCell.cs" />
-    <Compile Include="Views\Home\SideMenu\MenuHeaderCell.designer.cs">
-      <DependentUpon>MenuHeaderCell.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Home\SideMenu\SideMenuView.cs" />
-    <Compile Include="Views\Home\SideMenu\SideMenuView.designer.cs">
-      <DependentUpon>SideMenuView.cs</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Setup.cs" />
@@ -576,9 +563,6 @@
     <InterfaceDefinition Include="Views\Counter\AddCoffeeCounterView.xib" />
     <InterfaceDefinition Include="Views\Counter\CoffeeCountersView.xib" />
     <InterfaceDefinition Include="Views\Counter\CounterTableViewCell.xib" />
-    <InterfaceDefinition Include="Views\Home\SideMenu\MenuCell.xib" />
-    <InterfaceDefinition Include="Views\Home\SideMenu\MenuHeaderCell.xib" />
-    <InterfaceDefinition Include="Views\Home\SideMenu\SideMenuView.xib" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -733,7 +717,6 @@
     <Folder Include="Views\TransferSuplyProduct\" />
     <Folder Include="Views\Categories\" />
     <Folder Include="Views\Counter\" />
-    <Folder Include="Views\Home\SideMenu\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\ic_check.png" />

@@ -21,7 +21,6 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Home
         {
             ItemsCollection.AddRange(new FeedItemElementViewModel[]
             {
-                new MenuFeedtemHeaderViewModel(),
                 MenuFeedtemViewModel.Create<SettingsViewModel>(Strings.CoffeeRooms),
                 MenuFeedtemViewModel.Create<UsersViewModel>( Strings.Users),
                 MenuFeedtemViewModel.Create<CreditCardViewModel>( Strings.CreditCard),
