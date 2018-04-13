@@ -8,13 +8,8 @@ using UIKit;
 
 namespace CoffeeManagerAdmin.iOS.Views.Counter
 {
-    [MvxTabPresentation(WrapInNavigationController = true, TabName = "Счетчики кофемолок",
-    TabIconName = "ic_attach_money.png",
-    TabSelectedIconName = "ic_attach_money.png")]
     public partial class CoffeeCountersView : ViewControllerBase<CoffeeCountersViewModel>
     {
-        protected override bool UseCustomBackButton => false;
-
         private SimpleTableSource tableSource;
         
         public CoffeeCountersView() : base("CoffeeCountersView", null)

@@ -18,7 +18,6 @@ using MvvmCross.Plugins.Messenger;
 
 namespace CoffeeManagerAdmin.Core.ViewModels.Home
 {
-    
     public class MoneyViewModel : ViewModelBase
     {
         private readonly MvxSubscriptionToken refreshCoffeeroomsToken;
@@ -43,7 +42,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Home
             this.shiftManager = shiftManager;
 
             UpdateEntireMoneyCommand = new MvxAsyncCommand(DoGetEntireMoney);
-            ShowMenuCommand = new MvxAsyncCommand( async () => await NavigationService.Navigate<SideMenuViewModel>());
+            ShowSettingsCommand = new MvxCommand(() => ShowViewModel<SettingsViewModel>());
             ShowUsersCommand = new MvxCommand(() => ShowViewModel<UsersViewModel>());
             ShowCreditCardCommand = new MvxCommand(() => ShowViewModel<CreditCardViewModel>());
             LoadNextPageCommand = new MvxAsyncCommand(DoLoadNextPage);
@@ -115,7 +114,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Home
 
         public ICommand UpdateEntireMoneyCommand { get; }
         public ICommand ShowCreditCardCommand { get; }
-        public ICommand ShowMenuCommand { get; }
+        public ICommand ShowSettingsCommand { get; }
         public ICommand ShowUsersCommand { get; }
         public ICommand LoadNextPageCommand { get; }
         public ICommand SelectCoffeeRoomCommand { get; }

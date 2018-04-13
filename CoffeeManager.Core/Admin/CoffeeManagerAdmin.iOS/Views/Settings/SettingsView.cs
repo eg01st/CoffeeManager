@@ -1,24 +1,13 @@
-﻿using System;
-
-using UIKit;
-using CoffeeManagerAdmin.Core;
-using MvvmCross.Binding.BindingContext;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using CoffeeManagerAdmin.Core.ViewModels.Settings;
-using CoffeeManagerAdmin.iOS.Views.Abstract;
 using MobileCore.iOS.ViewControllers;
-using MvvmCross.iOS.Views.Presenters.Attributes;
+using MvvmCross.Binding.BindingContext;
+using UIKit;
 
-namespace CoffeeManagerAdmin.iOS
+namespace CoffeeManagerAdmin.iOS.Views.Settings
 {
-    [MvxTabPresentation(WrapInNavigationController = true, TabName = "SettingsView",
-                    TabIconName = "ic_attach_money.png",
-                    TabSelectedIconName = "ic_attach_money.png")]
     public partial class SettingsView : ViewControllerBase<SettingsViewModel>
     {
-
-        protected override bool UseCustomBackButton => false;
-
         private SimpleTableSource clientTableSource;
         private SimpleTableSource coffeeRoomsTableSource;
 

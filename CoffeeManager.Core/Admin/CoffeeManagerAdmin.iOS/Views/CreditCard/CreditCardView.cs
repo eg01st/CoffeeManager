@@ -8,13 +8,8 @@ using UIKit;
 
 namespace CoffeeManagerAdmin.iOS.Views.CreditCard
 {
-    [MvxTabPresentation(WrapInNavigationController = true, TabName = "CreditCardView",
-            TabIconName = "ic_attach_money.png",
-            TabSelectedIconName = "ic_attach_money.png")]
     public partial class CreditCardView : ViewControllerBase<CreditCardViewModel>
     {
-        protected override bool UseCustomBackButton => false;
-
         private SimpleTableSource tableSource;
 
         public CreditCardView() : base("CreditCardView", null)

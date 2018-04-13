@@ -3,10 +3,6 @@ using System.Threading.Tasks;
 using CoffeManager.Common;
 using CoffeManager.Common.ViewModels;
 using CoffeeManagerAdmin.Core.ViewModels.Home;
-using CoffeeManagerAdmin.Core.ViewModels.Settings;
-using CoffeeManagerAdmin.Core.ViewModels.CreditCard;
-using CoffeeManagerAdmin.Core.ViewModels.Categories;
-using CoffeeManagerAdmin.Core.ViewModels.CoffeeCounter;
 
 namespace CoffeeManagerAdmin.Core.ViewModels
 {
@@ -24,11 +20,6 @@ namespace CoffeeManagerAdmin.Core.ViewModels
             yield return NavigationService.Navigate<ManageExpensesViewModel>();
             yield return NavigationService.Navigate<ProductsViewModel>();
             yield return NavigationService.Navigate<StatisticViewModel>();
-            yield return NavigationService.Navigate<UsersViewModel>();
-            yield return NavigationService.Navigate<SettingsViewModel>();
-            yield return NavigationService.Navigate<CreditCardViewModel>();
-            yield return NavigationService.Navigate<CategoriesViewModel>();
-            yield return NavigationService.Navigate<CoffeeCountersViewModel>();
         }
 
     }

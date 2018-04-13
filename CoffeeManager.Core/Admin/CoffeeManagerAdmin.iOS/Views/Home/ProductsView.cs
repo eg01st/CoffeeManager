@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using CoffeeManagerAdmin.Core;
+﻿using System.Collections.Generic;
 using CoffeeManagerAdmin.Core.ViewModels.Home;
 using CoffeeManagerAdmin.iOS.Views.Abstract;
-using CoffeManager.Common;
 using CoffeManager.Common.ViewModels;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.iOS.Views.Presenters.Attributes;
 using UIKit;
 
-namespace CoffeeManagerAdmin.iOS
+namespace CoffeeManagerAdmin.iOS.Views.Home
 {
     [MvxTabPresentation(WrapInNavigationController = true, TabName = "Товары",
                         TabIconName = "ic_local_cafe.png",
