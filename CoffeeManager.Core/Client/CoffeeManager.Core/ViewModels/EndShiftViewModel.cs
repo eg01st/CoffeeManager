@@ -21,8 +21,8 @@ namespace CoffeeManager.Core.ViewModels
         private readonly IShiftManager shiftManager;
 
         private string realAmount;
-        private string endCounter;
-        private string endCounterConfirm;
+//        private string endCounter;
+//        private string endCounterConfirm;
         private int shiftId;
         public string RealAmount
         {

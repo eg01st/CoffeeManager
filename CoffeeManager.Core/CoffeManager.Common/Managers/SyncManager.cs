@@ -35,7 +35,7 @@ namespace CoffeManager.Common.Managers
         {
             await Task.Run(() =>
             {
-                var itemsToRemove = provider.Get<ProductEntity>().Where(p => p.ProductType == categoryId);
+                var itemsToRemove = provider.Get<ProductEntity>().Where(p => p.CategoryId == categoryId);
                 foreach (var item in itemsToRemove)
                 {
                     provider.Remove(item);
@@ -78,7 +78,7 @@ namespace CoffeManager.Common.Managers
 
         public IEnumerable<ProductEntity> GetProducts(int categoryId)
         {
-            return provider.Get<ProductEntity>().Where(p => p.ProductType == categoryId);
+            return provider.Get<ProductEntity>().Where(p => p.CategoryId == categoryId);
         }
 
         public void InitDataBaseConnection()

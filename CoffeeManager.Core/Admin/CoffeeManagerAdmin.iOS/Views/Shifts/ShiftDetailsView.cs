@@ -2,6 +2,7 @@
 using MvvmCross.Binding.BindingContext;
 using CoffeeManagerAdmin.Core.ViewModels;
 using CoffeeManagerAdmin.iOS.Views.Abstract;
+using CoffeeManagerAdmin.iOS.Views.Shifts;
 
 namespace CoffeeManagerAdmin.iOS
 {

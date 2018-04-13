@@ -27,6 +27,6 @@
             android:id="@+id/sub_category_viewpager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@android:color/white" />
+            android:background="#c3c3c3" />
     </LinearLayout>
 </LinearLayout>

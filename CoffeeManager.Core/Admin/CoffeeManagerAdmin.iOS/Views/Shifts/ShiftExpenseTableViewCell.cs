@@ -1,14 +1,12 @@
 ﻿using System;
-
-using Foundation;
-using UIKit;
-using MvvmCross.Binding.iOS.Views;
-using MvvmCross.Binding.BindingContext;
 using CoffeeManager.Models;
-using CoffeeManagerAdmin.Core;
 using CoffeeManagerAdmin.iOS.Converters;
+using Foundation;
+using MvvmCross.Binding.BindingContext;
+using MvvmCross.Binding.iOS.Views;
+using UIKit;
 
-namespace CoffeeManagerAdmin.iOS
+namespace CoffeeManagerAdmin.iOS.Views.Shifts
 {
     public partial class ShiftExpenseTableViewCell : MvxTableViewCell
     {
@@ -32,7 +30,7 @@ namespace CoffeeManagerAdmin.iOS
             {
                 var set = this.CreateBindingSet<ShiftExpenseTableViewCell, SupliedProduct>();
                 set.Bind(NameLabel).To(vm => vm.Name);
-                set.Bind(QuantityLabel).To(vm=> vm.Quatity);
+                set.Bind(QuantityLabel).To(vm=> vm.Quatity).WithConversion(new DecimalToStringConverter());
                 set.Bind(ExpenseQuantitnyName).To(vm => vm.ExpenseNumerationName);
                 set.Bind(PriceLabel).To(vm => vm.Price).WithConversion(new DecimalToStringConverter());
                 set.Apply();

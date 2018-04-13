@@ -1,12 +1,11 @@
-﻿using System;
-using CoffeManager.Common;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using CoffeeManager.Models;
+﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using CoffeeManager.Models;
+using CoffeManager.Common;
 using CoffeManager.Common.ViewModels;
 
-namespace CoffeeManagerAdmin.Core
+namespace CoffeeManagerAdmin.Core.ViewModels.Shifts
 {
     public class ShiftExpenseDetailsViewModel : ViewModelBase
     {

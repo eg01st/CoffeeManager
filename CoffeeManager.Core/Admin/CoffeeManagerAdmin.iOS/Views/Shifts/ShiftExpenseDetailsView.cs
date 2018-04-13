@@ -1,10 +1,8 @@
-﻿using System;
-using CoffeeManagerAdmin.Core;
+﻿using CoffeeManagerAdmin.Core.ViewModels.Shifts;
 using CoffeeManagerAdmin.iOS.Views.Abstract;
 using MvvmCross.Binding.BindingContext;
-using UIKit;
 
-namespace CoffeeManagerAdmin.iOS
+namespace CoffeeManagerAdmin.iOS.Views.Shifts
 {
     public partial class ShiftExpenseDetailsView : ViewControllerBase<ShiftExpenseDetailsViewModel>
     {

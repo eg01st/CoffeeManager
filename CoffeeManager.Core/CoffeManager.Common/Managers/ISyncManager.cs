@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using CoffeeManager.Common;
 using CoffeeManager.Models;
+using CoffeManager.Common.Database;
 
 namespace CoffeManager.Common.Managers
 {

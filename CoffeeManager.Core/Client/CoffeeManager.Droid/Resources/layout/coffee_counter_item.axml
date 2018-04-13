@@ -18,7 +18,7 @@
         android:layout_height="wrap_content">
         <TextInputEditText
             android:id="@+id/start_counter_edit_text"
-            android:inputType="numberDecimal"
+            android:inputType="number"
             android:hint="Показание счетчика"
             android:layout_width="160dp"
             android:layout_height="wrap_content"
@@ -30,7 +30,7 @@
         android:layout_height="wrap_content">
         <TextInputEditText
             android:id="@+id/confirm_edit_text"
-            android:inputType="numberDecimal"
+            android:inputType="number"
             android:hint="Подтверждение показаний счетчика"
             android:layout_width="160dp"
             android:layout_height="wrap_content"

@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using CoffeeManager.Common;
 using CoffeeManager.Models;
+using CoffeManager.Common.Database;
 using CoffeManager.Common.Providers;
 using MobileCore.Connection;
 
@@ -138,7 +139,7 @@ namespace CoffeManager.Common.Managers
 
         public async Task AddProduct(string name, string price, string policePrice, int cupType, int productTypeId, bool isSaleByWeight, int categoryId)
         {
-            await productProvider.AddProduct(new Product { Name = name, Price = decimal.Parse(price), PolicePrice = decimal.Parse(policePrice), ProductType = productTypeId, CupType = cupType, CoffeeRoomNo = Config.CoffeeRoomNo, IsSaleByWeight = isSaleByWeight, CategoryId = categoryId });
+            await productProvider.AddProduct(new Product { Name = name, Price = decimal.Parse(price), PolicePrice = decimal.Parse(policePrice), CupType = cupType, CoffeeRoomNo = Config.CoffeeRoomNo, IsSaleByWeight = isSaleByWeight, CategoryId = categoryId });
         }
 
         public async Task DeleteProduct(int id)
@@ -148,7 +149,7 @@ namespace CoffeManager.Common.Managers
 
         public async Task EditProduct(int id, string name, string price, string policePrice, int cupType, int productTypeId, bool isSaleByWeight, int categoryId)
         {
-            await productProvider.EditProduct(new Product { Id = id, Name = name, Price = decimal.Parse(price), PolicePrice = decimal.Parse(policePrice), ProductType = productTypeId, CupType = cupType, CoffeeRoomNo = Config.CoffeeRoomNo, IsSaleByWeight = isSaleByWeight, CategoryId = categoryId });
+            await productProvider.EditProduct(new Product { Id = id, Name = name, Price = decimal.Parse(price), PolicePrice = decimal.Parse(policePrice), CupType = cupType, CoffeeRoomNo = Config.CoffeeRoomNo, IsSaleByWeight = isSaleByWeight, CategoryId = categoryId });
         }
 
         public async Task<Product[]> GetProducts()
