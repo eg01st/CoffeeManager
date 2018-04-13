@@ -1,15 +1,12 @@
-﻿using System;
-
-using UIKit;
-using CoffeeManagerAdmin.Core;
-using MvvmCross.Binding.BindingContext;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using CoffeeManagerAdmin.Core.ViewModels.Home;
-using CoffeeManagerAdmin.iOS.Views.Abstract;
 using CoreGraphics;
+using MobileCore.iOS.ViewControllers;
+using MvvmCross.Binding.BindingContext;
 using MvvmCross.Binding.iOS.Views;
+using UIKit;
 
-namespace CoffeeManagerAdmin.iOS
+namespace CoffeeManagerAdmin.iOS.Views.Home
 {
     public partial class MoneyView : ViewControllerBase<MoneyViewModel>
     {
@@ -48,9 +45,9 @@ namespace CoffeeManagerAdmin.iOS
                 {creditCardButton, "Clicked ShowCreditCardCommand"},
             });
 
-            NavigationItem.SetRightBarButtonItems(new [] { creditCardButton, usersButton}, true);
+           // NavigationItem.SetRightBarButtonItems(new [] { creditCardButton, usersButton}, true);
 
-            NavigationItem.SetLeftBarButtonItem(settingsButton, false);
+          //  NavigationItem.SetLeftBarButtonItem(settingsButton, false);
 
             var toolbar = new UIToolbar(new CGRect(0, 0, this.View.Frame.Width, 44));
             toolbar.UserInteractionEnabled = true;

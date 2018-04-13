@@ -15,6 +15,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels
 
         private IEnumerable<Task> GetPageVmTypesForInitialNavigate()
         {
+            yield return NavigationService.Navigate<SideMenuViewModel>();
             yield return NavigationService.Navigate<MoneyViewModel>();
             yield return NavigationService.Navigate<StorageViewModel>();
             yield return NavigationService.Navigate<ManageExpensesViewModel>();

@@ -28,6 +28,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Common\Strings.cs" />
     <Compile Include="Database\InventoryItemEntity.cs" />
     <Compile Include="Managers\AccountManager.cs" />
     <Compile Include="Managers\CategoryManager.cs" />
@@ -97,7 +98,6 @@
     <Compile Include="Platform\ILocalStorage.cs" />
     <Compile Include="Platform\LocalStorage.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Reference Include="Splat">
       <HintPath>..\packages\Splat.1.6.2\lib\Portable-net45+win+wpa81+wp80\Splat.dll</HintPath>

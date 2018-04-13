@@ -201,7 +201,6 @@
     </Compile>
     <Compile Include="TableSources\SalesStatisticTableSource.cs" />
     <Compile Include="Views\Abstract\SearchViewController.cs" />
-    <Compile Include="Views\Abstract\ViewControllerBase.cs" />
     <Compile Include="Views\Statistic\StatisticSaleItemViewCell.cs" />
     <Compile Include="Views\Statistic\StatisticSaleItemViewCell.designer.cs">
       <DependentUpon>StatisticSaleItemViewCell.cs</DependentUpon>
@@ -420,8 +419,6 @@
     <Compile Include="Views\Home\ManageExpensesView.designer.cs">
       <DependentUpon>ManageExpensesView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Bootstrap\FilePluginBootstrap.cs" />
-    <Compile Include="Bootstrap\MessengerPluginBootstrap.cs" />
     <Compile Include="TableSources\BasePagingTableSource.cs" />
     <Compile Include="Views\TransferSuplyProduct\TransferSuplyProductsView.cs" />
     <Compile Include="Views\TransferSuplyProduct\TransferSuplyProductsView.designer.cs">
@@ -471,6 +468,21 @@
     <Compile Include="Views\Counter\CounterTableViewCell.cs" />
     <Compile Include="Views\Counter\CounterTableViewCell.designer.cs">
       <DependentUpon>CounterTableViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Bootstrap\FilePluginBootstrap.cs" />
+    <Compile Include="Bootstrap\MessengerPluginBootstrap.cs" />
+    <Compile Include="TableSources\MenuTableSource.cs" />
+    <Compile Include="Views\Home\SideMenu\MenuCell.cs" />
+    <Compile Include="Views\Home\SideMenu\MenuCell.designer.cs">
+      <DependentUpon>MenuCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Home\SideMenu\MenuHeaderCell.cs" />
+    <Compile Include="Views\Home\SideMenu\MenuHeaderCell.designer.cs">
+      <DependentUpon>MenuHeaderCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Home\SideMenu\SideMenuView.cs" />
+    <Compile Include="Views\Home\SideMenu\SideMenuView.designer.cs">
+      <DependentUpon>SideMenuView.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -564,6 +576,9 @@
     <InterfaceDefinition Include="Views\Counter\AddCoffeeCounterView.xib" />
     <InterfaceDefinition Include="Views\Counter\CoffeeCountersView.xib" />
     <InterfaceDefinition Include="Views\Counter\CounterTableViewCell.xib" />
+    <InterfaceDefinition Include="Views\Home\SideMenu\MenuCell.xib" />
+    <InterfaceDefinition Include="Views\Home\SideMenu\MenuHeaderCell.xib" />
+    <InterfaceDefinition Include="Views\Home\SideMenu\SideMenuView.xib" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -609,36 +624,6 @@
     <Reference Include="MvvmCross.Plugins.Sqlite.iOS">
       <HintPath>..\..\packages\MvvmCross.Plugin.SQLitePCL.4.4.0\lib\Xamarin.iOS10\MvvmCross.Plugins.Sqlite.iOS.dll</HintPath>
     </Reference>
-    <Reference Include="MvvmCross.Platform">
-      <HintPath>..\..\packages\MvvmCross.Platform.5.3.0\lib\Xamarin.iOS10\MvvmCross.Platform.dll</HintPath>
-    </Reference>
-    <Reference Include="MvvmCross.Platform.iOS">
-      <HintPath>..\..\packages\MvvmCross.Platform.5.3.0\lib\Xamarin.iOS10\MvvmCross.Platform.iOS.dll</HintPath>
-    </Reference>
-    <Reference Include="MvvmCross.Core">
-      <HintPath>..\..\packages\MvvmCross.Core.5.3.0\lib\Xamarin.iOS10\MvvmCross.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="MvvmCross.iOS">
-      <HintPath>..\..\packages\MvvmCross.Core.5.3.0\lib\Xamarin.iOS10\MvvmCross.iOS.dll</HintPath>
-    </Reference>
-    <Reference Include="MvvmCross.Binding">
-      <HintPath>..\..\packages\MvvmCross.Binding.5.3.0\lib\Xamarin.iOS10\MvvmCross.Binding.dll</HintPath>
-    </Reference>
-    <Reference Include="MvvmCross.Binding.iOS">
-      <HintPath>..\..\packages\MvvmCross.Binding.5.3.0\lib\Xamarin.iOS10\MvvmCross.Binding.iOS.dll</HintPath>
-    </Reference>
-    <Reference Include="MvvmCross.Localization">
-      <HintPath>..\..\packages\MvvmCross.Binding.5.3.0\lib\Xamarin.iOS10\MvvmCross.Localization.dll</HintPath>
-    </Reference>
-    <Reference Include="MvvmCross.Plugins.File">
-      <HintPath>..\..\packages\MvvmCross.Plugin.File.5.3.0\lib\Xamarin.iOS10\MvvmCross.Plugins.File.dll</HintPath>
-    </Reference>
-    <Reference Include="MvvmCross.Plugins.File.iOS">
-      <HintPath>..\..\packages\MvvmCross.Plugin.File.5.3.0\lib\Xamarin.iOS10\MvvmCross.Plugins.File.iOS.dll</HintPath>
-    </Reference>
-    <Reference Include="MvvmCross.Plugins.Messenger">
-      <HintPath>..\..\packages\MvvmCross.Plugin.Messenger.5.3.0\lib\Xamarin.iOS10\MvvmCross.Plugins.Messenger.dll</HintPath>
-    </Reference>
     <Reference Include="System.Net.Http.Extensions">
       <HintPath>..\..\packages\Microsoft.Net.Http.2.2.29\lib\Xamarin.iOS10\System.Net.Http.Extensions.dll</HintPath>
     </Reference>
@@ -657,6 +642,45 @@
       <HintPath>..\..\packages\FubarCoder.RestSharp.Portable.HttpClient.3.3.0\lib\Xamarin.iOS10\RestSharp.Portable.HttpClient.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http" />
+    <Reference Include="MvvmCross.Platform">
+      <HintPath>..\..\packages\MvvmCross.Platform.5.6.3\lib\Xamarin.iOS10\MvvmCross.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Platform.iOS">
+      <HintPath>..\..\packages\MvvmCross.Platform.5.6.3\lib\Xamarin.iOS10\MvvmCross.Platform.iOS.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Core">
+      <HintPath>..\..\packages\MvvmCross.Core.5.6.3\lib\Xamarin.iOS10\MvvmCross.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.iOS">
+      <HintPath>..\..\packages\MvvmCross.Core.5.6.3\lib\Xamarin.iOS10\MvvmCross.iOS.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Binding">
+      <HintPath>..\..\packages\MvvmCross.Binding.5.6.3\lib\Xamarin.iOS10\MvvmCross.Binding.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Binding.iOS">
+      <HintPath>..\..\packages\MvvmCross.Binding.5.6.3\lib\Xamarin.iOS10\MvvmCross.Binding.iOS.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Localization">
+      <HintPath>..\..\packages\MvvmCross.Binding.5.6.3\lib\Xamarin.iOS10\MvvmCross.Localization.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.iOS.Support">
+      <HintPath>..\..\packages\MvvmCross.iOS.Support.5.6.3\lib\Xamarin.iOS10\MvvmCross.iOS.Support.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Plugins.File">
+      <HintPath>..\..\packages\MvvmCross.Plugin.File.5.6.3\lib\Xamarin.iOS10\MvvmCross.Plugins.File.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Plugins.File.iOS">
+      <HintPath>..\..\packages\MvvmCross.Plugin.File.5.6.3\lib\Xamarin.iOS10\MvvmCross.Plugins.File.iOS.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Plugins.Messenger">
+      <HintPath>..\..\packages\MvvmCross.Plugin.Messenger.5.6.3\lib\Xamarin.iOS10\MvvmCross.Plugins.Messenger.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin-Sidebar-Unified">
+      <HintPath>..\..\packages\SidebarNavigation.1.9.4\lib\Xamarin.iOS10\Xamarin-Sidebar-Unified.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.iOS.Support.XamarinSidebar">
+      <HintPath>..\..\packages\MvvmCross.iOS.Support.XamarinSidebar.5.6.3\lib\Xamarin.iOS10\MvvmCross.iOS.Support.XamarinSidebar.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Entitlements.plist" />
@@ -709,6 +733,7 @@
     <Folder Include="Views\TransferSuplyProduct\" />
     <Folder Include="Views\Categories\" />
     <Folder Include="Views\Counter\" />
+    <Folder Include="Views\Home\SideMenu\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\ic_check.png" />
@@ -754,6 +779,9 @@
     <BundleResource Include="Resources\ic_swap_horiz%403x.png" />
     <BundleResource Include="Resources\ic_swap_horiz%402x.png" />
     <BundleResource Include="Resources\ic_swap_horiz.png" />
+    <BundleResource Include="Resources\ic_hamburger_black.png" />
+    <BundleResource Include="Resources\ic_hamburger_black%402x.png" />
+    <BundleResource Include="Resources\ic_hamburger_black%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\Contents.json" />
