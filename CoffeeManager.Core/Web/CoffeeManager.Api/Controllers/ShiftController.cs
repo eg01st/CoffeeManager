@@ -233,23 +233,28 @@ namespace CoffeeManager.Api.Controllers
                 decimal usedCoffee = 0;
                 var sales = entities.Sales.Where(s => s.ShiftId == id && !s.IsRejected);
 
-                var coffeeProductTypeId = (int)Models.ProductType.Coffee;
-                var coffeeSales = sales.Where(s => s.Product1.ProductType == coffeeProductTypeId);
-
-                var coffeeSuplyProduct = entities.SupliedProducts
-                    .FirstOrDefault(s => "Кофе".Equals(s.Name, StringComparison.OrdinalIgnoreCase));
-                if (coffeeSuplyProduct != null)
+                var coffeeSuplyProductsIds = entities.CoffeeCounterForCoffeeRooms
+                    .Where(s => s.CoffeeRoomNo == coffeeroomno).Select(s => s.SuplyProductId).ToList();
+                if (coffeeSuplyProductsIds.Any())
                 {
-                    foreach (var item in coffeeSales)
+                    foreach (var item in sales)
                     {
                         var coffeeUsage =
                             item.Product1.ProductCalculations.FirstOrDefault(c =>
-                                c.SuplyProductId == coffeeSuplyProduct.Id);
+                                coffeeSuplyProductsIds.Contains(c.SuplyProductId));
                         if (coffeeUsage != null)
                         {
                             usedCoffee += coffeeUsage.Quantity;
                         }
                     }
+                }
+                int startCounter = 0;
+                int? endCounter = 0;
+                if (shift.IsFinished ?? false)
+                {
+                    var сounters = entities.CoffeeCounters.Where(c => c.ShiftId == id).ToList();
+                    startCounter = сounters.Sum(s => s.StartCounter);
+                    endCounter = сounters.Sum(s => s.EndCounter);
                 }
 
                 var dto = new ShiftInfo()
@@ -263,8 +268,8 @@ namespace CoffeeManager.Api.Controllers
                     TotalAmount = shift.TotalAmount,
                     ExpenseAmount = shift.TotalExprenses,
                     ShiftEarnedMoney = shift.CurrentAmount,
-                    StartCounter = shift.StartCounter,
-                    EndCounter = shift.EndCounter,
+                    StartCounter = startCounter,
+                    EndCounter = endCounter,
                     UsedPortions = usedCoffee,
                     IsFinished = shift.IsFinished.Value
                 };

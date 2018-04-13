@@ -21,7 +21,7 @@ namespace CoffeeManager.Api.Controllers
 		public async Task<HttpResponseMessage> Get ([FromUri]int coffeeroomno, int productType)
 		{
 			var entities = new CoffeeRoomEntities ();
-			var products = entities.Products.Include(i => i.Category).Where (p => p.ProductType.Value == productType && !p.Removed).ToList ().Select (s => s.ToDTO ());
+			var products = entities.Products.Include(i => i.Category).Where (p => p.CategoryId == productType && !p.Removed).ToList ().Select (s => s.ToDTO ());
 			return Request.CreateResponse (HttpStatusCode.OK, products);
 		}
 

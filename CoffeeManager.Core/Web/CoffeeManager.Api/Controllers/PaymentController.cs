@@ -20,11 +20,11 @@ namespace CoffeeManager.Api.Controllers
         public async Task<HttpResponseMessage> GetCurrentShiftMoney([FromUri]int coffeeroomno, HttpRequestMessage message)
         {
             var entities = new  CoffeeRoomEntities();
-            var shift = entities.Shifts.First(s => s.CoffeeRoomNo == coffeeroomno && !s.IsFinished.Value);
-            var creditCardSalesAmount = entities.Sales.Where(s => s.ShiftId == shift.Id && s.IsCreditCardSale).Sum(s => s.Amount);
+            var shift = entities.Shifts.FirstOrDefault(s => s.CoffeeRoomNo == coffeeroomno && !s.IsFinished.Value);
+            //var creditCardSalesAmount = entities.Sales.Where(s => s.ShiftId == shift.Id && s.IsCreditCardSale).Sum(s => s.Amount);
             if (shift != null)
             {
-                return Request.CreateResponse(HttpStatusCode.OK, shift.CurrentAmount + creditCardSalesAmount);
+                return Request.CreateResponse(HttpStatusCode.OK, shift.CurrentAmount);
             }
 
             return Request.CreateResponse(HttpStatusCode.OK, 0);
