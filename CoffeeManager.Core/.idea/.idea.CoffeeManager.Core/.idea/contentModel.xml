@@ -14,6 +14,7 @@
             <e p="BaseMessage.cs" t="Include" />
             <e p="CalculationListChangedMessage.cs" t="Include" />
             <e p="CategoriesUpdatedMessage.cs" t="Include" />
+            <e p="CoffeeCountersUpdateMessage.cs" t="Include" />
             <e p="CoffeeRoomChangedMessage.cs" t="Include" />
             <e p="ExpenseListChangedMessage.cs" t="Include" />
             <e p="MappedSuplyProductChangedMessage.cs" t="Include" />
@@ -54,14 +55,23 @@
               <e p="CategoryItemViewModel.cs" t="Include" />
               <e p="SubCategoryItemViewModel.cs" t="Include" />
             </e>
+            <e p="CoffeeCounter" t="Include">
+              <e p="AddCoffeeCounterViewModel.cs" t="Include" />
+              <e p="CoffeeCounterDetailViewModel.cs" t="Include" />
+              <e p="CoffeeCounterItemViewModel.cs" t="Include" />
+              <e p="CoffeeCountersViewModel.cs" t="Include" />
+            </e>
             <e p="CreditCard" t="Include">
               <e p="CashoutHistoryItemViewModel.cs" t="Include" />
               <e p="CreditCardViewModel.cs" t="Include" />
             </e>
             <e p="ExpenseItemViewModel.cs" t="Include" />
             <e p="Home" t="Include">
+              <e p="MenuFeedtemHeaderViewModel.cs" t="Include" />
+              <e p="MenuFeedtemViewModel.cs" t="Include" />
               <e p="MoneyViewModel.cs" t="Include" />
               <e p="ProductsViewModel.cs" t="Include" />
+              <e p="SideMenuViewModel.cs" t="Include" />
               <e p="StatisticViewModel.cs" t="Include" />
               <e p="StorageViewModel.cs" t="Include" />
               <e p="UsersViewModel.cs" t="Include" />
@@ -443,6 +453,9 @@
             <e p="ic_credit_card.png" t="Include" />
             <e p="ic_credit_card_2x.png" t="Include" />
             <e p="ic_credit_card_3x.png" t="Include" />
+            <e p="ic_hamburger_black.png" t="Include" />
+            <e p="ic_hamburger_black@2x.png" t="Include" />
+            <e p="ic_hamburger_black@3x.png" t="Include" />
             <e p="ic_local_cafe.png" t="Include" />
             <e p="ic_local_cafe_2x.png" t="Include" />
             <e p="ic_local_cafe_3x.png" t="Include" />
@@ -488,7 +501,6 @@
             <e p="Abstract" t="Include">
               <e p="MainTabController.cs" t="Include" />
               <e p="SearchViewController.cs" t="Include" />
-              <e p="ViewControllerBase.cs" t="Include" />
             </e>
             <e p="CalculationView.cs" t="Include" />
             <e p="CalculationView.designer.cs" t="Include" />
@@ -516,6 +528,20 @@
               <e p="SelectCalculationItemViewCell.xib" t="Include" />
             </e>
             <e p="Controls" t="Include" />
+            <e p="Counter" t="Include">
+              <e p="AddCoffeeCounterView.cs" t="Include" />
+              <e p="AddCoffeeCounterView.designer.cs" t="Include" />
+              <e p="AddCoffeeCounterView.xib" t="Include" />
+              <e p="CoffeeCounterDetailView.cs" t="Include" />
+              <e p="CoffeeCounterDetailView.designer.cs" t="Include" />
+              <e p="CoffeeCounterDetailView.xib" t="Include" />
+              <e p="CoffeeCountersView.cs" t="Include" />
+              <e p="CoffeeCountersView.designer.cs" t="Include" />
+              <e p="CoffeeCountersView.xib" t="Include" />
+              <e p="CounterTableViewCell.cs" t="Include" />
+              <e p="CounterTableViewCell.designer.cs" t="Include" />
+              <e p="CounterTableViewCell.xib" t="Include" />
+            </e>
             <e p="CreditCard" t="Include">
               <e p="CashoutTableHeader.cs" t="Include" />
               <e p="CashoutTableHeader.designer.cs" t="Include" />
@@ -799,6 +825,10 @@
           <e p="ViewModels" t="Include">
             <e p="BaseItemViewModel.cs" t="Include" />
             <e p="CategoryItemViewModel.cs" t="Include" />
+            <e p="CoffeeCounter" t="Include">
+              <e p="CoffeeCounterItemViewModel.cs" t="Include" />
+              <e p="CoffeeCounterViewModel.cs" t="Include" />
+            </e>
             <e p="CurrentShiftExpensesViewModel.cs" t="Include" />
             <e p="CurrentShiftSalesViewModel.cs" t="Include" />
             <e p="EndShiftViewModel.cs" t="Include" />
@@ -841,7 +871,9 @@
         </e>
         <e p="CoffeeManager.Droid" t="IncludeRecursive">
           <e p="Adapters" t="Include">
-            <e p="ViewHolders" t="Include" />
+            <e p="ViewHolders" t="Include">
+              <e p="CoffeeCounterViewHolder.cs" t="Include" />
+            </e>
             <e p="ViewPagerAdapter.cs" t="Include" />
           </e>
           <e p="app.config" t="Include" />
@@ -943,6 +975,8 @@
             </e>
             <e p="layout" t="Include">
               <e p="category_item.axml" t="Include" />
+              <e p="coffee_counter_item.axml" t="Include" />
+              <e p="coffee_counter_layout.axml" t="Include" />
               <e p="coffee_room_card.axml" t="Include" />
               <e p="current_sales.axml" t="Include" />
               <e p="end_shift.axml" t="Include" />
@@ -1007,6 +1041,7 @@
           <e p="Views" t="Include">
             <e p="Abstract" t="Include" />
             <e p="ActivityBase.cs" t="Include" />
+            <e p="CoffeeCounterView.cs" t="Include" />
             <e p="Controls" t="Include" />
             <e p="CurrentShiftExpensesView.cs" t="Include" />
             <e p="CurrentShiftSalesView.cs" t="Include" />
@@ -1093,6 +1128,10 @@
             <e p="Category" t="Include">
               <e p="CategoryDTO.cs" t="Include" />
             </e>
+            <e p="CoffeeRoomCounter" t="Include">
+              <e p="CoffeeCounterDTO.cs" t="Include" />
+              <e p="CoffeeCounterForCoffeeRoomDTO.cs" t="Include" />
+            </e>
             <e p="User" t="Include">
               <e p="DismissPenaltyDTO.cs" t="Include" />
               <e p="PaySalaryDTO.cs" t="Include" />
@@ -1139,6 +1178,9 @@
         <e p="bin" t="ExcludeRecursive" />
         <e p="CoffeManager.Common.csproj" t="IncludeRecursive" />
         <e p="CoffeManagerApp.cs" t="Include" />
+        <e p="Common" t="Include">
+          <e p="Strings.cs" t="Include" />
+        </e>
         <e p="Config.cs" t="Include" />
         <e p="Database" t="Include">
           <e p="InventoryItemEntity.cs" t="Include" />
@@ -1155,9 +1197,11 @@
           <e p="AdminManager.cs" t="Include" />
           <e p="BaseManager.cs" t="Include" />
           <e p="CategoryManager.cs" t="Include" />
+          <e p="CoffeeCounterManager.cs" t="Include" />
           <e p="IAccountManager.cs" t="Include" />
           <e p="IAdminManager.cs" t="Include" />
           <e p="ICategoryManager.cs" t="Include" />
+          <e p="ICoffeeCounterManager.cs" t="Include" />
           <e p="IInventoryManager.cs" t="Include" />
           <e p="InventoryManager.cs" t="Include" />
           <e p="IPaymentManager.cs" t="Include" />
@@ -1191,10 +1235,12 @@
           <e p="AdminProvider.cs" t="Include" />
           <e p="BaseServiceProvider.cs" t="Include" />
           <e p="CategoryProvider.cs" t="Include" />
+          <e p="CoffeeCounterProvider.cs" t="Include" />
           <e p="DataBaseProvider.cs" t="Include" />
           <e p="IAccountProvider.cs" t="Include" />
           <e p="IAdminProvider.cs" t="Include" />
           <e p="ICategoryProvider.cs" t="Include" />
+          <e p="ICoffeeCounterProvider.cs" t="Include" />
           <e p="IDataBaseProvider.cs" t="Include" />
           <e p="IInventoryProvider.cs" t="Include" />
           <e p="InventoryProvider.cs" t="Include" />
@@ -1303,12 +1349,15 @@
           <e p="bin" t="ExcludeRecursive" />
           <e p="CashoutHistory.cs" t="Include" />
           <e p="Category.cs" t="Include" />
+          <e p="CoffeeCounter.cs" t="Include" />
+          <e p="CoffeeCounterForCoffeeRoom.cs" t="Include" />
           <e p="CoffeeManager.Api.csproj" t="IncludeRecursive" />
           <e p="CoffeeRoom.cs" t="Include" />
           <e p="Controllers" t="Include">
             <e p="AccountController.cs" t="Include" />
             <e p="AdminController.cs" t="Include" />
             <e p="CategoriesController.cs" t="Include" />
+            <e p="CoffeeCounterController.cs" t="Include" />
             <e p="InventoryController.cs" t="Include" />
             <e p="PaymentController.cs" t="Include" />
             <e p="ProductsController.cs" t="Include" />
@@ -1532,6 +1581,14 @@
       </e>
       <e p="MobileCore.iOS" t="IncludeRecursive">
         <e p="bin" t="ExcludeRecursive" />
+        <e p="Cells" t="Include">
+          <e p="BaseTableViewCell.cs" t="Include" />
+          <e p="PageTitleViewCell.xib" t="Include" />
+        </e>
+        <e p="Common" t="Include">
+          <e p="BindingConstants.cs" t="Include" />
+          <e p="Colors.cs" t="Include" />
+        </e>
         <e p="Connection" t="Include">
           <e p="Connectivity.cs" t="Include" />
           <e p="InternetConnectionReachability.cs" t="Include" />
@@ -1552,6 +1609,9 @@
           <e p="AssemblyInfo.cs" t="Include" />
         </e>
         <e p="Resources" t="Include" />
+        <e p="ViewControllers" t="Include">
+          <e p="ViewControllerBase.cs" t="Include" />
+        </e>
       </e>
       <e p="MvxApplicationBase.cs" t="Include" />
       <e p="obj" t="ExcludeRecursive" />

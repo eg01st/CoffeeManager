@@ -62,7 +62,6 @@ namespace CoffeeManager.Api.Controllers
 				prodDb.Price = product.Price;
 				prodDb.PolicePrice = product.PolicePrice;
 				prodDb.CupType = product.CupType;
-				prodDb.ProductType = product.ProductType;
                 prodDb.IsSaleByWeight = product.IsSaleByWeight;
 				prodDb.CategoryId = product.CategoryId;
 				if (product.SuplyId.HasValue) {

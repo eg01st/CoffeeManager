@@ -33,6 +33,7 @@ namespace CoffeManager.Common
             Mvx.RegisterSingleton<IAdminProvider>(new AdminProvider());
             Mvx.RegisterSingleton<IAccountProvider>(new AccountProvider());
             Mvx.RegisterSingleton<ICategoryProvider>(new CategoryProvider());
+            Mvx.RegisterSingleton<ICoffeeCounterProvider>(new CoffeeCounterProvider());
         }
 
         public virtual void RegisterManagers()
@@ -49,6 +50,7 @@ namespace CoffeManager.Common
             Mvx.RegisterSingleton<IAdminManager>(new AdminManager(Mvx.Resolve<IAdminProvider>()));
             Mvx.RegisterSingleton<IAccountManager>(new AccountManager(Mvx.Resolve<IAccountProvider>()));
             Mvx.RegisterSingleton<ICategoryManager>(new CategoryManager(Mvx.Resolve<ICategoryProvider>()));
+            Mvx.RegisterSingleton<ICoffeeCounterManager>(new CoffeeCounterManager(Mvx.Resolve<ICoffeeCounterProvider>()));
         }
     }
 }

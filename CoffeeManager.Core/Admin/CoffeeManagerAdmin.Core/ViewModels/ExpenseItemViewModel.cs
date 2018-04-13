@@ -1,13 +1,13 @@
-﻿using System;
-using CoffeeManager.Models;
-using CoffeManager.Common;
+﻿using System.Threading.Tasks;
 using System.Windows.Input;
-using MvvmCross.Core.ViewModels;
-using System.Threading.Tasks;
+using CoffeeManager.Models;
+using CoffeeManagerAdmin.Core.ViewModels.Shifts;
+using CoffeManager.Common;
 using CoffeManager.Common.ViewModels;
+using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
 
-namespace CoffeeManagerAdmin.Core
+namespace CoffeeManagerAdmin.Core.ViewModels
 {
     public class ExpenseItemViewModel : ListItemViewModelBase
     {

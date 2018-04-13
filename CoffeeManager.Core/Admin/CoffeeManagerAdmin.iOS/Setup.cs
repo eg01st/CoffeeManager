@@ -5,6 +5,7 @@ using MvvmCross.Platform.Platform;
 using UIKit;
 using MvvmCross.Platform;
 using Acr.UserDialogs;
+using CoffeeManagerAdmin.iOS.Platform;
 using MobileCore.iOS;
 
 namespace CoffeeManagerAdmin.iOS

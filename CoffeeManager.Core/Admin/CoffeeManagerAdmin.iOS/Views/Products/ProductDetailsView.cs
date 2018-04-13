@@ -9,6 +9,7 @@ using CoreGraphics;
 using System.Collections.Generic;
 using CoffeeManagerAdmin.Core.ViewModels.Products;
 using CoffeeManagerAdmin.iOS.Views.Abstract;
+using MobileCore.iOS.ViewControllers;
 
 namespace CoffeeManagerAdmin.iOS
 {
@@ -64,7 +65,7 @@ namespace CoffeeManagerAdmin.iOS
             set.Bind(AddProductButton).For("Title").To(vm => vm.ButtonTitle);
             set.Bind(cupPickerViewModel).For(p => p.ItemsSource).To(vm => vm.CupTypesList);
             set.Bind(cupPickerViewModel).For(p => p.SelectedItem).To(vm => vm.SelectedCupType);
-            set.Bind(productTypePickerViewModel).For(p => p.ItemsSource).To(vm => vm.ProductTypesList);
+            set.Bind(productTypePickerViewModel).For(p => p.ItemsSource).To(vm => vm.CategoriesList);
             set.Bind(productTypePickerViewModel).For(p => p.SelectedItem).To(vm => vm.SelectedProductType);
             set.Bind(IsSaleByWeightSwitch).For(s => s.On).To(vm => vm.IsSaleByWeight);
             set.Apply();

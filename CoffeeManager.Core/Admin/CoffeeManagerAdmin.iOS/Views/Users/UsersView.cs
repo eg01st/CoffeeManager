@@ -1,20 +1,13 @@
-﻿using System;
-
-using UIKit;
-using MvvmCross.iOS.Views;
-using MvvmCross.Binding.BindingContext;
-using CoffeeManagerAdmin.Core;
-using System.Windows.Input;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using CoffeeManagerAdmin.Core.ViewModels.Home;
-using CoffeeManagerAdmin.iOS.Views.Abstract;
+using MobileCore.iOS.ViewControllers;
+using MvvmCross.Binding.BindingContext;
+using UIKit;
 
-namespace CoffeeManagerAdmin.iOS
+namespace CoffeeManagerAdmin.iOS.Views.Users
 {
     public partial class UsersView : ViewControllerBase<UsersViewModel>
     {
-        protected override bool UseCustomBackButton => false;
-
         public UsersView() : base("UsersView", null)
         {
         }

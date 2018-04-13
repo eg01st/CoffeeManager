@@ -43,6 +43,8 @@
     <Compile Include="Timer.cs" />
     <Compile Include="ViewModels\BaseItemViewModel.cs" />
     <Compile Include="ViewModels\CategoryItemViewModel.cs" />
+    <Compile Include="ViewModels\CoffeeCounter\CoffeeCounterItemViewModel.cs" />
+    <Compile Include="ViewModels\CoffeeCounter\CoffeeCounterViewModel.cs" />
     <Compile Include="ViewModels\CurrentShiftExpensesViewModel.cs" />
     <Compile Include="ViewModels\CurrentShiftSalesViewModel.cs" />
     <Compile Include="ViewModels\EndShiftViewModel.cs" />

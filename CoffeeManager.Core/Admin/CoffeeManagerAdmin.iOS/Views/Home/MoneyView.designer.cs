@@ -4,12 +4,11 @@
 // actions declared in your storyboard file.
 // Manual changes to this file will not be maintained.
 //
-using Foundation;
-using System;
-using System.CodeDom.Compiler;
-using UIKit;
 
-namespace CoffeeManagerAdmin.iOS
+using System.CodeDom.Compiler;
+using Foundation;
+
+namespace CoffeeManagerAdmin.iOS.Views.Home
 {
     [Register ("MoneyView")]
     partial class MoneyView

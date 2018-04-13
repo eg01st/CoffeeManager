@@ -1,7 +1,7 @@
 ﻿using CoffeeManager.Models;
 using SQLite;
 
-namespace CoffeManager.Common
+namespace CoffeManager.Common.Database
 {
     public class ProductEntity : Product
     {

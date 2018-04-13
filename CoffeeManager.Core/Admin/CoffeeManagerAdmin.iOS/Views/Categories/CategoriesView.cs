@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using CoffeeManagerAdmin.Core.ViewModels.Categories;
 using CoffeeManagerAdmin.iOS.Views.Abstract;
+using MobileCore.iOS.ViewControllers;
 using MvvmCross.Binding.BindingContext;
+using MvvmCross.iOS.Views.Presenters.Attributes;
 using UIKit;
 
 namespace CoffeeManagerAdmin.iOS.Views.Categories

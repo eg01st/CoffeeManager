@@ -207,6 +207,7 @@
     <Compile Include="SplashScreen.cs" />
     <Compile Include="UncaughtExceptionHandler.cs" />
     <Compile Include="Views\ActivityBase.cs" />
+    <Compile Include="Views\CoffeeCounterView.cs" />
     <Compile Include="Views\CurrentShiftExpensesView.cs" />
     <Compile Include="Views\CurrentShiftSalesView.cs" />
     <Compile Include="Views\EndShiftView.cs" />
@@ -235,6 +236,7 @@
     <Compile Include="Views\SplashView.cs" />
     <Compile Include="Views\InitialLoginView.cs" />
     <Compile Include="LinkerPleaseInclude.cs" />
+    <Compile Include="Adapters\ViewHolders\CoffeeCounterViewHolder.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -337,6 +339,8 @@
     <AndroidResource Include="Resources\drawable-xxhdpi\ic_check_white_24dp.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_check_white_24dp.png" />
     <AndroidResource Include="Resources\menu\add_expense_menu.xml" />
+    <AndroidResource Include="Resources\layout\coffee_counter_layout.axml" />
+    <AndroidResource Include="Resources\layout\coffee_counter_item.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />

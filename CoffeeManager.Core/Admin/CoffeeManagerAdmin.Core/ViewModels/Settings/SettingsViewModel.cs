@@ -8,6 +8,7 @@ using CoffeManager.Common.ViewModels;
 using MobileCore.Extensions;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Messenger;
+using CoffeeManagerAdmin.Core.ViewModels.CoffeeCounter;
 
 namespace CoffeeManagerAdmin.Core.ViewModels.Settings
 {
@@ -66,6 +67,8 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Settings
 
         public ICommand AddCoffeeRoomCommand { get; set; }
 
+        public ICommand ShowCountersCommand { get; set; }
+
         readonly IAccountManager manager;
         readonly IAdminManager adminManager;
 
@@ -75,6 +78,9 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Settings
         {
             this.adminManager = adminManager;
             this.manager = manager;
+
+            ShowCountersCommand =
+                new MvxAsyncCommand(async () => await NavigationService.Navigate<CoffeeCountersViewModel>());
 
             AddUserCommand = new MvxCommand(DoAddUser);
             AddCoffeeRoomCommand = new MvxCommand(DoAddCoffeeRoom);

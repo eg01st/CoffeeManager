@@ -6,6 +6,8 @@ using CoffeeManagerAdmin.Core;
 using System.Collections.Generic;
 using CoffeeManagerAdmin.iOS.Converters;
 using CoffeeManagerAdmin.iOS.Views.Abstract;
+using CoffeeManagerAdmin.iOS.Views.Shifts;
+using MobileCore.iOS.ViewControllers;
 
 namespace CoffeeManagerAdmin.iOS
 {

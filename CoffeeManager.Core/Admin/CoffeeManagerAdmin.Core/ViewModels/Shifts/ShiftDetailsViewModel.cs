@@ -6,6 +6,7 @@ using MvvmCross.Core.ViewModels;
 using CoffeManager.Common;
 using System.Threading.Tasks;
 using CoffeeManagerAdmin.Core.ViewModels.Users;
+using CoffeManager.Common.Managers;
 using CoffeManager.Common.ViewModels;
 using MvvmCross.Plugins.Messenger;
 

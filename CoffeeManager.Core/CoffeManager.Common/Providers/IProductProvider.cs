@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using CoffeeManager.Models;
+using CoffeManager.Common.Database;
 
 namespace CoffeManager.Common.Providers
 {

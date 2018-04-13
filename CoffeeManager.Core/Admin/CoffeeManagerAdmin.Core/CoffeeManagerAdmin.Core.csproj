@@ -38,6 +38,7 @@
     <Compile Include="Converters\GenericConverter.cs" />
     <Compile Include="Messages\CalculationListChangedMessage.cs" />
     <Compile Include="Messages\CategoriesUpdatedMessage.cs" />
+    <Compile Include="Messages\CoffeeCountersUpdateMessage.cs" />
     <Compile Include="Messages\OrderItemChangedMessage.cs" />
     <Compile Include="Messages\OrderItemsListChangedMessage.cs" />
     <Compile Include="Messages\OrderListChangedMessage.cs" />
@@ -49,6 +50,13 @@
     <Compile Include="ViewModels\Categories\CategoryDetailsViewModel.cs" />
     <Compile Include="ViewModels\Categories\CategoryItemViewModel.cs" />
     <Compile Include="ViewModels\Categories\SubCategoryItemViewModel.cs" />
+    <Compile Include="ViewModels\CoffeeCounter\AddCoffeeCounterViewModel.cs" />
+    <Compile Include="ViewModels\CoffeeCounter\CoffeeCounterDetailViewModel.cs" />
+    <Compile Include="ViewModels\CoffeeCounter\CoffeeCounterItemViewModel.cs" />
+    <Compile Include="ViewModels\CoffeeCounter\CoffeeCountersViewModel.cs" />
+    <Compile Include="ViewModels\Home\MenuFeedtemHeaderViewModel.cs" />
+    <Compile Include="ViewModels\Home\MenuFeedtemViewModel.cs" />
+    <Compile Include="ViewModels\Home\SideMenuViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\Orders\OrderItemsViewModel.cs" />
     <Compile Include="ViewModels\Orders\OrderItemViewModel.cs" />

@@ -1,7 +1,9 @@
 ﻿using CoffeeManagerAdmin.Core;
 using CoffeeManagerAdmin.Core.ViewModels.CreditCard;
 using CoffeeManagerAdmin.iOS.Views.Abstract;
+using MobileCore.iOS.ViewControllers;
 using MvvmCross.Binding.BindingContext;
+using MvvmCross.iOS.Views.Presenters.Attributes;
 using UIKit;
 
 namespace CoffeeManagerAdmin.iOS.Views.CreditCard

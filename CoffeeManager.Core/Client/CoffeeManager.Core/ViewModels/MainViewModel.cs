@@ -352,9 +352,9 @@ namespace CoffeeManager.Core.ViewModels
                 Alert("Невозможно закрыть смену, продажи не синхронизированы");
                 return;
             }
-            Confirm("Завершить смену?", () => 
+            Confirm("Завершить смену?",async () => 
             {
-                ShowViewModel<EndShiftViewModel>(new { shiftId = shiftInfo.Id });
+                await NavigationService.Navigate<EndShiftViewModel, int>(shiftInfo.Id);
             });
         }
 

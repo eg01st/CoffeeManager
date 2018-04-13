@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using CoffeeManagerAdmin.Core;
 using CoffeeManagerAdmin.iOS.Views.Abstract;
 using MvvmCross.Binding.BindingContext;
+using MvvmCross.iOS.Views.Presenters.Attributes;
 using UIKit;
 
 namespace CoffeeManagerAdmin.iOS
 {
+    [MvxTabPresentation(WrapInNavigationController = true, TabName = "Расходы",
+                        TabIconName = "ic_arrow_upward.png",
+                        TabSelectedIconName = "ic_arrow_upward.png")]
     public partial class ManageExpensesView : SearchViewController<ManageExpensesView, ManageExpensesViewModel, ManageExpenseItemViewModel>
     {
         protected override SimpleTableSource TableSource => new SimpleTableSource(TableView, ManageExpensesTableViewCell.Key, ManageExpensesTableViewCell.Nib);

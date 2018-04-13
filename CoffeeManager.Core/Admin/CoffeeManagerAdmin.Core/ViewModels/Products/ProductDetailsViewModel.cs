@@ -30,7 +30,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Products
 
         #region Properties
         public List<Entity> CupTypesList => TypesLists.CupTypesList;
-        public List<CategoryItemViewModel> ProductTypesList { get; set; } = new List<CategoryItemViewModel>();
+        public List<CategoryItemViewModel> CategoriesList { get; set; } = new List<CategoryItemViewModel>();
         public ICommand AddProductCommand => addProductCommand;
         private ICommand addProductCommand;
         public bool IsAddEnabled => !string.IsNullOrEmpty(Name) && !string.IsNullOrEmpty(Price) && !string.IsNullOrEmpty(PolicePrice) && !string.IsNullOrEmpty(CupTypeName) && !string.IsNullOrEmpty(ProductTypeName);
@@ -180,8 +180,8 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Products
         public async Task Init(Guid id)
         {
             var categories = await categoryManager.GetCategoriesPlain();
-            ProductTypesList = categories.Select(s => new CategoryItemViewModel(s)).ToList();
-            RaisePropertyChanged(nameof(ProductTypesList));
+            CategoriesList = categories.Select(s => new CategoryItemViewModel(s)).ToList();
+            RaisePropertyChanged(nameof(CategoriesList));
             
             if(id != Guid.Empty)
             {
@@ -200,7 +200,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Products
                 {
                     SelectedCupType = cupType;
                 }
-                var productType = ProductTypesList.FirstOrDefault(t => t.Id == product.ProductType);
+                var productType = CategoriesList.FirstOrDefault(t => t.Id == product.CategoryId);
                 if(productType != null)
                 {
                     SelectedProductType = productType;

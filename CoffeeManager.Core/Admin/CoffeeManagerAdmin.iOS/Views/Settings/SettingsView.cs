@@ -1,13 +1,10 @@
-﻿using System;
-
-using UIKit;
-using CoffeeManagerAdmin.Core;
-using MvvmCross.Binding.BindingContext;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using CoffeeManagerAdmin.Core.ViewModels.Settings;
-using CoffeeManagerAdmin.iOS.Views.Abstract;
+using MobileCore.iOS.ViewControllers;
+using MvvmCross.Binding.BindingContext;
+using UIKit;
 
-namespace CoffeeManagerAdmin.iOS
+namespace CoffeeManagerAdmin.iOS.Views.Settings
 {
     public partial class SettingsView : ViewControllerBase<SettingsViewModel>
     {
@@ -69,6 +66,7 @@ namespace CoffeeManagerAdmin.iOS
             set.Bind(coffeeRoomsTableSource).To(vm => vm.CoffeeRooms);
             set.Bind(ClientsTableView).For(t => t.Hidden).To(vm => vm.IsAdmin).WithConversion(new InvertedBoolConverter());
             set.Bind(this).For(nameof(IsAdmin)).To(vm => vm.IsAdmin);
+            set.Bind(CountersButton).To(vm => vm.ShowCountersCommand);
             set.Apply();
         }
     }

@@ -1,16 +1,17 @@
-﻿using System;
-
-using UIKit;
-using CoffeeManagerAdmin.Core;
-using MvvmCross.Binding.BindingContext;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using CoffeeManagerAdmin.Core.ViewModels.Home;
-using CoffeeManagerAdmin.iOS.Views.Abstract;
 using CoreGraphics;
+using MobileCore.iOS.ViewControllers;
+using MvvmCross.Binding.BindingContext;
 using MvvmCross.Binding.iOS.Views;
+using MvvmCross.iOS.Views.Presenters.Attributes;
+using UIKit;
 
-namespace CoffeeManagerAdmin.iOS
+namespace CoffeeManagerAdmin.iOS.Views.Home
 {
+    [MvxTabPresentation(WrapInNavigationController = true, TabName = "Финансы",
+                        TabIconName = "ic_attach_money.png",
+                        TabSelectedIconName = "ic_attach_money.png")]
     public partial class MoneyView : ViewControllerBase<MoneyViewModel>
     {
         private MvxPickerViewModel coffeeRoomPickerViewModel;
@@ -26,6 +27,8 @@ namespace CoffeeManagerAdmin.iOS
         {
             base.DoViewDidLoad();
 
+            Title = "Финансы";
+            
             var settingsButton = new UIBarButtonItem()
             {
                 Image = UIImage.FromBundle("ic_settings")

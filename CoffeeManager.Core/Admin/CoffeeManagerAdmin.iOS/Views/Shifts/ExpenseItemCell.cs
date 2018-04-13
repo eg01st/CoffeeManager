@@ -1,13 +1,12 @@
 ﻿using System;
-
-using Foundation;
-using UIKit;
-using MvvmCross.Binding.iOS.Views;
-using MvvmCross.Binding.BindingContext;
-using CoffeeManagerAdmin.Core;
 using System.Windows.Input;
+using CoffeeManagerAdmin.Core.ViewModels;
+using Foundation;
+using MvvmCross.Binding.BindingContext;
+using MvvmCross.Binding.iOS.Views;
+using UIKit;
 
-namespace CoffeeManagerAdmin.iOS
+namespace CoffeeManagerAdmin.iOS.Views.Shifts
 {
     public partial class ExpenseItemCell : MvxTableViewCell
     {

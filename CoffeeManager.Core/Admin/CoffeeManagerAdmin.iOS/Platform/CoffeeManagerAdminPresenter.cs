@@ -1,13 +1,8 @@
-﻿using System;
-using CoffeManager.Common;
-using MvvmCross.Core.ViewModels;
-using MvvmCross.iOS.Views;
-using MvvmCross.iOS.Views.Presenters;
+﻿using MvvmCross.iOS.Views;
 using UIKit;
-using CoffeeManagerAdmin.Core.ViewModels;
-using MvvmCross.iOS.Views.Presenters.Attributes;
+using MvvmCross.iOS.Views.Presenters;
 
-namespace CoffeeManagerAdmin.iOS
+namespace CoffeeManagerAdmin.iOS.Platform
 {
     public class CoffeeManagerAdminPresenter : MvxIosViewPresenter
     {
