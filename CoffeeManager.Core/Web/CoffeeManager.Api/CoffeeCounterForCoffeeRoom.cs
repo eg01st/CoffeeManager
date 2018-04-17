@@ -19,6 +19,7 @@ namespace CoffeeManager.Api
         public int CoffeeRoomNo { get; set; }
         public int SuplyProductId { get; set; }
         public string Name { get; set; }
+        public bool IsEnabled { get; set; }
     
         public virtual Category Category { get; set; }
         public virtual CoffeeRoom CoffeeRoom { get; set; }

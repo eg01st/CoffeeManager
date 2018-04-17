@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Formatting;
+using System.Threading.Tasks;
 using System.Web.Http;
 using CoffeeManager.Api.Mappers;
 using CoffeeManager.Models;
@@ -63,6 +64,20 @@ namespace CoffeeManager.Api.Controllers
             var counterDb = entites.CoffeeCounterForCoffeeRooms.First(u => u.Id == counterId);
             entites.CoffeeCounterForCoffeeRooms.Remove(counterDb);
             entites.SaveChanges();
+            return Request.CreateResponse(HttpStatusCode.OK);
+        }
+
+        [Route(RoutesConstants.ToggleCounterEnabled)]
+        [HttpPost]
+        public async Task<HttpResponseMessage> ToggleCounterEnabled([FromUri]int coffeeroomno, int id, HttpRequestMessage message)
+        {
+            var entities = new CoffeeRoomEntities();
+            var counter = entities.CoffeeCounterForCoffeeRooms.FirstOrDefault(t => t.CoffeeRoomNo == coffeeroomno && t.Id == id);
+            if (counter != null)
+            {
+                counter.IsEnabled = !counter.IsEnabled;
+                entities.SaveChanges();
+            }
             return Request.CreateResponse(HttpStatusCode.OK);
         }
     }

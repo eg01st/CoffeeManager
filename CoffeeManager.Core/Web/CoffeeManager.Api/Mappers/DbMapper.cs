@@ -95,7 +95,6 @@ namespace CoffeeManager.Api.Mappers
 				Name = product.Name,
 				PolicePrice = product.PolicePrice,
 				Price = product.Price,
-				ProductType = product.ProductType,
                 IsActive = product.IsActive,
                 IsSaleByWeight = product.IsSaleByWeight,
 				CategoryId = product.CategoryId

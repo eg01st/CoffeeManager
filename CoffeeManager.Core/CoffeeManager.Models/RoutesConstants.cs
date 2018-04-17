@@ -128,6 +128,7 @@ namespace CoffeeManager.Models
         public const string AddCategory = Categories + "/AddCategory";
         public const string UpdateCategory = Categories + "/UpdateCategory";
         public const string DeleteCategory = Categories + "/DeleteCategory";
+        public const string ToggleCategoryEnabled = Products + "/ToggleCategoryEnabled";
 
         public const string CoffeeRoomCounter = Api + "/CoffeeRoomCounter";
         public const string GetCounters = CoffeeRoomCounter + "/GetCounters";
@@ -135,5 +136,6 @@ namespace CoffeeManager.Models
         public const string AddCounter = CoffeeRoomCounter + "/AddCounter";
         public const string UpdateCounter = CoffeeRoomCounter + "/UpdateCounter";
         public const string DeleteCounter = CoffeeRoomCounter + "/DeleteCounter";
+        public const string ToggleCounterEnabled = Products + "/ToggleCounterEnabled";
     }
 }

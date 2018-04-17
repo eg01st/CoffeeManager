@@ -86,7 +86,6 @@ namespace CoffeeManager.Api.Mappers
                 Name = prodDb.Name,
                 Price = prodDb.Price,
                 PolicePrice = prodDb.PolicePrice,
-                ProductType = prodDb.ProductType.Value,
                 CupType = prodDb.CupType.Value,
                 SuplyId = prodDb.SuplyProductId,
                 IsActive = prodDb.IsActive,

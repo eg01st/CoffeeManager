@@ -25,6 +25,7 @@ namespace CoffeeManager.Api
         public string Name { get; set; }
         public Nullable<int> ParentId { get; set; }
         public int CoffeeRoomNo { get; set; }
+        public bool IsEnabled { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Product> Products { get; set; }

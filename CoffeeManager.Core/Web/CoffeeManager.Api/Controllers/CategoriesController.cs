@@ -3,6 +3,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Formatting;
+using System.Threading.Tasks;
 using System.Web.Http;
 using CoffeeManager.Api.Mappers;
 using CoffeeManager.Models;
@@ -91,6 +92,20 @@ namespace CoffeeManager.Api.Controllers
             var categoryDb = entites.Categories.First(u => u.Id == categoryId);
             entites.Categories.Remove(categoryDb);
             entites.SaveChanges();
+            return Request.CreateResponse(HttpStatusCode.OK);
+        }
+
+        [Route(RoutesConstants.ToggleCategoryEnabled)]
+        [HttpPost]
+        public async Task<HttpResponseMessage> ToggleCategoryEnabled([FromUri]int coffeeroomno, int id, HttpRequestMessage message)
+        {
+            var entities = new CoffeeRoomEntities();
+            var category = entities.Categories.FirstOrDefault(t => t.CoffeeRoomNo == coffeeroomno && t.Id == id);
+            if (category != null)
+            {
+                category.IsEnabled = !category.IsEnabled;
+                entities.SaveChanges();
+            }
             return Request.CreateResponse(HttpStatusCode.OK);
         }
     }

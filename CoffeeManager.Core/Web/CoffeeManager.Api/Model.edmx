@@ -77,6 +77,7 @@
           <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
           <Property Name="ParentId" Type="int" />
           <Property Name="CoffeeRoomNo" Type="int" Nullable="false" />
+          <Property Name="IsEnabled" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="CoffeeCounter">
           <Key>
@@ -99,6 +100,7 @@
           <Property Name="CoffeeRoomNo" Type="int" Nullable="false" />
           <Property Name="SuplyProductId" Type="int" Nullable="false" />
           <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IsEnabled" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="CoffeeRoom">
           <Key>
@@ -2317,6 +2319,7 @@
           <Property Name="CoffeeRoomNo" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Products" Relationship="CoffeeRoomModel.FK_Product_Category" FromRole="Category" ToRole="Product" />
           <NavigationProperty Name="CoffeeCounterForCoffeeRooms" Relationship="CoffeeRoomModel.FK__CoffeeCou__Categ__43D61337" FromRole="Category" ToRole="CoffeeCounterForCoffeeRoom" />
+          <Property Name="IsEnabled" Type="Boolean" Nullable="false" />
         </EntityType>
         <Association Name="FK_Product_Category">
           <End Type="CoffeeRoomModel.Category" Role="Category" Multiplicity="1" />
@@ -2357,6 +2360,7 @@
           <NavigationProperty Name="Category" Relationship="CoffeeRoomModel.FK__CoffeeCou__Categ__43D61337" FromRole="CoffeeCounterForCoffeeRoom" ToRole="Category" />
           <NavigationProperty Name="CoffeeRoom" Relationship="CoffeeRoomModel.FK__CoffeeCou__Coffe__44CA3770" FromRole="CoffeeCounterForCoffeeRoom" ToRole="CoffeeRoom" />
           <NavigationProperty Name="SupliedProduct" Relationship="CoffeeRoomModel.FK__CoffeeCou__Suply__45BE5BA9" FromRole="CoffeeCounterForCoffeeRoom" ToRole="SupliedProduct" />
+          <Property Name="IsEnabled" Type="Boolean" Nullable="false" />
         </EntityType>
         <Association Name="FK__CoffeeCou__Categ__43D61337">
           <End Type="CoffeeRoomModel.Category" Role="Category" Multiplicity="1" />
@@ -2861,6 +2865,7 @@
           <EntitySetMapping Name="Categories">
             <EntityTypeMapping TypeName="CoffeeRoomModel.Category">
               <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="IsEnabled" ColumnName="IsEnabled" />
                 <ScalarProperty Name="CoffeeRoomNo" ColumnName="CoffeeRoomNo" />
                 <ScalarProperty Name="ParentId" ColumnName="ParentId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -2884,6 +2889,7 @@
           <EntitySetMapping Name="CoffeeCounterForCoffeeRooms">
             <EntityTypeMapping TypeName="CoffeeRoomModel.CoffeeCounterForCoffeeRoom">
               <MappingFragment StoreEntitySet="CoffeeCounterForCoffeeRoom">
+                <ScalarProperty Name="IsEnabled" ColumnName="IsEnabled" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="SuplyProductId" ColumnName="SuplyProductId" />
                 <ScalarProperty Name="CoffeeRoomNo" ColumnName="CoffeeRoomNo" />
