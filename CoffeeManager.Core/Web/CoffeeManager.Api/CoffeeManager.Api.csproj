@@ -228,6 +228,12 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="CustomExceptionFilterAttribute.cs" />
+    <Compile Include="EnabledCategory.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EnabledCoffeeCounter.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Error.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>

@@ -9,5 +9,7 @@
         public int? ParentId { get; set; }
         
         public CategoryDTO[] SubCategories { get; set; }
+
+        public IsActiveDTO[] IsActive { get; set; }
     }
 }

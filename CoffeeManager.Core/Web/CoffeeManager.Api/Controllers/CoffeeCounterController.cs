@@ -42,6 +42,16 @@ namespace CoffeeManager.Api.Controllers
             var counterDb = counter.Map();
             entites.CoffeeCounterForCoffeeRooms.Add(counterDb);
             entites.SaveChanges();
+            foreach (var cr in entites.CoffeeRooms)
+            {
+                entites.EnabledCoffeeCounters.Add(new EnabledCoffeeCounter()
+                {
+                    CounterId = counterDb.Id,
+                    CoffeeRoomNo = cr.Id,
+                    IsEnabled = true
+                });
+                entites.SaveChanges();
+            }
             return Request.CreateResponse(HttpStatusCode.OK, counterDb.Id);
         }
 
@@ -75,7 +85,18 @@ namespace CoffeeManager.Api.Controllers
             var counter = entities.CoffeeCounterForCoffeeRooms.FirstOrDefault(t => t.CoffeeRoomNo == coffeeroomno && t.Id == id);
             if (counter != null)
             {
-                counter.IsEnabled = !counter.IsEnabled;
+                var isEnabledDb =
+                    entities.EnabledCoffeeCounters.FirstOrDefault(c =>
+                        c.CounterId == id && c.CoffeeRoomNo == coffeeroomno);
+                if (isEnabledDb == null)
+                {
+                    isEnabledDb = new EnabledCoffeeCounter()
+                    {
+                        CounterId = id,
+                        CoffeeRoomNo = coffeeroomno
+                    };
+                }
+                isEnabledDb.IsEnabled = !isEnabledDb.IsEnabled;
                 entities.SaveChanges();
             }
             return Request.CreateResponse(HttpStatusCode.OK);

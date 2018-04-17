@@ -19,17 +19,19 @@ namespace CoffeeManager.Api
         {
             this.Products = new HashSet<Product>();
             this.CoffeeCounterForCoffeeRooms = new HashSet<CoffeeCounterForCoffeeRoom>();
+            this.EnabledCategories = new HashSet<EnabledCategory>();
         }
     
         public int Id { get; set; }
         public string Name { get; set; }
         public Nullable<int> ParentId { get; set; }
         public int CoffeeRoomNo { get; set; }
-        public bool IsEnabled { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Product> Products { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CoffeeCounterForCoffeeRoom> CoffeeCounterForCoffeeRooms { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<EnabledCategory> EnabledCategories { get; set; }
     }
 }

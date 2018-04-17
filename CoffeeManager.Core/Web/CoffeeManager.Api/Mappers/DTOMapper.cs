@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using CoffeeManager.Models;
+using CoffeeManager.Models.Data.DTO;
 using CoffeeManager.Models.Data.DTO.Category;
 using CoffeeManager.Models.Data.DTO.CoffeeRoomCounter;
 using CoffeeManager.Models.Data.DTO.User;
@@ -259,18 +260,21 @@ namespace CoffeeManager.Api.Mappers
 
         public static CategoryDTO ToDTO(this Category item)
         {
-            return new CategoryDTO()
+            var category = new CategoryDTO()
             {
                 Id = item.Id,
                 ParentId = item.ParentId,
                 CoffeeRoomNo = item.CoffeeRoomNo,
-                Name = item.Name    
+                Name = item.Name
             };
+            category.IsActive = item.EnabledCategories.Select(s =>
+                new IsActiveDTO {CoffeeRoomNo = s.CoffeeRoomNo, Id = s.CategoryId, IsActive = s.IsEnabled}).ToArray();
+            return category;
         }
 
         public static CoffeeCounterForCoffeeRoomDTO ToDTO(this CoffeeCounterForCoffeeRoom item)
         {
-            return new CoffeeCounterForCoffeeRoomDTO()
+            var counter = new CoffeeCounterForCoffeeRoomDTO()
             {
                 Id = item.Id,
                 CoffeeRoomNo = item.CoffeeRoomNo,
@@ -278,6 +282,9 @@ namespace CoffeeManager.Api.Mappers
                 SuplyProductId = item.SuplyProductId,
                 CategoryId = item.CategoryId
             };
+            counter.IsActive = item.EnabledCoffeeCounters.Select(s =>
+                new IsActiveDTO { CoffeeRoomNo = s.CoffeeRoomNo, Id = s.CounterId, IsActive = s.IsEnabled }).ToArray();
+            return counter;
         }
     }
 }

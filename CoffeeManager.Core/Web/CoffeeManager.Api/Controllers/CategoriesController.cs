@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -18,7 +19,7 @@ namespace CoffeeManager.Api.Controllers
         [HttpGet]
         public HttpResponseMessage GetCategories([FromUri]int coffeeroomno)
         {
-            var categories = new  CoffeeRoomEntities().Categories.ToArray().Select(u => u.ToDTO());
+            var categories = new  CoffeeRoomEntities().Categories.Include(i => i.EnabledCategories).ToArray().Select(u => u.ToDTO());
             return new HttpResponseMessage() { Content = new ObjectContent<IEnumerable<CategoryDTO>>(categories, new JsonMediaTypeFormatter())};
         }
         
@@ -27,7 +28,7 @@ namespace CoffeeManager.Api.Controllers
         public HttpResponseMessage GetCategory([FromUri]int coffeeroomno, [FromUri]int categoryId)
         {
             var ctx = new CoffeeRoomEntities();
-            var categoryDb = ctx.Categories.FirstOrDefault(c => c.Id == categoryId);
+            var categoryDb = ctx.Categories.Include(i => i.EnabledCategories).FirstOrDefault(c => c.Id == categoryId);
             var category = categoryDb.ToDTO();
             var subs = ctx.Categories.Where(c => c.ParentId != null && c.ParentId.Value == categoryId).ToList().Select(s => s.ToDTO());
             category.SubCategories = subs.ToArray();
@@ -42,6 +43,16 @@ namespace CoffeeManager.Api.Controllers
             var categoryDb = category.Map();
             entites.Categories.Add(categoryDb);
             entites.SaveChanges();
+            foreach (var cr in entites.CoffeeRooms)
+            {
+                entites.EnabledCategories.Add(new EnabledCategory()
+                {
+                    CategoryId = categoryDb.Id,
+                    CoffeeRoomNo = cr.Id,
+                    IsEnabled = true
+                });
+                entites.SaveChanges();
+            }
             return Request.CreateResponse(HttpStatusCode.OK, categoryDb.Id);
         }
         
@@ -103,7 +114,18 @@ namespace CoffeeManager.Api.Controllers
             var category = entities.Categories.FirstOrDefault(t => t.CoffeeRoomNo == coffeeroomno && t.Id == id);
             if (category != null)
             {
-                category.IsEnabled = !category.IsEnabled;
+                var isEnabledDb =
+                    entities.EnabledCategories.FirstOrDefault(c =>
+                        c.CategoryId == id && c.CoffeeRoomNo == coffeeroomno);
+                if (isEnabledDb == null)
+                {
+                    isEnabledDb = new EnabledCategory()
+                    {
+                        CategoryId = id,
+                        CoffeeRoomNo = coffeeroomno
+                    };
+                }
+                isEnabledDb.IsEnabled = !isEnabledDb.IsEnabled;
                 entities.SaveChanges();
             }
             return Request.CreateResponse(HttpStatusCode.OK);

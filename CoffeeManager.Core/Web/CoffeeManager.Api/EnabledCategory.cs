@@ -12,24 +12,14 @@ namespace CoffeeManager.Api
     using System;
     using System.Collections.Generic;
     
-    public partial class CoffeeCounterForCoffeeRoom
+    public partial class EnabledCategory
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public CoffeeCounterForCoffeeRoom()
-        {
-            this.EnabledCoffeeCounters = new HashSet<EnabledCoffeeCounter>();
-        }
-    
         public int Id { get; set; }
         public int CategoryId { get; set; }
+        public bool IsEnabled { get; set; }
         public int CoffeeRoomNo { get; set; }
-        public int SuplyProductId { get; set; }
-        public string Name { get; set; }
     
         public virtual Category Category { get; set; }
         public virtual CoffeeRoom CoffeeRoom { get; set; }
-        public virtual SupliedProduct SupliedProduct { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<EnabledCoffeeCounter> EnabledCoffeeCounters { get; set; }
     }
 }
