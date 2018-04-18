@@ -2,6 +2,7 @@
 using Android.Views;
 using Android.Widget;
 using CoffeeManager.Core.ViewModels.CoffeeCounter;
+using CoffeeManager.Droid.Converters;
 using MobileCore.Droid.Adapters.ViewHolders;
 using MobileCore.Droid.Bindings.CustomAtts;
 using MvvmCross.Binding.BindingContext;
@@ -26,8 +27,8 @@ namespace CoffeeManager.Droid.Adapters.ViewHolders
         {
             var bindingSet = this.CreateBindingSet<CoffeeCounterViewHolder, CoffeeCounterItemViewModel>();
             bindingSet.Bind(Name).To(vm => vm.Name);
-            bindingSet.Bind(Counter).To(vm => vm.Counter);
-            bindingSet.Bind(Confirm).To(vm => vm.Confirm);
+            bindingSet.Bind(Counter).To(vm => vm.Counter).WithConversion(new IntToStringConverter());
+            bindingSet.Bind(Confirm).To(vm => vm.Confirm).WithConversion(new IntToStringConverter());
             bindingSet.Apply();
         }
     }

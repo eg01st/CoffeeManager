@@ -11,5 +11,7 @@ namespace CoffeManager.Common.Providers
         Task<int> AddCounter(CoffeeCounterForCoffeeRoomDTO counter);
         Task UpdateCounter(CoffeeCounterForCoffeeRoomDTO counter);
         Task DeleteCounter(int counterId);
+        
+        Task ToggleIsActiveCounter(int id);
     }
 }

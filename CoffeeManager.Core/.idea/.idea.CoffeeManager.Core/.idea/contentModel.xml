@@ -897,6 +897,7 @@
             <e p="CupTypeToVisibility.cs" t="Include" />
             <e p="DecimalToPriceConverter.cs" t="Include" />
             <e p="DecimalToQuantityConverter.cs" t="Include" />
+            <e p="IntToStringConverter.cs" t="Include" />
             <e p="InvertedBoolToVisibilityConverter.cs" t="Include" />
           </e>
           <e p="DroidApplication.cs" t="Include" />
@@ -1132,6 +1133,7 @@
               <e p="CoffeeCounterDTO.cs" t="Include" />
               <e p="CoffeeCounterForCoffeeRoomDTO.cs" t="Include" />
             </e>
+            <e p="IsActiveDTO.cs" t="Include" />
             <e p="User" t="Include">
               <e p="DismissPenaltyDTO.cs" t="Include" />
               <e p="PaySalaryDTO.cs" t="Include" />
@@ -1371,6 +1373,8 @@
           <e p="CupSuply.cs" t="Include" />
           <e p="CupType.cs" t="Include" />
           <e p="CustomExceptionFilterAttribute.cs" t="Include" />
+          <e p="EnabledCategory.cs" t="Include" />
+          <e p="EnabledCoffeeCounter.cs" t="Include" />
           <e p="Error.cs" t="Include" />
           <e p="Expense.cs" t="Include" />
           <e p="ExpenseSuplyProduct.cs" t="Include" />

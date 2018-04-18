@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CoffeeCountersView">
             <connections>
+                <outlet property="CoffeeRoomTextField" destination="iAG-FK-gwI" id="KDm-er-B1g"/>
                 <outlet property="CountersTableView" destination="hBB-Ox-df8" id="pIw-Ik-R3q"/>
                 <outlet property="view" destination="2" id="RRd-Eg-VrN"/>
             </connections>
@@ -21,16 +22,33 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hBB-Ox-df8">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <rect key="frame" x="0.0" y="53" width="375" height="614"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Заведение: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fNO-7I-lo7">
+                    <rect key="frame" x="16" y="16" width="96" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iAG-FK-gwI">
+                    <rect key="frame" x="128" y="11.5" width="231" height="30"/>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="iAG-FK-gwI" firstAttribute="centerY" secondItem="fNO-7I-lo7" secondAttribute="centerY" id="4yS-j4-ROU"/>
+                <constraint firstItem="fNO-7I-lo7" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="16" id="6go-3E-bpx"/>
                 <constraint firstItem="hBB-Ox-df8" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="By9-0d-F1R"/>
-                <constraint firstItem="hBB-Ox-df8" firstAttribute="top" secondItem="2" secondAttribute="top" id="XMQ-47-cB4"/>
                 <constraint firstAttribute="bottom" secondItem="hBB-Ox-df8" secondAttribute="bottom" id="Yis-GV-0Ae"/>
+                <constraint firstItem="iAG-FK-gwI" firstAttribute="leading" secondItem="fNO-7I-lo7" secondAttribute="trailing" constant="16" id="aAK-ST-HCJ"/>
+                <constraint firstAttribute="trailing" secondItem="iAG-FK-gwI" secondAttribute="trailing" constant="16" id="ebI-3t-EW4"/>
                 <constraint firstAttribute="trailing" secondItem="hBB-Ox-df8" secondAttribute="trailing" id="oQ7-tu-0QO"/>
+                <constraint firstItem="hBB-Ox-df8" firstAttribute="top" secondItem="fNO-7I-lo7" secondAttribute="bottom" constant="16" id="qmU-cW-SEd"/>
+                <constraint firstItem="fNO-7I-lo7" firstAttribute="top" secondItem="2" secondAttribute="top" constant="16" id="tze-Sj-gOH"/>
             </constraints>
         </view>
     </objects>

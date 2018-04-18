@@ -198,6 +198,7 @@
     <Compile Include="Converters\CupTypeToNameConverter.cs" />
     <Compile Include="Converters\CupTypeToVisibility.cs" />
     <Compile Include="Converters\DecimalToPriceConverter.cs" />
+    <Compile Include="Converters\IntToStringConverter.cs" />
     <Compile Include="DroidApplication.cs" />
     <Compile Include="Entities\TabItem.cs" />
     <Compile Include="Extensions\Utils.cs" />

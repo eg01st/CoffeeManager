@@ -21,9 +21,8 @@ namespace CoffeeManager.Core.ViewModels
         private readonly IShiftManager shiftManager;
 
         private string realAmount;
-//        private string endCounter;
-//        private string endCounterConfirm;
         private int shiftId;
+        
         public string RealAmount
         {
             get { return realAmount; }
@@ -35,35 +34,9 @@ namespace CoffeeManager.Core.ViewModels
             }
         }
 
-//        public string EndCounter
-//        {
-//            get { return endCounter; }
-//            set
-//            {
-//                endCounter = value;
-//                RaisePropertyChanged(nameof(EndCounter));
-//                RaisePropertyChanged(nameof(EndShiftButtonEnabled));
-//            }
-//        }
-//
-//        public string EndCounterConfirm
-//        {
-//            get { return endCounterConfirm; }
-//            set
-//            {
-//                endCounterConfirm = value;
-//                RaisePropertyChanged(nameof(EndCounterConfirm));
-//                RaisePropertyChanged(nameof(EndShiftButtonEnabled));
-//            }
-//        }
-
         public bool EndShiftButtonEnabled
             => !string.IsNullOrEmpty(RealAmount);
-//           && !string.IsNullOrEmpty(EndCounter) 
-//           && string.Equals(EndCounter, EndCounterConfirm);
-          // && !IsLoading;
-
-
+        
         public ICommand FinishShiftCommand {get;}
         
         public ICommand DiscardShiftCommand {get;}
@@ -84,7 +57,7 @@ namespace CoffeeManager.Core.ViewModels
 
         protected override async Task<PageContainer<CoffeeCounterItemViewModel>> GetPageAsync(int skip)
         {
-            var items = await coffeeCounterManager.GetCounters();
+            var items = await coffeeCounterManager.GetCountersForClient();
             return items.Select(s => new CoffeeCounterItemViewModel(s)).ToPageContainer();
         }
 
@@ -151,7 +124,7 @@ namespace CoffeeManager.Core.ViewModels
 
         private async Task FinishShift(decimal realAmount)
         {
-            if (ItemsCollection.Any(i => i.Counter != i.Confirm))
+            if (ItemsCollection.Any(i => i.Counter != i.Confirm || !i.Counter.HasValue))
             {
                 UserDialogs.Alert("Показания счетчиков не сходятся! Перепроверьте показания");
                 return;
@@ -163,7 +136,7 @@ namespace CoffeeManager.Core.ViewModels
                 counters.Add(new CoffeeCounterDTO()
                 {
                     Id = counter.Id,
-                    EndCounter = counter.Counter,
+                    EndCounter = counter.Counter.Value,
                     SuplyProductId = counter.SuplyProductId
                 });
             }

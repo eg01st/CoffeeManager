@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Input;
 using CoffeeManagerAdmin.Core.ViewModels.CoffeeCounter;
 using Foundation;
 using MvvmCross.Binding.BindingContext;
@@ -11,6 +12,8 @@ namespace CoffeeManagerAdmin.iOS.Views.Counter
     {
         public static readonly NSString Key = new NSString("CounterTableViewCell");
         public static readonly UINib Nib;
+
+        public ICommand ToggleIsActiveCommand { get; set; }
 
         static CounterTableViewCell()
         {
@@ -32,7 +35,13 @@ namespace CoffeeManagerAdmin.iOS.Views.Counter
         {
             var set = this.CreateBindingSet<CounterTableViewCell, CoffeeCounterItemViewModel>();
             set.Bind(NameLabel).To(vm => vm.Name);
+            set.Bind(IsActiveSwitch).For(s => s.On).To(vm => vm.IsActive);
+            set.Bind(this).For(t => t.ToggleIsActiveCommand).To(vm => vm.ToggleIsActiveCommand);
             set.Apply();
+            IsActiveSwitch.ValueChanged += (sender, e) =>
+            {
+                ToggleIsActiveCommand.Execute(null);
+            };
         }
     }
 }

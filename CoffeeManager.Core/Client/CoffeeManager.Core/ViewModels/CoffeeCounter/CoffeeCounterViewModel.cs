@@ -31,7 +31,7 @@ namespace CoffeeManager.Core.ViewModels.CoffeeCounter
 
         private async Task DoOpenShift()
         {
-            if (ItemsCollection.Any(i => i.Counter != i.Confirm))
+            if (ItemsCollection.Any(i => i.Counter != i.Confirm || !i.Counter.HasValue))
             {
                 UserDialogs.Alert("Показания счетчиков не сходятся! Перепроверьте показания");
                 return;
@@ -43,7 +43,7 @@ namespace CoffeeManager.Core.ViewModels.CoffeeCounter
                 counters.Add(new CoffeeCounterDTO()
                 {
                     Id = counter.Id,
-                    StartCounter = counter.Counter,
+                    StartCounter = counter.Counter.Value,
                     SuplyProductId = counter.SuplyProductId
                 });
             }
@@ -57,7 +57,7 @@ namespace CoffeeManager.Core.ViewModels.CoffeeCounter
 
         protected override async Task<PageContainer<CoffeeCounterItemViewModel>> GetPageAsync(int skip)
         {
-            var items = await coffeeCounterManager.GetCounters();
+            var items = await coffeeCounterManager.GetCountersForClient();
             return items.Select(s => new CoffeeCounterItemViewModel(s)).ToPageContainer();
         }
 

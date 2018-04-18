@@ -5,14 +5,14 @@ namespace CoffeeManager.Core.ViewModels.CoffeeCounter
 {
     public class CoffeeCounterItemViewModel : FeedItemElementViewModel
     {
-        private int counter;
-        private int confirm;
+        private int? counter;
+        private int? confirm;
 
         public int Id { get; set; }
         public int SuplyProductId { get; set; }
         public string Name { get; set; }
         
-        public int Counter
+        public int? Counter
         {
             get => counter;
             set
@@ -22,7 +22,7 @@ namespace CoffeeManager.Core.ViewModels.CoffeeCounter
             }
         }
         
-        public int Confirm
+        public int? Confirm
         {
             get => confirm;
             set

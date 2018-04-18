@@ -13,6 +13,9 @@ namespace CoffeeManagerAdmin.iOS.Views.Categories
         public static readonly NSString Key = new NSString("CategoryTableViewCell");
         public static readonly UINib Nib;
 
+
+        public ICommand ToggleIsActiveCommand { get; set; }
+
         private ICommand deleteCommand;
         public ICommand DeleteCommand
         {
@@ -51,6 +54,13 @@ namespace CoffeeManagerAdmin.iOS.Views.Categories
                 var set = this.CreateBindingSet<CategoryTableViewCell, CategoryItemViewModel>();
                 set.Bind(CategoryLabel).To(vm => vm.Name);
                 set.Bind(this).For(t => t.DeleteCommand).To(vm => vm.DeleteCategoryCommand);
+                set.Bind(IsActiveSwitch).For(s => s.On).To(vm => vm.IsActive);
+                set.Bind(this).For(t => t.ToggleIsActiveCommand).To(vm => vm.ToggleIsActiveCommand);
+                set.Apply();
+                IsActiveSwitch.ValueChanged += (sender, e) =>
+                {
+                    ToggleIsActiveCommand.Execute(null);
+                };
                 set.Apply();
             });
         }

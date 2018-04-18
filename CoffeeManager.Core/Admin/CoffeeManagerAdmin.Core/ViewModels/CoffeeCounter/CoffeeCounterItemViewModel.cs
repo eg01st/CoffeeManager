@@ -1,5 +1,12 @@
-﻿using CoffeeManager.Models.Data.DTO.CoffeeRoomCounter;
+﻿using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Input;
+using CoffeeManager.Common;
+using CoffeeManager.Models.Data.DTO.CoffeeRoomCounter;
 using MobileCore.ViewModels;
+using CoffeManager.Common.Managers;
+using MvvmCross.Platform;
+using MvvmCross.Core.ViewModels;
 
 namespace CoffeeManagerAdmin.Core.ViewModels.CoffeeCounter
 {
@@ -7,17 +14,26 @@ namespace CoffeeManagerAdmin.Core.ViewModels.CoffeeCounter
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public bool IsActive { get; set; }
+
+        public ICommand ToggleIsActiveCommand { get; }
 
         public CoffeeCounterItemViewModel()
         {
-            
+            ToggleIsActiveCommand = new MvxAsyncCommand(DoToggleIsActive);
         }
 
-        public CoffeeCounterItemViewModel(CoffeeCounterForCoffeeRoomDTO dto)
+        private async Task DoToggleIsActive()
+        {
+            var manager = Mvx.Resolve<ICoffeeCounterManager>();
+            await manager.ToggleIsActiveCounter(Id);
+        }
+
+        public CoffeeCounterItemViewModel(CoffeeCounterForCoffeeRoomDTO dto) : this()
         {
             Id = dto.Id;
             Name = dto.Name;
-            
+            IsActive = dto.IsActive.FirstOrDefault(a => a.CoffeeRoomNo == Config.CoffeeRoomNo)?.IsActive ?? false;
             RaiseAllPropertiesChanged();
         }
         

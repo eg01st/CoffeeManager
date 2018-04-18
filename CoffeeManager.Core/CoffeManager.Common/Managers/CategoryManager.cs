@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CoffeeManager.Common;
 using CoffeeManager.Models.Data.DTO.Category;
 using CoffeManager.Common.Providers;
 
@@ -19,6 +20,27 @@ namespace CoffeManager.Common.Managers
         {
             var result = await categoryProvider.GetCategories();
             var categories = result.ToList();
+            var subCategories = categories.Where(c => c.ParentId.HasValue).GroupBy(g => g.ParentId);
+            foreach (var subCategory in subCategories)
+            {
+                var parentCategory = categories.First(c => c.Id == subCategory.Key);
+                parentCategory.SubCategories = subCategory.ToArray();
+                foreach (var s in subCategory)
+                {
+                    categories.Remove(s);
+                }
+            }
+
+            return categories;
+        }
+
+        public async Task<IEnumerable<CategoryDTO>> GetCategoriesForClient()
+        {
+            var result = await categoryProvider.GetCategories();
+            var categories = result
+                .Where(c => c.IsActive
+                                .FirstOrDefault(a => a.CoffeeRoomNo == Config.CoffeeRoomNo)?.IsActive ?? false)
+                .ToList();
             var subCategories = categories.Where(c => c.ParentId.HasValue).GroupBy(g => g.ParentId);
             foreach (var subCategory in subCategories)
             {
@@ -56,6 +78,11 @@ namespace CoffeManager.Common.Managers
         public async Task DeleteCategory(int id)
         {
             await categoryProvider.DeleteCategory(id);
+        }
+
+        public async Task ToggleIsActiveCategory(int id)
+        {
+            await categoryProvider.ToggleIsActiveCategory(id);
         }
     }
 }

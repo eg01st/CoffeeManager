@@ -44,7 +44,6 @@
     <Compile Include="Data\DTO\Category\CategoryDTO.cs" />
     <Compile Include="Data\DTO\CoffeeRoomCounter\CoffeeCounterDTO.cs" />
     <Compile Include="Data\DTO\CoffeeRoomCounter\CoffeeCounterForCoffeeRoomDTO.cs" />
-    <Compile Include="Data\DTO\IsActiveDTO.cs" />
     <Compile Include="EndShiftDTO.cs" />
     <Compile Include="EndShiftUserInfo.cs" />
     <Compile Include="Entity.cs" />
@@ -79,6 +78,7 @@
     <Compile Include="Data\DTO\User\DismissPenaltyDTO.cs" />
     <Compile Include="Data\DTO\User\PaySalaryDTO.cs" />
     <Compile Include="Data\DTO\User\ToggleUserEnabledDTO.cs" />
+    <Compile Include="Data\DTO\IsActiveDTO.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />

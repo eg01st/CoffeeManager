@@ -15,5 +15,7 @@ namespace CoffeManager.Common.Providers
         Task UpdateCategory(CategoryDTO dto);
 
         Task DeleteCategory(int id);
+        
+        Task ToggleIsActiveCategory(int id);
     }
 }

@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using CoffeeManager.Common;
 using CoffeeManager.Models.Data.DTO.CoffeeRoomCounter;
 using CoffeManager.Common.Providers;
 
@@ -17,6 +19,14 @@ namespace CoffeManager.Common.Managers
         public async Task<IEnumerable<CoffeeCounterForCoffeeRoomDTO>> GetCounters()
         {
             return await coffeeCounterProvider.GetCounters();
+        }
+
+        public async Task<IEnumerable<CoffeeCounterForCoffeeRoomDTO>> GetCountersForClient()
+        {
+            var counters = await coffeeCounterProvider.GetCounters();
+            return counters
+                .Where(c => c.IsActive
+                                .FirstOrDefault(a => a.CoffeeRoomNo == Config.CoffeeRoomNo)?.IsActive ?? false);
         }
 
         public async Task<CoffeeCounterForCoffeeRoomDTO> GetCounter(int counterId)
@@ -37,6 +47,11 @@ namespace CoffeManager.Common.Managers
         public async Task DeleteCounter(int counterId)
         {
             await coffeeCounterProvider.DeleteCounter(counterId);
+        }
+
+        public async Task ToggleIsActiveCounter(int id)
+        {
+            await coffeeCounterProvider.ToggleIsActiveCounter(id);
         }
     }
 }

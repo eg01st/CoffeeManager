@@ -9,6 +9,7 @@ using CoffeeManagerAdmin.Core.ViewModels.Categories;
 using CoffeManager.Common.Managers;
 using CoffeManager.Common.ViewModels;
 using MvvmCross.Core.ViewModels;
+using CoffeeManager.Common;
 
 namespace CoffeeManagerAdmin.Core.ViewModels.Products
 {

@@ -15,6 +15,7 @@ using CoffeeManager.Models;
 using CoffeManager.Common.Managers;
 using CoffeManager.Common.ViewModels;
 using MobileCore.ViewModels;
+using CoffeeManager.Common;
 
 namespace CoffeeManager.Core.ViewModels
 {
@@ -231,7 +232,8 @@ namespace CoffeeManager.Core.ViewModels
         {
             var tasks = new List<Task>();
 
-            var categories = await categoryManager.GetCategories();
+            var cats = await categoryManager.GetCategoriesForClient();
+            var categories = cats.ToList();
             foreach (var category in categories)
             {
                 var vm = new ProductViewModel(category);

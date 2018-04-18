@@ -100,7 +100,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Categories
                 if (category.SubCategories != null)
                 {
                     SubCategories.AddRange(category.SubCategories?
-                        .Select(s => new SubCategoryItemViewModel(s)));
+                                           .Select(s => new SubCategoryItemViewModel(s)));
                 }
 
                 var categories = await categoryManager.GetCategories();

@@ -1,7 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3d4f112c-bf80-4e61-be66-0795c74fbe0b" name="Default" comment="" />
+    <list default="true" id="3d4f112c-bf80-4e61-be66-0795c74fbe0b" name="Default" comment="">
+      <change beforePath="" afterPath="$PROJECT_DIR$/Client/CoffeeManager.Droid/Converters/IntToStringConverter.cs" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.CoffeeManager.Core/.idea/contentModel.xml" afterPath="$PROJECT_DIR$/.idea/.idea.CoffeeManager.Core/.idea/contentModel.xml" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.CoffeeManager.Core/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/.idea.CoffeeManager.Core/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Core/ViewModels/Categories/CategoriesViewModel.cs" afterPath="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Core/ViewModels/Categories/CategoriesViewModel.cs" />
+      <change beforePath="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Core/ViewModels/Categories/CategoryDetailsViewModel.cs" afterPath="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Core/ViewModels/Categories/CategoryDetailsViewModel.cs" />
+      <change beforePath="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Core/ViewModels/Categories/CategoryItemViewModel.cs" afterPath="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Core/ViewModels/Categories/CategoryItemViewModel.cs" />
+      <change beforePath="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Core/ViewModels/CoffeeCounter/CoffeeCounterItemViewModel.cs" afterPath="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Core/ViewModels/CoffeeCounter/CoffeeCounterItemViewModel.cs" />
+      <change beforePath="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Core/ViewModels/CoffeeCounter/CoffeeCountersViewModel.cs" afterPath="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Core/ViewModels/CoffeeCounter/CoffeeCountersViewModel.cs" />
+      <change beforePath="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Core/ViewModels/Products/ProductDetailsViewModel.cs" afterPath="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Core/ViewModels/Products/ProductDetailsViewModel.cs" />
+      <change beforePath="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.iOS/Views/Categories/CategoriesView.cs" afterPath="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.iOS/Views/Categories/CategoriesView.cs" />
+      <change beforePath="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.iOS/Views/Categories/CategoriesView.designer.cs" afterPath="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.iOS/Views/Categories/CategoriesView.designer.cs" />
+      <change beforePath="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.iOS/Views/Categories/CategoriesView.xib" afterPath="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.iOS/Views/Categories/CategoriesView.xib" />
+      <change beforePath="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.iOS/Views/Categories/CategoryTableViewCell.cs" afterPath="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.iOS/Views/Categories/CategoryTableViewCell.cs" />
+      <change beforePath="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.iOS/Views/Categories/CategoryTableViewCell.designer.cs" afterPath="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.iOS/Views/Categories/CategoryTableViewCell.designer.cs" />
+      <change beforePath="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.iOS/Views/Categories/CategoryTableViewCell.xib" afterPath="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.iOS/Views/Categories/CategoryTableViewCell.xib" />
+      <change beforePath="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.iOS/Views/Counter/CoffeeCountersView.cs" afterPath="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.iOS/Views/Counter/CoffeeCountersView.cs" />
+      <change beforePath="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.iOS/Views/Counter/CoffeeCountersView.designer.cs" afterPath="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.iOS/Views/Counter/CoffeeCountersView.designer.cs" />
+      <change beforePath="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.iOS/Views/Counter/CoffeeCountersView.xib" afterPath="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.iOS/Views/Counter/CoffeeCountersView.xib" />
+      <change beforePath="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.iOS/Views/Counter/CounterTableViewCell.cs" afterPath="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.iOS/Views/Counter/CounterTableViewCell.cs" />
+      <change beforePath="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.iOS/Views/Counter/CounterTableViewCell.designer.cs" afterPath="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.iOS/Views/Counter/CounterTableViewCell.designer.cs" />
+      <change beforePath="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.iOS/Views/Counter/CounterTableViewCell.xib" afterPath="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.iOS/Views/Counter/CounterTableViewCell.xib" />
+      <change beforePath="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.iOS/Views/Users/UserDetailsView.xib" afterPath="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.iOS/Views/Users/UserDetailsView.xib" />
+      <change beforePath="$PROJECT_DIR$/Client/CoffeeManager.Core/ViewModels/CoffeeCounter/CoffeeCounterItemViewModel.cs" afterPath="$PROJECT_DIR$/Client/CoffeeManager.Core/ViewModels/CoffeeCounter/CoffeeCounterItemViewModel.cs" />
+      <change beforePath="$PROJECT_DIR$/Client/CoffeeManager.Core/ViewModels/CoffeeCounter/CoffeeCounterViewModel.cs" afterPath="$PROJECT_DIR$/Client/CoffeeManager.Core/ViewModels/CoffeeCounter/CoffeeCounterViewModel.cs" />
+      <change beforePath="$PROJECT_DIR$/Client/CoffeeManager.Core/ViewModels/EndShiftViewModel.cs" afterPath="$PROJECT_DIR$/Client/CoffeeManager.Core/ViewModels/EndShiftViewModel.cs" />
+      <change beforePath="$PROJECT_DIR$/Client/CoffeeManager.Core/ViewModels/MainViewModel.cs" afterPath="$PROJECT_DIR$/Client/CoffeeManager.Core/ViewModels/MainViewModel.cs" />
+      <change beforePath="$PROJECT_DIR$/Client/CoffeeManager.Droid/Adapters/ViewHolders/CoffeeCounterViewHolder.cs" afterPath="$PROJECT_DIR$/Client/CoffeeManager.Droid/Adapters/ViewHolders/CoffeeCounterViewHolder.cs" />
+      <change beforePath="$PROJECT_DIR$/Client/CoffeeManager.Droid/CoffeeManager.Droid.csproj" afterPath="$PROJECT_DIR$/Client/CoffeeManager.Droid/CoffeeManager.Droid.csproj" />
+      <change beforePath="$PROJECT_DIR$/Client/CoffeeManager.Droid/Resources/layout/coffee_counter_layout.axml" afterPath="$PROJECT_DIR$/Client/CoffeeManager.Droid/Resources/layout/coffee_counter_layout.axml" />
+      <change beforePath="$PROJECT_DIR$/CoffeManager.Common/Managers/CategoryManager.cs" afterPath="$PROJECT_DIR$/CoffeManager.Common/Managers/CategoryManager.cs" />
+      <change beforePath="$PROJECT_DIR$/CoffeManager.Common/Managers/CoffeeCounterManager.cs" afterPath="$PROJECT_DIR$/CoffeManager.Common/Managers/CoffeeCounterManager.cs" />
+      <change beforePath="$PROJECT_DIR$/CoffeManager.Common/Managers/ICategoryManager.cs" afterPath="$PROJECT_DIR$/CoffeManager.Common/Managers/ICategoryManager.cs" />
+      <change beforePath="$PROJECT_DIR$/CoffeManager.Common/Managers/ICoffeeCounterManager.cs" afterPath="$PROJECT_DIR$/CoffeManager.Common/Managers/ICoffeeCounterManager.cs" />
+      <change beforePath="$PROJECT_DIR$/CoffeManager.Common/Providers/CategoryProvider.cs" afterPath="$PROJECT_DIR$/CoffeManager.Common/Providers/CategoryProvider.cs" />
+      <change beforePath="$PROJECT_DIR$/CoffeManager.Common/Providers/CoffeeCounterProvider.cs" afterPath="$PROJECT_DIR$/CoffeManager.Common/Providers/CoffeeCounterProvider.cs" />
+      <change beforePath="$PROJECT_DIR$/CoffeManager.Common/Providers/ICategoryProvider.cs" afterPath="$PROJECT_DIR$/CoffeManager.Common/Providers/ICategoryProvider.cs" />
+      <change beforePath="$PROJECT_DIR$/CoffeManager.Common/Providers/ICoffeeCounterProvider.cs" afterPath="$PROJECT_DIR$/CoffeManager.Common/Providers/ICoffeeCounterProvider.cs" />
+      <change beforePath="$PROJECT_DIR$/CoffeeManager.Models/CoffeeManager.Models.csproj" afterPath="$PROJECT_DIR$/CoffeeManager.Models/CoffeeManager.Models.csproj" />
+    </list>
     <ignored path="$PROJECT_DIR$/.idea/httpRequests/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -25,11 +64,163 @@
   <component name="FavoritesManager">
     <favorites_list name="CoffeeManager.Core" />
   </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="CoffeeCountersViewModel.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Core/ViewModels/CoffeeCounter/CoffeeCountersViewModel.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="195">
+              <caret line="84" column="0" lean-forward="false" selection-start-line="84" selection-start-column="0" selection-end-line="84" selection-end-column="0" />
+              <folding>
+                <marker date="1524087947000" expanded="false" signature="6:366" ph="..." />
+                <marker date="1524087947000" expanded="true" signature="426:3663" ph="{...}" />
+                <marker date="1524087947000" expanded="true" signature="513:3661" ph="{...}" />
+                <marker date="1524087947000" expanded="true" signature="884:1449" ph="{...}" />
+                <marker date="1524087947000" expanded="true" signature="956:1439" ph="{...}" />
+                <marker date="1524087947000" expanded="true" signature="1176:1290" ph="{...}" />
+                <marker date="1524087947000" expanded="true" signature="1490:1690" ph="{...}" />
+                <marker date="1524087947000" expanded="true" signature="1556:1680" ph="{...}" />
+                <marker date="1524087947000" expanded="true" signature="1735:1807" ph="{...}" />
+                <marker date="1524087947000" expanded="true" signature="1973:2181" ph="{...}" />
+                <marker date="1524087947000" expanded="true" signature="2227:2607" ph="{...}" />
+                <marker date="1524087947000" expanded="true" signature="2273:2325" ph="{...}" />
+                <marker date="1524087947000" expanded="true" signature="2367:2595" ph="{...}" />
+                <marker date="1524087947000" expanded="true" signature="2654:2936" ph="{...}" />
+                <marker date="1524087947000" expanded="true" signature="2985:3205" ph="{...}" />
+                <marker date="1524087947000" expanded="true" signature="3248:3343" ph="{...}" />
+                <marker date="1524087947000" expanded="true" signature="3404:3655" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="end_shift.axml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Client/CoffeeManager.Droid/Resources/layout/end_shift.axml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="62">
+              <caret line="10" column="8" lean-forward="false" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="36" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CoffeeCounterView.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Client/CoffeeManager.Droid/Views/CoffeeCounterView.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="91">
+              <caret line="37" column="80" lean-forward="false" selection-start-line="37" selection-start-column="80" selection-end-line="37" selection-end-column="80" />
+              <folding>
+                <marker date="1523607558000" expanded="false" signature="6:430" ph="..." />
+                <marker date="1523607558000" expanded="true" signature="467:1928" ph="{...}" />
+                <marker date="1523607558000" expanded="true" signature="640:1926" ph="{...}" />
+                <marker date="1523607558000" expanded="true" signature="935:968" ph="{...}" />
+                <marker date="1523607558000" expanded="true" signature="1025:1112" ph="{...}" />
+                <marker date="1523607558000" expanded="true" signature="1154:1481" ph="{...}" />
+                <marker date="1523607558000" expanded="true" signature="1530:1920" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CoffeeCounterViewModel.cs" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Client/CoffeeManager.Core/ViewModels/CoffeeCounter/CoffeeCounterViewModel.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="21" column="8" lean-forward="false" selection-start-line="21" selection-start-column="8" selection-end-line="21" selection-end-column="8" />
+              <folding>
+                <marker date="1524088739000" expanded="false" signature="6:321" ph="..." />
+                <marker date="1524088739000" expanded="true" signature="376:2374" ph="{...}" />
+                <marker date="1524088739000" expanded="true" signature="482:2372" ph="{...}" />
+                <marker date="1524088739000" expanded="true" signature="829:1023" ph="{...}" />
+                <marker date="1524088739000" expanded="true" signature="1065:1979" ph="{...}" />
+                <marker date="1524088739000" expanded="true" signature="1164:1311" ph="{...}" />
+                <marker date="1524088739000" expanded="true" signature="1422:1695" ph="{...}" />
+                <marker date="1524088739000" expanded="true" signature="1505:1679" ph="{...}" />
+                <marker date="1524088739000" expanded="true" signature="1738:1967" ph="{...}" />
+                <marker date="1524088739000" expanded="true" signature="2084:2270" ph="{...}" />
+                <marker date="1524088739000" expanded="true" signature="2314:2366" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EndShiftViewModel.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Client/CoffeeManager.Core/ViewModels/EndShiftViewModel.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1785">
+              <caret line="119" column="30" lean-forward="true" selection-start-line="119" selection-start-column="30" selection-end-line="119" selection-end-column="30" />
+              <folding>
+                <marker date="1524089181000" expanded="true" signature="6:477" ph="..." />
+                <marker date="1524089181000" expanded="true" signature="518:5797" ph="{...}" />
+                <marker date="1524089181000" expanded="true" signature="619:5795" ph="{...}" />
+                <marker date="1524089181000" expanded="true" signature="785:1052" ph="{...}" />
+                <marker date="1524089181000" expanded="true" signature="850:1042" ph="{...}" />
+                <marker date="1524089181000" expanded="true" signature="1545:1866" ph="{...}" />
+                <marker date="1524089181000" expanded="true" signature="1971:2157" ph="{...}" />
+                <marker date="1524089181000" expanded="true" signature="2202:3820" ph="{...}" />
+                <marker date="1524089181000" expanded="true" signature="2366:3810" ph="{...}" />
+                <marker date="1524089181000" expanded="true" signature="2584:2705" ph="{...}" />
+                <marker date="1524089181000" expanded="true" signature="2725:2823" ph="{...}" />
+                <marker date="1524089181000" expanded="true" signature="2859:3727" ph="{...}" />
+                <marker date="1524089181000" expanded="true" signature="2984:3158" ph="{...}" />
+                <marker date="1524089181000" expanded="true" signature="3225:3400" ph="{...}" />
+                <marker date="1524089181000" expanded="true" signature="3425:3709" ph="{...}" />
+                <marker date="1524089181000" expanded="true" signature="3866:4545" ph="{...}" />
+                <marker date="1524089181000" expanded="true" signature="4183:4431" ph="{...}" />
+                <marker date="1524089181000" expanded="true" signature="4330:4417" ph="{...}" />
+                <marker date="1524089181000" expanded="true" signature="4448:4523" ph="{...}" />
+                <marker date="1524089181000" expanded="true" signature="4605:5692" ph="{...}" />
+                <marker date="1524089181000" expanded="true" signature="4704:4851" ph="{...}" />
+                <marker date="1524089181000" expanded="true" signature="4962:5233" ph="{...}" />
+                <marker date="1524089181000" expanded="true" signature="5045:5217" ph="{...}" />
+                <marker date="1524089181000" expanded="true" signature="5288:5680" ph="{...}" />
+                <marker date="1524089181000" expanded="true" signature="5736:5789" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CoffeeCounterViewHolder.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Client/CoffeeManager.Droid/Adapters/ViewHolders/CoffeeCounterViewHolder.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="172">
+              <caret line="27" column="82" lean-forward="false" selection-start-line="27" selection-start-column="82" selection-end-line="27" selection-end-column="82" />
+              <folding>
+                <marker date="1524088543000" expanded="false" signature="6:343" ph="..." />
+                <marker date="1524088543000" expanded="true" signature="395:1358" ph="{...}" />
+                <marker date="1524088543000" expanded="true" signature="455:1356" ph="{...}" />
+                <marker date="1524088543000" expanded="true" signature="568:588" ph="{...}" />
+                <marker date="1524088543000" expanded="true" signature="934:1350" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CategoryItemViewModel.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Core/ViewModels/Categories/CategoryItemViewModel.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="675">
+              <caret line="56" column="29" lean-forward="false" selection-start-line="56" selection-start-column="29" selection-end-line="56" selection-end-column="29" />
+              <folding>
+                <marker date="1524087757000" expanded="false" signature="6:362" ph="..." />
+                <marker date="1524087757000" expanded="true" signature="419:2394" ph="{...}" />
+                <marker date="1524087757000" expanded="true" signature="487:2392" ph="{...}" />
+                <marker date="1524087757000" expanded="true" signature="555:1071" ph="{...}" />
+                <marker date="1524087757000" expanded="true" signature="1118:1548" ph="{...}" />
+                <marker date="1524087757000" expanded="true" signature="1227:1538" ph="{...}" />
+                <marker date="1524087757000" expanded="true" signature="1287:1522" ph="{...}" />
+                <marker date="1524087757000" expanded="true" signature="1943:2044" ph="{...}" />
+                <marker date="1524087757000" expanded="true" signature="2091:2297" ph="{...}" />
+                <marker date="1524087757000" expanded="true" signature="2340:2385" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>fitsSystemWindows</find>
-      <find>чай</find>
-      <find>SumButtonText</find>
       <find>ActionBarTheme</find>
       <find>android:background</find>
       <find>toolbar</find>
@@ -57,6 +248,9 @@
       <find>EditProduc</find>
       <find>AddCoff</find>
       <find>sa</find>
+      <find>CoffeeRoomChangedMessage</find>
+      <find>using System\.Collections\.Generic\;\nusing System\.Linq\;\nusing CoffeeManager\.Models\.Data\.DTO\.Category\;\nusing MobileCore\.ViewModels\;\nusing System\.Windows\.Input\;\nusing MvvmCross\.Core\.ViewModels\;\nusing System\;\nusing System\.Threading\.Tasks\;\nusing MvvmCross\.Platform\;\nusing CoffeManager\.Common\.Managers\;\nusing CoffeeManagerAdmin\.Core\.Messages\;\nusing CoffeeManager\.Common\;\n\nnamespace CoffeeManagerAdmin\.Core\.ViewModels\.Categories\n\{\n    public class CategoryItemViewModel \: FeedItemElementViewModel\n    \{\n        public CategoryItemViewModel\(CategoryDTO categoryDto\)\n        \{\n            Id \= categoryDto\.Id\;\n            Name \= categoryDto\.Name\;\n            ParentId \= categoryDto\.ParentId\;\n            SubCategories \= categoryDto\?\.SubCategories\?\.Select\(s \=\&gt; new CategoryItemViewModel\(s\)\)\.ToList\(\)\;\n            IsActive \= categoryDto\.IsActive\.FirstOrDefault\(a \=\&gt; a\.CoffeeRoomNo \=\= Config\.CoffeeRoomNo\)\?\.IsActive \?\? false\;\n            DeleteCategoryCommand \= new MvxAsyncCommand\(DoDeletecategory\)\;\n            ToggleIsActiveCommand \= new MvxAsyncCommand\(DoToggleIsActive\)\;\n        \}\n\n        private async Task DoDeletecategory\(\)\n        \{\n            if \(await UserDialogs\.ConfirmAsync\(\$\&quot;Полностью удалить категорию \{Name\} из системы\?\&quot;\)\)\n            \{\n                await ExecuteSafe\(async \(\) \=\&gt;\n                \{\n                    var manager \= Mvx\.Resolve\&lt;ICategoryManager\&gt;\(\)\;\n                    await manager\.DeleteCategory\(Id\)\;\n                    MvxMessenger\.Publish\(new CategoriesUpdatedMessage\(this\)\)\;\n                \}\)\;\n            \}\n        \}\n\n        public int Id \{ get\; set\; \}\n        public string Name \{ get\; set\; \}\n        public int\? ParentId \{ get\; set\; \}\n        public List\&lt;CategoryItemViewModel\&gt; SubCategories \{ get\; set\; \}\n\n        public bool IsActive \{ get\; set\; \}\n\n        public ICommand DeleteCategoryCommand \{ get\; \}\n        public ICommand ToggleIsActiveCommand \{ get\; \}\n\n        protected override async void Select\(\)\n        \{\n            await NavigationService\.Navigate\&lt;CategoryDetailsViewModel\, int\&gt;\(Id\)\;\n        \}\n\n        private async Task DoToggleIsActive\(\)\n        \{\n            var manager \= Mvx\.Resolve\&lt;ICategoryManager\&gt;\(\)\;\n            await manager\.ToggleIsActiveCategory\(Id\)\;\n            MvxMessenger\.Publish\(new CoffeeCountersUpdateMessage\(this\)\)\;\n        \}\n\n        public override string ToString\(\)\n        \{\n            return Name\;\n        \}\n\n    \}\n\}</find>
+      <find>CoffeeCountersUpdateMessage</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -64,16 +258,19 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Admin/CoffeeManagerAdmin.iOS/Views/SuplyProducts/SuplyProductsView.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file:///Library/Frameworks/Xamarin.iOS.framework/Versions/11.8.0.20/src/Xamarin.iOS/UIKit/UIKitSynchronizationContext.cs" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/Admin/CoffeeManagerAdmin.iOS/Views/CreditCard/CreditCardView.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/Projects/MobileCore/packages.config" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/Projects/MobileCore/MvxApplicationBase.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Client/CoffeeManager.Droid/Extensions/ViewListenersExtensions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Client/CoffeeManager.Droid/Extensions/Utils.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Client/CoffeeManager.Droid/LinkerPleaseInclude.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Client/CoffeeManager.Droid/Converters/DecimalToPriceConverter.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Client/CoffeeManager.Droid/Converters/CupTypeToColorConverter.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Client/CoffeeManager.Droid/Converters/InvertedBoolToVisibilityConverter.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/Projects/MobileCore/MobileCore.Droid/Activities/ActivityBase.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Admin/CoffeeManagerAdmin.iOS/Views/Statistic/SelectSalesView.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Client/CoffeeManager.Droid/Converters/DecimalToQuantityConverter.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Client/CoffeeManager.Droid/UncaughtExceptionHandler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Client/CoffeeManager.Droid/SplashScreen.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Admin/CoffeeManagerAdmin.iOS/Views/Statistic/SelectSalesTableViewCell.cs" root0="FORCE_HIGHLIGHTING" />
@@ -82,6 +279,7 @@
     <setting file="file://$PROJECT_DIR$/Client/CoffeeManager.Droid/Setup.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Client/CoffeeManager.Droid/app.config" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/Projects/MobileCore/ViewModels/FeedViewModel.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file:///Library/Frameworks/Xamarin.iOS.framework/Versions/11.8.0.20/src/Xamarin.iOS/mcs/class/referencesource/mscorlib/system/runtime/compilerservices/AsyncMethodBuilder.cs" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/Client/CoffeeManager.Core/ViewModels/UtilizedProducts/UtilizeProductsViewModel.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Client/CoffeeManager.Core/ViewModels/Inventory/InventoryItemViewModel.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Client/CoffeeManager.Core/ViewModels/Inventory/InventoryViewModel.cs" root0="FORCE_HIGHLIGHTING" />
@@ -180,6 +378,7 @@
     <setting file="file://$PROJECT_DIR$/Web/CoffeeManager.Api/Controllers/PaymentController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Web/CoffeeManager.Api/Controllers/ShiftController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Admin/CoffeeManagerAdmin.iOS/Views/Cells/CalculationItemViewCell.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file:///Library/Frameworks/Xamarin.iOS.framework/Versions/11.8.0.20/src/Xamarin.iOS/Foundation/NSAction.cs" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/Admin/CoffeeManagerAdmin.iOS/Views/Cells/CalculationItemViewCell.designer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/Projects/MobileCore/MobileCore.Droid/Extensions/ActivityExtensions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Web/CoffeeManager.Api/Controllers/AccountController.cs" root0="FORCE_HIGHLIGHTING" />
@@ -190,6 +389,8 @@
     <setting file="file://$PROJECT_DIR$/Web/CoffeeManager.Api/Controllers/ProductsController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Admin/CoffeeManagerAdmin.iOS/Views/Home/StatisticView.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Web/CoffeeManager.Api/Controllers/UpdateController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file:///Library/Frameworks/Xamarin.iOS.framework/Versions/11.8.0.20/src/Xamarin.iOS/UIKit/UIApplication.cs" root0="SKIP_INSPECTION" />
+    <setting file="file:///Library/Frameworks/Xamarin.iOS.framework/Versions/11.8.0.20/src/Xamarin.iOS/mcs/class/referencesource/mscorlib/system/threading/executioncontext.cs" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/Admin/CoffeeManagerAdmin.iOS/Views/Home/MoneyView.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Admin/CoffeeManagerAdmin.iOS/Views/MainView.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CoffeeManager.Models/Data/DTO/Category/CategoryDTO.cs" root0="FORCE_HIGHLIGHTING" />
@@ -211,6 +412,7 @@
     <setting file="file://$USER_HOME$/Projects/MobileCore/ViewModels/FeedItemElementViewModel.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CoffeManager.Common/Providers/CategoryProvider.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/D680A8BF-3A2A-4C8D-BBFD-E665BA81F6F2/a6/69fe9475/TaskAwaiter.cs" root0="SKIP_INSPECTION" />
+    <setting file="file:///Library/Frameworks/Xamarin.iOS.framework/Versions/11.8.0.20/src/Xamarin.iOS/mcs/class/referencesource/mscorlib/system/threading/Tasks/TaskContinuation.cs" root0="SKIP_INSPECTION" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/D680A8BF-3A2A-4C8D-BBFD-E665BA81F6F2/fc/6534bf5a/Task.cs" root0="SKIP_INSPECTION" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/D680A8BF-3A2A-4C8D-BBFD-E665BA81F6F2/d6/2a2d8b1a/AsyncTaskMethodBuilder`1.cs" root0="SKIP_INSPECTION" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/73BFE399-7275-4BEF-94E8-839FE1C70D5B/04/5fe6ed8a/ActionSheetConfig.cs" root0="SKIP_INSPECTION" />
@@ -234,6 +436,7 @@
     <setting file="file://$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Core/ViewModels/SuplyProducts/SuplyProductItemViewModel.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Core/ViewModels/Calculation/SelectCalculationListViewModel.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/64197079-8435-439E-92CE-2368E1AF1088/7c/979d657b/MvxObservableCollection`1.cs" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/Client/CoffeeManager.Droid/Converters/IntToStringConverter.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Core/ViewModels/CreditCard/CreditCardViewModel.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Core/ViewModels/CreditCard/CashoutHistoryItemViewModel.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/1E89C43D-3C7D-48B5-BA69-BFC0B1BDF114/43/917709c5/FragmentPagerAdapter.cs" root0="SKIP_INSPECTION" />
@@ -374,22 +577,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Core/ViewModels/CoffeeCounter/CoffeeCountersViewModel.cs" />
-        <option value="$PROJECT_DIR$/Client/CoffeeManager.Core/ViewModels/CoffeeCounterViewModel.cs" />
-        <option value="$PROJECT_DIR$/Client/CoffeeManager.Core/ViewModels/CoffeeCounter/CoffeeCounterItemViewModel.cs" />
-        <option value="$PROJECT_DIR$/Client/CoffeeManager.Core/ViewModels/LoginViewModel.cs" />
-        <option value="$PROJECT_DIR$/Client/CoffeeManager.Core/ViewModels/CoffeeCounter/CoffeeCounterViewModel.cs" />
-        <option value="$PROJECT_DIR$/Client/CoffeeManager.Droid/Adapters/ViewHolders/CoffeeCounterViewHolder.cs" />
-        <option value="$PROJECT_DIR$/CoffeManager.Common/Managers/IShiftManager.cs" />
-        <option value="$PROJECT_DIR$/CoffeManager.Common/Managers/ShiftManager.cs" />
-        <option value="$PROJECT_DIR$/CoffeManager.Common/Providers/IShiftServiceProvider.cs" />
-        <option value="$PROJECT_DIR$/CoffeManager.Common/Providers/ShiftServiceProvider.cs" />
-        <option value="$PROJECT_DIR$/Client/CoffeeManager.Droid/Views/EndShiftView.cs" />
-        <option value="$PROJECT_DIR$/Client/CoffeeManager.Core/ViewModels/MainViewModel.cs" />
-        <option value="$PROJECT_DIR$/Client/CoffeeManager.Droid/Views/CoffeeCounterView.cs" />
-        <option value="$PROJECT_DIR$/Client/CoffeeManager.Core/ViewModels/EndShiftViewModel.cs" />
-        <option value="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Core/ViewModels/Products/ProductDetailsViewModel.cs" />
-        <option value="$PROJECT_DIR$/CoffeeManager.Models/Product.cs" />
         <option value="$PROJECT_DIR$/CoffeManager.Common/Database/ProductEntity.cs" />
         <option value="$PROJECT_DIR$/CoffeManager.Common/Managers/SyncManager.cs" />
         <option value="$PROJECT_DIR$/CoffeManager.Common/Managers/ProductManager.cs" />
@@ -425,6 +612,22 @@
         <option value="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.iOS/Views/CreditCard/CreditCardView.cs" />
         <option value="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.iOS/Views/Settings/SettingsView.cs" />
         <option value="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.iOS/Views/Home/MoneyView.cs" />
+        <option value="$PROJECT_DIR$/CoffeManager.Common/Providers/ICategoryProvider.cs" />
+        <option value="$PROJECT_DIR$/CoffeManager.Common/Providers/ICoffeeCounterProvider.cs" />
+        <option value="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Core/ViewModels/Categories/CategoriesViewModel.cs" />
+        <option value="$PROJECT_DIR$/CoffeManager.Common/Managers/ICoffeeCounterManager.cs" />
+        <option value="$PROJECT_DIR$/CoffeManager.Common/Managers/CoffeeCounterManager.cs" />
+        <option value="$PROJECT_DIR$/CoffeManager.Common/Managers/ICategoryManager.cs" />
+        <option value="$PROJECT_DIR$/CoffeManager.Common/Managers/CategoryManager.cs" />
+        <option value="$PROJECT_DIR$/Client/CoffeeManager.Core/ViewModels/MainViewModel.cs" />
+        <option value="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Core/ViewModels/Categories/CategoryItemViewModel.cs" />
+        <option value="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Core/ViewModels/CoffeeCounter/CoffeeCountersViewModel.cs" />
+        <option value="$PROJECT_DIR$/Client/CoffeeManager.Droid/Adapters/ViewHolders/CoffeeCounterViewHolder.cs" />
+        <option value="$PROJECT_DIR$/Client/CoffeeManager.Core/ViewModels/CoffeeCounter/CoffeeCounterItemViewModel.cs" />
+        <option value="$PROJECT_DIR$/Client/CoffeeManager.Droid/Converters/IntToStringConverter.cs" />
+        <option value="$PROJECT_DIR$/Client/CoffeeManager.Droid/Resources/layout/coffee_counter_layout.axml" />
+        <option value="$PROJECT_DIR$/Client/CoffeeManager.Core/ViewModels/CoffeeCounter/CoffeeCounterViewModel.cs" />
+        <option value="$PROJECT_DIR$/Client/CoffeeManager.Core/ViewModels/EndShiftViewModel.cs" />
       </list>
     </option>
   </component>
@@ -473,40 +676,6 @@
               <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
               <item name="CoffeeManager.Core (12 projects)" type="977d5f41:SolutionExplorerNodeRider" />
               <item name="Admin" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="CoffeeManagerAdmin.Core" type="977d5f41:SolutionExplorerNodeRider" />
-            </path>
-            <path>
-              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
-              <item name="CoffeeManager.Core (12 projects)" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="Admin" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="CoffeeManagerAdmin.Core" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="ViewModels" type="977d5f41:SolutionExplorerNodeRider" />
-            </path>
-            <path>
-              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
-              <item name="CoffeeManager.Core (12 projects)" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="Admin" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="CoffeeManagerAdmin.Droid" type="977d5f41:SolutionExplorerNodeRider" />
-            </path>
-            <path>
-              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
-              <item name="CoffeeManager.Core (12 projects)" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="Admin" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="CoffeeManagerAdmin.Droid" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="Views" type="977d5f41:SolutionExplorerNodeRider" />
-            </path>
-            <path>
-              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
-              <item name="CoffeeManager.Core (12 projects)" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="Admin" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="CoffeeManagerAdmin.Droid" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="Views" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="Fragments" type="977d5f41:SolutionExplorerNodeRider" />
-            </path>
-            <path>
-              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
-              <item name="CoffeeManager.Core (12 projects)" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="Admin" type="977d5f41:SolutionExplorerNodeRider" />
               <item name="CoffeeManagerAdmin.iOS" type="977d5f41:SolutionExplorerNodeRider" />
             </path>
             <path>
@@ -514,60 +683,47 @@
               <item name="CoffeeManager.Core (12 projects)" type="977d5f41:SolutionExplorerNodeRider" />
               <item name="Admin" type="977d5f41:SolutionExplorerNodeRider" />
               <item name="CoffeeManagerAdmin.iOS" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="Platform" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Converters" type="977d5f41:SolutionExplorerNodeRider" />
             </path>
             <path>
               <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
               <item name="CoffeeManager.Core (12 projects)" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="Admin" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="CoffeeManagerAdmin.iOS" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Client" type="977d5f41:SolutionExplorerNodeRider" />
+            </path>
+            <path>
+              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+              <item name="CoffeeManager.Core (12 projects)" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Client" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="CoffeeManager.Droid" type="977d5f41:SolutionExplorerNodeRider" />
+            </path>
+            <path>
+              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+              <item name="CoffeeManager.Core (12 projects)" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Client" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="CoffeeManager.Droid" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Converters" type="977d5f41:SolutionExplorerNodeRider" />
+            </path>
+            <path>
+              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+              <item name="CoffeeManager.Core (12 projects)" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Client" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="CoffeeManager.Droid" type="977d5f41:SolutionExplorerNodeRider" />
               <item name="Resources" type="977d5f41:SolutionExplorerNodeRider" />
             </path>
             <path>
               <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
               <item name="CoffeeManager.Core (12 projects)" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="Admin" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="CoffeeManagerAdmin.iOS" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="TableSources" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Client" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="CoffeeManager.Droid" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Resources" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="layout" type="977d5f41:SolutionExplorerNodeRider" />
             </path>
             <path>
               <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
               <item name="CoffeeManager.Core (12 projects)" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="Admin" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="CoffeeManagerAdmin.iOS" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Client" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="CoffeeManager.Droid" type="977d5f41:SolutionExplorerNodeRider" />
               <item name="Views" type="977d5f41:SolutionExplorerNodeRider" />
-            </path>
-            <path>
-              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
-              <item name="CoffeeManager.Core (12 projects)" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="Admin" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="CoffeeManagerAdmin.iOS" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="Views" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="Home" type="977d5f41:SolutionExplorerNodeRider" />
-            </path>
-            <path>
-              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
-              <item name="CoffeeManager.Core (12 projects)" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="Admin" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="CoffeeManagerAdmin.iOS" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="Views" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="Settings" type="977d5f41:SolutionExplorerNodeRider" />
-            </path>
-            <path>
-              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
-              <item name="CoffeeManager.Core (12 projects)" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="Admin" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="CoffeeManagerAdmin.iOS" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="Views" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="Statistic" type="977d5f41:SolutionExplorerNodeRider" />
-            </path>
-            <path>
-              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
-              <item name="CoffeeManager.Core (12 projects)" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="Admin" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="CoffeeManagerAdmin.iOS" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="Views" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="Users" type="977d5f41:SolutionExplorerNodeRider" />
             </path>
             <path>
               <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
@@ -578,21 +734,7 @@
               <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
               <item name="CoffeeManager.Core (12 projects)" type="977d5f41:SolutionExplorerNodeRider" />
               <item name="Core" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="MobileCore.iOS" type="977d5f41:SolutionExplorerNodeRider" />
-            </path>
-            <path>
-              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
-              <item name="CoffeeManager.Core (12 projects)" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="Core" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="MobileCore.iOS" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="Common" type="977d5f41:SolutionExplorerNodeRider" />
-            </path>
-            <path>
-              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
-              <item name="CoffeeManager.Core (12 projects)" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="Core" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="MobileCore.iOS" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="ViewControllers" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="MobileCore" type="977d5f41:SolutionExplorerNodeRider" />
             </path>
             <path>
               <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
@@ -629,7 +771,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Xamarin.iOS.iOS Default">
+  <component name="RunManager" selected="Xamarin.Android.DroidClient">
     <configuration name="Default" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="" />
       <option name="PROGRAM_PARAMETERS" value="" />
@@ -792,11 +934,14 @@
       <workItem from="1522761682078" duration="18491000" />
       <workItem from="1523222981753" duration="12769000" />
       <workItem from="1523538522983" duration="1042000" />
+      <workItem from="1524002139984" duration="1170000" />
+      <workItem from="1524046952896" duration="852000" />
+      <workItem from="1524083834200" duration="4608000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="193504000" />
+    <option name="totallyTimeSpent" value="200134000" />
   </component>
   <component name="TodoView" selected-index="1">
     <todo-panel id="selected-file">
@@ -819,38 +964,22 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32938075" sideWeight="0.4974055" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32938075" sideWeight="0.4974055" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="NuGet" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3544137" sideWeight="0.49444032" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.38250557" sideWeight="0.49215686" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Build" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32806325" sideWeight="0.4974055" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32987398" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39130434" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24981467" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30171278" sideWeight="0.4899926" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26834694" sideWeight="0.50784314" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32806325" sideWeight="0.49444032" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Errors In Solution" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32987398" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30171278" sideWeight="0.51000744" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Unit Tests" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32806325" sideWeight="0.49147516" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="REST Client" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33069828" sideWeight="0.4974055" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21212122" sideWeight="0.4974055" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32938075" sideWeight="0.4974055" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32938075" sideWeight="0.4974055" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="NuGet" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3544137" sideWeight="0.49444032" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Change Signature" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.38250557" sideWeight="0.49215686" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4002965" sideWeight="0.49215686" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Build" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33333334" sideWeight="0.4974055" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32987398" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39130434" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24981467" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30171278" sideWeight="0.4899926" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.44532278" sideWeight="0.4899926" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26834694" sideWeight="0.50784314" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="REST Client" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33069828" sideWeight="0.4974055" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Change Signature" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -914,19 +1043,6 @@
           <option name="timeStamp" value="111" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Core/ViewModels/Categories/CategoryDetailsViewModel.cs</url>
-          <line>64</line>
-          <properties documentPath="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Core/ViewModels/Categories/CategoryDetailsViewModel.cs" initialLine="64">
-            <startOffsets>
-              <startOffset value="2223" />
-            </startOffsets>
-            <endOffsets>
-              <endOffset value="2265" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="145" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Core/ViewModels/Home/SideMenuViewModel.cs</url>
           <line>16</line>
           <properties documentPath="$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Core/ViewModels/Home/SideMenuViewModel.cs" initialLine="16">
@@ -943,7 +1059,7 @@
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="157" />
+      <option name="time" value="171" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -960,5 +1076,737 @@
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
     </expressions>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/Admin/CoffeeManagerAdmin.iOS/Views/Home/SideMenu/SideMenuView.cs" />
+    <entry file="file://$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Core/ViewModels/Home/SideMenuViewModel.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="16" column="9" lean-forward="true" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Core/ViewModels/Settings/SettingsViewModel.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="14" column="17" lean-forward="false" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Admin/CoffeeManagerAdmin.iOS/Views/MainView.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-66">
+          <caret line="20" column="9" lean-forward="false" selection-start-line="20" selection-start-column="9" selection-end-line="20" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Admin/CoffeeManagerAdmin.iOS/Views/Users/UsersView.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="5" lean-forward="false" selection-start-line="9" selection-start-column="5" selection-end-line="9" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Admin/CoffeeManagerAdmin.iOS/Views/Home/ProductsView.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="143">
+          <caret line="10" column="43" lean-forward="false" selection-start-line="10" selection-start-column="43" selection-end-line="10" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Admin/CoffeeManagerAdmin.iOS/Views/Categories/CategoriesView.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="11" column="5" lean-forward="false" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Admin/CoffeeManagerAdmin.iOS/Views/CreditCard/CreditCardView.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="11" column="5" lean-forward="false" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Admin/CoffeeManagerAdmin.iOS/Views/Settings/SettingsView.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="5" lean-forward="true" selection-start-line="9" selection-start-column="5" selection-end-line="9" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Core/ViewModels/Home/MoneyViewModel.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="40" column="28" lean-forward="false" selection-start-line="40" selection-start-column="28" selection-end-line="40" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Core/ViewModels/MainViewModel.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="6" lean-forward="false" selection-start-line="16" selection-start-column="6" selection-end-line="16" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Droid/Views/Fragments/MoneyView.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="720">
+          <caret line="63" column="41" lean-forward="false" selection-start-line="63" selection-start-column="41" selection-end-line="63" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Admin/CoffeeManagerAdmin.iOS/Views/Home/MoneyView.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1110">
+          <caret line="81" column="35" lean-forward="false" selection-start-line="81" selection-start-column="35" selection-end-line="81" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Admin/CoffeeManagerAdmin.iOS/TableSources/BasePagingTableSource.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="13" column="48" lean-forward="false" selection-start-line="13" selection-start-column="48" selection-end-line="13" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CoffeManager.Common/Managers/IProductManager.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="21" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CoffeManager.Common/Providers/ICategoryProvider.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="18" column="44" lean-forward="false" selection-start-line="18" selection-start-column="44" selection-end-line="18" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CoffeManager.Common/Providers/ICoffeeCounterProvider.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="14" column="43" lean-forward="false" selection-start-line="14" selection-start-column="43" selection-end-line="14" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Admin/CoffeeManagerAdmin.iOS/Views/Counter/CoffeeCountersView.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="67" column="75" lean-forward="false" selection-start-line="67" selection-start-column="75" selection-end-line="67" selection-end-column="75" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Projects/MobileCore/ViewModels/FeedViewModel.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="24" column="59" lean-forward="false" selection-start-line="24" selection-start-column="59" selection-end-line="24" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///Library/Frameworks/Xamarin.iOS.framework/Versions/11.8.0.20/src/Xamarin.iOS/UIKit/UIApplication.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="127">
+          <caret line="78" column="12" lean-forward="false" selection-start-line="78" selection-start-column="12" selection-end-line="78" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///Library/Frameworks/Xamarin.iOS.framework/Versions/11.8.0.20/src/Xamarin.iOS/Foundation/NSAction.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="162" column="16" lean-forward="false" selection-start-line="162" selection-start-column="16" selection-end-line="162" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///Library/Frameworks/Xamarin.iOS.framework/Versions/11.8.0.20/src/Xamarin.iOS/UIKit/UIKitSynchronizationContext.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="23" column="59" lean-forward="false" selection-start-line="23" selection-start-column="59" selection-end-line="23" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///Library/Frameworks/Xamarin.iOS.framework/Versions/11.8.0.20/src/Xamarin.iOS/mcs/class/referencesource/mscorlib/system/threading/Tasks/TaskContinuation.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5805">
+          <caret line="387" column="77" lean-forward="false" selection-start-line="387" selection-start-column="77" selection-end-line="387" selection-end-column="77" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///Library/Frameworks/Xamarin.iOS.framework/Versions/11.8.0.20/src/Xamarin.iOS/mcs/class/referencesource/mscorlib/system/threading/executioncontext.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="14340">
+          <caret line="956" column="16" lean-forward="false" selection-start-line="956" selection-start-column="16" selection-end-line="956" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Projects/MobileCore/ViewModels/SimpleViewModel.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2370">
+          <caret line="168" column="57" lean-forward="false" selection-start-line="168" selection-start-column="57" selection-end-line="168" selection-end-column="57" />
+          <folding>
+            <marker date="1520972935000" expanded="false" signature="6:295" ph="..." />
+            <marker date="1520972935000" expanded="true" signature="378:7514" ph="{...}" />
+            <marker date="1520972935000" expanded="true" signature="446:896" ph="{...}" />
+            <marker date="1520972935000" expanded="true" signature="502:886" ph="{...}" />
+            <marker date="1520972935000" expanded="true" signature="582:711" ph="{...}" />
+            <marker date="1520972935000" expanded="true" signature="732:815" ph="{...}" />
+            <marker date="1520972935000" expanded="true" signature="914:1399" ph="IOC" />
+            <marker date="1520972935000" expanded="true" signature="1409:4571" ph="dialogs" />
+            <marker date="1520972935000" expanded="true" signature="1488:1555" ph="{...}" />
+            <marker date="1520972935000" expanded="true" signature="1634:1877" ph="{...}" />
+            <marker date="1520972935000" expanded="true" signature="1705:1865" ph="{...}" />
+            <marker date="1520972935000" expanded="true" signature="1937:2387" ph="{...}" />
+            <marker date="1520972935000" expanded="true" signature="2017:2375" ph="{...}" />
+            <marker date="1520972935000" expanded="true" signature="2131:2357" ph="{...}" />
+            <marker date="1520972935000" expanded="true" signature="2198:2331" ph="{...}" />
+            <marker date="1520972935000" expanded="true" signature="2451:2838" ph="{...}" />
+            <marker date="1520972935000" expanded="true" signature="2526:2826" ph="{...}" />
+            <marker date="1520972935000" expanded="true" signature="2628:2812" ph="{...}" />
+            <marker date="1520972935000" expanded="true" signature="2679:2794" ph="{...}" />
+            <marker date="1520972935000" expanded="true" signature="2916:3307" ph="{...}" />
+            <marker date="1520972935000" expanded="true" signature="2991:3295" ph="{...}" />
+            <marker date="1520972935000" expanded="true" signature="3093:3281" ph="{...}" />
+            <marker date="1520972935000" expanded="true" signature="3144:3263" ph="{...}" />
+            <marker date="1520972935000" expanded="true" signature="3367:3765" ph="{...}" />
+            <marker date="1520972935000" expanded="true" signature="3467:3596" ph="{...}" />
+            <marker date="1520972935000" expanded="true" signature="3654:3711" ph="{...}" />
+            <marker date="1520972935000" expanded="true" signature="3836:4211" ph="{...}" />
+            <marker date="1520972935000" expanded="true" signature="3933:4037" ph="{...}" />
+            <marker date="1520972935000" expanded="true" signature="4096:4153" ph="{...}" />
+            <marker date="1520972935000" expanded="true" signature="4320:4551" ph="{...}" />
+            <marker date="1520972935000" expanded="true" signature="4417:4506" ph="{...}" />
+            <marker date="1520972935000" expanded="true" signature="4717:5019" ph="{...}" />
+            <marker date="1520972935000" expanded="true" signature="5162:5480" ph="{...}" />
+            <marker date="1520972935000" expanded="true" signature="5670:7508" ph="{...}" />
+            <marker date="1520972935000" expanded="true" signature="5696:6160" ph="{...}" />
+            <marker date="1520972935000" expanded="true" signature="5754:6027" ph="{...}" />
+            <marker date="1520972935000" expanded="true" signature="5898:6009" ph="{...}" />
+            <marker date="1520972935000" expanded="true" signature="6215:6344" ph="{...}" />
+            <marker date="1520972935000" expanded="true" signature="6390:6579" ph="{...}" />
+            <marker date="1520972935000" expanded="true" signature="6626:6815" ph="{...}" />
+            <marker date="1520972935000" expanded="true" signature="6868:7021" ph="{...}" />
+            <marker date="1520972935000" expanded="true" signature="7053:7357" ph="{...}" />
+            <marker date="1520972935000" expanded="true" signature="7377:7456" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Projects/MobileCore/ViewModels/PageViewModel.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="885">
+          <caret line="63" column="16" lean-forward="false" selection-start-line="63" selection-start-column="16" selection-end-line="63" selection-end-column="16" />
+          <folding>
+            <marker date="1522767392000" expanded="false" signature="6:139" ph="..." />
+            <marker date="1522767392000" expanded="true" signature="223:2736" ph="{...}" />
+            <marker date="1522767392000" expanded="true" signature="455:560" ph="{...}" />
+            <marker date="1522767392000" expanded="true" signature="588:687" ph="{...}" />
+            <marker date="1522767392000" expanded="true" signature="726:932" ph="{...}" />
+            <marker date="1522767392000" expanded="true" signature="784:922" ph="{...}" />
+            <marker date="1522767392000" expanded="true" signature="1087:1189" ph="{...}" />
+            <marker date="1522767392000" expanded="true" signature="1418:1835" ph="{...}" />
+            <marker date="1522767392000" expanded="true" signature="1526:1720" ph="{...}" />
+            <marker date="1522767392000" expanded="true" signature="1900:1957" ph="{...}" />
+            <marker date="1522767392000" expanded="true" signature="2153:2186" ph="{...}" />
+            <marker date="1522767392000" expanded="true" signature="2234:2266" ph="{...}" />
+            <marker date="1522767392000" expanded="true" signature="2307:2420" ph="{...}" />
+            <marker date="1522767392000" expanded="true" signature="2468:2560" ph="{...}" />
+            <marker date="1522767392000" expanded="true" signature="2592:2666" ph="{...}" />
+            <marker date="1522767392000" expanded="true" signature="2710:2730" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///Library/Frameworks/Xamarin.iOS.framework/Versions/11.8.0.20/src/Xamarin.iOS/mcs/class/referencesource/mscorlib/system/runtime/compilerservices/AsyncMethodBuilder.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4725">
+          <caret line="315" column="16" lean-forward="false" selection-start-line="315" selection-start-column="16" selection-end-line="315" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Core/ViewModels/Categories/CategoryDetailsViewModel.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="16" column="28" lean-forward="false" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="28" />
+          <folding>
+            <marker date="1524008783000" expanded="false" signature="6:394" ph="..." />
+            <marker date="1524008783000" expanded="true" signature="451:5177" ph="{...}" />
+            <marker date="1524008783000" expanded="true" signature="531:5175" ph="{...}" />
+            <marker date="1524008783000" expanded="true" signature="1297:1391" ph="{...}" />
+            <marker date="1524008783000" expanded="true" signature="1466:1690" ph="{...}" />
+            <marker date="1524008783000" expanded="true" signature="1734:2469" ph="{...}" />
+            <marker date="1524008783000" expanded="true" signature="1972:2100" ph="{...}" />
+            <marker date="1524008783000" expanded="true" signature="2252:2457" ph="{...}" />
+            <marker date="1524008783000" expanded="true" signature="2510:3075" ph="{...}" />
+            <marker date="1524008783000" expanded="true" signature="2621:2836" ph="{...}" />
+            <marker date="1524008783000" expanded="true" signature="2698:2819" ph="{...}" />
+            <marker date="1524008783000" expanded="true" signature="2910:3063" ph="{...}" />
+            <marker date="1524008783000" expanded="true" signature="3136:3755" ph="{...}" />
+            <marker date="1524008783000" expanded="true" signature="3188:3743" ph="{...}" />
+            <marker date="1524008783000" expanded="true" signature="3371:3565" ph="{...}" />
+            <marker date="1524008783000" expanded="true" signature="3830:3986" ph="{...}" />
+            <marker date="1524008783000" expanded="true" signature="4065:4203" ph="{...}" />
+            <marker date="1524008783000" expanded="true" signature="4248:4310" ph="{...}" />
+            <marker date="1524008783000" expanded="true" signature="4352:4635" ph="{...}" />
+            <marker date="1524008783000" expanded="true" signature="4690:4917" ph="{...}" />
+            <marker date="1524008783000" expanded="true" signature="4966:5168" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CoffeManager.Common/Managers/ICoffeeCounterManager.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="9" column="71" lean-forward="false" selection-start-line="9" selection-start-column="71" selection-end-line="9" selection-end-column="71" />
+          <folding>
+            <marker date="1524084253000" expanded="false" signature="6:118" ph="..." />
+            <marker date="1524084253000" expanded="true" signature="158:673" ph="{...}" />
+            <marker date="1524084253000" expanded="true" signature="203:671" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/CoffeeManager.Core/ViewModels/LoginViewModel.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="58" column="56" lean-forward="false" selection-start-line="58" selection-start-column="56" selection-end-line="58" selection-end-column="56" />
+          <folding>
+            <marker date="1523607558000" expanded="false" signature="6:373" ph="..." />
+            <marker date="1523607558000" expanded="true" signature="414:1782" ph="{...}" />
+            <marker date="1523607558000" expanded="true" signature="464:1780" ph="{...}" />
+            <marker date="1523607558000" expanded="true" signature="739:913" ph="{...}" />
+            <marker date="1523607558000" expanded="true" signature="791:903" ph="{...}" />
+            <marker date="1523607558000" expanded="true" signature="1006:1248" ph="{...}" />
+            <marker date="1523607558000" expanded="true" signature="1305:1447" ph="{...}" />
+            <marker date="1523607558000" expanded="true" signature="1487:1615" ph="{...}" />
+            <marker date="1523607558000" expanded="true" signature="1539:1603" ph="{...}" />
+            <marker date="1523607558000" expanded="true" signature="1670:1774" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CoffeManager.Common/Managers/ICategoryManager.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="9" column="8" lean-forward="false" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
+          <folding>
+            <marker date="1524084502000" expanded="false" signature="6:109" ph="..." />
+            <marker date="1524084502000" expanded="true" signature="149:639" ph="{...}" />
+            <marker date="1524084502000" expanded="true" signature="189:637" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CoffeManager.Common/Managers/CoffeeCounterManager.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="233">
+          <caret line="28" column="111" lean-forward="false" selection-start-line="27" selection-start-column="16" selection-end-line="28" selection-end-column="111" />
+          <folding>
+            <marker date="1524084327000" expanded="false" signature="6:202" ph="..." />
+            <marker date="1524084327000" expanded="true" signature="242:1891" ph="{...}" />
+            <marker date="1524084327000" expanded="true" signature="306:1889" ph="{...}" />
+            <marker date="1524084327000" expanded="true" signature="466:550" ph="{...}" />
+            <marker date="1524084327000" expanded="true" signature="643:725" ph="{...}" />
+            <marker date="1524084327000" expanded="true" signature="819:1089" ph="{...}" />
+            <marker date="1524084327000" expanded="true" signature="1173:1263" ph="{...}" />
+            <marker date="1524084327000" expanded="true" signature="1345:1433" ph="{...}" />
+            <marker date="1524084327000" expanded="true" signature="1513:1597" ph="{...}" />
+            <marker date="1524084327000" expanded="true" signature="1653:1739" ph="{...}" />
+            <marker date="1524084327000" expanded="true" signature="1796:1883" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CoffeManager.Common/Managers/CategoryManager.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="36" column="74" lean-forward="false" selection-start-line="36" selection-start-column="52" selection-end-line="36" selection-end-column="74" />
+          <folding>
+            <marker date="1524084654000" expanded="false" signature="6:193" ph="..." />
+            <marker date="1524084654000" expanded="true" signature="233:2928" ph="{...}" />
+            <marker date="1524084654000" expanded="true" signature="300:2926" ph="{...}" />
+            <marker date="1524084654000" expanded="true" signature="435:509" ph="{...}" />
+            <marker date="1524084654000" expanded="true" signature="586:1213" ph="{...}" />
+            <marker date="1524084654000" expanded="true" signature="863:1171" ph="{...}" />
+            <marker date="1524084654000" expanded="true" signature="1079:1157" ph="{...}" />
+            <marker date="1524084654000" expanded="true" signature="1291:2086" ph="{...}" />
+            <marker date="1524084654000" expanded="true" signature="1736:2044" ph="{...}" />
+            <marker date="1524084654000" expanded="true" signature="1952:2030" ph="{...}" />
+            <marker date="1524084654000" expanded="true" signature="2160:2239" ph="{...}" />
+            <marker date="1524084654000" expanded="true" signature="2299:2378" ph="{...}" />
+            <marker date="1524084654000" expanded="true" signature="2439:2519" ph="{...}" />
+            <marker date="1524084654000" expanded="true" signature="2578:2654" ph="{...}" />
+            <marker date="1524084654000" expanded="true" signature="2704:2779" ph="{...}" />
+            <marker date="1524084654000" expanded="true" signature="2837:2920" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/CoffeeManager.Core/ViewModels/MainViewModel.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="175" column="48" lean-forward="false" selection-start-line="175" selection-start-column="48" selection-end-line="175" selection-end-column="48" />
+          <folding>
+            <marker date="1524084739000" expanded="true" signature="6:593" ph="..." />
+            <marker date="1524084739000" expanded="true" signature="634:12574" ph="{...}" />
+            <marker date="1524084739000" expanded="true" signature="705:12571" ph="{...}" />
+            <marker date="1524084739000" expanded="true" signature="1514:1871" ph="{...}" />
+            <marker date="1524084739000" expanded="true" signature="1578:1861" ph="{...}" />
+            <marker date="1524084739000" expanded="true" signature="1752:1847" ph="{...}" />
+            <marker date="1524084739000" expanded="true" signature="1916:2299" ph="{...}" />
+            <marker date="1524084739000" expanded="true" signature="1986:2289" ph="{...}" />
+            <marker date="1524084739000" expanded="true" signature="2170:2275" ph="{...}" />
+            <marker date="1524084739000" expanded="true" signature="2323:2667" ph="{...}" />
+            <marker date="1524084739000" expanded="true" signature="2373:2657" ph="{...}" />
+            <marker date="1524084739000" expanded="true" signature="2698:3136" ph="{...}" />
+            <marker date="1524084739000" expanded="true" signature="2725:2990" ph="{...}" />
+            <marker date="1524084739000" expanded="true" signature="2790:2886" ph="{...}" />
+            <marker date="1524084739000" expanded="true" signature="2907:2976" ph="{...}" />
+            <marker date="1524084739000" expanded="true" signature="3006:3126" ph="{...}" />
+            <marker date="1524084739000" expanded="true" signature="3174:3544" ph="{...}" />
+            <marker date="1524084739000" expanded="true" signature="3200:3390" ph="{...}" />
+            <marker date="1524084739000" expanded="true" signature="3406:3534" ph="{...}" />
+            <marker date="1524084739000" expanded="true" signature="3641:3808" ph="{...}" />
+            <marker date="1524084739000" expanded="true" signature="3696:3798" ph="{...}" />
+            <marker date="1524084739000" expanded="true" signature="3847:4034" ph="{...}" />
+            <marker date="1524084739000" expanded="true" signature="3912:4024" ph="{...}" />
+            <marker date="1524084739000" expanded="true" signature="4787:4994" ph="{...}" />
+            <marker date="1524084739000" expanded="true" signature="4850:4984" ph="{...}" />
+            <marker date="1524084739000" expanded="true" signature="5076:5263" ph="{...}" />
+            <marker date="1524084739000" expanded="true" signature="5132:5253" ph="{...}" />
+            <marker date="1524084739000" expanded="true" signature="5338:5521" ph="{...}" />
+            <marker date="1524084739000" expanded="true" signature="5393:5511" ph="{...}" />
+            <marker date="1524084739000" expanded="true" signature="6081:7702" ph="{...}" />
+            <marker date="1524084739000" expanded="true" signature="6338:6570" ph="{...}" />
+            <marker date="1524084739000" expanded="true" signature="6418:6516" ph="{...}" />
+            <marker date="1524084739000" expanded="true" signature="7746:7795" ph="{...}" />
+            <marker date="1524084739000" expanded="true" signature="7844:9452" ph="{...}" />
+            <marker date="1524084739000" expanded="true" signature="8061:8227" ph="{...}" />
+            <marker date="1524084739000" expanded="true" signature="8413:8497" ph="{...}" />
+            <marker date="1524084739000" expanded="true" signature="8605:9427" ph="{...}" />
+            <marker date="1524084739000" expanded="true" signature="8792:9218" ph="{...}" />
+            <marker date="1524084739000" expanded="true" signature="8854:9082" ph="{...}" />
+            <marker date="1524084739000" expanded="true" signature="8945:9060" ph="{...}" />
+            <marker date="1524084739000" expanded="true" signature="9107:9200" ph="{...}" />
+            <marker date="1524084739000" expanded="true" signature="9502:9655" ph="{...}" />
+            <marker date="1524084739000" expanded="true" signature="9558:9645" ph="{...}" />
+            <marker date="1524084739000" expanded="true" signature="9731:10455" ph="{...}" />
+            <marker date="1524084739000" expanded="true" signature="10521:10724" ph="{...}" />
+            <marker date="1524084739000" expanded="true" signature="10652:10714" ph="{...}" />
+            <marker date="1524084739000" expanded="true" signature="10760:11761" ph="{...}" />
+            <marker date="1524084739000" expanded="true" signature="10814:10866" ph="{...}" />
+            <marker date="1524084739000" expanded="true" signature="11810:11963" ph="{...}" />
+            <marker date="1524084739000" expanded="true" signature="11866:11953" ph="{...}" />
+            <marker date="1524084739000" expanded="true" signature="12004:12459" ph="{...}" />
+            <marker date="1524084739000" expanded="true" signature="12147:12279" ph="{...}" />
+            <marker date="1524084739000" expanded="true" signature="12331:12447" ph="{...}" />
+            <marker date="1524084739000" expanded="true" signature="12505:12565" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/CoffeeManager.Core/ViewModels/Products/ProductViewModel.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="40">
+          <caret line="56" column="37" lean-forward="false" selection-start-line="56" selection-start-column="37" selection-end-line="56" selection-end-column="37" />
+          <folding>
+            <marker date="1523607558000" expanded="false" signature="6:257" ph="..." />
+            <marker date="1523607558000" expanded="true" signature="307:2390" ph="{...}" />
+            <marker date="1523607558000" expanded="true" signature="359:2388" ph="{...}" />
+            <marker date="1523607558000" expanded="true" signature="614:788" ph="{...}" />
+            <marker date="1523607558000" expanded="true" signature="666:778" ph="{...}" />
+            <marker date="1523607558000" expanded="true" signature="849:1111" ph="{...}" />
+            <marker date="1523607558000" expanded="true" signature="909:1101" ph="{...}" />
+            <marker date="1523607558000" expanded="true" signature="1343:1467" ph="{...}" />
+            <marker date="1523607558000" expanded="true" signature="1518:1568" ph="{...}" />
+            <marker date="1523607558000" expanded="true" signature="1607:2382" ph="{...}" />
+            <marker date="1523607558000" expanded="true" signature="1677:2170" ph="{...}" />
+            <marker date="1523607558000" expanded="true" signature="1871:2065" ph="{...}" />
+            <marker date="1523607558000" expanded="true" signature="2187:2372" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Core/ViewModels/Categories/CategoryItemViewModel.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="675">
+          <caret line="56" column="29" lean-forward="false" selection-start-line="56" selection-start-column="29" selection-end-line="56" selection-end-column="29" />
+          <folding>
+            <marker date="1524087757000" expanded="false" signature="6:362" ph="..." />
+            <marker date="1524087757000" expanded="true" signature="419:2394" ph="{...}" />
+            <marker date="1524087757000" expanded="true" signature="487:2392" ph="{...}" />
+            <marker date="1524087757000" expanded="true" signature="555:1071" ph="{...}" />
+            <marker date="1524087757000" expanded="true" signature="1118:1548" ph="{...}" />
+            <marker date="1524087757000" expanded="true" signature="1227:1538" ph="{...}" />
+            <marker date="1524087757000" expanded="true" signature="1287:1522" ph="{...}" />
+            <marker date="1524087757000" expanded="true" signature="1943:2044" ph="{...}" />
+            <marker date="1524087757000" expanded="true" signature="2091:2297" ph="{...}" />
+            <marker date="1524087757000" expanded="true" signature="2340:2385" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/CoffeeManager.Droid/Converters/DecimalToPriceConverter.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1510069175000" expanded="false" signature="6:78" ph="..." />
+            <marker date="1510069175000" expanded="true" signature="120:674" ph="{...}" />
+            <marker date="1510069175000" expanded="true" signature="201:672" ph="{...}" />
+            <marker date="1510069175000" expanded="true" signature="321:385" ph="{...}" />
+            <marker date="1510069175000" expanded="true" signature="504:666" ph="{...}" />
+            <marker date="1510069175000" expanded="true" signature="558:615" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/CoffeeManager.Droid/Converters/InvertedBoolToVisibilityConverter.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1510069175000" expanded="false" signature="6:99" ph="..." />
+            <marker date="1510069175000" expanded="true" signature="130:434" ph="{...}" />
+            <marker date="1510069175000" expanded="true" signature="221:432" ph="{...}" />
+            <marker date="1510069175000" expanded="true" signature="341:426" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/CoffeeManager.Core/ViewModels/CoffeeCounter/CoffeeCounterItemViewModel.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="24" column="19" lean-forward="false" selection-start-line="24" selection-start-column="19" selection-end-line="24" selection-end-column="19" />
+          <folding>
+            <marker date="1524088566000" expanded="false" signature="6:83" ph="..." />
+            <marker date="1524088566000" expanded="true" signature="138:1064" ph="{...}" />
+            <marker date="1524088566000" expanded="true" signature="211:1062" ph="{...}" />
+            <marker date="1524088566000" expanded="true" signature="440:605" ph="{...}" />
+            <marker date="1524088566000" expanded="true" signature="494:595" ph="{...}" />
+            <marker date="1524088566000" expanded="true" signature="642:807" ph="{...}" />
+            <marker date="1524088566000" expanded="true" signature="696:797" ph="{...}" />
+            <marker date="1524088566000" expanded="true" signature="885:1056" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/CoffeeManager.Droid/Converters/IntToStringConverter.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="295">
+          <caret line="22" column="5" lean-forward="false" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
+          <folding>
+            <marker date="1524088586000" expanded="true" signature="6:78" ph="..." />
+            <marker date="1524088586000" expanded="true" signature="120:709" ph="{...}" />
+            <marker date="1524088586000" expanded="true" signature="194:707" ph="{...}" />
+            <marker date="1524088586000" expanded="true" signature="310:426" ph="{...}" />
+            <marker date="1524088586000" expanded="true" signature="541:701" ph="{...}" />
+            <marker date="1524088586000" expanded="true" signature="596:653" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/CoffeeManager.Droid/Resources/layout/end_shift.axml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="62">
+          <caret line="10" column="8" lean-forward="false" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/CoffeeManager.Droid/Resources/layout/coffee_counter_layout.axml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="8" lean-forward="false" selection-start-line="13" selection-start-column="8" selection-end-line="13" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/CoffeeManager.Droid/Converters/DecimalToQuantityConverter.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="8" column="30" lean-forward="false" selection-start-line="8" selection-start-column="30" selection-end-line="8" selection-end-column="30" />
+          <folding>
+            <marker date="1510069175000" expanded="false" signature="7:113" ph="..." />
+            <marker date="1510069175000" expanded="true" signature="155:765" ph="{...}" />
+            <marker date="1510069175000" expanded="true" signature="239:763" ph="{...}" />
+            <marker date="1510069175000" expanded="true" signature="359:475" ph="{...}" />
+            <marker date="1510069175000" expanded="true" signature="594:757" ph="{...}" />
+            <marker date="1510069175000" expanded="true" signature="649:706" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Admin/CoffeeManagerAdmin.iOS/Converters/DecimalToStringConverter.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="40" lean-forward="true" selection-start-line="9" selection-start-column="40" selection-end-line="9" selection-end-column="40" />
+          <folding>
+            <marker date="1519636644000" expanded="true" signature="43:480" ph="{...}" />
+            <marker date="1519636644000" expanded="true" signature="123:478" ph="{...}" />
+            <marker date="1519636644000" expanded="true" signature="253:450" ph="{...}" />
+            <marker date="1519636644000" expanded="true" signature="451:472" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Core/Converters/GenericConverter.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1523607558000" expanded="false" signature="6:50" ph="..." />
+            <marker date="1523607558000" expanded="true" signature="96:1205" ph="{...}" />
+            <marker date="1523607558000" expanded="true" signature="176:1203" ph="{...}" />
+            <marker date="1523607558000" expanded="true" signature="402:534" ph="{...}" />
+            <marker date="1523607558000" expanded="true" signature="675:786" ph="{...}" />
+            <marker date="1523607558000" expanded="true" signature="927:1197" ph="{...}" />
+            <marker date="1523607558000" expanded="true" signature="982:1110" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Core/ViewModels/Categories/CategoriesViewModel.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1013">
+          <caret line="28" column="31" lean-forward="false" selection-start-line="28" selection-start-column="31" selection-end-line="28" selection-end-column="31" />
+          <folding>
+            <marker date="1524083937000" expanded="false" signature="6:396" ph="..." />
+            <marker date="1524083937000" expanded="true" signature="453:3628" ph="{...}" />
+            <marker date="1524083937000" expanded="true" signature="531:3626" ph="{...}" />
+            <marker date="1524083937000" expanded="true" signature="826:1484" ph="{...}" />
+            <marker date="1524083937000" expanded="true" signature="898:1474" ph="{...}" />
+            <marker date="1524083937000" expanded="true" signature="1119:1311" ph="{...}" />
+            <marker date="1524083937000" expanded="true" signature="1525:1725" ph="{...}" />
+            <marker date="1524083937000" expanded="true" signature="1591:1715" ph="{...}" />
+            <marker date="1524083937000" expanded="true" signature="1770:1842" ph="{...}" />
+            <marker date="1524083937000" expanded="true" signature="1994:2181" ph="{...}" />
+            <marker date="1524083937000" expanded="true" signature="2227:2608" ph="{...}" />
+            <marker date="1524083937000" expanded="true" signature="2274:2326" ph="{...}" />
+            <marker date="1524083937000" expanded="true" signature="2368:2596" ph="{...}" />
+            <marker date="1524083937000" expanded="true" signature="2652:2742" ph="{...}" />
+            <marker date="1524083937000" expanded="true" signature="2842:3124" ph="{...}" />
+            <marker date="1524083937000" expanded="true" signature="3158:3219" ph="{...}" />
+            <marker date="1524083937000" expanded="true" signature="3266:3439" ph="{...}" />
+            <marker date="1524083937000" expanded="true" signature="3488:3620" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Admin/CoffeeManagerAdmin.Core/ViewModels/CoffeeCounter/CoffeeCountersViewModel.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="84" column="0" lean-forward="false" selection-start-line="84" selection-start-column="0" selection-end-line="84" selection-end-column="0" />
+          <folding>
+            <marker date="1524087947000" expanded="false" signature="6:366" ph="..." />
+            <marker date="1524087947000" expanded="true" signature="426:3663" ph="{...}" />
+            <marker date="1524087947000" expanded="true" signature="513:3661" ph="{...}" />
+            <marker date="1524087947000" expanded="true" signature="884:1449" ph="{...}" />
+            <marker date="1524087947000" expanded="true" signature="956:1439" ph="{...}" />
+            <marker date="1524087947000" expanded="true" signature="1176:1290" ph="{...}" />
+            <marker date="1524087947000" expanded="true" signature="1490:1690" ph="{...}" />
+            <marker date="1524087947000" expanded="true" signature="1556:1680" ph="{...}" />
+            <marker date="1524087947000" expanded="true" signature="1735:1807" ph="{...}" />
+            <marker date="1524087947000" expanded="true" signature="1973:2181" ph="{...}" />
+            <marker date="1524087947000" expanded="true" signature="2227:2607" ph="{...}" />
+            <marker date="1524087947000" expanded="true" signature="2273:2325" ph="{...}" />
+            <marker date="1524087947000" expanded="true" signature="2367:2595" ph="{...}" />
+            <marker date="1524087947000" expanded="true" signature="2654:2936" ph="{...}" />
+            <marker date="1524087947000" expanded="true" signature="2985:3205" ph="{...}" />
+            <marker date="1524087947000" expanded="true" signature="3248:3343" ph="{...}" />
+            <marker date="1524087947000" expanded="true" signature="3404:3655" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/CoffeeManager.Droid/Adapters/ViewHolders/CoffeeCounterViewHolder.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="172">
+          <caret line="27" column="82" lean-forward="false" selection-start-line="27" selection-start-column="82" selection-end-line="27" selection-end-column="82" />
+          <folding>
+            <marker date="1524088543000" expanded="false" signature="6:343" ph="..." />
+            <marker date="1524088543000" expanded="true" signature="395:1358" ph="{...}" />
+            <marker date="1524088543000" expanded="true" signature="455:1356" ph="{...}" />
+            <marker date="1524088543000" expanded="true" signature="568:588" ph="{...}" />
+            <marker date="1524088543000" expanded="true" signature="934:1350" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/CoffeeManager.Droid/Views/CoffeeCounterView.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="91">
+          <caret line="37" column="80" lean-forward="false" selection-start-line="37" selection-start-column="80" selection-end-line="37" selection-end-column="80" />
+          <folding>
+            <marker date="1523607558000" expanded="false" signature="6:430" ph="..." />
+            <marker date="1523607558000" expanded="true" signature="467:1928" ph="{...}" />
+            <marker date="1523607558000" expanded="true" signature="640:1926" ph="{...}" />
+            <marker date="1523607558000" expanded="true" signature="935:968" ph="{...}" />
+            <marker date="1523607558000" expanded="true" signature="1025:1112" ph="{...}" />
+            <marker date="1523607558000" expanded="true" signature="1154:1481" ph="{...}" />
+            <marker date="1523607558000" expanded="true" signature="1530:1920" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/CoffeeManager.Core/ViewModels/EndShiftViewModel.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1785">
+          <caret line="119" column="30" lean-forward="true" selection-start-line="119" selection-start-column="30" selection-end-line="119" selection-end-column="30" />
+          <folding>
+            <marker date="1524089181000" expanded="true" signature="6:477" ph="..." />
+            <marker date="1524089181000" expanded="true" signature="518:5797" ph="{...}" />
+            <marker date="1524089181000" expanded="true" signature="619:5795" ph="{...}" />
+            <marker date="1524089181000" expanded="true" signature="785:1052" ph="{...}" />
+            <marker date="1524089181000" expanded="true" signature="850:1042" ph="{...}" />
+            <marker date="1524089181000" expanded="true" signature="1545:1866" ph="{...}" />
+            <marker date="1524089181000" expanded="true" signature="1971:2157" ph="{...}" />
+            <marker date="1524089181000" expanded="true" signature="2202:3820" ph="{...}" />
+            <marker date="1524089181000" expanded="true" signature="2366:3810" ph="{...}" />
+            <marker date="1524089181000" expanded="true" signature="2584:2705" ph="{...}" />
+            <marker date="1524089181000" expanded="true" signature="2725:2823" ph="{...}" />
+            <marker date="1524089181000" expanded="true" signature="2859:3727" ph="{...}" />
+            <marker date="1524089181000" expanded="true" signature="2984:3158" ph="{...}" />
+            <marker date="1524089181000" expanded="true" signature="3225:3400" ph="{...}" />
+            <marker date="1524089181000" expanded="true" signature="3425:3709" ph="{...}" />
+            <marker date="1524089181000" expanded="true" signature="3866:4545" ph="{...}" />
+            <marker date="1524089181000" expanded="true" signature="4183:4431" ph="{...}" />
+            <marker date="1524089181000" expanded="true" signature="4330:4417" ph="{...}" />
+            <marker date="1524089181000" expanded="true" signature="4448:4523" ph="{...}" />
+            <marker date="1524089181000" expanded="true" signature="4605:5692" ph="{...}" />
+            <marker date="1524089181000" expanded="true" signature="4704:4851" ph="{...}" />
+            <marker date="1524089181000" expanded="true" signature="4962:5233" ph="{...}" />
+            <marker date="1524089181000" expanded="true" signature="5045:5217" ph="{...}" />
+            <marker date="1524089181000" expanded="true" signature="5288:5680" ph="{...}" />
+            <marker date="1524089181000" expanded="true" signature="5736:5789" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/CoffeeManager.Core/ViewModels/CoffeeCounter/CoffeeCounterViewModel.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="21" column="8" lean-forward="false" selection-start-line="21" selection-start-column="8" selection-end-line="21" selection-end-column="8" />
+          <folding>
+            <marker date="1524088739000" expanded="false" signature="6:321" ph="..." />
+            <marker date="1524088739000" expanded="true" signature="376:2374" ph="{...}" />
+            <marker date="1524088739000" expanded="true" signature="482:2372" ph="{...}" />
+            <marker date="1524088739000" expanded="true" signature="829:1023" ph="{...}" />
+            <marker date="1524088739000" expanded="true" signature="1065:1979" ph="{...}" />
+            <marker date="1524088739000" expanded="true" signature="1164:1311" ph="{...}" />
+            <marker date="1524088739000" expanded="true" signature="1422:1695" ph="{...}" />
+            <marker date="1524088739000" expanded="true" signature="1505:1679" ph="{...}" />
+            <marker date="1524088739000" expanded="true" signature="1738:1967" ph="{...}" />
+            <marker date="1524088739000" expanded="true" signature="2084:2270" ph="{...}" />
+            <marker date="1524088739000" expanded="true" signature="2314:2366" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
   </component>
 </project>

@@ -8,6 +8,8 @@ namespace CoffeManager.Common.Managers
     {
         Task<IEnumerable<CategoryDTO>> GetCategories();
         
+        Task<IEnumerable<CategoryDTO>> GetCategoriesForClient();
+        
         Task<IEnumerable<CategoryDTO>> GetCategoriesPlain();
 
         Task<CategoryDTO> GetCategory(int id);
@@ -17,5 +19,7 @@ namespace CoffeManager.Common.Managers
         Task UpdateCategory(CategoryDTO dto);
 
         Task DeleteCategory(int id);
+        
+        Task ToggleIsActiveCategory(int id);
     }
 }

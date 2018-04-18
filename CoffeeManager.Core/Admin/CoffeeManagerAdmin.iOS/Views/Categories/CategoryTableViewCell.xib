@@ -19,21 +19,27 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9fz-H7-eGy">
-                        <rect key="frame" x="16" y="16" width="288" height="11.5"/>
+                        <rect key="frame" x="16" y="16" width="223" height="11.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="02L-Mg-ZZo">
+                        <rect key="frame" x="255" y="6.5" width="51" height="31"/>
+                    </switch>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="9fz-H7-eGy" secondAttribute="trailing" constant="16" id="DGy-nD-KRX"/>
+                    <constraint firstAttribute="trailing" secondItem="02L-Mg-ZZo" secondAttribute="trailing" constant="16" id="0c9-BO-fbp"/>
                     <constraint firstAttribute="bottom" secondItem="9fz-H7-eGy" secondAttribute="bottom" constant="16" id="JWA-vF-xf0"/>
+                    <constraint firstItem="02L-Mg-ZZo" firstAttribute="centerY" secondItem="9fz-H7-eGy" secondAttribute="centerY" id="dDt-Kg-NXm"/>
                     <constraint firstItem="9fz-H7-eGy" firstAttribute="leading" secondItem="YTl-1W-gDM" secondAttribute="leading" constant="16" id="fJ4-Dn-Ycl"/>
+                    <constraint firstItem="02L-Mg-ZZo" firstAttribute="leading" secondItem="9fz-H7-eGy" secondAttribute="trailing" constant="16" id="kcN-Hc-Bux"/>
                     <constraint firstItem="9fz-H7-eGy" firstAttribute="top" secondItem="YTl-1W-gDM" secondAttribute="top" constant="16" id="wOx-4V-kWQ"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="CategoryLabel" destination="9fz-H7-eGy" id="k1R-k3-3fZ"/>
+                <outlet property="IsActiveSwitch" destination="02L-Mg-ZZo" id="ytE-fZ-Zdd"/>
             </connections>
         </tableViewCell>
     </objects>

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using CoffeeManager.Models;
 using CoffeeManager.Models.Data.DTO.CoffeeRoomCounter;
@@ -36,6 +37,11 @@ namespace CoffeManager.Common.Providers
             {
                 {nameof(counterId), counterId.ToString()}
             });
+        }
+
+        public async Task ToggleIsActiveCounter(int id)
+        {
+            await Post<Object>(RoutesConstants.ToggleCounterEnabled, null, new Dictionary<string, string>() { { nameof(id), id.ToString() } }); 
         }
     }
 }

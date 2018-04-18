@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using CoffeeManager.Models;
 using CoffeeManager.Models.Data.DTO.Category;
@@ -54,6 +55,11 @@ namespace CoffeManager.Common.Providers
             {
                 {nameof(categoryId), categoryId.ToString()}
             });
+        }
+
+        public async Task ToggleIsActiveCategory(int id)
+        {
+            await Post<Object>(RoutesConstants.ToggleCategoryEnabled, null, new Dictionary<string, string>() { { nameof(id), id.ToString() } }); 
         }
     }
 }
