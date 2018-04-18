@@ -101,15 +101,17 @@ namespace CoffeeManager.Api.Controllers
                 shift.RealAmount = shiftInfo.RealAmount;
                // shift.EndCounter = shiftInfo.Counter;
 
-
                 foreach (var coffeeCounter in shiftInfo.CoffeeCounters)
                 {
-                    var counter = enities.CoffeeCounters.First(c =>
+                    var counter = enities.CoffeeCounters.FirstOrDefault(c =>
                         c.CoffeeRoomNo == coffeeroomno && c.ShiftId == shiftId &&
                         c.SuplyProductId == coffeeCounter.SuplyProductId);
-                    counter.EndCounter = coffeeCounter.EndCounter;
-                    counter.UsedPortionsCount = counter.EndCounter - counter.StartCounter;
-                    enities.SaveChanges();
+                    if (counter != null)
+                    {
+                        counter.EndCounter = coffeeCounter.EndCounter;
+                        counter.UsedPortionsCount = counter.EndCounter - counter.StartCounter;
+                        enities.SaveChanges();
+                    }
                 }
 
 
@@ -233,8 +235,8 @@ namespace CoffeeManager.Api.Controllers
                 decimal usedCoffee = 0;
                 var sales = entities.Sales.Where(s => s.ShiftId == id && !s.IsRejected);
 
-                var coffeeSuplyProductsIds = entities.CoffeeCounterForCoffeeRooms
-                    .Where(s => s.CoffeeRoomNo == coffeeroomno).Select(s => s.SuplyProductId).ToList();
+                var coffeeSuplyProductsIds = entities.CoffeeCounterForCoffeeRooms.Include(c => c.EnabledCoffeeCounters).ToList()
+                    .Where(s => s.EnabledCoffeeCounters.FirstOrDefault(c => c.CoffeeRoomNo == coffeeroomno)?.IsEnabled ?? false).Select(s => s.SuplyProductId).ToList();
                 if (coffeeSuplyProductsIds.Any())
                 {
                     foreach (var item in sales)

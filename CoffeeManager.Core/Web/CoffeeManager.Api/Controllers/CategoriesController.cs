@@ -111,7 +111,11 @@ namespace CoffeeManager.Api.Controllers
         public async Task<HttpResponseMessage> ToggleCategoryEnabled([FromUri]int coffeeroomno, int id, HttpRequestMessage message)
         {
             var entities = new CoffeeRoomEntities();
-            var category = entities.Categories.FirstOrDefault(t => t.CoffeeRoomNo == coffeeroomno && t.Id == id);
+            var category = entities.Categories
+                .Include(c => c.CoffeeCounterForCoffeeRooms)
+                .Include(s => s.CoffeeCounterForCoffeeRooms
+                .Select(cc => cc.EnabledCoffeeCounters))
+                .FirstOrDefault(t => t.Id == id);
             if (category != null)
             {
                 var isEnabledDb =
@@ -124,8 +128,19 @@ namespace CoffeeManager.Api.Controllers
                         CategoryId = id,
                         CoffeeRoomNo = coffeeroomno
                     };
+                    entities.EnabledCategories.Add(isEnabledDb);
                 }
                 isEnabledDb.IsEnabled = !isEnabledDb.IsEnabled;
+
+                var counter = category.CoffeeCounterForCoffeeRooms.FirstOrDefault();
+                if (counter != null)
+                {
+                    var enabledDb = counter.EnabledCoffeeCounters.FirstOrDefault(c => c.CoffeeRoomNo == coffeeroomno);
+                    if (enabledDb != null)
+                    {
+                        enabledDb.IsEnabled = isEnabledDb.IsEnabled;
+                    }
+                }
                 entities.SaveChanges();
             }
             return Request.CreateResponse(HttpStatusCode.OK);

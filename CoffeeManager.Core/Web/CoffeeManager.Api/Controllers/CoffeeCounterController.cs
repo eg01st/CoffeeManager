@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -20,7 +21,7 @@ namespace CoffeeManager.Api.Controllers
         [HttpGet]
         public HttpResponseMessage GetCounters([FromUri]int coffeeroomno)
         {
-            var counters = new CoffeeRoomEntities().CoffeeCounterForCoffeeRooms.ToArray().Select(u => u.ToDTO());
+            var counters = new CoffeeRoomEntities().CoffeeCounterForCoffeeRooms.Include(c => c.EnabledCoffeeCounters).ToArray().Select(u => u.ToDTO());
             return new HttpResponseMessage() { Content = new ObjectContent<IEnumerable<CoffeeCounterForCoffeeRoomDTO>>(counters, new JsonMediaTypeFormatter()) };
         }
 
@@ -82,7 +83,7 @@ namespace CoffeeManager.Api.Controllers
         public async Task<HttpResponseMessage> ToggleCounterEnabled([FromUri]int coffeeroomno, int id, HttpRequestMessage message)
         {
             var entities = new CoffeeRoomEntities();
-            var counter = entities.CoffeeCounterForCoffeeRooms.FirstOrDefault(t => t.CoffeeRoomNo == coffeeroomno && t.Id == id);
+            var counter = entities.CoffeeCounterForCoffeeRooms.FirstOrDefault(t => t.Id == id);
             if (counter != null)
             {
                 var isEnabledDb =
@@ -95,6 +96,7 @@ namespace CoffeeManager.Api.Controllers
                         CounterId = id,
                         CoffeeRoomNo = coffeeroomno
                     };
+                    entities.EnabledCoffeeCounters.Add(isEnabledDb);
                 }
                 isEnabledDb.IsEnabled = !isEnabledDb.IsEnabled;
                 entities.SaveChanges();
