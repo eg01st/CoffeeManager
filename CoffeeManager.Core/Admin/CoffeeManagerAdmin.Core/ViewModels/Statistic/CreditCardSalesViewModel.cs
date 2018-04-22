@@ -24,7 +24,7 @@ namespace CoffeeManagerAdmin.Core
             this.manager = manager;
         }
 
-        public async Task Init()
+        public override async Task Initialize()
         {
             IEnumerable<Sale> sales = await manager.GetCreditCardSales(from, to);
             Sales = sales.Select(s => new StatisticSaleItemViewModel(s)).ToList();

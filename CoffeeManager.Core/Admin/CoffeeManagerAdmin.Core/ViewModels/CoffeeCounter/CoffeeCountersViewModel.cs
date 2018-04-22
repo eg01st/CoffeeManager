@@ -30,6 +30,10 @@ namespace CoffeeManagerAdmin.Core.ViewModels.CoffeeCounter
             get { return currentCoffeeRoom; }
             set
             {
+                if (currentCoffeeRoom?.Id == value?.Id)
+                {
+                    return;
+                }
                 bool isInitialSelect = currentCoffeeRoom == null;
                 currentCoffeeRoom = value;
                 Config.CoffeeRoomNo = currentCoffeeRoom.Id;

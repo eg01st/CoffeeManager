@@ -3,6 +3,8 @@ using System.Windows.Input;
 using MvvmCross.iOS.Views;
 using Foundation;
 using UIKit;
+using MobileCore.Logging;
+using System;
 
 namespace CoffeeManagerAdmin.iOS
 {
@@ -104,6 +106,26 @@ namespace CoffeeManagerAdmin.iOS
         public void Include(System.ComponentModel.INotifyPropertyChanged changed)
         {
             changed.PropertyChanged += (sender, e) => { var test = e.PropertyName; };
+        }
+
+        public void Include(ConsoleColor color)
+        {
+            Console.Write("");
+            Console.WriteLine("");
+            color = Console.ForegroundColor;
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.ForegroundColor = ConsoleColor.Gray;
+            Console.ForegroundColor = ConsoleColor.DarkGray;
+        }
+
+        public void Include(UISearchBar searchBar)
+        {
+            searchBar.Text = searchBar.Text + "";
+            searchBar.Placeholder = searchBar.Placeholder + "";
+            searchBar.TextChanged += (s, e) => { };
         }
     }
 }

@@ -46,11 +46,11 @@ namespace CoffeeManagerAdmin.Core.ViewModels
 
         public int ItemCount => _item.ItemCount;
 
-        protected override void DoGoToDetails()
+        protected override async void DoGoToDetails()
         {
             if(Id > 0)
             {
-                ShowViewModel<ShiftExpenseDetailsViewModel>(new {id = Id});
+                await NavigationService.Navigate<ShiftExpenseDetailsViewModel, int>(Id);
             }
         }
     }

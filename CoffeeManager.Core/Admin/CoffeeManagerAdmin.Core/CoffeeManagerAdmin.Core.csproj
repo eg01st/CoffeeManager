@@ -212,10 +212,6 @@
       <Project>{77E355CB-ADF2-4617-AD95-59E1F4F8AF17}</Project>
       <Name>CoffeeManager.Models</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Client\CoffeeManager.Core\CoffeeManager.Core.csproj">
-      <Project>{8E7D0DE1-C5BE-4435-B79B-7BC76768705D}</Project>
-      <Name>CoffeeManager.Core</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\CoffeManager.Common\CoffeManager.Common.csproj">
       <Project>{F630255E-C4A6-4DC6-ACC2-D9DE1E3D06F0}</Project>
       <Name>CoffeManager.Common</Name>

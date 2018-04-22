@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
-using CoffeeManager.Core.ViewModels.Settings;
 using CoffeeManagerAdmin.Core.ViewModels.Categories;
 using CoffeeManagerAdmin.Core.ViewModels.CoffeeCounter;
 using CoffeeManagerAdmin.Core.ViewModels.CreditCard;
+using CoffeeManagerAdmin.Core.ViewModels.Settings;
 using CoffeManager.Common.Common;
 using MobileCore.ViewModels;
 

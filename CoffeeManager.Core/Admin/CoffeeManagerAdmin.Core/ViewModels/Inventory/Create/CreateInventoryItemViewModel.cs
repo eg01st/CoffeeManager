@@ -1,16 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using CoffeManager.Common;
-using System.Linq;
-using System.Windows.Input;
-using CoffeeManager.Core.Messages;
-using MvvmCross.Core.ViewModels;
-using CoffeeManager.Models;
+﻿using CoffeeManager.Models;
 using CoffeManager.Common.ViewModels;
-using MvvmCross.Plugins.Messenger;
 
-namespace CoffeeManagerAdmin.Core
+namespace CoffeeManagerAdmin.Core.ViewModels.Inventory.Create
 {
     public class CreateInventoryItemViewModel : ListItemViewModelBase
     {
@@ -40,7 +31,7 @@ namespace CoffeeManagerAdmin.Core
             InventoryNumerationMultyplier = item.InventoryNumerationMultyplier;
         }
 
-        protected async override void DoGoToDetails()
+        protected override async void DoGoToDetails()
         {
             var result = await PromtDecimalAsync($"Введите количество товара {Name} в единицах измерения '{InventoryNumerationName}'");
             if (result.HasValue)
@@ -49,7 +40,7 @@ namespace CoffeeManagerAdmin.Core
                 QuantityAfter = result.Value;
                 RaisePropertyChanged(nameof(IsProceeded));
                 RaisePropertyChanged(nameof(QuantityAfter));
-                Publish(new InventoryItemChangedMessage(this));
+                //Publish(new InventoryItemChangedMessage(this));
             }
         }
     }

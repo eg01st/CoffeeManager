@@ -41,10 +41,10 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Products
             await manager.ToggleIsActiveProduct(prod.Id);
         }
 
-        protected override void DoGoToDetails()
+        protected override async void DoGoToDetails()
         {
             var id = ParameterTransmitter.PutParameter(prod);
-            ShowViewModel<ProductDetailsViewModel>(new {id});
+            await NavigationService.Navigate<ProductDetailsViewModel, Product>(prod);
         }
 
         private void DoDeleCommand()

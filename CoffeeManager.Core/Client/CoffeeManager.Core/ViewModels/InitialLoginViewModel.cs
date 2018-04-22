@@ -96,12 +96,11 @@ namespace CoffeeManager.Core
             await NavigationService.Close(this, false);
         }
 
-        public override void ViewDestroy()
+        public override void ViewDestroy(bool viewFinishing = true)
         {
             if (CloseCompletionSource != null && !CloseCompletionSource.Task.IsCompleted && !CloseCompletionSource.Task.IsFaulted)
                 CloseCompletionSource?.TrySetCanceled();
-            base.ViewDestroy();
+            base.ViewDestroy(viewFinishing);
         }
-
     }
 }

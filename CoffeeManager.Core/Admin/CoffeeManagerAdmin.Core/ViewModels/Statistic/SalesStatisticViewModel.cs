@@ -29,7 +29,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Statistic
             this.manager = manager;
         }
 
-        public async Task Init()
+        public override async Task Initialize()
         {
             saleItems = await manager.GetSales(from, to);
             

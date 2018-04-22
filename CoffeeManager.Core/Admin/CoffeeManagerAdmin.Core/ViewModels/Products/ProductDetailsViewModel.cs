@@ -13,9 +13,9 @@ using CoffeeManager.Common;
 
 namespace CoffeeManagerAdmin.Core.ViewModels.Products
 {
-    public class ProductDetailsViewModel : ViewModelBase
+    public class ProductDetailsViewModel : ViewModelBase, IMvxViewModel<Product>
     {
-   
+        private Product product;
         private int id;
         private string name;
         private string price;
@@ -178,19 +178,16 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Products
             SelectCalculationItemsCommand = new MvxCommand(DoSelectCalculationItems);
         }
 
-        public async Task Init(Guid id)
+        public override async Task Initialize()
         {
             var categories = await categoryManager.GetCategoriesPlain();
             CategoriesList = categories.Select(s => new CategoryItemViewModel(s)).ToList();
             RaisePropertyChanged(nameof(CategoriesList));
             
-            if(id != Guid.Empty)
+            if(product != null)
             {
                 addProductCommand = new MvxCommand(DoEditProduct);
-                
-                Product product;
-                ParameterTransmitter.TryGetParameter(id, out product);
-                this.id = product.Id;
+                id = product.Id;
                 Name = product.Name;
                 Price = product.Price.ToString("F");
                 PolicePrice = product.PolicePrice.ToString("F");
@@ -261,6 +258,10 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Products
         {
             ShowViewModel<CalculationViewModel>(new { id = id });
         }
-     
+
+        public void Prepare(Product parameter)
+        {
+            product = parameter;
+        }
     }
 }

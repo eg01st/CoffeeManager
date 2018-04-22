@@ -26,16 +26,16 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Home
         public ProductsViewModel(IProductManager manager)
         {
             this.manager = manager;
-            AddProductCommand = new MvxCommand(DoAddProduct);
+            AddProductCommand = new MvxAsyncCommand(DoAddProduct);
             ShowCategoriesCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<CategoriesViewModel>());
             productListChangedToken = MvxMessenger.Subscribe<ProductListChangedMessage>( async(obj) => await Initialize());
             coffeeRoomChangedToken = MvxMessenger.Subscribe<CoffeeRoomChangedMessage>(async (obj) =>await Initialize());
         }
 
 
-        private void DoAddProduct()
+        private async Task DoAddProduct()
         {
-            ShowViewModel<ProductDetailsViewModel>();
+            await NavigationService.Navigate<ProductDetailsViewModel>();
         }
 
         public override async Task<List<ListItemViewModelBase>> LoadData()
@@ -44,7 +44,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Home
             var result = new List<ListItemViewModelBase>();
 
 
-            var vms = items.Select(s => new ProductItemViewModel(s)).GroupBy(g => g.Category).OrderBy(o => o.Key);
+            var vms = items.Select(s => new ProductItemViewModel(s)).GroupBy(g => g.Category).OrderBy(o => o.Key).ToList();
             foreach (var item in vms)
             {
                 result.Add(new ExpenseTypeHeaderViewModel(item.Key));

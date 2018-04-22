@@ -13,7 +13,6 @@ namespace CoffeManager.Common.ViewModels
 {
     public abstract class ViewModelBase : PageViewModel
     {
-        
         private IAccountManager AccountManager
         {
             get
@@ -46,12 +45,11 @@ namespace CoffeManager.Common.ViewModels
             Close(this);
         }
 
-        public override void ViewDestroy()
+        public override void ViewDestroy(bool viewFinishing = true)
         {
-            base.ViewDestroy();
+            base.ViewDestroy(viewFinishing);
             DoUnsubscribe();
         }
-
 
         protected virtual void OnClose()
         {

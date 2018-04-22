@@ -12,7 +12,6 @@ using CoffeManager.Common;
 using CoffeManager.Common.Managers;
 using CoffeManager.Common.ViewModels;
 using MobileCore.Extensions;
-using MobileCore.ViewModels;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Messenger;
 
@@ -20,6 +19,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Home
 {
     public class MoneyViewModel : ViewModelBase
     {
+        private readonly MvxSubscriptionToken refreshCoffeeroomToken;
         private readonly MvxSubscriptionToken refreshCoffeeroomsToken;
         private readonly MvxSubscriptionToken refreshAmountToken;
 
@@ -50,6 +50,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Home
             
             ItemSelectedCommand = new MvxAsyncCommand<ShiftItemViewModel>(OnItemSelectedAsync);
 
+            refreshCoffeeroomToken = Subscribe<CoffeeRoomChangedMessage>(async (obj) => await Initialize());
             refreshCoffeeroomsToken = Subscribe<RefreshCoffeeRoomsMessage>(async (obj) => await GetCoffeeRooms());
             refreshAmountToken = Subscribe<UpdateCashAmountMessage>(async (obj) => await GetEntireMoney());
         }
@@ -156,11 +157,14 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Home
             get => currentCoffeeRoom;
             set
             {
+                if(currentCoffeeRoom?.Id == value?.Id)
+                {
+                    return;
+                }
                 currentCoffeeRoom = value;
                 RaisePropertyChanged(nameof(CurrentCoffeeRoom));
                 RaisePropertyChanged(nameof(CurrentCoffeeRoomName));
                 Config.CoffeeRoomNo = currentCoffeeRoom.Id;
-                GetEntireMoney();
                 Publish(new CoffeeRoomChangedMessage(this));
             }
         }
@@ -224,7 +228,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Home
             {
                 var rooms = await adminManager.GetCoffeeRooms();
                 CoffeeRooms = rooms.ToList();
-                CurrentCoffeeRoom = CoffeeRooms.First();
+                CurrentCoffeeRoom = CoffeeRooms.FirstOrDefault(c => c.Id == Config.CoffeeRoomNo);
             });
         }
     }

@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -23,7 +24,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L3z-zk-dv4">
-                    <rect key="frame" x="0.0" y="200" width="375" height="267"/>
+                    <rect key="frame" x="0.0" y="100" width="375" height="367"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RNZ-Vk-zFm">
                             <rect key="frame" x="122.5" y="16" width="130" height="30"/>
@@ -60,7 +61,7 @@
                 <constraint firstAttribute="trailing" secondItem="L3z-zk-dv4" secondAttribute="trailing" id="A9V-SZ-DHa"/>
                 <constraint firstItem="L3z-zk-dv4" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="CRp-sI-7ey"/>
                 <constraint firstAttribute="bottom" secondItem="L3z-zk-dv4" secondAttribute="bottom" constant="200" id="bYK-ji-ECu"/>
-                <constraint firstItem="L3z-zk-dv4" firstAttribute="top" secondItem="2" secondAttribute="top" constant="200" id="m82-Y5-Fav"/>
+                <constraint firstItem="L3z-zk-dv4" firstAttribute="top" secondItem="2" secondAttribute="top" constant="100" id="m82-Y5-Fav"/>
             </constraints>
         </view>
     </objects>

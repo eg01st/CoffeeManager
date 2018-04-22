@@ -99,6 +99,24 @@
     <Compile Include="Platform\LocalStorage.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="MvvmCross.Binding, Version=5.6.3.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\MvvmCross.Binding.5.6.3\lib\portable-net45+win+wpa81+wp80\MvvmCross.Binding.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Core, Version=5.6.3.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\MvvmCross.Core.5.6.3\lib\portable-net45+win+wpa81+wp80\MvvmCross.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Localization, Version=5.6.3.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\MvvmCross.Binding.5.6.3\lib\portable-net45+win+wpa81+wp80\MvvmCross.Localization.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Platform, Version=5.6.3.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\MvvmCross.Platform.5.6.3\lib\portable-net45+win+wpa81+wp80\MvvmCross.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Plugins.File, Version=5.6.3.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\MvvmCross.Plugin.File.5.6.3\lib\portable-net45+win+wpa81+wp80\MvvmCross.Plugins.File.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Plugins.Messenger, Version=5.6.3.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\MvvmCross.Plugin.Messenger.5.6.3\lib\portable-net45+win+wpa81+wp80\MvvmCross.Plugins.Messenger.dll</HintPath>
+    </Reference>
     <Reference Include="Splat">
       <HintPath>..\packages\Splat.1.6.2\lib\Portable-net45+win+wpa81+wp80\Splat.dll</HintPath>
     </Reference>
@@ -125,24 +143,6 @@
     </Reference>
     <Reference Include="Cheesebaron.MvxPlugins.Connectivity">
       <HintPath>..\packages\Cheesebaron.MvxPlugins.Connectivity.3.1.0\lib\portable-net45+win+wpa81\Cheesebaron.MvxPlugins.Connectivity.dll</HintPath>
-    </Reference>
-    <Reference Include="MvvmCross.Platform">
-      <HintPath>..\packages\MvvmCross.Platform.5.2.1\lib\portable-net45+win+wpa81+wp80\MvvmCross.Platform.dll</HintPath>
-    </Reference>
-    <Reference Include="MvvmCross.Plugins.File">
-      <HintPath>..\packages\MvvmCross.Plugin.File.5.2.1\lib\portable-net45+win+wpa81+wp80\MvvmCross.Plugins.File.dll</HintPath>
-    </Reference>
-    <Reference Include="MvvmCross.Plugins.Messenger">
-      <HintPath>..\packages\MvvmCross.Plugin.Messenger.5.2.1\lib\portable-net45+win+wpa81+wp80\MvvmCross.Plugins.Messenger.dll</HintPath>
-    </Reference>
-    <Reference Include="MvvmCross.Core">
-      <HintPath>..\packages\MvvmCross.Core.5.2.1\lib\portable-net45+win+wpa81+wp80\MvvmCross.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="MvvmCross.Binding">
-      <HintPath>..\packages\MvvmCross.Binding.5.2.1\lib\portable-net45+win+wpa81+wp80\MvvmCross.Binding.dll</HintPath>
-    </Reference>
-    <Reference Include="MvvmCross.Localization">
-      <HintPath>..\packages\MvvmCross.Binding.5.2.1\lib\portable-net45+win+wpa81+wp80\MvvmCross.Localization.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

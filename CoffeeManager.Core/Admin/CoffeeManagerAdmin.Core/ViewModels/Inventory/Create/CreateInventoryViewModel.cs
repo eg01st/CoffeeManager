@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using CoffeManager.Common;
+﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Input;
-using CoffeeManager.Core.Messages;
-using MvvmCross.Core.ViewModels;
 using CoffeeManager.Models;
+using CoffeManager.Common;
 using CoffeManager.Common.ViewModels;
-using MvvmCross.Plugins.Messenger;
+using MvvmCross.Core.ViewModels;
 
-namespace CoffeeManagerAdmin.Core
+namespace CoffeeManagerAdmin.Core.ViewModels.Inventory.Create
 {
     public class CreateInventoryViewModel : BaseSearchViewModel<CreateInventoryItemViewModel>
     {
@@ -51,7 +48,7 @@ namespace CoffeeManagerAdmin.Core
             });
         }
 
-        public async override Task<List<CreateInventoryItemViewModel>> LoadData()
+        public override async Task<List<CreateInventoryItemViewModel>> LoadData()
         {
             var items = await manager.GetInventoryItems();
             //var savedItems = manager.GetSavedItems();

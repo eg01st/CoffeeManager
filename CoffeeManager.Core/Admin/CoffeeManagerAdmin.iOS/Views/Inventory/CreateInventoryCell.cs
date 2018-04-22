@@ -5,6 +5,7 @@ using MvvmCross.Binding.BindingContext;
 using MvvmCross.Binding.iOS.Views;
 using UIKit;
 using CoffeeManagerAdmin.Core;
+using CoffeeManagerAdmin.Core.ViewModels.Inventory.Create;
 
 namespace CoffeeManagerAdmin.iOS
 {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using CoffeeManagerAdmin.Core;
+using CoffeeManagerAdmin.Core.ViewModels.Inventory.Create;
 using CoffeeManagerAdmin.iOS.Views.Abstract;
 using MvvmCross.Binding.BindingContext;
 using UIKit;
