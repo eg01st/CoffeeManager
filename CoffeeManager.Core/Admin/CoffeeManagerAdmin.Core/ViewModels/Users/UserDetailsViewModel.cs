@@ -7,27 +7,24 @@ using CoffeeManager.Common;
 using CoffeeManager.Models;
 using CoffeeManager.Models.Data.DTO.User;
 using CoffeeManagerAdmin.Core.Util;
+using CoffeeManagerAdmin.Core.ViewModels.Abstract;
 using CoffeManager.Common;
 using CoffeManager.Common.Managers;
 using CoffeManager.Common.ViewModels;
+using MobileCore.Collections;
 using MobileCore.Extensions;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Messenger;
 
 namespace CoffeeManagerAdmin.Core.ViewModels.Users
 {
-    public class UserDetailsViewModel : ViewModelBase, IMvxViewModel<int>
+    public class UserDetailsViewModel : AdminCoffeeRoomFeedViewModel<UserPenaltyItemViewModel>, IMvxViewModel<int>
     {
         private readonly MvxSubscriptionToken token;
 
         private readonly IShiftManager shiftManager;
         private readonly IUserManager userManager;
         private readonly IPaymentManager paymentManager;
-        private readonly IAdminManager adminManager;
-
-
-        private Entity currentCoffeeRoom;
-        private List<Entity> coffeeRooms;
 
         private List<Entity> expenseItems = new List<Entity>();
         private Entity selectedExpenseType;
@@ -50,14 +47,8 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Users
         public ICommand PenaltyCommand { get; set; }
         public ICommand ShowEarningsCommand { get; set; }
         public ICommand SelectCoffeeRoomCommand { get; }
-        public ICommand SelectExpenseCommand { get; }
+        public ICommand SelectExpenseCommand { get; } 
         
-                
-        public MvxAsyncCommand<UserPenaltyItemViewModel> ItemSelectedCommand { get; }
-        
-        public List<UserPenaltyItemViewModel> Penalties { get; set; } = new List<UserPenaltyItemViewModel>();
-
-
         public List<Entity> ExpenseItems
         {
             get { return expenseItems; }
@@ -103,48 +94,28 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Users
             }
         }
 
-        public Entity CurrentCoffeeRoom
+        public override Entity CurrentCoffeeRoom
         {
-            get { return currentCoffeeRoom; }
+            get => base.CurrentCoffeeRoom;
             set
             {
-                currentCoffeeRoom = value;
-                RaisePropertyChanged(nameof(CurrentCoffeeRoom));
-                RaisePropertyChanged(nameof(CurrentCoffeeRoomName));
+                base.CurrentCoffeeRoom = value;
                 if(useridParameter == 0)
                 {
                     return;
                 }
-                var strategy = user.PaymentStrategies?.FirstOrDefault(s => s.CoffeeRoomId == currentCoffeeRoom.Id);
+                var strategy = user.PaymentStrategies?.FirstOrDefault(s => s.CoffeeRoomId == CurrentCoffeeRoom.Id);
 
                 DayShiftPersent = strategy?.DayShiftPersent ?? 0;
                 NightShiftPercent = strategy?.NightShiftPercent ?? 0;
                 SalaryRate = strategy?.SimplePayment ?? 0;
                 MinimumPayment = strategy?.MinimumPayment ?? 0;
                 RaiseAllPropertiesChanged();
-
             }
         }
 
-        public List<Entity> CoffeeRooms
+        public UserDetailsViewModel(IUserManager userManager, IPaymentManager paymentManager, IShiftManager shiftManager)
         {
-            get { return coffeeRooms; }
-            set
-            {
-                coffeeRooms = value;
-                RaisePropertyChanged(nameof(CoffeeRooms));
-            }
-        }
-
-        public string CurrentCoffeeRoomName
-        {
-            get { return CurrentCoffeeRoom.Name; }
-
-        }
-
-        public UserDetailsViewModel(IUserManager userManager, IPaymentManager paymentManager, IShiftManager shiftManager, IAdminManager adminManager)
-        {
-            this.adminManager = adminManager;
             this.shiftManager = shiftManager;
             this.paymentManager = paymentManager;
             this.userManager = userManager;
@@ -154,20 +125,10 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Users
             ShowEarningsCommand = new MvxAsyncCommand(DoShowEarnings);
             SelectCoffeeRoomCommand = new MvxCommand(DoSelectCoffeeRoom);
             SelectExpenseCommand = new MvxCommand(DoSelectExpense);
-            
-            ItemSelectedCommand = new MvxAsyncCommand<UserPenaltyItemViewModel>(OnItemSelectedAsync);
 
-            token = Subscribe<UserAmountChangedMessage>(async (obj) => await Initialize());
+            token = MvxMessenger.Subscribe<UserAmountChangedMessage>(async (obj) => await Initialize());
         }
         
-        private async Task OnItemSelectedAsync(UserPenaltyItemViewModel item)
-        {
-            item.ThrowIfNull(nameof(item));
-            
-            item.SelectCommand.Execute();
-
-            await Task.Yield();
-        }
         
         private void DoSelectCoffeeRoom()
         {
@@ -285,12 +246,12 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Users
             user.PaymentStrategies = new[] { strategy };
 
             await userManager.AddUser(user);
-            Publish(new RefreshUserListMessage(this));
+            MvxMessenger.Publish(new RefreshUserListMessage(this));
             Close(this);        
         }
 
-        public override async Task Initialize()
-        {
+        protected override async Task<PageContainer<UserPenaltyItemViewModel>> GetPageAsync(int skip)
+        {   
             if(useridParameter == 0)
             {
                 user = new UserDTO();
@@ -310,15 +271,10 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Users
                         SalaryRate = strategy.SimplePayment;
                         MinimumPayment = strategy.MinimumPayment;
                     }
-
-                    Penalties = user.Penalties?.Select(s => new UserPenaltyItemViewModel(s)).ToList();
                 });
             }
-            
             await InitTypes();
-
-            await InitCoffeeRooms();
-            RaiseAllPropertiesChanged();
+            return user.Penalties?.Select(s => new UserPenaltyItemViewModel(s)).ToPageContainer();
         }
 
         private async Task InitTypes()
@@ -340,16 +296,6 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Users
             });
         }
 
-        private async Task InitCoffeeRooms()
-        {
-            await ExecuteSafe(async () =>
-            {
-                var items = await adminManager.GetCoffeeRooms();
-                CoffeeRooms = items.ToList();
-                CurrentCoffeeRoom = CoffeeRooms.First(c => c.Id == Config.CoffeeRoomNo);
-            });
-        }
-
         private async Task PaySalary()
         {
             await ExecuteSafe(async () =>
@@ -363,7 +309,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Users
                 await userManager.PaySalary(UserId, CurrentCoffeeRoom.Id);
                 user.EntireEarnedAmount += CurrentEarnedAmount;
                 user.CurrentEarnedAmount = 0;
-                Publish(new UpdateCashAmountMessage(this));
+                MvxMessenger.Publish(new UpdateCashAmountMessage(this));
                 Close(this);
             });
         }
@@ -386,7 +332,8 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Users
 
         protected override void DoUnsubscribe()
         {
-            Unsubscribe<UserAmountChangedMessage>(token);
+            base.DoUnsubscribe();
+            MvxMessenger.Unsubscribe<UserAmountChangedMessage>(token);
         }
 
         public void Prepare(int parameter)

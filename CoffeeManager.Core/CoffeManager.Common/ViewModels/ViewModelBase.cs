@@ -29,35 +29,12 @@ namespace CoffeManager.Common.ViewModels
             }
         }
     
-        public ICommand CloseCommand { get; }
-
-
-
-        public ViewModelBase()
-        {
-            CloseCommand = new MvxCommand(DoClose);
-        }
-
-        protected virtual void DoClose()
-        {
-            OnClose();
-            DoUnsubscribe();
-            Close(this);
-        }
-
         public override void ViewDestroy(bool viewFinishing = true)
         {
             base.ViewDestroy(viewFinishing);
             DoUnsubscribe();
         }
 
-        protected virtual void OnClose()
-        {
-        }
-
-        protected virtual void DoUnsubscribe()
-        {
-        }
 
         protected MvxSubscriptionToken Subscribe<TMessage>(Action<TMessage> action)
             where TMessage : MvxMessage

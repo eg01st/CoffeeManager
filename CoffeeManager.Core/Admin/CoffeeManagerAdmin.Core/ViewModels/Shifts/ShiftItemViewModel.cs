@@ -1,9 +1,8 @@
 ﻿using CoffeeManager.Models;
-using CoffeManager.Common.ViewModels;
 
 namespace CoffeeManagerAdmin.Core.ViewModels.Shifts
 {
-    public class ShiftItemViewModel : ListItemViewModelBase
+    public class ShiftItemViewModel : MobileCore.ViewModels.FeedItemElementViewModel
     {
         private readonly ShiftInfo _info;
  
@@ -12,7 +11,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Shifts
             _info = info;
         }
 
-        protected override async void DoGoToDetails()
+        protected override async void Select()
         {
             await NavigationService.Navigate<ShiftDetailsViewModel, int>(_info.Id);
         } 

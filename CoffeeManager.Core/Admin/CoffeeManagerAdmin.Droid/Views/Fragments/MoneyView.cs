@@ -53,7 +53,7 @@ namespace CoffeeManagerAdmin.Droid.Views.Fragments
         protected override void DoBind()
         {
             var bindingSet = this.CreateBindingSet<MoneyView, MoneyViewModel>();
-            bindingSet.Bind(shiftsRecyclerView).For(v => v.ItemsSource).To(vm => vm.Items);
+            bindingSet.Bind(shiftsRecyclerView).For(v => v.ItemsSource).To(vm => vm.ItemsCollection);
             bindingSet.Bind(shiftsRecyclerView.Adapter).For(v => v.ItemClick).To(vm => vm.ItemSelectedCommand);
             bindingSet.Bind(shiftsRecyclerView).For(BindingConstants.LoadMore).To(vm => vm.LoadNextPageCommand);
             bindingSet.Apply();

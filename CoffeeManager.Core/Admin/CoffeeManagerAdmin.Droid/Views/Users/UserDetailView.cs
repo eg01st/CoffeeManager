@@ -49,7 +49,7 @@ namespace CoffeeManagerAdmin.Droid.Views.Users
             var bindingSet = this.CreateBindingSet<UserDetailView, UserDetailsViewModel>();
             bindingSet.Bind(userNameEditText).For(e => e.Enabled).To(vm => vm.UserId).WithConversion(new GenericConverter<int, bool>((arg) => arg < 1));
             
-            bindingSet.Bind(usersRecyclerView).For(v => v.ItemsSource).To(vm => vm.Penalties);
+            bindingSet.Bind(usersRecyclerView).For(v => v.ItemsSource).To(vm => vm.ItemsCollection);
             bindingSet.Bind(usersRecyclerView.Adapter).For(v => v.ItemClick).To(vm => vm.ItemSelectedCommand);
             bindingSet.Apply();
         }

@@ -1,18 +1,13 @@
-﻿using System;
-
-using UIKit;
-using MvvmCross.iOS.Views;
-using MvvmCross.Binding.iOS.Views;
-using MvvmCross.Binding.BindingContext;
-using CoffeeManagerAdmin.Core;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using CoffeeManagerAdmin.Core.ViewModels.Users;
 using CoffeeManagerAdmin.iOS.Converters;
-using CoffeeManagerAdmin.iOS.Views.Abstract;
 using CoreGraphics;
 using MobileCore.iOS.ViewControllers;
+using MvvmCross.Binding.BindingContext;
+using MvvmCross.Binding.iOS.Views;
+using UIKit;
 
-namespace CoffeeManagerAdmin.iOS
+namespace CoffeeManagerAdmin.iOS.Views.Users
 {
     public partial class UserDetailsView : ViewControllerBase<UserDetailsViewModel>
     {
@@ -85,7 +80,7 @@ namespace CoffeeManagerAdmin.iOS
             set.Bind(coffeeRoomPickerViewModel).For(p => p.ItemsSource).To(vm => vm.CoffeeRooms);
             set.Bind(coffeeRoomPickerViewModel).For(p => p.SelectedItem).To(vm => vm.CurrentCoffeeRoom);
 
-            set.Bind(source).To(vm => vm.Penalties);
+            set.Bind(source).To(vm => vm.ItemsCollection);
             set.Apply();
         }
     }

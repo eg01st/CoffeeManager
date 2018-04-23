@@ -42,6 +42,10 @@
             <e p="ParameterTransmitter.cs" t="Include" />
           </e>
           <e p="ViewModels" t="Include">
+            <e p="Abstract" t="Include">
+              <e p="AdminFeedViewModel.cs" t="Include" />
+              <e p="AdminPageViewModel.cs" t="Include" />
+            </e>
             <e p="Calculation" t="Include">
               <e p="CalculationItemViewModel.cs" t="Include" />
               <e p="CalculationViewModel.cs" t="Include" />

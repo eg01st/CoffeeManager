@@ -95,7 +95,7 @@ namespace CoffeeManagerAdmin.iOS.Views.Home
             set.Bind(coffeeRoomPickerViewModel).For(p => p.SelectedItem).To(vm => vm.CurrentCoffeeRoom);
             set.Bind(CoffeeRoomTextField).To(vm => vm.CurrentCoffeeRoomName);
 
-            set.Bind(shiftsSource).To(vm => vm.Items);
+            set.Bind(shiftsSource).To(vm => vm.ItemsCollection);
             set.Bind(shiftsSource).For(s => s.GetNewPageCommand).To(vm => vm.LoadNextPageCommand).OneWay();
             set.Apply();
         }

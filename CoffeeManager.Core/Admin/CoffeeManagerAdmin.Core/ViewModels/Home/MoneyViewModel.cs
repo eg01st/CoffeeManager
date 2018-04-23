@@ -14,198 +14,71 @@ using CoffeManager.Common.ViewModels;
 using MobileCore.Extensions;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Messenger;
+using CoffeeManagerAdmin.Core.ViewModels.Abstract;
+using MobileCore.Collections;
 
 namespace CoffeeManagerAdmin.Core.ViewModels.Home
 {
-    public class MoneyViewModel : ViewModelBase
+    public class MoneyViewModel : AdminCoffeeRoomFeedViewModel<ShiftItemViewModel>
     {
-        private readonly MvxSubscriptionToken refreshCoffeeroomToken;
-        private readonly MvxSubscriptionToken refreshCoffeeroomsToken;
         private readonly MvxSubscriptionToken refreshAmountToken;
-
-        private bool isNextPageLoading = false;
-
-        private MvxObservableCollection<ShiftItemViewModel> items = new MvxObservableCollection<ShiftItemViewModel>();
+        
         private string currentBalance;
         private string currentShiftBalance;
         private string currentCreditCardBalance;
-        private Entity currentCoffeeRoom;
-        private List<Entity> coffeeRooms;
+
         readonly IShiftManager shiftManager;
-        readonly IAdminManager adminManager;
         readonly IPaymentManager paymentManager;
 
-        public MoneyViewModel(IShiftManager shiftManager, IAdminManager adminManager, IPaymentManager paymentManager)
+        public MoneyViewModel(IShiftManager shiftManager, IPaymentManager paymentManager)
         {
             this.paymentManager = paymentManager;
-            this.adminManager = adminManager;
             this.shiftManager = shiftManager;
 
-            UpdateEntireMoneyCommand = new MvxAsyncCommand(DoGetEntireMoney);
+            UpdateEntireMoneyCommand = new MvxAsyncCommand(GetEntireMoney);
             ShowSettingsCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<SettingsViewModel>());
             ShowUsersCommand = new MvxAsyncCommand(async() => await NavigationService.Navigate<UsersViewModel>());
             ShowCreditCardCommand = new MvxAsyncCommand(async() => await NavigationService.Navigate<CreditCardViewModel>());
-            LoadNextPageCommand = new MvxAsyncCommand(DoLoadNextPage);
-            SelectCoffeeRoomCommand = new MvxCommand(DoSelectCoffeeRoom);
             
-            ItemSelectedCommand = new MvxAsyncCommand<ShiftItemViewModel>(OnItemSelectedAsync);
-
-            refreshCoffeeroomToken = Subscribe<CoffeeRoomChangedMessage>(async (obj) => await Initialize());
-            refreshCoffeeroomsToken = Subscribe<RefreshCoffeeRoomsMessage>(async (obj) => await GetCoffeeRooms());
-            refreshAmountToken = Subscribe<UpdateCashAmountMessage>(async (obj) => await GetEntireMoney());
-        }
-
-        private async Task OnItemSelectedAsync(ShiftItemViewModel item)
-        {
-            item.ThrowIfNull(nameof(item));
-            
-            item.SelectCommand.Execute();
-
-            await Task.Yield();
-        }
-
-        private void DoSelectCoffeeRoom()
-        {
-            if (CoffeeRooms.Count <= 1)
-            {
-                return;
-            }
-            var optionList = new List<ActionSheetOption>();
-            foreach (var cr in CoffeeRooms)
-            {
-                optionList.Add(new ActionSheetOption(cr.Name, () => { CurrentCoffeeRoom = CoffeeRooms.First(c => c.Id == cr.Id); }));
-            }
-
-            UserDialogs.ActionSheet(new ActionSheetConfig
-            {
-                Options = optionList,
-                 Title = "Выбор заведения",
-            });
-        }
-
-        private async Task DoLoadNextPage()
-        {
-            if (isNextPageLoading == true)
-            {
-                return;
-            }
-
-            isNextPageLoading = true;
-
-            
-            var itemsToSkip = Items.Count;
-            var shifts = await ExecuteSafe(async () => await shiftManager.GetShifts(itemsToSkip));
-            var vms = shifts.Select(s => new ShiftItemViewModel(s));
-
-            Items.AddRange(vms);
-
-            isNextPageLoading = false;
-
-        }
-
-        public MvxObservableCollection<ShiftItemViewModel> Items
-        {
-            get => items;
-            set
-            {
-                items = value;
-                RaisePropertyChanged(nameof(Items));
-            }
+            refreshAmountToken = MvxMessenger.Subscribe<UpdateCashAmountMessage>(async (obj) => await GetEntireMoney());
         }
 
         public ICommand UpdateEntireMoneyCommand { get; }
         public ICommand ShowCreditCardCommand { get; }
         public ICommand ShowSettingsCommand { get; }
         public ICommand ShowUsersCommand { get; }
-        public ICommand LoadNextPageCommand { get; }
-        public ICommand SelectCoffeeRoomCommand { get; }
 
-        public MvxAsyncCommand<ShiftItemViewModel> ItemSelectedCommand { get; }
-
+        public override bool ShouldReloadOnCoffeeRoomChange => true;
+        
         public string CurrentBalance
         {
             get => currentBalance;
-            set
-            {
-                currentBalance = value;
-                RaisePropertyChanged(nameof(CurrentBalance));
-            }
+            set => SetProperty(ref currentBalance, value);
         }
 
         public string CurrentShiftBalance
         {
             get => currentShiftBalance;
-            set
-            {
-                currentShiftBalance = value;
-                RaisePropertyChanged(nameof(CurrentShiftBalance));
-            }
+            set => SetProperty(ref currentShiftBalance, value);
         }
 
         public string CurrentCreditCardBalance
         {
             get => currentCreditCardBalance;
-            set
-            {
-                currentCreditCardBalance = value;
-                RaisePropertyChanged(nameof(CurrentCreditCardBalance));
-            }
+            set => SetProperty(ref currentCreditCardBalance, value);
         }
 
-        public Entity CurrentCoffeeRoom
+        protected override async Task DoPreLoadDataImplAsync()
         {
-            get => currentCoffeeRoom;
-            set
-            {
-                if(currentCoffeeRoom?.Id == value?.Id)
-                {
-                    return;
-                }
-                currentCoffeeRoom = value;
-                RaisePropertyChanged(nameof(CurrentCoffeeRoom));
-                RaisePropertyChanged(nameof(CurrentCoffeeRoomName));
-                Config.CoffeeRoomNo = currentCoffeeRoom.Id;
-                Publish(new CoffeeRoomChangedMessage(this));
-            }
-        }
-
-        public List<Entity> CoffeeRooms
-        {
-            get => coffeeRooms;
-            set
-            {
-                coffeeRooms = value;
-                RaisePropertyChanged(nameof(CoffeeRooms));
-            }
-        }
-
-        public string CurrentCoffeeRoomName => CurrentCoffeeRoom.Name;
-
-        public override async Task Initialize()
-        {
+            await base.DoPreLoadDataImplAsync();
             await GetEntireMoney();
-            await GetCoffeeRooms();
-            await ExecuteSafe(GetShifts);
         }
-
-
-        private async Task GetShifts()
+        
+        protected override async Task<PageContainer<ShiftItemViewModel>> GetPageAsync(int skip)
         {
-            Items.Clear();
-            var shifts = await shiftManager.GetShifts(0);
-            if (shifts != null)
-            {
-                Items.AddRange(shifts.Select(s => new ShiftItemViewModel(s)));
-            }
-            else
-            {
-                UserDialogs.Alert("Empty list from server");
-            }
-        }
-
-        private async Task DoGetEntireMoney()
-        {
-            await GetEntireMoney();
+            var shifts = await ExecuteSafe(async () => await shiftManager.GetShifts(skip));
+            var vms = shifts.Select(s => new ShiftItemViewModel(s));
+            return vms.ToPageContainer();
         }
 
         private async Task GetEntireMoney()
@@ -218,17 +91,6 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Home
                 CurrentShiftBalance = shiftBalance.ToString("F1");
                 var creditCardBalance = await paymentManager.GetCreditCardEntireMoney();
                 CurrentCreditCardBalance = creditCardBalance.ToString("F1");
-                await GetShifts();
-            });
-        }
-
-        private async Task GetCoffeeRooms()
-        {
-            await ExecuteSafe(async () =>
-            {
-                var rooms = await adminManager.GetCoffeeRooms();
-                CoffeeRooms = rooms.ToList();
-                CurrentCoffeeRoom = CoffeeRooms.FirstOrDefault(c => c.Id == Config.CoffeeRoomNo);
             });
         }
     }

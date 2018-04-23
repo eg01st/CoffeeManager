@@ -45,6 +45,8 @@
     <Compile Include="Messages\SubCategoryAddMessage.cs" />
     <Compile Include="Messages\SubCategoryDeleteMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\Abstract\AdminFeedViewModel.cs" />
+    <Compile Include="ViewModels\Abstract\AdminPageViewModel.cs" />
     <Compile Include="ViewModels\Categories\AddCategoryViewModel.cs" />
     <Compile Include="ViewModels\Categories\CategoriesViewModel.cs" />
     <Compile Include="ViewModels\Categories\CategoryDetailsViewModel.cs" />
@@ -196,6 +198,9 @@
     </Reference>
     <Reference Include="MvvmCross.Plugins.Messenger">
       <HintPath>..\..\packages\MvvmCross.Plugin.Messenger.5.6.3\lib\portable-net45+win+wpa81+wp80\MvvmCross.Plugins.Messenger.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Collections.Immutable">
+      <HintPath>..\..\packages\System.Collections.Immutable.1.4.0\lib\portable-net45+win8+wp8+wpa81\System.Collections.Immutable.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

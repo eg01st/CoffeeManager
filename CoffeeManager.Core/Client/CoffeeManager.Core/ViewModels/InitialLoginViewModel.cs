@@ -93,7 +93,7 @@ namespace CoffeeManager.Core.ViewModels
             }
         }
 
-        protected async override void DoClose()
+        protected override async Task DoClose()
         {
             await NavigationService.Close(this, false);
         }
