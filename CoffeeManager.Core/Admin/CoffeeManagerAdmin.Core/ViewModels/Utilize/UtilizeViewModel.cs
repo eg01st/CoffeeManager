@@ -1,11 +1,11 @@
-﻿using System;
-using CoffeManager.Common;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using CoffeManager.Common;
+using CoffeManager.Common.Managers;
 using CoffeManager.Common.ViewModels;
 
-namespace CoffeeManagerAdmin.Core
+namespace CoffeeManagerAdmin.Core.ViewModels.Utilize
 {
     public class UtilizeViewModel : ViewModelBase
     {
@@ -18,7 +18,7 @@ namespace CoffeeManagerAdmin.Core
             this.manager = manager;
         }
 
-        public async Task Init()
+        public override async Task Initialize()
         {
             var items = await manager.GetUtilizedProducts();
             Items = items.Select(s => new UtilizeItemViewModel(s)).OrderByDescending(o => o.Id).ToList();

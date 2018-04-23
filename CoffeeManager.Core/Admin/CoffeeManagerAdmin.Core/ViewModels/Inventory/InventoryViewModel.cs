@@ -1,14 +1,13 @@
-﻿using System;
-using CoffeManager.Common;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using CoffeeManagerAdmin.Core.ViewModels.Inventory.Create;
+using CoffeManager.Common;
 using CoffeManager.Common.ViewModels;
 using MvvmCross.Core.ViewModels;
 
-namespace CoffeeManagerAdmin.Core
+namespace CoffeeManagerAdmin.Core.ViewModels.Inventory
 {
     public class InventoryViewModel : ViewModelBase
     {
@@ -21,10 +20,10 @@ namespace CoffeeManagerAdmin.Core
         public InventoryViewModel(IInventoryManager manager)
         {
             this.manager = manager;
-            CreateReportCommand = new MvxCommand(() => ShowViewModel<CreateInventoryViewModel>());
+            CreateReportCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<CreateInventoryViewModel>());
         }
 
-        public async Task Init()
+        public override async Task Initialize()
         {
             await ExecuteSafe(async () =>
             {

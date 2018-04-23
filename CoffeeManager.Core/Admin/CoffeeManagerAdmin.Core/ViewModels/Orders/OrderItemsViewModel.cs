@@ -10,11 +10,12 @@ using CoffeeManagerAdmin.Core.Util;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Messenger;
 using CoffeManager.Common;
+using CoffeManager.Common.Managers;
 using CoffeManager.Common.ViewModels;
 
 namespace CoffeeManagerAdmin.Core.ViewModels.Orders
 {
-    public class OrderItemsViewModel : ViewModelBase
+    public class OrderItemsViewModel : ViewModelBase, IMvxViewModel<Order>
     {
         private MvxSubscriptionToken _token;
         private MvxSubscriptionToken _itemsSelectedtoken;
@@ -37,14 +38,14 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Orders
             _token = Subscribe<OrderItemChangedMessage>(async (a) => await LoadData());
             _itemsSelectedtoken = Subscribe<OrderItemsListChangedMessage>(async (s) => await LoadData());
             CloseOrderCommand = new MvxCommand(DoCloseOrder);
-            AddOrderItemsCommand = new MvxCommand(DoAddOrderItems);
+            AddOrderItemsCommand = new MvxAsyncCommand(DoAddOrderItems);
         }
 
-        private void DoAddOrderItems()
+        private async Task DoAddOrderItems()
         {
             if (!IsDone)
             {
-                ShowViewModel<SelectOrderItemsViewModel>(new { id = _order.Id });
+               await NavigationService.Navigate<SelectOrderItemsViewModel, int>(_order.Id );
             }
         }
 
@@ -87,9 +88,8 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Orders
             Price = Items.Where(s => s.IsDone).Sum(orderItemViewModel => orderItemViewModel.Price * orderItemViewModel.Quantity);
         }
 
-        public async void Init(Guid id)
+        public override async Task Initialize()
         {
-            ParameterTransmitter.TryGetParameter<Order>(id, out _order);
             Price = _order.Price;
             IsDone = _order.IsDone;
             ExpenseTypeId = _order.ExpenseTypeId;
@@ -200,6 +200,11 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Orders
         {
             Unsubscribe<OrderItemsListChangedMessage>(_token);
             Unsubscribe<OrderItemsListChangedMessage>(_itemsSelectedtoken);
+        }
+
+        public void Prepare(Order parameter)
+        {
+            _order = parameter;
         }
     }
 }

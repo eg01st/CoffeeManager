@@ -4,15 +4,16 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using CoffeeManager.Models;
-using CoffeManager.Common;
+using CoffeManager.Common.Managers;
 using CoffeManager.Common.ViewModels;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Messenger;
 
-namespace CoffeeManagerAdmin.Core
+namespace CoffeeManagerAdmin.Core.ViewModels.ManageExpenses
 {
-    public class ExpenseTypeDetailsViewModel : ViewModelBase
+    public class ExpenseTypeDetailsViewModel : ViewModelBase, IMvxViewModel<ExpenseType>
     {
+        ExpenseType type;
         private int expenseTypeId;
         readonly IPaymentManager paymentManager;
         private readonly MvxSubscriptionToken reloadDataToken;
@@ -26,19 +27,17 @@ namespace CoffeeManagerAdmin.Core
         public ExpenseTypeDetailsViewModel(IPaymentManager paymentManager)
         {
             this.paymentManager = paymentManager;
-            MapSuplyProductCommand = new MvxCommand(DoMapSuplyProduct);
+            MapSuplyProductCommand = new MvxAsyncCommand(DoMapSuplyProduct);
             reloadDataToken = Subscribe<MappedSuplyProductChangedMessage>(async (obj) => await LoadMappedSuplyProducts());
         }
 
-        private void DoMapSuplyProduct()
+        private async Task DoMapSuplyProduct()
         {
-            ShowViewModel<MapExpenseToSuplyProductViewModel>(new {id = expenseTypeId});
+           await NavigationService.Navigate<MapExpenseToSuplyProductViewModel, int>(expenseTypeId);
         }
 
-        public async void Init(Guid id)
+        public override async Task Initialize()
         {
-            ExpenseType type;
-            Util.ParameterTransmitter.TryGetParameter(id, out type);
             expenseTypeId = type.Id;
             ExpenseName = type.Name;
             RaisePropertyChanged(nameof(ExpenseName));
@@ -58,6 +57,11 @@ namespace CoffeeManagerAdmin.Core
         protected override void DoUnsubscribe()
         {
             Unsubscribe<MappedSuplyProductChangedMessage>(reloadDataToken);
+        }
+
+        public void Prepare(ExpenseType parameter)
+        {
+            type = parameter;
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using CoffeManager.Common;
+using CoffeManager.Common.Managers;
 using CoffeManager.Common.ViewModels;
 using MobileCore.Extensions;
 using MvvmCross.Core.ViewModels;
@@ -72,7 +73,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels.CreditCard
             await Task.Yield();
         }
 
-        public async Task Init()
+        public override async Task Initialize()
         {
             var amount = await ExecuteSafe(manager.GetCreditCardEntireMoney);
             CurrentAmount = amount;
@@ -88,7 +89,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels.CreditCard
         private async Task SetAmount()
         {
             await manager.SetCreditCardEntireMoney(CurrentAmount);
-            await Init();
+            await Initialize();
             Publish(new UpdateCashAmountMessage(this));
         }
 
@@ -111,7 +112,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels.CreditCard
         private async Task CashOut()
         {
             await manager.CashOutCreditCard(AmountToCashOut);
-            await Init();
+            await Initialize();
             AmountToCashOut = 0;
             Publish(new UpdateCashAmountMessage(this));
         }

@@ -27,7 +27,7 @@ namespace CoffeeManager.Core.ViewModels.Settings
             CoffeeRoomSelectedCommand = new MvxCommand<CoffeeRoomItemViewModel>(DoSelectItem);
         }
 
-        public async override Task Initialize()
+        public override async Task Initialize()
         {
             await ExecuteSafe(async () =>
             {

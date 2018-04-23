@@ -33,15 +33,10 @@ namespace CoffeeManager.Core.ViewModels
         {
             this.productManager = productManager;
             this.shiftManager = shiftManager;
-            token = MvxMessenger.Subscribe<SaleRemovedMessage>((async message => { await LoadSales(); }));
+            token = MvxMessenger.Subscribe<SaleRemovedMessage>((async message => { await Initialize(); }));
         }
 
-        public async void Init()
-        {
-            await LoadSales();
-        }
-
-        private async Task LoadSales()
+        protected override async Task DoLoadDataImplAsync()
         {
             await ExecuteSafe(async () =>
             {

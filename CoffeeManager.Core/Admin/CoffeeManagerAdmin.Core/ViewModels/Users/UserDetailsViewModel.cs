@@ -16,7 +16,7 @@ using MvvmCross.Plugins.Messenger;
 
 namespace CoffeeManagerAdmin.Core.ViewModels.Users
 {
-    public class UserDetailsViewModel : ViewModelBase
+    public class UserDetailsViewModel : ViewModelBase, IMvxViewModel<int>
     {
         private readonly MvxSubscriptionToken token;
 
@@ -151,13 +151,13 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Users
             PaySalaryCommand = new MvxCommand(DoPaySalary);
             UpdateCommand = new MvxCommand(DoUpdateUser);
             PenaltyCommand = new MvxCommand(DoPenalty);
-            ShowEarningsCommand = new MvxCommand(DoShowEarnings);
+            ShowEarningsCommand = new MvxAsyncCommand(DoShowEarnings);
             SelectCoffeeRoomCommand = new MvxCommand(DoSelectCoffeeRoom);
             SelectExpenseCommand = new MvxCommand(DoSelectExpense);
             
             ItemSelectedCommand = new MvxAsyncCommand<UserPenaltyItemViewModel>(OnItemSelectedAsync);
 
-            token = Subscribe<UserAmountChangedMessage>(async (obj) => await Init(useridParameter));
+            token = Subscribe<UserAmountChangedMessage>(async (obj) => await Initialize());
         }
         
         private async Task OnItemSelectedAsync(UserPenaltyItemViewModel item)
@@ -207,10 +207,9 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Users
             });
         }
 
-        private void DoShowEarnings()
+        private async Task DoShowEarnings()
         {
-            var id = ParameterTransmitter.PutParameter(user?.Earnings);
-            ShowViewModel<UserEarningsViewModel>(new {id});
+            await NavigationService.Navigate<UserEarningsViewModel, UserEarningsHistory[]>(user?.Earnings);
         }
 
         private async void DoPenalty()
@@ -228,7 +227,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Users
             await ExecuteSafe(async () =>
             {
                 await userManager.PenaltyUser(UserId, amount.Value, reason);
-                await Init(useridParameter);
+                await Initialize();
             });
 
         }
@@ -290,49 +289,36 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Users
             Close(this);        
         }
 
-        public async Task Init(int id)
-        {
-            useridParameter = id;
-
-
-            if(useridParameter == 0)
-            {
-                return;
-            }
-            await ExecuteSafe(async () => 
-            {
-                user = await userManager.GetUser(useridParameter);
-                UserName = user.Name;
-                var strategy = user.PaymentStrategies?.FirstOrDefault(s => s.CoffeeRoomId == Config.CoffeeRoomNo);
-                if(strategy != null)
-                {
-                    DayShiftPersent = strategy.DayShiftPersent;
-                    NightShiftPercent = strategy.NightShiftPercent;
-                    SalaryRate = strategy.SimplePayment;
-                    MinimumPayment = strategy.MinimumPayment;
-                }
-
-                Penalties = user.Penalties?.Select(s => new UserPenaltyItemViewModel(s)).ToList();
-
-                await InitTypes();
-
-                await InitCoffeeRooms();
-                RaiseAllPropertiesChanged();
-            });
-        }
-
-        public async Task Init()
+        public override async Task Initialize()
         {
             if(useridParameter == 0)
             {
-                await InitCoffeeRooms();
-
                 user = new UserDTO();
-                await InitTypes();
                 UpdateCommand = new MvxCommand(DoCreateUser);
-    
-                RaiseAllPropertiesChanged();
             }
+            else
+            {
+                await ExecuteSafe(async () =>
+                {
+                    user = await userManager.GetUser(useridParameter);
+                    UserName = user.Name;
+                    var strategy = user.PaymentStrategies?.FirstOrDefault(s => s.CoffeeRoomId == Config.CoffeeRoomNo);
+                    if (strategy != null)
+                    {
+                        DayShiftPersent = strategy.DayShiftPersent;
+                        NightShiftPercent = strategy.NightShiftPercent;
+                        SalaryRate = strategy.SimplePayment;
+                        MinimumPayment = strategy.MinimumPayment;
+                    }
+
+                    Penalties = user.Penalties?.Select(s => new UserPenaltyItemViewModel(s)).ToList();
+                });
+            }
+            
+            await InitTypes();
+
+            await InitCoffeeRooms();
+            RaiseAllPropertiesChanged();
         }
 
         private async Task InitTypes()
@@ -402,5 +388,10 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Users
         {
             Unsubscribe<UserAmountChangedMessage>(token);
         }
-   }
+
+        public void Prepare(int parameter)
+        {
+            useridParameter = parameter;
+        }
+    }
 }

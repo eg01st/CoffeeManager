@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using CoffeeManager.Models;
-using CoffeeManagerAdmin.Core.Util;
 using CoffeeManagerAdmin.Core.ViewModels.Categories;
 using CoffeManager.Common.Managers;
 using CoffeManager.Common.ViewModels;
 using MvvmCross.Core.ViewModels;
-using CoffeeManager.Common;
+using CoffeeManagerAdmin.Core.ViewModels.Calculation;
 
 namespace CoffeeManagerAdmin.Core.ViewModels.Products
 {
@@ -175,7 +173,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Products
             this.manager = manager;
             this.categoryManager = categoryManager;
          
-            SelectCalculationItemsCommand = new MvxCommand(DoSelectCalculationItems);
+            SelectCalculationItemsCommand = new MvxAsyncCommand(DoSelectCalculationItems);
         }
 
         public override async Task Initialize()
@@ -254,9 +252,9 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Products
             });
         }
 
-        private void DoSelectCalculationItems()
+        private async Task DoSelectCalculationItems()
         {
-            ShowViewModel<CalculationViewModel>(new { id = id });
+           await NavigationService.Navigate<CalculationViewModel, int>(id);
         }
 
         public void Prepare(Product parameter)

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using CoffeeManagerAdmin.Core;
+using CoffeeManagerAdmin.Core.ViewModels.Home;
 using CoffeeManagerAdmin.iOS.Views.Abstract;
 using MobileCore.iOS.ViewControllers;
 using MvvmCross.Binding.BindingContext;

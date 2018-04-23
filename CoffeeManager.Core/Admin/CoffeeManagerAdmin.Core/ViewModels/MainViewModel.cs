@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using CoffeManager.Common;
 using CoffeManager.Common.ViewModels;
 using CoffeeManagerAdmin.Core.ViewModels.Home;
+using CoffeeManagerAdmin.Core.ViewModels.ManageExpenses;
 
 namespace CoffeeManagerAdmin.Core.ViewModels
 {

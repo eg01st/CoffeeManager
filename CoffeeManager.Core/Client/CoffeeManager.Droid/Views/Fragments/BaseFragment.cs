@@ -13,7 +13,7 @@ namespace CoffeeManager.Droid.Views.Fragments
     {
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            this.EnsureBindingContextIsSet(savedInstanceState);
+            this.EnsureBindingContextIsSet(inflater);
             var view = this.BindingInflate(Resource.Layout.product_list, null);
 
             return view;

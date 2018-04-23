@@ -1,9 +1,8 @@
 ﻿using System;
 using CoffeeManager.Models;
-using CoffeManager.Common;
 using CoffeManager.Common.ViewModels;
-using MvvmCross.Platform;
-namespace CoffeeManagerAdmin.Core
+
+namespace CoffeeManagerAdmin.Core.ViewModels.Inventory
 {
     public class InventoryItemViewModel : ListItemViewModelBase
     {
@@ -16,9 +15,9 @@ namespace CoffeeManagerAdmin.Core
             Id = s.Id;
         }
 
-        protected override void DoGoToDetails()
+        protected override async void DoGoToDetails()
         {
-            ShowViewModel<InventoryReportDetailsViewModel>(new {id = Id});
+            await NavigationService.Navigate<InventoryReportDetailsViewModel, int>(Id);
         }
     }
 }

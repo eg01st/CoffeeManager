@@ -2,6 +2,7 @@
 using CoffeeManager.Models;
 using CoffeeManagerAdmin.Core.Messages;
 using CoffeManager.Common;
+using CoffeManager.Common.Managers;
 using CoffeManager.Common.ViewModels;
 
 namespace CoffeeManagerAdmin.Core.ViewModels

@@ -1,18 +1,18 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using CoffeeManager.Models;
-using MvvmCross.Core.ViewModels;
-using CoffeManager.Common;
-using System.Threading.Tasks;
 using CoffeeManagerAdmin.Core.ViewModels.Users;
+using CoffeManager.Common;
 using CoffeManager.Common.Managers;
 using CoffeManager.Common.ViewModels;
+using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Messenger;
 
-namespace CoffeeManagerAdmin.Core.ViewModels
+namespace CoffeeManagerAdmin.Core.ViewModels.Shifts
 {
-    public class ShiftDetailsViewModel : ViewModelBase
+    public class ShiftDetailsViewModel : ViewModelBase, IMvxViewModel<int>
     {
         private readonly MvxSubscriptionToken updateToken;
         
@@ -37,24 +37,23 @@ namespace CoffeeManagerAdmin.Core.ViewModels
         {
             this.paymentManager = paymentManager;
             this.shiftManager = shiftManager;
-            ShowSalesCommand = new MvxCommand(DoShowSales);
-            AddExpenseCommand = new MvxCommand(() => ShowViewModel<AddShiftExpenseViewModel>(new { id = _shiftId }));
-            ShowUserDetailsCommand = new MvxCommand(() => ShowViewModel<UserDetailsViewModel>(new { id = userId }));
+            ShowSalesCommand = new MvxAsyncCommand(DoShowSales);
+            AddExpenseCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<AddShiftExpenseViewModel>());
+            ShowUserDetailsCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<UserDetailsViewModel, int>(userId));
 
-            updateToken = Subscribe<UpdateShiftMessage>(async obj => await Init(_shiftId));
+            updateToken = Subscribe<UpdateShiftMessage>(async obj => await Initialize());
         }
 
-        private void DoShowSales()
+        private async Task DoShowSales()
         {
-            ShowViewModel<ShiftSalesViewModel>(new { id = _shiftId });
+            await NavigationService.Navigate<ShiftSalesViewModel, int>(_shiftId);
         }
 
-        public async Task Init(int id)
+        public override async Task Initialize()
         {
-            _shiftId = id;
             await ExecuteSafe(async () =>
            {
-               var shiftInfo = await shiftManager.GetShiftInfo(id);
+               var shiftInfo = await shiftManager.GetShiftInfo(_shiftId);
                IsFinished = shiftInfo.IsFinished;
                Date = shiftInfo.Date.ToString("g");
                Name = shiftInfo.UserName;
@@ -78,7 +77,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels
                UsedCoffee = (int)shiftInfo.UsedPortions;
 
            });
-            BaseManager.ShiftNo = id;
+            BaseManager.ShiftNo = _shiftId;
         }
 
 
@@ -190,6 +189,11 @@ namespace CoffeeManagerAdmin.Core.ViewModels
         {
             base.DoUnsubscribe();
             Unsubscribe<UpdateShiftMessage>(updateToken);
+        }
+
+        public void Prepare(int parameter)
+        {
+            _shiftId = parameter;
         }
     }
 }

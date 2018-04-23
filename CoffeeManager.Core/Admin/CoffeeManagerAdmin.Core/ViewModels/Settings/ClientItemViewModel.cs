@@ -1,25 +1,25 @@
-﻿using System;
-using CoffeManager.Common;
-using CoffeeManager.Models;
+﻿using CoffeeManager.Models;
 using CoffeManager.Common.ViewModels;
 
-namespace CoffeeManagerAdmin.Core
+namespace CoffeeManagerAdmin.Core.ViewModels.Settings
 {
     public class ClientItemViewModel : ListItemViewModelBase
     {
+        private readonly UserAcount account;
         private string userId;
         private string apiUrl;
 
         public ClientItemViewModel(UserAcount account)
         {
+            this.account = account;
             userId = account.Id;
             Name = account.Email;
             apiUrl = account.ApiUrl;
         }
 
-        protected override void DoGoToDetails()
+        protected override async void DoGoToDetails()
         {
-            ShowViewModel<ClientDetailsViewModel>(new {id = userId, name = Name, apiUrl = apiUrl});
+           await NavigationService.Navigate<ClientDetailsViewModel,UserAcount>(account);
         }
     }
 }

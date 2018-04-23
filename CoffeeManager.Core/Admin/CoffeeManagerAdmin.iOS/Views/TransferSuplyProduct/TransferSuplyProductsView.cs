@@ -1,5 +1,6 @@
 ﻿using System;
 using CoffeeManagerAdmin.Core;
+using CoffeeManagerAdmin.Core.ViewModels.TransferSuplyProduct;
 using CoffeeManagerAdmin.iOS.Views.Abstract;
 using CoreGraphics;
 using MobileCore.iOS.ViewControllers;

@@ -1,5 +1,6 @@
 ﻿using System;
 using CoffeeManagerAdmin.Core.ViewModels;
+using CoffeeManagerAdmin.Core.ViewModels.Calculation;
 using Foundation;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.Binding.iOS.Views;

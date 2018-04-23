@@ -1,11 +1,10 @@
-﻿using System;
+﻿using CoffeeManager.Models;
 using CoffeManager.Common;
-using CoffeeManager.Models;
-using MvvmCross.Platform;
-using CoffeeManagerAdmin.Core.Util;
+using CoffeManager.Common.Managers;
 using CoffeManager.Common.ViewModels;
+using MvvmCross.Platform;
 
-namespace CoffeeManagerAdmin.Core
+namespace CoffeeManagerAdmin.Core.ViewModels.Shifts
 {
     public class AddExpenseItemViewModel : ListItemViewModelBase
     {
@@ -17,7 +16,7 @@ namespace CoffeeManagerAdmin.Core
             this.item = item;
         }
 
-        protected async override void DoGoToDetails()
+        protected override async void DoGoToDetails()
         {
             if(item.SuplyProducts.Length == 0)
             {
@@ -39,8 +38,7 @@ namespace CoffeeManagerAdmin.Core
             }
             else
             {
-                var id = ParameterTransmitter.PutParameter(item);
-                ShowViewModel<AddExpenseExtendedViewModel>(new {id = id});
+                await NavigationService.Navigate<AddExpenseExtendedViewModel, ExpenseType>(item);
             }
         }
     }

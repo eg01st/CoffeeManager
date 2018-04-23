@@ -1,17 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using CoffeManager.Common;
+using CoffeeManagerAdmin.Core.ViewModels.SuplyProducts;
+using CoffeManager.Common.Managers;
 using CoffeManager.Common.ViewModels;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Messenger;
 
-namespace CoffeeManagerAdmin.Core.ViewModels
+namespace CoffeeManagerAdmin.Core.ViewModels.Calculation
 {
-    public class SelectCalculationListViewModel : BaseSearchViewModel<SelectCalculationItemViewModel>
+    public class SelectCalculationListViewModel : BaseSearchViewModel<SelectCalculationItemViewModel>, IMvxViewModel<int>
     {
         private int productId;
         private MvxSubscriptionToken _listChanged;
@@ -23,15 +22,11 @@ namespace CoffeeManagerAdmin.Core.ViewModels
         public SelectCalculationListViewModel(ISuplyProductsManager manager)
         {
             this.manager = manager;
-            _listChanged = MvxMessenger.Subscribe<SuplyListChangedMessage>((obj) => base.Initialize());
-            AddNewSuplyProductCommand = new MvxCommand(() => ShowViewModel<AddSuplyProductViewModel>());
-        }
-        public void Init(int productId)
-        {
-            this.productId = productId;
+            _listChanged = MvxMessenger.Subscribe<SuplyListChangedMessage>(async (obj) => await Initialize());
+            AddNewSuplyProductCommand = new MvxAsyncCommand(async() => await NavigationService.Navigate<AddSuplyProductViewModel>());
         }
 
-        public async override Task<List<SelectCalculationItemViewModel>> LoadData()
+        public override async Task<List<SelectCalculationItemViewModel>> LoadData()
         {
             var items = await manager.GetSuplyProducts();
             return items.Select(s => new SelectCalculationItemViewModel(manager, productId, s)).ToList();
@@ -39,6 +34,11 @@ namespace CoffeeManagerAdmin.Core.ViewModels
         protected override void DoUnsubscribe()
         {
             MvxMessenger.Unsubscribe<SuplyListChangedMessage>(_listChanged);
+        }
+
+        public void Prepare(int parameter)
+        {
+            productId = parameter;
         }
     }
 }

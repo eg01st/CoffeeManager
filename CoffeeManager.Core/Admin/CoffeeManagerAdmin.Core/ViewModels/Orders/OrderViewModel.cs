@@ -23,12 +23,10 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Orders
             DeleteOrderCommand = new MvxCommand(DoDeleteOrder);
         }
 
-        protected override void DoGoToDetails()
+        protected override async void DoGoToDetails()
         {
-            var id = ParameterTransmitter.PutParameter(_order);
-            ShowViewModel<OrderItemsViewModel>(new { id = id });
+            await NavigationService.Navigate<OrderItemsViewModel, Order>(_order);
         }
-
 
         private void DoDeleteOrder()
         {

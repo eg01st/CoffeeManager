@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using CoffeManager.Common;
+using CoffeManager.Common.Managers;
 using CoffeManager.Common.ViewModels;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Messenger;
@@ -21,11 +22,11 @@ namespace CoffeeManagerAdmin.Core.ViewModels.SuplyProducts
         public SuplyProductsViewModel(ISuplyProductsManager manager)
         {
             this.manager = manager;
-            _listChanged = MvxMessenger.Subscribe<SuplyListChangedMessage>((obj) => base.Initialize());
-            AddNewSuplyProductCommand = new MvxCommand(() => ShowViewModel<AddSuplyProductViewModel>());
+            _listChanged = MvxMessenger.Subscribe<SuplyListChangedMessage>(async (obj) => await Initialize());
+            AddNewSuplyProductCommand = new MvxAsyncCommand(async() => await NavigationService.Navigate<AddSuplyProductViewModel>());
         }
 
-        public async override Task<List<ListItemViewModelBase>> LoadData()
+        public override async Task<List<ListItemViewModelBase>> LoadData()
         {
             var items = await manager.GetSuplyProducts();
             var result = new List<ListItemViewModelBase>();

@@ -1,11 +1,11 @@
-﻿using System;
-using CoffeManager.Common;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using CoffeManager.Common;
+using CoffeManager.Common.Managers;
 using CoffeManager.Common.ViewModels;
 
-namespace CoffeeManagerAdmin.Core
+namespace CoffeeManagerAdmin.Core.ViewModels.Shifts
 {
     public class AddShiftExpenseViewModel : BaseSearchViewModel<AddExpenseItemViewModel>
     {

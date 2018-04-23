@@ -24,10 +24,10 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Orders
         {
             this.manager = manager;
             _token = Subscribe<OrderListChangedMessage>(async (a) => await LoadData());
-            CreateOrderCommand = new MvxCommand(DoCreateOrder);
+            CreateOrderCommand = new MvxAsyncCommand(DoCreateOrder);
         }
 
-        private async void DoCreateOrder()
+        private async Task DoCreateOrder()
         {
             var order = new Order()
             {
@@ -38,8 +38,8 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Orders
             int orderId = await manager.CreateOrder(order);
             order.Id = orderId;
             await LoadData();
-            var id = ParameterTransmitter.PutParameter(order);
-            ShowViewModel<OrderItemsViewModel>(new { id = id });
+
+            await NavigationService.Navigate<OrderItemsViewModel, Order>(order);
         }
 
         public ICommand CreateOrderCommand { get; set; }
@@ -54,7 +54,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Orders
             }
         }
 
-        public async Task Init()
+        public override async Task Initialize()
         {
             await LoadData();
         }

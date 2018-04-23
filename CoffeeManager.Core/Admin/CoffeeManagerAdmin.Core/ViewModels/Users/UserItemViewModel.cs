@@ -1,11 +1,9 @@
 ﻿using System.Windows.Input;
-using CoffeeManagerAdmin.Core.ViewModels.Users;
-using MvvmCross.Core.ViewModels;
-using CoffeManager.Common;
 using CoffeManager.Common.Managers;
 using CoffeManager.Common.ViewModels;
+using MvvmCross.Core.ViewModels;
 
-namespace CoffeeManagerAdmin.Core
+namespace CoffeeManagerAdmin.Core.ViewModels.Users
 {
     public class UserItemViewModel : ListItemViewModelBase
     {
@@ -29,9 +27,9 @@ namespace CoffeeManagerAdmin.Core
             await ExecuteSafe(async () => await manager.ToggleEnabled(Id));
         }
 
-        protected override void DoGoToDetails()
+        protected override async void DoGoToDetails()
         {
-            ShowViewModel<UserDetailsViewModel>(new { id = Id});
+            await NavigationService.Navigate<UserDetailsViewModel, int>(Id);
         }
    }
 }

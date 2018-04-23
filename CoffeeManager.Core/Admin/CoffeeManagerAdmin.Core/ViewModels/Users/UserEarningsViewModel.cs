@@ -10,7 +10,7 @@ using MvvmCross.Core.ViewModels;
 
 namespace CoffeeManagerAdmin.Core.ViewModels.Users
 {
-    public class UserEarningsViewModel : ViewModelBase
+    public class UserEarningsViewModel : ViewModelBase, IMvxViewModel<UserEarningsHistory[]>
     {
         public List<UserEarningItemViewModel> Items { get; set; }
 
@@ -29,12 +29,10 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Users
 
             await Task.Yield();
         }
-        
-        public void Init(Guid id)
+
+        public void Prepare(UserEarningsHistory[] parameter)
         {
-            UserEarningsHistory[] items;
-            ParameterTransmitter.TryGetParameter(id, out items);
-            Items = items?.Select(s => new UserEarningItemViewModel(s)).ToList();
+            Items = parameter?.Select(s => new UserEarningItemViewModel(s)).ToList();
             RaisePropertyChanged(nameof(Items));
         }
     }

@@ -1,11 +1,12 @@
 ﻿using System.Windows.Input;
 using CoffeeManager.Models;
 using CoffeeManagerAdmin.Core.Messages;
-using MvvmCross.Core.ViewModels;
-using CoffeManager.Common;
+using CoffeeManagerAdmin.Core.ViewModels.SuplyProducts;
+using CoffeManager.Common.Managers;
 using CoffeManager.Common.ViewModels;
+using MvvmCross.Core.ViewModels;
 
-namespace CoffeeManagerAdmin.Core.ViewModels
+namespace CoffeeManagerAdmin.Core.ViewModels.Calculation
 {
     public class CalculationItemViewModel : ListItemViewModelBase
     {
@@ -28,15 +29,16 @@ namespace CoffeeManagerAdmin.Core.ViewModels
         }
 
         public ICommand DeleteCommand => _deleteCommand;
+        
         public int Id => _item.Id;
 
         public override string Name => _item.Name;
 
         public decimal Quantity => _item.Quantity;
 
-        protected override void DoGoToDetails()
+        protected override async void DoGoToDetails()
         {
-            ShowViewModel<SuplyProductDetailsViewModel>(new {id = Id});
+            await NavigationService.Navigate<SuplyProductDetailsViewModel, int>(Id);
         }
     }
 }

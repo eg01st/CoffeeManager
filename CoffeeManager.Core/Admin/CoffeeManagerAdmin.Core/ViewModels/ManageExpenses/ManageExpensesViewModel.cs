@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using CoffeManager.Common;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using CoffeManager.Common.Managers;
 using CoffeManager.Common.ViewModels;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Messenger;
 
-namespace CoffeeManagerAdmin.Core
+namespace CoffeeManagerAdmin.Core.ViewModels.ManageExpenses
 {
     public class ManageExpensesViewModel : BaseSearchViewModel<ManageExpenseItemViewModel>
     {
@@ -19,11 +19,11 @@ namespace CoffeeManagerAdmin.Core
         public ManageExpensesViewModel(IPaymentManager manager)
         {
             this.manager = manager;
-            AddExpenseTypeCommand = new MvxCommand(() => ShowViewModel<AddExpenseTypeViewModel>());
+            AddExpenseTypeCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<AddExpenseTypeViewModel>());
             reloadListToken = MvxMessenger.Subscribe<ExpenseListChangedMessage>(async (obj) => await Initialize());
         }
 
-        public async override Task<List<ManageExpenseItemViewModel>> LoadData()
+        public override async Task<List<ManageExpenseItemViewModel>> LoadData()
         {
             return await ExecuteSafe(async () =>
             {

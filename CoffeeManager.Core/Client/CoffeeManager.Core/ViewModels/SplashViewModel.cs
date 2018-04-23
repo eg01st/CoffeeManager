@@ -34,8 +34,8 @@ namespace CoffeeManager.Core.ViewModels
             this.accountManager = accountManager;
         }
 
-        public override async Task Initialize()
-        { 
+        public override async void ViewAppearing()
+        {
             var coffeeRoomNo = localStorage.GetCoffeeRoomId();
             if (coffeeRoomNo == -1)
             {
@@ -48,17 +48,17 @@ namespace CoffeeManager.Core.ViewModels
             }
 
             var userInfo = localStorage.GetUserInfo();
-            if(userInfo == null)
+            if (userInfo == null)
             {
                 bool isLoggedIn = await NavigationService.Navigate<InitialLoginViewModel, bool>();
-                if(!isLoggedIn)
+                if (!isLoggedIn)
                 {
                     return;
                 }
             }
-            else 
+            else
             {
-                if(!await connectivity.HasInternetConnectionAsync && userInfo.AccessToken.IsNotNull())
+                if (!await connectivity.HasInternetConnectionAsync && userInfo.AccessToken.IsNotNull())
                 {
                     BaseServiceProvider.SetAccessToken(userInfo.AccessToken, userInfo.ApiUrl);
                     Config.ApiUrl = userInfo.ApiUrl;
@@ -84,7 +84,7 @@ namespace CoffeeManager.Core.ViewModels
                                 return;
                             }
                         }
-                        
+
                     }
                     catch (Exception ex)
                     {
@@ -105,7 +105,6 @@ namespace CoffeeManager.Core.ViewModels
             {
                 await NavigationService.Navigate<LoginViewModel>();
             }
-
         }
     }
 }

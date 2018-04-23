@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using CoffeeManagerAdmin.Core;
+using CoffeeManagerAdmin.Core.ViewModels.ManageExpenses;
 using CoffeeManagerAdmin.iOS.Views.Abstract;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.iOS.Views.Presenters.Attributes;

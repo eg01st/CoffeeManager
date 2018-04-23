@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using CoffeeManager.Common;
+using CoffeeManager.Core.ViewModels.Settings;
 using CoffeManager.Common;
 using CoffeManager.Common.Managers;
-using MvvmCross.Core.ViewModels;
-using System.Windows.Input;
-using CoffeeManager.Core.ViewModels.Settings;
 using CoffeManager.Common.ViewModels;
+using MvvmCross.Core.ViewModels;
 
-namespace CoffeeManager.Core
+namespace CoffeeManager.Core.ViewModels
 {
     public class InitialLoginViewModel : ViewModelBase, IMvxViewModelResult<bool>
     {
@@ -56,10 +56,12 @@ namespace CoffeeManager.Core
             return !string.IsNullOrEmpty(Login) && !string.IsNullOrEmpty(Password);
         }
 
-        public async override Task Initialize()
+        public override Task Initialize()
         {
             var userInfo = localStorage.GetUserInfo();
             Login = userInfo?.Login;
+            
+            return Task.FromResult(true);
         }
 
         private async Task DoLogin()

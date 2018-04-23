@@ -1,5 +1,6 @@
 ﻿using System;
 using CoffeeManager.Models;
+using CoffeeManagerAdmin.Core.ViewModels.SuplyProducts;
 using CoffeManager.Common;
 using CoffeManager.Common.ViewModels;
 
@@ -29,9 +30,9 @@ namespace CoffeeManagerAdmin.Core
             QuantityDiff = s.QuantityDiff;
         }
 
-        protected override void DoGoToDetails()
+        protected override async void DoGoToDetails()
         {
-            ShowViewModel<SuplyProductDetailsViewModel>(new { id = SuplyProductId });
+            await NavigationService.Navigate<SuplyProductDetailsViewModel, int>(SuplyProductId);
         }
     }
 }

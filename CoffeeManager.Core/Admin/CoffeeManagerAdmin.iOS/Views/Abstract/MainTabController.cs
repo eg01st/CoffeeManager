@@ -7,6 +7,7 @@ using MvvmCross.Platform;
 using Foundation;
 using System.Collections.Generic;
 using CoffeeManagerAdmin.Core.ViewModels.Home;
+using CoffeeManagerAdmin.Core.ViewModels.ManageExpenses;
 
 namespace CoffeeManagerAdmin.iOS
 {

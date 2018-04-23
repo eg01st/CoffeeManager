@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Input;
+using CoffeeManagerAdmin.Core.ViewModels.Statistic;
 using CoffeManager.Common;
 using CoffeManager.Common.ViewModels;
 using MvvmCross.Core.ViewModels;
@@ -33,9 +34,9 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Home
             GetDataCommand = new MvxCommand(DoGetData);
         }
 
-        private void DoGetData()
+        private async void DoGetData()
         {
-            ShowViewModel<StatisticResultViewModel>(new { from = From, to = To});
+            await NavigationService.Navigate<StatisticResultViewModel, Tuple<DateTime, DateTime>>(new Tuple<DateTime, DateTime>(From, To));
         }
     }
 }

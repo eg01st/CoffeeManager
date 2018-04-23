@@ -5,14 +5,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using CoffeeManagerAdmin.Core.Messages;
+using CoffeeManagerAdmin.Core.ViewModels.SuplyProducts;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Messenger;
 using CoffeManager.Common;
+using CoffeManager.Common.Managers;
 using CoffeManager.Common.ViewModels;
 
 namespace CoffeeManagerAdmin.Core.ViewModels.Orders
 {
-    public class SelectOrderItemsViewModel : ViewModelBase
+    public class SelectOrderItemsViewModel : ViewModelBase, IMvxViewModel<int>
     {
         private string _newProductName;
         private int _orderId;
@@ -28,13 +30,12 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Orders
             this.orderManager = orderManager;
             this.manager = manager;
             DoneCommand = new MvxCommand(DoDoneCommand);
-            AddNewSuplyProductCommand = new MvxCommand(() => ShowViewModel<AddSuplyProductViewModel>());
+            AddNewSuplyProductCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<AddSuplyProductViewModel>());
             _token = Subscribe<SuplyListChangedMessage>(async (obj) => await LoadData());
         }
 
-        public async void Init(int id)
+        public override async Task Initialize()
         {
-            _orderId = id;
             await LoadData();
         }
 
@@ -99,6 +100,11 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Orders
         protected override void DoUnsubscribe()
         {
             Unsubscribe<SuplyListChangedMessage>(_token);
+        }
+
+        public void Prepare(int parameter)
+        {
+            _orderId = parameter;
         }
     }
 }

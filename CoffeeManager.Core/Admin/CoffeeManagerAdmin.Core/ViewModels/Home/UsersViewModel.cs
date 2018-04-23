@@ -32,7 +32,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Home
 
         public int AmountToPay { get; set; }
 
-        public async Task Init()
+        public override async Task Initialize()
         {
             await ExecuteSafe(async () => 
             {
@@ -52,10 +52,10 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Home
         public UsersViewModel(IUserManager manager)
         {
             this.manager = manager;
-            _addUserCommand = new MvxCommand(DoAddUser);
+            _addUserCommand = new MvxAsyncCommand(DoAddUser);
             ItemSelectedCommand = new MvxAsyncCommand<UserItemViewModel>(OnItemSelectedAsync);
 
-            refreshUsersToken = Subscribe<RefreshUserListMessage>(async (obj) => await Init());
+            refreshUsersToken = Subscribe<RefreshUserListMessage>(async (obj) => await Initialize());
         }
         
         private async Task OnItemSelectedAsync(UserItemViewModel item)
@@ -67,9 +67,9 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Home
             await Task.Yield();
         }
 
-        private void DoAddUser()
+        private async Task DoAddUser()
         {
-            ShowViewModel<UserDetailsViewModel>();
+            await NavigationService.Navigate<UserDetailsViewModel>();
         }
 
         protected override void DoUnsubscribe()

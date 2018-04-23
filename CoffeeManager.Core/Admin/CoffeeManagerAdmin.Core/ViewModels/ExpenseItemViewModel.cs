@@ -3,6 +3,7 @@ using System.Windows.Input;
 using CoffeeManager.Models;
 using CoffeeManagerAdmin.Core.ViewModels.Shifts;
 using CoffeManager.Common;
+using CoffeManager.Common.Managers;
 using CoffeManager.Common.ViewModels;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;

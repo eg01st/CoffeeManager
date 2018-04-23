@@ -4,6 +4,7 @@ using CoffeeManager.Models;
 using MvvmCross.Core.ViewModels;
 using CoffeManager.Common;
 using CoffeeManager.Common;
+using CoffeManager.Common.Managers;
 using CoffeManager.Common.ViewModels;
 
 namespace CoffeeManagerAdmin.Core.ViewModels.Orders

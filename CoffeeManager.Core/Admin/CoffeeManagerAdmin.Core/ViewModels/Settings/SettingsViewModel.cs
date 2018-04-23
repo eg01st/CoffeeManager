@@ -82,12 +82,12 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Settings
             ShowCountersCommand =
                 new MvxAsyncCommand(async () => await NavigationService.Navigate<CoffeeCountersViewModel>());
 
-            AddUserCommand = new MvxCommand(DoAddUser);
-            AddCoffeeRoomCommand = new MvxCommand(DoAddCoffeeRoom);
+            AddUserCommand = new MvxAsyncCommand(DoAddUser);
+            AddCoffeeRoomCommand = new MvxAsyncCommand(DoAddCoffeeRoom);
             ItemSelectedCommand = new MvxAsyncCommand<CoffeeRoomItemViewModel>(OnItemSelectedAsync);
             
-            refreshUsersToken = Subscribe<RefreshAdminUsersMessage>(async (obj) => await Init());
-            refreshCoffeeroomsToken = Subscribe<RefreshCoffeeRoomsMessage>(async (obj) => await Init());
+            refreshUsersToken = Subscribe<RefreshAdminUsersMessage>(async (obj) => await Initialize());
+            refreshCoffeeroomsToken = Subscribe<RefreshCoffeeRoomsMessage>(async (obj) => await Initialize());
         }
         
         private async Task OnItemSelectedAsync(CoffeeRoomItemViewModel item)
@@ -99,7 +99,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Settings
             await Task.Yield();
         }
 
-        private async void DoAddCoffeeRoom()
+        private async Task DoAddCoffeeRoom()
         {
             await ExecuteSafe(async () =>
             {
@@ -114,12 +114,12 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Settings
             });
         }
 
-        private void DoAddUser()
+        private async Task DoAddUser()
         {
-            ShowViewModel<CreateClientViewModel>();
+            await NavigationService.Navigate<CreateClientViewModel>();
         }
 
-        public async Task Init()
+        public override async Task Initialize()
         {
             await ExecuteSafe(async () =>
             {

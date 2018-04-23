@@ -1,6 +1,7 @@
 ﻿using Android.Runtime;
 using CoffeeManagerAdmin.Core;
 using CoffeeManagerAdmin.Core.ViewModels;
+using CoffeeManagerAdmin.Core.ViewModels.Home;
 using MobileCore.Droid.Fragments;
 using MvvmCross.Droid.Views.Attributes;
 

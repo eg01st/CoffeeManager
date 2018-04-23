@@ -1,48 +1,46 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using CoffeeManagerAdmin.Core.Messages;
+using CoffeManager.Common;
+using CoffeManager.Common.Managers;
+using CoffeManager.Common.ViewModels;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Messenger;
-using CoffeManager.Common;
-using CoffeManager.Common.ViewModels;
 
-namespace CoffeeManagerAdmin.Core.ViewModels
+namespace CoffeeManagerAdmin.Core.ViewModels.Calculation
 {
-    public class CalculationViewModel : ViewModelBase
+    public class CalculationViewModel : ViewModelBase, IMvxViewModel<int>
     {
-        private MvxSubscriptionToken _listChangedToken;
-     private string _name;
-        private List<CalculationItemViewModel> _items;
+        private readonly MvxSubscriptionToken listChangedToken;
+        private string name;
+        private List<CalculationItemViewModel> items;
         private ICommand _addItemCommand;
-        private int _productId;
+        private int productId;
         readonly ISuplyProductsManager manager;
 
         public CalculationViewModel(ISuplyProductsManager manager)
         {
             this.manager = manager;
-            _addItemCommand = new MvxCommand(DoAddItem);
-            _listChangedToken = Subscribe<CalculationListChangedMessage>(async (obj) => await LoadData());
+            _addItemCommand = new MvxAsyncCommand(DoAddItem);
+            listChangedToken = Subscribe<CalculationListChangedMessage>(async (obj) => await Initialize());
         }
 
-        private void DoAddItem()
+        private async Task DoAddItem()
         {
-            ShowViewModel<SelectCalculationListViewModel>(new { productId = _productId });
+            await NavigationService.Navigate<SelectCalculationListViewModel, int>(productId);
         }
 
-        public async void Init(int id)
+        public override async Task Initialize()
         {
-            _productId = id;
-            await LoadData();
+            await ExecuteSafe(LoadData);
         }
 
         private async Task LoadData()
         {
-            var info = await manager.GetProductCalculationItems(_productId);
-            _productId = info.ProductId;
+            var info = await manager.GetProductCalculationItems(productId);
+            productId = info.ProductId;
             Name = info.Name;
             Items = info.SuplyProductInfo.Select(s => new CalculationItemViewModel(manager, s)).ToList();
         }
@@ -51,27 +49,32 @@ namespace CoffeeManagerAdmin.Core.ViewModels
 
         public string Name
         {
-            get { return _name; }
+            get { return name; }
             set
             {
-                _name = value;
+                name = value;
                 RaisePropertyChanged(nameof(Name));
             }
         }
 
         public List<CalculationItemViewModel> Items
         {
-            get { return _items; }
+            get { return items; }
             set
             {
-                _items = value;
+                items = value;
                 RaisePropertyChanged(nameof(Items));
             }
         }
 
         protected override void DoUnsubscribe()
         {
-            Unsubscribe<CalculationListChangedMessage>(_listChangedToken);
+            Unsubscribe<CalculationListChangedMessage>(listChangedToken);
+        }
+
+        public void Prepare(int parameter)
+        {
+            productId = parameter;
         }
     }
 }

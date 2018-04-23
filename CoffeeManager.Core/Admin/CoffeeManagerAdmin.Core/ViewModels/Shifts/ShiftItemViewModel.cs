@@ -12,9 +12,9 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Shifts
             _info = info;
         }
 
-        protected override void DoGoToDetails()
+        protected override async void DoGoToDetails()
         {
-            ShowViewModel<ShiftDetailsViewModel>(new { id = _info.Id });
+            await NavigationService.Navigate<ShiftDetailsViewModel, int>(_info.Id);
         } 
 
         public int Id => _info.Id;

@@ -5,6 +5,7 @@ using Android.Views;
 using CoffeeManagerAdmin.Core;
 using CoffeeManagerAdmin.Core.ViewModels.Home;
 using CoffeeManagerAdmin.Core.ViewModels.Shifts;
+using CoffeeManagerAdmin.Core.ViewModels.Users;
 using CoffeeManagerAdmin.Droid.Adapters.ViewHolders;
 using MobileCore.Droid.Activities;
 using MobileCore.Droid.Adapters;

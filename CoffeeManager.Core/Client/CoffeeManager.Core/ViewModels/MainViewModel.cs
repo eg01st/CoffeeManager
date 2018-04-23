@@ -210,16 +210,16 @@ namespace CoffeeManager.Core.ViewModels
             };
            
             EndShiftCommand = new MvxCommand(DoEndShift);
-            ShowCurrentSalesCommand = new MvxCommand(() => ShowViewModel<CurrentShiftSalesViewModel>());
-            ShowExpenseCommand = new MvxCommand(() => ShowViewModel<ExpenseViewModel>());
+            ShowCurrentSalesCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<CurrentShiftSalesViewModel>());
+            ShowExpenseCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<ExpenseViewModel>());
             EnablePoliceSaleCommand = new MvxCommand(() => IsPoliceSaleEnabled = !IsPoliceSaleEnabled);
             EnableCreditCardSaleCommand = new MvxCommand(() => IsCreditCardSaleEnabled = !IsCreditCardSaleEnabled);
             ItemSelectedCommand = new MvxCommand<SelectedProductViewModel>(DoSelectItem);
             PayCommand = new MvxAsyncCommand(DoPay);
-            ShowCurrentShiftExpensesCommand = new MvxCommand(() => ShowViewModel<CurrentShiftExpensesViewModel>());
-            ShowInventoryCommand= new MvxCommand(() => ShowViewModel<InventoryViewModel>());
-            ShowUtilizeCommand = new MvxCommand(() => ShowViewModel<UtilizeProductsViewModel>());
-            ShowSettingsCommand = new MvxCommand(() => NavigationService.Navigate<SettingsViewModel>());
+            ShowCurrentShiftExpensesCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<CurrentShiftExpensesViewModel>());
+            ShowInventoryCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<InventoryViewModel>());
+            ShowUtilizeCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<UtilizeProductsViewModel>());
+            ShowSettingsCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<SettingsViewModel>());
             ShowChargeCommand = new MvxCommand<int>((sum) => DoShowCharge(sum));
         }
 

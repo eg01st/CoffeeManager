@@ -1,13 +1,14 @@
-﻿using System;
+﻿using System.Threading.Tasks;
 using System.Windows.Input;
-using MvvmCross.Core.ViewModels;
-using CoffeManager.Common;
 using CoffeeManager.Common;
+using CoffeManager.Common;
+using CoffeManager.Common.Managers;
 using CoffeManager.Common.ViewModels;
+using MvvmCross.Core.ViewModels;
 
-namespace CoffeeManagerAdmin.Core
+namespace CoffeeManagerAdmin.Core.ViewModels.SuplyProducts
 {
-    public class SuplyProductDetailsViewModel : ViewModelBase
+    public class SuplyProductDetailsViewModel : ViewModelBase, IMvxViewModel<int>
     {
         private int _id;
         private string _name;
@@ -168,12 +169,11 @@ namespace CoffeeManagerAdmin.Core
             Close(this);
         }
 
-        public async void Init(int id)
+        public override async Task Initialize()
         {
-            _id = id;
             await ExecuteSafe(async () =>
            {
-               var product = await manager.GetSuplyProduct(id);
+               var product = await manager.GetSuplyProduct(_id);
                Name = product.Name;
                SupliedPrice = product.Price;
                SalePrice = product.SalePrice;
@@ -185,6 +185,11 @@ namespace CoffeeManagerAdmin.Core
                inventoryEnabled = product.InventoryEnabled;
                RaisePropertyChanged(nameof(InventoryEnabled));
            });
+        }
+
+        public void Prepare(int parameter)
+        {
+            _id = parameter;
         }
     }
 }

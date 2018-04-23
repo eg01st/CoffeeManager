@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using CoffeeManager.Models;
 using CoffeManager.Common;
-using System.Windows.Input;
 using CoffeManager.Common.ViewModels;
 using MvvmCross.Core.ViewModels;
-namespace CoffeeManagerAdmin.Core
+
+namespace CoffeeManagerAdmin.Core.ViewModels.TransferSuplyProduct
 {
     public class TransferSuplyProductsViewModel : ViewModelBase
     {
@@ -28,9 +29,9 @@ namespace CoffeeManagerAdmin.Core
             return fromCoffeeRoom != null && toCoffeeRoom != null;
         }
 
-        private void DoNextCommand()
+        private async void DoNextCommand()
         {
-            ShowViewModel<SelectSuplyProductsViewModel>(new { fromCoffeeRoom = fromCoffeeRoom.Id, toCoffeeRoom = toCoffeeRoom.Id});
+            await NavigationService.Navigate<SelectSuplyProductsViewModel, Tuple<int, int>>(new Tuple<int, int>(fromCoffeeRoom.Id,toCoffeeRoom.Id));
         }
 
         public ICommand NextCommand { get; }
@@ -74,7 +75,7 @@ namespace CoffeeManagerAdmin.Core
             }
         }
 
-        public async Task Init()
+        public override async Task Initialize()
         {
             await ExecuteSafe(async () =>
             {

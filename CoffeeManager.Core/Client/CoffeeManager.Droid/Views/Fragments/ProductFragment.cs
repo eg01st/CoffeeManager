@@ -51,7 +51,7 @@ namespace CoffeeManager.Droid.Views.Fragments
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            this.EnsureBindingContextIsSet(savedInstanceState);
+            this.EnsureBindingContextIsSet(inflater);
             var view = this.BindingInflate(Resource.Layout.product_list, null);
 
             tabLayout = view.FindViewById<TabLayout>(Resource.Id.sub_category_tab_layout);

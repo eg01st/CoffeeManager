@@ -19,11 +19,6 @@ namespace CoffeManager.Common.ViewModels
             _orginalItems = Items = loadedItems;
         }
 
-        public async Task Init()
-        {
-            await Initialize();
-        }
-
         public abstract Task<List<TItem>> LoadData();
 
         public List<TItem> Items

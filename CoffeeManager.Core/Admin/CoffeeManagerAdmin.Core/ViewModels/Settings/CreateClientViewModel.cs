@@ -1,12 +1,13 @@
 ﻿using System;
-using CoffeManager.Common;
-using System.Windows.Input;
-using CoffeManager.Common.Managers;
-using MvvmCross.Core.ViewModels;
 using System.Diagnostics;
+using System.Threading.Tasks;
+using System.Windows.Input;
+using CoffeManager.Common;
+using CoffeManager.Common.Managers;
 using CoffeManager.Common.ViewModels;
+using MvvmCross.Core.ViewModels;
 
-namespace CoffeeManagerAdmin.Core
+namespace CoffeeManagerAdmin.Core.ViewModels.Settings
 {
     public class CreateClientViewModel : ViewModelBase
     {
@@ -62,10 +63,10 @@ namespace CoffeeManagerAdmin.Core
         public CreateClientViewModel(IAccountManager manager)
         {
             this.manager = manager;
-            RegisterUserCommand = new MvxCommand(DoRegisterUser);
+            RegisterUserCommand = new MvxAsyncCommand(DoRegisterUser);
         }
 
-        private async void DoRegisterUser()
+        private async Task DoRegisterUser()
         {
             if (Password != ConfirmPassword)
             {

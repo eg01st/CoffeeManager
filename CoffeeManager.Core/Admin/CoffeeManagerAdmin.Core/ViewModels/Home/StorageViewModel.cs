@@ -1,23 +1,23 @@
-﻿using System;
-using System.Windows.Input;
-using CoffeeManagerAdmin.Core.ViewModels;
+﻿using System.Windows.Input;
+using CoffeeManagerAdmin.Core.ViewModels.Inventory;
 using CoffeeManagerAdmin.Core.ViewModels.Orders;
 using CoffeeManagerAdmin.Core.ViewModels.SuplyProducts;
-using CoffeManager.Common;
+using CoffeeManagerAdmin.Core.ViewModels.TransferSuplyProduct;
+using CoffeeManagerAdmin.Core.ViewModels.Utilize;
 using CoffeManager.Common.ViewModels;
 using MvvmCross.Core.ViewModels;
 
-namespace CoffeeManagerAdmin.Core
+namespace CoffeeManagerAdmin.Core.ViewModels.Home
 {
     public class StorageViewModel : ViewModelBase
     {
         public StorageViewModel()
         {
-            ShowSupliedProductsCommand = new MvxCommand(() => ShowViewModel<SuplyProductsViewModel>());
-            ShowOrdersCommand = new MvxCommand(() => ShowViewModel<OrdersViewModel>());
-            ShowInventoryCommand = new MvxCommand(() => ShowViewModel<InventoryViewModel>());
-            ShowUtilizedSuplyProductsCommand = new MvxCommand(() => ShowViewModel<UtilizeViewModel>());
-            TransferSuplyProductsCommand = new MvxCommand(() => ShowViewModel<TransferSuplyProductsViewModel>());
+            ShowSupliedProductsCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<SuplyProductsViewModel>());
+            ShowOrdersCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<OrdersViewModel>());
+            ShowInventoryCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<InventoryViewModel>());
+            ShowUtilizedSuplyProductsCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<UtilizeViewModel>());
+            TransferSuplyProductsCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<TransferSuplyProductsViewModel>());
         }
 
         public ICommand ShowSupliedProductsCommand { get; }

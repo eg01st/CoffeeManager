@@ -1,9 +1,8 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using CoffeeManager.Models;
-using System.Collections.Generic;
 
-namespace CoffeManager.Common
+namespace CoffeManager.Common.Managers
 {
     public interface ISuplyProductsManager
     {

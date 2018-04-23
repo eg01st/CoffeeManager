@@ -3,6 +3,7 @@
 using UIKit;
 using MvvmCross.Binding.BindingContext;
 using CoffeeManagerAdmin.Core;
+using CoffeeManagerAdmin.Core.ViewModels.Inventory;
 using CoffeeManagerAdmin.iOS.Views.Abstract;
 using MobileCore.iOS.ViewControllers;
 

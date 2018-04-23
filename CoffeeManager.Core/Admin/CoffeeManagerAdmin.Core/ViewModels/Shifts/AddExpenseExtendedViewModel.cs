@@ -1,16 +1,16 @@
-﻿using System;
-using CoffeManager.Common;
-using System.Threading.Tasks;
-using CoffeeManager.Models;
-using CoffeeManagerAdmin.Core.Util;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Input;
+using CoffeeManager.Models;
+using CoffeManager.Common;
+using CoffeManager.Common.Managers;
 using CoffeManager.Common.ViewModels;
 using MvvmCross.Core.ViewModels;
-namespace CoffeeManagerAdmin.Core
+
+namespace CoffeeManagerAdmin.Core.ViewModels.Shifts
 {
-    public class AddExpenseExtendedViewModel : BaseSearchViewModel<AddExtendedExpenseItemViewModel>
+    public class AddExpenseExtendedViewModel : BaseSearchViewModel<AddExtendedExpenseItemViewModel>, IMvxViewModel<ExpenseType>
     {
         ExpenseType expenseType;
         readonly IPaymentManager manager;
@@ -50,15 +50,14 @@ namespace CoffeeManagerAdmin.Core
             DoClose();
         }
 
-        public void Init(Guid id)
-        {
-            ParameterTransmitter.TryGetParameter(id, out expenseType);
-
-        }
-
-        public async override Task<List<AddExtendedExpenseItemViewModel>> LoadData()
+        public override async Task<List<AddExtendedExpenseItemViewModel>> LoadData()
         {
             return expenseType.SuplyProducts.Select(s => new AddExtendedExpenseItemViewModel(s)).ToList();
+        }
+
+        public void Prepare(ExpenseType parameter)
+        {
+            expenseType = parameter;
         }
     }
 }

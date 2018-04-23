@@ -2,6 +2,7 @@
 using System.Windows.Input;
 using CoffeeManager.Models;
 using CoffeManager.Common;
+using CoffeManager.Common.Managers;
 using CoffeManager.Common.ViewModels;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
@@ -20,9 +21,9 @@ namespace CoffeeManagerAdmin.Core.ViewModels.SuplyProducts
             DeleteItemCommand = new MvxCommand(DoDeleteItem);
         }
 
-        protected override void DoGoToDetails()
+        protected override async void DoGoToDetails()
         {
-            ShowViewModel<SuplyProductDetailsViewModel>(new { id = _item.Id });
+            await NavigationService.Navigate<SuplyProductDetailsViewModel, int>(_item.Id);
         }
 
         public ICommand DeleteItemCommand { get; set; }
@@ -44,7 +45,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels.SuplyProducts
 
         private async Task OnDeleteItem()
         {
-            await manager.DeleteSuplyProduct(_item.Id);
+            await ExecuteSafe(manager.DeleteSuplyProduct(_item.Id));
             Publish(new SuplyListChangedMessage(this));
         }
     }

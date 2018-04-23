@@ -100,11 +100,6 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Categories
             return categories.Select(s => new CategoryItemViewModel(s)).ToPageContainer();
         }
 
-        public async Task Init()
-        {
-            await DoLoadDataImplAsync();
-        }
-
         protected override void DoSubscribe()
         {
             base.DoSubscribe();

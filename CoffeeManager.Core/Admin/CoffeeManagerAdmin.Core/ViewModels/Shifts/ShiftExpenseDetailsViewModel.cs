@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using CoffeeManager.Models;
 using CoffeManager.Common;
+using CoffeManager.Common.Managers;
 using CoffeManager.Common.ViewModels;
 using MvvmCross.Core.ViewModels;
 

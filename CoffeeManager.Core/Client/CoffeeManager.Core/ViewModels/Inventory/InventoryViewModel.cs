@@ -50,7 +50,7 @@ namespace CoffeeManager.Core.ViewModels.Inventory
             });
         }
 
-        public async override Task<List<InventoryItemViewModel>> LoadData()
+        public override async Task<List<InventoryItemViewModel>> LoadData()
         {
             var items = await manager.GetInventoryItems();
             var savedItems = manager.GetSavedItems();

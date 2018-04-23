@@ -6,6 +6,7 @@ using CoffeeManager.Core.Messages;
 using CoffeManager.Common;
 using MvvmCross.Core.ViewModels;
 using CoffeeManager.Models;
+ using CoffeManager.Common.Managers;
  using CoffeManager.Common.ViewModels;
  using MobileCore.Extensions;
  using MobileCore.ViewModels;
@@ -175,7 +176,7 @@ namespace CoffeeManager.Core.ViewModels
         }
 
 
-        public async void Init()
+        protected override async Task DataLoadedAsync()
         {
             await LoadTypes();
         }

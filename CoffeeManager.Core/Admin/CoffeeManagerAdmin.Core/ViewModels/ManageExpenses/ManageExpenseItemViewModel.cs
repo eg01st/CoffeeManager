@@ -3,6 +3,8 @@ using System.Windows.Input;
 using MvvmCross.Core.ViewModels;
 using CoffeManager.Common;
 using System;
+using CoffeeManagerAdmin.Core.ViewModels.ManageExpenses;
+using CoffeManager.Common.Managers;
 using CoffeManager.Common.ViewModels;
 
 namespace CoffeeManagerAdmin.Core
@@ -49,10 +51,9 @@ namespace CoffeeManagerAdmin.Core
             });
         }
 
-        protected override void DoGoToDetails()
+        protected override async void DoGoToDetails()
         {
-            var id = Util.ParameterTransmitter.PutParameter(expenseType);
-            ShowViewModel<ExpenseTypeDetailsViewModel>(new {id});
+           await NavigationService.Navigate<ExpenseTypeDetailsViewModel, ExpenseType>(expenseType);
         }
    }
 }

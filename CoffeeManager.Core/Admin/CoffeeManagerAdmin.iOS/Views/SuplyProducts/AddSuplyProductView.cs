@@ -4,6 +4,7 @@ using UIKit;
 using MvvmCross.iOS.Views;
 using MvvmCross.Binding.BindingContext;
 using CoffeeManagerAdmin.Core;
+using CoffeeManagerAdmin.Core.ViewModels.SuplyProducts;
 using CoffeeManagerAdmin.iOS.Views.Abstract;
 using MobileCore.iOS.ViewControllers;
 

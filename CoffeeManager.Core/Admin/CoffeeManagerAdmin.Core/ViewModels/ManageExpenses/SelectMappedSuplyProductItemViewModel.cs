@@ -2,6 +2,7 @@
 using CoffeeManager.Models;
 using CoffeeManagerAdmin.Core.ViewModels.SuplyProducts;
 using CoffeManager.Common;
+using CoffeManager.Common.Managers;
 using MvvmCross.Platform;
 
 namespace CoffeeManagerAdmin.Core

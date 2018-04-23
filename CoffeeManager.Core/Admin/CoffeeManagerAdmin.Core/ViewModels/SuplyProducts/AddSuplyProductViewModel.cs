@@ -1,9 +1,10 @@
-﻿using System;
-using CoffeManager.Common;
+﻿using System.Threading.Tasks;
 using System.Windows.Input;
+using CoffeManager.Common.Managers;
 using CoffeManager.Common.ViewModels;
 using MvvmCross.Core.ViewModels;
-namespace CoffeeManagerAdmin.Core
+
+namespace CoffeeManagerAdmin.Core.ViewModels.SuplyProducts
 {
     public class AddSuplyProductViewModel : ViewModelBase
     {
@@ -26,14 +27,14 @@ namespace CoffeeManagerAdmin.Core
         public AddSuplyProductViewModel(ISuplyProductsManager manager)
         {
             this.manager = manager;
-            AddSuplyProductCommand = new MvxCommand(DoAddSuplyProduct);
+            AddSuplyProductCommand = new MvxAsyncCommand(DoAddSuplyProduct);
         }
 
-        private async void DoAddSuplyProduct()
+        private async Task DoAddSuplyProduct()
         {
             if(!string.IsNullOrWhiteSpace(Name))
             {
-                await manager.AddSuplyProduct(Name);
+                await ExecuteSafe(manager.AddSuplyProduct(Name));
                 Publish(new SuplyListChangedMessage(this));
                 Close(this);
             }

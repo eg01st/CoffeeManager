@@ -1,15 +1,14 @@
-﻿using System;
+﻿using System.Threading.Tasks;
+using System.Windows.Input;
+using CoffeeManager.Models;
 using CoffeManager.Common;
 using CoffeManager.Common.Managers;
-using System.Windows.Input;
-using MvvmCross.Core.ViewModels;
-using System.Diagnostics;
-using System.Threading.Tasks;
 using CoffeManager.Common.ViewModels;
+using MvvmCross.Core.ViewModels;
 
-namespace CoffeeManagerAdmin.Core
+namespace CoffeeManagerAdmin.Core.ViewModels.Settings
 {
-    public class ClientDetailsViewModel : ViewModelBase
+    public class ClientDetailsViewModel : ViewModelBase, IMvxViewModel<UserAcount>
     {
         private string id;
         private string apiUrl;
@@ -50,13 +49,12 @@ namespace CoffeeManagerAdmin.Core
             CloseCommand.Execute(null);
         }
 
-        public void Init(string id, string name, string apiUrl)
+        public void Prepare(UserAcount parameter)
         {
-            Email = name;
-            this.id = id;
-            ApiUrl = apiUrl;
+            Email = parameter.Email;
+            this.id = parameter.Id;
+            ApiUrl = parameter.ApiUrl;
             RaiseAllPropertiesChanged();
         }
-
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Android.Views;
 using Android.Widget;
 using CoffeeManagerAdmin.Core;
+using CoffeeManagerAdmin.Core.ViewModels.Users;
 using MobileCore.Droid.Adapters.ViewHolders;
 using MobileCore.Droid.Bindings.CustomAtts;
 using MobileCore.Droid.Common;

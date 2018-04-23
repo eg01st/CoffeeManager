@@ -3,6 +3,7 @@ using CoffeeManagerAdmin.Core;
 using UIKit;
 using MvvmCross.Binding.BindingContext;
 using System.Collections.Generic;
+using CoffeeManagerAdmin.Core.ViewModels.Shifts;
 using CoffeeManagerAdmin.iOS.Views.Abstract;
 using MobileCore.iOS.ViewControllers;
 

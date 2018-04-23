@@ -42,9 +42,9 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Home
             this.shiftManager = shiftManager;
 
             UpdateEntireMoneyCommand = new MvxAsyncCommand(DoGetEntireMoney);
-            ShowSettingsCommand = new MvxCommand(() => ShowViewModel<SettingsViewModel>());
-            ShowUsersCommand = new MvxCommand(() => ShowViewModel<UsersViewModel>());
-            ShowCreditCardCommand = new MvxCommand(() => ShowViewModel<CreditCardViewModel>());
+            ShowSettingsCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<SettingsViewModel>());
+            ShowUsersCommand = new MvxAsyncCommand(async() => await NavigationService.Navigate<UsersViewModel>());
+            ShowCreditCardCommand = new MvxAsyncCommand(async() => await NavigationService.Navigate<CreditCardViewModel>());
             LoadNextPageCommand = new MvxAsyncCommand(DoLoadNextPage);
             SelectCoffeeRoomCommand = new MvxCommand(DoSelectCoffeeRoom);
             

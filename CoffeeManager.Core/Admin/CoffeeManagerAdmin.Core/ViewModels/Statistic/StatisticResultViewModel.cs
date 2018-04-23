@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using CoffeeManagerAdmin.Core.Util;
-using CoffeeManagerAdmin.Core.ViewModels.Statistic;
 using CoffeManager.Common;
 using CoffeManager.Common.ViewModels;
 using MvvmCross.Core.ViewModels;
 
-namespace CoffeeManagerAdmin.Core
+namespace CoffeeManagerAdmin.Core.ViewModels.Statistic
 {
-    public class StatisticResultViewModel : ViewModelBase
+    public class StatisticResultViewModel : ViewModelBase, IMvxViewModel<Tuple<DateTime, DateTime>>
     {
+        private DateTime from, to;
+        
         private readonly IStatisticManager manager;
 
         public ExpensesStatisticViewModel ExpensesVm { get; set; }
@@ -25,7 +25,7 @@ namespace CoffeeManagerAdmin.Core
             ShowChartCommand = new MvxCommand(DoShowChart);
         }
 
-        public async Task Init(DateTime from, DateTime to)
+        public async Task Initialize()
         {
             await ExecuteSafe(async () =>
             {
@@ -48,6 +48,12 @@ namespace CoffeeManagerAdmin.Core
         {
           //  var id = ParameterTransmitter.PutParameter(SalesVm.Items);
            // ShowViewModel<SelectSalesViewModel>(new { id, from, to });
+        }
+
+        public void Prepare(Tuple<DateTime, DateTime> parameter)
+        {
+            @from = parameter.Item1;
+            to = parameter.Item2;
         }
     }
 }

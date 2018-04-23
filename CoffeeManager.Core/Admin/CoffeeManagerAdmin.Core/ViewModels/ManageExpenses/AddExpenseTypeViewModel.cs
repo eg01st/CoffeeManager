@@ -1,10 +1,9 @@
-﻿using System;
-using System.Windows.Input;
-using CoffeManager.Common;
+﻿using System.Windows.Input;
+using CoffeManager.Common.Managers;
 using CoffeManager.Common.ViewModels;
 using MvvmCross.Core.ViewModels;
 
-namespace CoffeeManagerAdmin.Core
+namespace CoffeeManagerAdmin.Core.ViewModels.ManageExpenses
 {
     public class AddExpenseTypeViewModel : ViewModelBase
     {

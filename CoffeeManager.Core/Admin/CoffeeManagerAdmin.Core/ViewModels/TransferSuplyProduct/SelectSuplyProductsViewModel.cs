@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using CoffeManager.Common;
 using System.Windows.Input;
-using MvvmCross.Core.ViewModels;
 using CoffeeManager.Models;
+using CoffeManager.Common.Managers;
 using CoffeManager.Common.ViewModels;
+using MvvmCross.Core.ViewModels;
 
-namespace CoffeeManagerAdmin.Core
+namespace CoffeeManagerAdmin.Core.ViewModels.TransferSuplyProduct
 {
-    public class SelectSuplyProductsViewModel : BaseSearchViewModel<ListItemViewModelBase>
+    public class SelectSuplyProductsViewModel : BaseSearchViewModel<ListItemViewModelBase>, IMvxViewModel<Tuple<int, int>>
     {
         readonly ISuplyProductsManager manager;
         int fromCoffeeRoom, toCoffeeRoom;
@@ -19,13 +19,7 @@ namespace CoffeeManagerAdmin.Core
             this.manager = manager;
             TransferSuplyProductsCommand = new MvxCommand(DoTransferSuplyProducts, () => Items.OfType<SelectSuplyProductItemViewModel>().Any(a => a.IsSelected));
         }
-
-        public void Init(int fromCoffeeRoom, int toCoffeeRoom)
-        {
-            this.fromCoffeeRoom = fromCoffeeRoom;
-            this.toCoffeeRoom = toCoffeeRoom;
-        }
-
+        
         private void DoTransferSuplyProducts()
         {
             string confirmMessage = "Вы переводите продукты:\n";
@@ -54,7 +48,7 @@ namespace CoffeeManagerAdmin.Core
 
         public ICommand TransferSuplyProductsCommand { get;}
 
-        public async override Task<List<ListItemViewModelBase>> LoadData()
+        public override async Task<List<ListItemViewModelBase>> LoadData()
         {
             var items = await manager.GetSuplyProducts();
             var result = new List<ListItemViewModelBase>();
@@ -67,6 +61,12 @@ namespace CoffeeManagerAdmin.Core
                 result.AddRange(item);
             }
             return result;
+        }
+
+        public void Prepare(Tuple<int, int> parameter)
+        {
+            fromCoffeeRoom = parameter.Item1;
+            toCoffeeRoom = parameter.Item2;
         }
     }
 }

@@ -1,13 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using CoffeeManager.Models;
-using CoffeManager.Common;
 using CoffeManager.Common.Managers;
 using CoffeManager.Common.ViewModels;
+using MvvmCross.Core.ViewModels;
 
-namespace CoffeeManagerAdmin.Core
+namespace CoffeeManagerAdmin.Core.ViewModels.Shifts
 {
-    public class ShiftSalesViewModel : ViewModelBase
+    public class ShiftSalesViewModel : ViewModelBase, IMvxViewModel<int>
     {
         private readonly IShiftManager manager;
 
@@ -42,15 +43,19 @@ namespace CoffeeManagerAdmin.Core
             this.manager = manager;
         }
 
-        public async void Init(int id)
+        public override async Task Initialize()
         {
-            _shiftId = id;
             await ExecuteSafe(async () =>
             {
                 var saleItems = await manager.GetShiftSales(_shiftId);
                 SaleItems = saleItems.Select(s => new SaleItemViewModel(s)).ToList();
                 GroupedSaleItems = SaleItems.GroupBy(g => g.Name).Select(s => new Entity() { Name = s.Key, Id = s.Count() }).OrderByDescending(o => o.Id).ToList();
             });
+        }
+
+        public void Prepare(int parameter)
+        {
+            _shiftId = parameter;
         }
     }
 }
