@@ -13,5 +13,7 @@
         public int? SuplyId { get; set; }
         public bool IsActive { get; set; }
         public bool IsSaleByWeight { get; set; }
+        public string Color { get; set; }
+        public string Description { get; set; }
     }
 }

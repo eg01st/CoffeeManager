@@ -190,9 +190,11 @@ namespace CoffeeManager.Api.Controllers
             var item = JsonConvert.DeserializeObject<Models.UtilizedSuplyProduct>(request);
             var entites = new CoffeeRoomEntities();
        
-            var suplyProductQuantity = entites.SuplyProductQuantities.First(p => p.SuplyProductId == item.SuplyProductId && p.CoffeeRoomId == coffeeroomno);
-            suplyProductQuantity.Quantity -= item.Quantity;
-
+            var suplyProductQuantity = entites.SuplyProductQuantities.FirstOrDefault(p => p.SuplyProductId == item.SuplyProductId && p.CoffeeRoomId == coffeeroomno);
+            if (suplyProductQuantity != null)
+            {
+                suplyProductQuantity.Quantity -= item.Quantity;
+            }
             var dbItem = DbMapper.Map(item);
             entites.UtilizedSuplyProducts.Add(dbItem);
 

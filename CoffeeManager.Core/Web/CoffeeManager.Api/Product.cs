@@ -34,6 +34,8 @@ namespace CoffeeManager.Api
         public bool IsSaleByWeight { get; set; }
         public bool Removed { get; set; }
         public int CategoryId { get; set; }
+        public string Color { get; set; }
+        public string Description { get; set; }
     
         public virtual CupType CupType1 { get; set; }
         public virtual ProductType ProductType1 { get; set; }

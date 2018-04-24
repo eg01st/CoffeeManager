@@ -37,6 +37,7 @@ namespace CoffeeManager.Models
         public const string DeleteSale = Products + "/deletesale";
         public const string UtilizeSale = Products + "/UtilizeSale";
         public const string ToggleProductEnabled = Products + "/ToggleProductEnabled";
+        public const string GetAvaivalbeProductColors = Products + "/GetAvaivalbeProductColors";
 
         public const string Shift = Api + "/shift";
         public const string EndShift = Shift + "/endShift";

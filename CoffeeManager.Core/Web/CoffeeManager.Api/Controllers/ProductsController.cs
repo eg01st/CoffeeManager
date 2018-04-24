@@ -64,6 +64,8 @@ namespace CoffeeManager.Api.Controllers
 				prodDb.CupType = product.CupType;
                 prodDb.IsSaleByWeight = product.IsSaleByWeight;
 				prodDb.CategoryId = product.CategoryId;
+			    prodDb.Color = product.Color;
+			    prodDb.Description = product.Description;
 				if (product.SuplyId.HasValue) {
 					prodDb.SuplyProductId = product.SuplyId.Value;
 				}
@@ -235,5 +237,12 @@ namespace CoffeeManager.Api.Controllers
             }
             return Request.CreateResponse(HttpStatusCode.OK);
         }
+
+	    [Route(RoutesConstants.GetAvaivalbeProductColors)]
+	    [HttpPost]
+	    public async Task<HttpResponseMessage> GetAvaivalbeProductColors([FromUri]int coffeeroomno)
+	    {
+	        return Request.CreateResponse(HttpStatusCode.OK, new string[] { "#00ABAB", "#007A82", "#009A44", "#86BC25", "#00A3E0" });
+	    }
     }
 }

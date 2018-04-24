@@ -92,7 +92,9 @@ namespace CoffeeManager.Api.Mappers
                 IsActive = prodDb.IsActive,
                 IsSaleByWeight = prodDb.IsSaleByWeight,
                 CategoryId = prodDb.CategoryId,
-                CategoryName = prodDb.Category?.Name
+                CategoryName = prodDb.Category?.Name,
+                Color = prodDb.Color,
+                Description = prodDb.Description
             };
         }
 

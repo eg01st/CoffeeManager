@@ -97,7 +97,9 @@ namespace CoffeeManager.Api.Mappers
 				Price = product.Price,
                 IsActive = product.IsActive,
                 IsSaleByWeight = product.IsSaleByWeight,
-				CategoryId = product.CategoryId
+				CategoryId = product.CategoryId,
+                Color = product.Color,
+                Description = product.Description
 			};
 			if (product.SuplyId.HasValue) {
 				prod.SuplyProductId = product.SuplyId;
