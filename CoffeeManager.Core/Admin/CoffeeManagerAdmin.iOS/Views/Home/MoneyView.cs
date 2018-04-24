@@ -29,31 +29,31 @@ namespace CoffeeManagerAdmin.iOS.Views.Home
 
             Title = "Финансы";
             
-            var settingsButton = new UIBarButtonItem()
-            {
-                Image = UIImage.FromBundle("ic_settings")
-            };
+            //var settingsButton = new UIBarButtonItem()
+            //{
+            //    Image = UIImage.FromBundle("ic_settings")
+            //};
 
-            var usersButton = new UIBarButtonItem()
-            {
-                Image = UIImage.FromBundle("ic_account_circle")
-            };
+            //var usersButton = new UIBarButtonItem()
+            //{
+            //    Image = UIImage.FromBundle("ic_account_circle")
+            //};
 
-            var creditCardButton = new UIBarButtonItem()
-            {
-                Image = UIImage.FromBundle("ic_credit_card")
-            };
+            //var creditCardButton = new UIBarButtonItem()
+            //{
+            //    Image = UIImage.FromBundle("ic_credit_card")
+            //};
 
-            this.AddBindings(new Dictionary<object, string>
-            {
-                {settingsButton, "Clicked ShowSettingsCommand"},
-                {usersButton, "Clicked ShowUsersCommand"}, 
-                {creditCardButton, "Clicked ShowCreditCardCommand"},
-            });
+            //this.AddBindings(new Dictionary<object, string>
+            //{
+            //    {settingsButton, "Clicked ShowSettingsCommand"},
+            //    {usersButton, "Clicked ShowUsersCommand"}, 
+            //    {creditCardButton, "Clicked ShowCreditCardCommand"},
+            //});
 
-            NavigationItem.SetRightBarButtonItems(new [] { creditCardButton, usersButton}, true);
+            //NavigationItem.SetRightBarButtonItems(new [] { creditCardButton, usersButton}, true);
 
-            NavigationItem.SetLeftBarButtonItem(settingsButton, false);
+            //NavigationItem.SetLeftBarButtonItem(settingsButton, false);
 
             var toolbar = new UIToolbar(new CGRect(0, 0, this.View.Frame.Width, 44));
             toolbar.UserInteractionEnabled = true;

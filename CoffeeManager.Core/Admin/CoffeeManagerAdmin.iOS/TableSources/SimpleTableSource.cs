@@ -1,7 +1,7 @@
 ﻿using Foundation;
 using UIKit;
 
-namespace CoffeeManagerAdmin.iOS
+namespace CoffeeManagerAdmin.iOS.TableSources
 {
     public class SimpleTableSource : BaseTableSource<MobileCore.ViewModels.FeedItemElementViewModel>
     {

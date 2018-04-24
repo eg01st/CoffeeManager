@@ -4,6 +4,7 @@ using MvvmCross.Binding.BindingContext;
 using CoffeeManagerAdmin.Core.ViewModels;
 using System.Collections.Generic;
 using CoffeeManagerAdmin.Core.ViewModels.Calculation;
+using CoffeeManagerAdmin.iOS.TableSources;
 using CoffeeManagerAdmin.iOS.Views.Abstract;
 
 namespace CoffeeManagerAdmin.iOS
@@ -39,7 +40,6 @@ namespace CoffeeManagerAdmin.iOS
             this.AddBindings(new Dictionary<object, string>
             {
                 {btn, "Clicked AddNewSuplyProductCommand"},
-
             });
         }
     }

@@ -1,6 +1,7 @@
 ﻿using System;
 using CoffeeManagerAdmin.Core;
 using CoffeeManagerAdmin.Core.ViewModels.Shifts;
+using CoffeeManagerAdmin.iOS.TableSources;
 using CoffeeManagerAdmin.iOS.Views.Abstract;
 using MvvmCross.Binding.BindingContext;
 using UIKit;

@@ -3,6 +3,7 @@ using UIKit;
 using MvvmCross.Binding.BindingContext;
 using System.Collections.Generic;
  using CoffeeManagerAdmin.Core.ViewModels.SuplyProducts;
+ using CoffeeManagerAdmin.iOS.TableSources;
  using CoffeeManagerAdmin.iOS.Views.Abstract;
  using CoffeManager.Common;
  using CoffeManager.Common.ViewModels;

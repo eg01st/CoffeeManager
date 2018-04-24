@@ -7,7 +7,7 @@ using MvvmCross.Core.ViewModels;
 
 namespace CoffeeManagerAdmin.Core.ViewModels.Abstract
 {
-    public class AdminCoffeeRoomFeedViewModel<TFeedItemViewModel> : AdminPageViewModel where TFeedItemViewModel : FeedItemElementViewModel
+    public abstract class AdminCoffeeRoomFeedViewModel<TFeedItemViewModel> : AdminPageViewModel where TFeedItemViewModel : FeedItemElementViewModel
     {
         private int totalCount;
         private bool nextPageIsEmpty;

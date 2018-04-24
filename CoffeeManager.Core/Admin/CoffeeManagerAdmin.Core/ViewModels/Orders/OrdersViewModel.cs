@@ -6,7 +6,6 @@ using System.Windows.Input;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Messenger;
 using CoffeeManager.Models;
-using CoffeeManagerAdmin.Core.Util;
 using CoffeManager.Common;
 using CoffeeManager.Common;
 using CoffeManager.Common.ViewModels;

@@ -2,6 +2,7 @@
 {
     public class Strings
     {
+        public const string Statistic = "Статистика";
         public const string CoffeeRooms = "Заведения";
         public const string Users = "Персонал";
         public const string CreditCard = "Карта";

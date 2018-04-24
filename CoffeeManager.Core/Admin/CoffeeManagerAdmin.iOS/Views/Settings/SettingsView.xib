@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -15,7 +15,6 @@
                 <outlet property="ClientsTableView" destination="b7J-0N-BZh" id="name-outlet-b7J-0N-BZh"/>
                 <outlet property="CoffeeRoomsTable" destination="ScL-G4-sMF" id="name-outlet-ScL-G4-sMF"/>
                 <outlet property="CoffeeRoonNameTextField" destination="ukA-iZ-i0a" id="name-outlet-ukA-iZ-i0a"/>
-                <outlet property="CountersButton" destination="g7b-dx-s3Y" id="rey-O3-Bus"/>
                 <outlet property="view" destination="2" id="RRd-Eg-VrN"/>
             </connections>
         </placeholder>
@@ -56,10 +55,6 @@
                     <rect key="frame" x="0.0" y="139.5" width="375" height="245.5"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g7b-dx-s3Y">
-                    <rect key="frame" x="153" y="401" width="68" height="30"/>
-                    <state key="normal" title="Счетчики"/>
-                </button>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="b7J-0N-BZh">
                     <rect key="frame" x="0.0" y="447" width="375" height="200"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -74,20 +69,18 @@
                 <constraint firstItem="vRD-5a-IFs" firstAttribute="leading" secondItem="ukA-iZ-i0a" secondAttribute="trailing" constant="16" id="CV0-D4-Qgp"/>
                 <constraint firstAttribute="trailing" secondItem="b7J-0N-BZh" secondAttribute="trailing" id="Mvq-RX-KuI"/>
                 <constraint firstItem="lhZ-Mu-pQW" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="16" id="Ndc-aE-zoF"/>
-                <constraint firstItem="g7b-dx-s3Y" firstAttribute="top" secondItem="ScL-G4-sMF" secondAttribute="bottom" constant="16" id="Ofa-rb-hYQ"/>
                 <constraint firstItem="ukA-iZ-i0a" firstAttribute="leading" secondItem="lhZ-Mu-pQW" secondAttribute="trailing" constant="16" id="TfD-A6-m2b"/>
                 <constraint firstItem="J7u-hS-GVf" firstAttribute="top" secondItem="ukA-iZ-i0a" secondAttribute="bottom" constant="24" id="V7M-F7-haX"/>
                 <constraint firstItem="IiJ-rs-W8K" firstAttribute="top" secondItem="2" secondAttribute="top" constant="16" id="Vi8-mV-SWd"/>
                 <constraint firstItem="ScL-G4-sMF" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="aJ2-QR-Ncg"/>
-                <constraint firstItem="b7J-0N-BZh" firstAttribute="top" secondItem="g7b-dx-s3Y" secondAttribute="bottom" constant="16" id="dYb-BZ-bCv"/>
                 <constraint firstItem="ScL-G4-sMF" firstAttribute="top" secondItem="J7u-hS-GVf" secondAttribute="bottom" constant="16" id="ixU-45-C38"/>
                 <constraint firstItem="lhZ-Mu-pQW" firstAttribute="top" secondItem="IiJ-rs-W8K" secondAttribute="bottom" constant="16" id="l3a-cX-Igs"/>
                 <constraint firstAttribute="trailing" secondItem="ScL-G4-sMF" secondAttribute="trailing" id="lrf-9S-1QW"/>
                 <constraint firstAttribute="bottom" secondItem="b7J-0N-BZh" secondAttribute="bottom" constant="20" id="mXn-pB-9n2"/>
-                <constraint firstItem="g7b-dx-s3Y" firstAttribute="centerX" secondItem="ScL-G4-sMF" secondAttribute="centerX" id="nVn-pi-fgG"/>
                 <constraint firstItem="ukA-iZ-i0a" firstAttribute="centerY" secondItem="lhZ-Mu-pQW" secondAttribute="centerY" id="ngh-4D-pB8"/>
                 <constraint firstAttribute="trailing" secondItem="vRD-5a-IFs" secondAttribute="trailing" constant="16" id="o4k-mf-NZ5"/>
                 <constraint firstItem="J7u-hS-GVf" firstAttribute="centerX" secondItem="2" secondAttribute="centerX" id="oxc-kW-rIA"/>
+                <constraint firstItem="b7J-0N-BZh" firstAttribute="top" secondItem="ScL-G4-sMF" secondAttribute="bottom" constant="62" id="sEC-yP-12r"/>
                 <constraint firstItem="IiJ-rs-W8K" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="16" id="sK5-o2-9La"/>
                 <constraint firstItem="b7J-0N-BZh" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="wjt-hO-oxP"/>
             </constraints>

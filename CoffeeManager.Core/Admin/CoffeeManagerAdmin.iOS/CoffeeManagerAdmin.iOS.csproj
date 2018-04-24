@@ -471,6 +471,14 @@
     </Compile>
     <Compile Include="Bootstrap\FilePluginBootstrap.cs" />
     <Compile Include="Bootstrap\MessengerPluginBootstrap.cs" />
+    <Compile Include="Views\Home\MoreView.cs" />
+    <Compile Include="Views\Home\MoreView.designer.cs">
+      <DependentUpon>MoreView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Home\MoreItemViewCell.cs" />
+    <Compile Include="Views\Home\MoreItemViewCell.designer.cs">
+      <DependentUpon>MoreItemViewCell.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Setup.cs" />
@@ -563,6 +571,8 @@
     <InterfaceDefinition Include="Views\Counter\AddCoffeeCounterView.xib" />
     <InterfaceDefinition Include="Views\Counter\CoffeeCountersView.xib" />
     <InterfaceDefinition Include="Views\Counter\CounterTableViewCell.xib" />
+    <InterfaceDefinition Include="Views\Home\MoreView.xib" />
+    <InterfaceDefinition Include="Views\Home\MoreItemViewCell.xib" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -765,6 +775,9 @@
     <BundleResource Include="Resources\ic_hamburger_black.png" />
     <BundleResource Include="Resources\ic_hamburger_black%402x.png" />
     <BundleResource Include="Resources\ic_hamburger_black%403x.png" />
+    <BundleResource Include="Resources\ic_more_horiz_2x.png" />
+    <BundleResource Include="Resources\ic_more_horiz_3x.png" />
+    <BundleResource Include="Resources\ic_more_horiz.png" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\Contents.json" />

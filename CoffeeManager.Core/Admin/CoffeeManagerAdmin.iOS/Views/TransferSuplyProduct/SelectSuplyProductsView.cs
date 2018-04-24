@@ -6,6 +6,7 @@ using CoffeeManagerAdmin.Core;
 using MvvmCross.Binding.BindingContext;
 using System.Collections.Generic;
 using CoffeeManagerAdmin.Core.ViewModels.TransferSuplyProduct;
+using CoffeeManagerAdmin.iOS.TableSources;
 using CoffeeManagerAdmin.iOS.Views.Abstract;
 using CoffeManager.Common.ViewModels;
 
