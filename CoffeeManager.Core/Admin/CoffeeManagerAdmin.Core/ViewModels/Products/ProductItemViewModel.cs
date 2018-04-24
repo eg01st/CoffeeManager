@@ -1,8 +1,6 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Windows.Input;
 using CoffeeManager.Models;
-using CoffeeManagerAdmin.Core.Util;
 using CoffeManager.Common.Managers;
 using CoffeManager.Common.ViewModels;
 using MvvmCross.Core.ViewModels;
@@ -32,10 +30,10 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Products
             RaiseAllPropertiesChanged();
 
             DeleteProductCommand = new MvxCommand(DoDeleCommand);
-            ToggleIsActiveCommand = new MvxCommand(DoToggleIsActive);
+            ToggleIsActiveCommand = new MvxAsyncCommand(DoToggleIsActive);
         }
 
-        private async void DoToggleIsActive()
+        private async Task DoToggleIsActive()
         {
             IProductManager manager = Mvx.Resolve<IProductManager>();
             await manager.ToggleIsActiveProduct(prod.Id);
@@ -43,7 +41,6 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Products
 
         protected override async void DoGoToDetails()
         {
-            var id = ParameterTransmitter.PutParameter(prod);
             await NavigationService.Navigate<ProductDetailsViewModel, Product>(prod);
         }
 
@@ -58,8 +55,5 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Products
             await manager.DeleteProduct(prod.Id);
             Publish(new ProductListChangedMessage(this));
         }
-
-
-
     }
 }

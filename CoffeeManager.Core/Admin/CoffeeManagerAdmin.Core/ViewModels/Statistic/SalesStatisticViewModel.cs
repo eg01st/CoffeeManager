@@ -2,9 +2,6 @@
 using System.Collections.Generic;
 using CoffeeManager.Models;
 using System.Linq;
-using System.Windows.Input;
-using MvvmCross.Core.ViewModels;
-using CoffeeManagerAdmin.Core.Util;
 using CoffeManager.Common;
 using System.Threading.Tasks;
 using CoffeManager.Common.ViewModels;

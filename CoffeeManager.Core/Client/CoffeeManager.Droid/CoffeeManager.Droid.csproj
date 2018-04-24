@@ -218,7 +218,6 @@
     <Compile Include="Setup.cs" />
     <Compile Include="SplashScreen.cs" />
     <Compile Include="UncaughtExceptionHandler.cs" />
-    <Compile Include="Views\ActivityBase.cs" />
     <Compile Include="Views\CoffeeCounterView.cs" />
     <Compile Include="Views\CurrentShiftExpensesView.cs" />
     <Compile Include="Views\CurrentShiftSalesView.cs" />
@@ -249,6 +248,7 @@
     <Compile Include="Views\InitialLoginView.cs" />
     <Compile Include="LinkerPleaseInclude.cs" />
     <Compile Include="Adapters\ViewHolders\CoffeeCounterViewHolder.cs" />
+    <Compile Include="ActivityBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

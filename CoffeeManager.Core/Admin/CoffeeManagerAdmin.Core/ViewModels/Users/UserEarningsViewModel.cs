@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CoffeeManager.Models;
-using CoffeeManagerAdmin.Core.Util;
 using CoffeManager.Common.ViewModels;
 using MobileCore.Extensions;
 using MvvmCross.Core.ViewModels;

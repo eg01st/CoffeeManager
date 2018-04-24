@@ -13,7 +13,7 @@ using MvvmCross.Plugins.Messenger;
 
 namespace CoffeeManagerAdmin.Core.ViewModels.Abstract
 {
-    public class AdminPageViewModel : PageViewModel
+    public abstract class AdminPageViewModel : PageViewModel
     {
         private MvxSubscriptionToken coffeeRoomUpdatedToken;
         private MvxSubscriptionToken refreshCoffeeroomsToken;

@@ -38,9 +38,6 @@
             <e p="AssemblyInfo.cs" t="Include" />
           </e>
           <e p="ServiceProviders" t="Include" />
-          <e p="Util" t="Include">
-            <e p="ParameterTransmitter.cs" t="Include" />
-          </e>
           <e p="ViewModels" t="Include">
             <e p="Abstract" t="Include">
               <e p="AdminFeedViewModel.cs" t="Include" />
@@ -74,8 +71,8 @@
               <e p="MenuFeedtemHeaderViewModel.cs" t="Include" />
               <e p="MenuFeedtemViewModel.cs" t="Include" />
               <e p="MoneyViewModel.cs" t="Include" />
+              <e p="MoreViewModel.cs" t="Include" />
               <e p="ProductsViewModel.cs" t="Include" />
-              <e p="SideMenuViewModel.cs" t="Include" />
               <e p="StatisticViewModel.cs" t="Include" />
               <e p="StorageViewModel.cs" t="Include" />
               <e p="UsersViewModel.cs" t="Include" />
@@ -466,6 +463,9 @@
             <e p="ic_logo.png" t="Include" />
             <e p="ic_logo@2x.png" t="Include" />
             <e p="ic_logo@3x.png" t="Include" />
+            <e p="ic_more_horiz.png" t="Include" />
+            <e p="ic_more_horiz_2x.png" t="Include" />
+            <e p="ic_more_horiz_3x.png" t="Include" />
             <e p="ic_settings.png" t="Include" />
             <e p="ic_settings_2x.png" t="Include" />
             <e p="ic_settings_3x.png" t="Include" />
@@ -564,6 +564,12 @@
               <e p="MoneyView.cs" t="Include" />
               <e p="MoneyView.designer.cs" t="Include" />
               <e p="MoneyView.xib" t="Include" />
+              <e p="MoreItemViewCell.cs" t="Include" />
+              <e p="MoreItemViewCell.designer.cs" t="Include" />
+              <e p="MoreItemViewCell.xib" t="Include" />
+              <e p="MoreView.cs" t="Include" />
+              <e p="MoreView.designer.cs" t="Include" />
+              <e p="MoreView.xib" t="Include" />
               <e p="ProductsView.cs" t="Include" />
               <e p="ProductsView.designer.cs" t="Include" />
               <e p="ProductsView.xib" t="Include" />

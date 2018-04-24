@@ -8,12 +8,12 @@ using MobileCore.ViewModels;
 
 namespace CoffeeManagerAdmin.Core.ViewModels.Home
 {
-    public class SideMenuViewModel : FeedViewModel<FeedItemElementViewModel>
+    public class MoreViewModel : FeedViewModel<FeedItemElementViewModel>
     {
     
         private MenuFeedtemViewModel selectedViewModel;
 
-        public SideMenuViewModel()
+        public MoreViewModel()
         {
         }
 
@@ -21,6 +21,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Home
         {
             ItemsCollection.AddRange(new FeedItemElementViewModel[]
             {
+                MenuFeedtemViewModel.Create<StatisticViewModel>(Strings.Statistic),
                 MenuFeedtemViewModel.Create<SettingsViewModel>(Strings.CoffeeRooms),
                 MenuFeedtemViewModel.Create<UsersViewModel>( Strings.Users),
                 MenuFeedtemViewModel.Create<CreditCardViewModel>( Strings.CreditCard),

@@ -58,7 +58,7 @@
     <Compile Include="ViewModels\CoffeeCounter\CoffeeCountersViewModel.cs" />
     <Compile Include="ViewModels\Home\MenuFeedtemHeaderViewModel.cs" />
     <Compile Include="ViewModels\Home\MenuFeedtemViewModel.cs" />
-    <Compile Include="ViewModels\Home\SideMenuViewModel.cs" />
+    <Compile Include="ViewModels\Home\MoreViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\Orders\OrderItemsViewModel.cs" />
     <Compile Include="ViewModels\Orders\OrderItemViewModel.cs" />
@@ -85,7 +85,6 @@
     <Compile Include="ViewModels\Calculation\SelectCalculationListViewModel.cs" />
     <Compile Include="ViewModels\Statistic\SalesStatisticViewModel.cs" />
     <Compile Include="ViewModels\Statistic\ExpensesStatisticViewModel.cs" />
-    <Compile Include="Util\ParameterTransmitter.cs" />
     <Compile Include="ViewModels\Statistic\SelectSaleItemViewModel.cs" />
     <Compile Include="ViewModels\Statistic\SalesChartViewModel.cs" />
     <Compile Include="ViewModels\Statistic\SelectSalesViewModel.cs" />

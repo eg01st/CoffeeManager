@@ -1,12 +1,12 @@
 ﻿using System;
-using MvvmCross.Binding.iOS.Views;
-using Foundation;
 using System.Collections.Generic;
-using UIKit;
 using CoffeManager.Common.ViewModels;
+using Foundation;
 using MobileCore.ViewModels;
+using MvvmCross.Binding.iOS.Views;
+using UIKit;
 
-namespace CoffeeManagerAdmin.iOS
+namespace CoffeeManagerAdmin.iOS.TableSources
 {
     public class BaseTableSource<T> : MvxTableViewSource where T: FeedItemElementViewModel
     {

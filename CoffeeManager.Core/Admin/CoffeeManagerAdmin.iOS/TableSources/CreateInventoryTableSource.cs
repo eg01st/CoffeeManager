@@ -1,6 +1,7 @@
 ﻿using UIKit;
 using Foundation;
 using CoffeeManagerAdmin.Core;
+using CoffeeManagerAdmin.iOS.TableSources;
 
 namespace CoffeeManagerAdmin.iOS
 {

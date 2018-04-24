@@ -20,7 +20,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels
             yield return NavigationService.Navigate<StorageViewModel>();
             yield return NavigationService.Navigate<ManageExpensesViewModel>();
             yield return NavigationService.Navigate<ProductsViewModel>();
-            yield return NavigationService.Navigate<StatisticViewModel>();
+            yield return NavigationService.Navigate<MoreViewModel>();
         }
 
     }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using CoffeeManagerAdmin.Core;
 using CoffeeManagerAdmin.Core.ViewModels.ManageExpenses;
+using CoffeeManagerAdmin.iOS.TableSources;
 using CoffeeManagerAdmin.iOS.Views.Abstract;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.iOS.Views.Presenters.Attributes;
@@ -40,7 +41,6 @@ namespace CoffeeManagerAdmin.iOS
             this.AddBindings(new Dictionary<object, string>
             {
                 {btn, "Clicked AddExpenseTypeCommand"},
-
             });
         }
 

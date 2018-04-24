@@ -6,6 +6,7 @@ using CoffeeManagerAdmin.Core;
 using System.Collections.Generic;
 using CoffeeManagerAdmin.Core.ViewModels.Statistic;
 using CoffeeManagerAdmin.iOS.Converters;
+using CoffeeManagerAdmin.iOS.TableSources;
 using CoffeeManagerAdmin.iOS.Views.Abstract;
 using CoffeeManagerAdmin.iOS.Views.Shifts;
 using MobileCore.iOS.ViewControllers;

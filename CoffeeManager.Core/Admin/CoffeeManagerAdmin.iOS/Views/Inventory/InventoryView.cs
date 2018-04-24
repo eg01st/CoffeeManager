@@ -5,6 +5,7 @@ using MvvmCross.Binding.BindingContext;
 using CoffeeManagerAdmin.Core;
 using System.Collections.Generic;
 using CoffeeManagerAdmin.Core.ViewModels.Inventory;
+using CoffeeManagerAdmin.iOS.TableSources;
 using CoffeeManagerAdmin.iOS.Views.Abstract;
 using MobileCore.iOS.ViewControllers;
 

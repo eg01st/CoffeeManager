@@ -6,13 +6,9 @@ using Acr.UserDialogs;
 using CoffeeManager.Common;
 using CoffeeManager.Models;
 using CoffeeManager.Models.Data.DTO.User;
-using CoffeeManagerAdmin.Core.Util;
 using CoffeeManagerAdmin.Core.ViewModels.Abstract;
-using CoffeManager.Common;
 using CoffeManager.Common.Managers;
-using CoffeManager.Common.ViewModels;
 using MobileCore.Collections;
-using MobileCore.Extensions;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Messenger;
 

@@ -2,7 +2,6 @@
 using Acr.UserDialogs;
 using CoffeeManager.Models;
 using CoffeeManagerAdmin.Core.Messages;
-using CoffeeManagerAdmin.Core.Util;
 using MvvmCross.Core.ViewModels;
 using CoffeManager.Common;
 using CoffeManager.Common.ViewModels;

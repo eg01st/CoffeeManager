@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Input;
 using CoffeeManager.Models;
-using CoffeeManagerAdmin.Core.Util;
 using MvvmCross.Core.ViewModels;
-using CoffeManager.Common;
 using System.Threading.Tasks;
 using CoffeManager.Common.ViewModels;
 
@@ -32,14 +30,14 @@ namespace CoffeeManagerAdmin.Core
 
         private void DoShowChart()
         {
-            var selectedItems = Items.Where(i => i.IsSelected).Select(s => s.Name);
-            var paramId = ParameterTransmitter.PutParameter(selectedItems);
-            ShowViewModel<SalesChartViewModel>(new {id = paramId, from, to});
+           // var selectedItems = Items.Where(i => i.IsSelected).Select(s => s.Name);
+           // var paramId = ParameterTransmitter.PutParameter(selectedItems);
+           // ShowViewModel<SalesChartViewModel>(new {id = paramId, from, to});
         }
 
         public override Task<List<SelectSaleItemViewModel>> LoadData()
         {
-            ParameterTransmitter.TryGetParameter(id, out saleItems);
+            //ParameterTransmitter.TryGetParameter(id, out saleItems);
             var items = saleItems.GroupBy(g => g.Name).Select(s => new SelectSaleItemViewModel(s.Key)).ToList();
             return Task.FromResult(items);
         }
