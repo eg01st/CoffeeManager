@@ -56,7 +56,7 @@ namespace CoffeeManager.Api.Controllers
 
 			var entities = new CoffeeRoomEntities ();
 
-			var prodDb = entities.Products.FirstOrDefault (p => p.Id == product.Id && p.CoffeeRoomNo == coffeeroomno);
+			var prodDb = entities.Products.FirstOrDefault (p => p.Id == product.Id);
 			if (prodDb != null) {
 				prodDb.Name = product.Name;
 				prodDb.Price = product.Price;
@@ -81,7 +81,7 @@ namespace CoffeeManager.Api.Controllers
 		public async Task<HttpResponseMessage> DeleteProduct ([FromUri]int coffeeroomno,  int id, HttpRequestMessage message)
 		{
 			var entities = new CoffeeRoomEntities ();
-            var product = entities.Products.FirstOrDefault(p => p.Id == id && p.CoffeeRoomNo == coffeeroomno);
+            var product = entities.Products.FirstOrDefault(p => p.Id == id);
             if(product != null)
             {
                 product.Removed = true;
@@ -239,7 +239,7 @@ namespace CoffeeManager.Api.Controllers
         }
 
 	    [Route(RoutesConstants.GetAvaivalbeProductColors)]
-	    [HttpPost]
+	    [HttpGet]
 	    public async Task<HttpResponseMessage> GetAvaivalbeProductColors([FromUri]int coffeeroomno)
 	    {
 	        return Request.CreateResponse(HttpStatusCode.OK, new string[] { "#00ABAB", "#007A82", "#009A44", "#86BC25", "#00A3E0" });

@@ -120,7 +120,6 @@ namespace CoffeeManager.Api.Mappers
             return new Models.Sale()
             {
                 Id = saleDb.Id,
-                ProductTypeId = saleDb.Product1.ProductType.Value,
                 ProductName = saleDb.Product1.Name,
                 CoffeeRoomNo = saleDb.CoffeeRoomNo,
                 Amount = saleDb.Amount,
