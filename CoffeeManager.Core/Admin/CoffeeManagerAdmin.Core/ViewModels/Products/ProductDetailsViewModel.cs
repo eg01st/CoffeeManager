@@ -8,6 +8,7 @@ using CoffeManager.Common.Managers;
 using CoffeManager.Common.ViewModels;
 using MvvmCross.Core.ViewModels;
 using CoffeeManagerAdmin.Core.ViewModels.Calculation;
+using CoffeeManager.Common;
 
 namespace CoffeeManagerAdmin.Core.ViewModels.Products
 {
@@ -20,12 +21,13 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Products
         private string policePrice;
         private int cupType;
         private string cupTypeName;
-        private int productType;
+        private int categoryId;
         private string productTypeName;
         private string selectedColor;
+        private string description;
 
         private Entity selectedCupType;
-        private CategoryItemViewModel selectedProductType;
+        private CategoryItemViewModel selectedCategory;
         private bool isSaleByWeight;
 
         #region Properties
@@ -38,7 +40,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Products
                                     && !string.IsNullOrEmpty(Price) 
                                     && !string.IsNullOrEmpty(PolicePrice) 
                                     && !string.IsNullOrEmpty(CupTypeName)
-                                    && !string.IsNullOrEmpty(ProductTypeName)
+                                    && !string.IsNullOrEmpty(CategoryName)
                                     && !string.IsNullOrEmpty(SelectedColor);
 
         public Entity SelectedCupType
@@ -57,18 +59,18 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Products
             }
         }
 
-        public CategoryItemViewModel SelectedProductType
+        public CategoryItemViewModel SelectedCategory
         {
-            get { return selectedProductType; }
+            get { return selectedCategory; }
             set
             {
-                if (selectedProductType != value)
+                if (selectedCategory != value)
                 {
-                    selectedProductType = value;
-                    RaisePropertyChanged(nameof(SelectedProductType));
+                    selectedCategory = value;
+                    RaisePropertyChanged(nameof(SelectedCategory));
                     RaisePropertyChanged(nameof(IsAddEnabled));
-                    ProductTypeId = selectedProductType.Id;
-                    ProductTypeName = selectedProductType.Name;
+                    CategoryId = selectedCategory.Id;
+                    CategoryName = selectedCategory.Name;
                 }
             }
         }
@@ -81,6 +83,12 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Products
                 SetProperty(ref selectedColor, value); 
                 RaisePropertyChanged(nameof(IsAddEnabled));
             }
+        }
+
+        public string Description
+        {
+            get => description;
+            set => SetProperty(ref description, value);
         }
 
         public string ButtonTitle {get;set;} = "Добавить продукт";
@@ -156,24 +164,24 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Products
             }
         }
 
-        public int ProductTypeId
+        public int CategoryId
         {
-            get { return productType; }
+            get { return categoryId; }
             set
             {
-                productType = value;
-                RaisePropertyChanged(nameof(ProductTypeId));
-                RaisePropertyChanged(nameof(SelectedProductType));
+                categoryId = value;
+                RaisePropertyChanged(nameof(CategoryId));
+                RaisePropertyChanged(nameof(SelectedCategory));
             }
         }
 
-        public string ProductTypeName
+        public string CategoryName
         {
             get { return productTypeName; }
             set
             {
                 productTypeName = value;
-                RaisePropertyChanged(nameof(ProductTypeName));
+                RaisePropertyChanged(nameof(CategoryName));
             }
         }
 
@@ -221,7 +229,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Products
                 var productType = CategoriesList.FirstOrDefault(t => t.Id == product.CategoryId);
                 if(productType != null)
                 {
-                    SelectedProductType = productType;
+                    SelectedCategory = productType;
                 }
                 ButtonTitle = "Сохранить изменения";
                 RaisePropertyChanged(nameof(ButtonTitle));
@@ -244,7 +252,18 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Products
                     {
                         await ExecuteSafe(async () =>
                         {
-                            await manager.AddProduct(Name, Price, PolicePrice, CupType, ProductTypeId, IsSaleByWeight, ProductTypeId);
+                            await manager.AddProduct(new Product() 
+                             { 
+                                Name = name,
+                                Price = decimal.Parse(price),
+                                PolicePrice = decimal.Parse(policePrice),
+                                CupType = cupType,
+                                CoffeeRoomNo = Config.CoffeeRoomNo,
+                                IsSaleByWeight = isSaleByWeight,
+                                CategoryId = CategoryId,
+                                Color = SelectedColor,
+                                Description = Description
+                            });
                             Publish(new ProductListChangedMessage(this));
                             Close(this);
                         });
@@ -264,8 +283,19 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Products
                     {
                         await ExecuteSafe(async () =>
                         {
-                            await manager.EditProduct(id, Name, Price, PolicePrice, CupType, ProductTypeId,
-                                IsSaleByWeight, ProductTypeId);
+                            await manager.EditProduct(new Product()
+                            {
+                                Id = id,
+                                Name = name,
+                                Price = decimal.Parse(price),
+                                PolicePrice = decimal.Parse(policePrice),
+                                CupType = cupType,
+                                CoffeeRoomNo = Config.CoffeeRoomNo,
+                                IsSaleByWeight = isSaleByWeight,
+                                CategoryId = CategoryId,
+                                Color = SelectedColor,
+                                Description = Description
+                            });
                             Publish(new ProductListChangedMessage(this));
                             Close(this);
                         });

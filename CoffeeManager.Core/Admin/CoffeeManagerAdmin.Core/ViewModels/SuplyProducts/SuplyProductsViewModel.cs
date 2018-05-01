@@ -12,6 +12,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels.SuplyProducts
 {
     public class SuplyProductsViewModel : BaseSearchViewModel<ListItemViewModelBase>
     {
+        private MvxSubscriptionToken coffeeRoomUpdatedToken;
         private MvxSubscriptionToken _listChanged;
 
         readonly ISuplyProductsManager manager;
@@ -22,8 +23,18 @@ namespace CoffeeManagerAdmin.Core.ViewModels.SuplyProducts
         public SuplyProductsViewModel(ISuplyProductsManager manager)
         {
             this.manager = manager;
-            _listChanged = MvxMessenger.Subscribe<SuplyListChangedMessage>(async (obj) => await Initialize());
             AddNewSuplyProductCommand = new MvxAsyncCommand(async() => await NavigationService.Navigate<AddSuplyProductViewModel>());
+        }
+
+        protected override void DoSubscribe()
+        {
+            base.DoSubscribe();
+
+            coffeeRoomUpdatedToken = MvxMessenger.Subscribe<CoffeeRoomChangedMessage>(async (s) =>
+            {
+                await Initialize();
+            });
+            _listChanged = MvxMessenger.Subscribe<SuplyListChangedMessage>(async (obj) => await Initialize());
         }
 
         public override async Task<List<ListItemViewModelBase>> LoadData()
@@ -44,6 +55,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels.SuplyProducts
         protected override void DoUnsubscribe()
         {
             MvxMessenger.Unsubscribe<SuplyListChangedMessage>(_listChanged);
+            MvxMessenger.Unsubscribe<CoffeeRoomChangedMessage>(coffeeRoomUpdatedToken);
         }
     }
 }

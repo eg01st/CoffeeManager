@@ -3,6 +3,7 @@ using System.Globalization;
 using System.Text.RegularExpressions;
 using CoreGraphics;
 using UIKit;
+using MobileCore.Extensions;
 
 namespace CoffeeManagerAdmin.iOS.Extensions
 {
@@ -32,7 +33,7 @@ namespace CoffeeManagerAdmin.iOS.Extensions
         {
             var hexRegex = new Regex("^#([A-Fa-f0-9]{6})$");
 
-            if(hexColor.Length != 6 && !hexRegex.IsMatch(hexColor))
+            if(hexColor.IsNullOrEmpty() || (hexColor.Length != 6 && !hexRegex.IsMatch(hexColor)))
             {
                 throw new ArgumentException("Hex is not correct.", nameof(hexColor));
             }

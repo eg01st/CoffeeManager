@@ -11,11 +11,11 @@ namespace CoffeManager.Common.Managers
         Task DismisSaleProduct(int id);
         Task UtilizeSaleProduct(int id);
 
-        Task AddProduct(string name, string price, string policePrice, int cupType, int productTypeId, bool isSaleByWeight, int categoryId);
+        Task AddProduct(Product product);
 
         Task DeleteProduct(int id);
 
-        Task EditProduct(int id, string name, string price, string policePrice, int cupType, int productTypeId, bool isSaleByWeight, int categoryId);
+        Task EditProduct(Product product);
 
         Task<Product[]> GetProducts();
 

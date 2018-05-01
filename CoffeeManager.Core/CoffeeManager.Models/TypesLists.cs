@@ -16,17 +16,5 @@ namespace CoffeeManager.Models
             new Entity { Name = "500", Id = (int)CupTypeEnum.c500},
         };
 
-        public static List<Entity> ProductTypesList => new List<Entity>()
-        {
-            new Entity { Name = "Кофе", Id = (int)ProductType.Coffee},
-            new Entity { Name = "Чай", Id = (int)ProductType.Tea},
-            new Entity { Name = "Вода", Id = (int)ProductType.Water},
-            new Entity { Name = "Сладости", Id = (int)ProductType.Sweets},
-            new Entity { Name = "Еда", Id = (int)ProductType.Meals},
-            new Entity { Name = "Добавки", Id = (int)ProductType.Adds},
-            new Entity { Name = "Хол. напитки", Id = (int)ProductType.ColdDrinks},
-            new Entity { Name = "Мороженое", Id = (int)ProductType.IceCream},
-        };
-
     }
 }

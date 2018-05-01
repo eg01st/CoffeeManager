@@ -4,6 +4,7 @@ using System.Windows.Input;
 using CoffeManager.Common;
 using CoffeManager.Common.ViewModels;
 using MvvmCross.Core.ViewModels;
+using CoffeManager.Common.Managers;
 
 namespace CoffeeManagerAdmin.Core.ViewModels.Statistic
 {
@@ -19,8 +20,11 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Statistic
 
         public ICommand ShowChartCommand { get; set; }
 
-        public StatisticResultViewModel(IStatisticManager manager)
+        private readonly ICategoryManager categoryManager;
+
+        public StatisticResultViewModel(IStatisticManager manager, ICategoryManager categoryManager)
         {
+            this.categoryManager = categoryManager;
             this.manager = manager;
             ShowChartCommand = new MvxCommand(DoShowChart);
         }
@@ -31,7 +35,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Statistic
             {
                 ExpensesVm = new ExpensesStatisticViewModel(manager, from, to);
                 CreditCardSalesVm = new CreditCardSalesViewModel(manager, from, to);
-                SalesVm = new SalesStatisticViewModel(manager, from, to);
+                SalesVm = new SalesStatisticViewModel(manager, categoryManager, from, to);
                 var tasks = new[]
                 {
                     ExpensesVm.Initialize(),

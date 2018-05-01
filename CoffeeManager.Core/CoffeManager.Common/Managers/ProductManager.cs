@@ -137,9 +137,9 @@ namespace CoffeManager.Common.Managers
             }
         }
 
-        public async Task AddProduct(string name, string price, string policePrice, int cupType, int productTypeId, bool isSaleByWeight, int categoryId)
+        public async Task AddProduct(Product product)
         {
-            await productProvider.AddProduct(new Product { Name = name, Price = decimal.Parse(price), PolicePrice = decimal.Parse(policePrice), CupType = cupType, CoffeeRoomNo = Config.CoffeeRoomNo, IsSaleByWeight = isSaleByWeight, CategoryId = categoryId });
+            await productProvider.AddProduct(product);
         }
 
         public async Task DeleteProduct(int id)
@@ -147,9 +147,9 @@ namespace CoffeManager.Common.Managers
             await productProvider.DeleteProduct(id);
         }
 
-        public async Task EditProduct(int id, string name, string price, string policePrice, int cupType, int productTypeId, bool isSaleByWeight, int categoryId)
+        public async Task EditProduct(Product product)
         {
-            await productProvider.EditProduct(new Product { Id = id, Name = name, Price = decimal.Parse(price), PolicePrice = decimal.Parse(policePrice), CupType = cupType, CoffeeRoomNo = Config.CoffeeRoomNo, IsSaleByWeight = isSaleByWeight, CategoryId = categoryId });
+            await productProvider.EditProduct(product);
         }
 
         public async Task<Product[]> GetProducts()
