@@ -4,9 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using CoffeeManager.Models;
 using CoffeManager.Common.Database;
-using CoffeManager.Common.Providers;
 
-namespace CoffeManager.Common
+namespace CoffeManager.Common.Providers
 {
     public class ProductProvider : BaseServiceProvider, IProductProvider
     {
@@ -58,6 +57,11 @@ namespace CoffeManager.Common
         public async Task UtilizeSaleProduct(int shiftId, int id)
         {
             await Post(RoutesConstants.UtilizeSale, new Sale() { ShiftId = shiftId, Id = id });
+        }
+        
+        public async Task<string[]> GetAvaivalbeProductColors()
+        {
+            return await Get<string[]>(RoutesConstants.GetAvaivalbeProductColors);
         }
     }
 }

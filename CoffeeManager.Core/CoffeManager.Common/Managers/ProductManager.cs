@@ -162,6 +162,11 @@ namespace CoffeManager.Common.Managers
             await productProvider.ToggleIsActiveProduct(id);
         }
 
+        public async Task<string[]> GetAvaivalbeProductColors()
+        {
+            return await productProvider.GetAvaivalbeProductColors();
+        }
+
         private async Task<Product[]> GetAndSyncProduct(int categoryId)
         {
             IEnumerable<ProductEntity> products;

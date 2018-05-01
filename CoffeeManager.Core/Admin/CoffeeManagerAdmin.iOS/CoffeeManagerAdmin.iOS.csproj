@@ -98,9 +98,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="DebugTrace.cs" />
+    <Compile Include="Extensions\ColorExtensions.cs" />
+    <Compile Include="Extensions\Helper.cs" />
     <Compile Include="LinkerPleaseInclude.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="Views\Controls\ColoredPickerView.cs" />
     <Compile Include="Views\Counter\CoffeeCounterDetailView.designer.cs">
       <DependentUpon>CoffeeCounterDetailView.cs</DependentUpon>
     </Compile>

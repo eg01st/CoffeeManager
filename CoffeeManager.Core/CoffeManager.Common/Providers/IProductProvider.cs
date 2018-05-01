@@ -23,5 +23,7 @@ namespace CoffeManager.Common.Providers
         Task DeleteSale(int shiftId, int id);
 
         Task UtilizeSaleProduct(int shiftId, int id);
+
+        Task<string[]> GetAvaivalbeProductColors();
     }
 }

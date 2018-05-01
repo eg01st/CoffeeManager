@@ -21,7 +21,7 @@ using MvvmCross.Core.ViewModels;
 
 namespace CoffeeManager.Droid.Views
 {
-    [Activity(ScreenOrientation = ScreenOrientation.SensorPortrait)]
+    [Activity(ScreenOrientation = ScreenOrientation.Landscape)]
     public class MainView : MobileCore.Droid.Activities.ActivityBase<MainViewModel>, NavigationView.IOnNavigationItemSelectedListener
     {
         private readonly int drawerGravity = GravityCompat.Start;

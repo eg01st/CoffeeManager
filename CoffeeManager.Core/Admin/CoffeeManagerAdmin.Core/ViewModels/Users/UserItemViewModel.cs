@@ -19,7 +19,6 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Users
         {
             this.manager = manager;
             ToggleIsActiveCommand = new MvxCommand(DoToggleIsActive);
-
         }
 
         private async void DoToggleIsActive()

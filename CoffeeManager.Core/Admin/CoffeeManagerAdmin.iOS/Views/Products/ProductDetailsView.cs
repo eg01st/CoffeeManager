@@ -1,17 +1,14 @@
-﻿
-
-using UIKit;
-using MvvmCross.iOS.Views;
-using MvvmCross.Binding.iOS.Views;
-using MvvmCross.Binding.BindingContext;
-using CoffeeManagerAdmin.Core.ViewModels;
-using CoreGraphics;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using CoffeeManagerAdmin.Core.ViewModels.Products;
-using CoffeeManagerAdmin.iOS.Views.Abstract;
+using CoffeeManagerAdmin.iOS.Extensions;
+using CoffeeManagerAdmin.iOS.Views.Controls;
+using CoreGraphics;
 using MobileCore.iOS.ViewControllers;
+using MvvmCross.Binding.BindingContext;
+using MvvmCross.Binding.iOS.Views;
+using UIKit;
 
-namespace CoffeeManagerAdmin.iOS
+namespace CoffeeManagerAdmin.iOS.Views.Products
 {
     public partial class ProductDetailsView : ViewControllerBase<ProductDetailsViewModel>
     {
@@ -23,35 +20,19 @@ namespace CoffeeManagerAdmin.iOS
         {
             base.ViewDidLoad();
             Title = "Детали товара";
-            var toolbar = new UIToolbar(new CGRect(0, 0, this.View.Frame.Width, 44));
-            toolbar.UserInteractionEnabled = true;
-            toolbar.BarStyle = UIBarStyle.BlackOpaque;
-            var doneButton = new UIBarButtonItem();
-            doneButton.Title = "Готово";
-            doneButton.Style = UIBarButtonItemStyle.Bordered;
-            doneButton.TintColor = UIColor.Black;
-            doneButton.Clicked += (sender, e) =>
-            {
-                View.EndEditing(true);
-            };
-            toolbar.SetItems(new[] { doneButton }, false);
+            var toolbar = Helper.ProducePickerToolbar(View);
 
+            var cupPickerViewModel = Helper.ProducePicker(CupTypeCategoryText, toolbar);
+            var productTypePickerViewModel =  Helper.ProducePicker(ProductTypeText, toolbar);
+            
+            var picker = new ColoredPickerView();
+            var viewModel = new MvxPickerViewModel(picker);
+            picker.Model = viewModel;
+            picker.ShowSelectionIndicator = true;
+            SelectedColorTextField.InputView = picker;
+            SelectedColorTextField.InputAccessoryView = toolbar;
 
-            var cupTypePicker = new UIPickerView();
-            var cupPickerViewModel = new MvxPickerViewModel(cupTypePicker);
-            cupTypePicker.Model = cupPickerViewModel;
-            cupTypePicker.ShowSelectionIndicator = true;
-            CupTypeCategoryText.InputView = cupTypePicker;
-            CupTypeCategoryText.InputAccessoryView = toolbar;
-
-
-            var productTypePicker = new UIPickerView();
-            var productTypePickerViewModel = new MvxPickerViewModel(productTypePicker);
-            productTypePicker.Model = productTypePickerViewModel;
-            productTypePicker.ShowSelectionIndicator = true;
-            ProductTypeText.InputView = productTypePicker;
-            ProductTypeText.InputAccessoryView = toolbar;
-
+            
             var set = this.CreateBindingSet<ProductDetailsView, ProductDetailsViewModel>();
             set.Bind(NameText).To(vm => vm.Name);
             set.Bind(PriceText).To(vm => vm.Price);
@@ -67,6 +48,10 @@ namespace CoffeeManagerAdmin.iOS
             set.Bind(cupPickerViewModel).For(p => p.SelectedItem).To(vm => vm.SelectedCupType);
             set.Bind(productTypePickerViewModel).For(p => p.ItemsSource).To(vm => vm.CategoriesList);
             set.Bind(productTypePickerViewModel).For(p => p.SelectedItem).To(vm => vm.SelectedProductType);
+            set.Bind(viewModel).For(p => p.ItemsSource).To(vm => vm.Colors);
+            set.Bind(viewModel).For(p => p.SelectedItem).To(vm => vm.SelectedColor);
+            set.Bind(SelectedColorTextField).For(c => c.BackgroundColor).To(vm => vm.SelectedColor).WithConversion(
+                new GenericConverter<string, UIColor>((arg) => ColorExtensions.ParseColorFromHex(arg)));
             set.Bind(IsSaleByWeightSwitch).For(s => s.On).To(vm => vm.IsSaleByWeight);
             set.Apply();
 

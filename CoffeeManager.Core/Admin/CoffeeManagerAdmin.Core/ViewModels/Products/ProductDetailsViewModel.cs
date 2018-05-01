@@ -22,6 +22,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Products
         private string cupTypeName;
         private int productType;
         private string productTypeName;
+        private string selectedColor;
 
         private Entity selectedCupType;
         private CategoryItemViewModel selectedProductType;
@@ -30,9 +31,15 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Products
         #region Properties
         public List<Entity> CupTypesList => TypesLists.CupTypesList;
         public List<CategoryItemViewModel> CategoriesList { get; set; } = new List<CategoryItemViewModel>();
+        public List<string> Colors { get; set; } = new List<string>();
         public ICommand AddProductCommand => addProductCommand;
         private ICommand addProductCommand;
-        public bool IsAddEnabled => !string.IsNullOrEmpty(Name) && !string.IsNullOrEmpty(Price) && !string.IsNullOrEmpty(PolicePrice) && !string.IsNullOrEmpty(CupTypeName) && !string.IsNullOrEmpty(ProductTypeName);
+        public bool IsAddEnabled => !string.IsNullOrEmpty(Name) 
+                                    && !string.IsNullOrEmpty(Price) 
+                                    && !string.IsNullOrEmpty(PolicePrice) 
+                                    && !string.IsNullOrEmpty(CupTypeName)
+                                    && !string.IsNullOrEmpty(ProductTypeName)
+                                    && !string.IsNullOrEmpty(SelectedColor);
 
         public Entity SelectedCupType
         {
@@ -63,6 +70,16 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Products
                     ProductTypeId = selectedProductType.Id;
                     ProductTypeName = selectedProductType.Name;
                 }
+            }
+        }
+
+        public string SelectedColor
+        {
+            get => selectedColor;
+            set
+            {
+                SetProperty(ref selectedColor, value); 
+                RaisePropertyChanged(nameof(IsAddEnabled));
             }
         }
 
@@ -163,6 +180,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Products
         readonly IProductManager manager;
         private readonly ICategoryManager categoryManager;
 
+
         public ICommand SelectCalculationItemsCommand { get; }
 
         #endregion
@@ -181,6 +199,9 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Products
             var categories = await categoryManager.GetCategoriesPlain();
             CategoriesList = categories.Select(s => new CategoryItemViewModel(s)).ToList();
             RaisePropertyChanged(nameof(CategoriesList));
+
+            Colors = (await manager.GetAvaivalbeProductColors()).ToList();
+            RaisePropertyChanged(nameof(Colors));
             
             if(product != null)
             {
@@ -190,6 +211,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Products
                 Price = product.Price.ToString("F");
                 PolicePrice = product.PolicePrice.ToString("F");
                 IsSaleByWeight = product.IsSaleByWeight;
+                SelectedColor = product.Color;
                 
                 var cupType = CupTypesList.FirstOrDefault(t => t.Id == product.CupType);
                 if(cupType != null)

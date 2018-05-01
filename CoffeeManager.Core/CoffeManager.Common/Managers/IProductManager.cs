@@ -20,5 +20,7 @@ namespace CoffeManager.Common.Managers
         Task<Product[]> GetProducts();
 
         Task ToggleIsActiveProduct(int id);
+
+        Task<string[]> GetAvaivalbeProductColors();
     }
 }

@@ -402,6 +402,8 @@
           <e p="DebugTrace.cs" t="Include" />
           <e p="Entitlements.plist" t="Include" />
           <e p="Extensions" t="Include">
+            <e p="ColorExtensions.cs" t="Include" />
+            <e p="Helper.cs" t="Include" />
             <e p="UIViewExtensions.cs" t="Include" />
           </e>
           <e p="Info.plist" t="Include" />
@@ -531,7 +533,9 @@
               <e p="SelectCalculationItemViewCell.designer.cs" t="Include" />
               <e p="SelectCalculationItemViewCell.xib" t="Include" />
             </e>
-            <e p="Controls" t="Include" />
+            <e p="Controls" t="Include">
+              <e p="ColoredPickerView.cs" t="Include" />
+            </e>
             <e p="Counter" t="Include">
               <e p="AddCoffeeCounterView.cs" t="Include" />
               <e p="AddCoffeeCounterView.designer.cs" t="Include" />
@@ -880,6 +884,7 @@
           </e>
         </e>
         <e p="CoffeeManager.Droid" t="IncludeRecursive">
+          <e p="ActivityBase.cs" t="Include" />
           <e p="Adapters" t="Include">
             <e p="ViewHolders" t="Include">
               <e p="CoffeeCounterViewHolder.cs" t="Include" />
@@ -1051,7 +1056,6 @@
           <e p="UncaughtExceptionHandler.cs" t="Include" />
           <e p="Views" t="Include">
             <e p="Abstract" t="Include" />
-            <e p="ActivityBase.cs" t="Include" />
             <e p="CoffeeCounterView.cs" t="Include" />
             <e p="Controls" t="Include" />
             <e p="CurrentShiftExpensesView.cs" t="Include" />
