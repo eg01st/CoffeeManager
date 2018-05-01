@@ -227,8 +227,8 @@
           <Property Name="IsSaleByWeight" Type="bit" Nullable="false" />
           <Property Name="Removed" Type="bit" Nullable="false" />
           <Property Name="CategoryId" Type="int" Nullable="false" />
-          <Property Name="Color" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Color" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="ProductCalculation">
           <Key>
@@ -1347,7 +1347,7 @@
           <Property Name="Removed" Type="Boolean" Nullable="false" />
           <Property Name="CategoryId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Category" Relationship="CoffeeRoomModel.FK_Product_Category" FromRole="Product" ToRole="Category" />
-          <Property Name="Color" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Color" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="ProductType">
