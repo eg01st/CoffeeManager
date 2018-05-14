@@ -15,6 +15,7 @@ namespace CoffeeManager.Models
 
         public int ProductId { get; set; }
 
+        public string CategoryName { get; set; }
         public int CategoryId { get; set; }
 
         public bool IsPoliceSale { get; set; }

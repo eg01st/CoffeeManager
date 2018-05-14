@@ -220,7 +220,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Products
                 PolicePrice = product.PolicePrice.ToString("F");
                 IsSaleByWeight = product.IsSaleByWeight;
                 SelectedColor = product.Color;
-                
+                Description = product.Description;
                 var cupType = CupTypesList.FirstOrDefault(t => t.Id == product.CupType);
                 if(cupType != null)
                 {

@@ -45,6 +45,10 @@ namespace CoffeeManager.Core.ViewModels
             {
                 policeSaleEnabled = value;
                 RaisePropertyChanged(nameof(IsPoliceSaleEnabled));
+                if(allProducts == null)
+                {
+                    return;
+                }
                 foreach (var item in allProducts)
                 {
                     item.IsPoliceSale = policeSaleEnabled;
