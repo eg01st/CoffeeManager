@@ -1,6 +1,8 @@
-﻿namespace CoffeeManager.Models
+﻿using System.Collections.Generic;
+
+namespace CoffeeManager.Models.Data.Product
 {
-    public class Product
+    public class ProductDTO
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -15,5 +17,7 @@
         public bool IsSaleByWeight { get; set; }
         public string Color { get; set; }
         public string Description { get; set; }
+        public bool IsPercentPaymentEnabled { get; set; }
+        public List<ProductPaymentStrategyDTO> ProductPaymentStrategy { get; set; }
     }
 }

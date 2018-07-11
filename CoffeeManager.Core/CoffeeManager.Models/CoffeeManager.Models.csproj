@@ -34,9 +34,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <!-- A reference to the entire .NET Framework is automatically included -->
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="CalculationItem.cs" />
     <Compile Include="CashoutHistory.cs" />
     <Compile Include="CupType.cs" />
@@ -44,6 +41,8 @@
     <Compile Include="Data\DTO\Category\CategoryDTO.cs" />
     <Compile Include="Data\DTO\CoffeeRoomCounter\CoffeeCounterDTO.cs" />
     <Compile Include="Data\DTO\CoffeeRoomCounter\CoffeeCounterForCoffeeRoomDTO.cs" />
+    <Compile Include="Data\Product\ProductDTO.cs" />
+    <Compile Include="Data\Product\ProductPaymentStrategyDTO.cs" />
     <Compile Include="EndShiftDTO.cs" />
     <Compile Include="EndShiftUserInfo.cs" />
     <Compile Include="Entity.cs" />
@@ -54,7 +53,6 @@
     <Compile Include="MetroExpense.cs" />
     <Compile Include="Order.cs" />
     <Compile Include="OrderItem.cs" />
-    <Compile Include="Product.cs" />
     <Compile Include="ProductCalculationEntity.cs" />
     <Compile Include="ProductType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

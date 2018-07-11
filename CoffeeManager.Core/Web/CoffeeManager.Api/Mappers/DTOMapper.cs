@@ -7,6 +7,7 @@ using CoffeeManager.Models.Data.DTO;
 using CoffeeManager.Models.Data.DTO.Category;
 using CoffeeManager.Models.Data.DTO.CoffeeRoomCounter;
 using CoffeeManager.Models.Data.DTO.User;
+using CoffeeManager.Models.Data.Product;
 
 namespace CoffeeManager.Api.Mappers
 {
@@ -79,9 +80,9 @@ namespace CoffeeManager.Api.Mappers
             };
         }
 
-        public static Models.Product ToDTO(this Product prodDb)
+        public static ProductDTO ToDTO(this Product prodDb)
         {
-            return new Models.Product()
+            return new ProductDTO()
             {
                 Id = prodDb.Id,
                 Name = prodDb.Name,
@@ -94,7 +95,20 @@ namespace CoffeeManager.Api.Mappers
                 CategoryId = prodDb.CategoryId,
                 CategoryName = prodDb.Category?.Name,
                 Color = prodDb.Color,
-                Description = prodDb.Description
+                Description = prodDb.Description,
+                IsPercentPaymentEnabled = prodDb.IsPercentPaymentEnabled,
+                ProductPaymentStrategy = prodDb.ProductPaymentStrategy.Select(s => s.ToDTO()).ToList()
+            };
+        }
+        
+        public static ProductPaymentStrategyDTO ToDTO(this ProductPaymentStrategy strategyDb)
+        {
+            return new ProductPaymentStrategyDTO()
+            {
+                Id = strategyDb.Id,
+                CoffeeRoomId = strategyDb.CoffeeRoomId,
+                DayShiftPersent = strategyDb.DayShiftPersent,
+                NightShiftPercent = strategyDb.NightShiftPercent,
             };
         }
 

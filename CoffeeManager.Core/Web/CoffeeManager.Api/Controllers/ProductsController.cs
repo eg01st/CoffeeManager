@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using CoffeeManager.Api.Mappers;
 using CoffeeManager.Models;
+using CoffeeManager.Models.Data.Product;
 using Microsoft.AspNet.Identity;
 using Newtonsoft.Json;
 
@@ -39,7 +40,7 @@ namespace CoffeeManager.Api.Controllers
 		public async Task<HttpResponseMessage> AddProduct ([FromUri]int coffeeroomno, HttpRequestMessage message)
 		{
 			var request = await message.Content.ReadAsStringAsync ();
-			var product = JsonConvert.DeserializeObject<Models.Product> (request);
+			var product = JsonConvert.DeserializeObject<ProductDTO> (request);
             product.CoffeeRoomNo = coffeeroomno;
 			var entities = new CoffeeRoomEntities ();
 			entities.Products.Add (DbMapper.Map (product));
@@ -52,7 +53,7 @@ namespace CoffeeManager.Api.Controllers
 		public async Task<HttpResponseMessage> EditProduct ([FromUri]int coffeeroomno, HttpRequestMessage message)
         {
 			var request = await message.Content.ReadAsStringAsync ();
-			var product = JsonConvert.DeserializeObject<Models.Product> (request);
+			var product = JsonConvert.DeserializeObject<ProductDTO> (request);
 
 			var entities = new CoffeeRoomEntities ();
 

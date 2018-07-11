@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 using CoffeeManager.Models;
+using CoffeeManager.Models.Data.Product;
 using CoffeManager.Common;
 using CoffeManager.Common.ViewModels;
 using MvvmCross.Core.ViewModels;
@@ -11,7 +12,7 @@ namespace CoffeeManager.Core.ViewModels
     {
         private ICommand _selectItemCommand;
         
-        private Product product;
+        private ProductDTO productDTO;
         private bool _isPoliceSale;
         private decimal _price;
         private bool _isCreditCardSale;
@@ -25,7 +26,7 @@ namespace CoffeeManager.Core.ViewModels
             set
             {
                 _isPoliceSale = value;
-                Price = IsPoliceSale ? product.PolicePrice : product.Price;
+                Price = IsPoliceSale ? productDTO.PolicePrice : productDTO.Price;
                 RaisePropertyChanged(nameof(IsPoliceSale));
             }
         }
@@ -41,7 +42,7 @@ namespace CoffeeManager.Core.ViewModels
             }
         }
 
-        public int Id => product.Id;
+        public int Id => productDTO.Id;
 
         public decimal Price
         {
@@ -53,18 +54,18 @@ namespace CoffeeManager.Core.ViewModels
             }
         }
 
-        public string Name => product.Name;
+        public string Name => productDTO.Name;
 
-        public int CupType => product.CupType;
+        public int CupType => productDTO.CupType;
 
-        public bool IsSaleByWeight => product.IsSaleByWeight;
+        public bool IsSaleByWeight => productDTO.IsSaleByWeight;
 
         public ICommand SelectItemCommand => _selectItemCommand;
 
-        public ProductItemViewModel(Product product)
+        public ProductItemViewModel(ProductDTO productDTO)
         {
-            this.product = product;
-            Price = product.Price;
+            this.productDTO = productDTO;
+            Price = productDTO.Price;
             saleAction = () => Sale();
             _selectItemCommand = new MvxCommand(DoSelectItem);
         }

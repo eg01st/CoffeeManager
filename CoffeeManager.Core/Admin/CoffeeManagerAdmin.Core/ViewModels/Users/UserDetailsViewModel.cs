@@ -42,7 +42,6 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Users
         public ICommand UpdateCommand {get;set;}
         public ICommand PenaltyCommand { get; set; }
         public ICommand ShowEarningsCommand { get; set; }
-        public ICommand SelectCoffeeRoomCommand { get; }
         public ICommand SelectExpenseCommand { get; } 
         
         public List<Entity> ExpenseItems
@@ -119,31 +118,12 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Users
             UpdateCommand = new MvxCommand(DoUpdateUser);
             PenaltyCommand = new MvxCommand(DoPenalty);
             ShowEarningsCommand = new MvxAsyncCommand(DoShowEarnings);
-            SelectCoffeeRoomCommand = new MvxCommand(DoSelectCoffeeRoom);
             SelectExpenseCommand = new MvxCommand(DoSelectExpense);
 
             token = MvxMessenger.Subscribe<UserAmountChangedMessage>(async (obj) => await Initialize());
         }
         
         
-        private void DoSelectCoffeeRoom()
-        {
-            if (CoffeeRooms.Count <= 1)
-            {
-                return;
-            }
-            var optionList = new List<ActionSheetOption>();
-            foreach (var cr in CoffeeRooms)
-            {
-                optionList.Add(new ActionSheetOption(cr.Name, () => { CurrentCoffeeRoom = CoffeeRooms.First(c => c.Id == cr.Id); }));
-            }
-
-            UserDialogs.ActionSheet(new ActionSheetConfig
-            {
-                Options = optionList,
-                Title = "Выбор заведения",
-            });
-        }
         
         private void DoSelectExpense()
         {

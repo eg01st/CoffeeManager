@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CoffeeManager.Models;
+using CoffeeManager.Models.Data.Product;
 using CoffeManager.Common.Database;
 
 namespace CoffeManager.Common.Providers
 {
     public class ProductProvider : BaseServiceProvider, IProductProvider
     {
-        public async Task AddProduct(Product product)
+        public async Task AddProduct(ProductDTO productDTO)
         {
-            await Put(RoutesConstants.AddProduct, product);
+            await Put(RoutesConstants.AddProduct, productDTO);
         }
 
         public async Task DeleteProduct(int id)
@@ -19,14 +20,14 @@ namespace CoffeManager.Common.Providers
             await Delete(RoutesConstants.DeleteProduct, new Dictionary<string, string>() { { nameof(id), id.ToString() } });
         }
 
-        public async Task EditProduct(Product product)
+        public async Task EditProduct(ProductDTO productDTO)
         {
-            await Post(RoutesConstants.EditProduct, product);
+            await Post(RoutesConstants.EditProduct, productDTO);
         }
 
-        public async Task<Product[]> GetProducts()
+        public async Task<ProductDTO[]> GetProducts()
         {
-            return await Get<Product[]>(RoutesConstants.GetAllProducts);
+            return await Get<ProductDTO[]>(RoutesConstants.GetAllProducts);
         }
 
         public async Task ToggleIsActiveProduct(int id)

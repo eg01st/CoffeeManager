@@ -6,6 +6,7 @@ using CoffeeManager.Models;
 using CoffeeManager.Models.Data.DTO.Category;
 using CoffeeManager.Models.Data.DTO.CoffeeRoomCounter;
 using CoffeeManager.Models.Data.DTO.User;
+using CoffeeManager.Models.Data.Product;
 
 namespace CoffeeManager.Api.Mappers
 {
@@ -86,23 +87,23 @@ namespace CoffeeManager.Api.Mappers
         }
 
 
-        public static Product Map (Models.Product product)
+        public static Product Map(ProductDTO productDTO)
 		{
 
 			var prod = new Product () {
-				CoffeeRoomNo = product.CoffeeRoomNo,
-				CupType = product.CupType,
-				Name = product.Name,
-				PolicePrice = product.PolicePrice,
-				Price = product.Price,
-                IsActive = product.IsActive,
-                IsSaleByWeight = product.IsSaleByWeight,
-				CategoryId = product.CategoryId,
-                Color = product.Color,
-                Description = product.Description
+				CoffeeRoomNo = productDTO.CoffeeRoomNo,
+				CupType = productDTO.CupType,
+				Name = productDTO.Name,
+				PolicePrice = productDTO.PolicePrice,
+				Price = productDTO.Price,
+                IsActive = productDTO.IsActive,
+                IsSaleByWeight = productDTO.IsSaleByWeight,
+				CategoryId = productDTO.CategoryId,
+                Color = productDTO.Color,
+                Description = productDTO.Description
 			};
-			if (product.SuplyId.HasValue) {
-				prod.SuplyProductId = product.SuplyId;
+			if (productDTO.SuplyId.HasValue) {
+				prod.SuplyProductId = productDTO.SuplyId;
 			}
 			return prod;
 

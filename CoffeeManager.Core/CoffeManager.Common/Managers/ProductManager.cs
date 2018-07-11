@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using CoffeeManager.Common;
 using CoffeeManager.Models;
+using CoffeeManager.Models.Data.Product;
 using CoffeManager.Common.Database;
 using CoffeManager.Common.Providers;
 using MobileCore.Connection;
@@ -26,7 +27,7 @@ namespace CoffeManager.Common.Managers
             this.productProvider = productProvider;
         }
 
-        public async Task<Product[]> GetProducts(int categoryId)
+        public async Task<ProductDTO[]> GetProducts(int categoryId)
         {
             return await GetAndSyncProduct(categoryId).ConfigureAwait(false);
         }
@@ -137,9 +138,9 @@ namespace CoffeManager.Common.Managers
             }
         }
 
-        public async Task AddProduct(Product product)
+        public async Task AddProduct(ProductDTO productDTO)
         {
-            await productProvider.AddProduct(product);
+            await productProvider.AddProduct(productDTO);
         }
 
         public async Task DeleteProduct(int id)
@@ -147,12 +148,12 @@ namespace CoffeManager.Common.Managers
             await productProvider.DeleteProduct(id);
         }
 
-        public async Task EditProduct(Product product)
+        public async Task EditProduct(ProductDTO productDTO)
         {
-            await productProvider.EditProduct(product);
+            await productProvider.EditProduct(productDTO);
         }
 
-        public async Task<Product[]> GetProducts()
+        public async Task<ProductDTO[]> GetProducts()
         {
             return await productProvider.GetProducts();
         }
@@ -167,7 +168,7 @@ namespace CoffeManager.Common.Managers
             return await productProvider.GetAvaivalbeProductColors();
         }
 
-        private async Task<Product[]> GetAndSyncProduct(int categoryId)
+        private async Task<ProductDTO[]> GetAndSyncProduct(int categoryId)
         {
             IEnumerable<ProductEntity> products;
             if(! await connectivity.HasInternetConnectionAsync)

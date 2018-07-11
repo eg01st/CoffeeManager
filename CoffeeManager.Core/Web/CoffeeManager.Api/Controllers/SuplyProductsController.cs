@@ -149,7 +149,7 @@ namespace CoffeeManager.Api.Controllers
         public async Task<HttpResponseMessage> DeleteProductCalculationItem([FromUri] int coffeeroomno,  int id, HttpRequestMessage message)
         {
             var entities = new CoffeeRoomEntities();
-            var productCalculationItem = entities.ProductCalculations.FirstOrDefault(r => r.Id == id && r.CoffeeRoomNo == coffeeroomno);
+            var productCalculationItem = entities.ProductCalculations.FirstOrDefault(r => r.Id == id);
             if (productCalculationItem != null)
             {
                 entities.ProductCalculations.Remove(productCalculationItem);

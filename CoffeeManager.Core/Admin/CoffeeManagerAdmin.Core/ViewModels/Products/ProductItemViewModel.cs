@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using System.Windows.Input;
 using CoffeeManager.Models;
+using CoffeeManager.Models.Data.Product;
 using CoffeManager.Common.Managers;
 using CoffeManager.Common.ViewModels;
 using MvvmCross.Core.ViewModels;
@@ -10,7 +11,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Products
 {
     public class ProductItemViewModel : ListItemViewModelBase
     {
-        private Product prod;
+        private ProductDTO prod;
         public ICommand DeleteProductCommand { get; }
         public ICommand ToggleIsActiveCommand {get;}
 
@@ -18,7 +19,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Products
         public string CupType {get;set;}
         public bool IsActive {get;set;}
 
-        public ProductItemViewModel(Product prod)
+        public ProductItemViewModel(ProductDTO prod)
         {
             this.prod = prod;
             Name = prod.Name;
@@ -41,7 +42,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Products
 
         protected override async void DoGoToDetails()
         {
-            await NavigationService.Navigate<ProductDetailsViewModel, Product>(prod);
+            await NavigationService.Navigate<ProductDetailsViewModel, ProductDTO>(prod);
         }
 
         private void DoDeleCommand()

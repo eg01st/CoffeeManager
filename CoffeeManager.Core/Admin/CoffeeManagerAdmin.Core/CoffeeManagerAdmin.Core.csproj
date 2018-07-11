@@ -71,6 +71,7 @@
     <Compile Include="Messages\BaseMessage.cs" />
     <Compile Include="Messages\ProductListChangedMessage.cs" />
     <Compile Include="Messages\SuplyListChangedMessage.cs" />
+    <Compile Include="ViewModels\Products\ProductPaymentStrategyItemViewModel.cs" />
     <Compile Include="ViewModels\Users\UserItemViewModel.cs" />
     <Compile Include="ViewModels\Users\UserDetailsViewModel.cs" />
     <Compile Include="ViewModels\SuplyProducts\SuplyProductDetailsViewModel.cs" />

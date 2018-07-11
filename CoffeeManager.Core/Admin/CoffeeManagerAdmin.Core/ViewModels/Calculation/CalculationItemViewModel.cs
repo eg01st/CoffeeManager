@@ -24,7 +24,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Calculation
 
         private async void DoDelete()
         {
-            await manager.DeleteProductCalculationItem(_item.Id);
+            await ExecuteSafe(manager.DeleteProductCalculationItem(_item.Id));
             Publish(new CalculationListChangedMessage(this));
         }
 
