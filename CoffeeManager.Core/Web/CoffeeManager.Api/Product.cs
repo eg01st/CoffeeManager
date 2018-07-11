@@ -20,6 +20,7 @@ namespace CoffeeManager.Api
             this.Sales = new HashSet<Sale>();
             this.SupliedProducts = new HashSet<SupliedProduct>();
             this.ProductCalculations = new HashSet<ProductCalculation>();
+            this.ProductPaymentStrategies = new HashSet<ProductPaymentStrategy>();
         }
     
         public int Id { get; set; }
@@ -36,6 +37,7 @@ namespace CoffeeManager.Api
         public int CategoryId { get; set; }
         public string Color { get; set; }
         public string Description { get; set; }
+        public bool IsPercentPaymentEnabled { get; set; }
     
         public virtual CupType CupType1 { get; set; }
         public virtual ProductType ProductType1 { get; set; }
@@ -46,5 +48,7 @@ namespace CoffeeManager.Api
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductCalculation> ProductCalculations { get; set; }
         public virtual Category Category { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ProductPaymentStrategy> ProductPaymentStrategies { get; set; }
     }
 }

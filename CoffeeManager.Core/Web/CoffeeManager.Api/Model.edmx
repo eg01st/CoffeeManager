@@ -227,8 +227,9 @@
           <Property Name="IsSaleByWeight" Type="bit" Nullable="false" />
           <Property Name="Removed" Type="bit" Nullable="false" />
           <Property Name="CategoryId" Type="int" Nullable="false" />
-          <Property Name="Description" Type="nvarchar(max)" />
           <Property Name="Color" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="IsPercentPaymentEnabled" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="ProductCalculation">
           <Key>
@@ -239,6 +240,16 @@
           <Property Name="SuplyProductId" Type="int" Nullable="false" />
           <Property Name="Quantity" Type="money" Nullable="false" />
           <Property Name="CoffeeRoomNo" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProductPaymentStrategy">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CoffeeRoomId" Type="int" Nullable="false" />
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="DayShiftPercent" Type="money" Nullable="false" />
+          <Property Name="NightShiftPercent" Type="money" Nullable="false" />
         </EntityType>
         <EntityType Name="ProductType">
           <Key>
@@ -664,6 +675,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__ProductPa__Coffe__531856C7">
+          <End Role="CoffeeRoom" Type="Self.CoffeeRoom" Multiplicity="1" />
+          <End Role="ProductPaymentStrategy" Type="Self.ProductPaymentStrategy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CoffeeRoom">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductPaymentStrategy">
+              <PropertyRef Name="CoffeeRoomId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProductPa__Produ__540C7B00">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="ProductPaymentStrategy" Type="Self.ProductPaymentStrategy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductPaymentStrategy">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Sale__Product__3B75D760">
           <End Role="Product" Type="Self.Product" Multiplicity="1" />
           <End Role="Sale" Type="Self.Sale" Multiplicity="*" />
@@ -1056,6 +1091,7 @@
           <EntitySet Name="InventoryReportItem" EntityType="Self.InventoryReportItem" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductCalculation" EntityType="Self.ProductCalculation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductPaymentStrategy" EntityType="Self.ProductPaymentStrategy" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductType" EntityType="Self.ProductType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sale" EntityType="Self.Sale" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Shifts" EntityType="Self.Shifts" Schema="dbo" store:Type="Tables" />
@@ -1153,6 +1189,14 @@
           <AssociationSet Name="FK__ProductCa__Suply__7A3223E8" Association="Self.FK__ProductCa__Suply__7A3223E8">
             <End Role="SupliedProduct" EntitySet="SupliedProduct" />
             <End Role="ProductCalculation" EntitySet="ProductCalculation" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProductPa__Coffe__531856C7" Association="Self.FK__ProductPa__Coffe__531856C7">
+            <End Role="CoffeeRoom" EntitySet="CoffeeRoom" />
+            <End Role="ProductPaymentStrategy" EntitySet="ProductPaymentStrategy" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProductPa__Produ__540C7B00" Association="Self.FK__ProductPa__Produ__540C7B00">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="ProductPaymentStrategy" EntitySet="ProductPaymentStrategy" />
           </AssociationSet>
           <AssociationSet Name="FK__Sale__Product__3B75D760" Association="Self.FK__Sale__Product__3B75D760">
             <End Role="Product" EntitySet="Product" />
@@ -1349,6 +1393,8 @@
           <NavigationProperty Name="Category" Relationship="CoffeeRoomModel.FK_Product_Category" FromRole="Product" ToRole="Category" />
           <Property Name="Color" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsPercentPaymentEnabled" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="ProductPaymentStrategies" Relationship="CoffeeRoomModel.FK__ProductPa__Produ__540C7B00" FromRole="Product" ToRole="ProductPaymentStrategy" />
         </EntityType>
         <EntityType Name="ProductType">
           <Key>
@@ -1784,6 +1830,15 @@
             <End Role="CoffeeRoom" EntitySet="CoffeeRooms" />
             <End Role="EnabledCoffeeCounter" EntitySet="EnabledCoffeeCounters" />
           </AssociationSet>
+          <EntitySet Name="ProductPaymentStrategies" EntityType="CoffeeRoomModel.ProductPaymentStrategy" />
+          <AssociationSet Name="FK__ProductPa__Coffe__531856C7" Association="CoffeeRoomModel.FK__ProductPa__Coffe__531856C7">
+            <End Role="CoffeeRoom" EntitySet="CoffeeRooms" />
+            <End Role="ProductPaymentStrategy" EntitySet="ProductPaymentStrategies" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProductPa__Produ__540C7B00" Association="CoffeeRoomModel.FK__ProductPa__Produ__540C7B00">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="ProductPaymentStrategy" EntitySet="ProductPaymentStrategies" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="UsedProductsPerShift">
           <Key>
@@ -2172,6 +2227,7 @@
           <NavigationProperty Name="CoffeeCounterForCoffeeRooms" Relationship="CoffeeRoomModel.FK__CoffeeCou__Coffe__44CA3770" FromRole="CoffeeRoom" ToRole="CoffeeCounterForCoffeeRoom" />
           <NavigationProperty Name="EnabledCategories" Relationship="CoffeeRoomModel.FK__EnabledCa__Coffe__5CA1C101" FromRole="CoffeeRoom" ToRole="EnabledCategory" />
           <NavigationProperty Name="EnabledCoffeeCounters" Relationship="CoffeeRoomModel.FK__EnabledCo__Coffe__57DD0BE4" FromRole="CoffeeRoom" ToRole="EnabledCoffeeCounter" />
+          <NavigationProperty Name="ProductPaymentStrategies" Relationship="CoffeeRoomModel.FK__ProductPa__Coffe__531856C7" FromRole="CoffeeRoom" ToRole="ProductPaymentStrategy" />
         </EntityType>
         <EntityType Name="UserEarningsHistory">
           <Key>
@@ -2610,6 +2666,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="ProductPaymentStrategy">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CoffeeRoomId" Type="Int32" Nullable="false" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="DayShiftPercent" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="NightShiftPercent" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <NavigationProperty Name="CoffeeRoom" Relationship="CoffeeRoomModel.FK__ProductPa__Coffe__531856C7" FromRole="ProductPaymentStrategy" ToRole="CoffeeRoom" />
+          <NavigationProperty Name="Product" Relationship="CoffeeRoomModel.FK__ProductPa__Produ__540C7B00" FromRole="ProductPaymentStrategy" ToRole="Product" />
+        </EntityType>
+        <Association Name="FK__ProductPa__Coffe__531856C7">
+          <End Type="CoffeeRoomModel.CoffeeRoom" Role="CoffeeRoom" Multiplicity="1" />
+          <End Type="CoffeeRoomModel.ProductPaymentStrategy" Role="ProductPaymentStrategy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CoffeeRoom">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductPaymentStrategy">
+              <PropertyRef Name="CoffeeRoomId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProductPa__Produ__540C7B00">
+          <End Type="CoffeeRoomModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="CoffeeRoomModel.ProductPaymentStrategy" Role="ProductPaymentStrategy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductPaymentStrategy">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2667,6 +2759,7 @@
           <EntitySetMapping Name="Products">
             <EntityTypeMapping TypeName="CoffeeRoomModel.Product">
               <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="IsPercentPaymentEnabled" ColumnName="IsPercentPaymentEnabled" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Color" ColumnName="Color" />
                 <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
@@ -3090,6 +3183,17 @@
                 <ScalarProperty Name="CoffeeRoomNo" ColumnName="CoffeeRoomNo" />
                 <ScalarProperty Name="IsEnabled" ColumnName="IsEnabled" />
                 <ScalarProperty Name="CounterId" ColumnName="CounterId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductPaymentStrategies">
+            <EntityTypeMapping TypeName="CoffeeRoomModel.ProductPaymentStrategy">
+              <MappingFragment StoreEntitySet="ProductPaymentStrategy">
+                <ScalarProperty Name="NightShiftPercent" ColumnName="NightShiftPercent" />
+                <ScalarProperty Name="DayShiftPercent" ColumnName="DayShiftPercent" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="CoffeeRoomId" ColumnName="CoffeeRoomId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

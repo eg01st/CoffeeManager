@@ -18,6 +18,6 @@ namespace CoffeeManager.Models.Data.Product
         public string Color { get; set; }
         public string Description { get; set; }
         public bool IsPercentPaymentEnabled { get; set; }
-        public List<ProductPaymentStrategyDTO> ProductPaymentStrategy { get; set; }
+        public List<ProductPaymentStrategyDTO> ProductPaymentStrategies { get; set; }
     }
 }

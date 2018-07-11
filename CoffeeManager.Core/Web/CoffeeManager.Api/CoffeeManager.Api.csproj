@@ -246,6 +246,7 @@
     <Compile Include="ExpenseType.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Helper\Extenstions.cs" />
     <Compile Include="Helper\FileStreamEx.cs" />
     <Compile Include="GetAllSales_Result.cs">
       <DependentUpon>Model.tt</DependentUpon>
@@ -292,6 +293,9 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="ProductCalculation.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProductPaymentStrategy.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="ProductType.cs">
@@ -385,6 +389,7 @@
       <DependentUpon>Model.edmx</DependentUpon>
     </Content>
     <None Include="Properties\PublishProfiles\Default Settings %282%29.pubxml" />
+    <None Include="Properties\PublishProfiles\Default Settings %283%29.pubxml" />
     <None Include="Properties\PublishProfiles\Default Settings.pubxml" />
     <None Include="Properties\PublishProfiles\dev.pubxml" />
     <None Include="Properties\PublishProfiles\local.pubxml" />

@@ -35,6 +35,28 @@ namespace CoffeeManager.Api.Controllers
 			return Request.CreateResponse (HttpStatusCode.OK, products);
 		}
 
+	    [Route(RoutesConstants.GetProduct)]
+	    [HttpGet]
+	    public async Task<HttpResponseMessage> GetProduct([FromUri]int coffeeroomno, [FromUri]int productId, HttpRequestMessage message)
+	    {
+	        var entities = new CoffeeRoomEntities();
+	        var product = entities.Products.FirstOrDefault(p => p.Id == productId);
+	        if (product == null)
+	        {
+	            return Request.CreateErrorResponse(HttpStatusCode.RequestedRangeNotSatisfiable, $"No product with id  {productId}");
+            }
+
+	        var dto = product.ToDTO();
+
+	        if (product.IsPercentPaymentEnabled)
+	        {
+	            var strategies = entities.ProductPaymentStrategies.Where(s => s.ProductId == productId).ToList()
+	                .Select(s => s.ToDTO()).ToList();
+	            dto.ProductPaymentStrategies = strategies;
+	        }
+	        return Request.CreateResponse(HttpStatusCode.OK, dto);
+        }
+
         [Route(RoutesConstants.AddProduct)]
 		[HttpPut]
 		public async Task<HttpResponseMessage> AddProduct ([FromUri]int coffeeroomno, HttpRequestMessage message)
@@ -43,7 +65,7 @@ namespace CoffeeManager.Api.Controllers
 			var product = JsonConvert.DeserializeObject<ProductDTO> (request);
             product.CoffeeRoomNo = coffeeroomno;
 			var entities = new CoffeeRoomEntities ();
-			entities.Products.Add (DbMapper.Map(product));
+			entities.Products.Add (product.Map());
 			await entities.SaveChangesAsync ();
 			return Request.CreateResponse (HttpStatusCode.OK);
 		}
@@ -67,10 +89,29 @@ namespace CoffeeManager.Api.Controllers
 				prodDb.CategoryId = product.CategoryId;
 			    prodDb.Color = product.Color;
 			    prodDb.Description = product.Description;
-				if (product.SuplyId.HasValue) {
+			    prodDb.IsPercentPaymentEnabled = product.IsPercentPaymentEnabled;
+				if (product.SuplyId.HasValue)
+                {
 					prodDb.SuplyProductId = product.SuplyId.Value;
 				}
-				await entities.SaveChangesAsync ();
+			    if (product.ProductPaymentStrategies != null)
+			    {
+			        foreach (var strategy in product.ProductPaymentStrategies)
+			        {
+			            var strDb = entities.ProductPaymentStrategies.FirstOrDefault(s => s.Id == strategy.Id);
+			            if (strDb != null)
+			            {
+			                strDb.DayShiftPercent = strategy.DayShiftPercent;
+			                strDb.NightShiftPercent = strategy.NightShiftPercent;
+			            }
+			            else
+			            {
+			                var newStrategy = strategy.Map();
+			                entities.ProductPaymentStrategies.Add(newStrategy);
+			            }
+			        }
+			    }
+			    await entities.SaveChangesAsync ();
 				return Request.CreateResponse (HttpStatusCode.OK);
 			} else {
 				return Request.CreateErrorResponse (HttpStatusCode.RequestedRangeNotSatisfiable, $"Product with id {product.Id} not found");
@@ -86,6 +127,8 @@ namespace CoffeeManager.Api.Controllers
             if(product != null)
             {
                 product.Removed = true;
+                var strategies = entities.ProductPaymentStrategies.Where(s => s.ProductId == id);
+                entities.ProductPaymentStrategies.RemoveRange(strategies);
                 await entities.SaveChangesAsync();
                 return Request.CreateResponse(HttpStatusCode.OK);
             }

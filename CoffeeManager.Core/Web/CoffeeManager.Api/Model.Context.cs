@@ -62,6 +62,7 @@ namespace CoffeeManager.Api
         public virtual DbSet<CoffeeCounterForCoffeeRoom> CoffeeCounterForCoffeeRooms { get; set; }
         public virtual DbSet<EnabledCategory> EnabledCategories { get; set; }
         public virtual DbSet<EnabledCoffeeCounter> EnabledCoffeeCounters { get; set; }
+        public virtual DbSet<ProductPaymentStrategy> ProductPaymentStrategies { get; set; }
     
         public virtual ObjectResult<GetAllSales_Result> GetAllSales(Nullable<System.DateTime> from, Nullable<System.DateTime> to, Nullable<int> coffeeroomNo)
         {

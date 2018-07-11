@@ -97,7 +97,6 @@ namespace CoffeeManager.Api.Mappers
                 Color = prodDb.Color,
                 Description = prodDb.Description,
                 IsPercentPaymentEnabled = prodDb.IsPercentPaymentEnabled,
-                ProductPaymentStrategy = prodDb.ProductPaymentStrategy.Select(s => s.ToDTO()).ToList()
             };
         }
         
@@ -106,8 +105,9 @@ namespace CoffeeManager.Api.Mappers
             return new ProductPaymentStrategyDTO()
             {
                 Id = strategyDb.Id,
+                ProductId = strategyDb.ProductId,
                 CoffeeRoomId = strategyDb.CoffeeRoomId,
-                DayShiftPercent = strategyDb.DayShiftPersent,
+                DayShiftPercent = strategyDb.DayShiftPercent,
                 NightShiftPercent = strategyDb.NightShiftPercent,
             };
         }

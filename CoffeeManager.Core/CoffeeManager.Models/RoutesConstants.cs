@@ -30,6 +30,7 @@ namespace CoffeeManager.Models
 
         public const string Products = Api + "/products";
         public const string GetAllProducts = Products + "/getAll";
+        public const string GetProduct = Products + "/getproduct";
         public const string AddProduct = Products + "/addproduct";
         public const string EditProduct = Products + "/editproduct";
         public const string DeleteProduct = Products + "/deleteproduct";

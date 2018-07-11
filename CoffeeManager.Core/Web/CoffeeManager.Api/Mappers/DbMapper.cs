@@ -87,7 +87,7 @@ namespace CoffeeManager.Api.Mappers
         }
 
 
-        public static Product Map(ProductDTO productDTO)
+        public static Product Map(this ProductDTO productDTO)
 		{
 
 			var prod = new Product () {
@@ -100,7 +100,8 @@ namespace CoffeeManager.Api.Mappers
                 IsSaleByWeight = productDTO.IsSaleByWeight,
 				CategoryId = productDTO.CategoryId,
                 Color = productDTO.Color,
-                Description = productDTO.Description
+                Description = productDTO.Description,
+                IsPercentPaymentEnabled = productDTO.IsPercentPaymentEnabled
 			};
 			if (productDTO.SuplyId.HasValue) {
 				prod.SuplyProductId = productDTO.SuplyId;
@@ -201,5 +202,17 @@ namespace CoffeeManager.Api.Mappers
 	        counterDb.CategoryId = counter.CategoryId;
 	        counterDb.SuplyProductId = counter.SuplyProductId;
         }
+
+	    public static ProductPaymentStrategy Map(this ProductPaymentStrategyDTO dto)
+	    {
+	        return new ProductPaymentStrategy()
+	        {
+	            Id = dto.Id,
+                ProductId = dto.ProductId,  
+	            CoffeeRoomId = dto.CoffeeRoomId,
+	            DayShiftPercent = dto.DayShiftPercent,
+	            NightShiftPercent = dto.NightShiftPercent
+	        };  
+	    }
     }
 }

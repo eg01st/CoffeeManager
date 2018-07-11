@@ -88,6 +88,9 @@
         <AssociationConnector Association="CoffeeRoomModel.FK__EnabledCo__Count__55F4C372" />
         <AssociationConnector Association="CoffeeRoomModel.FK__EnabledCa__Coffe__5CA1C101" />
         <AssociationConnector Association="CoffeeRoomModel.FK__EnabledCo__Coffe__57DD0BE4" />
+        <EntityTypeShape EntityType="CoffeeRoomModel.ProductPaymentStrategy" Width="1.5" PointX="16.625" PointY="18" />
+        <AssociationConnector Association="CoffeeRoomModel.FK__ProductPa__Coffe__531856C7" />
+        <AssociationConnector Association="CoffeeRoomModel.FK__ProductPa__Produ__540C7B00" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

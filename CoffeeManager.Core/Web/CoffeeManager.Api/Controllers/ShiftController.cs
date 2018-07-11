@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Net.Http.Formatting;
 using System.Threading.Tasks;
 using System.Web.Http;
+using CoffeeManager.Api.Helper;
 using CoffeeManager.Api.Mappers;
 using CoffeeManager.Models;
 using CoffeeManager.Models.Data.DTO.CoffeeRoomCounter;
@@ -116,16 +117,39 @@ namespace CoffeeManager.Api.Controllers
 
 
                 var userPaymentStrategy = shift.User.UserPaymentStrategies.First(s => s.CoffeeRoomId == coffeeroomno);
-
-                var diff = shift.RealAmount - shift.TotalAmount;
-                var realShiftAmount = shift.CurrentAmount + diff + shift.CreditCardAmount.Value;
+                decimal amountForPartialPay = 0;
                 bool isDayShift = shift.Date.Value.TimeOfDay.Hours < 12;
 
+                var diff = shift.RealAmount - shift.TotalAmount;
+                decimal realShiftAmount = shift.CurrentAmount + diff + shift.CreditCardAmount.Value;
+                decimal realShiftAmountForPaymentCalculation = realShiftAmount;
+
+                var sales = enities.Sales.Where(s => s.ShiftId == shiftId && !s.IsRejected && !s.IsUtilized).GroupBy(g => g.Product).ToList();
+                foreach (var saleGroup in sales)
+                {
+                    var product = enities.Products.First(p => p.Id == saleGroup.Key);
+                    if (product.IsPercentPaymentEnabled)
+                    {
+                        var strategy = enities.ProductPaymentStrategies.FirstOrDefault(s =>
+                            s.ProductId == saleGroup.Key && s.CoffeeRoomId == coffeeroomno);
+                        if (strategy == null)
+                        {
+                           continue;
+                        }
+                        var sum = saleGroup.Sum(s => s.Amount);
+                        realShiftAmountForPaymentCalculation -= sum;
+                        decimal paymentPercent = isDayShift ? strategy.DayShiftPercent : strategy.NightShiftPercent;
+                        amountForPartialPay += sum.GetPercentValueOf(paymentPercent);
+                    }
+                }
+
                 var user = shift.User;
-                var userEarnedAmount = userPaymentStrategy.SimplePayment +
-                                       (realShiftAmount / 100 * (isDayShift
-                                            ? userPaymentStrategy.DayShiftPersent
-                                            : userPaymentStrategy.NightShiftPercent));
+                var percent = isDayShift
+                    ? userPaymentStrategy.DayShiftPersent
+                    : userPaymentStrategy.NightShiftPercent;
+                var userEarnedAmount = userPaymentStrategy.SimplePayment
+                                       + realShiftAmountForPaymentCalculation.GetPercentValueOf(percent)
+                                       + amountForPartialPay;
                 if (userEarnedAmount < userPaymentStrategy.MinimumPayment)
                 {
                     userEarnedAmount = userPaymentStrategy.MinimumPayment;
