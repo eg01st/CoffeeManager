@@ -107,7 +107,7 @@ namespace CoffeeManager.Api.Mappers
             {
                 Id = strategyDb.Id,
                 CoffeeRoomId = strategyDb.CoffeeRoomId,
-                DayShiftPersent = strategyDb.DayShiftPersent,
+                DayShiftPercent = strategyDb.DayShiftPersent,
                 NightShiftPercent = strategyDb.NightShiftPercent,
             };
         }

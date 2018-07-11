@@ -43,7 +43,7 @@ namespace CoffeeManager.Api.Controllers
 			var product = JsonConvert.DeserializeObject<ProductDTO> (request);
             product.CoffeeRoomNo = coffeeroomno;
 			var entities = new CoffeeRoomEntities ();
-			entities.Products.Add (DbMapper.Map (product));
+			entities.Products.Add (DbMapper.Map(product));
 			await entities.SaveChangesAsync ();
 			return Request.CreateResponse (HttpStatusCode.OK);
 		}
