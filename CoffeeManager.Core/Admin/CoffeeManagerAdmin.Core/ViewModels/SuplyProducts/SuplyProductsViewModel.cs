@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using CoffeeManagerAdmin.Core.ViewModels.Abstract;
 using CoffeManager.Common;
 using CoffeManager.Common.Managers;
 using CoffeManager.Common.ViewModels;
@@ -10,15 +11,15 @@ using MvvmCross.Plugins.Messenger;
 
 namespace CoffeeManagerAdmin.Core.ViewModels.SuplyProducts
 {
-    public class SuplyProductsViewModel : BaseSearchViewModel<ListItemViewModelBase>
+    public class SuplyProductsViewModel : BaseAdminSearchViewModel<ListItemViewModelBase>
     {
-        private MvxSubscriptionToken coffeeRoomUpdatedToken;
         private MvxSubscriptionToken _listChanged;
 
-        readonly ISuplyProductsManager manager;
+        private readonly ISuplyProductsManager manager;
 
         public ICommand AddNewSuplyProductCommand { get; }
 
+        public override bool ShouldReloadOnCoffeeRoomChange => true;
 
         public SuplyProductsViewModel(ISuplyProductsManager manager)
         {
@@ -30,10 +31,6 @@ namespace CoffeeManagerAdmin.Core.ViewModels.SuplyProducts
         {
             base.DoSubscribe();
 
-            coffeeRoomUpdatedToken = MvxMessenger.Subscribe<CoffeeRoomChangedMessage>(async (s) =>
-            {
-                await Initialize();
-            });
             _listChanged = MvxMessenger.Subscribe<SuplyListChangedMessage>(async (obj) => await Initialize());
         }
 
@@ -55,7 +52,6 @@ namespace CoffeeManagerAdmin.Core.ViewModels.SuplyProducts
         protected override void DoUnsubscribe()
         {
             MvxMessenger.Unsubscribe<SuplyListChangedMessage>(_listChanged);
-            MvxMessenger.Unsubscribe<CoffeeRoomChangedMessage>(coffeeRoomUpdatedToken);
         }
     }
 }

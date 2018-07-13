@@ -63,11 +63,14 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Abstract
         {
             await ExecuteSafe(async () =>
             {
-                var adminManager = Mvx.Resolve<IAdminManager>();
-                var items = await adminManager.GetCoffeeRooms();
-                CoffeeRooms = items.ToList();
-                RaisePropertyChanged(nameof(CurrentCoffeeRoom));
-                RaisePropertyChanged(nameof(IsMultipleCoffeeRooms));
+                if (CoffeeRooms == null)
+                {
+                    var adminManager = Mvx.Resolve<IAdminManager>();
+                    var items = await adminManager.GetCoffeeRooms();
+                    CoffeeRooms = items.ToList();
+                    RaisePropertyChanged(nameof(CurrentCoffeeRoom));
+                    RaisePropertyChanged(nameof(IsMultipleCoffeeRooms));
+                }
             });
         }
         
@@ -106,7 +109,11 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Abstract
                     await Initialize();
                 }
             });
-            refreshCoffeeroomsToken = MvxMessenger.Subscribe<RefreshCoffeeRoomsMessage>(async (obj) => await InitCoffeeRooms());
+            refreshCoffeeroomsToken = MvxMessenger.Subscribe<RefreshCoffeeRoomsMessage>(async (obj) =>
+            {
+                CoffeeRooms = null;
+                await InitCoffeeRooms();
+            });
         }
 
         protected override void DoUnsubscribe()

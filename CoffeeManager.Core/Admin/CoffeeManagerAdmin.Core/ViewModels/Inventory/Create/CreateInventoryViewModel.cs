@@ -3,13 +3,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using CoffeeManager.Models;
+using CoffeeManagerAdmin.Core.ViewModels.Abstract;
 using CoffeManager.Common;
 using CoffeManager.Common.ViewModels;
 using MvvmCross.Core.ViewModels;
 
 namespace CoffeeManagerAdmin.Core.ViewModels.Inventory.Create
 {
-    public class CreateInventoryViewModel : BaseSearchViewModel<CreateInventoryItemViewModel>
+    public class CreateInventoryViewModel : BaseAdminSearchViewModel<CreateInventoryItemViewModel>
     {
       //  private readonly MvxSubscriptionToken token;
 
@@ -34,14 +35,14 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Inventory.Create
 
         private async void DoSendReport()
         {
-            if (Items.Any(i => !i.IsProceeded))
+            if (ItemsCollection.Any(i => !i.IsProceeded))
             {
                 Alert("Не все товары прошли переучет");
                 return;
             }
             await ExecuteSafe(async () =>
             {
-                var items = Items.Select(MapForServerSend);
+                var items = ItemsCollection.Select(MapForServerSend);
                 await manager.SentInventoryInfo(items);
                // manager.RemoveSavedItems();
                 CloseCommand.Execute(null);

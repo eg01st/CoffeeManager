@@ -1,21 +1,14 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Acr.UserDialogs;
-using CoffeeManager.Common;
-using CoffeeManager.Models;
+using CoffeeManagerAdmin.Core.ViewModels.Abstract;
 using CoffeeManagerAdmin.Core.ViewModels.CreditCard;
 using CoffeeManagerAdmin.Core.ViewModels.Settings;
 using CoffeeManagerAdmin.Core.ViewModels.Shifts;
-using CoffeManager.Common;
 using CoffeManager.Common.Managers;
-using CoffeManager.Common.ViewModels;
-using MobileCore.Extensions;
+using MobileCore.Collections;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Messenger;
-using CoffeeManagerAdmin.Core.ViewModels.Abstract;
-using MobileCore.Collections;
 
 namespace CoffeeManagerAdmin.Core.ViewModels.Home
 {
@@ -35,7 +28,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Home
             this.paymentManager = paymentManager;
             this.shiftManager = shiftManager;
 
-            UpdateEntireMoneyCommand = new MvxAsyncCommand(GetEntireMoney);
+            UpdateEntireMoneyCommand = new MvxAsyncCommand(RefreshDataAsync);
             ShowSettingsCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<SettingsViewModel>());
             ShowUsersCommand = new MvxAsyncCommand(async() => await NavigationService.Navigate<UsersViewModel>());
             ShowCreditCardCommand = new MvxAsyncCommand(async() => await NavigationService.Navigate<CreditCardViewModel>());
@@ -85,11 +78,17 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Home
         {
             await ExecuteSafe(async () =>
             {
-                var currBalance = await paymentManager.GetEntireMoney();
+                var currBalanceTask = paymentManager.GetEntireMoney();
+                var shiftBalanceTask = paymentManager.GetCurrentShiftMoney();
+                var creditCardBalanceTask = paymentManager.GetCreditCardEntireMoney();
+
+                await Task.WhenAll(currBalanceTask, shiftBalanceTask, creditCardBalanceTask);
+
+                var currBalance = currBalanceTask.Result;
                 CurrentBalance = currBalance.ToString("F1");
-                var shiftBalance = await paymentManager.GetCurrentShiftMoney();
+                var shiftBalance = shiftBalanceTask.Result;
                 CurrentShiftBalance = shiftBalance.ToString("F1");
-                var creditCardBalance = await paymentManager.GetCreditCardEntireMoney();
+                var creditCardBalance = creditCardBalanceTask.Result;
                 CurrentCreditCardBalance = creditCardBalance.ToString("F1");
             });
         }

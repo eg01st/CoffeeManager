@@ -47,6 +47,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\Abstract\AdminFeedViewModel.cs" />
     <Compile Include="ViewModels\Abstract\AdminPageViewModel.cs" />
+    <Compile Include="ViewModels\Abstract\BaseAdminSearchViewModel.cs" />
     <Compile Include="ViewModels\Categories\AddCategoryViewModel.cs" />
     <Compile Include="ViewModels\Categories\CategoriesViewModel.cs" />
     <Compile Include="ViewModels\Categories\CategoryDetailsViewModel.cs" />
@@ -72,6 +73,8 @@
     <Compile Include="Messages\ProductListChangedMessage.cs" />
     <Compile Include="Messages\SuplyListChangedMessage.cs" />
     <Compile Include="ViewModels\Products\ProductPaymentStrategyItemViewModel.cs" />
+    <Compile Include="ViewModels\Shifts\ShiftCounterItemViewModel.cs" />
+    <Compile Include="ViewModels\Shifts\ShiftCountersViewModel.cs" />
     <Compile Include="ViewModels\Users\UserItemViewModel.cs" />
     <Compile Include="ViewModels\Users\UserDetailsViewModel.cs" />
     <Compile Include="ViewModels\SuplyProducts\SuplyProductDetailsViewModel.cs" />

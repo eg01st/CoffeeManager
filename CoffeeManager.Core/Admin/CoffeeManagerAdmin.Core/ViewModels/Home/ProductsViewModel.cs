@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using CoffeeManagerAdmin.Core.ViewModels.Abstract;
 using CoffeeManagerAdmin.Core.ViewModels.Categories;
 using CoffeeManagerAdmin.Core.ViewModels.Products;
 using CoffeManager.Common.Managers;
@@ -11,11 +12,10 @@ using MvvmCross.Plugins.Messenger;
 
 namespace CoffeeManagerAdmin.Core.ViewModels.Home
 {
-    public class ProductsViewModel : BaseSearchViewModel<ListItemViewModelBase>
+    public class ProductsViewModel : BaseAdminSearchViewModel<ListItemViewModelBase>
     {
         private readonly MvxSubscriptionToken productListChangedToken;
 
-        
         private readonly IProductManager manager;
         private readonly MvxSubscriptionToken coffeeRoomChangedToken;
 

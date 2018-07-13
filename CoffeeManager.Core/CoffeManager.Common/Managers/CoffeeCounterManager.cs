@@ -15,7 +15,12 @@ namespace CoffeManager.Common.Managers
         {
             this.coffeeCounterProvider = coffeeCounterProvider;
         }
-        
+
+        public async Task<IEnumerable<CoffeeCounterDTO>> GetCountersForShift(int shiftId)
+        {
+            return await coffeeCounterProvider.GetCountersForShift(shiftId);
+        }
+
         public async Task<IEnumerable<CoffeeCounterForCoffeeRoomDTO>> GetCounters()
         {
             return await coffeeCounterProvider.GetCounters();

@@ -67,6 +67,8 @@ namespace CoffeeManagerAdmin.iOS.Views.Products
             set.Bind(source).To(vm => vm.ItemsCollection);
             set.Bind(AddPaymentStrategyButton).To(vm => vm.AddPaymentStrategyCommand);
             set.Bind(IsPaymentPercentStrategySwich).For(s => s.On).To(vm => vm.IsPercentPaymentEnabled);
+            set.Bind(PaymentStrategyTableView).For(s => s.Hidden).To(vm => vm.IsPercentPaymentEnabled).WithConversion(new InvertedBoolConverter());
+            set.Bind(AddPaymentStrategyButton).For(s => s.Hidden).To(vm => vm.IsPercentPaymentEnabled).WithConversion(new InvertedBoolConverter());
             set.Apply();
 
             var btn = new UIBarButtonItem()

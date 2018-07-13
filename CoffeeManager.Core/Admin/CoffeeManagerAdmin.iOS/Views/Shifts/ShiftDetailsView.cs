@@ -6,6 +6,7 @@ using CoffeeManagerAdmin.iOS.TableSources;
 using CoffeeManagerAdmin.iOS.Views.Abstract;
 using CoffeeManagerAdmin.iOS.Views.Shifts;
 using MobileCore.iOS.ViewControllers;
+using MvvmCross.Binding.iOS;
 
 namespace CoffeeManagerAdmin.iOS
 {
@@ -30,7 +31,8 @@ namespace CoffeeManagerAdmin.iOS
             set.Bind(UserNameButton).For("Title").To(vm => vm.Name);
             set.Bind(UserNameButton).To(vm => vm.ShowUserDetailsCommand);
             set.Bind(DateLabel).To(vm => vm.Date);
-            set.Bind(CoffeeCounter).To(vm => vm.Counter);
+            set.Bind(CoffeeCountersButton).For(b => b.BindTitle()).To(vm => vm.Counter);
+            set.Bind(CoffeeCountersButton).To(vm => vm.ShowCountersCommand);
             set.Bind(CoffeeSaleCounter).To(vm => vm.UsedCoffee);
             set.Bind(RejectedSalesLabel).To(vm => vm.RejectedSales);
             set.Bind(UtilizedSalesLabel).To(vm => vm.UtilizedSales);

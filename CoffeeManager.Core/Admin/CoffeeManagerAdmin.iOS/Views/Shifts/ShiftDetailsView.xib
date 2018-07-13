@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ShiftDetailsView">
             <connections>
                 <outlet property="AddExpenseButton" destination="1fI-ha-oCx" id="name-outlet-1fI-ha-oCx"/>
-                <outlet property="CoffeeCounter" destination="DkE-qK-XJN" id="KzF-Cy-P8V"/>
+                <outlet property="CoffeeCountersButton" destination="aPk-sM-OzH" id="87O-D6-opZ"/>
                 <outlet property="CoffeeSaleCounter" destination="ZJ8-vW-u4G" id="lwS-ij-4C8"/>
                 <outlet property="CopSalePercentageLabel" destination="N4v-mK-Ss0" id="vjF-ZG-NDy"/>
                 <outlet property="DateLabel" destination="Vc6-Y1-dVe" id="p0M-F4-Rdx"/>
@@ -74,12 +75,6 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DkE-qK-XJN">
-                    <rect key="frame" x="194" y="73" width="42" height="20.5"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Счетчик продаж: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pXn-WI-trb">
                     <rect key="frame" x="16" y="101.5" width="141.5" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -117,7 +112,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v4G-SW-tzD">
-                    <rect key="frame" x="303.5" y="130" width="13" height="20.5"/>
+                    <rect key="frame" x="303.5" y="130" width="14" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -135,11 +130,13 @@
                     <rect key="frame" x="99" y="38.5" width="30" height="33"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aPk-sM-OzH">
+                    <rect key="frame" x="194" y="68.5" width="30" height="30"/>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="l3Z-xK-jbU" firstAttribute="centerX" secondItem="2" secondAttribute="centerX" id="4ro-ej-8Df"/>
-                <constraint firstItem="DkE-qK-XJN" firstAttribute="top" secondItem="bVS-E3-1eK" secondAttribute="bottom" constant="8" id="6PO-af-Mf2"/>
                 <constraint firstItem="bVS-E3-1eK" firstAttribute="top" secondItem="P9l-dc-8ut" secondAttribute="bottom" constant="8" id="6cf-i6-H5G"/>
                 <constraint firstItem="ZJ8-vW-u4G" firstAttribute="leading" secondItem="pXn-WI-trb" secondAttribute="trailing" constant="8" id="8aL-rk-4ej"/>
                 <constraint firstItem="35K-gq-xKf" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="16" id="9EM-ug-6mj"/>
@@ -160,8 +157,9 @@
                 <constraint firstItem="P9l-dc-8ut" firstAttribute="top" secondItem="2" secondAttribute="top" constant="16" id="Ywa-OG-jv9"/>
                 <constraint firstItem="P9l-dc-8ut" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="16" id="ZG8-CY-8Zx"/>
                 <constraint firstItem="Xyy-0D-yeE" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="16" id="bGl-Vz-uee"/>
-                <constraint firstItem="DkE-qK-XJN" firstAttribute="leading" secondItem="35K-gq-xKf" secondAttribute="trailing" constant="8" id="cbl-Z0-Nxi"/>
+                <constraint firstItem="aPk-sM-OzH" firstAttribute="leading" secondItem="35K-gq-xKf" secondAttribute="trailing" constant="8" id="cYQ-FX-Sgj"/>
                 <constraint firstItem="bVS-E3-1eK" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="16" id="dLa-Vc-gfl"/>
+                <constraint firstItem="aPk-sM-OzH" firstAttribute="centerY" secondItem="35K-gq-xKf" secondAttribute="centerY" id="duU-dn-xII"/>
                 <constraint firstAttribute="bottom" secondItem="WIW-7g-4kV" secondAttribute="bottom" id="gY4-bZ-AYA"/>
                 <constraint firstItem="QuD-5O-fxG" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="16" id="hMZ-Mt-3UC"/>
                 <constraint firstItem="IL3-rL-XsY" firstAttribute="leading" secondItem="Xyy-0D-yeE" secondAttribute="trailing" constant="8" id="j4r-XJ-lqH"/>

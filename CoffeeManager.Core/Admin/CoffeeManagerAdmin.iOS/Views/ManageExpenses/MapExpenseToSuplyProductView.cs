@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using CoffeeManagerAdmin.Core;
 using CoffeeManagerAdmin.Core.ViewModels.ManageExpenses;
 using CoffeeManagerAdmin.iOS.TableSources;
@@ -7,7 +6,7 @@ using CoffeeManagerAdmin.iOS.Views.Abstract;
 using MvvmCross.Binding.BindingContext;
 using UIKit;
 
-namespace CoffeeManagerAdmin.iOS
+namespace CoffeeManagerAdmin.iOS.Views.ManageExpenses
 {
     public partial class MapExpenseToSuplyProductView  : SearchViewController<MapExpenseToSuplyProductView, MapExpenseToSuplyProductViewModel, SelectMappedSuplyProductItemViewModel>
     {

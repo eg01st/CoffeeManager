@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using CoffeeManagerAdmin.Core.ViewModels.Home;
+using CoffeeManagerAdmin.iOS.Extensions;
 using CoreGraphics;
 using MobileCore.iOS.ViewControllers;
 using MvvmCross.Binding.BindingContext;
@@ -29,52 +30,9 @@ namespace CoffeeManagerAdmin.iOS.Views.Home
 
             Title = "Финансы";
             
-            //var settingsButton = new UIBarButtonItem()
-            //{
-            //    Image = UIImage.FromBundle("ic_settings")
-            //};
+            var toolbar = Helper.ProducePickerToolbar(View);
 
-            //var usersButton = new UIBarButtonItem()
-            //{
-            //    Image = UIImage.FromBundle("ic_account_circle")
-            //};
-
-            //var creditCardButton = new UIBarButtonItem()
-            //{
-            //    Image = UIImage.FromBundle("ic_credit_card")
-            //};
-
-            //this.AddBindings(new Dictionary<object, string>
-            //{
-            //    {settingsButton, "Clicked ShowSettingsCommand"},
-            //    {usersButton, "Clicked ShowUsersCommand"}, 
-            //    {creditCardButton, "Clicked ShowCreditCardCommand"},
-            //});
-
-            //NavigationItem.SetRightBarButtonItems(new [] { creditCardButton, usersButton}, true);
-
-            //NavigationItem.SetLeftBarButtonItem(settingsButton, false);
-
-            var toolbar = new UIToolbar(new CGRect(0, 0, this.View.Frame.Width, 44));
-            toolbar.UserInteractionEnabled = true;
-            toolbar.BarStyle = UIBarStyle.BlackOpaque;
-            var doneButton = new UIBarButtonItem();
-            doneButton.Title = "Готово";
-            doneButton.Style = UIBarButtonItemStyle.Bordered;
-            doneButton.TintColor = UIColor.Black;
-            doneButton.Clicked += (sender, e) =>
-            {
-                View.EndEditing(true);
-            };
-            toolbar.SetItems(new[] { doneButton }, false);
-
-
-            var coffeeRoomPicker = new UIPickerView();
-            coffeeRoomPickerViewModel = new MvxPickerViewModel(coffeeRoomPicker);
-            coffeeRoomPicker.Model = coffeeRoomPickerViewModel;
-            coffeeRoomPicker.ShowSelectionIndicator = true;
-            CoffeeRoomTextField.InputView = coffeeRoomPicker;
-            CoffeeRoomTextField.InputAccessoryView = toolbar;
+            coffeeRoomPickerViewModel = Helper.ProducePicker(CoffeeRoomTextField, toolbar);
         }
 
         protected override void InitStylesAndContent()

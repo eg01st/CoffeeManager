@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using CoffeeManagerAdmin.Core.ViewModels.Abstract;
 using CoffeeManagerAdmin.iOS.TableSources;
 using CoffeManager.Common.ViewModels;
 using Foundation;
@@ -12,7 +13,7 @@ namespace CoffeeManagerAdmin.iOS.Views.Abstract
     public abstract partial class SearchViewController<TView, TViewModel, TItemViewModel> : ViewControllerBase<TViewModel> 
         where TView : SearchViewController<TView, TViewModel, TItemViewModel>
         where TItemViewModel : ListItemViewModelBase
-        where TViewModel : BaseSearchViewModel<TItemViewModel> 
+        where TViewModel : BaseAdminSearchViewModel<TItemViewModel> 
     {
         protected UITableView TableView {get;set;}
         private UISearchBar _searchBar;
@@ -74,7 +75,7 @@ namespace CoffeeManagerAdmin.iOS.Views.Abstract
             var tableSource = TableSource;
             TableView.Source = tableSource;
             var set = CreateBindingSet();
-            set.Bind(tableSource).To(vm => vm.Items);
+            set.Bind(tableSource).To(vm => vm.ItemsCollection);
             set.Bind(_searchBar).For(v => v.Text).To(vm => vm.SearchString);
             set.Apply();
         }

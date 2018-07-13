@@ -4,26 +4,27 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using CoffeeManager.Models;
+using CoffeeManagerAdmin.Core.ViewModels.Abstract;
 using CoffeManager.Common.Managers;
 using CoffeManager.Common.ViewModels;
 using MvvmCross.Core.ViewModels;
 
 namespace CoffeeManagerAdmin.Core.ViewModels.TransferSuplyProduct
 {
-    public class SelectSuplyProductsViewModel : BaseSearchViewModel<ListItemViewModelBase>, IMvxViewModel<Tuple<int, int>>
+    public class SelectSuplyProductsViewModel : BaseAdminSearchViewModel<ListItemViewModelBase>, IMvxViewModel<Tuple<int, int>>
     {
         readonly ISuplyProductsManager manager;
         int fromCoffeeRoom, toCoffeeRoom;
         public SelectSuplyProductsViewModel(ISuplyProductsManager manager)
         {
             this.manager = manager;
-            TransferSuplyProductsCommand = new MvxCommand(DoTransferSuplyProducts, () => Items.OfType<SelectSuplyProductItemViewModel>().Any(a => a.IsSelected));
+            TransferSuplyProductsCommand = new MvxCommand(DoTransferSuplyProducts, () => ItemsCollection.OfType<SelectSuplyProductItemViewModel>().Any(a => a.IsSelected));
         }
         
         private void DoTransferSuplyProducts()
         {
             string confirmMessage = "Вы переводите продукты:\n";
-            var items = Items.OfType<SelectSuplyProductItemViewModel>().Where(i => i.IsSelected);
+            var items = ItemsCollection.OfType<SelectSuplyProductItemViewModel>().Where(i => i.IsSelected);
             foreach (var item in items)
             {
                 confirmMessage += $"{item.Name} в количестве {item.QuantityToTransfer}\n";

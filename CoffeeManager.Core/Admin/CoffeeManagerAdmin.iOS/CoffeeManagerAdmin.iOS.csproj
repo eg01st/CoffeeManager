@@ -490,6 +490,18 @@
     <Compile Include="Views\Products\PaymentStrategyTableViewHeader.designer.cs">
       <DependentUpon>PaymentStrategyTableViewHeader.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Shifts\Counters\ShiftCountersView.cs" />
+    <Compile Include="Views\Shifts\Counters\ShiftCountersView.designer.cs">
+      <DependentUpon>ShiftCountersView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Shifts\Counters\ShiftCounterTableViewCell.cs" />
+    <Compile Include="Views\Shifts\Counters\ShiftCounterTableViewCell.designer.cs">
+      <DependentUpon>ShiftCounterTableViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Shifts\Counters\ShiftCounterTableViewHeader.cs" />
+    <Compile Include="Views\Shifts\Counters\ShiftCounterTableViewHeader.designer.cs">
+      <DependentUpon>ShiftCounterTableViewHeader.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Setup.cs" />
@@ -586,6 +598,9 @@
     <InterfaceDefinition Include="Views\Home\MoreItemViewCell.xib" />
     <InterfaceDefinition Include="Views\Products\PaymentStrategyTableViewCell.xib" />
     <InterfaceDefinition Include="Views\Products\PaymentStrategyTableViewHeader.xib" />
+    <InterfaceDefinition Include="Views\Shifts\Counters\ShiftCountersView.xib" />
+    <InterfaceDefinition Include="Views\Shifts\Counters\ShiftCounterTableViewCell.xib" />
+    <InterfaceDefinition Include="Views\Shifts\Counters\ShiftCounterTableViewHeader.xib" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -740,6 +755,7 @@
     <Folder Include="Views\TransferSuplyProduct\" />
     <Folder Include="Views\Categories\" />
     <Folder Include="Views\Counter\" />
+    <Folder Include="Views\Shifts\Counters\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\ic_check.png" />

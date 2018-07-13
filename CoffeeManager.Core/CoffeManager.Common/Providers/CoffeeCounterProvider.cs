@@ -8,6 +8,15 @@ namespace CoffeManager.Common.Providers
 {
     public class CoffeeCounterProvider : BaseServiceProvider, ICoffeeCounterProvider
     {
+        public async Task<IEnumerable<CoffeeCounterDTO>> GetCountersForShift(int shiftId)
+        {
+            return await Get<IEnumerable<CoffeeCounterDTO>>(RoutesConstants.GetCountersForShift
+                , new Dictionary<string, string>()
+                {
+                    {nameof(shiftId), shiftId.ToString()}
+                });
+        }
+        
         public async Task<IEnumerable<CoffeeCounterForCoffeeRoomDTO>> GetCounters()
         {
             return await Get<IEnumerable<CoffeeCounterForCoffeeRoomDTO>>(RoutesConstants.GetCounters);

@@ -1,13 +1,12 @@
-﻿
-using UIKit;
-using MvvmCross.Binding.BindingContext;
+﻿using System.Collections.Generic;
 using CoffeeManagerAdmin.Core.ViewModels;
-using System.Collections.Generic;
 using CoffeeManagerAdmin.Core.ViewModels.Calculation;
 using CoffeeManagerAdmin.iOS.TableSources;
 using CoffeeManagerAdmin.iOS.Views.Abstract;
+using MvvmCross.Binding.BindingContext;
+using UIKit;
 
-namespace CoffeeManagerAdmin.iOS
+namespace CoffeeManagerAdmin.iOS.Views
 {
     public partial class SelectCalculationListView : SearchViewController<SelectCalculationListView, SelectCalculationListViewModel, SelectCalculationItemViewModel>
     {

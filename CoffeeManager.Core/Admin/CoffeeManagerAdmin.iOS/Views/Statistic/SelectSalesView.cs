@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using CoffeeManagerAdmin.Core;
+using CoffeeManagerAdmin.Core.ViewModels.Statistic;
 using CoffeeManagerAdmin.iOS.TableSources;
 using CoffeeManagerAdmin.iOS.Views.Abstract;
 using MvvmCross.Binding.BindingContext;

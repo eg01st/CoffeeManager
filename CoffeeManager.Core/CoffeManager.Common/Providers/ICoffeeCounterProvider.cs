@@ -6,6 +6,7 @@ namespace CoffeManager.Common.Providers
 {
     public interface ICoffeeCounterProvider
     {
+        Task<IEnumerable<CoffeeCounterDTO>> GetCountersForShift(int shiftId);
         Task<IEnumerable<CoffeeCounterForCoffeeRoomDTO>> GetCounters();
         Task<CoffeeCounterForCoffeeRoomDTO> GetCounter(int counterId);
         Task<int> AddCounter(CoffeeCounterForCoffeeRoomDTO counter);

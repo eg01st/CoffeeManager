@@ -321,5 +321,22 @@ namespace CoffeeManager.Api.Mappers
                 new IsActiveDTO { CoffeeRoomNo = s.CoffeeRoomNo, Id = s.CounterId, IsActive = s.IsEnabled }).ToArray();
             return counter;
         }
+        
+        public static CoffeeCounterDTO ToDTO(this CoffeeCounter item)
+        {
+            var counter = new CoffeeCounterDTO()
+            {
+                Id = item.Id,
+                CoffeeRoomId = item.CoffeeRoomNo,
+                SuplyProductId = item.SuplyProductId,
+                StartCounter = item.StartCounter,
+                EndCounter = item.EndCounter ?? 0
+            };
+            if (item.SupliedProduct != null)
+            {
+                counter.SuplyProductName = item.SupliedProduct.Name;
+            }
+            return counter;
+        }
     }
 }

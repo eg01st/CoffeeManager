@@ -38,59 +38,21 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Shifts
             this.paymentManager = paymentManager;
             this.shiftManager = shiftManager;
             ShowSalesCommand = new MvxAsyncCommand(DoShowSales);
+            ShowCountersCommand = new MvxAsyncCommand(DoShowCounters);
             AddExpenseCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<AddShiftExpenseViewModel>());
             ShowUserDetailsCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<UserDetailsViewModel, int>(userId));
 
             updateToken = Subscribe<UpdateShiftMessage>(async obj => await Initialize());
         }
 
-        private async Task DoShowSales()
+        private async Task DoShowCounters()
         {
-            await NavigationService.Navigate<ShiftSalesViewModel, int>(_shiftId);
-        }
-
-        public override async Task Initialize()
-        {
-            await ExecuteSafe(async () =>
-           {
-               var shiftInfo = await shiftManager.GetShiftInfo(_shiftId);
-               IsFinished = shiftInfo.IsFinished;
-               Date = shiftInfo.Date.ToString("g");
-               Name = shiftInfo.UserName;
-               userId = shiftInfo.UserId;
-               if (shiftInfo.StartCounter.HasValue && shiftInfo.EndCounter.HasValue)
-               {
-                   Counter = shiftInfo.EndCounter - shiftInfo.StartCounter;
-               }
-
-               var items = await paymentManager.GetShiftExpenses(_shiftId);
-               ExpenseItems = items.Select(s => new ExpenseItemViewModel(s, !isFinished)).ToList();
-
-               var saleItems = await shiftManager.GetShiftSales(_shiftId);
-               if (saleItems.Any())
-               {
-                   CalculateCopSalePercentage(saleItems.ToList());
-               }
-
-               RejectedSales = saleItems.Count(i => i.IsRejected);
-               UtilizedSales = saleItems.Count(i => i.IsUtilized);
-               UsedCoffee = (int)shiftInfo.UsedPortions;
-
-           });
-            BaseManager.ShiftNo = _shiftId;
-        }
-
-
-        private void CalculateCopSalePercentage(List<Sale> saleItems)
-        {
-            int allSalesCount = saleItems.Count;
-
-            int copSaleCount = saleItems.Count(s => s.IsPoliceSale);
-
-            CopSalePercentage = copSaleCount * 100 / allSalesCount;
+            await NavigationService.Navigate<ShiftCountersViewModel, int>(_shiftId);
         }
 
         public ICommand ShowSalesCommand { get; set; }
+        
+        public ICommand ShowCountersCommand { get; set; }
 
         public ICommand AddExpenseCommand { get; set; }
 
@@ -195,5 +157,51 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Shifts
         {
             _shiftId = parameter;
         }
+        
+        public override async Task Initialize()
+        {
+            await ExecuteSafe(async () =>
+            {
+                var shiftInfo = await shiftManager.GetShiftInfo(_shiftId);
+                IsFinished = shiftInfo.IsFinished;
+                Date = shiftInfo.Date.ToString("g");
+                Name = shiftInfo.UserName;
+                userId = shiftInfo.UserId;
+                if (shiftInfo.StartCounter.HasValue && shiftInfo.EndCounter.HasValue)
+                {
+                    Counter = shiftInfo.EndCounter - shiftInfo.StartCounter;
+                }
+
+                var items = await paymentManager.GetShiftExpenses(_shiftId);
+                ExpenseItems = items.Select(s => new ExpenseItemViewModel(s, !isFinished)).ToList();
+
+                var saleItems = await shiftManager.GetShiftSales(_shiftId);
+                if (saleItems.Any())
+                {
+                    CalculateCopSalePercentage(saleItems.ToList());
+                }
+
+                RejectedSales = saleItems.Count(i => i.IsRejected);
+                UtilizedSales = saleItems.Count(i => i.IsUtilized);
+                UsedCoffee = (int)shiftInfo.UsedPortions;
+
+            });
+            BaseManager.ShiftNo = _shiftId;
+        }
+        
+        private async Task DoShowSales()
+        {
+            await NavigationService.Navigate<ShiftSalesViewModel, int>(_shiftId);
+        }
+
+        private void CalculateCopSalePercentage(List<Sale> saleItems)
+        {
+            int allSalesCount = saleItems.Count;
+
+            int copSaleCount = saleItems.Count(s => s.IsPoliceSale);
+
+            CopSalePercentage = copSaleCount * 100 / allSalesCount;
+        }
+
     }
 }

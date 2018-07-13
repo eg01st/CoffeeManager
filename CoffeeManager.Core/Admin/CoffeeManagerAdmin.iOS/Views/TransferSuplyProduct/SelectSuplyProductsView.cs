@@ -1,16 +1,12 @@
-﻿using System;
-
-using UIKit;
-using CoffeManager.Common;
-using CoffeeManagerAdmin.Core;
-using MvvmCross.Binding.BindingContext;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using CoffeeManagerAdmin.Core.ViewModels.TransferSuplyProduct;
 using CoffeeManagerAdmin.iOS.TableSources;
 using CoffeeManagerAdmin.iOS.Views.Abstract;
 using CoffeManager.Common.ViewModels;
+using MvvmCross.Binding.BindingContext;
+using UIKit;
 
-namespace CoffeeManagerAdmin.iOS
+namespace CoffeeManagerAdmin.iOS.Views.TransferSuplyProduct
 {
     public partial class SelectSuplyProductsView : SearchViewController<SelectSuplyProductsView, SelectSuplyProductsViewModel, ListItemViewModelBase>
     {

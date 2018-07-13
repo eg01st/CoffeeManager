@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using CoffeeManager.Models;
+using CoffeeManagerAdmin.Core.ViewModels.Abstract;
 using MvvmCross.Core.ViewModels;
-using System.Threading.Tasks;
-using CoffeManager.Common.ViewModels;
 
-namespace CoffeeManagerAdmin.Core
+namespace CoffeeManagerAdmin.Core.ViewModels.Statistic
 {
-    public class SelectSalesViewModel : BaseSearchViewModel<SelectSaleItemViewModel>
+    public class SelectSalesViewModel : BaseAdminSearchViewModel<SelectSaleItemViewModel>
     {
         Guid id;
         IEnumerable<SaleInfo> saleItems;

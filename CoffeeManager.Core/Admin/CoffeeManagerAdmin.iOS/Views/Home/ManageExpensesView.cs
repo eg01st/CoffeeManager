@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using CoffeeManagerAdmin.Core;
 using CoffeeManagerAdmin.Core.ViewModels.ManageExpenses;
 using CoffeeManagerAdmin.iOS.TableSources;
@@ -8,7 +7,7 @@ using MvvmCross.Binding.BindingContext;
 using MvvmCross.iOS.Views.Presenters.Attributes;
 using UIKit;
 
-namespace CoffeeManagerAdmin.iOS
+namespace CoffeeManagerAdmin.iOS.Views.Home
 {
     [MvxTabPresentation(WrapInNavigationController = true, TabName = "Расходы",
                         TabIconName = "ic_arrow_upward.png",

@@ -35,6 +35,18 @@ namespace CoffeeManager.Api.Controllers
             return new HttpResponseMessage() { Content = new ObjectContent<CoffeeCounterForCoffeeRoomDTO>(counterDto, new JsonMediaTypeFormatter()) };
         }
 
+        [Route(RoutesConstants.GetCountersForShift)]
+        [HttpGet]
+        public HttpResponseMessage GetCountersForShift([FromUri] int coffeeroomno, [FromUri] int shiftId)
+        {
+            var ctx = new CoffeeRoomEntities();
+            var countesrDb = ctx.CoffeeCounters.Include(c => c.SupliedProduct).Where(c => c.ShiftId == shiftId)
+                .ToList();
+            var countersDto = countesrDb.Select(s => s.ToDTO());
+            return Request.CreateResponse(HttpStatusCode.OK, countersDto);
+        }
+
+
         [Route(RoutesConstants.AddCounter)]
         [HttpPut]
         public HttpResponseMessage AddCounter([FromUri]int coffeeroomno, [FromBody]CoffeeCounterForCoffeeRoomDTO counter)

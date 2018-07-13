@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using CoffeeManagerAdmin.Core.ViewModels.Abstract;
 using CoffeeManagerAdmin.Core.ViewModels.SuplyProducts;
 using CoffeManager.Common.Managers;
 using CoffeManager.Common.ViewModels;
@@ -10,7 +11,7 @@ using MvvmCross.Plugins.Messenger;
 
 namespace CoffeeManagerAdmin.Core.ViewModels.ManageExpenses
 {
-    public class MapExpenseToSuplyProductViewModel : BaseSearchViewModel<SelectMappedSuplyProductItemViewModel>, IMvxViewModel<int>
+    public class MapExpenseToSuplyProductViewModel : BaseAdminSearchViewModel<SelectMappedSuplyProductItemViewModel>, IMvxViewModel<int>
     {
         private MvxSubscriptionToken _listChanged;
         private int expenseTypeId;

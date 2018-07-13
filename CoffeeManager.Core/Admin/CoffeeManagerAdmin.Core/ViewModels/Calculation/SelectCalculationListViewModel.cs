@@ -2,15 +2,15 @@
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using CoffeeManagerAdmin.Core.ViewModels.Abstract;
 using CoffeeManagerAdmin.Core.ViewModels.SuplyProducts;
 using CoffeManager.Common.Managers;
-using CoffeManager.Common.ViewModels;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Messenger;
 
 namespace CoffeeManagerAdmin.Core.ViewModels.Calculation
 {
-    public class SelectCalculationListViewModel : BaseSearchViewModel<SelectCalculationItemViewModel>, IMvxViewModel<int>
+    public class SelectCalculationListViewModel : BaseAdminSearchViewModel<SelectCalculationItemViewModel>, IMvxViewModel<int>
     {
         private int productId;
         private MvxSubscriptionToken _listChanged;

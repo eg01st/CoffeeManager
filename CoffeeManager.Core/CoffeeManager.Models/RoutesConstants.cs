@@ -135,6 +135,7 @@ namespace CoffeeManager.Models
         public const string CoffeeRoomCounter = Api + "/CoffeeRoomCounter";
         public const string GetCounters = CoffeeRoomCounter + "/GetCounters";
         public const string GetCounter = CoffeeRoomCounter + "/GetCounter";
+        public const string GetCountersForShift = CoffeeRoomCounter + "/GetCountersForShift";
         public const string AddCounter = CoffeeRoomCounter + "/AddCounter";
         public const string UpdateCounter = CoffeeRoomCounter + "/UpdateCounter";
         public const string DeleteCounter = CoffeeRoomCounter + "/DeleteCounter";

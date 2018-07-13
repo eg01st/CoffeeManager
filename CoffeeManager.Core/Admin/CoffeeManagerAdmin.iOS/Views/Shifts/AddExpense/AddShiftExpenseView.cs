@@ -1,12 +1,10 @@
-﻿using System;
-using CoffeeManagerAdmin.Core;
-using CoffeeManagerAdmin.Core.ViewModels.Shifts;
+﻿using CoffeeManagerAdmin.Core.ViewModels.Shifts;
 using CoffeeManagerAdmin.iOS.TableSources;
 using CoffeeManagerAdmin.iOS.Views.Abstract;
 using MvvmCross.Binding.BindingContext;
 using UIKit;
 
-namespace CoffeeManagerAdmin.iOS
+namespace CoffeeManagerAdmin.iOS.Views.Shifts.AddExpense
 {
     public partial class AddShiftExpenseView : SearchViewController<AddShiftExpenseView, AddShiftExpenseViewModel, AddExpenseItemViewModel>
     {

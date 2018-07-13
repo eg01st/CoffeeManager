@@ -4,22 +4,22 @@
 // actions made in the UI designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
-
 using Foundation;
+using System.CodeDom.Compiler;
 
-namespace CoffeeManagerAdmin.iOS.Views.Inventory
+namespace CoffeeManagerAdmin.iOS.Views.Shifts.Counters
 {
-	[Register ("CreateInventoryView")]
-	partial class CreateInventoryView
+	[Register ("ShiftCountersView")]
+	partial class ShiftCountersView
 	{
 		[Outlet]
-		UIKit.UIView Container { get; set; }
+		UIKit.UITableView CountersTableView { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (Container != null) {
-				Container.Dispose ();
-				Container = null;
+			if (CountersTableView != null) {
+				CountersTableView.Dispose ();
+				CountersTableView = null;
 			}
 		}
 	}

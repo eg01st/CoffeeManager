@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using CoffeeManagerAdmin.Core;
+﻿using System.Collections.Generic;
 using CoffeeManagerAdmin.Core.ViewModels.Inventory.Create;
 using CoffeeManagerAdmin.iOS.TableSources;
 using CoffeeManagerAdmin.iOS.Views.Abstract;
 using MvvmCross.Binding.BindingContext;
 using UIKit;
 
-namespace CoffeeManagerAdmin.iOS
+namespace CoffeeManagerAdmin.iOS.Views.Inventory
 {
     public partial class CreateInventoryView : SearchViewController<CreateInventoryView, CreateInventoryViewModel, CreateInventoryItemViewModel>
     {

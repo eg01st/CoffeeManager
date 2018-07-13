@@ -3,10 +3,12 @@ using UIKit;
 using MvvmCross.Binding.BindingContext;
 using System.Collections.Generic;
  using CoffeeManagerAdmin.Core.ViewModels.SuplyProducts;
+ using CoffeeManagerAdmin.iOS.Extensions;
  using CoffeeManagerAdmin.iOS.TableSources;
  using CoffeeManagerAdmin.iOS.Views.Abstract;
  using CoffeManager.Common;
  using CoffeManager.Common.ViewModels;
+ using MvvmCross.Binding.iOS.Views;
 
 namespace CoffeeManagerAdmin.iOS
 {
@@ -16,13 +18,15 @@ namespace CoffeeManagerAdmin.iOS
 
         protected override UIView TableViewContainer => ContainerView;
 
+        private MvxPickerViewModel coffeeRoomPickerViewModel;
+        
         public SuplyProductsView() : base("SuplyProductsView", null)
         {
         }
 
-        public override void ViewDidLoad()
+        protected override void InitNavigationItem(UINavigationItem navigationItem)
         {
-            base.ViewDidLoad();
+            base.InitNavigationItem(navigationItem);
             Title = "Баланс продуктов";
 
             var btn = new UIBarButtonItem()
@@ -38,10 +42,27 @@ namespace CoffeeManagerAdmin.iOS
             });
         }
 
+        protected override void DoViewDidLoad()
+        {
+            var toolbar = Helper.ProducePickerToolbar(View);
+
+            coffeeRoomPickerViewModel = Helper.ProducePicker(CoffeeRoomTextField, toolbar);
+        }
 
         protected override MvxFluentBindingDescriptionSet<SuplyProductsView, SuplyProductsViewModel> CreateBindingSet()
         {
             return this.CreateBindingSet<SuplyProductsView, SuplyProductsViewModel>();
+        }
+
+        protected override void DoBind()
+        {
+            base.DoBind();
+            var set = this.CreateBindingSet<SuplyProductsView, SuplyProductsViewModel>();
+            set.Bind(coffeeRoomPickerViewModel).For(p => p.ItemsSource).To(vm => vm.CoffeeRooms);
+            set.Bind(coffeeRoomPickerViewModel).For(p => p.SelectedItem).To(vm => vm.CurrentCoffeeRoom);
+            set.Bind(CoffeeRoomTextField).To(vm => vm.CurrentCoffeeRoomName);
+
+            set.Apply();
         }
     }
 }
