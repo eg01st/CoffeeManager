@@ -4,14 +4,17 @@
 // actions made in the UI designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
-
 using Foundation;
+using System.CodeDom.Compiler;
 
 namespace CoffeeManagerAdmin.iOS.Views.Shifts.Counters
 {
 	[Register ("ShiftCounterTableViewCell")]
 	partial class ShiftCounterTableViewCell
 	{
+		[Outlet]
+		UIKit.UILabel DiffLabel { get; set; }
+
 		[Outlet]
 		UIKit.UILabel FinishLabel { get; set; }
 
@@ -23,6 +26,11 @@ namespace CoffeeManagerAdmin.iOS.Views.Shifts.Counters
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (FinishLabel != null) {
+				FinishLabel.Dispose ();
+				FinishLabel = null;
+			}
+
 			if (NameLabel != null) {
 				NameLabel.Dispose ();
 				NameLabel = null;
@@ -33,9 +41,9 @@ namespace CoffeeManagerAdmin.iOS.Views.Shifts.Counters
 				StartLabel = null;
 			}
 
-			if (FinishLabel != null) {
-				FinishLabel.Dispose ();
-				FinishLabel = null;
+			if (DiffLabel != null) {
+				DiffLabel.Dispose ();
+				DiffLabel = null;
 			}
 		}
 	}

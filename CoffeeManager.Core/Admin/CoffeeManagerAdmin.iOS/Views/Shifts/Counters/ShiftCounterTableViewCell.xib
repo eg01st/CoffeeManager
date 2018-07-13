@@ -18,37 +18,55 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VOz-vl-mPD">
-                        <rect key="frame" x="16" y="16" width="172" height="11.5"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VOz-vl-mPD">
+                        <rect key="frame" x="16" y="16" width="98" height="11.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HEQ-gQ-3ip">
-                        <rect key="frame" x="204" y="11.5" width="42" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HEQ-gQ-3ip">
+                        <rect key="frame" x="122" y="11.5" width="60" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="60" id="Zzz-q7-Oeo"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X3g-UC-41e">
-                        <rect key="frame" x="262" y="11.5" width="42" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X3g-UC-41e">
+                        <rect key="frame" x="190" y="11.5" width="50" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="50" id="KJb-an-sNS"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1mB-8X-PZZ">
+                        <rect key="frame" x="248" y="12" width="56" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="56" id="9tR-sn-Gef"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="trailing" secondItem="1mB-8X-PZZ" secondAttribute="trailing" constant="16" id="5H9-ex-g0V"/>
                     <constraint firstItem="X3g-UC-41e" firstAttribute="centerY" secondItem="VOz-vl-mPD" secondAttribute="centerY" id="6dD-uE-HZF"/>
-                    <constraint firstItem="HEQ-gQ-3ip" firstAttribute="leading" secondItem="VOz-vl-mPD" secondAttribute="trailing" constant="16" id="A5K-f3-LYc"/>
-                    <constraint firstAttribute="trailing" secondItem="X3g-UC-41e" secondAttribute="trailing" constant="16" id="Bxo-pj-Cgq"/>
+                    <constraint firstItem="HEQ-gQ-3ip" firstAttribute="leading" secondItem="VOz-vl-mPD" secondAttribute="trailing" constant="8" id="A5K-f3-LYc"/>
+                    <constraint firstItem="1mB-8X-PZZ" firstAttribute="centerY" secondItem="VOz-vl-mPD" secondAttribute="centerY" id="AeS-2e-hVn"/>
                     <constraint firstItem="VOz-vl-mPD" firstAttribute="top" secondItem="YTl-1W-gDM" secondAttribute="top" constant="16" id="Gvk-DH-p0Q"/>
                     <constraint firstItem="HEQ-gQ-3ip" firstAttribute="centerY" secondItem="VOz-vl-mPD" secondAttribute="centerY" id="HUz-mZ-OgC"/>
                     <constraint firstItem="VOz-vl-mPD" firstAttribute="leading" secondItem="YTl-1W-gDM" secondAttribute="leading" constant="16" id="WeI-S5-3XR"/>
                     <constraint firstAttribute="bottom" secondItem="VOz-vl-mPD" secondAttribute="bottom" constant="16" id="iBN-mN-C7b"/>
-                    <constraint firstItem="X3g-UC-41e" firstAttribute="leading" secondItem="HEQ-gQ-3ip" secondAttribute="trailing" constant="16" id="mwl-vA-Tdb"/>
+                    <constraint firstItem="X3g-UC-41e" firstAttribute="leading" secondItem="HEQ-gQ-3ip" secondAttribute="trailing" constant="8" id="mwl-vA-Tdb"/>
+                    <constraint firstItem="1mB-8X-PZZ" firstAttribute="leading" secondItem="X3g-UC-41e" secondAttribute="trailing" constant="8" id="p39-Ls-7M3"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="DiffLabel" destination="1mB-8X-PZZ" id="sCD-3h-0V9"/>
                 <outlet property="FinishLabel" destination="X3g-UC-41e" id="utA-6T-AVk"/>
                 <outlet property="NameLabel" destination="VOz-vl-mPD" id="vCz-7x-Trw"/>
                 <outlet property="StartLabel" destination="HEQ-gQ-3ip" id="LtD-Qk-1Po"/>

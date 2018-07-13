@@ -35,6 +35,7 @@ namespace CoffeeManagerAdmin.iOS.Views.Shifts.Counters
             set.Bind(NameLabel).To(vm => vm.SuplyProductName);
             set.Bind(StartLabel).To(vm => vm.StartCounter);
             set.Bind(FinishLabel).To(vm => vm.EndCounter);
+            set.Bind(DiffLabel).To(vm => vm.Diff);
             set.Apply();
         }
     }
