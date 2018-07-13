@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using CoffeeManagerAdmin.Core.ViewModels.Products;
 using CoffeeManagerAdmin.iOS.Extensions;
+using CoffeeManagerAdmin.iOS.TableSources;
 using CoffeeManagerAdmin.iOS.Views.Controls;
 using CoreGraphics;
 using MobileCore.iOS.ViewControllers;
@@ -19,6 +20,9 @@ namespace CoffeeManagerAdmin.iOS.Views.Products
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
+
+            StickBottomButtonToKeyboard(BottomButtonContraint);
+
             Title = "Детали товара";
             var toolbar = Helper.ProducePickerToolbar(View);
 
@@ -32,7 +36,13 @@ namespace CoffeeManagerAdmin.iOS.Views.Products
             SelectedColorTextField.InputView = picker;
             SelectedColorTextField.InputAccessoryView = toolbar;
 
-            
+            var source = new SimpleTableSource(PaymentStrategyTableView,
+                PaymentStrategyTableViewCell.Key,
+                PaymentStrategyTableViewCell.Nib,
+                PaymentStrategyTableViewHeader.Key,
+                PaymentStrategyTableViewHeader.Nib);
+            PaymentStrategyTableView.Source = source;
+  
             var set = this.CreateBindingSet<ProductDetailsView, ProductDetailsViewModel>();
             set.Bind(NameText).To(vm => vm.Name);
             set.Bind(PriceText).To(vm => vm.Price);
@@ -54,6 +64,9 @@ namespace CoffeeManagerAdmin.iOS.Views.Products
                 new GenericConverter<string, UIColor>((arg) => ColorExtensions.ParseColorFromHex(arg)));
             set.Bind(IsSaleByWeightSwitch).For(s => s.On).To(vm => vm.IsSaleByWeight);
             set.Bind(DescriptionTextField).To(vm => vm.Description);
+            set.Bind(source).To(vm => vm.ItemsCollection);
+            set.Bind(AddPaymentStrategyButton).To(vm => vm.AddPaymentStrategyCommand);
+            set.Bind(IsPaymentPercentStrategySwich).For(s => s.On).To(vm => vm.IsPercentPaymentEnabled);
             set.Apply();
 
             var btn = new UIBarButtonItem()

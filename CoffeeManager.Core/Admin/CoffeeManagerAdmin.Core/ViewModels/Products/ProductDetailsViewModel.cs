@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Acr.UserDialogs;
 using CoffeeManager.Models;
 using CoffeeManagerAdmin.Core.ViewModels.Categories;
 using CoffeManager.Common.Managers;
@@ -13,12 +14,12 @@ using CoffeeManagerAdmin.Core.ViewModels.Abstract;
 
 namespace CoffeeManagerAdmin.Core.ViewModels.Products
 {
-    public class ProductDetailsViewModel : AdminCoffeeRoomFeedViewModel<ProductPaymentStrategyItemViewModel>, IMvxViewModel<ProductDTO>
+    public class ProductDetailsViewModel : AdminCoffeeRoomFeedViewModel<ProductPaymentStrategyItemViewModel>, IMvxViewModel<int>
     {
         private readonly IProductManager manager;
         private readonly ICategoryManager categoryManager;
         
-        private ProductDTO productDTO;
+        private ProductDetaisDTO productDTO;
         private int id;
         private string name;
         private string price;
@@ -42,6 +43,8 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Products
         public List<string> Colors { get; set; } = new List<string>();
         public ICommand AddProductCommand => addProductCommand;
         private ICommand addProductCommand;
+        private int productId;
+
         public bool IsAddEnabled => !string.IsNullOrEmpty(Name) 
                                     && !string.IsNullOrEmpty(Price) 
                                     && !string.IsNullOrEmpty(PolicePrice) 
@@ -199,6 +202,8 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Products
 
         public ICommand SelectCalculationItemsCommand { get; }
         
+        public ICommand AddPaymentStrategyCommand { get; }
+        
         #endregion
 
 
@@ -208,10 +213,43 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Products
             this.categoryManager = categoryManager;
          
             SelectCalculationItemsCommand = new MvxAsyncCommand(DoSelectCalculationItems);
+            AddPaymentStrategyCommand = new MvxCommand(DoAddPaymentStrategy);
+        }
+
+        private void DoAddPaymentStrategy()
+        {
+            var availableCoffeeRooms = CoffeeRooms.Where(c => ItemsCollection.All(a => a.CoffeeRoomId != c.CoffeeRoomNo));
+            var optionList = new List<ActionSheetOption>();
+            foreach (var cr in availableCoffeeRooms)
+            {
+                optionList.Add(new ActionSheetOption(cr.Name, () =>  AddNewPaymentStrategy(cr)));
+            }
+
+            UserDialogs.ActionSheet(new ActionSheetConfig
+            {
+                Options = optionList,
+                Title = "Выбор заведения",
+                Cancel = new ActionSheetOption("Отмена")
+            });
+        }
+
+        private void AddNewPaymentStrategy(Entity coffeeRoom)
+        {
+            var vm = new ProductPaymentStrategyItemViewModel()
+            {
+                CoffeeRoomId = coffeeRoom.CoffeeRoomNo,
+                CoffeeRoomName = coffeeRoom.Name,
+                ProductId = productId
+            };
+            ItemsCollection.Add(vm);
         }
 
         public override async Task Initialize()
         {
+            await base.Initialize();
+
+            productDTO = await manager.GetProduct(productId);
+            
             var categories = await categoryManager.GetCategoriesPlain();
             CategoriesList = categories.Select(s => new CategoryItemViewModel(s)).ToList();
             RaisePropertyChanged(nameof(CategoriesList));
@@ -240,9 +278,10 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Products
                 {
                     SelectedCategory = productType;
                 }
-                if(productDTO.ProductPaymentStrategy != null)
+                if(productDTO.ProductPaymentStrategies != null)
                 {
-                    var vms = productDTO.ProductPaymentStrategy.Select(s => new ProductPaymentStrategyItemViewModel(s));
+                    var vms = productDTO.ProductPaymentStrategies
+                        .Select(s => new ProductPaymentStrategyItemViewModel(s, CoffeeRooms.First(c => c.CoffeeRoomNo == s.CoffeeRoomId).Name));
                     ItemsCollection.ReplaceWith(vms);
                 }
                 ButtonTitle = "Сохранить изменения";
@@ -266,7 +305,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Products
                     {
                         await ExecuteSafe(async () =>
                         {
-                            var dto = new ProductDTO()
+                            var dto = new ProductDetaisDTO()
                             {
                                 Name = name,
                                 Price = decimal.Parse(price),
@@ -286,10 +325,11 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Products
                                 {
                                     CoffeeRoomId = s.CoffeeRoomId,
                                     Id = s.Id,
-                                    DayShiftPersent = s.DayShiftPersent,
+                                    ProductId = s.ProductId,
+                                    DayShiftPercent = s.DayShiftPersent,
                                     NightShiftPercent = s.NightShiftPercent
                                 }).ToList();
-                                dto.ProductPaymentStrategy = strategies;
+                                dto.ProductPaymentStrategies = strategies;
                             }
 
                             await manager.AddProduct(dto);
@@ -303,7 +343,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Products
 
         private void DoEditProduct()
         {
-            UserDialogs.Confirm(new Acr.UserDialogs.ConfirmConfig()
+            UserDialogs.Confirm(new ConfirmConfig()
             {
                 Message = $"Сохранить изменения в продукте \"{Name}\"?",
                 OnAction = async (obj) =>
@@ -312,7 +352,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Products
                     {
                         await ExecuteSafe(async () =>
                         {
-                            var dto = new ProductDTO()
+                            var dto = new ProductDetaisDTO()
                             {
                                 Id = id,
                                 Name = name,
@@ -333,10 +373,11 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Products
                                 {
                                     CoffeeRoomId = s.CoffeeRoomId,
                                     Id = s.Id,
-                                    DayShiftPersent = s.DayShiftPersent,
+                                    ProductId = s.ProductId,
+                                    DayShiftPercent = s.DayShiftPersent,
                                     NightShiftPercent = s.NightShiftPercent
                                 }).ToList();
-                                dto.ProductPaymentStrategy = strategies;
+                                dto.ProductPaymentStrategies = strategies;
                             }
                             
                             await manager.EditProduct(dto);
@@ -353,9 +394,9 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Products
            await NavigationService.Navigate<CalculationViewModel, int>(id);
         }
 
-        public void Prepare(ProductDTO parameter)
+        public void Prepare(int parameter)
         {
-            productDTO = parameter;
+            productId = parameter;
         }
     }
 }

@@ -482,6 +482,14 @@
     <Compile Include="Views\Home\MoreItemViewCell.designer.cs">
       <DependentUpon>MoreItemViewCell.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Products\PaymentStrategyTableViewCell.cs" />
+    <Compile Include="Views\Products\PaymentStrategyTableViewCell.designer.cs">
+      <DependentUpon>PaymentStrategyTableViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Products\PaymentStrategyTableViewHeader.cs" />
+    <Compile Include="Views\Products\PaymentStrategyTableViewHeader.designer.cs">
+      <DependentUpon>PaymentStrategyTableViewHeader.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Setup.cs" />
@@ -576,6 +584,8 @@
     <InterfaceDefinition Include="Views\Counter\CounterTableViewCell.xib" />
     <InterfaceDefinition Include="Views\Home\MoreView.xib" />
     <InterfaceDefinition Include="Views\Home\MoreItemViewCell.xib" />
+    <InterfaceDefinition Include="Views\Products\PaymentStrategyTableViewCell.xib" />
+    <InterfaceDefinition Include="Views\Products\PaymentStrategyTableViewHeader.xib" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

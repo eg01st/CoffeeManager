@@ -10,7 +10,7 @@ namespace CoffeManager.Common.Providers
 {
     public class ProductProvider : BaseServiceProvider, IProductProvider
     {
-        public async Task AddProduct(ProductDTO productDTO)
+        public async Task AddProduct(ProductDetaisDTO productDTO)
         {
             await Put(RoutesConstants.AddProduct, productDTO);
         }
@@ -20,7 +20,7 @@ namespace CoffeManager.Common.Providers
             await Delete(RoutesConstants.DeleteProduct, new Dictionary<string, string>() { { nameof(id), id.ToString() } });
         }
 
-        public async Task EditProduct(ProductDTO productDTO)
+        public async Task EditProduct(ProductDetaisDTO productDTO)
         {
             await Post(RoutesConstants.EditProduct, productDTO);
         }
@@ -30,12 +30,22 @@ namespace CoffeManager.Common.Providers
             return await Get<ProductDTO[]>(RoutesConstants.GetAllProducts);
         }
 
+        public async Task<ProductDetaisDTO> GetProduct(int productId)
+        {
+            var dto = await Get<ProductDetaisDTO>(RoutesConstants.GetProduct,
+                new Dictionary<string, string>()
+                {
+                    {nameof(productId), productId.ToString()},
+                });
+            return dto;
+        }
+
         public async Task ToggleIsActiveProduct(int id)
         {
             await Post<Object>(RoutesConstants.ToggleProductEnabled, null, new Dictionary<string, string>() { { nameof(id), id.ToString() } });
         }
 
-        public async Task<ProductEntity[]> GetProduct(int categoryId)
+        public async Task<ProductEntity[]> GetProducts(int categoryId)
         {
             var prods = await Get<ProductEntity[]>(RoutesConstants.Products,
                 new Dictionary<string, string>()

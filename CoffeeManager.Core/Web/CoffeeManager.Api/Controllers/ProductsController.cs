@@ -46,7 +46,7 @@ namespace CoffeeManager.Api.Controllers
 	            return Request.CreateErrorResponse(HttpStatusCode.RequestedRangeNotSatisfiable, $"No product with id  {productId}");
             }
 
-	        var dto = product.ToDTO();
+	        var dto = product.ToDetailsDTO();
 
 	        if (product.IsPercentPaymentEnabled)
 	        {
@@ -62,7 +62,7 @@ namespace CoffeeManager.Api.Controllers
 		public async Task<HttpResponseMessage> AddProduct ([FromUri]int coffeeroomno, HttpRequestMessage message)
 		{
 			var request = await message.Content.ReadAsStringAsync ();
-			var product = JsonConvert.DeserializeObject<ProductDTO> (request);
+			var product = JsonConvert.DeserializeObject<ProductDetaisDTO> (request);
             product.CoffeeRoomNo = coffeeroomno;
 			var entities = new CoffeeRoomEntities ();
 			entities.Products.Add (product.Map());
@@ -75,7 +75,7 @@ namespace CoffeeManager.Api.Controllers
 		public async Task<HttpResponseMessage> EditProduct ([FromUri]int coffeeroomno, HttpRequestMessage message)
         {
 			var request = await message.Content.ReadAsStringAsync ();
-			var product = JsonConvert.DeserializeObject<ProductDTO> (request);
+			var product = JsonConvert.DeserializeObject<ProductDetaisDTO> (request);
 
 			var entities = new CoffeeRoomEntities ();
 

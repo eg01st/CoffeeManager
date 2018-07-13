@@ -2,7 +2,7 @@
 
 namespace CoffeeManager.Models.Data.Product
 {
-    public class ProductDTO
+    public class ProductDetaisDTO
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -18,5 +18,6 @@ namespace CoffeeManager.Models.Data.Product
         public string Color { get; set; }
         public string Description { get; set; }
         public bool IsPercentPaymentEnabled { get; set; }
+        public List<ProductPaymentStrategyDTO> ProductPaymentStrategies { get; set; }
     }
 }

@@ -7,17 +7,19 @@ namespace CoffeManager.Common.Providers
 {
     public interface IProductProvider
     {
-        Task AddProduct(ProductDTO productDTO);
+        Task AddProduct(ProductDetaisDTO productDTO);
 
         Task DeleteProduct(int id);
 
-        Task EditProduct(ProductDTO productDTO);
+        Task EditProduct(ProductDetaisDTO productDTO);
 
         Task<ProductDTO[]> GetProducts();
 
+        Task<ProductDetaisDTO> GetProduct(int productId);
+        
         Task ToggleIsActiveProduct(int id);
 
-        Task<ProductEntity[]> GetProduct(int categoryId);
+        Task<ProductEntity[]> GetProducts(int categoryId);
 
         Task SaleProduct(Sale sale);
 

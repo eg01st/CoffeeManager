@@ -100,6 +100,26 @@ namespace CoffeeManager.Api.Mappers
             };
         }
         
+        public static ProductDetaisDTO ToDetailsDTO(this Product prodDb)
+        {
+            return new ProductDetaisDTO()
+            {
+                Id = prodDb.Id,
+                Name = prodDb.Name,
+                Price = prodDb.Price,
+                PolicePrice = prodDb.PolicePrice,
+                CupType = prodDb.CupType.Value,
+                SuplyId = prodDb.SuplyProductId,
+                IsActive = prodDb.IsActive,
+                IsSaleByWeight = prodDb.IsSaleByWeight,
+                CategoryId = prodDb.CategoryId,
+                CategoryName = prodDb.Category?.Name,
+                Color = prodDb.Color,
+                Description = prodDb.Description,
+                IsPercentPaymentEnabled = prodDb.IsPercentPaymentEnabled,
+            };
+        }
+        
         public static ProductPaymentStrategyDTO ToDTO(this ProductPaymentStrategy strategyDb)
         {
             return new ProductPaymentStrategyDTO()

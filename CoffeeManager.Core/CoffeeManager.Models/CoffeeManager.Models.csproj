@@ -41,6 +41,7 @@
     <Compile Include="Data\DTO\Category\CategoryDTO.cs" />
     <Compile Include="Data\DTO\CoffeeRoomCounter\CoffeeCounterDTO.cs" />
     <Compile Include="Data\DTO\CoffeeRoomCounter\CoffeeCounterForCoffeeRoomDTO.cs" />
+    <Compile Include="Data\Product\ProductDetaisDTO.cs" />
     <Compile Include="Data\Product\ProductDTO.cs" />
     <Compile Include="Data\Product\ProductPaymentStrategyDTO.cs" />
     <Compile Include="EndShiftDTO.cs" />

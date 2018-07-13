@@ -12,16 +12,18 @@ namespace CoffeManager.Common.Managers
         Task DismisSaleProduct(int id);
         Task UtilizeSaleProduct(int id);
 
-        Task AddProduct(ProductDTO productDTO);
+        Task AddProduct(ProductDetaisDTO productDTO);
 
         Task DeleteProduct(int id);
 
-        Task EditProduct(ProductDTO productDTO);
+        Task EditProduct(ProductDetaisDTO productDTO);
 
         Task<ProductDTO[]> GetProducts();
 
         Task ToggleIsActiveProduct(int id);
 
         Task<string[]> GetAvaivalbeProductColors();
+        
+        Task<ProductDetaisDTO> GetProduct(int productId);
     }
 }

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="44" id="cxk-wN-pdQ" customClass="PaymentStrategyTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cxk-wN-pdQ" id="YTl-1W-gDM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tmr-wY-hTI">
+                        <rect key="frame" x="16" y="16" width="140" height="11.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ODh-qB-fxv">
+                        <rect key="frame" x="172" y="6.5" width="50" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="50" id="GiV-I9-N2n"/>
+                        </constraints>
+                        <nil key="textColor"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                    </textField>
+                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3Sq-9u-JCj">
+                        <rect key="frame" x="254" y="6.5" width="50" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="50" id="d7X-Ma-WUL"/>
+                        </constraints>
+                        <nil key="textColor"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                    </textField>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="tmr-wY-hTI" firstAttribute="leading" secondItem="YTl-1W-gDM" secondAttribute="leading" constant="16" id="3yf-h9-iqf"/>
+                    <constraint firstItem="ODh-qB-fxv" firstAttribute="leading" secondItem="tmr-wY-hTI" secondAttribute="trailing" constant="16" id="I5S-1f-h45"/>
+                    <constraint firstAttribute="trailing" secondItem="3Sq-9u-JCj" secondAttribute="trailing" constant="16" id="KSz-VL-z4n"/>
+                    <constraint firstItem="tmr-wY-hTI" firstAttribute="top" secondItem="YTl-1W-gDM" secondAttribute="top" constant="16" id="MYd-kR-dUy"/>
+                    <constraint firstItem="ODh-qB-fxv" firstAttribute="centerY" secondItem="tmr-wY-hTI" secondAttribute="centerY" id="YU5-d5-16W"/>
+                    <constraint firstItem="3Sq-9u-JCj" firstAttribute="centerY" secondItem="tmr-wY-hTI" secondAttribute="centerY" id="c0j-Vu-MVb"/>
+                    <constraint firstAttribute="bottom" secondItem="tmr-wY-hTI" secondAttribute="bottom" constant="16" id="p9B-XH-Z2F"/>
+                    <constraint firstItem="3Sq-9u-JCj" firstAttribute="leading" secondItem="ODh-qB-fxv" secondAttribute="trailing" constant="32" id="scz-c2-ePQ"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="CoffeeRoomNameLabel" destination="tmr-wY-hTI" id="WDH-WW-Qwp"/>
+                <outlet property="DayPercentTextField" destination="ODh-qB-fxv" id="gEq-9v-oK2"/>
+                <outlet property="NightPercentTextField" destination="3Sq-9u-JCj" id="2Dy-0C-V6Y"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+</document>

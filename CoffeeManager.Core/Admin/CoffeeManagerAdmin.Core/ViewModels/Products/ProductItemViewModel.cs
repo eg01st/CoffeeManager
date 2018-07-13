@@ -28,7 +28,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Products
 
             var type = (CupTypeEnum)prod.CupType;
             CupType = type == CupTypeEnum.Unknown ? string.Empty : type.ToString();
-            RaiseAllPropertiesChanged();
+            //RaiseAllPropertiesChanged();
 
             DeleteProductCommand = new MvxCommand(DoDeleCommand);
             ToggleIsActiveCommand = new MvxAsyncCommand(DoToggleIsActive);
@@ -42,7 +42,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Products
 
         protected override async void DoGoToDetails()
         {
-            await NavigationService.Navigate<ProductDetailsViewModel, ProductDTO>(prod);
+            await NavigationService.Navigate<ProductDetailsViewModel, int>(prod.Id);
         }
 
         private void DoDeleCommand()

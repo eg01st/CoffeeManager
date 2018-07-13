@@ -138,7 +138,7 @@ namespace CoffeManager.Common.Managers
             }
         }
 
-        public async Task AddProduct(ProductDTO productDTO)
+        public async Task AddProduct(ProductDetaisDTO productDTO)
         {
             await productProvider.AddProduct(productDTO);
         }
@@ -148,11 +148,16 @@ namespace CoffeManager.Common.Managers
             await productProvider.DeleteProduct(id);
         }
 
-        public async Task EditProduct(ProductDTO productDTO)
+        public async Task EditProduct(ProductDetaisDTO productDTO)
         {
             await productProvider.EditProduct(productDTO);
         }
 
+        public async Task<ProductDetaisDTO> GetProduct(int productId)
+        {
+            return await productProvider.GetProduct(productId);
+        }
+        
         public async Task<ProductDTO[]> GetProducts()
         {
             return await productProvider.GetProducts();
@@ -179,7 +184,7 @@ namespace CoffeManager.Common.Managers
             }
             try
             {
-                products = await productProvider.GetProduct(categoryId);
+                products = await productProvider.GetProducts(categoryId);
                 syncManager.AddProductsToSync(products, categoryId);
             }
             catch (HttpRequestException hrex)

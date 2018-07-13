@@ -109,6 +109,29 @@ namespace CoffeeManager.Api.Mappers
 			return prod;
 
 		}
+		
+		public static Product Map(this ProductDetaisDTO productDTO)
+		{
+
+			var prod = new Product () {
+				CoffeeRoomNo = productDTO.CoffeeRoomNo,
+				CupType = productDTO.CupType,
+				Name = productDTO.Name,
+				PolicePrice = productDTO.PolicePrice,
+				Price = productDTO.Price,
+				IsActive = productDTO.IsActive,
+				IsSaleByWeight = productDTO.IsSaleByWeight,
+				CategoryId = productDTO.CategoryId,
+				Color = productDTO.Color,
+				Description = productDTO.Description,
+				IsPercentPaymentEnabled = productDTO.IsPercentPaymentEnabled
+			};
+			if (productDTO.SuplyId.HasValue) {
+				prod.SuplyProductId = productDTO.SuplyId;
+			}
+			return prod;
+
+		}
 
 		public static Expense Map (Models.Expense expense)
 		{
