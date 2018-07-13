@@ -17,7 +17,7 @@ namespace CoffeeManager.Api.Controllers
         public async Task<HttpResponseMessage> GetCoffeeRooms([FromUri]int coffeeroomno, HttpRequestMessage message)
         {
             var entities = new CoffeeRoomEntities();
-            var items = entities.CoffeeRooms.Where(c => c.IsActive).ToList().Select(s => new Entity() { Id = s.Id, Name = s.Name });
+            var items = entities.CoffeeRooms.Where(c => c.IsActive).ToList().Select(s => new Entity() { Id = s.Id, Name = s.Name, CoffeeRoomNo = s.Id});
 
             return Request.CreateResponse(HttpStatusCode.OK, items);
         }
