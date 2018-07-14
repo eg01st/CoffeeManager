@@ -92,8 +92,7 @@ namespace CoffeeManager.Api.Controllers
             lock (LockEndShift)
             {
                 var enities = new CoffeeRoomEntities();
-                var shift = enities.Shifts.Include(s => s.User).Include(s => s.User.UserPaymentStrategies)
-                    .First(s => s.Id == shiftId && s.CoffeeRoomNo == coffeeroomno);
+                var shift = enities.Shifts.First(s => s.Id == shiftId && s.CoffeeRoomNo == coffeeroomno);
                 if (shift.IsFinished == true)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, new EndShiftUserInfo());
@@ -116,7 +115,7 @@ namespace CoffeeManager.Api.Controllers
                 }
 
 
-                var userPaymentStrategy = shift.User.UserPaymentStrategies.First(s => s.CoffeeRoomId == coffeeroomno);
+ 
                 decimal amountForPartialPay = 0;
                 bool isDayShift = shift.Date.Value.TimeOfDay.Hours < 12;
 
@@ -143,7 +142,9 @@ namespace CoffeeManager.Api.Controllers
                     }
                 }
 
-                var user = shift.User;
+                var user = enities.Users.Include(s => s.UserPaymentStrategies).First(u => u.Id == shift.UserId);
+                var userPaymentStrategy = user.UserPaymentStrategies.First(s => s.CoffeeRoomId == coffeeroomno);
+
                 var percent = isDayShift
                     ? userPaymentStrategy.DayShiftPersent
                     : userPaymentStrategy.NightShiftPercent;
