@@ -143,7 +143,7 @@ namespace CoffeeManager.Models
         
         public const string Motivation = Api + "/Motivation";
         public const string GetAllMotivationItems = Motivation + "/GetAllMotivationItems";
-        public const string GetUsersMotivationFromDate = Motivation + "/GetUsersMotivationFromDate";
+        public const string GetUsersMotivation = Motivation + "/GetUsersMotivation";
         public const string StartNewMotivation = Motivation + "/StartNewMotivation";
         public const string FinishMotivation = Motivation + "/FinishMotivation";
         public const string GetCurrentMotivation = Motivation + "/GetCurrentMotivation";
