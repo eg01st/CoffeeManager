@@ -291,6 +291,9 @@
     <Compile Include="AuthModels\AccountBindingModels.cs" />
     <Compile Include="AuthModels\AccountViewModels.cs" />
     <Compile Include="AuthModels\IdentityModels.cs" />
+    <Compile Include="Motivation.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Product.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -309,6 +312,9 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Shift.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ShiftMotivation.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />

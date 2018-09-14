@@ -79,8 +79,8 @@ namespace CoffeeManager.Api.Controllers
                     var motivationItem = new ShiftMotivation();
                     motivationItem.UserId = userId;
                     motivationItem.ShiftId = shift.Id;
-                    motivationItem.ShiftScore = Constants.ShiftRate;
-                    motivationItem.Date = shift.Date;
+                    motivationItem.ShiftScore = (decimal)Constants.ShiftRate;
+                    motivationItem.Date = shift.Date.Value;
                     motivationItem.MotivationId = currentMotivation.Id;
                     entities.ShiftMotivations.Add(motivationItem);
                 }
@@ -202,6 +202,10 @@ namespace CoffeeManager.Api.Controllers
                     var maxAmount = weekShifts.Max(w =>
                     {
                         var dif = w.RealAmount - w.TotalAmount;
+                        if (Math.Abs(dif) > Constants.MaxShiftAmountOversight)
+                        {
+                            return 0;
+                        }
                         return w.CurrentAmount + dif + w.CreditCardAmount.Value;
                     });
 
@@ -212,7 +216,7 @@ namespace CoffeeManager.Api.Controllers
                     var motivationItem = enities.ShiftMotivations.FirstOrDefault(f => f.ShiftId == shiftId);
                     if (motivationItem != null)
                     {
-                        motivationItem.MoneyScore = moneyMotivationScore;
+                        motivationItem.Moneycore = moneyMotivationScore;
                         motivationScore += motivationItem.ShiftScore;
                     }
                 }

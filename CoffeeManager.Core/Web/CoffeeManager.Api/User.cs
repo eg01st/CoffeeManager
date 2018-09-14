@@ -22,6 +22,7 @@ namespace CoffeeManager.Api
             this.UserEarningsHistories = new HashSet<UserEarningsHistory>();
             this.Expenses = new HashSet<Expense>();
             this.UserPaymentStrategies = new HashSet<UserPaymentStrategy>();
+            this.ShiftMotivations = new HashSet<ShiftMotivation>();
         }
     
         public int Id { get; set; }
@@ -44,5 +45,7 @@ namespace CoffeeManager.Api
         public virtual ICollection<Expense> Expenses { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserPaymentStrategy> UserPaymentStrategies { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ShiftMotivation> ShiftMotivations { get; set; }
     }
 }

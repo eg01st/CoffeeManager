@@ -6,6 +6,7 @@ using CoffeeManager.Models;
 using CoffeeManager.Models.Data.DTO;
 using CoffeeManager.Models.Data.DTO.Category;
 using CoffeeManager.Models.Data.DTO.CoffeeRoomCounter;
+using CoffeeManager.Models.Data.DTO.StaffMotivation;
 using CoffeeManager.Models.Data.DTO.User;
 using CoffeeManager.Models.Data.Product;
 
@@ -337,6 +338,35 @@ namespace CoffeeManager.Api.Mappers
                 counter.SuplyProductName = item.SupliedProduct.Name;
             }
             return counter;
+        }
+
+        public static MotivationDTO ToDTO(this Motivation item)
+        {
+            var dto = new MotivationDTO()
+            {
+                Id = item.Id,
+                StartDate = item.StartDate,
+                EndDate = item.EndDate
+            };
+
+            return dto;
+        }
+
+        public static ShiftMotivationDTO ToDTO(this ShiftMotivation item)
+        {
+            var dto = new ShiftMotivationDTO()
+            {
+                Id = item.Id,
+                Date = item.Date,
+                UserId = item.UserId,
+                ShiftId = item.ShiftId,
+                MoneyScore = item.Moneycore,
+                MotivationId = item.MotivationId,
+                OtherScore = item.OtherScore,
+                ShiftScore = item.ShiftScore
+            };
+
+            return dto;
         }
     }
 }

@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
+using CoffeeManager.Api.Mappers;
 using CoffeeManager.Models;
 using CoffeeManager.Models.Data.DTO.StaffMotivation;
 
@@ -30,14 +32,14 @@ namespace CoffeeManager.Api.Controllers
             var entities = new  CoffeeRoomEntities();
 
             var items = entities.ShiftMotivations.Include(m => m.User).Where(i => i.MotivationId == motivationId).ToList();
-            var groupedByUser = items.GroupBy(g => g.UserId);
+            var groupedByUser = items.GroupBy(g => g.User);
             var result = new List<UserMotivationDTO>();
             foreach (var userInfo in groupedByUser)
             {
                 var info = new UserMotivationDTO();
                 info.UserName = userInfo.Key.Name;
                 info.UserId = userInfo.Key.Id;
-                info.MoneyScore = userInfo.Sum(s => s.MoneyScore);
+                info.MoneyScore = userInfo.Sum(s => s.Moneycore);
                 info.ShiftScore = userInfo.Sum(s => s.ShiftScore);
                 info.OtherScore = userInfo.Sum(s => s.OtherScore);
                 result.Add(info);
@@ -66,7 +68,26 @@ namespace CoffeeManager.Api.Controllers
             
             return Request.CreateResponse(HttpStatusCode.OK, motivation.ToDTO());
         }
-        
+
+        [Route(RoutesConstants.FinishMotivation)]
+        [HttpPost]
+        public async Task<HttpResponseMessage> FinishMotivation([FromUri]int coffeeroomno, [FromUri]int motivationId, HttpRequestMessage message)
+        {
+            var entities = new CoffeeRoomEntities();
+
+            var currentMotivation = entities.Motivations.FirstOrDefault(m => m.Id == motivationId);
+            if (currentMotivation == null)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Motivation not exists");
+            }
+
+            currentMotivation.EndDate = DateTime.Now;
+            
+            entities.SaveChanges();
+
+            return Request.CreateResponse(HttpStatusCode.OK);
+        }
+
         [Route(RoutesConstants.GetCurrentMotivation)]
         [HttpGet]
         public async Task<HttpResponseMessage> GetCurrentMotivation([FromUri]int coffeeroomno, HttpRequestMessage message)
