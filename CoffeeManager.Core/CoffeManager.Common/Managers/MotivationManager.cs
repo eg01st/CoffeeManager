@@ -19,9 +19,24 @@ namespace CoffeManager.Common.Managers
             return await motivationProvider.GetAllMotivationItems();
         }
 
-        public async Task<UserMotivationDTO[]> GetUsersMotivationFromDate(DateTime date)
+        public async Task<UserMotivationDTO[]> GetUsersMotivation(int motivationId)
         {
-            return await motivationProvider.GetUsersMotivationFromDate(date);
+            return await motivationProvider.GetUsersMotivation(motivationId);
+        }
+
+        public async Task<MotivationDTO> StartNewMotivation()
+        {
+            return await motivationProvider.StartNewMotivation();
+        }
+
+        public async Task FinishMotivation(int motivationId)
+        {
+            await motivationProvider.FinishMotivation(motivationId);
+        }
+
+        public async Task<MotivationDTO> GetCurrentMotivation()
+        {
+            return await motivationProvider.GetCurrentMotivation();
         }
     }
 }

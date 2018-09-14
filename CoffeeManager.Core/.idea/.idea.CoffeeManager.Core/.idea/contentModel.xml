@@ -1459,6 +1459,7 @@
           <e p="Model.edmx" t="Include" />
           <e p="Model.edmx.diagram" t="Include" />
           <e p="Model.tt" t="Include" />
+          <e p="Motivation.cs" t="Include" />
           <e p="obj" t="ExcludeRecursive" />
           <e p="packages.config" t="Include" />
           <e p="Product.cs" t="Include" />
@@ -1482,6 +1483,7 @@
           </e>
           <e p="Sale.cs" t="Include" />
           <e p="Shift.cs" t="Include" />
+          <e p="ShiftMotivation.cs" t="Include" />
           <e p="Startup.cs" t="Include" />
           <e p="SupliedProduct.cs" t="Include" />
           <e p="SuplyOrder.cs" t="Include" />
