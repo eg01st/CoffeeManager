@@ -25,7 +25,7 @@ namespace CoffeeManager.Api.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, items);
         }
         
-        [Route(RoutesConstants.GetUsersMotivationFromDate)]
+        [Route(RoutesConstants.GetUsersMotivation)]
         [HttpGet]
         public async Task<HttpResponseMessage> GetUsersMotivation([FromUri]int coffeeroomno, [FromUri]int motivationId, HttpRequestMessage message)
         {
