@@ -4,6 +4,7 @@ using CoffeeManagerAdmin.iOS.Extensions;
 using CoffeeManagerAdmin.iOS.TableSources;
 using CoffeeManagerAdmin.iOS.Views.Controls;
 using CoreGraphics;
+using MobileCore.iOS;
 using MobileCore.iOS.ViewControllers;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.Binding.iOS.Views;
@@ -11,17 +12,21 @@ using UIKit;
 
 namespace CoffeeManagerAdmin.iOS.Views.Products
 {
-    public partial class ProductDetailsView : ViewControllerBase<ProductDetailsViewModel>
+    public partial class ProductDetailsView : KeyboardViewControllerBase<ProductDetailsViewModel>
     {
         public ProductDetailsView() : base("ProductDetailsView", null)
         {
         }
 
+        protected override bool HandlesKeyboardNotifications => true;
+
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
 
-            StickBottomButtonToKeyboard(BottomButtonContraint);
+            DismissKeyboardOnBackgroundTap();
+
+           //StickBottomButtonToKeyboard(BottomButtonContraint);
 
             Title = "Детали товара";
             var toolbar = Helper.ProducePickerToolbar(View);

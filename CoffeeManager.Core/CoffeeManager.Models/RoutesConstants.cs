@@ -140,5 +140,11 @@ namespace CoffeeManager.Models
         public const string UpdateCounter = CoffeeRoomCounter + "/UpdateCounter";
         public const string DeleteCounter = CoffeeRoomCounter + "/DeleteCounter";
         public const string ToggleCounterEnabled = Products + "/ToggleCounterEnabled";
+        
+        public const string Motivation = Api + "/Motivation";
+        public const string GetAllMotivationItems = Motivation + "/GetAllMotivationItems";
+        public const string GetUsersMotivationFromDate = Motivation + "/GetUsersMotivationFromDate";
+        public const string StartNewMotivation = Motivation + "/StartNewMotivation";
+        public const string GetCurrentMotivation = Motivation + "/GetCurrentMotivation";
     }
 }

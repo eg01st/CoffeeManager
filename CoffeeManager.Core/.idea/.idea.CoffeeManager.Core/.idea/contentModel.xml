@@ -42,6 +42,7 @@
             <e p="Abstract" t="Include">
               <e p="AdminFeedViewModel.cs" t="Include" />
               <e p="AdminPageViewModel.cs" t="Include" />
+              <e p="BaseAdminSearchViewModel.cs" t="Include" />
             </e>
             <e p="Calculation" t="Include">
               <e p="CalculationItemViewModel.cs" t="Include" />
@@ -109,6 +110,7 @@
             <e p="Products" t="Include">
               <e p="ProductDetailsViewModel.cs" t="Include" />
               <e p="ProductItemViewModel.cs" t="Include" />
+              <e p="ProductPaymentStrategyItemViewModel.cs" t="Include" />
             </e>
             <e p="SaleItemViewModel.cs" t="Include" />
             <e p="Settings" t="Include">
@@ -123,6 +125,8 @@
               <e p="AddExpenseItemViewModel.cs" t="Include" />
               <e p="AddExtendedExpenseItemViewModel.cs" t="Include" />
               <e p="AddShiftExpenseViewModel.cs" t="Include" />
+              <e p="ShiftCounterItemViewModel.cs" t="Include" />
+              <e p="ShiftCountersViewModel.cs" t="Include" />
               <e p="ShiftDetailsViewModel.cs" t="Include" />
               <e p="ShiftExpenseDetailsViewModel.cs" t="Include" />
               <e p="ShiftItemViewModel.cs" t="Include" />
@@ -649,6 +653,12 @@
               <e p="SelectOrderItemViewCell.xib" t="Include" />
             </e>
             <e p="Products" t="Include">
+              <e p="PaymentStrategyTableViewCell.cs" t="Include" />
+              <e p="PaymentStrategyTableViewCell.designer.cs" t="Include" />
+              <e p="PaymentStrategyTableViewCell.xib" t="Include" />
+              <e p="PaymentStrategyTableViewHeader.cs" t="Include" />
+              <e p="PaymentStrategyTableViewHeader.designer.cs" t="Include" />
+              <e p="PaymentStrategyTableViewHeader.xib" t="Include" />
               <e p="ProductDetailsView.cs" t="Include" />
               <e p="ProductDetailsView.designer.cs" t="Include" />
               <e p="ProductDetailsView.xib" t="Include" />
@@ -693,6 +703,17 @@
                 <e p="SimpleExpenseCell.cs" t="Include" />
                 <e p="SimpleExpenseCell.designer.cs" t="Include" />
                 <e p="SimpleExpenseCell.xib" t="Include" />
+              </e>
+              <e p="Counters" t="Include">
+                <e p="ShiftCountersView.cs" t="Include" />
+                <e p="ShiftCountersView.designer.cs" t="Include" />
+                <e p="ShiftCountersView.xib" t="Include" />
+                <e p="ShiftCounterTableViewCell.cs" t="Include" />
+                <e p="ShiftCounterTableViewCell.designer.cs" t="Include" />
+                <e p="ShiftCounterTableViewCell.xib" t="Include" />
+                <e p="ShiftCounterTableViewHeader.cs" t="Include" />
+                <e p="ShiftCounterTableViewHeader.designer.cs" t="Include" />
+                <e p="ShiftCounterTableViewHeader.xib" t="Include" />
               </e>
               <e p="ExpenseItemCell.cs" t="Include" />
               <e p="ExpenseItemCell.designer.cs" t="Include" />
@@ -1148,6 +1169,11 @@
               <e p="CoffeeCounterForCoffeeRoomDTO.cs" t="Include" />
             </e>
             <e p="IsActiveDTO.cs" t="Include" />
+            <e p="StaffMotivation" t="Include">
+              <e p="MotivationDTO.cs" t="Include" />
+              <e p="ShiftMotivationDTO.cs" t="Include" />
+              <e p="UserMotivationDTO.cs" t="Include" />
+            </e>
             <e p="User" t="Include">
               <e p="DismissPenaltyDTO.cs" t="Include" />
               <e p="PaySalaryDTO.cs" t="Include" />
@@ -1155,6 +1181,11 @@
               <e p="ToggleUserEnabledDTO.cs" t="Include" />
               <e p="UserDTO.cs" t="Include" />
             </e>
+          </e>
+          <e p="Product" t="Include">
+            <e p="ProductDetaisDTO.cs" t="Include" />
+            <e p="ProductDTO.cs" t="Include" />
+            <e p="ProductPaymentStrategyDTO.cs" t="Include" />
           </e>
         </e>
         <e p="EndShiftDTO.cs" t="Include" />
@@ -1168,7 +1199,6 @@
         <e p="obj" t="ExcludeRecursive" />
         <e p="Order.cs" t="Include" />
         <e p="OrderItem.cs" t="Include" />
-        <e p="Product.cs" t="Include" />
         <e p="ProductCalculationEntity.cs" t="Include" />
         <e p="ProductType.cs" t="Include" />
         <e p="Properties" t="Include">
@@ -1219,6 +1249,7 @@
           <e p="ICategoryManager.cs" t="Include" />
           <e p="ICoffeeCounterManager.cs" t="Include" />
           <e p="IInventoryManager.cs" t="Include" />
+          <e p="IMotivationManager.cs" t="Include" />
           <e p="InventoryManager.cs" t="Include" />
           <e p="IPaymentManager.cs" t="Include" />
           <e p="IProductManager.cs" t="Include" />
@@ -1228,6 +1259,7 @@
           <e p="ISuplyProductsManager.cs" t="Include" />
           <e p="ISyncManager.cs" t="Include" />
           <e p="IUserManager.cs" t="Include" />
+          <e p="MotivationManager.cs" t="Include" />
           <e p="PaymentManager.cs" t="Include" />
           <e p="ProductManager.cs" t="Include" />
           <e p="ShiftManager.cs" t="Include" />
@@ -1259,6 +1291,7 @@
           <e p="ICoffeeCounterProvider.cs" t="Include" />
           <e p="IDataBaseProvider.cs" t="Include" />
           <e p="IInventoryProvider.cs" t="Include" />
+          <e p="IMotivationProvider.cs" t="Include" />
           <e p="InventoryProvider.cs" t="Include" />
           <e p="IPaymentServiceProvider.cs" t="Include" />
           <e p="IProductProvider.cs" t="Include" />
@@ -1267,6 +1300,7 @@
           <e p="ISuplyOrderProvider.cs" t="Include" />
           <e p="ISuplyProductsProvider.cs" t="Include" />
           <e p="IUserServiceProvider.cs" t="Include" />
+          <e p="MotivationProvider.cs" t="Include" />
           <e p="PaymentServiceProvider.cs" t="Include" />
           <e p="ProductProvider.cs" t="Include" />
           <e p="ShiftServiceProvider.cs" t="Include" />
@@ -1369,12 +1403,14 @@
           <e p="CoffeeCounterForCoffeeRoom.cs" t="Include" />
           <e p="CoffeeManager.Api.csproj" t="IncludeRecursive" />
           <e p="CoffeeRoom.cs" t="Include" />
+          <e p="Constants.cs" t="Include" />
           <e p="Controllers" t="Include">
             <e p="AccountController.cs" t="Include" />
             <e p="AdminController.cs" t="Include" />
             <e p="CategoriesController.cs" t="Include" />
             <e p="CoffeeCounterController.cs" t="Include" />
             <e p="InventoryController.cs" t="Include" />
+            <e p="MotivationController.cs" t="Include" />
             <e p="PaymentController.cs" t="Include" />
             <e p="ProductsController.cs" t="Include" />
             <e p="ShiftController.cs" t="Include" />
@@ -1407,6 +1443,7 @@
           <e p="Global.asax" t="Include" />
           <e p="Global.asax.cs" t="Include" />
           <e p="Helper" t="Include">
+            <e p="Extenstions.cs" t="Include" />
             <e p="FileStreamEx.cs" t="Include" />
           </e>
           <e p="InventoryReport.cs" t="Include" />
@@ -1426,11 +1463,13 @@
           <e p="packages.config" t="Include" />
           <e p="Product.cs" t="Include" />
           <e p="ProductCalculation.cs" t="Include" />
+          <e p="ProductPaymentStrategy.cs" t="Include" />
           <e p="ProductType.cs" t="Include" />
           <e p="Properties" t="Include">
             <e p="AssemblyInfo.cs" t="Include" />
             <e p="PublishProfiles" t="Include">
               <e p="Default Settings (2).pubxml" t="Include" />
+              <e p="Default Settings (3).pubxml" t="Include" />
               <e p="Default Settings.pubxml" t="Include" />
               <e p="dev.pubxml" t="Include" />
               <e p="local.pubxml" t="Include" />
@@ -1581,6 +1620,10 @@
         <e p="MvxAndroidSetupBase.cs" t="Include" />
         <e p="obj" t="ExcludeRecursive" />
         <e p="packages.config" t="Include" />
+        <e p="Permissions" t="Include">
+          <e p="PermissionResult.cs" t="Include" />
+          <e p="PermissionsManager.cs" t="Include" />
+        </e>
         <e p="Properties" t="Include">
           <e p="AssemblyInfo.cs" t="Include" />
         </e>
@@ -1614,6 +1657,9 @@
         <e p="Email" t="Include">
           <e p="EmailService.cs" t="Include" />
         </e>
+        <e p="Extensions" t="Include">
+          <e p="UIViewExtensions.cs" t="Include" />
+        </e>
         <e p="Logging" t="Include">
           <e p="ConsoleLogger.cs" t="Include" />
           <e p="IosDiagnosticLogger.cs" t="Include" />
@@ -1628,6 +1674,7 @@
         </e>
         <e p="Resources" t="Include" />
         <e p="ViewControllers" t="Include">
+          <e p="KeyboardViewControllerBase.cs" t="Include" />
           <e p="ViewControllerBase.cs" t="Include" />
         </e>
       </e>

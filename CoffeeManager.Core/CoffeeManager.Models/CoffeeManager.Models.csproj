@@ -41,6 +41,9 @@
     <Compile Include="Data\DTO\Category\CategoryDTO.cs" />
     <Compile Include="Data\DTO\CoffeeRoomCounter\CoffeeCounterDTO.cs" />
     <Compile Include="Data\DTO\CoffeeRoomCounter\CoffeeCounterForCoffeeRoomDTO.cs" />
+    <Compile Include="Data\DTO\StaffMotivation\MotivationDTO.cs" />
+    <Compile Include="Data\DTO\StaffMotivation\ShiftMotivationDTO.cs" />
+    <Compile Include="Data\DTO\StaffMotivation\UserMotivationDTO.cs" />
     <Compile Include="Data\Product\ProductDetaisDTO.cs" />
     <Compile Include="Data\Product\ProductDTO.cs" />
     <Compile Include="Data\Product\ProductPaymentStrategyDTO.cs" />
@@ -79,7 +82,6 @@
     <Compile Include="Data\DTO\User\ToggleUserEnabledDTO.cs" />
     <Compile Include="Data\DTO\IsActiveDTO.cs" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

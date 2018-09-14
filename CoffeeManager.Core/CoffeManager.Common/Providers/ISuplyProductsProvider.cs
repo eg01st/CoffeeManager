@@ -9,6 +9,8 @@ namespace CoffeManager.Common
     {
         Task<SupliedProduct[]> GetSuplyProducts();
 
+        Task<SupliedProduct[]> GetSuplyProducts(int coffeeRoomId);
+
         Task<SupliedProduct> GetSuplyProduct(int id);
 
         Task EditSuplyProduct(SupliedProduct supliedProduct);

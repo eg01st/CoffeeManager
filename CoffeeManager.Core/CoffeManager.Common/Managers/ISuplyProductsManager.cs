@@ -6,6 +6,8 @@ namespace CoffeManager.Common.Managers
 {
     public interface ISuplyProductsManager
     {
+        Task<SupliedProduct[]> GetSuplyProducts(int coffeeRoomId);
+
         Task<SupliedProduct[]> GetSuplyProducts();
 
         Task AddSuplyProduct(string newProduct);

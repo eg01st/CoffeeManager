@@ -16,6 +16,11 @@ namespace CoffeManager.Common
             this.provider = provider;
         }
 
+        public async Task<SupliedProduct[]> GetSuplyProducts(int coffeeRoomId)
+        {
+            return await provider.GetSuplyProducts(coffeeRoomId);
+        }
+
         public async Task<SupliedProduct[]> GetSuplyProducts()
         {
             return await provider.GetSuplyProducts();

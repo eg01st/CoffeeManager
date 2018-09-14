@@ -33,7 +33,6 @@ namespace CoffeeManager.Api.Controllers
                     IsFinished = false,
                     UserId = userId,
                     Date = DateTime.Now,
-                   // StartCounter = counter,
                     CreditCardAmount = 0,
                 };
                 var lastShift =
@@ -73,6 +72,20 @@ namespace CoffeeManager.Api.Controllers
                         await entities.SaveChangesAsync();
                     }
                 }
+
+                var currentMotivation = entities.Motivations.FirstOrDefault(m => !m.EndDate.HasValue);
+                if (currentMotivation != null)
+                {
+                    var motivationItem = new ShiftMotivation();
+                    motivationItem.UserId = userId;
+                    motivationItem.ShiftId = shift.Id;
+                    motivationItem.ShiftScore = Constants.ShiftRate;
+                    motivationItem.Date = shift.Date;
+                    motivationItem.MotivationId = currentMotivation.Id;
+                    entities.ShiftMotivations.Add(motivationItem);
+                }
+
+                await entities.SaveChangesAsync();
             }
             else
             {
@@ -99,7 +112,6 @@ namespace CoffeeManager.Api.Controllers
                 }
                 shift.IsFinished = true;
                 shift.RealAmount = shiftInfo.RealAmount;
-               // shift.EndCounter = shiftInfo.Counter;
 
                 foreach (var coffeeCounter in shiftInfo.CoffeeCounters)
                 {
@@ -165,6 +177,47 @@ namespace CoffeeManager.Api.Controllers
                 userEarneingHistory.UserId = shift.UserId.Value;
                 enities.UserEarningsHistories.Add(userEarneingHistory);
 
+                decimal motivationScore = 0;
+                decimal moneyMotivationScore = 0;
+                
+                var currentMotivation = enities.Motivations.FirstOrDefault(m => !m.EndDate.HasValue);
+
+                if (Math.Abs(diff) < Constants.MaxShiftAmountOversight && currentMotivation != null)
+                {
+                    var sevenDaysAgo = DateTime.Now.AddDays(-7);
+                    var weekShifts = enities.Shifts.Where(s => s.CoffeeRoomNo.Value == coffeeroomno &&
+                                                               s.IsFinished.HasValue
+                                                               && s.IsFinished.Value
+                                                               && s.Date.HasValue
+                                                               && s.Date > sevenDaysAgo).ToList();
+                    if (isDayShift)
+                    {
+                        weekShifts = weekShifts.Where(w => w.Date.Value.TimeOfDay.Hours < 12).ToList();
+                    }
+                    else
+                    {
+                        weekShifts = weekShifts.Where(w => w.Date.Value.TimeOfDay.Hours > 12).ToList();
+                    }
+
+                    var maxAmount = weekShifts.Max(w =>
+                    {
+                        var dif = w.RealAmount - w.TotalAmount;
+                        return w.CurrentAmount + dif + w.CreditCardAmount.Value;
+                    });
+
+                    var onePercentOfMaxAmount = maxAmount / 100;
+                    var percentOfCurrentShift = realShiftAmount / onePercentOfMaxAmount;
+                    moneyMotivationScore = percentOfCurrentShift / 100;
+
+                    var motivationItem = enities.ShiftMotivations.FirstOrDefault(f => f.ShiftId == shiftId);
+                    if (motivationItem != null)
+                    {
+                        motivationItem.MoneyScore = moneyMotivationScore;
+                        motivationScore += motivationItem.ShiftScore;
+                    }
+                }
+
+                motivationScore += moneyMotivationScore;
                 enities.SaveChanges();
 
                 return Request.CreateResponse(HttpStatusCode.OK,
@@ -172,7 +225,8 @@ namespace CoffeeManager.Api.Controllers
                     {
                         EarnedAmount = userEarnedAmount,
                         RealShiftAmount = realShiftAmount,
-                        CurrentUserAmount = user.CurrentEarnedAmount
+                        CurrentUserAmount = user.CurrentEarnedAmount,
+                        EarnedMotivationScore = motivationScore
                     });
             }
         }

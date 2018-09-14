@@ -8,6 +8,17 @@ namespace CoffeManager.Common
 {
     public class SuplyProductsProvider : BaseServiceProvider, ISuplyProductsProvider
     {
+        public async Task<SupliedProduct[]> GetSuplyProducts(int coffeeRoomId)
+        {
+            var currentCoffeeRoom = Config.CoffeeRoomNo;
+            Config.CoffeeRoomNo = coffeeRoomId;
+
+            var res = await Get<SupliedProduct[]>(RoutesConstants.GetSuplyProducts);
+            Config.CoffeeRoomNo = currentCoffeeRoom;
+
+            return res;
+        }
+
         public async Task<SupliedProduct[]> GetSuplyProducts()
         {
             return await Get<SupliedProduct[]>(RoutesConstants.GetSuplyProducts);

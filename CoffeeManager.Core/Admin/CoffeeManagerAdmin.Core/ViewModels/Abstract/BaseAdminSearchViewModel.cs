@@ -30,9 +30,9 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Abstract
             {
                 searchString = value;
                 RaisePropertyChanged(nameof(SearchString));
-                if (!string.IsNullOrWhiteSpace(SearchString) && ItemsCollection.Any())
+                if (!string.IsNullOrWhiteSpace(SearchString) && orginalItems.Any())
                 {
-                    var searchItems = ItemsCollection.Where(i =>
+                    var searchItems = orginalItems.Where(i =>
                         i.Name != null && i.Name.StartsWith(SearchString, StringComparison.OrdinalIgnoreCase));
                     ItemsCollection.ReplaceWith(searchItems);
                 }

@@ -18,13 +18,18 @@ namespace CoffeeManagerAdmin.Core.ViewModels.TransferSuplyProduct
         public SelectSuplyProductsViewModel(ISuplyProductsManager manager)
         {
             this.manager = manager;
-            TransferSuplyProductsCommand = new MvxCommand(DoTransferSuplyProducts, () => ItemsCollection.OfType<SelectSuplyProductItemViewModel>().Any(a => a.IsSelected));
+            TransferSuplyProductsCommand = new MvxCommand(DoTransferSuplyProducts);
         }
-        
+
         private void DoTransferSuplyProducts()
         {
             string confirmMessage = "Вы переводите продукты:\n";
             var items = ItemsCollection.OfType<SelectSuplyProductItemViewModel>().Where(i => i.IsSelected);
+            if(!items.Any())
+            {
+                Alert("Выберите продукты для перевода");
+                return;
+            }
             foreach (var item in items)
             {
                 confirmMessage += $"{item.Name} в количестве {item.QuantityToTransfer}\n";
@@ -51,7 +56,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels.TransferSuplyProduct
 
         public override async Task<List<ListItemViewModelBase>> LoadData()
         {
-            var items = await manager.GetSuplyProducts();
+            var items = await manager.GetSuplyProducts(fromCoffeeRoom);
             var result = new List<ListItemViewModelBase>();
 
 

@@ -247,8 +247,6 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Products
         public override async Task Initialize()
         {
             await base.Initialize();
-
-            productDTO = await manager.GetProduct(productId);
             
             var categories = await categoryManager.GetCategoriesPlain();
             CategoriesList = categories.Select(s => new CategoryItemViewModel(s)).ToList();
@@ -257,8 +255,10 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Products
             Colors = (await manager.GetAvaivalbeProductColors()).ToList();
             RaisePropertyChanged(nameof(Colors));
             
-            if(productDTO != null)
+            if(productId > 0)
             {
+                productDTO = await manager.GetProduct(productId);
+
                 addProductCommand = new MvxCommand(DoEditProduct);
                 id = productDTO.Id;
                 Name = productDTO.Name;
