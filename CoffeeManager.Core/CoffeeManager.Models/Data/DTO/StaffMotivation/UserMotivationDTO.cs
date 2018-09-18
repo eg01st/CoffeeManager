@@ -9,6 +9,7 @@
         public decimal ShiftScore { get; set; }
         public decimal MoneyScore { get; set; }
         public decimal OtherScore { get; set; }
+        
         public decimal EntireScore => ShiftScore + MoneyScore + OtherScore;
     }
 }

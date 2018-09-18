@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:local="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    local:MvxBind="LongPress DismisItemCommand">
+    <CardView
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:foreground="?android:selectableItemBackground"
+        local:cardElevation="4dp"
+        local:cardUseCompatPadding="true"
+        local:cardCornerRadius="5dp">
+        <LinearLayout
+            android:layout_margin="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="100">
+            <TextView
+                android:id="@+id/name_text_view"
+                android:layout_weight="40"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="24dp" />
+            <TextView
+                android:id="@+id/shift_text_view"
+                android:layout_weight="20"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="24dp" />
+            <TextView
+                android:id="@+id/money_text_view"
+                android:layout_weight="20"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="24dp" />
+            <TextView
+                android:id="@+id/entire_text_view"
+                android:layout_weight="20"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="24dp" />
+        </LinearLayout>
+    </CardView>
+</LinearLayout>

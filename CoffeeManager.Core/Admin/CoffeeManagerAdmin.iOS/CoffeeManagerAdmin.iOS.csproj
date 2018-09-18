@@ -50,9 +50,8 @@
     <ConsolePause>false</ConsolePause>
     <MtouchArch>ARMv7, ARM64</MtouchArch>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-    <CodesignKey>iPhone Developer: tertyshnykov@gmail.com (B6W7MCB7GE)</CodesignKey>
+    <CodesignKey>iPhone Developer: DMYTRO SERDECHNYI (B6W7MCB7GE)</CodesignKey>
     <MtouchDebug>true</MtouchDebug>
-    <CodesignProvision>VS: com.companyname.CoffeeManagerAdmin.iOS4 Development</CodesignProvision>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
@@ -502,6 +501,18 @@
     <Compile Include="Views\Shifts\Counters\ShiftCounterTableViewHeader.designer.cs">
       <DependentUpon>ShiftCounterTableViewHeader.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Motivation\MotivationView.cs" />
+    <Compile Include="Views\Motivation\MotivationView.designer.cs">
+      <DependentUpon>MotivationView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Motivation\MotivationViewCell.cs" />
+    <Compile Include="Views\Motivation\MotivationViewCell.designer.cs">
+      <DependentUpon>MotivationViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Motivation\MotivationTableViewHeader.cs" />
+    <Compile Include="Views\Motivation\MotivationTableViewHeader.designer.cs">
+      <DependentUpon>MotivationTableViewHeader.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Setup.cs" />
@@ -601,6 +612,9 @@
     <InterfaceDefinition Include="Views\Shifts\Counters\ShiftCountersView.xib" />
     <InterfaceDefinition Include="Views\Shifts\Counters\ShiftCounterTableViewCell.xib" />
     <InterfaceDefinition Include="Views\Shifts\Counters\ShiftCounterTableViewHeader.xib" />
+    <InterfaceDefinition Include="Views\Motivation\MotivationView.xib" />
+    <InterfaceDefinition Include="Views\Motivation\MotivationViewCell.xib" />
+    <InterfaceDefinition Include="Views\Motivation\MotivationTableViewHeader.xib" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -756,6 +770,7 @@
     <Folder Include="Views\Categories\" />
     <Folder Include="Views\Counter\" />
     <Folder Include="Views\Shifts\Counters\" />
+    <Folder Include="Views\Motivation\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\ic_check.png" />

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MotivationView">
+            <connections>
+                <outlet property="FinishMotivationButton" destination="mpf-hi-5F4" id="0nT-jq-fJG"/>
+                <outlet property="MotivationStartDateLabel" destination="yhA-lv-oGd" id="EEk-os-55E"/>
+                <outlet property="MotivationTableView" destination="vy5-r0-LoR" id="X5M-kc-lqh"/>
+                <outlet property="view" destination="2" id="RRd-Eg-VrN"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="2">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Дата начала мотивации:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QFh-vK-MJb">
+                    <rect key="frame" x="16" y="38" width="196" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yhA-lv-oGd">
+                    <rect key="frame" x="228" y="38" width="131" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mpf-hi-5F4">
+                    <rect key="frame" x="107.5" y="67" width="160" height="30"/>
+                    <state key="normal" title="Закончить мотивацию"/>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Рейтинг" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Obc-Ky-Heq">
+                    <rect key="frame" x="154.5" y="113" width="66" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vy5-r0-LoR">
+                    <rect key="frame" x="0.0" y="150" width="375" height="517"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="vy5-r0-LoR" secondAttribute="bottom" id="6K2-3f-eSP"/>
+                <constraint firstItem="Obc-Ky-Heq" firstAttribute="top" secondItem="mpf-hi-5F4" secondAttribute="bottom" constant="16" id="6XE-ha-2b5"/>
+                <constraint firstAttribute="trailing" secondItem="yhA-lv-oGd" secondAttribute="trailing" constant="16" id="B3I-4s-EDb"/>
+                <constraint firstItem="mpf-hi-5F4" firstAttribute="centerX" secondItem="2" secondAttribute="centerX" id="CBU-MP-V8t"/>
+                <constraint firstItem="Obc-Ky-Heq" firstAttribute="centerX" secondItem="2" secondAttribute="centerX" id="FOm-6j-jKx"/>
+                <constraint firstItem="vy5-r0-LoR" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="e9P-CS-rDK"/>
+                <constraint firstItem="mpf-hi-5F4" firstAttribute="top" secondItem="QFh-vK-MJb" secondAttribute="bottom" constant="8" id="gdG-4L-f7z"/>
+                <constraint firstAttribute="trailing" secondItem="vy5-r0-LoR" secondAttribute="trailing" id="i4G-S3-mER"/>
+                <constraint firstItem="yhA-lv-oGd" firstAttribute="leading" secondItem="QFh-vK-MJb" secondAttribute="trailing" constant="16" id="ifk-wh-Dad"/>
+                <constraint firstItem="vy5-r0-LoR" firstAttribute="top" secondItem="Obc-Ky-Heq" secondAttribute="bottom" constant="16" id="jCE-7j-vDT"/>
+                <constraint firstItem="QFh-vK-MJb" firstAttribute="top" secondItem="2" secondAttribute="top" constant="38" id="uth-Io-L5a"/>
+                <constraint firstItem="yhA-lv-oGd" firstAttribute="centerY" secondItem="QFh-vK-MJb" secondAttribute="centerY" id="w6W-IJ-mv3"/>
+                <constraint firstItem="QFh-vK-MJb" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="16" id="wNN-hq-Y6P"/>
+            </constraints>
+        </view>
+    </objects>
+</document>

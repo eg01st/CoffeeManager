@@ -8,6 +8,12 @@ namespace CoffeManager.Common.Managers
     {
         Task<ShiftMotivationDTO[]> GetAllMotivationItems();
         
-        Task<UserMotivationDTO[]> GetUsersMotivationFromDate(DateTime date);
+        Task<UserMotivationDTO[]> GetUsersMotivation(int motivationId);
+        
+        Task<MotivationDTO> StartNewMotivation();
+        
+        Task FinishMotivation(int motivationId);
+        
+        Task<MotivationDTO> GetCurrentMotivation();
     }
 }

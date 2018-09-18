@@ -10,16 +10,35 @@ namespace CoffeManager.Common.Providers
     {
         public async Task<ShiftMotivationDTO[]> GetAllMotivationItems()
         {
-            return await Get<ShiftMotivationDTO[]>(RoutesConstants.GetAllMotivationItems, null);
+            return await Get<ShiftMotivationDTO[]>(RoutesConstants.GetAllMotivationItems);
         }
 
-        public async Task<UserMotivationDTO[]> GetUsersMotivationFromDate(DateTime date)
+        public async Task<UserMotivationDTO[]> GetUsersMotivation(int motivationId)
         {
-            return await Get<UserMotivationDTO[]>(RoutesConstants.GetUsersMotivationFromDate,
+            return await Get<UserMotivationDTO[]>(RoutesConstants.GetUsersMotivation,
                 new Dictionary<string, string>()
                 {
-                    {nameof(date), date.ToString()},
+                    {nameof(motivationId), motivationId.ToString()},
                 });
+        }
+
+        public async Task<MotivationDTO> StartNewMotivation()
+        {
+            return await Post<MotivationDTO, object>(RoutesConstants.StartNewMotivation, null);
+        }
+
+        public async Task FinishMotivation(int motivationId)
+        {
+            await Post(RoutesConstants.FinishMotivation,
+                new Dictionary<string, string>()
+                {
+                    {nameof(motivationId), motivationId.ToString()},
+                });
+        }
+
+        public async Task<MotivationDTO> GetCurrentMotivation()
+        {
+            return await Get<MotivationDTO>(RoutesConstants.GetCurrentMotivation);
         }
     }
 }

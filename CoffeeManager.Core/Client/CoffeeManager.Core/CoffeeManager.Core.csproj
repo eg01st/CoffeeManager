@@ -52,6 +52,8 @@
     <Compile Include="ViewModels\ExpenseViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\Motivation\MotivationItemViewModel.cs" />
+    <Compile Include="ViewModels\Motivation\MotivationViewModel.cs" />
     <Compile Include="ViewModels\Products\ProductBaseViewModel.cs" />
     <Compile Include="ViewModels\SaleItemViewModel.cs" />
     <Compile Include="ViewModels\Products\AddsViewModel.cs" />

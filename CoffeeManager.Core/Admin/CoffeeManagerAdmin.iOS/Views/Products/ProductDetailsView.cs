@@ -80,15 +80,12 @@ namespace CoffeeManagerAdmin.iOS.Views.Products
             {
                 Title = "Калькуляция"
             };
-
-
             NavigationItem.SetRightBarButtonItem(btn, false);
             this.AddBindings(new Dictionary<object, string>
             {
                 {btn, "Clicked SelectCalculationItemsCommand"},
 
             });
-
         }
     }
 }

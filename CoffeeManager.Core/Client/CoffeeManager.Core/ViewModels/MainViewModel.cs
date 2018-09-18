@@ -16,6 +16,7 @@ using CoffeManager.Common.Managers;
 using CoffeManager.Common.ViewModels;
 using MobileCore.ViewModels;
 using CoffeeManager.Common;
+using CoffeeManager.Core.ViewModels.Motivation;
 
 namespace CoffeeManager.Core.ViewModels
 {
@@ -154,7 +155,9 @@ namespace CoffeeManager.Core.ViewModels
         public ICommand ShowInventoryCommand { get; set; }
         public ICommand ShowUtilizeCommand { get; set; }
         public ICommand ShowSettingsCommand { get; set; }
-
+        public ICommand ShowMotivationCommand { get; set; }
+        
+        
         public ICommand ShowChargeCommand { get; set; }
 
         public ObservableCollection<SelectedProductViewModel> SelectedProducts
@@ -224,6 +227,7 @@ namespace CoffeeManager.Core.ViewModels
             ShowInventoryCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<InventoryViewModel>());
             ShowUtilizeCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<UtilizeProductsViewModel>());
             ShowSettingsCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<SettingsViewModel>());
+            ShowMotivationCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<MotivationViewModel>());
             ShowChargeCommand = new MvxCommand<int>((sum) => DoShowCharge(sum));
         }
 
