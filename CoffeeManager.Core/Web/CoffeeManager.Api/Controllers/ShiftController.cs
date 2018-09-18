@@ -181,14 +181,12 @@ namespace CoffeeManager.Api.Controllers
                 decimal moneyMotivationScore = 0;
                 
                 var currentMotivation = enities.Motivations.FirstOrDefault(m => !m.EndDate.HasValue);
-
-                if (Math.Abs(diff) < Constants.MaxShiftAmountOversight && currentMotivation != null)
+                var isValidShift = (DateTime.Now - shift.Date.Value).Hours > 5;
+                if (Math.Abs(diff) < Constants.MaxShiftAmountOversight && currentMotivation != null && isValidShift)
                 {
                     var sevenDaysAgo = DateTime.Now.AddDays(-7);
-                    var weekShifts = enities.Shifts.Where(s => s.CoffeeRoomNo.Value == coffeeroomno &&
-                                                               s.IsFinished.HasValue
+                    var weekShifts = enities.Shifts.Where(s => s.Id != shiftId && s.CoffeeRoomNo == coffeeroomno
                                                                && s.IsFinished.Value
-                                                               && s.Date.HasValue
                                                                && s.Date > sevenDaysAgo).ToList();
                     if (isDayShift)
                     {
@@ -217,12 +215,21 @@ namespace CoffeeManager.Api.Controllers
                     if (motivationItem != null)
                     {
                         motivationItem.Moneycore = moneyMotivationScore;
-                        motivationScore += motivationItem.ShiftScore;
+                        motivationScore += motivationItem.ShiftScore + moneyMotivationScore;
                     }
                 }
 
-                motivationScore += moneyMotivationScore;
                 enities.SaveChanges();
+
+                if (!isValidShift)
+                {
+                    var motivationItem = enities.ShiftMotivations.FirstOrDefault(f => f.ShiftId == shiftId);
+                    if (motivationItem != null)
+                    {
+                        enities.ShiftMotivations.Remove(motivationItem);
+                        enities.SaveChanges();
+                    }
+                }
 
                 return Request.CreateResponse(HttpStatusCode.OK,
                     new EndShiftUserInfo()
