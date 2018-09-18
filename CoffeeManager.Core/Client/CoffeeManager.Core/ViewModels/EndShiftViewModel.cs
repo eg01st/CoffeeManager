@@ -144,7 +144,9 @@ namespace CoffeeManager.Core.ViewModels
             await ExecuteSafe(async () =>
             {
                 var info = await shiftManager.EndUserShift(shiftId, realAmount, counters);
-                Alert($"Касса за смену: {info.RealShiftAmount:F}\nЗаработано за смену: {info.EarnedAmount:F}\nОбщая сумма зп: {info.CurrentUserAmount:F}",
+                Alert($"Касса за смену: {info.RealShiftAmount:F}\nЗаработано за смену: {info.EarnedAmount:F}\nОбщая сумма зп: {info.CurrentUserAmount:F}" 
+//                   +   $"\nЗаработано очков мотивации: {info.EarnedMotivationScore}"
+                    ,
                       () => NavigationService.Navigate<LoginViewModel>(),
                         "Окончание смены");
             });

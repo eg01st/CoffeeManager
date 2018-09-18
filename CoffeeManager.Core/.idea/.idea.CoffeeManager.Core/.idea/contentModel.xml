@@ -99,6 +99,10 @@
               <e p="MappedSuplyProductItemViewModel.cs" t="Include" />
               <e p="SelectMappedSuplyProductItemViewModel.cs" t="Include" />
             </e>
+            <e p="Motivation" t="Include">
+              <e p="MotivationItemViewModel.cs" t="Include" />
+              <e p="MotivationViewModel.cs" t="Include" />
+            </e>
             <e p="Orders" t="Include">
               <e p="OrderItemsViewModel.cs" t="Include" />
               <e p="OrderItemViewModel.cs" t="Include" />
@@ -632,6 +636,17 @@
               <e p="MappedSuplyProductsTableViewCell.designer.cs" t="Include" />
               <e p="MappedSuplyProductsTableViewCell.xib" t="Include" />
             </e>
+            <e p="Motivation" t="Include">
+              <e p="MotivationTableViewHeader.cs" t="Include" />
+              <e p="MotivationTableViewHeader.designer.cs" t="Include" />
+              <e p="MotivationTableViewHeader.xib" t="Include" />
+              <e p="MotivationView.cs" t="Include" />
+              <e p="MotivationView.designer.cs" t="Include" />
+              <e p="MotivationView.xib" t="Include" />
+              <e p="MotivationViewCell.cs" t="Include" />
+              <e p="MotivationViewCell.designer.cs" t="Include" />
+              <e p="MotivationViewCell.xib" t="Include" />
+            </e>
             <e p="Orders" t="Include">
               <e p="OrderItemsView.cs" t="Include" />
               <e p="OrderItemsView.designer.cs" t="Include" />
@@ -877,6 +892,10 @@
             </e>
             <e p="LoginViewModel.cs" t="Include" />
             <e p="MainViewModel.cs" t="Include" />
+            <e p="Motivation" t="Include">
+              <e p="MotivationItemViewModel.cs" t="Include" />
+              <e p="MotivationViewModel.cs" t="Include" />
+            </e>
             <e p="Products" t="Include">
               <e p="AddsViewModel.cs" t="Include" />
               <e p="CoffeeViewModel.cs" t="Include" />
@@ -909,6 +928,7 @@
           <e p="Adapters" t="Include">
             <e p="ViewHolders" t="Include">
               <e p="CoffeeCounterViewHolder.cs" t="Include" />
+              <e p="MotivationViewHolder.cs" t="Include" />
             </e>
             <e p="ViewPagerAdapter.cs" t="Include" />
           </e>
@@ -1011,6 +1031,7 @@
               <e p="ic_menu_white_24dp.png" t="Include" />
             </e>
             <e p="layout" t="Include">
+              <e p="activity_motivation.axml" t="Include" />
               <e p="category_item.axml" t="Include" />
               <e p="coffee_counter_item.axml" t="Include" />
               <e p="coffee_counter_layout.axml" t="Include" />
@@ -1023,6 +1044,7 @@
               <e p="initial_login.axml" t="Include" />
               <e p="inventory.axml" t="Include" />
               <e p="inventory_item.axml" t="Include" />
+              <e p="item_motivation.axml" t="Include" />
               <e p="login.axml" t="Include" />
               <e p="main.axml" t="Include" />
               <e p="main_content.axml" t="Include" />
@@ -1099,6 +1121,7 @@
             <e p="InventoryView.cs" t="Include" />
             <e p="LoginView.cs" t="Include" />
             <e p="MainView.cs" t="Include" />
+            <e p="MotivationView.cs" t="Include" />
             <e p="SettingsView.cs" t="Include" />
             <e p="SplashView.cs" t="Include" />
             <e p="UtilizeProductsView.cs" t="Include" />

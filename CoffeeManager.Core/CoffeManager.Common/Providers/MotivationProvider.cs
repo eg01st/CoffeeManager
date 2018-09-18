@@ -10,7 +10,7 @@ namespace CoffeManager.Common.Providers
     {
         public async Task<ShiftMotivationDTO[]> GetAllMotivationItems()
         {
-            return await Get<ShiftMotivationDTO[]>(RoutesConstants.GetAllMotivationItems, null);
+            return await Get<ShiftMotivationDTO[]>(RoutesConstants.GetAllMotivationItems);
         }
 
         public async Task<UserMotivationDTO[]> GetUsersMotivation(int motivationId)
@@ -38,7 +38,7 @@ namespace CoffeManager.Common.Providers
 
         public async Task<MotivationDTO> GetCurrentMotivation()
         {
-            return await Get<MotivationDTO>(RoutesConstants.GetCurrentMotivation, null);
+            return await Get<MotivationDTO>(RoutesConstants.GetCurrentMotivation);
         }
     }
 }

@@ -61,6 +61,8 @@
     <Compile Include="ViewModels\Home\MenuFeedtemViewModel.cs" />
     <Compile Include="ViewModels\Home\MoreViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\Motivation\MotivationItemViewModel.cs" />
+    <Compile Include="ViewModels\Motivation\MotivationViewModel.cs" />
     <Compile Include="ViewModels\Orders\OrderItemsViewModel.cs" />
     <Compile Include="ViewModels\Orders\OrderItemViewModel.cs" />
     <Compile Include="ViewModels\Orders\OrdersViewModel.cs" />

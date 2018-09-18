@@ -2,10 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:local="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-              android:orientation="vertical"
+    android:keepScreenOn="true"
+    android:orientation="vertical"
     android:layout_height="match_parent">
     <include
-            layout="@layout/toolbar" />
+        layout="@layout/toolbar" />
     <Mvx.MvxListView
         android:dividerHeight="0dp"
         android:divider="@null"

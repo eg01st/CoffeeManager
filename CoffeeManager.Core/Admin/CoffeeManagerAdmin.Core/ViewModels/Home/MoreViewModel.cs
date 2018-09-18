@@ -2,6 +2,7 @@
 using CoffeeManagerAdmin.Core.ViewModels.Categories;
 using CoffeeManagerAdmin.Core.ViewModels.CoffeeCounter;
 using CoffeeManagerAdmin.Core.ViewModels.CreditCard;
+using CoffeeManagerAdmin.Core.ViewModels.Motivation;
 using CoffeeManagerAdmin.Core.ViewModels.Settings;
 using CoffeManager.Common.Common;
 using MobileCore.ViewModels;
@@ -27,6 +28,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Home
                 MenuFeedtemViewModel.Create<CreditCardViewModel>( Strings.CreditCard),
                 MenuFeedtemViewModel.Create<CoffeeCountersViewModel>( Strings.Counters),
                 MenuFeedtemViewModel.Create<CategoriesViewModel>( Strings.Categories),
+                MenuFeedtemViewModel.Create<MotivationViewModel>( Strings.Motivation),
                 MenuFeedtemViewModel.Create<CoffeeCountersViewModel>( Strings.Quit),
             });
         }

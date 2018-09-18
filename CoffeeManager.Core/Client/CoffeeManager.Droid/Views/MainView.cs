@@ -217,6 +217,9 @@ namespace CoffeeManager.Droid.Views
                 case Resource.Id.utilize_suply_product:
                     ViewModel.ShowUtilizeCommand.Execute(null);
                     break;
+//                case Resource.Id.motivation:
+//                    ViewModel.ShowMotivationCommand.Execute(null);
+//                    break;
                 case Resource.Id.settings:
                     ViewModel.ShowSettingsCommand.Execute(null);
                     break;
