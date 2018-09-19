@@ -102,6 +102,9 @@ namespace CoffeeManager.Api.Controllers
             var request = await message.Content.ReadAsStringAsync();
             var shiftInfo = JsonConvert.DeserializeObject<EndShiftDTO>(request);
             int shiftId = shiftInfo.ShiftId;
+
+            Log.Info($"Ending shift {shiftId} for coffeeroom {coffeeroomno}");
+
             lock (LockEndShift)
             {
                 var enities = new CoffeeRoomEntities();
@@ -127,7 +130,6 @@ namespace CoffeeManager.Api.Controllers
                 }
 
 
- 
                 decimal amountForPartialPay = 0;
                 bool isDayShift = shift.Date.Value.TimeOfDay.Hours < 12;
 
@@ -157,6 +159,11 @@ namespace CoffeeManager.Api.Controllers
                 var user = enities.Users.Include(s => s.UserPaymentStrategies).First(u => u.Id == shift.UserId);
                 var userPaymentStrategy = user.UserPaymentStrategies.First(s => s.CoffeeRoomId == coffeeroomno);
 
+                Log.Info($"Shift ID {shiftId}: Start salary calcualtion for user {user.Name} coffeeroom {coffeeroomno}");
+                Log.Info($"Shift ID {shiftId}: Payment strategy: DayShiftPersent {userPaymentStrategy.DayShiftPersent};" +
+                         $"NightShiftPercent {userPaymentStrategy.NightShiftPercent}" +
+                         $"MinimumPayment {userPaymentStrategy.MinimumPayment}" +
+                         $"SimplePayment {userPaymentStrategy.SimplePayment}");
                 var percent = isDayShift
                     ? userPaymentStrategy.DayShiftPersent
                     : userPaymentStrategy.NightShiftPercent;
@@ -168,7 +175,7 @@ namespace CoffeeManager.Api.Controllers
                     userEarnedAmount = userPaymentStrategy.MinimumPayment;
                 }
                 user.CurrentEarnedAmount += userEarnedAmount;
-
+                Log.Info($"Shift ID {shiftId}: User {user.Name} coffeeroom {coffeeroomno} earned {userEarnedAmount}; entire is {user.CurrentEarnedAmount}");
                 var userEarneingHistory = new UserEarningsHistory();
                 userEarneingHistory.Amount = userEarnedAmount;
                 userEarneingHistory.Date = shift.Date.Value;
@@ -176,12 +183,15 @@ namespace CoffeeManager.Api.Controllers
                 userEarneingHistory.ShiftId = shift.Id;
                 userEarneingHistory.UserId = shift.UserId.Value;
                 enities.UserEarningsHistories.Add(userEarneingHistory);
+                enities.SaveChanges();
+                Log.Info($"Shift ID {shiftId}: Saved user amount");
 
                 decimal motivationScore = 0;
                 decimal moneyMotivationScore = 0;
-                
+
+                Log.Info($"Shift ID {shiftId}: Start calculate motivation score");
                 var currentMotivation = enities.Motivations.FirstOrDefault(m => !m.EndDate.HasValue);
-                var isValidShift = (DateTime.Now - shift.Date.Value).Hours > 5;
+                var isValidShift = (DateTime.Now - shift.Date.Value).Hours > Constants.MinHoursForValidShift;
                 if (Math.Abs(diff) < Constants.MaxShiftAmountOversight && currentMotivation != null && isValidShift)
                 {
                     var sevenDaysAgo = DateTime.Now.AddDays(-7);
@@ -196,7 +206,7 @@ namespace CoffeeManager.Api.Controllers
                     {
                         weekShifts = weekShifts.Where(w => w.Date.Value.TimeOfDay.Hours > 12).ToList();
                     }
-
+                    Log.Info($"Shift {shiftId} coffeeroom {coffeeroomno} isDayShift is {isDayShift}");
                     var maxAmount = weekShifts.Max(w =>
                     {
                         var dif = w.RealAmount - w.TotalAmount;
@@ -206,7 +216,7 @@ namespace CoffeeManager.Api.Controllers
                         }
                         return w.CurrentAmount + dif + w.CreditCardAmount.Value;
                     });
-
+                    Log.Info($"Shift {shiftId} coffeeroom {coffeeroomno} Max amount is {maxAmount}");
                     var onePercentOfMaxAmount = maxAmount / 100;
                     var percentOfCurrentShift = realShiftAmount / onePercentOfMaxAmount;
                     moneyMotivationScore = percentOfCurrentShift / 100;
@@ -216,18 +226,25 @@ namespace CoffeeManager.Api.Controllers
                     {
                         motivationItem.Moneycore = moneyMotivationScore;
                         motivationScore += motivationItem.ShiftScore + moneyMotivationScore;
+                        Log.Info($"Shift {shiftId} coffeeroom {coffeeroomno} Motivation score is {motivationScore}");
                     }
+                }
+                else
+                {
+                    Log.Info($"Calculation of motivation score is rejected for shift {shiftId} coffeeroom {coffeeroomno}");
                 }
 
                 enities.SaveChanges();
 
                 if (!isValidShift)
                 {
+                    Log.Info($"Shift {shiftId} coffeeroom {coffeeroomno} is not valid, removing scores");
                     var motivationItem = enities.ShiftMotivations.FirstOrDefault(f => f.ShiftId == shiftId);
                     if (motivationItem != null)
                     {
                         enities.ShiftMotivations.Remove(motivationItem);
                         enities.SaveChanges();
+                        Log.Info($"Shift {shiftId} coffeeroom {coffeeroomno} is not valid, removed scores");
                     }
                 }
 
@@ -392,25 +409,40 @@ namespace CoffeeManager.Api.Controllers
         {
             var entities = new CoffeeRoomEntities();
             var shift = entities.Shifts.FirstOrDefault(s => s.Id == shiftId && s.CoffeeRoomNo == coffeeroomno);
+            Log.Info($"Discaring shift {shiftId} for coffeeroom {coffeeroomno}");
             if (shift != null)
             {
                 var salesCount = entities.Sales.Count(s => s.CoffeeRoomNo == coffeeroomno && s.ShiftId == shiftId && !s.IsRejected);
                 if (salesCount > 0)
                 {
+                    Log.Info($"Discaring shift {shiftId} for coffeeroom {coffeeroomno}; Sales exist");
                     return Request.CreateErrorResponse(HttpStatusCode.RequestedRangeNotSatisfiable, "Sales exist");
                 }
 
                 var expenseCount = entities.Expenses.Count(e => e.ShiftId == shiftId);
                 if (expenseCount > 0)
                 {
+                    Log.Info($"Discaring shift {shiftId} for coffeeroom {coffeeroomno}; Expenses exist");
                     return Request.CreateErrorResponse(HttpStatusCode.RequestedRangeNotSatisfiable, "Expenses exist");
                 }
+
+                var motivationItem = entities.ShiftMotivations.FirstOrDefault(f => f.ShiftId == shiftId);
+                if (motivationItem != null)
+                {
+                    entities.ShiftMotivations.Remove(motivationItem);
+                    Log.Info($"Shift {shiftId} coffeeroom {coffeeroomno} removed Motivation");
+                }
+
+                var coffeeCountes = entities.CoffeeCounters.Where(c => c.ShiftId == shiftId);
+                entities.CoffeeCounters.RemoveRange(coffeeCountes);
+                Log.Info($"Discaring shift {shiftId} for coffeeroom {coffeeroomno}; Removing coffee counters");
                 entities.Sales.RemoveRange(shift.Sales);
                 entities.Shifts.Remove(shift);
                 entities.SaveChanges();
-
+                Log.Info($"Discaring shift {shiftId} for coffeeroom {coffeeroomno}; Shift discarded");
                 return Request.CreateResponse(HttpStatusCode.OK);
             }
+            Log.Info($"Discaring shift {shiftId} for coffeeroom {coffeeroomno}; Shift does not exists");
             return Request.CreateErrorResponse(HttpStatusCode.RequestedRangeNotSatisfiable, "Shift does not exists");
         }
     }

@@ -117,8 +117,6 @@ namespace CoffeeManager.Api.Mappers
 				CoffeeRoomNo = productDTO.CoffeeRoomNo,
 				CupType = productDTO.CupType,
 				Name = productDTO.Name,
-				PolicePrice = productDTO.PolicePrice,
-				Price = productDTO.Price,
 				IsActive = productDTO.IsActive,
 				IsSaleByWeight = productDTO.IsSaleByWeight,
 				CategoryId = productDTO.CategoryId,
@@ -126,7 +124,8 @@ namespace CoffeeManager.Api.Mappers
 				Description = productDTO.Description,
 				IsPercentPaymentEnabled = productDTO.IsPercentPaymentEnabled
 			};
-			if (productDTO.SuplyId.HasValue) {
+			if (productDTO.SuplyId.HasValue)
+            {
 				prod.SuplyProductId = productDTO.SuplyId;
 			}
 			return prod;
@@ -236,6 +235,18 @@ namespace CoffeeManager.Api.Mappers
 	            DayShiftPercent = dto.DayShiftPercent,
 	            NightShiftPercent = dto.NightShiftPercent
 	        };  
+	    }
+
+	    public static ProductPrice Map(this ProductPriceDTO dto)
+	    {
+	        return new ProductPrice()
+	        {
+	            Id = dto.Id,
+	            ProductId = dto.ProductId,
+	            CoffeeRoomNo = dto.CoffeeRoomNo,
+	            Price = dto.Price,
+                DiscountPrice = dto.DiscountPrice
+	        };
 	    }
     }
 }

@@ -259,6 +259,16 @@
           <Property Name="DayShiftPercent" Type="money" Nullable="false" />
           <Property Name="NightShiftPercent" Type="money" Nullable="false" />
         </EntityType>
+        <EntityType Name="ProductPrice">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CoffeeRoomNo" Type="int" Nullable="false" />
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="Price" Type="money" Nullable="false" />
+          <Property Name="DiscountPrice" Type="money" Nullable="false" />
+        </EntityType>
         <EntityType Name="ProductType">
           <Key>
             <PropertyRef Name="Id" />
@@ -720,6 +730,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__ProductPr__Coffe__6CD828CA">
+          <End Role="CoffeeRoom" Type="Self.CoffeeRoom" Multiplicity="1" />
+          <End Role="ProductPrice" Type="Self.ProductPrice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CoffeeRoom">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductPrice">
+              <PropertyRef Name="CoffeeRoomNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProductPr__Produ__6DCC4D03">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="ProductPrice" Type="Self.ProductPrice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductPrice">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Sale__Product__3B75D760">
           <End Role="Product" Type="Self.Product" Multiplicity="1" />
           <End Role="Sale" Type="Self.Sale" Multiplicity="*" />
@@ -1150,6 +1184,7 @@
           <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductCalculation" EntityType="Self.ProductCalculation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductPaymentStrategy" EntityType="Self.ProductPaymentStrategy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductPrice" EntityType="Self.ProductPrice" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductType" EntityType="Self.ProductType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sale" EntityType="Self.Sale" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ShiftMotivation" EntityType="Self.ShiftMotivation" Schema="dbo" store:Type="Tables" />
@@ -1256,6 +1291,14 @@
           <AssociationSet Name="FK__ProductPa__Produ__540C7B00" Association="Self.FK__ProductPa__Produ__540C7B00">
             <End Role="Product" EntitySet="Product" />
             <End Role="ProductPaymentStrategy" EntitySet="ProductPaymentStrategy" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProductPr__Coffe__6CD828CA" Association="Self.FK__ProductPr__Coffe__6CD828CA">
+            <End Role="CoffeeRoom" EntitySet="CoffeeRoom" />
+            <End Role="ProductPrice" EntitySet="ProductPrice" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProductPr__Produ__6DCC4D03" Association="Self.FK__ProductPr__Produ__6DCC4D03">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="ProductPrice" EntitySet="ProductPrice" />
           </AssociationSet>
           <AssociationSet Name="FK__Sale__Product__3B75D760" Association="Self.FK__Sale__Product__3B75D760">
             <End Role="Product" EntitySet="Product" />
@@ -1466,6 +1509,7 @@
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="IsPercentPaymentEnabled" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="ProductPaymentStrategies" Relationship="CoffeeRoomModel.FK__ProductPa__Produ__540C7B00" FromRole="Product" ToRole="ProductPaymentStrategy" />
+          <NavigationProperty Name="ProductPrices" Relationship="CoffeeRoomModel.FK__ProductPr__Produ__6DCC4D03" FromRole="Product" ToRole="ProductPrice" />
         </EntityType>
         <EntityType Name="ProductType">
           <Key>
@@ -1926,6 +1970,15 @@
             <End Role="User" EntitySet="Users" />
             <End Role="ShiftMotivation" EntitySet="ShiftMotivations" />
           </AssociationSet>
+          <EntitySet Name="ProductPrices" EntityType="CoffeeRoomModel.ProductPrice" />
+          <AssociationSet Name="FK__ProductPr__Coffe__6CD828CA" Association="CoffeeRoomModel.FK__ProductPr__Coffe__6CD828CA">
+            <End Role="CoffeeRoom" EntitySet="CoffeeRooms" />
+            <End Role="ProductPrice" EntitySet="ProductPrices" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProductPr__Produ__6DCC4D03" Association="CoffeeRoomModel.FK__ProductPr__Produ__6DCC4D03">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="ProductPrice" EntitySet="ProductPrices" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="UsedProductsPerShift">
           <Key>
@@ -2315,6 +2368,7 @@
           <NavigationProperty Name="EnabledCategories" Relationship="CoffeeRoomModel.FK__EnabledCa__Coffe__5CA1C101" FromRole="CoffeeRoom" ToRole="EnabledCategory" />
           <NavigationProperty Name="EnabledCoffeeCounters" Relationship="CoffeeRoomModel.FK__EnabledCo__Coffe__57DD0BE4" FromRole="CoffeeRoom" ToRole="EnabledCoffeeCounter" />
           <NavigationProperty Name="ProductPaymentStrategies" Relationship="CoffeeRoomModel.FK__ProductPa__Coffe__531856C7" FromRole="CoffeeRoom" ToRole="ProductPaymentStrategy" />
+          <NavigationProperty Name="ProductPrices" Relationship="CoffeeRoomModel.FK__ProductPr__Coffe__6CD828CA" FromRole="CoffeeRoom" ToRole="ProductPrice" />
         </EntityType>
         <EntityType Name="UserEarningsHistory">
           <Key>
@@ -2850,6 +2904,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="ProductPrice">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CoffeeRoomNo" Type="Int32" Nullable="false" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="DiscountPrice" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <NavigationProperty Name="CoffeeRoom" Relationship="CoffeeRoomModel.FK__ProductPr__Coffe__6CD828CA" FromRole="ProductPrice" ToRole="CoffeeRoom" />
+          <NavigationProperty Name="Product" Relationship="CoffeeRoomModel.FK__ProductPr__Produ__6DCC4D03" FromRole="ProductPrice" ToRole="Product" />
+        </EntityType>
+        <Association Name="FK__ProductPr__Coffe__6CD828CA">
+          <End Type="CoffeeRoomModel.CoffeeRoom" Role="CoffeeRoom" Multiplicity="1" />
+          <End Type="CoffeeRoomModel.ProductPrice" Role="ProductPrice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CoffeeRoom">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductPrice">
+              <PropertyRef Name="CoffeeRoomNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProductPr__Produ__6DCC4D03">
+          <End Type="CoffeeRoomModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="CoffeeRoomModel.ProductPrice" Role="ProductPrice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductPrice">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3365,6 +3455,17 @@
                 <ScalarProperty Name="MotivationId" ColumnName="MotivationId" />
                 <ScalarProperty Name="ShiftId" ColumnName="ShiftId" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductPrices">
+            <EntityTypeMapping TypeName="CoffeeRoomModel.ProductPrice">
+              <MappingFragment StoreEntitySet="ProductPrice">
+                <ScalarProperty Name="DiscountPrice" ColumnName="DiscountPrice" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="CoffeeRoomNo" ColumnName="CoffeeRoomNo" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

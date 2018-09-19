@@ -22,7 +22,7 @@ namespace CoffeeManager.Api.Controllers
 		public async Task<HttpResponseMessage> Get ([FromUri]int coffeeroomno, int productType)
 		{
 			var entities = new CoffeeRoomEntities ();
-			var products = entities.Products.Include(i => i.Category).Where (p => p.CategoryId == productType && !p.Removed).ToList ().Select (s => s.ToDTO ());
+			var products = entities.Products.Include(i => i.Category).Include(i => i.ProductPrices).Where (p => p.CategoryId == productType && !p.Removed).ToList ().Select (s => s.ToDTO (coffeeroomno));
 			return Request.CreateResponse (HttpStatusCode.OK, products);
 		}
 
@@ -31,7 +31,7 @@ namespace CoffeeManager.Api.Controllers
 		public async Task<HttpResponseMessage> GetAll ([FromUri]int coffeeroomno, HttpRequestMessage message)
 		{
 			var entities = new CoffeeRoomEntities ();
-			var products = entities.Products.Include(i => i.Category).Where (p => !p.Removed).ToList ().Select (s => s.ToDTO ());
+			var products = entities.Products.Include(i => i.Category).Include(i => i.ProductPrices).Where (p => !p.Removed).ToList ().Select (s => s.ToDTO (coffeeroomno));
 			return Request.CreateResponse (HttpStatusCode.OK, products);
 		}
 
@@ -40,20 +40,16 @@ namespace CoffeeManager.Api.Controllers
 	    public async Task<HttpResponseMessage> GetProduct([FromUri]int coffeeroomno, [FromUri]int productId, HttpRequestMessage message)
 	    {
 	        var entities = new CoffeeRoomEntities();
-	        var product = entities.Products.FirstOrDefault(p => p.Id == productId);
+	        var product = entities.Products
+                .Include(i => i.ProductPrices)
+                .Include(i => i.ProductPaymentStrategies)
+                .FirstOrDefault(p => p.Id == productId);
 	        if (product == null)
 	        {
 	            return Request.CreateErrorResponse(HttpStatusCode.RequestedRangeNotSatisfiable, $"No product with id  {productId}");
             }
 
 	        var dto = product.ToDetailsDTO();
-
-	        if (product.IsPercentPaymentEnabled)
-	        {
-	            var strategies = entities.ProductPaymentStrategies.Where(s => s.ProductId == productId).ToList()
-	                .Select(s => s.ToDTO()).ToList();
-	            dto.ProductPaymentStrategies = strategies;
-	        }
 	        return Request.CreateResponse(HttpStatusCode.OK, dto);
         }
 
@@ -82,8 +78,6 @@ namespace CoffeeManager.Api.Controllers
 			var prodDb = entities.Products.FirstOrDefault (p => p.Id == product.Id);
 			if (prodDb != null) {
 				prodDb.Name = product.Name;
-				prodDb.Price = product.Price;
-				prodDb.PolicePrice = product.PolicePrice;
 				prodDb.CupType = product.CupType;
                 prodDb.IsSaleByWeight = product.IsSaleByWeight;
 				prodDb.CategoryId = product.CategoryId;
@@ -111,7 +105,24 @@ namespace CoffeeManager.Api.Controllers
 			            }
 			        }
 			    }
-			    await entities.SaveChangesAsync ();
+			    if (product.ProductPrices != null)
+			    {
+			        foreach (var price in product.ProductPrices)
+			        {
+			            var priceDb = entities.ProductPrices.FirstOrDefault(s => s.Id == price.Id);
+			            if (priceDb != null)
+			            {
+			                priceDb.Price = price.Price;
+			                priceDb.DiscountPrice = price.DiscountPrice;
+			            }
+			            else
+			            {
+			                var newPrice = price.Map();
+			                entities.ProductPrices.Add(newPrice);
+			            }
+			        }
+			    }
+                await entities.SaveChangesAsync ();
 				return Request.CreateResponse (HttpStatusCode.OK);
 			} else {
 				return Request.CreateErrorResponse (HttpStatusCode.RequestedRangeNotSatisfiable, $"Product with id {product.Id} not found");
@@ -129,6 +140,8 @@ namespace CoffeeManager.Api.Controllers
                 product.Removed = true;
                 var strategies = entities.ProductPaymentStrategies.Where(s => s.ProductId == id);
                 entities.ProductPaymentStrategies.RemoveRange(strategies);
+                var prices = entities.ProductPrices.Where(s => s.ProductId == id);
+                entities.ProductPrices.RemoveRange(prices);
                 await entities.SaveChangesAsync();
                 return Request.CreateResponse(HttpStatusCode.OK);
             }

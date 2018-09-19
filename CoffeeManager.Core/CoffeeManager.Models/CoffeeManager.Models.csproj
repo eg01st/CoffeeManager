@@ -47,6 +47,7 @@
     <Compile Include="Data\Product\ProductDetaisDTO.cs" />
     <Compile Include="Data\Product\ProductDTO.cs" />
     <Compile Include="Data\Product\ProductPaymentStrategyDTO.cs" />
+    <Compile Include="Data\Product\ProductPriceDTO.cs" />
     <Compile Include="EndShiftDTO.cs" />
     <Compile Include="EndShiftUserInfo.cs" />
     <Compile Include="Entity.cs" />

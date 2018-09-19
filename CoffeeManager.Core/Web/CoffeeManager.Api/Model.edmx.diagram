@@ -96,6 +96,9 @@
         <AssociationConnector Association="CoffeeRoomModel.FK__ShiftMoti__Motiv__662B2B3B" />
         <AssociationConnector Association="CoffeeRoomModel.FK__ShiftMoti__Shift__65370702" />
         <AssociationConnector Association="CoffeeRoomModel.FK__ShiftMoti__UserI__6442E2C9" />
+        <EntityTypeShape EntityType="CoffeeRoomModel.ProductPrice" Width="1.5" PointX="13.625" PointY="23" />
+        <AssociationConnector Association="CoffeeRoomModel.FK__ProductPr__Coffe__6CD828CA" />
+        <AssociationConnector Association="CoffeeRoomModel.FK__ProductPr__Produ__6DCC4D03" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -21,6 +21,7 @@ namespace CoffeeManager.Api
             this.SupliedProducts = new HashSet<SupliedProduct>();
             this.ProductCalculations = new HashSet<ProductCalculation>();
             this.ProductPaymentStrategies = new HashSet<ProductPaymentStrategy>();
+            this.ProductPrices = new HashSet<ProductPrice>();
         }
     
         public int Id { get; set; }
@@ -50,5 +51,7 @@ namespace CoffeeManager.Api
         public virtual Category Category { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductPaymentStrategy> ProductPaymentStrategies { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ProductPrice> ProductPrices { get; set; }
     }
 }

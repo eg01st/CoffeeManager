@@ -24,6 +24,28 @@ namespace CoffeeManager.Api.Controllers
 
         public AccountController()
         {
+            var entities = new CoffeeRoomEntities();
+
+            if (!entities.ProductPrices.Any())
+            {
+                var coffeeRooms = entities.CoffeeRooms.ToList();
+
+                var products = entities.Products.ToList();
+
+                foreach (var product in products)
+                {
+                    foreach (var coffeeRoom in coffeeRooms)
+                    {
+                        var productPrice = new ProductPrice();
+                        productPrice.CoffeeRoomNo = coffeeRoom.Id;
+                        productPrice.ProductId = product.Id;
+                        productPrice.Price = product.Price;
+                        productPrice.DiscountPrice = product.PolicePrice;
+                        entities.ProductPrices.Add(productPrice);
+                        entities.SaveChanges();
+                    }
+                }
+            }
         }
 
         public AccountController(ApplicationUserManager userManager,

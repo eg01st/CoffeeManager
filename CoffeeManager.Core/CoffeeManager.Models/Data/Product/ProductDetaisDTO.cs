@@ -8,8 +8,6 @@ namespace CoffeeManager.Models.Data.Product
         public string Name { get; set; }
         public int CategoryId { get; set; }
         public string CategoryName { get; set; }
-        public decimal Price { get; set; }
-        public decimal PolicePrice { get; set; }
         public int CupType { get; set; }
         public int CoffeeRoomNo { get; set; }
         public int? SuplyId { get; set; }
@@ -19,5 +17,6 @@ namespace CoffeeManager.Models.Data.Product
         public string Description { get; set; }
         public bool IsPercentPaymentEnabled { get; set; }
         public List<ProductPaymentStrategyDTO> ProductPaymentStrategies { get; set; }
+        public List<ProductPriceDTO> ProductPrices { get; set; }
     }
 }

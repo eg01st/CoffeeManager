@@ -81,14 +81,12 @@ namespace CoffeeManager.Api.Mappers
             };
         }
 
-        public static ProductDTO ToDTO(this Product prodDb)
+        public static ProductDTO ToDTO(this Product prodDb, int coffeeRoomId)
         {
-            return new ProductDTO()
+            var dto = new ProductDTO()
             {
                 Id = prodDb.Id,
                 Name = prodDb.Name,
-                Price = prodDb.Price,
-                PolicePrice = prodDb.PolicePrice,
                 CupType = prodDb.CupType.Value,
                 SuplyId = prodDb.SuplyProductId,
                 IsActive = prodDb.IsActive,
@@ -99,16 +97,25 @@ namespace CoffeeManager.Api.Mappers
                 Description = prodDb.Description,
                 IsPercentPaymentEnabled = prodDb.IsPercentPaymentEnabled,
             };
+            var price = prodDb.ProductPrices.FirstOrDefault(p => p.CoffeeRoomNo == coffeeRoomId);
+            if (price != null)
+            {
+                dto.Price = price.Price;
+                dto.PolicePrice = price.DiscountPrice;
+            }
+            else
+            {
+                Log.Warn($"No price for product {prodDb.Name}; Id {prodDb.Id}");
+            }
+            return dto;
         }
         
         public static ProductDetaisDTO ToDetailsDTO(this Product prodDb)
         {
-            return new ProductDetaisDTO()
+            var dto = new ProductDetaisDTO()
             {
                 Id = prodDb.Id,
                 Name = prodDb.Name,
-                Price = prodDb.Price,
-                PolicePrice = prodDb.PolicePrice,
                 CupType = prodDb.CupType.Value,
                 SuplyId = prodDb.SuplyProductId,
                 IsActive = prodDb.IsActive,
@@ -119,6 +126,17 @@ namespace CoffeeManager.Api.Mappers
                 Description = prodDb.Description,
                 IsPercentPaymentEnabled = prodDb.IsPercentPaymentEnabled,
             };
+            if (prodDb.IsPercentPaymentEnabled)
+            {
+                var strategies = prodDb.ProductPaymentStrategies.ToList()
+                    .Select(s => s.ToDTO()).ToList();
+                dto.ProductPaymentStrategies = strategies;
+            }
+            if (prodDb.ProductPrices != null)
+            {
+                dto.ProductPrices = prodDb.ProductPrices.ToList().Select(s => s.ToDTO()).ToList();
+            }
+            return dto;
         }
         
         public static ProductPaymentStrategyDTO ToDTO(this ProductPaymentStrategy strategyDb)
@@ -364,6 +382,20 @@ namespace CoffeeManager.Api.Mappers
                 MotivationId = item.MotivationId,
                 OtherScore = item.OtherScore,
                 ShiftScore = item.ShiftScore
+            };
+
+            return dto;
+        }
+
+        public static ProductPriceDTO ToDTO(this ProductPrice item)
+        {
+            var dto = new ProductPriceDTO()
+            {
+                Id = item.Id,
+               CoffeeRoomNo = item.CoffeeRoomNo,
+               ProductId = item.ProductId,
+               Price = item.Price,
+               DiscountPrice = item.DiscountPrice
             };
 
             return dto;
