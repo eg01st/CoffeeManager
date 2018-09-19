@@ -51,13 +51,5 @@
             android:text="Завершить смену"
             android:textSize="24dp"
             local:MvxBind="Click FinishShiftCommand; Enabled EndShiftButtonEnabled" />
-        <Button
-            android:layout_margin="50dp"
-            android:layout_gravity="bottom|center_horizontal"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:text="Отменить смену"
-            android:textSize="24dp"
-            local:MvxBind="Click DiscardShiftCommand;" />
     </LinearLayout>
 </LinearLayout>

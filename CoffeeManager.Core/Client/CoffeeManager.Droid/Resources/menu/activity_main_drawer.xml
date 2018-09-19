@@ -26,6 +26,9 @@
                 android:id="@+id/settings"
                 android:title="Настройки" />
         <item
+                android:id="@+id/undo_shift"
+                android:title="Отменить смену" />
+        <item
                 android:id="@+id/end_shift"
                 android:title="Закрыть смену" />
     </group>
