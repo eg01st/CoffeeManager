@@ -35,7 +35,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Home
 
         private async Task DoAddProduct()
         {
-            await NavigationService.Navigate<ProductDetailsViewModel>();
+            await NavigationService.Navigate<AddProductViewModel>();
         }
 
         public override async Task<List<ListItemViewModelBase>> LoadData()

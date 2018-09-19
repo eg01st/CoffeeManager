@@ -22,12 +22,10 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Products
         private ProductDetaisDTO productDTO;
         private int id;
         private string name;
-        private string price;
-        private string policePrice;
         private int cupType;
         private string cupTypeName;
         private int categoryId;
-        private string productTypeName;
+        private string categoryName;
         private string selectedColor;
         private string description;
 
@@ -41,16 +39,9 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Products
         public List<Entity> CupTypesList => TypesLists.CupTypesList;
         public List<CategoryItemViewModel> CategoriesList { get; set; } = new List<CategoryItemViewModel>();
         public List<string> Colors { get; set; } = new List<string>();
-        public ICommand AddProductCommand => addProductCommand;
-        private ICommand addProductCommand;
+        public ICommand SaveProductCommand { get; }
         private int productId;
 
-        public bool IsAddEnabled => !string.IsNullOrEmpty(Name) 
-                                    && !string.IsNullOrEmpty(Price) 
-                                    && !string.IsNullOrEmpty(PolicePrice) 
-                                    && !string.IsNullOrEmpty(CupTypeName)
-                                    && !string.IsNullOrEmpty(CategoryName)
-                                    && !string.IsNullOrEmpty(SelectedColor);
 
         public Entity SelectedCupType
         {
@@ -61,7 +52,6 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Products
                 {
                     selectedCupType = value;
                     RaisePropertyChanged(nameof(SelectedCupType));
-                    RaisePropertyChanged(nameof(IsAddEnabled));
                     CupType = selectedCupType.Id;
                     CupTypeName = selectedCupType.Name;
                 }
@@ -70,14 +60,13 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Products
 
         public CategoryItemViewModel SelectedCategory
         {
-            get { return selectedCategory; }
+            get => selectedCategory;
             set
             {
                 if (selectedCategory != value)
                 {
                     selectedCategory = value;
                     RaisePropertyChanged(nameof(SelectedCategory));
-                    RaisePropertyChanged(nameof(IsAddEnabled));
                     CategoryId = selectedCategory.Id;
                     CategoryName = selectedCategory.Name;
                 }
@@ -87,11 +76,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Products
         public string SelectedColor
         {
             get => selectedColor;
-            set
-            {
-                SetProperty(ref selectedColor, value); 
-                RaisePropertyChanged(nameof(IsAddEnabled));
-            }
+            set => SetProperty(ref selectedColor, value);
         }
 
         public bool IsPercentPaymentEnabled
@@ -100,9 +85,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Products
             set => SetProperty(ref isPercentPaymentEnabled, value);
         }
 
-        public string ButtonTitle {get;set;} = "Добавить продукт";
-        public string PriceTitle {get;set;} = "Цена: ";
-        public string PolicePriceTitle {get;set;} = "Цена по скидке: ";        
+        public string PriceTitle {get;set;} = "Цена";   
 
         public bool IsSaleByWeight
         {
@@ -110,12 +93,9 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Products
             set
             {
                 isSaleByWeight = value;
-                PriceTitle = isSaleByWeight ? "Цена за 100 грамм: " : "Цена: ";
-                PolicePriceTitle = isSaleByWeight ? "Цена по скидке за 100 грамм: " : "Цена по скидке:";
+                PriceTitle = isSaleByWeight ? "Цена за 100 грамм" : "Цена";
                 RaisePropertyChanged(nameof(IsSaleByWeight));
                 RaisePropertyChanged(nameof(PriceTitle));
-                RaisePropertyChanged(nameof(PolicePriceTitle));
-                
             }
         }
         
@@ -127,37 +107,10 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Products
 
         public string Name
         {
-            get { return name; }
-            set
-            {
-                name = value;
-                RaisePropertyChanged(nameof(Name));
-                RaisePropertyChanged(nameof(IsAddEnabled));
-            }
+            get => name;
+            set => SetProperty(ref name, value);
         }
-
-        public string Price
-        {
-            get { return price; }
-            set
-            {
-                price = value;
-                RaisePropertyChanged(nameof(Price));
-                RaisePropertyChanged(nameof(IsAddEnabled));
-            }
-        }
-
-        public string PolicePrice
-        {
-            get { return policePrice; }
-            set
-            {
-                policePrice = value;
-                RaisePropertyChanged(nameof(PolicePrice));
-                RaisePropertyChanged(nameof(IsAddEnabled));
-            }
-        }
-
+        
         public int CupType
         {
             get { return cupType; }
@@ -184,25 +137,22 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Products
             get { return categoryId; }
             set
             {
-                categoryId = value;
-                RaisePropertyChanged(nameof(CategoryId));
+                SetProperty(ref categoryId, value);
                 RaisePropertyChanged(nameof(SelectedCategory));
             }
         }
 
         public string CategoryName
         {
-            get { return productTypeName; }
-            set
-            {
-                productTypeName = value;
-                RaisePropertyChanged(nameof(CategoryName));
-            }
+            get => categoryName;
+            set => SetProperty(ref categoryName, value);
         }
 
         public ICommand SelectCalculationItemsCommand { get; }
         
         public ICommand AddPaymentStrategyCommand { get; }
+        
+        public MvxObservableCollection<ProductPriceItemViewModel> ProductPrices { get; } = new MvxObservableCollection<ProductPriceItemViewModel>();
         
         #endregion
 
@@ -214,6 +164,9 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Products
          
             SelectCalculationItemsCommand = new MvxAsyncCommand(DoSelectCalculationItems);
             AddPaymentStrategyCommand = new MvxCommand(DoAddPaymentStrategy);
+            
+            SaveProductCommand = new MvxCommand(DoSaveProduct);
+            
         }
 
         private void DoAddPaymentStrategy()
@@ -247,101 +200,57 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Products
         public override async Task Initialize()
         {
             await base.Initialize();
-            
-            var categories = await categoryManager.GetCategoriesPlain();
-            CategoriesList = categories.Select(s => new CategoryItemViewModel(s)).ToList();
-            RaisePropertyChanged(nameof(CategoriesList));
 
-            Colors = (await manager.GetAvaivalbeProductColors()).ToList();
-            RaisePropertyChanged(nameof(Colors));
-            
-            if(productId > 0)
+            await ExecuteSafe(async () =>
             {
+                var categories = await categoryManager.GetCategoriesPlain();
+                CategoriesList = categories.Select(s => new CategoryItemViewModel(s)).ToList();
+                RaisePropertyChanged(nameof(CategoriesList));
+
+                Colors = (await manager.GetAvaivalbeProductColors()).ToList();
+                RaisePropertyChanged(nameof(Colors));
+
                 productDTO = await manager.GetProduct(productId);
 
-                addProductCommand = new MvxCommand(DoEditProduct);
                 id = productDTO.Id;
                 Name = productDTO.Name;
-                Price = productDTO.Price.ToString("F");
-                PolicePrice = productDTO.PolicePrice.ToString("F");
                 IsSaleByWeight = productDTO.IsSaleByWeight;
                 SelectedColor = productDTO.Color;
                 Description = productDTO.Description;
                 IsPercentPaymentEnabled = productDTO.IsPercentPaymentEnabled;
                 var cupType = CupTypesList.FirstOrDefault(t => t.Id == productDTO.CupType);
-                if(cupType != null)
+                if (cupType != null)
                 {
                     SelectedCupType = cupType;
                 }
+
                 var productType = CategoriesList.FirstOrDefault(t => t.Id == productDTO.CategoryId);
-                if(productType != null)
+                if (productType != null)
                 {
                     SelectedCategory = productType;
                 }
-                if(productDTO.ProductPaymentStrategies != null)
+
+                if (productDTO.ProductPaymentStrategies != null)
                 {
                     var vms = productDTO.ProductPaymentStrategies
-                        .Select(s => new ProductPaymentStrategyItemViewModel(s, CoffeeRooms.First(c => c.CoffeeRoomNo == s.CoffeeRoomId).Name));
+                        .Select(s =>
+                            new ProductPaymentStrategyItemViewModel(s,
+                                CoffeeRooms.First(c => c.CoffeeRoomNo == s.CoffeeRoomId).Name));
                     ItemsCollection.ReplaceWith(vms);
                 }
-                ButtonTitle = "Сохранить изменения";
-                RaisePropertyChanged(nameof(ButtonTitle));
-            }
-            else
-            {
-                addProductCommand = new MvxCommand(DoAddProduct);
-            }
-            RaisePropertyChanged(nameof(AddProductCommand));
-        }
-
-        private void DoAddProduct()
-        {
-            UserDialogs.Confirm(new Acr.UserDialogs.ConfirmConfig()
-            {
-                Message = $"Добавить продукт \"{Name}\"?",
-                OnAction = async (obj) =>
+                
+                if (productDTO.ProductPrices != null)
                 {
-                    if (obj)
-                    {
-                        await ExecuteSafe(async () =>
-                        {
-                            var dto = new ProductDetaisDTO()
-                            {
-                                Name = name,
-                                Price = decimal.Parse(price),
-                                PolicePrice = decimal.Parse(policePrice),
-                                CupType = cupType,
-                                CoffeeRoomNo = Config.CoffeeRoomNo,
-                                IsSaleByWeight = isSaleByWeight,
-                                CategoryId = CategoryId,
-                                Color = SelectedColor,
-                                Description = Description,
-                                IsPercentPaymentEnabled = IsPercentPaymentEnabled
-                            };
-
-                            if (IsPercentPaymentEnabled)
-                            {
-                                var strategies = ItemsCollection.Select(s => new ProductPaymentStrategyDTO()
-                                {
-                                    CoffeeRoomId = s.CoffeeRoomId,
-                                    Id = s.Id,
-                                    ProductId = s.ProductId,
-                                    DayShiftPercent = s.DayShiftPersent,
-                                    NightShiftPercent = s.NightShiftPercent
-                                }).ToList();
-                                dto.ProductPaymentStrategies = strategies;
-                            }
-
-                            await manager.AddProduct(dto);
-                            MvxMessenger.Publish(new ProductListChangedMessage(this));
-                            await NavigationService.Close(this);
-                        });
-                    }
+                    var vms = productDTO.ProductPrices
+                        .Select(s =>
+                            new ProductPriceItemViewModel(s,
+                                CoffeeRooms.First(c => c.CoffeeRoomNo == s.CoffeeRoomNo).Name));
+                    ProductPrices.ReplaceWith(vms);
                 }
             });
         }
 
-        private void DoEditProduct()
+        private void DoSaveProduct()
         {
             UserDialogs.Confirm(new ConfirmConfig()
             {
@@ -356,8 +265,6 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Products
                             {
                                 Id = id,
                                 Name = name,
-                                Price = decimal.Parse(price),
-                                PolicePrice = decimal.Parse(policePrice),
                                 CupType = cupType,
                                 CoffeeRoomNo = Config.CoffeeRoomNo,
                                 IsSaleByWeight = isSaleByWeight,
@@ -379,6 +286,17 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Products
                                 }).ToList();
                                 dto.ProductPaymentStrategies = strategies;
                             }
+
+                            var prices = ProductPrices.Select(s => new ProductPriceDTO()
+                            {
+                                CoffeeRoomNo = s.CoffeeRoomId,
+                                Id = s.Id,
+                                ProductId = s.ProductId,
+                                Price = s.Price,
+                                DiscountPrice = s.DiscountPrice
+                            }).ToList();
+                            
+                            dto.ProductPrices = prices;
                             
                             await manager.EditProduct(dto);
                             MvxMessenger.Publish(new ProductListChangedMessage(this));

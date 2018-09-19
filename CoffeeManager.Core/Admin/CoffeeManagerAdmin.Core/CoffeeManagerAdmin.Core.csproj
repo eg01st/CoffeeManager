@@ -74,7 +74,9 @@
     <Compile Include="Messages\BaseMessage.cs" />
     <Compile Include="Messages\ProductListChangedMessage.cs" />
     <Compile Include="Messages\SuplyListChangedMessage.cs" />
+    <Compile Include="ViewModels\Products\AddProductViewModel.cs" />
     <Compile Include="ViewModels\Products\ProductPaymentStrategyItemViewModel.cs" />
+    <Compile Include="ViewModels\Products\ProductPriceItemViewModel.cs" />
     <Compile Include="ViewModels\Shifts\ShiftCounterItemViewModel.cs" />
     <Compile Include="ViewModels\Shifts\ShiftCountersViewModel.cs" />
     <Compile Include="ViewModels\Users\UserItemViewModel.cs" />

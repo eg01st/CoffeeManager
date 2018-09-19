@@ -7,7 +7,7 @@ namespace CoffeManager.Common.Providers
 {
     public interface IProductProvider
     {
-        Task AddProduct(ProductDetaisDTO productDTO);
+        Task<int> AddProduct(ProductDetaisDTO productDTO);
 
         Task DeleteProduct(int id);
 

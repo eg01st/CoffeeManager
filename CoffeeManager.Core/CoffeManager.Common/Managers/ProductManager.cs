@@ -138,9 +138,9 @@ namespace CoffeManager.Common.Managers
             }
         }
 
-        public async Task AddProduct(ProductDetaisDTO productDTO)
+        public async Task<int> AddProduct(ProductDetaisDTO productDTO)
         {
-            await productProvider.AddProduct(productDTO);
+            return await productProvider.AddProduct(productDTO);
         }
 
         public async Task DeleteProduct(int id)

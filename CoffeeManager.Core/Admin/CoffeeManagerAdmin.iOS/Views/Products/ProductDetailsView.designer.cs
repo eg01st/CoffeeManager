@@ -37,19 +37,16 @@ namespace CoffeeManagerAdmin.iOS.Views.Products
 		UIKit.UITextField NameText { get; set; }
 
 		[Outlet]
+		UIKit.NSLayoutConstraint PaymentStrategyHeightConstraint { get; set; }
+
+		[Outlet]
 		UIKit.UITableView PaymentStrategyTableView { get; set; }
 
 		[Outlet]
-		UIKit.UITextField PolicePriceText { get; set; }
+		UIKit.UILabel PriceLabel { get; set; }
 
 		[Outlet]
-		UIKit.UILabel PolicePriceTitleLabel { get; set; }
-
-		[Outlet]
-		UIKit.UITextField PriceText { get; set; }
-
-		[Outlet]
-		UIKit.UILabel PriceTitleLabel { get; set; }
+		UIKit.UITableView PriceTableView { get; set; }
 
 		[Outlet]
 		UIKit.UITextField ProductTypeText { get; set; }
@@ -104,26 +101,6 @@ namespace CoffeeManagerAdmin.iOS.Views.Products
 				PaymentStrategyTableView = null;
 			}
 
-			if (PolicePriceText != null) {
-				PolicePriceText.Dispose ();
-				PolicePriceText = null;
-			}
-
-			if (PolicePriceTitleLabel != null) {
-				PolicePriceTitleLabel.Dispose ();
-				PolicePriceTitleLabel = null;
-			}
-
-			if (PriceText != null) {
-				PriceText.Dispose ();
-				PriceText = null;
-			}
-
-			if (PriceTitleLabel != null) {
-				PriceTitleLabel.Dispose ();
-				PriceTitleLabel = null;
-			}
-
 			if (ProductTypeText != null) {
 				ProductTypeText.Dispose ();
 				ProductTypeText = null;
@@ -132,6 +109,21 @@ namespace CoffeeManagerAdmin.iOS.Views.Products
 			if (SelectedColorTextField != null) {
 				SelectedColorTextField.Dispose ();
 				SelectedColorTextField = null;
+			}
+
+			if (PriceLabel != null) {
+				PriceLabel.Dispose ();
+				PriceLabel = null;
+			}
+
+			if (PaymentStrategyHeightConstraint != null) {
+				PaymentStrategyHeightConstraint.Dispose ();
+				PaymentStrategyHeightConstraint = null;
+			}
+
+			if (PriceTableView != null) {
+				PriceTableView.Dispose ();
+				PriceTableView = null;
 			}
 		}
 	}

@@ -12,7 +12,7 @@ namespace CoffeManager.Common.Managers
         Task DismisSaleProduct(int id);
         Task UtilizeSaleProduct(int id);
 
-        Task AddProduct(ProductDetaisDTO productDTO);
+        Task<int> AddProduct(ProductDetaisDTO productDTO);
 
         Task DeleteProduct(int id);
 

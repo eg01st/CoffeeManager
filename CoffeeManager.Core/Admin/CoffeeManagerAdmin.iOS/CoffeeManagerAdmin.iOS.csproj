@@ -513,6 +513,18 @@
     <Compile Include="Views\Motivation\MotivationTableViewHeader.designer.cs">
       <DependentUpon>MotivationTableViewHeader.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Products\AddProductView.cs" />
+    <Compile Include="Views\Products\AddProductView.designer.cs">
+      <DependentUpon>AddProductView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Products\ProductPriceTableViewCell.cs" />
+    <Compile Include="Views\Products\ProductPriceTableViewCell.designer.cs">
+      <DependentUpon>ProductPriceTableViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Products\ProductPriceTableViewHeader.cs" />
+    <Compile Include="Views\Products\ProductPriceTableViewHeader.designer.cs">
+      <DependentUpon>ProductPriceTableViewHeader.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Setup.cs" />
@@ -615,6 +627,9 @@
     <InterfaceDefinition Include="Views\Motivation\MotivationView.xib" />
     <InterfaceDefinition Include="Views\Motivation\MotivationViewCell.xib" />
     <InterfaceDefinition Include="Views\Motivation\MotivationTableViewHeader.xib" />
+    <InterfaceDefinition Include="Views\Products\AddProductView.xib" />
+    <InterfaceDefinition Include="Views\Products\ProductPriceTableViewCell.xib" />
+    <InterfaceDefinition Include="Views\Products\ProductPriceTableViewHeader.xib" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

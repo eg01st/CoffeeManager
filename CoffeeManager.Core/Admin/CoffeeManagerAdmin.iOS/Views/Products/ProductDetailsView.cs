@@ -18,6 +18,15 @@ namespace CoffeeManagerAdmin.iOS.Views.Products
         {
         }
 
+        public bool IsPercentPaymentEnabled
+        {
+            set
+            {
+                PaymentStrategyHeightConstraint.Constant = value ? 180 : 0;
+                AddPaymentStrategyButton.Hidden = !value;
+            }
+        }
+        
         protected override bool HandlesKeyboardNotifications => true;
 
         public override void ViewDidLoad()
@@ -47,18 +56,20 @@ namespace CoffeeManagerAdmin.iOS.Views.Products
                 PaymentStrategyTableViewHeader.Key,
                 PaymentStrategyTableViewHeader.Nib);
             PaymentStrategyTableView.Source = source;
+            
+            var priceSource = new SimpleTableSource(PriceTableView,
+                ProductPriceTableViewCell.Key,
+                ProductPriceTableViewCell.Nib,
+                ProductPriceTableViewHeader.Key,
+                ProductPriceTableViewHeader.Nib);
+            PriceTableView.Source = priceSource;
   
             var set = this.CreateBindingSet<ProductDetailsView, ProductDetailsViewModel>();
             set.Bind(NameText).To(vm => vm.Name);
-            set.Bind(PriceText).To(vm => vm.Price);
-            set.Bind(PolicePriceText).To(vm => vm.PolicePrice);
-            set.Bind(PriceTitleLabel).To(vm => vm.PriceTitle);
-            set.Bind(PolicePriceTitleLabel).To(vm => vm.PolicePriceTitle);
+            set.Bind(PriceLabel).To(vm => vm.PriceTitle);
             set.Bind(CupTypeCategoryText).To(vm => vm.CupTypeName);
             set.Bind(ProductTypeText).To(vm => vm.CategoryName);
-            set.Bind(AddProductButton).To(vm => vm.AddProductCommand);
-            set.Bind(AddProductButton).For(b => b.Enabled).To(vm => vm.IsAddEnabled);
-            set.Bind(AddProductButton).For("Title").To(vm => vm.ButtonTitle);
+            set.Bind(AddProductButton).To(vm => vm.SaveProductCommand);
             set.Bind(cupPickerViewModel).For(p => p.ItemsSource).To(vm => vm.CupTypesList);
             set.Bind(cupPickerViewModel).For(p => p.SelectedItem).To(vm => vm.SelectedCupType);
             set.Bind(categoryPickerViewModel).For(p => p.ItemsSource).To(vm => vm.CategoriesList);
@@ -70,10 +81,10 @@ namespace CoffeeManagerAdmin.iOS.Views.Products
             set.Bind(IsSaleByWeightSwitch).For(s => s.On).To(vm => vm.IsSaleByWeight);
             set.Bind(DescriptionTextField).To(vm => vm.Description);
             set.Bind(source).To(vm => vm.ItemsCollection);
+            set.Bind(priceSource).To(vm => vm.ProductPrices);
             set.Bind(AddPaymentStrategyButton).To(vm => vm.AddPaymentStrategyCommand);
             set.Bind(IsPaymentPercentStrategySwich).For(s => s.On).To(vm => vm.IsPercentPaymentEnabled);
-            set.Bind(PaymentStrategyTableView).For(s => s.Hidden).To(vm => vm.IsPercentPaymentEnabled).WithConversion(new InvertedBoolConverter());
-            set.Bind(AddPaymentStrategyButton).For(s => s.Hidden).To(vm => vm.IsPercentPaymentEnabled).WithConversion(new InvertedBoolConverter());
+            set.Bind(this).For(nameof(IsPercentPaymentEnabled)).To(vm => vm.IsPercentPaymentEnabled);
             set.Apply();
 
             var btn = new UIBarButtonItem()

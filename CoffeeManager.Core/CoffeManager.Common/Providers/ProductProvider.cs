@@ -10,9 +10,9 @@ namespace CoffeManager.Common.Providers
 {
     public class ProductProvider : BaseServiceProvider, IProductProvider
     {
-        public async Task AddProduct(ProductDetaisDTO productDTO)
+        public async Task<int> AddProduct(ProductDetaisDTO productDTO)
         {
-            await Put(RoutesConstants.AddProduct, productDTO);
+            return await Put<int, ProductDetaisDTO>(RoutesConstants.AddProduct, productDTO);
         }
 
         public async Task DeleteProduct(int id)

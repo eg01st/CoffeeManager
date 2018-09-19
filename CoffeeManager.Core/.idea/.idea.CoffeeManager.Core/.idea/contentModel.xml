@@ -112,9 +112,11 @@
               <e p="SelectOrderItemViewModel.cs" t="Include" />
             </e>
             <e p="Products" t="Include">
+              <e p="AddProductViewModel.cs" t="Include" />
               <e p="ProductDetailsViewModel.cs" t="Include" />
               <e p="ProductItemViewModel.cs" t="Include" />
               <e p="ProductPaymentStrategyItemViewModel.cs" t="Include" />
+              <e p="ProductPriceItemViewModel.cs" t="Include" />
             </e>
             <e p="SaleItemViewModel.cs" t="Include" />
             <e p="Settings" t="Include">
@@ -668,6 +670,9 @@
               <e p="SelectOrderItemViewCell.xib" t="Include" />
             </e>
             <e p="Products" t="Include">
+              <e p="AddProductView.cs" t="Include" />
+              <e p="AddProductView.designer.cs" t="Include" />
+              <e p="AddProductView.xib" t="Include" />
               <e p="PaymentStrategyTableViewCell.cs" t="Include" />
               <e p="PaymentStrategyTableViewCell.designer.cs" t="Include" />
               <e p="PaymentStrategyTableViewCell.xib" t="Include" />
@@ -680,6 +685,12 @@
               <e p="ProductItemCell.cs" t="Include" />
               <e p="ProductItemCell.designer.cs" t="Include" />
               <e p="ProductItemCell.xib" t="Include" />
+              <e p="ProductPriceTableViewCell.cs" t="Include" />
+              <e p="ProductPriceTableViewCell.designer.cs" t="Include" />
+              <e p="ProductPriceTableViewCell.xib" t="Include" />
+              <e p="ProductPriceTableViewHeader.cs" t="Include" />
+              <e p="ProductPriceTableViewHeader.designer.cs" t="Include" />
+              <e p="ProductPriceTableViewHeader.xib" t="Include" />
             </e>
             <e p="SelectCalculationListView.cs" t="Include" />
             <e p="SelectCalculationListView.designer.cs" t="Include" />
@@ -1209,6 +1220,7 @@
             <e p="ProductDetaisDTO.cs" t="Include" />
             <e p="ProductDTO.cs" t="Include" />
             <e p="ProductPaymentStrategyDTO.cs" t="Include" />
+            <e p="ProductPriceDTO.cs" t="Include" />
           </e>
         </e>
         <e p="EndShiftDTO.cs" t="Include" />
@@ -1471,6 +1483,7 @@
           </e>
           <e p="InventoryReport.cs" t="Include" />
           <e p="InventoryReportItem.cs" t="Include" />
+          <e p="Log.cs" t="Include" />
           <e p="Mappers" t="Include">
             <e p="DbMapper.cs" t="Include" />
             <e p="DTOMapper.cs" t="Include" />
@@ -1483,11 +1496,13 @@
           <e p="Model.edmx.diagram" t="Include" />
           <e p="Model.tt" t="Include" />
           <e p="Motivation.cs" t="Include" />
+          <e p="NLog.config" t="Include" />
           <e p="obj" t="ExcludeRecursive" />
           <e p="packages.config" t="Include" />
           <e p="Product.cs" t="Include" />
           <e p="ProductCalculation.cs" t="Include" />
           <e p="ProductPaymentStrategy.cs" t="Include" />
+          <e p="ProductPrice.cs" t="Include" />
           <e p="ProductType.cs" t="Include" />
           <e p="Properties" t="Include">
             <e p="AssemblyInfo.cs" t="Include" />
