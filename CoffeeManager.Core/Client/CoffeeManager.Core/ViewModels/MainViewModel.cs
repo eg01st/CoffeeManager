@@ -17,6 +17,7 @@ using CoffeManager.Common.ViewModels;
 using MobileCore.ViewModels;
 using CoffeeManager.Common;
 using CoffeeManager.Core.ViewModels.Motivation;
+using MobileCore.Logging;
 
 namespace CoffeeManager.Core.ViewModels
 {
@@ -156,7 +157,7 @@ namespace CoffeeManager.Core.ViewModels
         public ICommand ShowUtilizeCommand { get; set; }
         public ICommand ShowSettingsCommand { get; set; }
         public ICommand ShowMotivationCommand { get; set; }
-        
+        public ICommand DiscardShiftCommand {get;}
         
         public ICommand ShowChargeCommand { get; set; }
 
@@ -194,16 +195,19 @@ namespace CoffeeManager.Core.ViewModels
         readonly ISyncManager syncManager;
         readonly IUserManager userManager;
         private readonly ICategoryManager categoryManager;
+        private readonly IShiftManager shiftManager;
         private int selectedCategoryId;
 
         public MainViewModel(IMvxViewModelLoader mvxViewModelLoader,
                              IProductManager productManager,
                              ISyncManager syncManager,
                              IUserManager userManager,
-                            ICategoryManager categoryManager)
+                            ICategoryManager categoryManager,
+            IShiftManager shiftManager)
         {
             this.userManager = userManager;
             this.categoryManager = categoryManager;
+            this.shiftManager = shiftManager;
             this.syncManager = syncManager;
             this.productManager = productManager;
             
@@ -229,6 +233,7 @@ namespace CoffeeManager.Core.ViewModels
             ShowSettingsCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<SettingsViewModel>());
             ShowMotivationCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<MotivationViewModel>());
             ShowChargeCommand = new MvxCommand<int>((sum) => DoShowCharge(sum));
+            DiscardShiftCommand = new MvxAsyncCommand(DoDiscardShift);
         }
 
         private void DoShowCharge(int sum)
@@ -238,27 +243,27 @@ namespace CoffeeManager.Core.ViewModels
 
         public override async Task Initialize()
         {
-            var tasks = new List<Task>();
-
-            var cats = await categoryManager.GetCategoriesForClient();
-            var categories = cats.ToList();
-            foreach (var category in categories)
-            {
-                var vm = new ProductViewModel(category);
-                Products.Add(vm);
-                tasks.Add(vm.InitViewModel());
-            }
-
-            Categories = new MvxObservableCollection<CategoryItemViewModel>(
-                categories.Select(s => new CategoryItemViewModel(onCategorySelectedAction)
-                {
-                    Id = s.Id,
-                    Name = s.Name
-                }));
-            Categories.First().IsSelected = true;
-            
             await ExecuteSafe(async () =>
             {
+                var tasks = new List<Task>();
+    
+                var cats = await categoryManager.GetCategoriesForClient();
+                var categories = cats.ToList();
+                foreach (var category in categories)
+                {
+                    var vm = new ProductViewModel(category);
+                    Products.Add(vm);
+                    tasks.Add(vm.InitViewModel());
+                }
+    
+                Categories = new MvxObservableCollection<CategoryItemViewModel>(
+                    categories.Select(s => new CategoryItemViewModel(onCategorySelectedAction)
+                    {
+                        Id = s.Id,
+                        Name = s.Name
+                    }));
+                Categories.First().IsSelected = true;
+            
                 await Task.WhenAll(tasks);
 
                 List<ProductItemViewModel> prods = new List<ProductItemViewModel>();
@@ -371,6 +376,46 @@ namespace CoffeeManager.Core.ViewModels
         public void Prepare(Shift shiftInfo)
         {
             this.shiftInfo = shiftInfo;
+        }
+        
+        private async Task DoDiscardShift()
+        {
+            if (await UserDialogs.ConfirmAsync(
+                "Отменить текущую смену? Отмена возможна только в случае всех отмененных продаж и трат"))
+            {
+                string promt = await PromtStringAsync("Напишите слово \"Отмена\" что бы подтвердить отмену смены");
+                if(!string.Equals(promt, "Отмена", StringComparison.OrdinalIgnoreCase))
+                {
+                    Alert("Слово введено не правильно");
+                    return;
+                }
+                try
+                {
+                    await shiftManager.DiscardShift(shiftInfo.Id);
+                }
+                catch (Exception e)
+                {
+                    ConsoleLogger.Exception(e);
+                    if (e.Message.Contains("Sales exist"))
+                    {
+                        await UserDialogs.AlertAsync("Отмените все продажи чтобы закрыть смену");
+                        return;
+                    }
+                    else if (e.Message.Contains("Expenses exist"))
+                    {
+                        await UserDialogs.AlertAsync("Отмените все расходы что бы закрыть смену");
+                        return;
+                    }
+                    else
+                    {
+                        await EmailService?.SendErrorEmail($"CoffeeRoomId: {Config.CoffeeRoomNo}",e.ToDiagnosticString());
+                        await UserDialogs.AlertAsync("Произошла ошибка сервера");   
+                        return;
+                    }
+                }
+
+                await NavigationService.Navigate<LoginViewModel>();
+            }
         }
     }
 

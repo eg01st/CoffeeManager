@@ -38,8 +38,6 @@ namespace CoffeeManager.Core.ViewModels
             => !string.IsNullOrEmpty(RealAmount);
         
         public ICommand FinishShiftCommand {get;}
-        
-        public ICommand DiscardShiftCommand {get;}
 
         readonly IPaymentManager paymentManager;
         private readonly ICoffeeCounterManager coffeeCounterManager;
@@ -52,53 +50,12 @@ namespace CoffeeManager.Core.ViewModels
             this.coffeeCounterManager = coffeeCounterManager;
             this.shiftManager = shiftManager;
             FinishShiftCommand  = new MvxAsyncCommand(DoFinishCommand);
-            DiscardShiftCommand = new MvxAsyncCommand(DoDiscardShift);
         }
 
         protected override async Task<PageContainer<CoffeeCounterItemViewModel>> GetPageAsync(int skip)
         {
             var items = await coffeeCounterManager.GetCountersForClient();
             return items.Select(s => new CoffeeCounterItemViewModel(s)).ToPageContainer();
-        }
-
-        private async Task DoDiscardShift()
-        {
-            if (await UserDialogs.ConfirmAsync(
-                "Отменить текущую смену? Отмена возможна только в случае всех отмененных продаж и трат"))
-            {
-                string promt = await PromtStringAsync("Напишите слово \"Отмена\" что бы подтвердить отмену смены");
-                if(!string.Equals(promt, "Отмена", StringComparison.OrdinalIgnoreCase))
-                {
-                    Alert("Слово введено не правильно");
-                    return;
-                }
-                try
-                {
-                    await shiftManager.DiscardShift(shiftId);
-                }
-                catch (Exception e)
-                {
-                    ConsoleLogger.Exception(e);
-                    if (e.Message.Contains("Sales exist"))
-                    {
-                        await UserDialogs.AlertAsync("Отмените все продажи чтобы закрыть смену");
-                        return;
-                    }
-                    else if (e.Message.Contains("Expenses exist"))
-                    {
-                        await UserDialogs.AlertAsync("Отмените все расходы что бы закрыть смену");
-                        return;
-                    }
-                    else
-                    {
-                        await EmailService?.SendErrorEmail($"CoffeeRoomId: {Config.CoffeeRoomNo}",e.ToDiagnosticString());
-                        await UserDialogs.AlertAsync("Произошла ошибка сервера");   
-                        return;
-                    }
-                }
-
-                await NavigationService.Navigate<LoginViewModel>();
-            }
         }
 
         private async Task DoFinishCommand()
