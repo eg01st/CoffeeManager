@@ -62,9 +62,12 @@ namespace CoffeeManager.Api.Controllers
             product.CoffeeRoomNo = coffeeroomno;
 			var entities = new CoffeeRoomEntities ();
 		    var prodDb = product.Map();
+		    prodDb.Color = "#00ABAB";
+		    prodDb.Category = entities.Categories.First();
+		    prodDb.CupType1 = entities.CupTypes.First();
 
-            entities.Products.Add (prodDb);
-			await entities.SaveChangesAsync ();
+		    entities.Products.Add(prodDb);
+		    await entities.SaveChangesAsync();
 
 		    var coffeeRooms = entities.CoffeeRooms.ToList();
 
