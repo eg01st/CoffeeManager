@@ -61,9 +61,28 @@ namespace CoffeeManager.Api.Controllers
 			var product = JsonConvert.DeserializeObject<ProductDetaisDTO> (request);
             product.CoffeeRoomNo = coffeeroomno;
 			var entities = new CoffeeRoomEntities ();
-			entities.Products.Add (product.Map());
-			await entities.SaveChangesAsync ();
-			return Request.CreateResponse (HttpStatusCode.OK);
+		    var prodDb = product.Map();
+		    prodDb.Color = "#00ABAB";
+		    prodDb.Category = entities.Categories.First();
+		    prodDb.CupType1 = entities.CupTypes.First();
+
+		    entities.Products.Add(prodDb);
+		    await entities.SaveChangesAsync();
+
+		    var coffeeRooms = entities.CoffeeRooms.ToList();
+
+		    foreach (var coffeeRoom in coffeeRooms)
+		    {
+		        var price = new ProductPrice();
+		        price.CoffeeRoomNo = coffeeRoom.Id;
+		        price.ProductId = prodDb.Id;
+		        price.Price = prodDb.Price;
+		        price.DiscountPrice = prodDb.PolicePrice;
+		        entities.ProductPrices.Add(price);
+		        entities.SaveChanges();
+		    }
+
+			return Request.CreateResponse (HttpStatusCode.OK, prodDb.Id);
 		}
 
         [Route(RoutesConstants.EditProduct)]
