@@ -66,14 +66,8 @@ namespace CoffeeManager.Core.ViewModels.Settings
                 Alert("Выберите кофейню для работы с программой");
                 return;
             }
-            if(isInitialSetup)
-            {
-                await NavigationService.Navigate<SplashViewModel>();
-            }
-            else
-            {
-                await base.DoClose();
-            }
+            CloseCommand.Execute(null);
+            await NavigationService.Navigate<SplashViewModel>();
         }
     }
 }

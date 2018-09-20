@@ -35,8 +35,6 @@ namespace CoffeeManagerAdmin.iOS.Views.Products
 
             DismissKeyboardOnBackgroundTap();
 
-           //StickBottomButtonToKeyboard(BottomButtonContraint);
-
             Title = "Детали товара";
             var toolbar = Helper.ProducePickerToolbar(View);
 

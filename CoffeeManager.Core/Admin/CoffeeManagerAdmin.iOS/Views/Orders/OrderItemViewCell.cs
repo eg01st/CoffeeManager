@@ -48,16 +48,7 @@ namespace CoffeeManagerAdmin.iOS
             set
             {
                 _isDone = value;
-                if (!_isDone)
-                {
-                    DoneImageZeroHeight.Active = true;
-                    DoneImageNormarHeight.Active = false;
-                }
-                else
-                {
-                    DoneImageZeroHeight.Active = false;
-                    DoneImageNormarHeight.Active = true;
-                }
+                DoneImage.Hidden = !value;
             }
         }
 

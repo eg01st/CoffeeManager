@@ -116,12 +116,14 @@ namespace CoffeeManager.Droid.Views
         {
             policeSaleFrame.Click += PoliceSale_Click;
             creditCardFrame.Click += CreditCard_Click;
+            viewPager.PageSelected += ViewPager_PageSelected;
         }
 
         protected override void UnSubscribeFromLayoutEvents()
         {
             policeSaleFrame.Click -= PoliceSale_Click;
             creditCardFrame.Click -= CreditCard_Click;
+            viewPager.PageSelected -= ViewPager_PageSelected;
         }
 
         private void CreditCard_Click(object sender, EventArgs e)
@@ -152,6 +154,22 @@ namespace CoffeeManager.Droid.Views
             viewPager.OffscreenPageLimit = categories.Count();
         }
 
+        public override bool OnCreateOptionsMenu(IMenu menu)
+        {
+            MenuInflater.Inflate(Resource.Menu.toolbar_menu, menu);
+            return true;
+        }
+
+        void ViewPager_PageSelected(object sender, ViewPager.PageSelectedEventArgs e)
+        {
+            var vm = ViewModel.Categories[e.Position];
+            if (vm != null)
+            {
+                ViewModel.OnCategorySelectedAction(vm.Id);
+            }
+        }
+
+
         #region DrawerLayout
 
         private void InitLeftMenu()
@@ -177,7 +195,12 @@ namespace CoffeeManager.Droid.Views
         public override bool OnOptionsItemSelected(IMenuItem item)
         {
             var itemId = item.ItemId;
-            if (itemId == Android.Resource.Id.Home)
+            if (itemId == Resource.Id.action_refresh)
+            {
+                ViewModel.RefreshCommand.Execute(null);
+                return true;
+            }
+            else if (itemId == Android.Resource.Id.Home)
             {
                 if (drawerLayout.IsDrawerOpen(drawerGravity) == true)
                 {

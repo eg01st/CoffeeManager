@@ -250,6 +250,7 @@
     <Compile Include="Adapters\ViewHolders\CoffeeCounterViewHolder.cs" />
     <Compile Include="ActivityBase.cs" />
     <Compile Include="Views\MotivationView.cs" />
+    <Compile Include="Adapters\ViewHolders\ProductItemViewHolder.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -356,6 +357,7 @@
     <AndroidResource Include="Resources\layout\coffee_counter_item.axml" />
     <AndroidResource Include="Resources\layout\activity_motivation.axml" />
     <AndroidResource Include="Resources\layout\item_motivation.axml" />
+    <AndroidResource Include="Resources\drawable\ic_refresh_white.xml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />

@@ -5,6 +5,7 @@ using CoffeeManager.Models.Data.DTO.Category;
 using CoffeManager.Common.Managers;
 using CoffeManager.Common.ViewModels;
 using MobileCore.Extensions;
+using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
 
 namespace CoffeeManager.Core.ViewModels.Products
@@ -13,20 +14,15 @@ namespace CoffeeManager.Core.ViewModels.Products
     {
         private readonly CategoryDTO category;
         private readonly IProductManager productManager;
-        private ProductItemViewModel[] items;
-        private List<ProductViewModel> subCategories;
+        private MvxObservableCollection<ProductViewModel> subCategories;
 
-        public ProductItemViewModel[] Items
+        public MvxObservableCollection<ProductItemViewModel> Items
         {
-            get => items;
-            set
-            {
-                items = value;
-                RaisePropertyChanged(nameof(Items));
-            }
-        }
+            get;
+            set;
+        } = new MvxObservableCollection<ProductItemViewModel>();
         
-        public List<ProductViewModel> SubCategories
+        public MvxObservableCollection<ProductViewModel> SubCategories
         {
             get => subCategories;
             set
@@ -58,22 +54,22 @@ namespace CoffeeManager.Core.ViewModels.Products
         {
             if (category.SubCategories.IsNotNullNorEmpty())
             {
-                var subCategories = new List<ProductViewModel>();
+                var subCats = new List<ProductViewModel>();
                 var tasks = new List<Task>();
                 foreach (var subCategory in category.SubCategories)
                 {
                     var vm = new ProductViewModel(subCategory);
-                    subCategories.Add(vm);
+                    subCats.Add(vm);
                     tasks.Add(vm.InitViewModel());
                 }
 
                 await Task.WhenAll(tasks);
-                SubCategories = subCategories;
+                SubCategories = new MvxObservableCollection<ProductViewModel>(subCats);
             }
             else
             {
-                var items = await productManager.GetProducts(category.Id);
-                Items = items.Select(s => new ProductItemViewModel(s)).ToArray();
+                var products = await productManager.GetProducts(category.Id);
+                Items.ReplaceWith(products.Select(s => new ProductItemViewModel(s)));
             }
         }
     }

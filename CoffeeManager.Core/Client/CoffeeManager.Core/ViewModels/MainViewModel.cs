@@ -38,7 +38,7 @@ namespace CoffeeManager.Core.ViewModels
         private MvxObservableCollection<CategoryItemViewModel> categoies = new MvxObservableCollection<CategoryItemViewModel>();
         private MvxObservableCollection<ProductViewModel> products = new MvxObservableCollection<ProductViewModel>();
 
-        private readonly Action<int> onCategorySelectedAction;
+        public readonly Action<int> OnCategorySelectedAction;
         
         public bool IsPoliceSaleEnabled
         {
@@ -158,6 +158,7 @@ namespace CoffeeManager.Core.ViewModels
         public ICommand ShowSettingsCommand { get; set; }
         public ICommand ShowMotivationCommand { get; set; }
         public ICommand DiscardShiftCommand {get;}
+        public ICommand RefreshCommand { get; }
         
         public ICommand ShowChargeCommand { get; set; }
 
@@ -211,11 +212,11 @@ namespace CoffeeManager.Core.ViewModels
             this.syncManager = syncManager;
             this.productManager = productManager;
             
-            onCategorySelectedAction = i =>
+            OnCategorySelectedAction = i =>
             {
                 foreach (var categoryItemViewModel in Categories)
                 {
-                    categoryItemViewModel.IsSelected = false;
+                    categoryItemViewModel.IsSelected = categoryItemViewModel.Id == i;
                 }
                 SelectedCategoryId = i;
             };
@@ -234,6 +235,17 @@ namespace CoffeeManager.Core.ViewModels
             ShowMotivationCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<MotivationViewModel>());
             ShowChargeCommand = new MvxCommand<int>((sum) => DoShowCharge(sum));
             DiscardShiftCommand = new MvxAsyncCommand(DoDiscardShift);
+            RefreshCommand = new MvxAsyncCommand(DoRefresh);
+        }
+
+        private async Task DoRefresh()
+        {
+            Confirm("Перезапустить программу?", async () =>
+            {
+                CloseCommand.Execute(null);
+                await NavigationService.Navigate<SplashViewModel>();
+            });
+
         }
 
         private void DoShowCharge(int sum)
@@ -257,7 +269,7 @@ namespace CoffeeManager.Core.ViewModels
                 }
     
                 Categories = new MvxObservableCollection<CategoryItemViewModel>(
-                    categories.Select(s => new CategoryItemViewModel(onCategorySelectedAction)
+                    categories.Select(s => new CategoryItemViewModel(OnCategorySelectedAction)
                     {
                         Id = s.Id,
                         Name = s.Name
