@@ -137,36 +137,44 @@ namespace CoffeeManager.Api.Controllers
                 decimal realShiftAmount = shift.CurrentAmount + diff + shift.CreditCardAmount.Value;
                 decimal realShiftAmountForPaymentCalculation = realShiftAmount;
 
-                var sales = enities.Sales.Where(s => s.ShiftId == shiftId && !s.IsRejected && !s.IsUtilized).GroupBy(g => g.Product).ToList();
-                foreach (var saleGroup in sales)
-                {
-                    var product = enities.Products.First(p => p.Id == saleGroup.Key);
-                    if (product.IsPercentPaymentEnabled)
-                    {
-                        var strategy = enities.ProductPaymentStrategies.FirstOrDefault(s =>
-                            s.ProductId == saleGroup.Key && s.CoffeeRoomId == coffeeroomno);
-                        if (strategy == null)
-                        {
-                           continue;
-                        }
-                        var sum = saleGroup.Sum(s => s.Amount);
-                        realShiftAmountForPaymentCalculation -= sum;
-                        decimal paymentPercent = isDayShift ? strategy.DayShiftPercent : strategy.NightShiftPercent;
-                        amountForPartialPay += sum.GetPercentValueOf(paymentPercent);
-                    }
-                }
-
+                
                 var user = enities.Users.Include(s => s.UserPaymentStrategies).First(u => u.Id == shift.UserId);
                 var userPaymentStrategy = user.UserPaymentStrategies.First(s => s.CoffeeRoomId == coffeeroomno);
 
-                Log.Info($"Shift ID {shiftId}: Start salary calcualtion for user {user.Name} coffeeroom {coffeeroomno}");
-                Log.Info($"Shift ID {shiftId}: Payment strategy: DayShiftPersent {userPaymentStrategy.DayShiftPersent};" +
-                         $"NightShiftPercent {userPaymentStrategy.NightShiftPercent}" +
-                         $"MinimumPayment {userPaymentStrategy.MinimumPayment}" +
-                         $"SimplePayment {userPaymentStrategy.SimplePayment}");
                 var percent = isDayShift
                     ? userPaymentStrategy.DayShiftPersent
                     : userPaymentStrategy.NightShiftPercent;
+
+                if (percent > 0)
+                {
+                    var sales = enities.Sales.Where(s => s.ShiftId == shiftId && !s.IsRejected && !s.IsUtilized)
+                        .GroupBy(g => g.Product).ToList();
+                    foreach (var saleGroup in sales)
+                    {
+                        var product = enities.Products.First(p => p.Id == saleGroup.Key);
+                        if (product.IsPercentPaymentEnabled)
+                        {
+                            var strategy = enities.ProductPaymentStrategies.FirstOrDefault(s =>
+                                s.ProductId == saleGroup.Key && s.CoffeeRoomId == coffeeroomno);
+                            if (strategy == null)
+                            {
+                                continue;
+                            }
+
+                            var sum = saleGroup.Sum(s => s.Amount);
+                            realShiftAmountForPaymentCalculation -= sum;
+                            decimal paymentPercent = isDayShift ? strategy.DayShiftPercent : strategy.NightShiftPercent;
+                            amountForPartialPay += sum.GetPercentValueOf(paymentPercent);
+                        }
+                    }
+                }
+
+                Log.Info($"Shift ID {shiftId}: Start salary calcualtion for user {user.Name} coffeeroom {coffeeroomno}");
+                Log.Info($"Shift ID {shiftId}: Payment strategy: DayShiftPersent {userPaymentStrategy.DayShiftPersent};" +
+                         $" NightShiftPercent {userPaymentStrategy.NightShiftPercent}" +
+                         $" MinimumPayment {userPaymentStrategy.MinimumPayment}" +
+                         $" SimplePayment {userPaymentStrategy.SimplePayment}");
+
                 var userEarnedAmount = userPaymentStrategy.SimplePayment
                                        + realShiftAmountForPaymentCalculation.GetPercentValueOf(percent)
                                        + amountForPartialPay;
@@ -187,7 +195,6 @@ namespace CoffeeManager.Api.Controllers
                 Log.Info($"Shift ID {shiftId}: Saved user amount");
 
                 decimal motivationScore = 0;
-                decimal moneyMotivationScore = 0;
 
                 Log.Info($"Shift ID {shiftId}: Start calculate motivation score");
                 var currentMotivation = enities.Motivations.FirstOrDefault(m => !m.EndDate.HasValue);
@@ -216,10 +223,10 @@ namespace CoffeeManager.Api.Controllers
                         }
                         return w.CurrentAmount + dif + w.CreditCardAmount.Value;
                     });
-                    Log.Info($"Shift {shiftId} coffeeroom {coffeeroomno} Max amount is {maxAmount}");
+                    Log.Info($"Shift {shiftId} coffeeroom {coffeeroomno} Max amount is {maxAmount}; Shift amount is {realShiftAmount}");
                     var onePercentOfMaxAmount = maxAmount / 100;
                     var percentOfCurrentShift = realShiftAmount / onePercentOfMaxAmount;
-                    moneyMotivationScore = percentOfCurrentShift / 100;
+                    var moneyMotivationScore = percentOfCurrentShift / 100;
 
                     var motivationItem = enities.ShiftMotivations.FirstOrDefault(f => f.ShiftId == shiftId);
                     if (motivationItem != null)
