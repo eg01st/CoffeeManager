@@ -16,9 +16,9 @@
         <item
             android:id="@+id/utilize_suply_product"
             android:title="Списание" />
-	  <!--   <item
+	     <item
             android:id="@+id/motivation"
-            android:title="Мотивация персонала" /> -->
+            android:title="Мотивация персонала" /> 
         <item
                 android:id="@+id/inventory"
                 android:title="Переучет" />

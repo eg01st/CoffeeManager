@@ -260,9 +260,8 @@ namespace CoffeeManager.Api.Controllers
                     {
                         EarnedAmount = userEarnedAmount,
                         RealShiftAmount = realShiftAmount,
-                        CurrentUserAmount = user.CurrentEarnedAmount
-//                        ,
-//                        EarnedMotivationScore = motivationScore
+                        CurrentUserAmount = user.CurrentEarnedAmount,
+                        EarnedMotivationScore = motivationScore
                     });
             }
         }
