@@ -233,7 +233,7 @@ namespace CoffeeManager.Api.Controllers
                     {
                         motivationItem.Moneycore = moneyMotivationScore;
                         motivationScore += motivationItem.ShiftScore + moneyMotivationScore;
-                        Log.Info($"Shift {shiftId} coffeeroom {coffeeroomno} Motivation score is {motivationScore}");
+                        Log.Info($"Shift {shiftId} coffeeroom {coffeeroomno} Motivation score is {motivationScore}; moneyMotivationScore is {moneyMotivationScore}");
                     }
                 }
                 else

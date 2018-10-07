@@ -19,7 +19,7 @@ namespace CoffeeManager.Api.Controllers
         [HttpGet]
         public async Task<HttpResponseMessage> GetCurrenVersion(HttpRequestMessage message)
         {
-            return Request.CreateResponse(HttpStatusCode.OK, 10);
+            return Request.CreateResponse(HttpStatusCode.OK, 12);
         }
 
 

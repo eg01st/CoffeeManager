@@ -116,7 +116,7 @@ namespace CoffeeManager.Api.Controllers
         public async Task<HttpResponseMessage> GetProductCalculationItems([FromUri] int coffeeroomno,  int productId, HttpRequestMessage message)
         {
             var entites = new CoffeeRoomEntities();
-            var product = entites.Products.FirstOrDefault(p => p.Id == productId && p.CoffeeRoomNo == coffeeroomno);
+            var product = entites.Products.FirstOrDefault(p => p.Id == productId);
             if (product == null)
             {
                 return Request.CreateErrorResponse(HttpStatusCode.RequestedRangeNotSatisfiable,
