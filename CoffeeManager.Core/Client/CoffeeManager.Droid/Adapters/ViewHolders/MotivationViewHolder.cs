@@ -27,9 +27,9 @@ namespace CoffeeManager.Droid.Adapters.ViewHolders
         {
             var bindingSet = this.CreateBindingSet<MotivationViewHolder, MotivationItemViewModel>();
             bindingSet.Bind(Name).To(vm => vm.UserName);
-            bindingSet.Bind(Shift).To(vm => vm.ShiftScore).WithConversion(new DecimalToPriceConverter());
-            bindingSet.Bind(Money).To(vm => vm.MoneyScore).WithConversion(new DecimalToPriceConverter());
-            bindingSet.Bind(Entire).To(vm => vm.EntireScore).WithConversion(new DecimalToPriceConverter());
+            bindingSet.Bind(Shift).To(vm => vm.ShiftScore);
+            bindingSet.Bind(Money).To(vm => vm.MoneyScore);
+            bindingSet.Bind(Entire).To(vm => vm.EntireScore);
             bindingSet.Apply();
         }
     }

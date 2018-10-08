@@ -29,7 +29,7 @@ namespace CoffeManager.Common.Providers
 
         public async Task FinishMotivation(int motivationId)
         {
-            await Post(RoutesConstants.FinishMotivation,
+            await Post<object>(RoutesConstants.FinishMotivation, null,
                 new Dictionary<string, string>()
                 {
                     {nameof(motivationId), motivationId.ToString()},
