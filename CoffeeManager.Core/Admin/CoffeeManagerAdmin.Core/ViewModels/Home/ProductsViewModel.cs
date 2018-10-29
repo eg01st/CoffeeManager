@@ -43,7 +43,6 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Home
             var items = await manager.GetProducts();
             var result = new List<ListItemViewModelBase>();
 
-
             var vms = items.Select(s => new ProductItemViewModel(s)).GroupBy(g => g.Category).OrderBy(o => o.Key).ToList();
             foreach (var item in vms)
             {
@@ -52,7 +51,6 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Home
             }
             return result;
         }
-
 
         protected override void DoUnsubscribe()
         {

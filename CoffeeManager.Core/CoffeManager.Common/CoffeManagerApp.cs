@@ -35,6 +35,7 @@ namespace CoffeManager.Common
             Mvx.RegisterSingleton<ICategoryProvider>(new CategoryProvider());
             Mvx.RegisterSingleton<ICoffeeCounterProvider>(new CoffeeCounterProvider());
             Mvx.RegisterSingleton<IMotivationProvider>(new MotivationProvider());
+            Mvx.RegisterSingleton<IAutoOrderProvider>(new AutoOrderProvider());
         }
 
         public virtual void RegisterManagers()
@@ -53,6 +54,7 @@ namespace CoffeManager.Common
             Mvx.RegisterSingleton<ICategoryManager>(new CategoryManager(Mvx.Resolve<ICategoryProvider>()));
             Mvx.RegisterSingleton<ICoffeeCounterManager>(new CoffeeCounterManager(Mvx.Resolve<ICoffeeCounterProvider>()));
             Mvx.RegisterSingleton<IMotivationManager>(new MotivationManager(Mvx.Resolve<IMotivationProvider>()));
+            Mvx.RegisterSingleton<IAutoOrderManager>(new AutoOrderManager(Mvx.Resolve<IAutoOrderProvider>()));
         }
     }
 }

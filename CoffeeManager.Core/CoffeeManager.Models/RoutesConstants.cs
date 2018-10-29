@@ -147,5 +147,14 @@ namespace CoffeeManager.Models
         public const string StartNewMotivation = Motivation + "/StartNewMotivation";
         public const string FinishMotivation = Motivation + "/FinishMotivation";
         public const string GetCurrentMotivation = Motivation + "/GetCurrentMotivation";
+        
+        public const string AutoOrder = Api + "/AutoOrder";
+        public const string GetAutoOrders = AutoOrder + "/GetAutoOrders";
+        public const string ToggleOrderEnabled = AutoOrder + "/ToggleOrderEnabled";
+        public const string GetAutoOrderDetails = AutoOrder + "/GetAutoOrderDetails";
+        public const string AddAutoOrderItem = AutoOrder + "/AddAutoOrderItem";
+        public const string DeleteAutoOrderItem = AutoOrder + "/DeleteAutoOrderItem";
+        public const string GetOrdersHistory = AutoOrder + "/GetOrdersHistory";
+        public const string GetOrderHistoryDetails = AutoOrder + "/GetOrderHistoryDetails";
     }
 }

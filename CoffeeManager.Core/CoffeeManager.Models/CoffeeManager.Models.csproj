@@ -38,6 +38,10 @@
     <Compile Include="CashoutHistory.cs" />
     <Compile Include="CupType.cs" />
     <Compile Include="CupTypeEnum.cs" />
+    <Compile Include="Data\DTO\AutoOrder\AutoOrderDTO.cs" />
+    <Compile Include="Data\DTO\AutoOrder\History\OrderHistoryItemDTO.cs" />
+    <Compile Include="Data\DTO\AutoOrder\History\SuplyProductOrderItemDTO.cs" />
+    <Compile Include="Data\DTO\AutoOrder\SuplyProductToOrderItemDTO.cs" />
     <Compile Include="Data\DTO\Category\CategoryDTO.cs" />
     <Compile Include="Data\DTO\CoffeeRoomCounter\CoffeeCounterDTO.cs" />
     <Compile Include="Data\DTO\CoffeeRoomCounter\CoffeeCounterForCoffeeRoomDTO.cs" />

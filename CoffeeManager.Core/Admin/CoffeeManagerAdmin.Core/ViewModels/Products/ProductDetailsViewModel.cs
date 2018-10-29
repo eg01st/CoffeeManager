@@ -299,7 +299,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Products
                             dto.ProductPrices = prices;
                             
                             await manager.EditProduct(dto);
-                            MvxMessenger.Publish(new ProductListChangedMessage(this));
+                            //MvxMessenger.Publish(new ProductListChangedMessage(this));
                             await NavigationService.Close(this);
                         });
                     }

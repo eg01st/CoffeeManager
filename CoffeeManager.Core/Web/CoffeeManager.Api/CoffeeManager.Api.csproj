@@ -95,10 +95,15 @@
       <HintPath>..\..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Quartz, Version=3.0.7.0, Culture=neutral, PublicKeyToken=f6b8c98a402cc8a4">
+      <HintPath>..\..\packages\Quartz.3.0.7\lib\net452\Quartz.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Runtime.Remoting" />
     <Reference Include="System.Security" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Transactions" />
@@ -196,6 +201,8 @@
     <Compile Include="AspNetUserLogin.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="BackgroundJob\AutoOrderJob.cs" />
+    <Compile Include="BackgroundJob\JobScheduler.cs" />
     <Compile Include="CashoutHistory.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -214,6 +221,7 @@
     <Compile Include="Constants.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\AutoOrderController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\CoffeeCounterController.cs" />
     <Compile Include="Controllers\InventoryController.cs" />
