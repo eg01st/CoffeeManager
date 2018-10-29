@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using CoffeeManager.Models;
 using CoffeeManager.Models.Data.DTO;
+using CoffeeManager.Models.Data.DTO.AutoOrder;
+using CoffeeManager.Models.Data.DTO.AutoOrder.History;
 using CoffeeManager.Models.Data.DTO.Category;
 using CoffeeManager.Models.Data.DTO.CoffeeRoomCounter;
 using CoffeeManager.Models.Data.DTO.StaffMotivation;
@@ -396,6 +398,62 @@ namespace CoffeeManager.Api.Mappers
                ProductId = item.ProductId,
                Price = item.Price,
                DiscountPrice = item.DiscountPrice
+            };
+
+            return dto;
+        }
+        
+        public static AutoOrderDTO ToDTO(this AutoOrder item)
+        {
+            var dto = new AutoOrderDTO()
+            {
+                Id = item.Id,
+                CoffeeRoomId = item.CoffeeRoomId,
+                DayOfWeek = item.DayOfWeek,
+                IsActive = item.IsActive,
+                OrderTime = item.Time
+            };
+
+            return dto;
+        }
+        
+        public static SuplyProductToOrderItemDTO ToDTO(this SuplyProductOrderItem item)
+        {
+            var dto = new SuplyProductToOrderItemDTO()
+            {
+                Id = item.Id,
+                OrderId = item.OrderId,
+                QuantityShouldBeAfterOrder = item.QuantityShouldBeAfterOrder,
+                SuplyProductId = item.SuplyProductId,
+                SuplyProductName = item.SupliedProduct.Name
+            };
+
+            return dto;
+        }
+        
+        public static OrderHistoryItemDTO ToDTO(this AutoOrdersHistory item)
+        {
+            var dto = new OrderHistoryItemDTO()
+            {
+                Id = item.Id,
+                OrderId = item.OrderId,
+                CoffeeRoomId = item.CoffeeRoomId,
+                OrderDate = item.OrderDate
+            };
+
+            return dto;
+        }
+        
+        public static SuplyProductOrderItemDTO ToDTO(this SuplyProductAutoOrdersHistory item)
+        {
+            var dto = new SuplyProductOrderItemDTO()
+            {
+                Id = item.Id,
+                OrderedQuantity = item.OrderedQuantity,
+                OrderHistoryId = item.OrderHistoryId,
+                QuantityBefore = item.QuantityBefore,
+                SuplyProductId = item.SuplyProductId,
+                SuplyProductName = item.SupliedProduct.Name
             };
 
             return dto;

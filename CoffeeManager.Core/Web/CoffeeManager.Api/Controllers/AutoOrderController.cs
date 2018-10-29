@@ -50,8 +50,12 @@ namespace CoffeeManager.Api.Controllers
             if (item != null)
             {
                 var dto = item.ToDTO();
-                var suplyProductOrderItems = entities.SuplyProductOrderItems.Where(i => i.OrderId = id).ToList().Select(s => s.ToDTO());
-                dto.OrderItems = suplyProductOrderItems;
+                var suplyProductOrderItems = entities.SuplyProductOrderItems
+                    .Include(i => i.SupliedProduct)
+                    .Where(i => i.OrderId == id)
+                    .ToList()
+                    .Select(s => s.ToDTO());
+                dto.OrderItems = suplyProductOrderItems.ToList();
                 return Request.CreateResponse(HttpStatusCode.OK, dto);
             }
 
@@ -109,8 +113,12 @@ namespace CoffeeManager.Api.Controllers
             if (item != null)
             {
                 var dto = item.ToDTO();
-                var suplyProductOrderItems = entities.SuplyProductAutoOrdersHistories.Where(i => i.OrderId = id).ToList().Select(s => s.ToDTO());
-                dto.OrderItems = suplyProductOrderItems;
+                var suplyProductOrderItems = entities.SuplyProductAutoOrdersHistories
+                    .Include(i => i.SupliedProduct)
+                    .Where(i => i.OrderHistoryId == id)
+                    .ToList()
+                    .Select(s => s.ToDTO());
+                dto.OrderedItems = suplyProductOrderItems.ToList();
                 return Request.CreateResponse(HttpStatusCode.OK, dto);
             }
 

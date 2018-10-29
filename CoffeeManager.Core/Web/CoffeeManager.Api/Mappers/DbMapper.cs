@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using CoffeeManager.Models;
+using CoffeeManager.Models.Data.DTO.AutoOrder;
+using CoffeeManager.Models.Data.DTO.AutoOrder.History;
 using CoffeeManager.Models.Data.DTO.Category;
 using CoffeeManager.Models.Data.DTO.CoffeeRoomCounter;
 using CoffeeManager.Models.Data.DTO.User;
@@ -248,5 +250,29 @@ namespace CoffeeManager.Api.Mappers
                 DiscountPrice = dto.DiscountPrice
 	        };
 	    }
+		
+		public static AutoOrder Map(this AutoOrderDTO dto)
+		{
+			return new AutoOrder()
+			{
+				Id = dto.Id,
+				CoffeeRoomId = dto.CoffeeRoomId,
+				DayOfWeek = dto.DayOfWeek,
+				Time = dto.OrderTime,
+				IsActive = dto.IsActive,
+				SuplyProductOrderItems = dto.OrderItems.Select(s => s.Map()).ToList()
+			};
+		}
+		
+		public static SuplyProductOrderItem Map(this SuplyProductToOrderItemDTO dto)
+		{
+			return new SuplyProductOrderItem()
+			{
+				Id = dto.Id,
+				QuantityShouldBeAfterOrder = dto.QuantityShouldBeAfterOrder,
+				SuplyProductId = dto.SuplyProductId
+
+			};
+		}
     }
 }
