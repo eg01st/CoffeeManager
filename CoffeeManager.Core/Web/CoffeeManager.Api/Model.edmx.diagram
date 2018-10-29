@@ -107,6 +107,9 @@
         <EntityTypeShape EntityType="CoffeeRoomModel.AutoOrdersHistory" Width="1.5" PointX="15.875" PointY="25.25" />
         <AssociationConnector Association="CoffeeRoomModel.FK__AutoOrder__Order__7A3223E8" />
         <AssociationConnector Association="CoffeeRoomModel.FK__AutoOrder__Coffe__793DFFAF" />
+        <EntityTypeShape EntityType="CoffeeRoomModel.SuplyProductAutoOrdersHistory" Width="1.5" PointX="19.125" PointY="20" />
+        <AssociationConnector Association="CoffeeRoomModel.FK__SuplyProd__Order__7E02B4CC" />
+        <AssociationConnector Association="CoffeeRoomModel.FK__SuplyProd__Suply__7D0E9093" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

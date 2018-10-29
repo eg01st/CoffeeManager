@@ -348,6 +348,9 @@
     <Compile Include="SuplyOrderItem.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="SuplyProductAutoOrdersHistory.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="SuplyProductOrderItem.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>

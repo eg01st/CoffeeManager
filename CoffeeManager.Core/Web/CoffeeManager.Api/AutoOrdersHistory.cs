@@ -14,6 +14,12 @@ namespace CoffeeManager.Api
     
     public partial class AutoOrdersHistory
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public AutoOrdersHistory()
+        {
+            this.SuplyProductAutoOrdersHistories = new HashSet<SuplyProductAutoOrdersHistory>();
+        }
+    
         public int Id { get; set; }
         public System.DateTime OrderDate { get; set; }
         public int CoffeeRoomId { get; set; }
@@ -21,5 +27,7 @@ namespace CoffeeManager.Api
     
         public virtual AutoOrder AutoOrder { get; set; }
         public virtual CoffeeRoom CoffeeRoom { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SuplyProductAutoOrdersHistory> SuplyProductAutoOrdersHistories { get; set; }
     }
 }
