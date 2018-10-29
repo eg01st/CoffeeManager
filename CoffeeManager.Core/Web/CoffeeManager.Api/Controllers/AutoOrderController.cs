@@ -21,6 +21,7 @@ namespace CoffeeManager.Api.Controllers
         public async Task<HttpResponseMessage> GetAutoOrders([FromUri]int coffeeroomno)
         {
             var entities = new CoffeeRoomEntities();
+
             var items = entities.AutoOrders.Where(o => o.CoffeeRoomId == coffeeroomno).ToList().Select(s => s.ToDTO());
 
             return Request.CreateResponse(HttpStatusCode.OK, items);

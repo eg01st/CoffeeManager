@@ -26,6 +26,8 @@ namespace CoffeeManager.Api
             this.EnabledCoffeeCounters = new HashSet<EnabledCoffeeCounter>();
             this.ProductPaymentStrategies = new HashSet<ProductPaymentStrategy>();
             this.ProductPrices = new HashSet<ProductPrice>();
+            this.AutoOrders = new HashSet<AutoOrder>();
+            this.AutoOrdersHistories = new HashSet<AutoOrdersHistory>();
         }
     
         public int Id { get; set; }
@@ -50,5 +52,9 @@ namespace CoffeeManager.Api
         public virtual ICollection<ProductPaymentStrategy> ProductPaymentStrategies { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductPrice> ProductPrices { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AutoOrder> AutoOrders { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AutoOrdersHistory> AutoOrdersHistories { get; set; }
     }
 }

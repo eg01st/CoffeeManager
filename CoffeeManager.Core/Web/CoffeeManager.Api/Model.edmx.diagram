@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="096d85e2f7db407683b3b8d684519977" Name="Diagram1" ZoomLevel="59">
+      <Diagram DiagramId="096d85e2f7db407683b3b8d684519977" Name="Diagram1" ZoomLevel="77">
         <EntityTypeShape EntityType="CoffeeRoomModel.CupSuply" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="CoffeeRoomModel.CupType" Width="1.5" PointX="3" PointY="2.75" IsExpanded="true" />
         <EntityTypeShape EntityType="CoffeeRoomModel.Expense" Width="1.5" PointX="5.25" PointY="6.5" IsExpanded="true" />
@@ -99,6 +99,14 @@
         <EntityTypeShape EntityType="CoffeeRoomModel.ProductPrice" Width="1.5" PointX="13.625" PointY="23" />
         <AssociationConnector Association="CoffeeRoomModel.FK__ProductPr__Coffe__6CD828CA" />
         <AssociationConnector Association="CoffeeRoomModel.FK__ProductPr__Produ__6DCC4D03" />
+        <EntityTypeShape EntityType="CoffeeRoomModel.AutoOrder" Width="1.5" PointX="9.625" PointY="24.375" />
+        <AssociationConnector Association="CoffeeRoomModel.FK__AutoOrder__Coffe__72910220" />
+        <EntityTypeShape EntityType="CoffeeRoomModel.SuplyProductOrderItem" Width="1.5" PointX="15.875" PointY="21.625" />
+        <AssociationConnector Association="CoffeeRoomModel.FK__SuplyProd__Order__76619304" />
+        <AssociationConnector Association="CoffeeRoomModel.FK__SuplyProd__Suply__756D6ECB" />
+        <EntityTypeShape EntityType="CoffeeRoomModel.AutoOrdersHistory" Width="1.5" PointX="15.875" PointY="25.25" />
+        <AssociationConnector Association="CoffeeRoomModel.FK__AutoOrder__Order__7A3223E8" />
+        <AssociationConnector Association="CoffeeRoomModel.FK__AutoOrder__Coffe__793DFFAF" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

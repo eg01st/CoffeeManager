@@ -59,6 +59,25 @@
           <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
           <Property Name="ApiUrl" Type="nvarchar" MaxLength="1024" />
         </EntityType>
+        <EntityType Name="AutoOrder">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DayOfWeek" Type="int" Nullable="false" />
+          <Property Name="Time" Type="time" Precision="7" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CoffeeRoomId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AutoOrdersHistory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderDate" Type="datetime" Nullable="false" />
+          <Property Name="CoffeeRoomId" Type="int" Nullable="false" />
+          <Property Name="OrderId" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="CashoutHistory">
           <Key>
             <PropertyRef Name="Id" />
@@ -365,6 +384,15 @@
           <Property Name="IsDone" Type="bit" Nullable="false" />
           <Property Name="CoffeeRoomNo" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="SuplyProductOrderItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="QuantityShouldBeAfterOrder" Type="int" Nullable="false" />
+          <Property Name="SuplyProductId" Type="int" Nullable="false" />
+          <Property Name="OrderId" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="SuplyProductQuantity">
           <Key>
             <PropertyRef Name="Id" />
@@ -454,6 +482,42 @@
           <Property Name="CoffeeRoomNo" Type="int" Nullable="false" />
           <Property Name="DateTime" Type="datetime" Nullable="false" />
         </EntityType>
+        <Association Name="FK__AutoOrder__Coffe__72910220">
+          <End Role="CoffeeRoom" Type="Self.CoffeeRoom" Multiplicity="1" />
+          <End Role="AutoOrder" Type="Self.AutoOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CoffeeRoom">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AutoOrder">
+              <PropertyRef Name="CoffeeRoomId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AutoOrder__Coffe__793DFFAF">
+          <End Role="CoffeeRoom" Type="Self.CoffeeRoom" Multiplicity="1" />
+          <End Role="AutoOrdersHistory" Type="Self.AutoOrdersHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CoffeeRoom">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AutoOrdersHistory">
+              <PropertyRef Name="CoffeeRoomId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AutoOrder__Order__7A3223E8">
+          <End Role="AutoOrder" Type="Self.AutoOrder" Multiplicity="1" />
+          <End Role="AutoOrdersHistory" Type="Self.AutoOrdersHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AutoOrder">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AutoOrdersHistory">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__CashoutHi__Coffe__2739D489">
           <End Role="CoffeeRoom" Type="Self.CoffeeRoom" Multiplicity="1" />
           <End Role="CashoutHistory" Type="Self.CashoutHistory" Multiplicity="*" />
@@ -890,6 +954,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__SuplyProd__Order__76619304">
+          <End Role="AutoOrder" Type="Self.AutoOrder" Multiplicity="1" />
+          <End Role="SuplyProductOrderItem" Type="Self.SuplyProductOrderItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AutoOrder">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SuplyProductOrderItem">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__SuplyProd__Suply__44CA3770">
           <End Role="SupliedProduct" Type="Self.SupliedProduct" Multiplicity="1" />
           <End Role="SuplyProductQuantity" Type="Self.SuplyProductQuantity" Multiplicity="*" />
@@ -910,6 +986,18 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="SuplyProductQuantity">
+              <PropertyRef Name="SuplyProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SuplyProd__Suply__756D6ECB">
+          <End Role="SupliedProduct" Type="Self.SupliedProduct" Multiplicity="1" />
+          <End Role="SuplyProductOrderItem" Type="Self.SuplyProductOrderItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SupliedProduct">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SuplyProductOrderItem">
               <PropertyRef Name="SuplyProductId" />
             </Dependent>
           </ReferentialConstraint>
@@ -1165,6 +1253,8 @@
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AutoOrder" EntityType="Self.AutoOrder" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AutoOrdersHistory" EntityType="Self.AutoOrdersHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CashoutHistory" EntityType="Self.CashoutHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CoffeeCounter" EntityType="Self.CoffeeCounter" Schema="dbo" store:Type="Tables" />
@@ -1192,6 +1282,7 @@
           <EntitySet Name="SupliedProduct" EntityType="Self.SupliedProduct" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SuplyOrder" EntityType="Self.SuplyOrder" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SuplyOrderItem" EntityType="Self.SuplyOrderItem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SuplyProductOrderItem" EntityType="Self.SuplyProductOrderItem" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SuplyProductQuantity" EntityType="Self.SuplyProductQuantity" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UsedCupsPerShift" EntityType="Self.UsedCupsPerShift" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UsedProductsPerShift" EntityType="Self.UsedProductsPerShift" Schema="dbo" store:Type="Tables" />
@@ -1200,6 +1291,18 @@
           <EntitySet Name="UserPenalty" EntityType="Self.UserPenalty" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UtilizedSuplyProduct" EntityType="Self.UtilizedSuplyProduct" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__AutoOrder__Coffe__72910220" Association="Self.FK__AutoOrder__Coffe__72910220">
+            <End Role="CoffeeRoom" EntitySet="CoffeeRoom" />
+            <End Role="AutoOrder" EntitySet="AutoOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AutoOrder__Coffe__793DFFAF" Association="Self.FK__AutoOrder__Coffe__793DFFAF">
+            <End Role="CoffeeRoom" EntitySet="CoffeeRoom" />
+            <End Role="AutoOrdersHistory" EntitySet="AutoOrdersHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AutoOrder__Order__7A3223E8" Association="Self.FK__AutoOrder__Order__7A3223E8">
+            <End Role="AutoOrder" EntitySet="AutoOrder" />
+            <End Role="AutoOrdersHistory" EntitySet="AutoOrdersHistory" />
+          </AssociationSet>
           <AssociationSet Name="FK__CashoutHi__Coffe__2739D489" Association="Self.FK__CashoutHi__Coffe__2739D489">
             <End Role="CoffeeRoom" EntitySet="CoffeeRoom" />
             <End Role="CashoutHistory" EntitySet="CashoutHistory" />
@@ -1344,6 +1447,10 @@
             <End Role="CoffeeRoom" EntitySet="CoffeeRoom" />
             <End Role="SuplyProductQuantity" EntitySet="SuplyProductQuantity" />
           </AssociationSet>
+          <AssociationSet Name="FK__SuplyProd__Order__76619304" Association="Self.FK__SuplyProd__Order__76619304">
+            <End Role="AutoOrder" EntitySet="AutoOrder" />
+            <End Role="SuplyProductOrderItem" EntitySet="SuplyProductOrderItem" />
+          </AssociationSet>
           <AssociationSet Name="FK__SuplyProd__Suply__44CA3770" Association="Self.FK__SuplyProd__Suply__44CA3770">
             <End Role="SupliedProduct" EntitySet="SupliedProduct" />
             <End Role="SuplyProductQuantity" EntitySet="SuplyProductQuantity" />
@@ -1351,6 +1458,10 @@
           <AssociationSet Name="FK__SuplyProd__Suply__47A6A41B" Association="Self.FK__SuplyProd__Suply__47A6A41B">
             <End Role="SupliedProduct" EntitySet="SupliedProduct" />
             <End Role="SuplyProductQuantity" EntitySet="SuplyProductQuantity" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SuplyProd__Suply__756D6ECB" Association="Self.FK__SuplyProd__Suply__756D6ECB">
+            <End Role="SupliedProduct" EntitySet="SupliedProduct" />
+            <End Role="SuplyProductOrderItem" EntitySet="SuplyProductOrderItem" />
           </AssociationSet>
           <AssociationSet Name="FK__UsedCupsP__Shift__3F466844" Association="Self.FK__UsedCupsP__Shift__3F466844">
             <End Role="Shifts" EntitySet="Shifts" />
@@ -1979,6 +2090,29 @@
             <End Role="Product" EntitySet="Products" />
             <End Role="ProductPrice" EntitySet="ProductPrices" />
           </AssociationSet>
+          <EntitySet Name="AutoOrders" EntityType="CoffeeRoomModel.AutoOrder" />
+          <AssociationSet Name="FK__AutoOrder__Coffe__72910220" Association="CoffeeRoomModel.FK__AutoOrder__Coffe__72910220">
+            <End Role="CoffeeRoom" EntitySet="CoffeeRooms" />
+            <End Role="AutoOrder" EntitySet="AutoOrders" />
+          </AssociationSet>
+          <EntitySet Name="SuplyProductOrderItems" EntityType="CoffeeRoomModel.SuplyProductOrderItem" />
+          <AssociationSet Name="FK__SuplyProd__Order__76619304" Association="CoffeeRoomModel.FK__SuplyProd__Order__76619304">
+            <End Role="AutoOrder" EntitySet="AutoOrders" />
+            <End Role="SuplyProductOrderItem" EntitySet="SuplyProductOrderItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SuplyProd__Suply__756D6ECB" Association="CoffeeRoomModel.FK__SuplyProd__Suply__756D6ECB">
+            <End Role="SupliedProduct" EntitySet="SupliedProducts" />
+            <End Role="SuplyProductOrderItem" EntitySet="SuplyProductOrderItems" />
+          </AssociationSet>
+          <EntitySet Name="AutoOrdersHistories" EntityType="CoffeeRoomModel.AutoOrdersHistory" />
+          <AssociationSet Name="FK__AutoOrder__Order__7A3223E8" Association="CoffeeRoomModel.FK__AutoOrder__Order__7A3223E8">
+            <End Role="AutoOrder" EntitySet="AutoOrders" />
+            <End Role="AutoOrdersHistory" EntitySet="AutoOrdersHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AutoOrder__Coffe__793DFFAF" Association="CoffeeRoomModel.FK__AutoOrder__Coffe__793DFFAF">
+            <End Role="CoffeeRoom" EntitySet="CoffeeRooms" />
+            <End Role="AutoOrdersHistory" EntitySet="AutoOrdersHistories" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="UsedProductsPerShift">
           <Key>
@@ -2038,6 +2172,7 @@
           <NavigationProperty Name="SuplyProductQuantities" Relationship="CoffeeRoomModel.FK__SuplyProd__Suply__3F115E1A" FromRole="SupliedProduct" ToRole="SuplyProductQuantity" />
           <NavigationProperty Name="CoffeeCounters" Relationship="CoffeeRoomModel.FK__CoffeeCou__Suply__40F9A68C" FromRole="SupliedProduct" ToRole="CoffeeCounter" />
           <NavigationProperty Name="CoffeeCounterForCoffeeRooms" Relationship="CoffeeRoomModel.FK__CoffeeCou__Suply__45BE5BA9" FromRole="SupliedProduct" ToRole="CoffeeCounterForCoffeeRoom" />
+          <NavigationProperty Name="SuplyProductOrderItems" Relationship="CoffeeRoomModel.FK__SuplyProd__Suply__756D6ECB" FromRole="SupliedProduct" ToRole="SuplyProductOrderItem" />
         </EntityType>
         <Association Name="FK_SupliedProduct_ExpenseType">
           <End Type="CoffeeRoomModel.ExpenseType" Role="ExpenseType" Multiplicity="0..1" />
@@ -2369,6 +2504,8 @@
           <NavigationProperty Name="EnabledCoffeeCounters" Relationship="CoffeeRoomModel.FK__EnabledCo__Coffe__57DD0BE4" FromRole="CoffeeRoom" ToRole="EnabledCoffeeCounter" />
           <NavigationProperty Name="ProductPaymentStrategies" Relationship="CoffeeRoomModel.FK__ProductPa__Coffe__531856C7" FromRole="CoffeeRoom" ToRole="ProductPaymentStrategy" />
           <NavigationProperty Name="ProductPrices" Relationship="CoffeeRoomModel.FK__ProductPr__Coffe__6CD828CA" FromRole="CoffeeRoom" ToRole="ProductPrice" />
+          <NavigationProperty Name="AutoOrders" Relationship="CoffeeRoomModel.FK__AutoOrder__Coffe__72910220" FromRole="CoffeeRoom" ToRole="AutoOrder" />
+          <NavigationProperty Name="AutoOrdersHistories" Relationship="CoffeeRoomModel.FK__AutoOrder__Coffe__793DFFAF" FromRole="CoffeeRoom" ToRole="AutoOrdersHistory" />
         </EntityType>
         <EntityType Name="UserEarningsHistory">
           <Key>
@@ -2940,6 +3077,102 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="AutoOrder">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DayOfWeek" Type="CoffeeRoomModel.DayOfWeek" Nullable="false" />
+          <Property Name="Time" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CoffeeRoomId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CoffeeRoom" Relationship="CoffeeRoomModel.FK__AutoOrder__Coffe__72910220" FromRole="AutoOrder" ToRole="CoffeeRoom" />
+          <NavigationProperty Name="SuplyProductOrderItems" Relationship="CoffeeRoomModel.FK__SuplyProd__Order__76619304" FromRole="AutoOrder" ToRole="SuplyProductOrderItem" />
+          <NavigationProperty Name="AutoOrdersHistories" Relationship="CoffeeRoomModel.FK__AutoOrder__Order__7A3223E8" FromRole="AutoOrder" ToRole="AutoOrdersHistory" />
+        </EntityType>
+        <Association Name="FK__AutoOrder__Coffe__72910220">
+          <End Type="CoffeeRoomModel.CoffeeRoom" Role="CoffeeRoom" Multiplicity="1" />
+          <End Type="CoffeeRoomModel.AutoOrder" Role="AutoOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CoffeeRoom">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AutoOrder">
+              <PropertyRef Name="CoffeeRoomId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EnumType Name="DayOfWeek" a:ExternalTypeName="DayOfWeek" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+        <EntityType Name="SuplyProductOrderItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="QuantityShouldBeAfterOrder" Type="Int32" Nullable="false" />
+          <Property Name="SuplyProductId" Type="Int32" Nullable="false" />
+          <Property Name="OrderId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AutoOrder" Relationship="CoffeeRoomModel.FK__SuplyProd__Order__76619304" FromRole="SuplyProductOrderItem" ToRole="AutoOrder" />
+          <NavigationProperty Name="SupliedProduct" Relationship="CoffeeRoomModel.FK__SuplyProd__Suply__756D6ECB" FromRole="SuplyProductOrderItem" ToRole="SupliedProduct" />
+        </EntityType>
+        <Association Name="FK__SuplyProd__Order__76619304">
+          <End Type="CoffeeRoomModel.AutoOrder" Role="AutoOrder" Multiplicity="1" />
+          <End Type="CoffeeRoomModel.SuplyProductOrderItem" Role="SuplyProductOrderItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AutoOrder">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SuplyProductOrderItem">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SuplyProd__Suply__756D6ECB">
+          <End Type="CoffeeRoomModel.SupliedProduct" Role="SupliedProduct" Multiplicity="1" />
+          <End Type="CoffeeRoomModel.SuplyProductOrderItem" Role="SuplyProductOrderItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SupliedProduct">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SuplyProductOrderItem">
+              <PropertyRef Name="SuplyProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="AutoOrdersHistory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CoffeeRoomId" Type="Int32" Nullable="false" />
+          <Property Name="OrderId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AutoOrder" Relationship="CoffeeRoomModel.FK__AutoOrder__Order__7A3223E8" FromRole="AutoOrdersHistory" ToRole="AutoOrder" />
+          <NavigationProperty Name="CoffeeRoom" Relationship="CoffeeRoomModel.FK__AutoOrder__Coffe__793DFFAF" FromRole="AutoOrdersHistory" ToRole="CoffeeRoom" />
+        </EntityType>
+        <Association Name="FK__AutoOrder__Order__7A3223E8">
+          <End Type="CoffeeRoomModel.AutoOrder" Role="AutoOrder" Multiplicity="1" />
+          <End Type="CoffeeRoomModel.AutoOrdersHistory" Role="AutoOrdersHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AutoOrder">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AutoOrdersHistory">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AutoOrder__Coffe__793DFFAF">
+          <End Type="CoffeeRoomModel.CoffeeRoom" Role="CoffeeRoom" Multiplicity="1" />
+          <End Type="CoffeeRoomModel.AutoOrdersHistory" Role="AutoOrdersHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CoffeeRoom">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AutoOrdersHistory">
+              <PropertyRef Name="CoffeeRoomId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3466,6 +3699,37 @@
                 <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="ProductId" ColumnName="ProductId" />
                 <ScalarProperty Name="CoffeeRoomNo" ColumnName="CoffeeRoomNo" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AutoOrders">
+            <EntityTypeMapping TypeName="CoffeeRoomModel.AutoOrder">
+              <MappingFragment StoreEntitySet="AutoOrder">
+                <ScalarProperty Name="CoffeeRoomId" ColumnName="CoffeeRoomId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="DayOfWeek" ColumnName="DayOfWeek" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SuplyProductOrderItems">
+            <EntityTypeMapping TypeName="CoffeeRoomModel.SuplyProductOrderItem">
+              <MappingFragment StoreEntitySet="SuplyProductOrderItem">
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="SuplyProductId" ColumnName="SuplyProductId" />
+                <ScalarProperty Name="QuantityShouldBeAfterOrder" ColumnName="QuantityShouldBeAfterOrder" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AutoOrdersHistories">
+            <EntityTypeMapping TypeName="CoffeeRoomModel.AutoOrdersHistory">
+              <MappingFragment StoreEntitySet="AutoOrdersHistory">
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="CoffeeRoomId" ColumnName="CoffeeRoomId" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

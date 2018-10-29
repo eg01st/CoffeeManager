@@ -3,6 +3,7 @@
     public class SuplyProductOrderItemDTO
     {
         public int Id { get; set; }
+        public int OrderHistoryId { get; set; }
         public int SuplyProductId { get; set; }
         public string SuplyProductName { get; set; }
         public int QuantityBefore { get; set; }

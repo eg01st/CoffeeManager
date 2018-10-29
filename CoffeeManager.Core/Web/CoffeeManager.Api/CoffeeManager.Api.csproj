@@ -201,6 +201,12 @@
     <Compile Include="AspNetUserLogin.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="AutoOrder.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AutoOrdersHistory.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="BackgroundJob\AutoOrderJob.cs" />
     <Compile Include="BackgroundJob\JobScheduler.cs" />
     <Compile Include="CashoutHistory.cs">
@@ -340,6 +346,9 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="SuplyOrderItem.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SuplyProductOrderItem.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="SuplyProductQuantity.cs">
