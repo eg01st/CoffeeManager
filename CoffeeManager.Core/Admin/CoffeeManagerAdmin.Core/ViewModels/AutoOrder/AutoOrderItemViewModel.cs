@@ -39,7 +39,5 @@ namespace CoffeeManagerAdmin.Core.ViewModels.AutoOrder
             get => isActive;
             set => SetProperty(ref isActive, value);
         }
-
-
     }
 }

@@ -9,6 +9,7 @@
         public const string Counters = "Счетчики кофемолок";
         public const string Categories = "Категории товаров";
         public const string Motivation = "Мотивация персонала";
+        public const string AutoOrder = "Автозаказ";
         public const string Quit = "Выйти";
 
     }

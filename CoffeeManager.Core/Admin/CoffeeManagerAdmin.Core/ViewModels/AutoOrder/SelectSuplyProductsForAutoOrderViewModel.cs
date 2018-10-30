@@ -6,17 +6,18 @@ using CoffeeManager.Models;
 using CoffeManager.Common.Managers;
 using CoffeManager.Common.ViewModels;
 using MvvmCross.Core.ViewModels;
+using CoffeeManagerAdmin.Core.ViewModels.Abstract;
 
 namespace CoffeeManagerAdmin.Core.ViewModels.AutoOrder
 {
-    public class SelectSuplyProductsViewModel : BaseSearchViewModel<SelectSuplyProductItemViewModel>, IMvxViewModelResult<IEnumerable<SupliedProduct>>
+    public class SelectSuplyProductsForAutoOrderViewModel : BaseAdminSearchViewModel<SelectSuplyProductItemViewModel>, IMvxViewModelResult<IEnumerable<SupliedProduct>>
     {
         private readonly ISuplyProductsManager suplyProductsManager;
         public TaskCompletionSource<object> CloseCompletionSource { get; set; }
         
         public ICommand DoneCommand { get; }
 
-        public SelectSuplyProductsViewModel(ISuplyProductsManager suplyProductsManager)
+        public SelectSuplyProductsForAutoOrderViewModel(ISuplyProductsManager suplyProductsManager)
         {
             this.suplyProductsManager = suplyProductsManager;
             DoneCommand = new MvxAsyncCommand(DoDone);
@@ -24,7 +25,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels.AutoOrder
 
         private async Task DoDone()
         {
-            var selectedItems = Items.Where(i => i.IsSelected).Select(s => s.SupliedProduct);
+            var selectedItems = ItemsCollection.Where(i => i.IsSelected).Select(s => s.SupliedProduct);
             await NavigationService.Close(this, selectedItems);
         }
 

@@ -6,6 +6,7 @@ using CoffeeManagerAdmin.Core.ViewModels.Motivation;
 using CoffeeManagerAdmin.Core.ViewModels.Settings;
 using CoffeManager.Common.Common;
 using MobileCore.ViewModels;
+using CoffeeManagerAdmin.Core.ViewModels.AutoOrder;
 
 namespace CoffeeManagerAdmin.Core.ViewModels.Home
 {
@@ -29,6 +30,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Home
                 MenuFeedtemViewModel.Create<CoffeeCountersViewModel>( Strings.Counters),
                 MenuFeedtemViewModel.Create<CategoriesViewModel>( Strings.Categories),
                 MenuFeedtemViewModel.Create<MotivationViewModel>( Strings.Motivation),
+                MenuFeedtemViewModel.Create<AutoOrderViewModel>( Strings.AutoOrder),
                 MenuFeedtemViewModel.Create<CoffeeCountersViewModel>( Strings.Quit),
             });
         }

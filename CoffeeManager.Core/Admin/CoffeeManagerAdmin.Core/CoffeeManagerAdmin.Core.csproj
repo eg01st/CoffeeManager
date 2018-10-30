@@ -57,7 +57,7 @@
     <Compile Include="ViewModels\AutoOrder\History\OrderHistoryViewModel.cs" />
     <Compile Include="ViewModels\AutoOrder\History\SuplyProductOrderItemViewModel.cs" />
     <Compile Include="ViewModels\AutoOrder\SelectSuplyProductsItemViewModel.cs" />
-    <Compile Include="ViewModels\AutoOrder\SelectSuplyProductsViewModel.cs" />
+    <Compile Include="ViewModels\AutoOrder\SelectSuplyProductsForAutoOrderViewModel.cs" />
     <Compile Include="ViewModels\AutoOrder\SuplyProductToOrderItemViewModel.cs" />
     <Compile Include="ViewModels\Categories\AddCategoryViewModel.cs" />
     <Compile Include="ViewModels\Categories\CategoriesViewModel.cs" />

@@ -525,6 +525,30 @@
     <Compile Include="Views\Products\ProductPriceTableViewHeader.designer.cs">
       <DependentUpon>ProductPriceTableViewHeader.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\AutoOrder\AutoOrderView.cs" />
+    <Compile Include="Views\AutoOrder\AutoOrderView.designer.cs">
+      <DependentUpon>AutoOrderView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AutoOrder\AddAutoOrderView.cs" />
+    <Compile Include="Views\AutoOrder\AddAutoOrderView.designer.cs">
+      <DependentUpon>AddAutoOrderView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AutoOrder\AutoOrderDetailsView.cs" />
+    <Compile Include="Views\AutoOrder\AutoOrderDetailsView.designer.cs">
+      <DependentUpon>AutoOrderDetailsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AutoOrder\SelectSuplyProductsForAutoOrderView.cs" />
+    <Compile Include="Views\AutoOrder\SelectSuplyProductsForAutoOrderView.designer.cs">
+      <DependentUpon>SelectSuplyProductsForAutoOrderView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AutoOrder\SuplyProductToOrderItemViewCell.cs" />
+    <Compile Include="Views\AutoOrder\SuplyProductToOrderItemViewCell.designer.cs">
+      <DependentUpon>SuplyProductToOrderItemViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AutoOrder\AutoOrderItemViewCell.cs" />
+    <Compile Include="Views\AutoOrder\AutoOrderItemViewCell.designer.cs">
+      <DependentUpon>AutoOrderItemViewCell.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Setup.cs" />
@@ -630,6 +654,12 @@
     <InterfaceDefinition Include="Views\Products\AddProductView.xib" />
     <InterfaceDefinition Include="Views\Products\ProductPriceTableViewCell.xib" />
     <InterfaceDefinition Include="Views\Products\ProductPriceTableViewHeader.xib" />
+    <InterfaceDefinition Include="Views\AutoOrder\AutoOrderView.xib" />
+    <InterfaceDefinition Include="Views\AutoOrder\AddAutoOrderView.xib" />
+    <InterfaceDefinition Include="Views\AutoOrder\AutoOrderDetailsView.xib" />
+    <InterfaceDefinition Include="Views\AutoOrder\SelectSuplyProductsForAutoOrderView.xib" />
+    <InterfaceDefinition Include="Views\AutoOrder\SuplyProductToOrderItemViewCell.xib" />
+    <InterfaceDefinition Include="Views\AutoOrder\AutoOrderItemViewCell.xib" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -786,6 +816,7 @@
     <Folder Include="Views\Counter\" />
     <Folder Include="Views\Shifts\Counters\" />
     <Folder Include="Views\Motivation\" />
+    <Folder Include="Views\AutoOrder\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\ic_check.png" />
