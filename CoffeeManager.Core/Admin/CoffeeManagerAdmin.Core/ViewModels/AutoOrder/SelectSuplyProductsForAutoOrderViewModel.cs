@@ -34,5 +34,10 @@ namespace CoffeeManagerAdmin.Core.ViewModels.AutoOrder
             var items = await ExecuteSafe(async () => await suplyProductsManager.GetSuplyProducts());
             return items.Select(s => new SelectSuplyProductItemViewModel(s)).ToList();
         }
+
+        protected override async Task OnItemSelectedAsync(SelectSuplyProductItemViewModel item)
+        {
+            item.ToggleSelectedCommand.Execute(null);
+        }
     }
 }

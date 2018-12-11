@@ -30,17 +30,11 @@ namespace CoffeeManagerAdmin.iOS.TableSources
             tableView.RegisterNibForHeaderFooterViewReuse(headerlNib, headerReuseIdentifier);
         }
 
-        public override void RowSelected(UITableView tableView, Foundation.NSIndexPath indexPath)
+        public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
         {
-            var item = GetItemAt(indexPath);
-            var vm = item as FeedItemElementViewModel;
-            if(vm != null)
-            {
-                vm.SelectCommand.Execute(null);
-                tableView.DeselectRow(indexPath, true);
-            }
+            SelectionChangedCommand?.Execute(GetItemAt(indexPath));
+            tableView.DeselectRow(indexPath, true);
         }
-
 
         public override nfloat GetHeightForHeader(UITableView tableView, nint section)
         {

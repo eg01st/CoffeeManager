@@ -270,8 +270,8 @@ namespace CoffeeManager.Api.Mappers
 			{
 				Id = dto.Id,
 				QuantityShouldBeAfterOrder = dto.QuantityShouldBeAfterOrder,
-				SuplyProductId = dto.SuplyProductId
-
+				SuplyProductId = dto.SuplyProductId,
+				ShouldUpdateQuantityBeforeOrder = dto.ShouldUpdateQuantityBeforeOrder
 			};
 		}
     }

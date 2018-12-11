@@ -8,27 +8,16 @@ using CoffeManager.Common.ViewModels;
 using MobileCore.Extensions;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Messenger;
+using MobileCore.ViewModels;
 
 namespace CoffeeManagerAdmin.Core.ViewModels.Home
 {
-    public class UsersViewModel : ViewModelBase
+    public class UsersViewModel : FeedViewModel<UserItemViewModel>
     {
         private MvxSubscriptionToken refreshUsersToken;
 
         private readonly IUserManager manager;
-
-        private List<UserItemViewModel> users;
         private ICommand _addUserCommand;
-
-        public List<UserItemViewModel> Users
-        {
-            get { return users; }
-            set
-            {
-                users = value;
-                RaisePropertyChanged(nameof(Users));
-            }
-        }
 
         public int AmountToPay { get; set; }
 
@@ -40,31 +29,19 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Home
                 RaisePropertyChanged(nameof(AmountToPay));
 
                 var items = await manager.GetUsers();
-                Users = items.Select(s => new UserItemViewModel(manager){UserName = s.Name, IsActive = s.IsActive, Id = s.Id})
-                    .OrderByDescending(o => o.IsActive).ToList();
+                ItemsCollection.ReplaceWith(items.Select(s => new UserItemViewModel(manager){UserName = s.Name, IsActive = s.IsActive, Id = s.Id})
+                    .OrderByDescending(o => o.IsActive));
             });
         }
 
         public ICommand AddUserCommand => _addUserCommand;
               
-        public MvxAsyncCommand<UserItemViewModel> ItemSelectedCommand { get; }
 
         public UsersViewModel(IUserManager manager)
         {
             this.manager = manager;
             _addUserCommand = new MvxAsyncCommand(DoAddUser);
-            ItemSelectedCommand = new MvxAsyncCommand<UserItemViewModel>(OnItemSelectedAsync);
-
-            refreshUsersToken = Subscribe<RefreshUserListMessage>(async (obj) => await Initialize());
-        }
-        
-        private async Task OnItemSelectedAsync(UserItemViewModel item)
-        {
-            item.ThrowIfNull(nameof(item));
-            
-            item.SelectCommand.Execute();
-
-            await Task.Yield();
+            refreshUsersToken = MvxMessenger.Subscribe<RefreshUserListMessage>(async (obj) => await Initialize());
         }
 
         private async Task DoAddUser()
@@ -75,7 +52,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Home
         protected override void DoUnsubscribe()
         {
             base.DoUnsubscribe();
-            Unsubscribe<RefreshUserListMessage>(refreshUsersToken);
+            MvxMessenger.Unsubscribe<RefreshUserListMessage>(refreshUsersToken);
         }
     }
 }

@@ -29,6 +29,7 @@ namespace CoffeeManagerAdmin.iOS
             var set = this.CreateBindingSet<SuplyProductToOrderItemViewCell, SuplyProductToOrderItemViewModel>();
             set.Bind(SuplyProductNameLabel).To(vm => vm.SuplyProductName);
             set.Bind(QuantityAfterTextField).To(vm => vm.QuantityShouldBeAfterOrder);
+            set.Bind(QuantityAfterTextField).For(i => i.Enabled).To(vm => vm.IsEditable);
             set.Apply();
         }
     }

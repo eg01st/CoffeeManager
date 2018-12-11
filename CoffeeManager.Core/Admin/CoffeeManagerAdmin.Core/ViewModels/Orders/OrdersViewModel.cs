@@ -9,10 +9,11 @@ using CoffeeManager.Models;
 using CoffeManager.Common;
 using CoffeeManager.Common;
 using CoffeManager.Common.ViewModels;
+using MobileCore.ViewModels;
 
 namespace CoffeeManagerAdmin.Core.ViewModels.Orders
 {
-    public class OrdersViewModel : ViewModelBase
+    public class OrdersViewModel : FeedViewModel<OrderViewModel>
     {
         private MvxSubscriptionToken _token;
 
@@ -22,7 +23,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Orders
         public OrdersViewModel(ISuplyOrderManager manager)
         {
             this.manager = manager;
-            _token = Subscribe<OrderListChangedMessage>(async (a) => await LoadData());
+            _token = MvxMessenger.Subscribe<OrderListChangedMessage>(async (a) => await LoadData());
             CreateOrderCommand = new MvxAsyncCommand(DoCreateOrder);
         }
 
@@ -43,16 +44,6 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Orders
 
         public ICommand CreateOrderCommand { get; set; }
 
-        public List<OrderViewModel> Items
-        {
-            get { return _items; }
-            set
-            {
-                _items = value;
-                RaisePropertyChanged(nameof(Items));
-            }
-        }
-
         public override async Task Initialize()
         {
             await LoadData();
@@ -61,12 +52,12 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Orders
         private async Task LoadData()
         {
             var items = await ExecuteSafe(manager.GetOrders);
-            Items = items.Select(s => new OrderViewModel(manager, s)).OrderByDescending(o => o.Id).ToList();
+            ItemsCollection.ReplaceWith(items.Select(s => new OrderViewModel(manager, s)).OrderByDescending(o => o.Id));
         }
 
         protected override void DoUnsubscribe()
         {
-            Unsubscribe<OrderListChangedMessage>(_token);
+            MvxMessenger.Unsubscribe<OrderListChangedMessage>(_token);
         }
     }
 }

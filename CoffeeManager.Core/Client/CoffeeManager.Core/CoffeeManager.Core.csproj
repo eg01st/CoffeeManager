@@ -35,6 +35,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
+    <Compile Include="Extensions\InventoryExtensions.cs" />
     <Compile Include="Messages\BaseMessage.cs" />
     <Compile Include="Messages\ExpenseDeletedMessage.cs" />
     <Compile Include="Messages\InventoryItemChangedMessage.cs" />
@@ -50,6 +51,8 @@
     <Compile Include="ViewModels\EndShiftViewModel.cs" />
     <Compile Include="ViewModels\ExpenseItemViewModel.cs" />
     <Compile Include="ViewModels\ExpenseViewModel.cs" />
+    <Compile Include="ViewModels\Inventory\PartialInventoryItemViewModel.cs" />
+    <Compile Include="ViewModels\Inventory\PartialInventoryViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\Motivation\MotivationItemViewModel.cs" />

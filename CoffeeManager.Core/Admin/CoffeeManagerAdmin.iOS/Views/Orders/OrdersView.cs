@@ -24,14 +24,9 @@ namespace CoffeeManagerAdmin.iOS
 
             var set = this.CreateBindingSet<OrdersView, OrdersViewModel>();
             set.Bind(CreateNewOrderButton).To(vm => vm.CreateOrderCommand);
-            set.Bind(source).To(vm => vm.Items);
+            set.Bind(source).To(vm => vm.ItemsCollection);
+            set.Bind(source).For(s => s.SelectionChangedCommand).To(vm => vm.ItemSelectedCommand);
             set.Apply();
-        }
-
-        public override void DidReceiveMemoryWarning()
-        {
-            base.DidReceiveMemoryWarning();
-            // Release any cached data, images, etc that aren't in use.
         }
     }
 }

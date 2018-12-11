@@ -15,10 +15,10 @@
     <AndroidApplication>true</AndroidApplication>
     <AndroidResgenFile>Resources\Resource.Designer.cs</AndroidResgenFile>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
-    <AndroidUseLatestPlatformSdk>true</AndroidUseLatestPlatformSdk>
     <TargetFrameworkVersion>v8.1</TargetFrameworkVersion>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
-    <NuGetPackageImportStamp></NuGetPackageImportStamp>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
     <AndroidSupportedAbis>arm64-v8a;armeabi;armeabi-v7a;x86;x86_64</AndroidSupportedAbis>
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
   </PropertyGroup>
@@ -30,8 +30,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
-    <AndroidSupportedAbis>armeabi-v7a</AndroidSupportedAbis>
+    <AndroidSupportedAbis>armeabi-v7a;arm64-v8a;x86;x86_64</AndroidSupportedAbis>
+    <AndroidUseSharedRuntime>true</AndroidUseSharedRuntime>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -201,6 +201,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Adapters\ViewHolders\MotivationViewHolder.cs" />
+    <Compile Include="Adapters\ViewHolders\PartialInventoryItemViewHolder.cs" />
     <Compile Include="Adapters\ViewPagerAdapter.cs" />
     <Compile Include="Bindings\LongPressEventBinding.cs" />
     <Compile Include="Bootstrap\FilePluginBootstrap.cs" />
@@ -233,6 +234,7 @@
     <Compile Include="Views\Fragments\SweetsFragment.cs" />
     <Compile Include="Views\Fragments\TeaFragment.cs" />
     <Compile Include="Views\Fragments\WaterFragment.cs" />
+    <Compile Include="Views\Inventory\PartialInventoryView.cs" />
     <Compile Include="Views\LoginView.cs" />
     <Compile Include="Views\MainView.cs" />
     <Compile Include="Bootstrap\SqlitePluginBootstrap.cs" />
@@ -358,6 +360,8 @@
     <AndroidResource Include="Resources\layout\activity_motivation.axml" />
     <AndroidResource Include="Resources\layout\item_motivation.axml" />
     <AndroidResource Include="Resources\drawable\ic_refresh_white.xml" />
+    <AndroidResource Include="Resources\layout\partial_inventory_item.axml" />
+    <AndroidResource Include="Resources\layout\activity_partial_inventory.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />

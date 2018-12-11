@@ -25,7 +25,6 @@ namespace CoffeeManagerAdmin.Core.ViewModels.AutoOrder
         {
             var manager = Mvx.Resolve<IAutoOrderManager>();
             await ExecuteSafe(manager.ToggleOrderEnabled(autoOrderDTO.Id));
-            IsActive = !IsActive;
         }
 
         public ICommand ToggleOrderEnabledCommand { get; }

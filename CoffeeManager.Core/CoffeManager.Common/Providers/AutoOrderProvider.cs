@@ -16,7 +16,7 @@ namespace CoffeManager.Common.Providers
 
         public async Task ToggleOrderEnabled(int id)
         {
-            await Post<Object>(RoutesConstants.ToggleProductEnabled, null, new Dictionary<string, string>() { { nameof(id), id.ToString() } });
+            await Post<Object>(RoutesConstants.ToggleOrderEnabled, null, new Dictionary<string, string>() { { nameof(id), id.ToString() } });
         }
 
         public async Task<AutoOrderDTO> GetAutoOrderDetails(int id)

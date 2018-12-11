@@ -1,20 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using Acr.UserDialogs;
 using CoffeeManager.Models;
+using CoffeeManager.Models.Data.DTO.AutoOrder;
+using CoffeManager.Common.Common;
 using CoffeManager.Common.Database;
+using CoffeManager.Common.Providers;
+using MvvmCross.Core.Navigation;
+using MvvmCross.Platform;
 
-namespace CoffeManager.Common
+namespace CoffeManager.Common.Managers
 {
     public class InventoryManager : BaseManager, IInventoryManager
     {
         readonly IInventoryProvider provider;
         private readonly IDataBaseProvider _dataBaseProvider;
+        private IUserDialogs userDialogs => Mvx.Resolve<IUserDialogs>();
+        private readonly IMvxNavigationService navigationService;
 
-        public InventoryManager(IInventoryProvider provider, IDataBaseProvider dataBaseProvider)
+        public InventoryManager(IInventoryProvider provider, 
+            IDataBaseProvider dataBaseProvider,
+            IMvxNavigationService navigationService)
         {
             this.provider = provider;
             _dataBaseProvider = dataBaseProvider;
+            this.navigationService = navigationService;
         }
 
         public async Task<IEnumerable<SupliedProduct>> GetInventoryItems()
@@ -64,6 +76,16 @@ namespace CoffeManager.Common
         public void RemoveSavedItems()
         {
             _dataBaseProvider.ClearTable<InventoryItemEntity>();
+        }
+
+        public async Task<IEnumerable<InventoryItemsInfoForShiftDTO>> GetInventoryItemsForShiftToUpdate()
+        {
+            return await provider.GetInventoryItemsForShiftToUpdate();
+        }
+
+        public async Task SendInventoryItemsForShiftToUpdate(List<SupliedProduct> dto)
+        {
+            await provider.SendInventoryItemsForShiftToUpdate(dto);
         }
     }
 }

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using CoffeManager.Common;
 using System;
+using Acr.UserDialogs;
 using CoffeeManager.Core.ViewModels.Inventory;
 using CoffeeManager.Core.ViewModels.Products;
 using CoffeeManager.Core.ViewModels.Settings;
@@ -16,7 +17,9 @@ using CoffeManager.Common.Managers;
 using CoffeManager.Common.ViewModels;
 using MobileCore.ViewModels;
 using CoffeeManager.Common;
+using CoffeeManager.Core.Extensions;
 using CoffeeManager.Core.ViewModels.Motivation;
+using CoffeManager.Common.Common;
 using MobileCore.Logging;
 
 namespace CoffeeManager.Core.ViewModels
@@ -197,6 +200,7 @@ namespace CoffeeManager.Core.ViewModels
         readonly IUserManager userManager;
         private readonly ICategoryManager categoryManager;
         private readonly IShiftManager shiftManager;
+        private readonly IInventoryManager inventoryManager;
         private int selectedCategoryId;
 
         public MainViewModel(IMvxViewModelLoader mvxViewModelLoader,
@@ -204,11 +208,13 @@ namespace CoffeeManager.Core.ViewModels
                              ISyncManager syncManager,
                              IUserManager userManager,
                             ICategoryManager categoryManager,
-            IShiftManager shiftManager)
+            IShiftManager shiftManager,
+            IInventoryManager inventoryManager)
         {
             this.userManager = userManager;
             this.categoryManager = categoryManager;
             this.shiftManager = shiftManager;
+            this.inventoryManager = inventoryManager;
             this.syncManager = syncManager;
             this.productManager = productManager;
             
@@ -221,7 +227,7 @@ namespace CoffeeManager.Core.ViewModels
                 SelectedCategoryId = i;
             };
            
-            EndShiftCommand = new MvxCommand(DoEndShift);
+            EndShiftCommand = new MvxAsyncCommand(DoEndShift);
             ShowCurrentSalesCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<CurrentShiftSalesViewModel>());
             ShowExpenseCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<ExpenseViewModel>());
             EnablePoliceSaleCommand = new MvxCommand(() => IsPoliceSaleEnabled = !IsPoliceSaleEnabled);
@@ -301,6 +307,8 @@ namespace CoffeeManager.Core.ViewModels
                 var user = await userManager.GetUser(shiftInfo.UserId);
                 UserName = user.Name;
 
+                await InventoryExtensions.CheckInventory();
+
             }, null, false);
         }
 
@@ -371,7 +379,7 @@ namespace CoffeeManager.Core.ViewModels
             }
         }
 
-        private async void DoEndShift()
+        private async Task DoEndShift()
         {
             bool isAllSalesSynced = await ExecuteSafe( async () => await syncManager.SyncSales());
             if(!isAllSalesSynced)
@@ -379,8 +387,14 @@ namespace CoffeeManager.Core.ViewModels
                 Alert("Невозможно закрыть смену, продажи не синхронизированы");
                 return;
             }
-            Confirm("Завершить смену?",async () => 
+            Confirm("Завершить смену?",async () =>
             {
+                var checkInventory = await InventoryExtensions.CheckInventory(true);
+                if (!checkInventory)
+                {
+                   Alert("Невозможно закрыть смену, информация о товарах не введена");
+                   return;
+                }
                 await NavigationService.Navigate<EndShiftViewModel, int>(shiftInfo.Id);
             });
         }

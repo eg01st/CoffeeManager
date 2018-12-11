@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using CoffeeManager.Models;
+using CoffeeManager.Models.Data.DTO.AutoOrder;
 
-namespace CoffeManager.Common
+namespace CoffeManager.Common.Managers
 {
     public interface IInventoryManager
     {
@@ -15,5 +15,7 @@ namespace CoffeManager.Common
         void SaveReportItem(InventoryItem item);
         IEnumerable<InventoryItem> GetSavedItems();
         void RemoveSavedItems();
+        Task<IEnumerable<InventoryItemsInfoForShiftDTO>> GetInventoryItemsForShiftToUpdate();
+        Task SendInventoryItemsForShiftToUpdate(List<SupliedProduct> dto);
     }
 }

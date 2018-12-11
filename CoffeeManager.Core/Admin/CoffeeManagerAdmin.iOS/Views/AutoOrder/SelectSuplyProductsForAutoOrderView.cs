@@ -5,6 +5,7 @@ using CoffeeManagerAdmin.iOS.Views.Abstract;
 using CoffeeManagerAdmin.Core.ViewModels.AutoOrder;
 using CoffeeManagerAdmin.iOS.TableSources;
 using MvvmCross.Binding.BindingContext;
+using System.Collections.Generic;
 
 namespace CoffeeManagerAdmin.iOS
 {
@@ -14,13 +15,29 @@ namespace CoffeeManagerAdmin.iOS
         {
         }
 
-        protected override SimpleTableSource TableSource => throw new NotImplementedException();
+        protected override void InitStylesAndContent()
+        {
+            base.InitStylesAndContent();
+            Title = "Товары для автозаказа";
 
-        protected override UIView TableViewContainer => throw new NotImplementedException();
+            var btn = new UIBarButtonItem()
+            {
+                Title = "Готово"
+            };
+            NavigationItem.SetRightBarButtonItem(btn, false);
+            this.AddBindings(new Dictionary<object, string>
+            {
+                {btn, "Clicked DoneCommand"},
+            });
+        }
+
+        protected override SimpleTableSource TableSource => new SimpleTableSource(TableView, SelectSuplyProductItemViewCell.Key, SelectSuplyProductItemViewCell.Nib);
+
+        protected override UIView TableViewContainer => TableContainerView;
 
         protected override MvxFluentBindingDescriptionSet<SelectSuplyProductsForAutoOrderView, SelectSuplyProductsForAutoOrderViewModel> CreateBindingSet()
         {
-            throw new NotImplementedException();
+            return this.CreateBindingSet<SelectSuplyProductsForAutoOrderView, SelectSuplyProductsForAutoOrderViewModel>();
         }
     }
 }

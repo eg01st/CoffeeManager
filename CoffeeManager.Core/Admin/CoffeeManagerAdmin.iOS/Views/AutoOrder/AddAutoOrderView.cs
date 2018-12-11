@@ -7,6 +7,7 @@ using CoffeeManagerAdmin.iOS.Extensions;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.Binding.iOS.Views;
 using CoffeeManagerAdmin.iOS.TableSources;
+using System.Collections.Generic;
 
 namespace CoffeeManagerAdmin.iOS
 {
@@ -33,6 +34,18 @@ namespace CoffeeManagerAdmin.iOS
 
             tableSource = new SimpleTableSource(SUplyProductsTableView, SuplyProductToOrderItemViewCell.Key, SuplyProductToOrderItemViewCell.Nib);
             SUplyProductsTableView.Source = tableSource;
+
+            Title = "Новый автозаказ";
+
+            var btn = new UIBarButtonItem()
+            {
+                Title = "Сохранить"
+            };
+            NavigationItem.SetRightBarButtonItem(btn, false);
+            this.AddBindings(new Dictionary<object, string>
+            {
+                {btn, "Clicked SaveAutoOrderCommand"},
+            });
         }
 
         protected override void DoBind()

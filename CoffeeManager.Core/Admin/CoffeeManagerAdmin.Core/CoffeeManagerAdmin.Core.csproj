@@ -45,7 +45,7 @@
     <Compile Include="Messages\SubCategoryAddMessage.cs" />
     <Compile Include="Messages\SubCategoryDeleteMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\Abstract\AdminFeedViewModel.cs" />
+    <Compile Include="ViewModels\Abstract\AdminCoffeeRoomFeedViewModel.cs" />
     <Compile Include="ViewModels\Abstract\AdminPageViewModel.cs" />
     <Compile Include="ViewModels\Abstract\BaseAdminSearchViewModel.cs" />
     <Compile Include="ViewModels\AutoOrder\AddAutoOrderViewModel.cs" />

@@ -26,10 +26,18 @@ namespace CoffeeManagerAdmin.Core.ViewModels.AutoOrder
             DeleteOrderCommand = new MvxAsyncCommand(DoDeleteOrder);
         }
 
+        protected override async Task DoClose()
+        {
+            await NavigationService.Close(this, false);
+        }
+
         private async Task DoDeleteOrder()
         {
-            await ExecuteSafe(manager.DeleteAutoOrderItem(autoOrderId));
-            await NavigationService.Close(this, true);
+            Confirm("Удалить автозаказ?", async () =>
+             {
+                 await ExecuteSafe(manager.DeleteAutoOrderItem(autoOrderId));
+                 await NavigationService.Close(this, true);
+             });
         }
 
         public void Prepare(int parameter)
@@ -49,7 +57,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels.AutoOrder
 
         private SuplyProductToOrderItemViewModel MapItem(SuplyProductToOrderItemDTO dto)
         {
-            return new SuplyProductToOrderItemViewModel(dto.SuplyProductId, dto.SuplyProductName)
+            return new SuplyProductToOrderItemViewModel(dto.SuplyProductId, dto.SuplyProductName, false)
             {
                 Id = dto.Id,
                 QuantityShouldBeAfterOrder = dto.QuantityShouldBeAfterOrder

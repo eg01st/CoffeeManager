@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Data.Entity;
+using CoffeeManager.Models.Data.DTO.AutoOrder;
 
 namespace CoffeeManager.Api.Controllers
 {
@@ -104,6 +105,64 @@ namespace CoffeeManager.Api.Controllers
             var entities = new CoffeeRoomEntities();
             var items = entities.InventoryReportItems.Where(s => s.InventoryReportId == reportId && s.CoffeeRoomNo == coffeeroomno).ToList().Select(s => s.ToDTO());
             return Request.CreateResponse(HttpStatusCode.OK, items);
+        }
+        
+        [Route(RoutesConstants.GetInventoryItemsForShiftToUpdate)]
+        [HttpGet]
+        public async Task<HttpResponseMessage> GetInventoryItemsForShiftToUpdate([FromUri]int coffeeroomno, HttpRequestMessage message)
+        {
+            var result = new List<InventoryItemsInfoForShiftDTO>();
+            
+            var entities = new CoffeeRoomEntities();
+            var orders = entities.AutoOrders.Include(o => o.SuplyProductOrderItems).Include(i => i.SuplyProductOrderItems.Select(s => s.SupliedProduct)).ToList();
+            foreach (var order in orders)
+            {
+                var updatedDate = DateTime.Now.AddDays(-1);
+                if (order.IsActive && order.DayOfWeek == updatedDate.DayOfWeek)
+                {
+                    var suplyProducts = new List<Models.SupliedProduct>();
+                    foreach (var sp in order.SuplyProductOrderItems)
+                    {
+                        var quantity = entities.SuplyProductQuantities.FirstOrDefault(q =>
+                            q.SuplyProductId == sp.Id && q.CoffeeRoomId == coffeeroomno);
+                        if (sp.ShouldUpdateQuantityBeforeOrder && quantity.LastUpdatedDate < updatedDate)
+                        {
+                            suplyProducts.Add(sp.SupliedProduct.ToDTO(coffeeroomno));
+                        }
+                    }
+
+                    if (suplyProducts.Any())
+                    {
+                        result.Add(new InventoryItemsInfoForShiftDTO()
+                        {
+                            Items = suplyProducts,
+                            AutoOrderId = order.Id
+                        });
+                    }
+                }
+            }
+
+            return Request.CreateResponse(HttpStatusCode.OK, result);
+        }
+        
+        [Route(RoutesConstants.SendInventoryItemsForShiftToUpdate)]
+        [HttpPost]
+        public async Task<HttpResponseMessage> SendInventoryItemsForShiftToUpdate([FromUri]int coffeeroomno, HttpRequestMessage message)
+        {
+            var request = await message.Content.ReadAsStringAsync();
+            var items = JsonConvert.DeserializeObject<List<Models.SupliedProduct>>(request);
+
+            var entities = new CoffeeRoomEntities();
+            foreach (var item in items)
+            {
+                var quantity = entities.SuplyProductQuantities
+                    .First(q => q.SuplyProductId == item.Id && q.CoffeeRoomId == coffeeroomno);
+                quantity.Quantity = item.Quatity.Value;
+                quantity.LastUpdatedDate = DateTime.Now;
+                entities.SaveChanges();
+            }
+
+            return Request.CreateResponse(HttpStatusCode.OK);
         }
     }
 }

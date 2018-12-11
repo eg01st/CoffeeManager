@@ -11,5 +11,7 @@
         public string SuplyProductName { get; set; }
 
         public int QuantityShouldBeAfterOrder { get; set; }
+        
+        public bool ShouldUpdateQuantityBeforeOrder { get; set; }
     }
 }

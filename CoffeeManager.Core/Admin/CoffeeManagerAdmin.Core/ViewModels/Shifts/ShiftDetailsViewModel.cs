@@ -9,10 +9,11 @@ using CoffeManager.Common.Managers;
 using CoffeManager.Common.ViewModels;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Messenger;
+using MobileCore.ViewModels;
 
 namespace CoffeeManagerAdmin.Core.ViewModels.Shifts
 {
-    public class ShiftDetailsViewModel : ViewModelBase, IMvxViewModel<int>
+    public class ShiftDetailsViewModel : FeedViewModel<ExpenseItemViewModel>, IMvxViewModel<int>
     {
         private readonly MvxSubscriptionToken updateToken;
         
@@ -42,7 +43,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Shifts
             AddExpenseCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<AddShiftExpenseViewModel>());
             ShowUserDetailsCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<UserDetailsViewModel, int>(userId));
 
-            updateToken = Subscribe<UpdateShiftMessage>(async obj => await Initialize());
+            updateToken = MvxMessenger.Subscribe<UpdateShiftMessage>(async obj => await Initialize());
         }
 
         private async Task DoShowCounters()
@@ -68,15 +69,15 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Shifts
             }
         }
 
-        public List<ExpenseItemViewModel> ExpenseItems
-        {
-            get { return _expenseItems; }
-            set
-            {
-                _expenseItems = value;
-                RaisePropertyChanged(nameof(ExpenseItems));
-            }
-        }
+        //public List<ExpenseItemViewModel> ExpenseItems
+        //{
+        //    get { return _expenseItems; }
+        //    set
+        //    {
+        //        _expenseItems = value;
+        //        RaisePropertyChanged(nameof(ExpenseItems));
+        //    }
+        //}
 
 
         public string Date
@@ -150,7 +151,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Shifts
         protected override void DoUnsubscribe()
         {
             base.DoUnsubscribe();
-            Unsubscribe<UpdateShiftMessage>(updateToken);
+            MvxMessenger.Unsubscribe<UpdateShiftMessage>(updateToken);
         }
 
         public void Prepare(int parameter)
@@ -173,7 +174,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Shifts
                 }
 
                 var items = await paymentManager.GetShiftExpenses(_shiftId);
-                ExpenseItems = items.Select(s => new ExpenseItemViewModel(s, !isFinished)).ToList();
+                ItemsCollection.ReplaceWith(items.Select(s => new ExpenseItemViewModel(s, !isFinished)));
 
                 var saleItems = await shiftManager.GetShiftSales(_shiftId);
                 if (saleItems.Any())

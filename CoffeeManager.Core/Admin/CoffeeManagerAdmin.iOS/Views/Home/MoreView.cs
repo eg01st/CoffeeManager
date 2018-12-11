@@ -24,6 +24,7 @@ namespace CoffeeManagerAdmin.iOS.Views.Home
 
             var set = this.CreateBindingSet<MoreView, MoreViewModel>();
             set.Bind(source).To(vm => vm.ItemsCollection);
+            set.Bind(source).For(s => s.SelectionChangedCommand).To(vm => vm.ItemSelectedCommand);
             set.Apply();
         }
     }

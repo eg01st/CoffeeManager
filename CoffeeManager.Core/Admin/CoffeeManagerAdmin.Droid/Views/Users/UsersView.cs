@@ -57,7 +57,7 @@ namespace CoffeeManagerAdmin.Droid.Views.Users
         protected override void DoBind()
         {
             var bindingSet = this.CreateBindingSet<UsersView, UsersViewModel>();
-            bindingSet.Bind(usersRecyclerView).For(v => v.ItemsSource).To(vm => vm.Users);
+            bindingSet.Bind(usersRecyclerView).For(v => v.ItemsSource).To(vm => vm.ItemsCollection);
             bindingSet.Bind(usersRecyclerView.Adapter).For(v => v.ItemClick).To(vm => vm.ItemSelectedCommand);
               bindingSet.Apply();
         }

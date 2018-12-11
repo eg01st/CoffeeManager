@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using CoffeeManager.Models;
+using CoffeeManager.Models.Data.DTO.AutoOrder;
 
-namespace CoffeManager.Common
+namespace CoffeManager.Common.Providers
 {
     public class InventoryProvider : BaseServiceProvider, IInventoryProvider
     {
@@ -19,6 +19,16 @@ namespace CoffeManager.Common
                 {
                     {nameof(reportId), reportId.ToString()},
                 });
+        }
+
+        public async Task<IEnumerable<InventoryItemsInfoForShiftDTO>> GetInventoryItemsForShiftToUpdate()
+        {
+            return await Get<IEnumerable<InventoryItemsInfoForShiftDTO>>(RoutesConstants.GetInventoryItemsForShiftToUpdate);
+        }
+
+        public async Task SendInventoryItemsForShiftToUpdate(List<SupliedProduct> dto)
+        {
+            await Post(RoutesConstants.SendInventoryItemsForShiftToUpdate, dto);
         }
 
         public async Task<IEnumerable<InventoryReport>> GetInventoryReports()

@@ -76,6 +76,7 @@ namespace CoffeeManagerAdmin.iOS.Views.Abstract
             TableView.Source = tableSource;
             var set = CreateBindingSet();
             set.Bind(tableSource).To(vm => vm.ItemsCollection);
+            set.Bind(tableSource).For(i => i.SelectionChangedCommand).To(vm => vm.ItemSelectedCommand);
             set.Bind(_searchBar).For(v => v.Text).To(vm => vm.SearchString);
             set.Apply();
         }

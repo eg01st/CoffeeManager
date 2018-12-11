@@ -6,13 +6,15 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using CoffeeManager.Models;
 using CoffeeManager.Models.Data.DTO.AutoOrder;
+using CoffeeManagerAdmin.Core.ViewModels.Abstract;
 using CoffeManager.Common.Managers;
 using MobileCore.ViewModels;
 using MvvmCross.Core.ViewModels;
+using System.Runtime.InteropServices;
 
 namespace CoffeeManagerAdmin.Core.ViewModels.AutoOrder
 {
-    public class AddAutoOrderViewModel : FeedViewModel<SuplyProductToOrderItemViewModel>, IMvxViewModelResult<bool>
+    public class AddAutoOrderViewModel : AdminCoffeeRoomFeedViewModel<SuplyProductToOrderItemViewModel>, IMvxViewModelResult<bool>
     {
         private DayOfWeek dayOfWeek;
         private int orderTime;
@@ -20,7 +22,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels.AutoOrder
         private readonly IAutoOrderManager manager;
         public ICommand AddSuplyProductsCommand { get; }
         
-        public ICommand SaveAutoOrderCommand { get; }
+        public IMvxAsyncCommand SaveAutoOrderCommand { get; }
 
         public List<DayOfWeek> DaysOfWeek { get; set; }
 
@@ -45,6 +47,11 @@ namespace CoffeeManagerAdmin.Core.ViewModels.AutoOrder
             SaveAutoOrderCommand = new MvxAsyncCommand(DoSaveAutoOrder, () => ItemsCollection.Count > 0);
         }
 
+        protected override async Task DoClose()
+        {
+            await NavigationService.Close(this, false);
+        }
+
         public override Task Initialize()
         {
             var values = Enum.GetValues(typeof(DayOfWeek)).Cast<DayOfWeek>();
@@ -64,8 +71,9 @@ namespace CoffeeManagerAdmin.Core.ViewModels.AutoOrder
             order.OrderTime = TimeSpan.FromHours(orderTime);
             order.IsActive = true;
             order.OrderItems = ItemsCollection.Select(MapItem).ToList();
+            order.CoffeeRoomId = CurrentCoffeeRoom.CoffeeRoomNo;
 
-            await ExecuteSafe(manager.AddAutoOrderItem(order));
+            var id = await ExecuteSafe(async () => await manager.AddAutoOrderItem(order));
             await NavigationService.Close(this, true);
         }
 
@@ -82,6 +90,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels.AutoOrder
         {
             var suplyProducts = await NavigationService.Navigate<SelectSuplyProductsForAutoOrderViewModel, IEnumerable<SupliedProduct>>();
             ItemsCollection.AddRange(suplyProducts.Select(s => new SuplyProductToOrderItemViewModel(s.Id, s.Name)));
+            SaveAutoOrderCommand.RaiseCanExecuteChanged();
         }
 
         public TaskCompletionSource<object> CloseCompletionSource { get; set; }

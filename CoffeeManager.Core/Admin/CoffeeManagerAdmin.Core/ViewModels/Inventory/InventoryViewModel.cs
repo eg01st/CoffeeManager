@@ -4,16 +4,16 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using CoffeeManagerAdmin.Core.ViewModels.Inventory.Create;
 using CoffeManager.Common;
+using CoffeManager.Common.Managers;
 using CoffeManager.Common.ViewModels;
 using MvvmCross.Core.ViewModels;
+using MobileCore.ViewModels;
 
 namespace CoffeeManagerAdmin.Core.ViewModels.Inventory
 {
-    public class InventoryViewModel : ViewModelBase
+    public class InventoryViewModel : FeedViewModel<InventoryItemViewModel>
     {
         readonly IInventoryManager manager;
-
-        public List<InventoryItemViewModel> Items { get; set; }
 
         public ICommand CreateReportCommand { get; }
 
@@ -28,8 +28,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Inventory
             await ExecuteSafe(async () =>
             {
                 var items = await manager.GetInventoryReports();
-                Items = items.Select(s => new InventoryItemViewModel(s)).OrderByDescending(o => o.Id).ToList();
-                RaisePropertyChanged(nameof(Items));
+                ItemsCollection.ReplaceWith(items.Select(s => new InventoryItemViewModel(s)).OrderByDescending(o => o.Id));
             });
         }
     }

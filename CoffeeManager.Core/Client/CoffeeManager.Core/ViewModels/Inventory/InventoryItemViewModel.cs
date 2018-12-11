@@ -1,10 +1,8 @@
-﻿using System;
-using CoffeeManager.Core.Messages;
+﻿using CoffeeManager.Core.Messages;
 using CoffeeManager.Models;
-using CoffeManager.Common;
 using CoffeManager.Common.ViewModels;
 
-namespace CoffeeManager.Core
+namespace CoffeeManager.Core.ViewModels.Inventory
 {
     public class InventoryItemViewModel : ListItemViewModelBase
     {
@@ -34,7 +32,7 @@ namespace CoffeeManager.Core
             InventoryNumerationMultyplier = item.InventoryNumerationMultyplier;
         }
 
-        protected async override void DoGoToDetails()
+        protected override async void DoGoToDetails()
         {
             var result = await PromtDecimalAsync($"Введите количество товара {Name}");
             if(result.HasValue)

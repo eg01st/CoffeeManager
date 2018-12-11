@@ -39,7 +39,8 @@ namespace CoffeeManagerAdmin.iOS
             ReportsTableView.Source = source;
 
             var set = this.CreateBindingSet<InventoryView, InventoryViewModel>();
-            set.Bind(source).To(vm => vm.Items);
+            set.Bind(source).To(vm => vm.ItemsCollection);
+            set.Bind(source).For(s => s.SelectionChangedCommand).To(vm => vm.ItemSelectedCommand);
             set.Apply();
         }
     }

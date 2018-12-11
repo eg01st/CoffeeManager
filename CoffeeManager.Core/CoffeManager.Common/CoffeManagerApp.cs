@@ -1,4 +1,5 @@
-﻿using CoffeManager.Common.Managers;
+﻿using Acr.UserDialogs;
+using CoffeManager.Common.Managers;
 using CoffeManager.Common.Providers;
 using MobileCore;
 using MvvmCross.Core.ViewModels;
@@ -6,6 +7,7 @@ using MvvmCross.Platform;
 using MvvmCross.Plugins.File;
 using MvvmCross.Plugins.Sqlite;
 using MobileCore.Connection;
+using MvvmCross.Core.Navigation;
 
 namespace CoffeManager.Common
 {
@@ -48,7 +50,7 @@ namespace CoffeManager.Common
             Mvx.RegisterSingleton<IStatisticManager>(new StatisticManager(Mvx.Resolve<IStatisticProvider>()));
             Mvx.RegisterSingleton<ISuplyOrderManager>(new SuplyOrderManager(Mvx.Resolve<ISuplyOrderProvider>()));
             Mvx.RegisterSingleton<ISuplyProductsManager>(new SuplyProductsManager(Mvx.Resolve<ISuplyProductsProvider>()));
-            Mvx.RegisterSingleton<IInventoryManager>(new InventoryManager(Mvx.Resolve<IInventoryProvider>(), Mvx.Resolve<IDataBaseProvider>()));
+            Mvx.RegisterSingleton<IInventoryManager>(new InventoryManager(Mvx.Resolve<IInventoryProvider>(), Mvx.Resolve<IDataBaseProvider>(), Mvx.Resolve<IMvxNavigationService>()));
             Mvx.RegisterSingleton<IAdminManager>(new AdminManager(Mvx.Resolve<IAdminProvider>()));
             Mvx.RegisterSingleton<IAccountManager>(new AccountManager(Mvx.Resolve<IAccountProvider>()));
             Mvx.RegisterSingleton<ICategoryManager>(new CategoryManager(Mvx.Resolve<ICategoryProvider>()));

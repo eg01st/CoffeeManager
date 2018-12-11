@@ -7,10 +7,11 @@ namespace CoffeeManagerAdmin.Core.ViewModels.AutoOrder
     {
         private int quantityShouldBeAfterOrder;
 
-        public SuplyProductToOrderItemViewModel(int suplyProductId, string suplyProductName)
+        public SuplyProductToOrderItemViewModel(int suplyProductId, string suplyProductName, bool isEditable = true)
         {
             SuplyProductId = suplyProductId;
             SuplyProductName = suplyProductName;
+            IsEditable = isEditable;
         }
         
         public int Id { get; set; }
@@ -18,6 +19,8 @@ namespace CoffeeManagerAdmin.Core.ViewModels.AutoOrder
         public int SuplyProductId { get; set; }
 
         public string SuplyProductName { get; set; }
+
+        public bool IsEditable { get; set; }
 
         public int QuantityShouldBeAfterOrder
         {

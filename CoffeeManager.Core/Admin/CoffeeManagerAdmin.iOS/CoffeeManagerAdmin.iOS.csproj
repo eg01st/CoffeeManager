@@ -549,6 +549,10 @@
     <Compile Include="Views\AutoOrder\AutoOrderItemViewCell.designer.cs">
       <DependentUpon>AutoOrderItemViewCell.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\AutoOrder\SelectSuplyProductItemViewCell.cs" />
+    <Compile Include="Views\AutoOrder\SelectSuplyProductItemViewCell.designer.cs">
+      <DependentUpon>SelectSuplyProductItemViewCell.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Setup.cs" />
@@ -660,6 +664,7 @@
     <InterfaceDefinition Include="Views\AutoOrder\SelectSuplyProductsForAutoOrderView.xib" />
     <InterfaceDefinition Include="Views\AutoOrder\SuplyProductToOrderItemViewCell.xib" />
     <InterfaceDefinition Include="Views\AutoOrder\AutoOrderItemViewCell.xib" />
+    <InterfaceDefinition Include="Views\AutoOrder\SelectSuplyProductItemViewCell.xib" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
