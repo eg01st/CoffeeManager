@@ -402,6 +402,7 @@
           <Property Name="QuantityShouldBeAfterOrder" Type="int" Nullable="false" />
           <Property Name="SuplyProductId" Type="int" Nullable="false" />
           <Property Name="OrderId" Type="int" Nullable="false" />
+          <Property Name="ShouldUpdateQuantityBeforeOrder" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="SuplyProductQuantity">
           <Key>
@@ -411,6 +412,7 @@
           <Property Name="CoffeeRoomId" Type="int" Nullable="false" />
           <Property Name="SuplyProductId" Type="int" Nullable="false" />
           <Property Name="Quantity" Type="money" Nullable="false" />
+          <Property Name="LastUpdatedDate" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="UsedCupsPerShift">
           <Key>
@@ -2739,6 +2741,7 @@
           <Property Name="Quantity" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
           <NavigationProperty Name="CoffeeRoom" Relationship="CoffeeRoomModel.FK__SuplyProd__Coffe__3E1D39E1" FromRole="SuplyProductQuantity" ToRole="CoffeeRoom" />
           <NavigationProperty Name="SupliedProduct" Relationship="CoffeeRoomModel.FK__SuplyProd__Suply__3F115E1A" FromRole="SuplyProductQuantity" ToRole="SupliedProduct" />
+          <Property Name="LastUpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
         <Association Name="FK__SuplyProd__Coffe__3E1D39E1">
           <End Type="CoffeeRoomModel.CoffeeRoom" Role="CoffeeRoom" Multiplicity="1" />
@@ -3166,6 +3169,7 @@
           <Property Name="OrderId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="AutoOrder" Relationship="CoffeeRoomModel.FK__SuplyProd__Order__76619304" FromRole="SuplyProductOrderItem" ToRole="AutoOrder" />
           <NavigationProperty Name="SupliedProduct" Relationship="CoffeeRoomModel.FK__SuplyProd__Suply__756D6ECB" FromRole="SuplyProductOrderItem" ToRole="SupliedProduct" />
+          <Property Name="ShouldUpdateQuantityBeforeOrder" Type="Boolean" Nullable="false" />
         </EntityType>
         <Association Name="FK__SuplyProd__Order__76619304">
           <End Type="CoffeeRoomModel.AutoOrder" Role="AutoOrder" Multiplicity="1" />
@@ -3674,6 +3678,7 @@
           <EntitySetMapping Name="SuplyProductQuantities">
             <EntityTypeMapping TypeName="CoffeeRoomModel.SuplyProductQuantity">
               <MappingFragment StoreEntitySet="SuplyProductQuantity">
+                <ScalarProperty Name="LastUpdatedDate" ColumnName="LastUpdatedDate" />
                 <ScalarProperty Name="Quantity" ColumnName="Quantity" />
                 <ScalarProperty Name="SuplyProductId" ColumnName="SuplyProductId" />
                 <ScalarProperty Name="CoffeeRoomId" ColumnName="CoffeeRoomId" />
@@ -3807,6 +3812,7 @@
           <EntitySetMapping Name="SuplyProductOrderItems">
             <EntityTypeMapping TypeName="CoffeeRoomModel.SuplyProductOrderItem">
               <MappingFragment StoreEntitySet="SuplyProductOrderItem">
+                <ScalarProperty Name="ShouldUpdateQuantityBeforeOrder" ColumnName="ShouldUpdateQuantityBeforeOrder" />
                 <ScalarProperty Name="OrderId" ColumnName="OrderId" />
                 <ScalarProperty Name="SuplyProductId" ColumnName="SuplyProductId" />
                 <ScalarProperty Name="QuantityShouldBeAfterOrder" ColumnName="QuantityShouldBeAfterOrder" />

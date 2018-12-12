@@ -18,6 +18,7 @@ namespace CoffeeManager.Api
         public int QuantityShouldBeAfterOrder { get; set; }
         public int SuplyProductId { get; set; }
         public int OrderId { get; set; }
+        public bool ShouldUpdateQuantityBeforeOrder { get; set; }
     
         public virtual AutoOrder AutoOrder { get; set; }
         public virtual SupliedProduct SupliedProduct { get; set; }

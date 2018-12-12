@@ -35,6 +35,10 @@ namespace CoffeeManager.Api.BackgroundJob
                         {
                             var multiplier = (int)product.SupliedProduct.ExpenseNumerationMultyplier;
                             var diff = orderItem.QuantityShouldBeAfterOrder - (int)product.Quantity;
+                            if (diff < 0)
+                            {
+                                continue;
+                            }
                             var roundedCount = (diff / multiplier) + 1;
                             var quantityToOrder = multiplier * roundedCount;
                             ordersStrings.Add($"{product.SupliedProduct.Name} : {roundedCount} {product.SupliedProduct.ExpenseNumerationName}");
@@ -60,7 +64,7 @@ namespace CoffeeManager.Api.BackgroundJob
                     orderHistory.OrderId = order.Id;
                     orderHistory.SuplyProductAutoOrdersHistories = ordersHistories;
                     entities.AutoOrdersHistories.Add(orderHistory);
-                    await entities.SaveChangesAsync();
+                    entities.SaveChanges();
                 }
             }
         }
@@ -72,11 +76,10 @@ namespace CoffeeManager.Api.BackgroundJob
                 MailMessage mail = new MailMessage();
                 mail.To.Add("tertyshnykov@gmail.com");
                 mail.From = new MailAddress("coffeemanager221@gmail.com");
-                mail.Subject = "sub";
+                mail.Subject = "Заказ стаканов";
 
                 mail.Body = body;
 
-                mail.IsBodyHtml = true;
                 SmtpClient smtp = new SmtpClient();
                 smtp.Host = "smtp.gmail.com"; //Or Your SMTP Server Address
                 smtp.Credentials = new System.Net.NetworkCredential

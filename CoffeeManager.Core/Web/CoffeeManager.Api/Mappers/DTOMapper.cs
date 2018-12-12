@@ -425,7 +425,8 @@ namespace CoffeeManager.Api.Mappers
                 OrderId = item.OrderId,
                 QuantityShouldBeAfterOrder = item.QuantityShouldBeAfterOrder,
                 SuplyProductId = item.SuplyProductId,
-                SuplyProductName = item.SupliedProduct.Name
+                SuplyProductName = item.SupliedProduct.Name,
+                ShouldUpdateQuantityBeforeOrder = item.ShouldUpdateQuantityBeforeOrder
             };
 
             return dto;

@@ -125,7 +125,7 @@ namespace CoffeeManager.Api.Controllers
                     {
                         var quantity = entities.SuplyProductQuantities.FirstOrDefault(q =>
                             q.SuplyProductId == sp.Id && q.CoffeeRoomId == coffeeroomno);
-                        if (sp.ShouldUpdateQuantityBeforeOrder && quantity.LastUpdatedDate < updatedDate)
+                        if (sp.ShouldUpdateQuantityBeforeOrder && quantity?.LastUpdatedDate < updatedDate)
                         {
                             suplyProducts.Add(sp.SupliedProduct.ToDTO(coffeeroomno));
                         }

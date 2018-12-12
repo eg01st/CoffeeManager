@@ -86,7 +86,18 @@ namespace CoffeeManager.Api.Controllers
             {
                 var suplyItemOrders = entities.SuplyProductOrderItems.Where(s => s.OrderId == id);
                 entities.SuplyProductOrderItems.RemoveRange(suplyItemOrders);
-                await entities.SaveChangesAsync();
+
+                var histores = entities.AutoOrdersHistories.Where(o => o.OrderId == id);
+
+                foreach (var history in histores)
+                {
+                    var items = entities.SuplyProductAutoOrdersHistories.Where(h => h.OrderHistoryId == history.Id);
+                    entities.SuplyProductAutoOrdersHistories.RemoveRange(items);
+                }
+                entities.AutoOrdersHistories.RemoveRange(histores);
+
+                entities.AutoOrders.Remove(order);
+                entities.SaveChanges();
                 return Request.CreateResponse(HttpStatusCode.OK);
             }
             

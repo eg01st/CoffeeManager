@@ -18,6 +18,7 @@ namespace CoffeeManager.Api
         public int CoffeeRoomId { get; set; }
         public int SuplyProductId { get; set; }
         public decimal Quantity { get; set; }
+        public System.DateTime LastUpdatedDate { get; set; }
     
         public virtual CoffeeRoom CoffeeRoom { get; set; }
         public virtual SupliedProduct SupliedProduct { get; set; }
