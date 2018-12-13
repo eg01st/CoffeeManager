@@ -8,6 +8,7 @@ using MvvmCross.Binding.BindingContext;
 using MvvmCross.Binding.iOS.Views;
 using CoffeeManagerAdmin.iOS.TableSources;
 using System.Collections.Generic;
+using CoffeeManagerAdmin.iOS.Views.AutoOrder;
 
 namespace CoffeeManagerAdmin.iOS
 {

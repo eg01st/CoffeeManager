@@ -1,12 +1,12 @@
 ﻿using System;
-
-using Foundation;
-using UIKit;
-using MobileCore.iOS;
 using CoffeeManagerAdmin.Core.ViewModels.AutoOrder;
+using Foundation;
+using MobileCore.iOS;
 using MvvmCross.Binding.BindingContext;
+using MvvmCross.Core.ViewModels;
+using UIKit;
 
-namespace CoffeeManagerAdmin.iOS
+namespace CoffeeManagerAdmin.iOS.Views.AutoOrder
 {
     public partial class SuplyProductToOrderItemViewCell : BaseTableViewCell
     {
@@ -23,6 +23,8 @@ namespace CoffeeManagerAdmin.iOS
             // Note: this .ctor should not contain any initialization logic.
         }
 
+        public IMvxCommand ToggleShouldUpdateQuantityBeforeOrderCommand { get; set; }
+
         protected override void DoBind()
         {
             base.DoBind();
@@ -30,7 +32,13 @@ namespace CoffeeManagerAdmin.iOS
             set.Bind(SuplyProductNameLabel).To(vm => vm.SuplyProductName);
             set.Bind(QuantityAfterTextField).To(vm => vm.QuantityShouldBeAfterOrder);
             set.Bind(QuantityAfterTextField).For(i => i.Enabled).To(vm => vm.IsEditable);
+            set.Bind(ShouldUpdateQuantityBeforeOrderSwitch).For(s => s.On).To(vm => vm.ShouldUpdateQuantityBeforeOrder);
+            set.Bind(this).For(t => t.ToggleShouldUpdateQuantityBeforeOrderCommand).To(vm => vm.ToggleShouldUpdateQuantityBeforeOrderCommand);
             set.Apply();
+            ShouldUpdateQuantityBeforeOrderSwitch.ValueChanged += (sender, e) =>
+            {
+                ToggleShouldUpdateQuantityBeforeOrderCommand.Execute(null);
+            };
         }
     }
 }

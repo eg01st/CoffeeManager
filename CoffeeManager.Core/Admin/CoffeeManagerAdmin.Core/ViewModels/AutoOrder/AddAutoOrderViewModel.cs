@@ -82,7 +82,8 @@ namespace CoffeeManagerAdmin.Core.ViewModels.AutoOrder
             return new SuplyProductToOrderItemDTO()
             {
                 SuplyProductId = vm.SuplyProductId,
-                QuantityShouldBeAfterOrder = vm.QuantityShouldBeAfterOrder
+                QuantityShouldBeAfterOrder = vm.QuantityShouldBeAfterOrder,
+                ShouldUpdateQuantityBeforeOrder = vm.ShouldUpdateQuantityBeforeOrder
             };
         }
 

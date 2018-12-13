@@ -7,7 +7,7 @@
 using Foundation;
 using System.CodeDom.Compiler;
 
-namespace CoffeeManagerAdmin.iOS
+namespace CoffeeManagerAdmin.iOS.Views.AutoOrder
 {
 	[Register ("SuplyProductToOrderItemViewCell")]
 	partial class SuplyProductToOrderItemViewCell
@@ -16,18 +16,26 @@ namespace CoffeeManagerAdmin.iOS
 		UIKit.UITextField QuantityAfterTextField { get; set; }
 
 		[Outlet]
+		UIKit.UISwitch ShouldUpdateQuantityBeforeOrderSwitch { get; set; }
+
+		[Outlet]
 		UIKit.UILabel SuplyProductNameLabel { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (QuantityAfterTextField != null) {
+				QuantityAfterTextField.Dispose ();
+				QuantityAfterTextField = null;
+			}
+
 			if (SuplyProductNameLabel != null) {
 				SuplyProductNameLabel.Dispose ();
 				SuplyProductNameLabel = null;
 			}
 
-			if (QuantityAfterTextField != null) {
-				QuantityAfterTextField.Dispose ();
-				QuantityAfterTextField = null;
+			if (ShouldUpdateQuantityBeforeOrderSwitch != null) {
+				ShouldUpdateQuantityBeforeOrderSwitch.Dispose ();
+				ShouldUpdateQuantityBeforeOrderSwitch = null;
 			}
 		}
 	}

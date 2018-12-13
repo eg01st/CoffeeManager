@@ -5,6 +5,7 @@ using MobileCore.iOS.ViewControllers;
 using CoffeeManagerAdmin.Core.ViewModels.AutoOrder;
 using CoffeeManagerAdmin.iOS.TableSources;
 using System.Collections.Generic;
+using CoffeeManagerAdmin.iOS.Views.AutoOrder;
 using MvvmCross.Binding.BindingContext;
 
 namespace CoffeeManagerAdmin.iOS

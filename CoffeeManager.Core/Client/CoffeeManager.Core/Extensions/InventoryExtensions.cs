@@ -22,9 +22,8 @@ namespace CoffeeManager.Core.Extensions
         {
             var inventoryManager = Mvx.Resolve<IInventoryManager>();
             var userDialogs = Mvx.Resolve<IUserDialogs>();
-
             
-            var itemsToUpdate = await inventoryManager.GetInventoryItemsForShiftToUpdate();
+            var itemsToUpdate = (await inventoryManager.GetInventoryItemsForShiftToUpdate()).ToList();
             if (!itemsToUpdate.Any())
             {
                 return true;
@@ -65,8 +64,7 @@ namespace CoffeeManager.Core.Extensions
             var navigationService = Mvx.Resolve<IMvxNavigationService>();
             
             var suplyItems = itemsToUpdate.SelectMany(s => s.Items).ToList();
-            var updatedItems =
-                await navigationService.Navigate<PartialInventoryViewModel, List<SupliedProduct>, List<SupliedProduct>>(suplyItems);
+            var updatedItems = await navigationService.Navigate<PartialInventoryViewModel, List<SupliedProduct>, List<SupliedProduct>>(suplyItems);
             try
             {
                 userDialogs.ShowLoading();

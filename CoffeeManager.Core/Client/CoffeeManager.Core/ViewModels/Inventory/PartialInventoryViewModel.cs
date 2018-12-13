@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CoffeeManager.Models;
@@ -15,13 +16,23 @@ namespace CoffeeManager.Core.ViewModels.Inventory
             ItemsCollection.ReplaceWith(parameter.Select(p => new PartialInventoryItemViewModel(p)));
         }
 
-        public TaskCompletionSource<object> CloseCompletionSource { get; set; }
+        public PartialInventoryViewModel()
+        {
+            DoneCommand = new MvxAsyncCommand(DoDone);
 
-        protected override async Task DoClose()
+        }
+
+        public override async Task Initialize()
+        {
+            await base.Initialize();
+            RaiseAllPropertiesChanged();
+        }
+
+        private async Task DoDone()
         {
             if (ItemsCollection.All(i => i.IsProceeded))
             {
-                base.DoOnClose();
+                await NavigationService.Close(this, ItemsCollection.Select(s => s.Entity).ToList());
             }
             else
             {
@@ -29,9 +40,13 @@ namespace CoffeeManager.Core.ViewModels.Inventory
             }
         }
 
-        protected override async Task PerformClose()
+        protected override async Task DoClose()
         {
-            await NavigationService.Close(this, ItemsCollection.Select(s => s.Entity).ToList());
+            await base.DoClose();
         }
+
+        public TaskCompletionSource<object> CloseCompletionSource { get; set; }
+
+        public IMvxAsyncCommand DoneCommand { get; }
     }
 }

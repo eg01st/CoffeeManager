@@ -13,6 +13,12 @@
         android:gravity="center_horizontal"
         android:layout_width="match_parent"
         android:text="Ввод количества товара" />
+    <Button
+            android:layout_marginTop="16dp"
+            android:layout_height="60dp"
+            android:layout_width="match_parent"
+            android:text="Готово"
+            android:id="@+id/done_button" />
  <!--   <LinearLayout
         android:layout_margin="16dp"
         android:layout_width="match_parent"
@@ -46,7 +52,9 @@
     </LinearLayout>-->
     <MobileCore.Droid.Controls.EndlessRecyclerView
         android:layout_margin="16dp"
+        android:background="@color/green"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/counters_recycler" />
+        android:id="@+id/items_recycler" />
+
 </LinearLayout>
