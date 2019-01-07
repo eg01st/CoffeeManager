@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Data.Entity;
+using CoffeeManager.Api.BackgroundJob;
 using CoffeeManager.Models.Data.DTO.AutoOrder;
 
 namespace CoffeeManager.Api.Controllers
@@ -117,15 +118,16 @@ namespace CoffeeManager.Api.Controllers
             var orders = entities.AutoOrders.Include(o => o.SuplyProductOrderItems).Include(i => i.SuplyProductOrderItems.Select(s => s.SupliedProduct)).ToList();
             foreach (var order in orders)
             {
-                var updatedDate = DateTime.Now.AddDays(-1);
-                if (order.IsActive && order.DayOfWeek == updatedDate.DayOfWeek)
+                var yesterday = DateTime.Now.AddDays(-1);
+                var nextDay = DateTime.Now.AddDays(1);
+                if (order.IsActive && order.DayOfWeek == nextDay.DayOfWeek)
                 {
                     var suplyProducts = new List<Models.SupliedProduct>();
                     foreach (var sp in order.SuplyProductOrderItems)
                     {
                         var quantity = entities.SuplyProductQuantities.FirstOrDefault(q =>
-                            q.SuplyProductId == sp.Id && q.CoffeeRoomId == coffeeroomno);
-                        if (sp.ShouldUpdateQuantityBeforeOrder && quantity?.LastUpdatedDate < updatedDate)
+                            q.SuplyProductId == sp.SuplyProductId && q.CoffeeRoomId == coffeeroomno);
+                        if (sp.ShouldUpdateQuantityBeforeOrder && quantity?.LastUpdatedDate < yesterday)
                         {
                             suplyProducts.Add(sp.SupliedProduct.ToDTO(coffeeroomno));
                         }
@@ -151,6 +153,10 @@ namespace CoffeeManager.Api.Controllers
         {
             var request = await message.Content.ReadAsStringAsync();
             var items = JsonConvert.DeserializeObject<List<Models.SupliedProduct>>(request);
+
+            var emailMessage = string.Join("\n", items.Select(s => $"{s.Name} {s.Quatity}"));
+            emailMessage += $"\n {coffeeroomno}";
+            AutoOrderJob.SendEmail(emailMessage);
 
             var entities = new CoffeeRoomEntities();
             foreach (var item in items)

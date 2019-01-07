@@ -432,6 +432,13 @@ namespace CoffeeManager.Api.Controllers
                     return Request.CreateErrorResponse(HttpStatusCode.RequestedRangeNotSatisfiable, "Expenses exist");
                 }
 
+                var utilizedItemsCount = entities.UtilizedSuplyProducts.Count(e => e.ShiftId == shiftId);
+                if (utilizedItemsCount > 0)
+                {
+                    Log.Info($"Discaring shift {shiftId} for coffeeroom {coffeeroomno}; Utilized items exist");
+                    return Request.CreateErrorResponse(HttpStatusCode.RequestedRangeNotSatisfiable, "Utilized items exist");
+                }
+
                 var motivationItem = entities.ShiftMotivations.FirstOrDefault(f => f.ShiftId == shiftId);
                 if (motivationItem != null)
                 {
