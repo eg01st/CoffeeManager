@@ -124,7 +124,7 @@ namespace CoffeeManager.Core.ViewModels
         {
             if (IsSimpleExpense)
             {
-                Confirm($"Добавить сумму {Amount} грн как трату за {SelectedExpense.Name}?", () => AddExpense());
+                Confirm($"Добавить сумму {Amount} грн как расход за {SelectedExpense.Name}?", () => AddExpense());
             }
             else
             {
@@ -142,7 +142,7 @@ namespace CoffeeManager.Core.ViewModels
                 }
 
                 var sum = SelectedExpense.ExpenseSuplyProducts.Sum(s => s.Amount);
-                Confirm($"Добавить сумму {sum} грн как трату за {SelectedExpense.Name}?", () => AddExpense());
+                Confirm($"Добавить сумму {sum} грн как расход за {SelectedExpense.Name}?", () => AddExpense());
             }
         }
 
