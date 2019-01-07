@@ -1,42 +1,45 @@
 // WARNING
 //
-// This file has been generated automatically by Visual Studio to store outlets and
-// actions made in the UI designer. If it is removed, they will be lost.
-// Manual changes to this file may not be handled correctly.
+// This file has been generated automatically by Visual Studio from the outlets and
+// actions declared in your storyboard file.
+// Manual changes to this file will not be maintained.
 //
 using Foundation;
+using System;
 using System.CodeDom.Compiler;
 
 namespace CoffeeManagerAdmin.iOS.Views.Products
 {
-	[Register ("ProductPriceTableViewCell")]
-	partial class ProductPriceTableViewCell
-	{
-		[Outlet]
-		UIKit.UILabel CoffeeRoomNameLabel { get; set; }
+    [Register ("ProductPriceTableViewCell")]
+    partial class ProductPriceTableViewCell
+    {
+        [Outlet]
+        UIKit.UILabel CoffeeRoomNameLabel { get; set; }
 
-		[Outlet]
-		UIKit.UITextField DiscountPriceTextField { get; set; }
 
-		[Outlet]
-		UIKit.UITextField PriceTextField { get; set; }
-		
-		void ReleaseDesignerOutlets ()
-		{
-			if (CoffeeRoomNameLabel != null) {
-				CoffeeRoomNameLabel.Dispose ();
-				CoffeeRoomNameLabel = null;
-			}
+        [Outlet]
+        UIKit.UITextField DiscountPriceTextField { get; set; }
 
-			if (PriceTextField != null) {
-				PriceTextField.Dispose ();
-				PriceTextField = null;
-			}
 
-			if (DiscountPriceTextField != null) {
-				DiscountPriceTextField.Dispose ();
-				DiscountPriceTextField = null;
-			}
-		}
-	}
+        [Outlet]
+        UIKit.UITextField PriceTextField { get; set; }
+
+        void ReleaseDesignerOutlets ()
+        {
+            if (CoffeeRoomNameLabel != null) {
+                CoffeeRoomNameLabel.Dispose ();
+                CoffeeRoomNameLabel = null;
+            }
+
+            if (DiscountPriceTextField != null) {
+                DiscountPriceTextField.Dispose ();
+                DiscountPriceTextField = null;
+            }
+
+            if (PriceTextField != null) {
+                PriceTextField.Dispose ();
+                PriceTextField = null;
+            }
+        }
+    }
 }

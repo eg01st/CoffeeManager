@@ -12,7 +12,7 @@ namespace CoffeeManager.Core.ViewModels.Products
 {
     public class ProductViewModel : ViewModelBase
     {
-        private readonly CategoryDTO category;
+        private CategoryDTO category;
         private readonly IProductManager productManager;
         private MvxObservableCollection<ProductViewModel> subCategories;
 
@@ -39,14 +39,14 @@ namespace CoffeeManager.Core.ViewModels.Products
 
         public string CategoryName => category.Name;
 
-        public ProductViewModel(CategoryDTO category)
+        public ProductViewModel()
         {
-            this.category = category;
             this.productManager = Mvx.Resolve<IProductManager>();
         }
         
-        public async Task InitViewModel()
+        public async Task InitViewModel(CategoryDTO category)
         {
+            this.category = category;
             await GetItems();
         }
 
@@ -58,9 +58,9 @@ namespace CoffeeManager.Core.ViewModels.Products
                 var tasks = new List<Task>();
                 foreach (var subCategory in category.SubCategories)
                 {
-                    var vm = new ProductViewModel(subCategory);
+                    var vm = new ProductViewModel();
                     subCats.Add(vm);
-                    tasks.Add(vm.InitViewModel());
+                    tasks.Add(vm.InitViewModel(subCategory));
                 }
 
                 await Task.WhenAll(tasks);

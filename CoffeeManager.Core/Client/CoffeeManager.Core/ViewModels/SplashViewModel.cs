@@ -5,6 +5,7 @@ using CoffeeManager.Models;
 using CoffeManager.Common;
 using CoffeManager.Common.Managers;
 using CoffeManager.Common.ViewModels;
+using MobileCore;
 using MobileCore.AutoUpdate;
 using MobileCore.Connection;
 using MobileCore.Extensions;

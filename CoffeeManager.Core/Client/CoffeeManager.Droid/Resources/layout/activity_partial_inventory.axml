@@ -13,46 +13,8 @@
         android:gravity="center_horizontal"
         android:layout_width="match_parent"
         android:text="Ввод количества товара" />
-    <Button
-            android:layout_marginTop="16dp"
-            android:layout_height="60dp"
-            android:layout_width="match_parent"
-            android:text="Готово"
-            android:id="@+id/done_button" />
- <!--   <LinearLayout
-        android:layout_margin="16dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="100">
-        <TextView
-            android:layout_weight="40"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textSize="16dp"
-            android:text="Имя" />
-        <TextView
-            android:layout_weight="20"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textSize="16dp"
-            android:text="Смена" />
-        <TextView
-            android:layout_weight="20"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textSize="16dp"
-            android:text="Касса" />
-        <TextView
-            android:layout_weight="20"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textSize="16dp"
-            android:text="Общее" />
-    </LinearLayout>-->
     <MobileCore.Droid.Controls.EndlessRecyclerView
         android:layout_margin="16dp"
-        android:background="@color/green"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/items_recycler" />

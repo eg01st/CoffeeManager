@@ -362,6 +362,7 @@
     <AndroidResource Include="Resources\drawable\ic_refresh_white.xml" />
     <AndroidResource Include="Resources\layout\partial_inventory_item.axml" />
     <AndroidResource Include="Resources\layout\activity_partial_inventory.axml" />
+    <AndroidResource Include="Resources\menu\done_button_menu.xml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />

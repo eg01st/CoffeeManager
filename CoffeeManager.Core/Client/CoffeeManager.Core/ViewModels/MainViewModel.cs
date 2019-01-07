@@ -21,6 +21,7 @@ using CoffeeManager.Core.Extensions;
 using CoffeeManager.Core.ViewModels.Motivation;
 using CoffeManager.Common.Common;
 using MobileCore.Logging;
+using MobileCore;
 
 namespace CoffeeManager.Core.ViewModels
 {
@@ -269,9 +270,9 @@ namespace CoffeeManager.Core.ViewModels
                 var categories = cats.ToList();
                 foreach (var category in categories)
                 {
-                    var vm = new ProductViewModel(category);
+                    var vm = new ProductViewModel();
                     Products.Add(vm);
-                    tasks.Add(vm.InitViewModel());
+                    tasks.Add(vm.InitViewModel(category));
                 }
     
                 Categories = new MvxObservableCollection<CategoryItemViewModel>(
@@ -307,7 +308,7 @@ namespace CoffeeManager.Core.ViewModels
                 var user = await userManager.GetUser(shiftInfo.UserId);
                 UserName = user.Name;
 
-                await InventoryExtensions.CheckInventory();
+                 await InventoryExtensions.CheckInventory();
 
             }, null, false);
         }
@@ -373,9 +374,16 @@ namespace CoffeeManager.Core.ViewModels
 
         protected override void DoUnsubscribe()
         {
+            if(allProducts == null)
+            {
+                return;
+            }
             foreach (var item in allProducts)
             {
-                item.ProductSelected -= OnProductSelected;
+                if (item != null)
+                {
+                    item.ProductSelected -= OnProductSelected;
+                }
             }
         }
 
@@ -430,6 +438,11 @@ namespace CoffeeManager.Core.ViewModels
                     else if (e.Message.Contains("Expenses exist"))
                     {
                         await UserDialogs.AlertAsync("Отмените все расходы что бы закрыть смену");
+                        return;
+                    }
+                    else if (e.Message.Contains("Utilized items exist"))
+                    {
+                        await UserDialogs.AlertAsync("Некоторые продукты были списаны, отмена смены невозможна");
                         return;
                     }
                     else

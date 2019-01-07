@@ -6,9 +6,9 @@ using Acr.UserDialogs;
 using CoffeeManager.Core.ViewModels.Inventory;
 using CoffeeManager.Models;
 using CoffeeManager.Models.Data.DTO.AutoOrder;
-using CoffeManager.Common;
 using CoffeManager.Common.Common;
 using CoffeManager.Common.Managers;
+using MobileCore;
 using MobileCore.Email;
 using MobileCore.Logging;
 using MvvmCross.Core.Navigation;
@@ -31,13 +31,15 @@ namespace CoffeeManager.Core.Extensions
 
             if (force)
             {
-                await userDialogs.AlertAsync(new AlertConfig()
+               var tcs = new TaskCompletionSource<bool>();
+
+                userDialogs.Alert(new AlertConfig()
                 {
                     Message = Strings.InventoryQuantityShouldBeUpdatedBeforeEndShiftMessage,
                     OkText = Strings.SetInventoryQuantityOkTitle,
-                    OnAction = async () => await ProceedInventory(itemsToUpdate, userDialogs, inventoryManager)
+                    OnAction = async () => await ProceedInventory(itemsToUpdate, userDialogs, inventoryManager, tcs)
                 });
-                return true;
+                return await tcs.Task;
             }
             else
             {
@@ -59,12 +61,13 @@ namespace CoffeeManager.Core.Extensions
             }
         }
 
-        private static async Task<bool> ProceedInventory(IEnumerable<InventoryItemsInfoForShiftDTO> itemsToUpdate, IUserDialogs userDialogs, IInventoryManager inventoryManager)
+        private static async Task<bool> ProceedInventory(IEnumerable<InventoryItemsInfoForShiftDTO> itemsToUpdate, IUserDialogs userDialogs, IInventoryManager inventoryManager, TaskCompletionSource<bool> tcs = null)
         {
             var navigationService = Mvx.Resolve<IMvxNavigationService>();
             
             var suplyItems = itemsToUpdate.SelectMany(s => s.Items).ToList();
             var updatedItems = await navigationService.Navigate<PartialInventoryViewModel, List<SupliedProduct>, List<SupliedProduct>>(suplyItems);
+            updatedItems.ForEach(i => i.SetExpenseNumerationQuantity());
             try
             {
                 userDialogs.ShowLoading();
@@ -75,13 +78,14 @@ namespace CoffeeManager.Core.Extensions
                 await Mvx.Resolve<IEmailService>().SendErrorEmail("CheckInventory", e.ToDiagnosticString());
                 await userDialogs.AlertAsync(Strings.DefaultErrorMessage);
                 ConsoleLogger.Exception(e);
+                tcs?.SetResult(false);
                 return false;
             }
             finally
             {
                 userDialogs.HideLoading();
             }
-
+            tcs?.SetResult(true);
             return true;
         }
     }

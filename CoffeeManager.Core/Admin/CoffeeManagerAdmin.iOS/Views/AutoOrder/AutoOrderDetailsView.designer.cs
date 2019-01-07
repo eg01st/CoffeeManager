@@ -1,42 +1,45 @@
 // WARNING
 //
-// This file has been generated automatically by Visual Studio to store outlets and
-// actions made in the UI designer. If it is removed, they will be lost.
-// Manual changes to this file may not be handled correctly.
+// This file has been generated automatically by Visual Studio from the outlets and
+// actions declared in your storyboard file.
+// Manual changes to this file will not be maintained.
 //
 using Foundation;
+using System;
 using System.CodeDom.Compiler;
 
 namespace CoffeeManagerAdmin.iOS
 {
-	[Register ("AutoOrderDetailsView")]
-	partial class AutoOrderDetailsView
-	{
-		[Outlet]
-		UIKit.UITableView OrderItemsTableView { get; set; }
+    [Register ("AutoOrderDetailsView")]
+    partial class AutoOrderDetailsView
+    {
+        [Outlet]
+        UIKit.UITableView OrderItemsTableView { get; set; }
 
-		[Outlet]
-		UIKit.UILabel OrderTime { get; set; }
 
-		[Outlet]
-		UIKit.UILabel OrderWeekDay { get; set; }
-		
-		void ReleaseDesignerOutlets ()
-		{
-			if (OrderWeekDay != null) {
-				OrderWeekDay.Dispose ();
-				OrderWeekDay = null;
-			}
+        [Outlet]
+        UIKit.UILabel OrderTime { get; set; }
 
-			if (OrderTime != null) {
-				OrderTime.Dispose ();
-				OrderTime = null;
-			}
 
-			if (OrderItemsTableView != null) {
-				OrderItemsTableView.Dispose ();
-				OrderItemsTableView = null;
-			}
-		}
-	}
+        [Outlet]
+        UIKit.UILabel OrderWeekDay { get; set; }
+
+        void ReleaseDesignerOutlets ()
+        {
+            if (OrderItemsTableView != null) {
+                OrderItemsTableView.Dispose ();
+                OrderItemsTableView = null;
+            }
+
+            if (OrderTime != null) {
+                OrderTime.Dispose ();
+                OrderTime = null;
+            }
+
+            if (OrderWeekDay != null) {
+                OrderWeekDay.Dispose ();
+                OrderWeekDay = null;
+            }
+        }
+    }
 }

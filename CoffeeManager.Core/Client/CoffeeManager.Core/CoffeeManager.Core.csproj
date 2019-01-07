@@ -59,14 +59,6 @@
     <Compile Include="ViewModels\Motivation\MotivationViewModel.cs" />
     <Compile Include="ViewModels\Products\ProductBaseViewModel.cs" />
     <Compile Include="ViewModels\SaleItemViewModel.cs" />
-    <Compile Include="ViewModels\Products\AddsViewModel.cs" />
-    <Compile Include="ViewModels\Products\CoffeeViewModel.cs" />
-    <Compile Include="ViewModels\Products\ColdDrinksViewModel.cs" />
-    <Compile Include="ViewModels\Products\IceCreamViewModel.cs" />
-    <Compile Include="ViewModels\Products\MealsViewModel.cs" />
-    <Compile Include="ViewModels\Products\SweetsViewModel.cs" />
-    <Compile Include="ViewModels\Products\TeaViewModel.cs" />
-    <Compile Include="ViewModels\Products\WaterViewModel.cs" />
     <Compile Include="ViewModels\Products\ProductViewModel.cs" />
     <Compile Include="ViewModels\Products\ProductItemViewModel.cs" />
     <Compile Include="ViewModels\Products\SelectedProductViewModel.cs" />
@@ -81,6 +73,7 @@
     <Compile Include="ViewModels\Settings\CoffeeRoomItemViewModel.cs" />
     <Compile Include="ViewModels\SplashViewModel.cs" />
     <Compile Include="ViewModels\InitialLoginViewModel.cs" />
+    <Compile Include="Extensions\SupliedProductExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MvvmCross.Binding, Version=5.6.3.0, Culture=neutral, PublicKeyToken=null">
