@@ -26,7 +26,7 @@ namespace CoffeeManager.Droid.Adapters.ViewHolders
         {
             var bindingSet = this.CreateBindingSet<PartialInventoryItemViewHolder, PartialInventoryItemViewModel>();
             bindingSet.Bind(Name).To(vm => vm.Name);
-            bindingSet.Bind(Quantity).To(vm => vm.Quantity).WithConversion(new IntToStringConverter());
+            bindingSet.Bind(Quantity).To(vm => vm.Quantity);
             bindingSet.Bind(QuantityName).To(vm => vm.ExpenseNumerationName);
             bindingSet.Apply();
         }

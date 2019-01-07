@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -19,30 +19,36 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hiX-ep-HA7">
-                        <rect key="frame" x="16" y="16" width="165" height="11.5"/>
+                        <rect key="frame" x="16" y="16" width="143" height="11.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wyN-9n-xuq">
-                        <rect key="frame" x="197" y="7" width="96" height="30"/>
+                        <rect key="frame" x="175" y="7" width="64" height="30"/>
                         <nil key="textColor"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits"/>
                     </textField>
+                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="adp-Oc-Ph1">
+                        <rect key="frame" x="255" y="6.5" width="51" height="31"/>
+                    </switch>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="hiX-ep-HA7" secondAttribute="bottom" constant="16" id="2m6-qm-6gI"/>
-                    <constraint firstAttribute="trailing" secondItem="wyN-9n-xuq" secondAttribute="trailing" constant="27" id="BJR-4f-Qlt"/>
+                    <constraint firstAttribute="trailing" secondItem="adp-Oc-Ph1" secondAttribute="trailing" constant="16" id="6OX-k2-2yl"/>
                     <constraint firstItem="wyN-9n-xuq" firstAttribute="centerY" secondItem="hiX-ep-HA7" secondAttribute="centerY" id="EnD-vj-ftQ"/>
                     <constraint firstItem="hiX-ep-HA7" firstAttribute="top" secondItem="YTl-1W-gDM" secondAttribute="top" constant="16" id="Iwo-5a-cgI"/>
+                    <constraint firstItem="adp-Oc-Ph1" firstAttribute="centerY" secondItem="wyN-9n-xuq" secondAttribute="centerY" id="TjU-Ih-cdl"/>
                     <constraint firstItem="wyN-9n-xuq" firstAttribute="leading" secondItem="hiX-ep-HA7" secondAttribute="trailing" constant="16" id="axa-g2-kGB"/>
                     <constraint firstItem="hiX-ep-HA7" firstAttribute="leading" secondItem="YTl-1W-gDM" secondAttribute="leading" constant="16" id="icl-7K-PGi"/>
-                    <constraint firstItem="wyN-9n-xuq" firstAttribute="width" secondItem="YTl-1W-gDM" secondAttribute="width" multiplier="0.3" id="zrD-1t-C0M"/>
+                    <constraint firstItem="adp-Oc-Ph1" firstAttribute="leading" secondItem="wyN-9n-xuq" secondAttribute="trailing" constant="16" id="ziZ-0f-GlV"/>
+                    <constraint firstItem="wyN-9n-xuq" firstAttribute="width" secondItem="YTl-1W-gDM" secondAttribute="width" multiplier="0.2" id="zrD-1t-C0M"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="QuantityAfterTextField" destination="wyN-9n-xuq" id="Bze-Sq-Af2"/>
+                <outlet property="ShouldUpdateQuantityBeforeOrderSwitch" destination="adp-Oc-Ph1" id="HKb-KM-rad"/>
                 <outlet property="SuplyProductNameLabel" destination="hiX-ep-HA7" id="YJr-oI-mDl"/>
             </connections>
         </tableViewCell>
