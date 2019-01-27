@@ -68,6 +68,7 @@ namespace CoffeeManager.Core.ViewModels
                 {
                     try
                     {
+                        UserDialogs.ShowLoading();
                         var token = await accountManager.Authorize(userInfo.Login, userInfo.Password);
                         userInfo.AccessToken = token;
                         userInfo.ApiUrl = Config.ApiUrl;
@@ -75,13 +76,15 @@ namespace CoffeeManager.Core.ViewModels
 
                         updateWorker.ConfigureEndpoints(Config.ApiUrl, RoutesConstants.GetCurrentAdnroidVersion,
                             RoutesConstants.GetAndroidPackage);
-                        if (await ExecuteSafe(updateWorker.IsNewVersionAvailable))
+                        if (await updateWorker.IsNewVersionAvailable())
                         {
                             if (await UserDialogs.ConfirmAsync(
                                 "Вышла новая версия программы, рекомендуется обновление", null, "Обновить",
                                 "Отмена"))
                             {
-                                await ExecuteSafe(updateWorker.Update);
+                                UserDialogs.HideLoading();
+                                UserDialogs.ShowLoading("Загрузка...");
+                                await updateWorker.Update();
                                 return;
                             }
                         }
@@ -89,10 +92,14 @@ namespace CoffeeManager.Core.ViewModels
                     }
                     catch (Exception ex)
                     {
-                        await EmailService.SendErrorEmail($"CoffeeRoomNo {Config.CoffeeRoomNo}", ex.ToDiagnosticString());
+                        await EmailService.SendErrorEmail($"Update app: CoffeeRoomNo {Config.CoffeeRoomNo}", ex.ToDiagnosticString());
                         ConsoleLogger.Exception(ex);
                         await NavigationService.Navigate<InitialLoginViewModel>();
                         return;
+                    }
+                    finally
+                    {
+                        UserDialogs.HideLoading();
                     }
                 }
             }
