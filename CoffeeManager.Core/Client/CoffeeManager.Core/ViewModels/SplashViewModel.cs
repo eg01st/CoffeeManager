@@ -82,8 +82,6 @@ namespace CoffeeManager.Core.ViewModels
                                 "Вышла новая версия программы, рекомендуется обновление", null, "Обновить",
                                 "Отмена"))
                             {
-                                UserDialogs.HideLoading();
-                                UserDialogs.ShowLoading("Загрузка...");
                                 await updateWorker.Update();
                                 return;
                             }

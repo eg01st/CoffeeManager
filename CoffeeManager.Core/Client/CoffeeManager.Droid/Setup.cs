@@ -9,6 +9,7 @@ using MobileCore.Droid;
 using MvvmCross.Binding.Bindings.Target.Construction;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Droid.Support.V7.AppCompat;
+using MvvmCross.Platform;
 
 namespace CoffeeManager.Droid
 {
@@ -42,6 +43,12 @@ namespace CoffeeManager.Droid
             base.FillTargetFactories(registry);
             MvxAppCompatSetupHelper.FillTargetFactories(registry);  
             registry.RegisterFactory(new MvxCustomBindingFactory<View>("LongPress", view => new LongPressEventBinding(view)));
+        }
+
+        protected override void DoRegisterInjections()
+        {
+            base.DoRegisterInjections();
+            Mvx.RegisterSingleton<IBackgroundChecker>(new BackgroundChecker());
         }
 
     }

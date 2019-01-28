@@ -18,6 +18,13 @@ namespace CoffeeManager.Core.Extensions
 {
     public static class InventoryExtensions
     {
+        public static async Task<bool> HasAutoOrders()
+        {
+            var autoOrderManager = Mvx.Resolve<IAutoOrderManager>();
+            var orders = await autoOrderManager.GetAutoOrders();
+            return orders.Any();
+        }
+
         public static async Task<bool> CheckInventory(bool force = false)
         {
             var inventoryManager = Mvx.Resolve<IInventoryManager>();

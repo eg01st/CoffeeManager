@@ -1,27 +1,23 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using MvvmCross.Core.ViewModels;
 using System.Linq;
 using System.Text;
-using CoffeManager.Common;
-using System;
-using Acr.UserDialogs;
+using System.Threading.Tasks;
+using System.Windows.Input;
+using CoffeeManager.Common;
+using CoffeeManager.Core.Extensions;
 using CoffeeManager.Core.ViewModels.Inventory;
+using CoffeeManager.Core.ViewModels.Motivation;
 using CoffeeManager.Core.ViewModels.Products;
 using CoffeeManager.Core.ViewModels.Settings;
 using CoffeeManager.Core.ViewModels.UtilizedProducts;
 using CoffeeManager.Models;
 using CoffeManager.Common.Managers;
-using CoffeManager.Common.ViewModels;
-using MobileCore.ViewModels;
-using CoffeeManager.Common;
-using CoffeeManager.Core.Extensions;
-using CoffeeManager.Core.ViewModels.Motivation;
-using CoffeManager.Common.Common;
-using MobileCore.Logging;
 using MobileCore;
+using MobileCore.Logging;
+using MobileCore.ViewModels;
+using MvvmCross.Core.ViewModels;
 
 namespace CoffeeManager.Core.ViewModels
 {
@@ -203,6 +199,7 @@ namespace CoffeeManager.Core.ViewModels
         private readonly IShiftManager shiftManager;
         private readonly IInventoryManager inventoryManager;
         private int selectedCategoryId;
+        readonly IBackgroundChecker backgroundChecker;
 
         public MainViewModel(IMvxViewModelLoader mvxViewModelLoader,
                              IProductManager productManager,
@@ -210,8 +207,10 @@ namespace CoffeeManager.Core.ViewModels
                              IUserManager userManager,
                             ICategoryManager categoryManager,
             IShiftManager shiftManager,
-            IInventoryManager inventoryManager)
+            IInventoryManager inventoryManager,
+            IBackgroundChecker backgroundChecker)
         {
+            this.backgroundChecker = backgroundChecker;
             this.userManager = userManager;
             this.categoryManager = categoryManager;
             this.shiftManager = shiftManager;
@@ -311,6 +310,15 @@ namespace CoffeeManager.Core.ViewModels
                  await InventoryExtensions.CheckInventory();
 
             }, null, false);
+
+            if(await InventoryExtensions.HasAutoOrders())
+            {
+                backgroundChecker.StartBackgroundChecks();
+            }
+            else
+            {
+                backgroundChecker.StopBackgroundChecks();
+            }
         }
 
 
