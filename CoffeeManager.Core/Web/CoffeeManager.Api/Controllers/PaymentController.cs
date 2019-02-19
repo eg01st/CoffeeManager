@@ -230,7 +230,8 @@ namespace CoffeeManager.Api.Controllers
                     {
                         CoffeeRoomId = coffeeroomno,
                         SuplyProductId = suplyProduct.Id,
-                        Quantity = suplyProduct.Quatity.Value * sp.ExpenseNumerationMultyplier
+                        Quantity = suplyProduct.Quatity.Value * sp.ExpenseNumerationMultyplier,
+                        LastUpdatedDate = new DateTime(1970, 1, 1)
                     };
                     entities.SuplyProductQuantities.Add(newQuantity);
                 }            

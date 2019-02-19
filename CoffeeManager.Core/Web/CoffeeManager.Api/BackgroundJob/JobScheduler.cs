@@ -12,8 +12,8 @@ namespace CoffeeManager.Api.BackgroundJob
             await scheduler.Start();
  
             IJobDetail job = JobBuilder.Create<AutoOrderJob>().Build();
- 
-            ITrigger trigger = TriggerBuilder.Create()
+
+                       ITrigger trigger = TriggerBuilder.Create()
                 .WithDailyTimeIntervalSchedule
                 (s =>
                     s.WithIntervalInHours(1)

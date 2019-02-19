@@ -115,7 +115,7 @@ namespace CoffeeManager.Api.Controllers
             var result = new List<InventoryItemsInfoForShiftDTO>();
             
             var entities = new CoffeeRoomEntities();
-            var orders = entities.AutoOrders.Include(o => o.SuplyProductOrderItems).Include(i => i.SuplyProductOrderItems.Select(s => s.SupliedProduct)).ToList();
+            var orders = entities.AutoOrders.Where(o => o.CoffeeRoomId == coffeeroomno).Include(o => o.SuplyProductOrderItems).Include(i => i.SuplyProductOrderItems.Select(s => s.SupliedProduct)).ToList();
             foreach (var order in orders)
             {
                 var yesterday = DateTime.Now.AddDays(-1);

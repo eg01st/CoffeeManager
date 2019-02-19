@@ -14,26 +14,26 @@ namespace CoffeeManager.Api
 
         static Log()
         {
-            var target = (FileTarget)LogManager.Configuration.FindTargetByName("file");
-            string root = HttpContext.Current.Server.MapPath("~/App_Data");
-            string fullName = root + "/log/log.txt";
-            target.FileName = fullName;
-            LogManager.ReconfigExistingLoggers();
+            //var target = (FileTarget)LogManager.Configuration.FindTargetByName("file");
+            //string root = HttpContext.Current.Server.MapPath("~/App_Data");
+            //string fullName = root + "/log/log.txt";
+            //target.FileName = fullName;
+            //LogManager.ReconfigExistingLoggers();
         }
 
         public static void Error(Exception ex, string mesasge = "")
         {
-            Logger.Error($"{mesasge} {ex.ToDiagnosticString()}");
+            //Logger.Error($"{mesasge} {ex.ToDiagnosticString()}");
         }
 
         public static void Info(string message)
         {
-            Logger.Info(message);
+            //Logger.Info(message);
         }
 
         public static void Warn(string message)
         {
-            Logger.Warn(message);
+            //Logger.Warn(message);
         }
     }
 }
