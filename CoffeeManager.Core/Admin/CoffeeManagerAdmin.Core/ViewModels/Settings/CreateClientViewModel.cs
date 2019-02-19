@@ -5,6 +5,7 @@ using System.Windows.Input;
 using CoffeManager.Common;
 using CoffeManager.Common.Managers;
 using CoffeManager.Common.ViewModels;
+using MobileCore;
 using MvvmCross.Core.ViewModels;
 
 namespace CoffeeManagerAdmin.Core.ViewModels.Settings

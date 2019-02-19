@@ -34,7 +34,7 @@ namespace CoffeeManagerAdmin.Core
 
         private void DoDeleteExpenseType()
         {
-            Confirm($"Удалить тип траты {Name}?", () => DeleteExpenseType());
+            Confirm($"Удалить тип расхода {Name}?", () => DeleteExpenseType());
         }
 
         private async void DeleteExpenseType()

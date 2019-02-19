@@ -7,6 +7,7 @@ using CoffeeManager.Common;
 using CoffeeManager.Models;
 using CoffeeManager.Models.Data.DTO.CoffeeRoomCounter;
 using CoffeManager.Common.Providers;
+using MobileCore;
 using MobileCore.Connection;
 
 namespace CoffeManager.Common.Managers

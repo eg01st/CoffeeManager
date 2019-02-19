@@ -222,7 +222,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ServiceProviders\" />
+    <Folder Include="Services\" />
     <Folder Include="ViewModels\Settings\" />
     <Folder Include="ViewModels\CreditCard\" />
     <Folder Include="ViewModels\Home\" />

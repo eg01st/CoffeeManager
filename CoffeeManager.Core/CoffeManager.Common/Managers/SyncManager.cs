@@ -8,6 +8,7 @@ using CoffeeManager.Common;
 using CoffeeManager.Models;
 using CoffeManager.Common.Database;
 using CoffeManager.Common.Providers;
+using MobileCore;
 using MobileCore.Connection;
 
 namespace CoffeManager.Common.Managers

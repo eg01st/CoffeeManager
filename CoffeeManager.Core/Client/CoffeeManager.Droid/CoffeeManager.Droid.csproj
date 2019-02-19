@@ -41,8 +41,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <EnableProguard>true</EnableProguard>
-    <AndroidSupportedAbis>armeabi-v7a;x86;x86_64</AndroidSupportedAbis>
-    <AndroidLinkMode>None</AndroidLinkMode>
+    <AndroidSupportedAbis>armeabi-v7a;x86_64;x86;arm64-v8a</AndroidSupportedAbis>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="BouncyCastle, Version=1.8.1.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
@@ -253,6 +252,8 @@
     <Compile Include="ActivityBase.cs" />
     <Compile Include="Views\MotivationView.cs" />
     <Compile Include="Adapters\ViewHolders\ProductItemViewHolder.cs" />
+    <Compile Include="Platform\BackgroundChecker.cs" />
+    <Compile Include="Platform\AutoOrderCheckJobService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -362,6 +363,7 @@
     <AndroidResource Include="Resources\drawable\ic_refresh_white.xml" />
     <AndroidResource Include="Resources\layout\partial_inventory_item.axml" />
     <AndroidResource Include="Resources\layout\activity_partial_inventory.axml" />
+    <AndroidResource Include="Resources\menu\done_button_menu.xml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />

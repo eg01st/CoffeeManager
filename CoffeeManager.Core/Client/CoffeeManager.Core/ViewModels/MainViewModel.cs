@@ -1,26 +1,23 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using MvvmCross.Core.ViewModels;
 using System.Linq;
 using System.Text;
-using CoffeManager.Common;
-using System;
-using Acr.UserDialogs;
+using System.Threading.Tasks;
+using System.Windows.Input;
+using CoffeeManager.Common;
+using CoffeeManager.Core.Extensions;
 using CoffeeManager.Core.ViewModels.Inventory;
+using CoffeeManager.Core.ViewModels.Motivation;
 using CoffeeManager.Core.ViewModels.Products;
 using CoffeeManager.Core.ViewModels.Settings;
 using CoffeeManager.Core.ViewModels.UtilizedProducts;
 using CoffeeManager.Models;
 using CoffeManager.Common.Managers;
-using CoffeManager.Common.ViewModels;
-using MobileCore.ViewModels;
-using CoffeeManager.Common;
-using CoffeeManager.Core.Extensions;
-using CoffeeManager.Core.ViewModels.Motivation;
-using CoffeManager.Common.Common;
+using MobileCore;
 using MobileCore.Logging;
+using MobileCore.ViewModels;
+using MvvmCross.Core.ViewModels;
 
 namespace CoffeeManager.Core.ViewModels
 {
@@ -202,6 +199,7 @@ namespace CoffeeManager.Core.ViewModels
         private readonly IShiftManager shiftManager;
         private readonly IInventoryManager inventoryManager;
         private int selectedCategoryId;
+        readonly IBackgroundChecker backgroundChecker;
 
         public MainViewModel(IMvxViewModelLoader mvxViewModelLoader,
                              IProductManager productManager,
@@ -209,8 +207,10 @@ namespace CoffeeManager.Core.ViewModels
                              IUserManager userManager,
                             ICategoryManager categoryManager,
             IShiftManager shiftManager,
-            IInventoryManager inventoryManager)
+            IInventoryManager inventoryManager,
+            IBackgroundChecker backgroundChecker)
         {
+            this.backgroundChecker = backgroundChecker;
             this.userManager = userManager;
             this.categoryManager = categoryManager;
             this.shiftManager = shiftManager;
@@ -269,9 +269,9 @@ namespace CoffeeManager.Core.ViewModels
                 var categories = cats.ToList();
                 foreach (var category in categories)
                 {
-                    var vm = new ProductViewModel(category);
+                    var vm = new ProductViewModel();
                     Products.Add(vm);
-                    tasks.Add(vm.InitViewModel());
+                    tasks.Add(vm.InitViewModel(category));
                 }
     
                 Categories = new MvxObservableCollection<CategoryItemViewModel>(
@@ -307,9 +307,18 @@ namespace CoffeeManager.Core.ViewModels
                 var user = await userManager.GetUser(shiftInfo.UserId);
                 UserName = user.Name;
 
-                await InventoryExtensions.CheckInventory();
+                 await InventoryExtensions.CheckInventory();
 
             }, null, false);
+
+            if(await InventoryExtensions.HasAutoOrders())
+            {
+                backgroundChecker.StartBackgroundChecks();
+            }
+            else
+            {
+                backgroundChecker.StopBackgroundChecks();
+            }
         }
 
 
@@ -373,9 +382,16 @@ namespace CoffeeManager.Core.ViewModels
 
         protected override void DoUnsubscribe()
         {
+            if(allProducts == null)
+            {
+                return;
+            }
             foreach (var item in allProducts)
             {
-                item.ProductSelected -= OnProductSelected;
+                if (item != null)
+                {
+                    item.ProductSelected -= OnProductSelected;
+                }
             }
         }
 
@@ -430,6 +446,11 @@ namespace CoffeeManager.Core.ViewModels
                     else if (e.Message.Contains("Expenses exist"))
                     {
                         await UserDialogs.AlertAsync("Отмените все расходы что бы закрыть смену");
+                        return;
+                    }
+                    else if (e.Message.Contains("Utilized items exist"))
+                    {
+                        await UserDialogs.AlertAsync("Некоторые продукты были списаны, отмена смены невозможна");
                         return;
                     }
                     else

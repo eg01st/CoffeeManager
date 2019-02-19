@@ -52,7 +52,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Orders
         {
             if (!_expenseTypeId.HasValue || _expenseTypeId == 0)
             {
-                Alert("Выберите тип траты");
+                Alert("Выберите тип расхода");
                 return;
             }
 

@@ -139,6 +139,7 @@ namespace CoffeManager.Common
 
                     throw new Exception(response.ToString() + responseString);
                 }
+
                 return responseString;
             }
 

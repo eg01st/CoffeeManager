@@ -104,6 +104,53 @@ namespace CoffeeManager.Api.Controllers
             return Request.CreateErrorResponse(HttpStatusCode.RequestedRangeNotSatisfiable, $"No product with id  {id}");
         }
         
+        [Route (RoutesConstants.UpdateAutoOrderItem)]
+        [HttpPost]
+        public async Task<HttpResponseMessage> UpdateAutoOrderItem ([FromUri]int coffeeroomno, HttpRequestMessage message)
+        {
+            var request = await message.Content.ReadAsStringAsync ();
+            var dto = JsonConvert.DeserializeObject<AutoOrderDTO> (request);
+            
+            var entities = new CoffeeRoomEntities ();
+            var order = entities.AutoOrders.FirstOrDefault(p => p.Id == dto.Id);
+            if(order != null)
+            {
+                DbMapper.Update(dto, order);
+                
+                var suplyItemOrders = entities.SuplyProductOrderItems.Where(s => s.OrderId == dto.Id);
+               
+                //Remove deleted items, update current
+                foreach (var dbItem in suplyItemOrders)
+                {
+                    var item = dto.OrderItems.FirstOrDefault(i => i.Id == dbItem.Id);
+                    
+                    if (item != null)
+                    {
+                        dbItem.QuantityShouldBeAfterOrder = item.QuantityShouldBeAfterOrder;
+                        dbItem.ShouldUpdateQuantityBeforeOrder = item.ShouldUpdateQuantityBeforeOrder;
+                        dbItem.SuplyProductId = item.SuplyProductId;
+                        entities.SaveChanges();
+                        continue;
+                    }
+
+                    entities.SuplyProductOrderItems.Remove(dbItem);
+                }
+
+                //Add new items
+                foreach (var item in dto.OrderItems.Where(o => o.Id == 0))
+                {
+                    var dbItem = item.Map();
+                    entities.SuplyProductOrderItems.Add(dbItem);
+                    entities.SaveChanges();
+                }
+
+                entities.SaveChanges();
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            
+            return Request.CreateErrorResponse(HttpStatusCode.NotFound, "");
+        }
+        
         [Route(RoutesConstants.GetOrdersHistory)]
         [HttpGet]
         public async Task<HttpResponseMessage> GetOrdersHistory([FromUri]int coffeeroomno)

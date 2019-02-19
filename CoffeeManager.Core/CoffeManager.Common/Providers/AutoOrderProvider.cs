@@ -53,5 +53,10 @@ namespace CoffeManager.Common.Providers
                 });
             return dto;
         }
+
+        public async Task UpdateAutoOrderItem(AutoOrderDTO dto)
+        {
+            await Post(RoutesConstants.UpdateAutoOrderItem, dto);
+        }
     }
 }

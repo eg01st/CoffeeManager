@@ -26,7 +26,7 @@ namespace CoffeeManager.Core.ViewModels
             if (!_isPromt)
             {
                 _isPromt = true;
-                Confirm("Удалить трату?", () => OnDelete());
+                Confirm("Удалить расход?", () => OnDelete());
                 _isPromt = false;              
             }
         }

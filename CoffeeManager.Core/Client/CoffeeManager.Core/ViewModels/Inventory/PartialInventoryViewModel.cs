@@ -4,16 +4,30 @@ using System.Linq;
 using System.Threading.Tasks;
 using CoffeeManager.Models;
 using CoffeManager.Common.Common;
+using MobileCore.Collections;
 using MobileCore.ViewModels;
 using MvvmCross.Core.ViewModels;
+using MobileCore;
 
 namespace CoffeeManager.Core.ViewModels.Inventory
 {
     public class PartialInventoryViewModel : FeedViewModel<PartialInventoryItemViewModel>, IMvxViewModel<List<SupliedProduct>, List<SupliedProduct>>
     {
+        private List<SupliedProduct> items;
+
+        public IMvxAsyncCommand DoneCommand { get; }
+
+        public TaskCompletionSource<object> CloseCompletionSource { get; set; }
+
         public void Prepare(List<SupliedProduct> parameter)
         {
-            ItemsCollection.ReplaceWith(parameter.Select(p => new PartialInventoryItemViewModel(p)));
+            items = parameter;
+            items.ForEach(i => i.Quatity = 0);
+        }
+
+        protected override Task<PageContainer<PartialInventoryItemViewModel>> GetPageAsync(int skip)
+        {
+            return Task.FromResult(items.Select(p => new PartialInventoryItemViewModel(p)).ToPageContainer());
         }
 
         public PartialInventoryViewModel()
@@ -22,17 +36,11 @@ namespace CoffeeManager.Core.ViewModels.Inventory
 
         }
 
-        public override async Task Initialize()
-        {
-            await base.Initialize();
-            RaiseAllPropertiesChanged();
-        }
-
         private async Task DoDone()
         {
             if (ItemsCollection.All(i => i.IsProceeded))
             {
-                await NavigationService.Close(this, ItemsCollection.Select(s => s.Entity).ToList());
+                CloseCommand.Execute(null);
             }
             else
             {
@@ -40,13 +48,9 @@ namespace CoffeeManager.Core.ViewModels.Inventory
             }
         }
 
-        protected override async Task DoClose()
+        protected override async Task PerformClose()
         {
-            await base.DoClose();
+            await NavigationService.Close<List<SupliedProduct>>(this, ItemsCollection.Select(s => s.Entity).ToList());
         }
-
-        public TaskCompletionSource<object> CloseCompletionSource { get; set; }
-
-        public IMvxAsyncCommand DoneCommand { get; }
     }
 }

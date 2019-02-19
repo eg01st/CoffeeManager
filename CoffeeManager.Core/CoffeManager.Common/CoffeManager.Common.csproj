@@ -54,7 +54,6 @@
     <Compile Include="ViewModels\BaseSearchViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="ViewModels\ListItemViewModelBase.cs" />
-    <Compile Include="Extensions\ExceptionExtensions.cs" />
     <Compile Include="CoffeManagerApp.cs" />
     <Compile Include="Providers\BaseServiceProvider.cs" />
     <Compile Include="Config.cs" />

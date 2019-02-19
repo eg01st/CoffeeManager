@@ -2,15 +2,17 @@
 using Android.Views;
 using Android.Widget;
 using CoffeeManager.Core.ViewModels.Inventory;
-using CoffeeManager.Droid.Converters;
 using MobileCore.Droid.Adapters.ViewHolders;
 using MobileCore.Droid.Bindings.CustomAtts;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.Binding.Droid.BindingContext;
+using MvvmCross.Binding.Droid;
+using CoffeeManager.Droid.Converters;
+using MobileCore.Droid;
 
 namespace CoffeeManager.Droid.Adapters.ViewHolders
 {
-    public class PartialInventoryItemViewHolder: CardViewHolder
+    public class PartialInventoryItemViewHolder : CardViewHolder
     {
         public PartialInventoryItemViewHolder(View view, IMvxAndroidBindingContext context) : base(view, context)
         {
@@ -22,12 +24,15 @@ namespace CoffeeManager.Droid.Adapters.ViewHolders
 
         [FindById(Resource.Id.quantity_name_text_view)] private TextView QuantityName { get; set; }
 
+        [FindById(Resource.Id.quantity_is_proceed)] private ImageView IsProceedImage { get; set; }
+
         public override void BindData()
         {
             var bindingSet = this.CreateBindingSet<PartialInventoryItemViewHolder, PartialInventoryItemViewModel>();
             bindingSet.Bind(Name).To(vm => vm.Name);
-            bindingSet.Bind(Quantity).To(vm => vm.Quantity);
+            bindingSet.Bind(Quantity).To(vm => vm.QuantityString);
             bindingSet.Bind(QuantityName).To(vm => vm.ExpenseNumerationName);
+            bindingSet.Bind(IsProceedImage).For(f => f.Visibility).To(vm => vm.IsProceeded).WithConversion(BoolToHiddenConverter.Instance);
             bindingSet.Apply();
         }
     }

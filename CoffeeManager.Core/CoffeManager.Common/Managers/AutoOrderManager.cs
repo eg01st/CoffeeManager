@@ -35,6 +35,11 @@ namespace CoffeManager.Common.Managers
             return await provider.AddAutoOrderItem(dto);
         }
 
+        public async Task UpdateAutoOrderItem(AutoOrderDTO dto)
+        {
+            await provider.UpdateAutoOrderItem(dto);
+        }
+
         public async Task DeleteAutoOrderItem(int id)
         {
             await provider.DeleteAutoOrderItem(id);

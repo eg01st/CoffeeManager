@@ -15,6 +15,8 @@ namespace CoffeManager.Common.Managers
         
         Task<int> AddAutoOrderItem(AutoOrderDTO dto);
         
+        Task UpdateAutoOrderItem(AutoOrderDTO dto);
+        
         Task DeleteAutoOrderItem(int id);
         
         Task<IEnumerable<OrderHistoryItemDTO>> GetOrdersHistory();

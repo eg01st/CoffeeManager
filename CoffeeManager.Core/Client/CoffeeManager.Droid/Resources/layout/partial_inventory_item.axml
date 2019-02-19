@@ -32,4 +32,12 @@
 			android:layout_height="wrap_content"
 			android:layout_width="wrap_content"
 			android:id="@+id/quantity_name_text_view" />
+    <ImageView
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_gravity="center_vertical"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:src="@drawable/ic_done_black_24dp"
+            android:id="@+id/quantity_is_proceed" />
 </LinearLayout>

@@ -1,28 +1,36 @@
-﻿using CoffeeManager.Core.Messages;
-using CoffeeManager.Models;
-using CoffeManager.Common.ViewModels;
+﻿using CoffeeManager.Models;
+using MobileCore.ViewModels;
 
 namespace CoffeeManager.Core.ViewModels.Inventory
 {
-    public class PartialInventoryItemViewModel : ListItemViewModelBase
-    {        
+    public class PartialInventoryItemViewModel : FeedItemElementViewModel
+    {
+        private string quantityString;
+
         public PartialInventoryItemViewModel(SupliedProduct item)
         {
             Entity = item;
         }
-        
-        public decimal Quantity
+
+        public string QuantityString
         {
-            get => Entity.Quatity ?? 0;
+            get => quantityString;
             set
             {
-                Entity.Quatity = value; 
+                quantityString = value;
+                decimal res;
+                if(decimal.TryParse(quantityString, out res))
+                {
+                    Entity.Quatity = res;
+                }
                 RaisePropertyChanged();
                 RaisePropertyChanged(nameof(IsProceeded));
             }
         }
-                        
+
         public SupliedProduct Entity { get; private set; }
+
+        public string Name => Entity.Name;
 
         public int SuplyProductId => Entity.Id;
 
@@ -32,6 +40,6 @@ namespace CoffeeManager.Core.ViewModels.Inventory
 
         public int CoffeeRoomNo => Entity.CoffeeRoomNo;
 
-        public bool IsProceeded => Quantity > -1;
+        public bool IsProceeded => !string.IsNullOrEmpty(quantityString);
     }
 }

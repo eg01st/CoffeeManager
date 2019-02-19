@@ -4,13 +4,9 @@ using System.Threading.Tasks;
 using Acr.UserDialogs;
 using Android.App;
 using Android.Runtime;
-using Android.Widget;
-using MailKit.Net.Smtp;
-using MimeKit;
-using MvvmCross.Platform;
-using CoffeManager.Common;
-using CoffeeManager.Common;
+using MobileCore;
 using MobileCore.Email;
+using MvvmCross.Platform;
 
 namespace CoffeeManager.Droid
 {
@@ -44,7 +40,7 @@ namespace CoffeeManager.Droid
             }
             else
             {
-                Mvx.Resolve<IEmailService>().SendErrorEmail($"CoffeeRoomId: {Config.CoffeeRoomNo}",exceptionObject.ToString());
+                Mvx.Resolve<IEmailService>().SendErrorEmail($"CoffeeRoomId: {Common.Config.CoffeeRoomNo}",exceptionObject.ToString());
             }
         }
 
@@ -72,7 +68,7 @@ namespace CoffeeManager.Droid
                 return;
             }
             Mvx.Resolve<IUserDialogs>().Alert("Что-то пошло не так :(");
-            Mvx.Resolve<IEmailService>().SendErrorEmail($"CoffeeRoomId: {Config.CoffeeRoomNo}", e.ToDiagnosticString());
+            Mvx.Resolve<IEmailService>().SendErrorEmail($"CoffeeRoomId: {Common.Config.CoffeeRoomNo}", e.ToDiagnosticString());
         }
     }
 }

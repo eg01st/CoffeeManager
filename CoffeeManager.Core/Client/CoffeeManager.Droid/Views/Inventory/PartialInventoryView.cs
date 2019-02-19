@@ -1,8 +1,7 @@
 ﻿using Android.App;
 using Android.Content.PM;
 using Android.OS;
-using Android.Widget;
-using CoffeeManager.Core.ViewModels.CoffeeCounter;
+using Android.Views;
 using CoffeeManager.Core.ViewModels.Inventory;
 using CoffeeManager.Droid.Adapters.ViewHolders;
 using MobileCore.Droid.Adapters;
@@ -11,27 +10,21 @@ using MobileCore.Droid.Bindings.CustomAtts;
 using MobileCore.Droid.Controls;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.Binding.Droid.BindingContext;
-using MvvmCross.Binding.Droid;
-using MvvmCross.Core.ViewModels;
 
 namespace CoffeeManager.Droid.Views.Inventory
 {
     [Activity(ScreenOrientation = ScreenOrientation.SensorPortrait)]
-    public class PartialInventoryView : MobileCore.Droid.Activities.ActivityBase<PartialInventoryViewModel>
+    public class PartialInventoryView : MobileCore.Droid.Activities.ActivityWithToolbar<PartialInventoryViewModel>
     {
         [FindById(Resource.Id.items_recycler)]
         private EndlessRecyclerView countersRecyclerView;
 
-        [FindById(Resource.Id.done_button)]
-        private Button confirmButton;
-
+        protected override int GetMenuResourceId() => Resource.Menu.done_button_menu;
 
         public PartialInventoryView() : base(Resource.Layout.activity_partial_inventory)
         {
             
         }
-
-        public IMvxAsyncCommand DoneCommad { get; set; }
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -39,12 +32,10 @@ namespace CoffeeManager.Droid.Views.Inventory
             InitRecyclerView();
         }
 
-
         protected override void DoBind()
         {
             var bindingSet = this.CreateBindingSet<PartialInventoryView, PartialInventoryViewModel>();
             bindingSet.Bind(countersRecyclerView).For(v => v.ItemsSource).To(vm => vm.ItemsCollection);
-            bindingSet.Bind(confirmButton).For(b => b.BindClick()).To(vm => vm.DoneCommand);
             bindingSet.Apply();
         }
 
@@ -54,6 +45,21 @@ namespace CoffeeManager.Droid.Views.Inventory
 
             var templateItem = TemplateSelectorItem.Produce<PartialInventoryItemViewModel, PartialInventoryItemViewHolder>(Resource.Layout.partial_inventory_item);
             countersRecyclerView.Adapter.ItemTemplateSelector = new TemplateSelector(templateItem);
+        }
+
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            var itemId = item.ItemId;
+            if (itemId == Resource.Id.action_done)
+            {
+                ViewModel.DoneCommand.Execute(null);
+                return true;
+            }
+            return false;
+        }
+
+        public override void OnBackPressed()
+        {
         }
     }
 }

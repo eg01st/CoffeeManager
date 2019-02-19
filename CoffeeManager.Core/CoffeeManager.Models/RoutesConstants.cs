@@ -156,6 +156,7 @@ namespace CoffeeManager.Models
         public const string GetAutoOrderDetails = AutoOrder + "/GetAutoOrderDetails";
         public const string AddAutoOrderItem = AutoOrder + "/AddAutoOrderItem";
         public const string DeleteAutoOrderItem = AutoOrder + "/DeleteAutoOrderItem";
+        public const string UpdateAutoOrderItem = AutoOrder + "/UpdateAutoOrderItem";
         public const string GetOrdersHistory = AutoOrder + "/GetOrdersHistory";
         public const string GetOrderHistoryDetails = AutoOrder + "/GetOrderHistoryDetails";
     }

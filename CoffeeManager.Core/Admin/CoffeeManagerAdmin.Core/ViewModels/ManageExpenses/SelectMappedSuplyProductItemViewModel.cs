@@ -20,7 +20,7 @@ namespace CoffeeManagerAdmin.Core
 
         protected override void DoGoToDetails()
         {
-            Confirm("Связать товар с тратой?", async () =>
+            Confirm("Связать товар с расходом?", async () =>
             {
                 await paymentManager.MapExpenseToSuplyProduct(expenseTypeId, Id);
                 Publish(new MappedSuplyProductChangedMessage(this));
