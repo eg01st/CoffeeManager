@@ -68,6 +68,11 @@
           <Property Name="Time" Type="time" Precision="7" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="CoffeeRoomId" Type="int" Nullable="false" />
+          <Property Name="EmailToSend" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="Subject" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="CCToSend" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="SenderEmail" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="SenderEmailPassword" Type="nvarchar" MaxLength="1000" Nullable="false" />
         </EntityType>
         <EntityType Name="AutoOrdersHistory">
           <Key>
@@ -3145,6 +3150,11 @@
           <NavigationProperty Name="CoffeeRoom" Relationship="CoffeeRoomModel.FK__AutoOrder__Coffe__72910220" FromRole="AutoOrder" ToRole="CoffeeRoom" />
           <NavigationProperty Name="SuplyProductOrderItems" Relationship="CoffeeRoomModel.FK__SuplyProd__Order__76619304" FromRole="AutoOrder" ToRole="SuplyProductOrderItem" />
           <NavigationProperty Name="AutoOrdersHistories" Relationship="CoffeeRoomModel.FK__AutoOrder__Order__7A3223E8" FromRole="AutoOrder" ToRole="AutoOrdersHistory" />
+          <Property Name="EmailToSend" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Subject" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="CCToSend" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="SenderEmail" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="SenderEmailPassword" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK__AutoOrder__Coffe__72910220">
           <End Type="CoffeeRoomModel.CoffeeRoom" Role="CoffeeRoom" Multiplicity="1" />
@@ -3801,6 +3811,11 @@
           <EntitySetMapping Name="AutoOrders">
             <EntityTypeMapping TypeName="CoffeeRoomModel.AutoOrder">
               <MappingFragment StoreEntitySet="AutoOrder">
+                <ScalarProperty Name="SenderEmailPassword" ColumnName="SenderEmailPassword" />
+                <ScalarProperty Name="SenderEmail" ColumnName="SenderEmail" />
+                <ScalarProperty Name="CCToSend" ColumnName="CCToSend" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="EmailToSend" ColumnName="EmailToSend" />
                 <ScalarProperty Name="CoffeeRoomId" ColumnName="CoffeeRoomId" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="Time" ColumnName="Time" />

@@ -26,6 +26,11 @@ namespace CoffeeManager.Api
         public System.TimeSpan Time { get; set; }
         public bool IsActive { get; set; }
         public int CoffeeRoomId { get; set; }
+        public string EmailToSend { get; set; }
+        public string Subject { get; set; }
+        public string CCToSend { get; set; }
+        public string SenderEmail { get; set; }
+        public string SenderEmailPassword { get; set; }
     
         public virtual CoffeeRoom CoffeeRoom { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
