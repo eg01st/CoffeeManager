@@ -20,5 +20,7 @@ namespace CoffeManager.Common.Providers
         Task<IEnumerable<OrderHistoryItemDTO>> GetOrdersHistory();
         
         Task<OrderHistoryItemDTO> GetOrderHistoryDetails(int id);
+        
+        Task UpdateAutoOrderItem(AutoOrderDTO dto);
     }
 }

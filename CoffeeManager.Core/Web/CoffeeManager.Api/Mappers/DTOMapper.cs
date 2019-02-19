@@ -411,7 +411,12 @@ namespace CoffeeManager.Api.Mappers
                 CoffeeRoomId = item.CoffeeRoomId,
                 DayOfWeek = item.DayOfWeek,
                 IsActive = item.IsActive,
-                OrderTime = item.Time
+                OrderTime = item.Time,
+                EmailToSend = item.EmailToSend,
+                Subject = item.Subject,
+                CCToSend = item.CCToSend,
+                SenderEmail = item.SenderEmail,
+                SenderEmailPassword = item.SenderEmailPassword
             };
 
             return dto;

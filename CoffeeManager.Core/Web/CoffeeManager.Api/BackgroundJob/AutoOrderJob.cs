@@ -14,7 +14,6 @@ namespace CoffeeManager.Api.BackgroundJob
         {
             var entities = new CoffeeRoomEntities();
             Log.Info("Check autoorder");
-            //SendEmail("Check autoorder");
             var orders = entities.AutoOrders.Include(o => o.SuplyProductOrderItems).ToList();
             foreach (var order in orders)
             {
@@ -57,7 +56,7 @@ namespace CoffeeManager.Api.BackgroundJob
 
                     string message = string.Format(Constants.AutoOrderMessage, coffeeRoom.Name,
                         string.Join("\n", ordersStrings));
-                    SendEmail(message);
+                    //SendEmail(message);
                     
                     var orderHistory = new AutoOrdersHistory();
                     orderHistory.CoffeeRoomId = order.CoffeeRoomId;
@@ -70,21 +69,27 @@ namespace CoffeeManager.Api.BackgroundJob
             }
         }
         
-        public static void SendEmail(string body)
+        public static void SendEmail(string email, string password, string emailToSend, string ccToSend, string subject, string body)
         {
             try
             {
                 MailMessage mail = new MailMessage();
-                mail.To.Add("tertyshnykov@gmail.com");
-                mail.From = new MailAddress("kiev.coffee.room@gmail.com");
-                mail.Subject = "Заказ стаканов";
+                //mail.To.Add("tertyshnykov@gmail.com");
+                mail.To.Add(emailToSend);
+                mail.CC.Add(ccToSend);
+               // mail.From = new MailAddress("kiev.coffee.room@gmail.com");
+                mail.From = new MailAddress(email);
+                mail.Subject = subject;
+                //mail.Subject = "Заказ стаканов";
 
                 mail.Body = body;
 
                 SmtpClient smtp = new SmtpClient();
                 smtp.Host = "smtp.gmail.com"; //Or Your SMTP Server Address //coffeemanager221@gmail.com
+//                smtp.Credentials = new System.Net.NetworkCredential
+//                    ("kiev.coffee.room@gmail.com", "Q!W@E#R$"); // ***use valid credentials***
                 smtp.Credentials = new System.Net.NetworkCredential
-                    ("kiev.coffee.room@gmail.com", "Q!W@E#R$"); // ***use valid credentials***
+                    (email, password); // ***use valid credentials***
                 smtp.Port = 587;
 
                 //Or your Smtp Email ID and Password

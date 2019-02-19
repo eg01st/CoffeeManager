@@ -260,8 +260,26 @@ namespace CoffeeManager.Api.Mappers
 				DayOfWeek = dto.DayOfWeek,
 				Time = dto.OrderTime,
 				IsActive = dto.IsActive,
+				EmailToSend = dto.EmailToSend,
+				Subject = dto.Subject,
+				CCToSend = dto.CCToSend,
+				SenderEmail = dto.SenderEmail,
+				SenderEmailPassword = dto.SenderEmailPassword,
 				SuplyProductOrderItems = dto.OrderItems.Select(s => s.Map()).ToList()
 			};
+		}
+		
+		public static AutoOrder Update(AutoOrderDTO order, AutoOrder dbOrder)
+		{
+			dbOrder.DayOfWeek = order.DayOfWeek;
+			dbOrder.Time = order.OrderTime;
+			dbOrder.IsActive = order.IsActive;
+			dbOrder.Subject = order.Subject;
+			dbOrder.EmailToSend = order.EmailToSend;
+			dbOrder.CCToSend = order.CCToSend;
+			dbOrder.SenderEmail = order.SenderEmail;
+			dbOrder.SenderEmailPassword = order.SenderEmailPassword;
+			return dbOrder;
 		}
 		
 		public static SuplyProductOrderItem Map(this SuplyProductToOrderItemDTO dto)

@@ -154,9 +154,9 @@ namespace CoffeeManager.Api.Controllers
             var request = await message.Content.ReadAsStringAsync();
             var items = JsonConvert.DeserializeObject<List<Models.SupliedProduct>>(request);
 
-            var emailMessage = string.Join("\n", items.Select(s => $"{s.Name} {s.Quatity}"));
-            emailMessage += $"\n {coffeeroomno}";
-            AutoOrderJob.SendEmail(emailMessage);
+//            var emailMessage = string.Join("\n", items.Select(s => $"{s.Name} {s.Quatity}"));
+//            emailMessage += $"\n {coffeeroomno}";
+//            AutoOrderJob.SendEmail(emailMessage);
 
             var entities = new CoffeeRoomEntities();
             foreach (var item in items)
