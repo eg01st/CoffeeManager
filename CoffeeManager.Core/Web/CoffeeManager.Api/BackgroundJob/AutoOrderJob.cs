@@ -56,7 +56,7 @@ namespace CoffeeManager.Api.BackgroundJob
 
                     string message = string.Format(Constants.AutoOrderMessage, coffeeRoom.Name,
                         string.Join("\n", ordersStrings));
-                    //SendEmail(message);
+                    SendEmail(order.SenderEmail, order.SenderEmailPassword, order.EmailToSend, order.CCToSend, order.Subject, message);
                     
                     var orderHistory = new AutoOrdersHistory();
                     orderHistory.CoffeeRoomId = order.CoffeeRoomId;
