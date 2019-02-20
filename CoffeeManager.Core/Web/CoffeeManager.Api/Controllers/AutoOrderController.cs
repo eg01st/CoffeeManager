@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
 using CoffeeManager.Models.Data.DTO.AutoOrder;
 
 namespace CoffeeManager.Api.Controllers
@@ -116,25 +117,38 @@ namespace CoffeeManager.Api.Controllers
             if(order != null)
             {
                 DbMapper.Update(dto, order);
-                
+                entities.SaveChanges();
                 var suplyItemOrders = entities.SuplyProductOrderItems.Where(s => s.OrderId == dto.Id);
                
                 //Remove deleted items, update current
                 foreach (var dbItem in suplyItemOrders)
                 {
                     var item = dto.OrderItems.FirstOrDefault(i => i.Id == dbItem.Id);
-                    
-                    if (item != null)
-                    {
-                        dbItem.QuantityShouldBeAfterOrder = item.QuantityShouldBeAfterOrder;
-                        dbItem.ShouldUpdateQuantityBeforeOrder = item.ShouldUpdateQuantityBeforeOrder;
-                        dbItem.SuplyProductId = item.SuplyProductId;
-                        entities.SaveChanges();
-                        continue;
-                    }
 
+                    try
+                    {
+                        if (item != null)
+                        {
+                            dbItem.QuantityShouldBeAfterOrder = item.QuantityShouldBeAfterOrder;
+                            dbItem.ShouldUpdateQuantityBeforeOrder = item.ShouldUpdateQuantityBeforeOrder;
+                            continue;
+                        }
+                    }
+                    catch (DbEntityValidationException e)
+                    {
+                        string mess = null;
+                        foreach (var er in e.EntityValidationErrors)
+                        {
+                            var m = string.Join(";", er.ValidationErrors.Select(v => $"{v.PropertyName} {v.ErrorMessage}"));
+                            mess += m;
+                        }
+
+                        return Request.CreateErrorResponse(HttpStatusCode.BadRequest, mess);
+                    }
+                
                     entities.SuplyProductOrderItems.Remove(dbItem);
                 }
+                entities.SaveChanges();
 
                 //Add new items
                 foreach (var item in dto.OrderItems.Where(o => o.Id == 0))

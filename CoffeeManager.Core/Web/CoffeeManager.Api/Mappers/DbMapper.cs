@@ -287,6 +287,7 @@ namespace CoffeeManager.Api.Mappers
 			return new SuplyProductOrderItem()
 			{
 				Id = dto.Id,
+                OrderId = dto.OrderId,
 				QuantityShouldBeAfterOrder = dto.QuantityShouldBeAfterOrder,
 				SuplyProductId = dto.SuplyProductId,
 				ShouldUpdateQuantityBeforeOrder = dto.ShouldUpdateQuantityBeforeOrder
