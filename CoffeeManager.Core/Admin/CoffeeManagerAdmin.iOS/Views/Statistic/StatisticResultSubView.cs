@@ -1,33 +1,30 @@
-﻿using System;
-
-using UIKit;
-using MvvmCross.Binding.BindingContext;
-using CoffeeManagerAdmin.Core;
-using System.Collections.Generic;
-using CoffeeManagerAdmin.Core.ViewModels.Statistic;
-using CoffeeManagerAdmin.iOS.Converters;
+﻿using CoffeeManagerAdmin.Core.ViewModels.Statistic;
 using CoffeeManagerAdmin.iOS.TableSources;
-using CoffeeManagerAdmin.iOS.Views.Abstract;
 using CoffeeManagerAdmin.iOS.Views.Shifts;
+using MobileCore.iOS;
+using MobileCore.iOS.Presenters;
 using MobileCore.iOS.ViewControllers;
+using MvvmCross.Binding.BindingContext;
+using UIKit;
 
-namespace CoffeeManagerAdmin.iOS
+namespace CoffeeManagerAdmin.iOS.Views.Statistic
 {
-    public partial class StatisticResultView : ViewControllerBase<StatisticResultViewModel>
+    [PageChildViewPresentation]
+    public partial class StatisticResultSubView : ViewControllerBase<StatisticResultSubViewModel>
     {
         private SimpleTableSource creaditCardSalesTableSource;
         private SalesStatisticTableSource salesTableSource;
         private SimpleTableSource expensesTableSource;
 
-        public StatisticResultView() : base("StatisticResultView", null)
+        public StatisticResultSubView() : base("StatisticResultView", null)
         {
         }
 
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-
-            Title = "Статистика";
+            Styles.ApplyNavigationControllerStyle(NavigationController, NavigationItem, UINavigationItemLargeTitleDisplayMode.Never);
+            // Title = "Статистика";
 
             //var btn = new UIBarButtonItem();
             //btn.Title = "Графики";
@@ -70,9 +67,9 @@ namespace CoffeeManagerAdmin.iOS
 
         protected override void DoBind()
         {
-            var set = this.CreateBindingSet<StatisticResultView, StatisticResultViewModel>();
-            set.Bind(CreditCardEntireAmountLabel).To(vm => vm.CreditCardSalesVm.EntireSaleAmount).WithConversion(new DecimalToStringConverter());
-            set.Bind(creaditCardSalesTableSource).To(vm => vm.CreditCardSalesVm.Sales);
+            var set = this.CreateBindingSet<StatisticResultSubView, StatisticResultSubViewModel>();
+            //set.Bind(CreditCardEntireAmountLabel).To(vm => vm.CreditCardSalesVm.EntireSaleAmount).WithConversion(new DecimalToStringConverter());
+            //set.Bind(creaditCardSalesTableSource).To(vm => vm.CreditCardSalesVm.Sales);
             set.Bind(expensesTableSource).To(vm => vm.ExpensesVm.Items);
             set.Bind(salesTableSource).To(vm => vm.SalesVm.Items);
             set.Apply();

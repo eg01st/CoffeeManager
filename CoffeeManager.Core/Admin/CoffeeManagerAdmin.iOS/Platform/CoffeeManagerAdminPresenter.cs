@@ -1,10 +1,10 @@
-﻿using MvvmCross.iOS.Views;
+﻿using MobileCore.iOS.Presenters;
+using MvvmCross.iOS.Views;
 using UIKit;
-using MvvmCross.iOS.Views.Presenters;
 
 namespace CoffeeManagerAdmin.iOS.Platform
 {
-    public class CoffeeManagerAdminPresenter : MvxIosViewPresenter
+    public class CoffeeManagerAdminPresenter : CustomIosViewPresenter
     {
         public CoffeeManagerAdminPresenter(IUIApplicationDelegate applicationDelegate, UIWindow window) : base(applicationDelegate, window)
         {

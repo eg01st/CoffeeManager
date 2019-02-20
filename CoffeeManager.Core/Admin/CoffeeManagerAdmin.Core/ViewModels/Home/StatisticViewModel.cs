@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Windows.Input;
+using CoffeeManagerAdmin.Core.NavigationArgs;
 using CoffeeManagerAdmin.Core.ViewModels.Statistic;
 using CoffeManager.Common;
+using CoffeManager.Common.Managers;
 using CoffeManager.Common.ViewModels;
 using MvvmCross.Core.ViewModels;
+using CoffeeManagerAdmin.Core.ViewModels.Abstract;
 
 namespace CoffeeManagerAdmin.Core.ViewModels.Home
 {
-    public class StatisticViewModel : ViewModelBase
+    public class StatisticViewModel : AdminPageViewModel
     {
 
         private readonly IStatisticManager manager;
@@ -36,7 +39,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Home
 
         private async void DoGetData()
         {
-            await NavigationService.Navigate<StatisticResultViewModel, Tuple<DateTime, DateTime>>(new Tuple<DateTime, DateTime>(From, To));
+            await NavigationService.Navigate<StatisticResultParentViewModel, StatisticNavigationArgs>(new StatisticNavigationArgs(From, To, CoffeeRooms));
         }
     }
 }

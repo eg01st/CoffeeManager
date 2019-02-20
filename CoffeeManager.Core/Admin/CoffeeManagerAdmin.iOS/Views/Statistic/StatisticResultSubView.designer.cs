@@ -4,14 +4,13 @@
 // actions declared in your storyboard file.
 // Manual changes to this file will not be maintained.
 //
-using Foundation;
-using System;
-using System.CodeDom.Compiler;
 
-namespace CoffeeManagerAdmin.iOS
+using Foundation;
+
+namespace CoffeeManagerAdmin.iOS.Views.Statistic
 {
-    [Register ("StatisticResultView")]
-    partial class StatisticResultView
+    [Register ("StatisticResultSubView")]
+    partial class StatisticResultSubView
     {
         [Outlet]
         UIKit.UIView ContainerView { get; set; }

@@ -19,12 +19,14 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Statistic
         readonly IStatisticManager manager;
         readonly DateTime from;
         readonly DateTime to;
+        private readonly int coffeeRoomId;
         readonly ICategoryManager categoryManager;
 
-        public SalesStatisticViewModel(IStatisticManager manager, ICategoryManager categoryManager, DateTime from, DateTime to)
+        public SalesStatisticViewModel(IStatisticManager manager, ICategoryManager categoryManager, DateTime from, DateTime to, int coffeeRoomId)
         {
             this.categoryManager = categoryManager;
             this.to = to;
+            this.coffeeRoomId = coffeeRoomId;
             this.from = from;
             this.manager = manager;
         }
@@ -33,7 +35,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Statistic
         {
             await ExecuteSafe(async () =>
             {
-                saleItems = await manager.GetSales(from, to);
+                saleItems = await manager.GetSales(coffeeRoomId, from, to);
 
                 var entireAmount = saleItems.Sum(i => i.Amount);
                 var entireAmountHeaderVm = new StatisticSaleHeaderViewModel("Общая сумма", entireAmount.Value);

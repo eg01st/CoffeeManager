@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using CoffeeManager.Models;
 using CoffeManager.Common;
+using CoffeManager.Common.Managers;
 using CoffeManager.Common.ViewModels;
 
 namespace CoffeeManagerAdmin.Core

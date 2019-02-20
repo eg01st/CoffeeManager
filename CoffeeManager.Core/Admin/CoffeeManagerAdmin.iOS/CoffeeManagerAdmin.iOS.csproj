@@ -336,9 +336,9 @@
     <Compile Include="Views\Users\UserEarningHeader.designer.cs">
       <DependentUpon>UserEarningHeader.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Statistic\StatisticResultView.cs" />
-    <Compile Include="Views\Statistic\StatisticResultView.designer.cs">
-      <DependentUpon>StatisticResultView.cs</DependentUpon>
+    <Compile Include="Views\Statistic\StatisticResultSubView.cs" />
+    <Compile Include="Views\Statistic\StatisticResultSubView.designer.cs">
+      <DependentUpon>StatisticResultSubView.cs</DependentUpon>
     </Compile>
     <Compile Include="Extensions\UIViewExtensions.cs" />
     <Compile Include="Platform\CoffeeManagerAdminPresenter.cs" />
@@ -553,6 +553,7 @@
     <Compile Include="Views\AutoOrder\SelectSuplyProductItemViewCell.designer.cs">
       <DependentUpon>SelectSuplyProductItemViewCell.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Statistic\StatisticResultParentView.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Setup.cs" />
@@ -612,7 +613,7 @@
     <InterfaceDefinition Include="Views\Users\UserEarningsView.xib" />
     <InterfaceDefinition Include="Views\Users\UserEarningCell.xib" />
     <InterfaceDefinition Include="Views\Users\UserEarningHeader.xib" />
-    <InterfaceDefinition Include="Views\Statistic\StatisticResultView.xib" />
+    <InterfaceDefinition Include="Views\Statistic\StatisticResultSubView.xib" />
     <InterfaceDefinition Include="Views\Settings\SettingsView.xib" />
     <InterfaceDefinition Include="Views\Settings\ClientViewCell.xib" />
     <InterfaceDefinition Include="Views\Settings\ClientDetailsView.xib" />

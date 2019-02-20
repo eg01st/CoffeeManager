@@ -73,9 +73,9 @@ namespace CoffeManager.Common
             }
         }
 
-        protected async Task<T> Get<T>(string path, Dictionary<string, string> param = null)
+        protected async Task<T> Get<T>(string path, Dictionary<string, string> param = null, int? coffeeRoomNo = null)
         {
-            string url = GetUrl(path, param);
+            string url = GetUrl(path, param, coffeeRoomNo);
             string responseString;
             var client = GetClient();
 
@@ -94,6 +94,7 @@ namespace CoffeManager.Common
             var result = JsonConvert.DeserializeObject<T>(responseString);
             return result;
         }
+        
 
         protected async Task<T> Post<T, TY>(string path, TY obj, Dictionary<string, string> param = null)
         {
@@ -301,9 +302,9 @@ namespace CoffeManager.Common
             }
         }
 
-        private string GetUrl(string path, Dictionary<string, string> param = null)
+        private string GetUrl(string path, Dictionary<string, string> param = null, int? coffeeRoomId = null)
         {
-            string url = $"{_apiUrl}{path}?coffeeroomno={Config.CoffeeRoomNo}";
+            string url = $"{_apiUrl}{path}?coffeeroomno={coffeeRoomId ?? Config.CoffeeRoomNo}";
             if (param != null && param.Count > 0)
             {
                 foreach (var parameter in param)

@@ -1,45 +1,55 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using CoffeeManagerAdmin.Core.NavigationArgs;
 using CoffeManager.Common;
 using CoffeManager.Common.ViewModels;
 using MvvmCross.Core.ViewModels;
 using CoffeManager.Common.Managers;
+using MobileCore.ViewModels;
 
 namespace CoffeeManagerAdmin.Core.ViewModels.Statistic
 {
-    public class StatisticResultViewModel : ViewModelBase, IMvxViewModel<Tuple<DateTime, DateTime>>
+    public class StatisticResultSubViewModel : PageViewModel, IMvxViewModel<ChildStatisticNavigationArgs>
     {
         private DateTime from, to;
-        
+        private int coffeeRoomId;
+        private bool isAlreadyAppeared;
+
         private readonly IStatisticManager manager;
 
         public ExpensesStatisticViewModel ExpensesVm { get; set; }
-        public CreditCardSalesViewModel CreditCardSalesVm { get; set; }
         public SalesStatisticViewModel SalesVm { get; set; }
 
-        public ICommand ShowChartCommand { get; set; }
 
         private readonly ICategoryManager categoryManager;
 
-        public StatisticResultViewModel(IStatisticManager manager, ICategoryManager categoryManager)
+        public StatisticResultSubViewModel(IStatisticManager manager, ICategoryManager categoryManager)
         {
             this.categoryManager = categoryManager;
             this.manager = manager;
-            ShowChartCommand = new MvxCommand(DoShowChart);
         }
 
-        public async Task Initialize()
+        public override async void ViewAppeared()
+        {
+            base.ViewAppeared();
+
+            if (!isAlreadyAppeared)
+            {
+                isAlreadyAppeared = true;
+                await LoadDataAsync();
+            }
+        }
+        
+        private async Task LoadDataAsync()
         {
             await ExecuteSafe(async () =>
             {
-                ExpensesVm = new ExpensesStatisticViewModel(manager, from, to);
-                CreditCardSalesVm = new CreditCardSalesViewModel(manager, from, to);
-                SalesVm = new SalesStatisticViewModel(manager, categoryManager, from, to);
+                ExpensesVm = new ExpensesStatisticViewModel(manager, from, to, coffeeRoomId);
+                SalesVm = new SalesStatisticViewModel(manager, categoryManager, from, to, coffeeRoomId);
                 var tasks = new[]
                 {
                     ExpensesVm.Initialize(),
-                    CreditCardSalesVm.Initialize(),
                     SalesVm.Initialize()
 
                 };
@@ -54,10 +64,11 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Statistic
            // ShowViewModel<SelectSalesViewModel>(new { id, from, to });
         }
 
-        public void Prepare(Tuple<DateTime, DateTime> parameter)
+        public void Prepare(ChildStatisticNavigationArgs parameter)
         {
-            @from = parameter.Item1;
-            to = parameter.Item2;
+            @from = parameter.From;
+            to = parameter.To;
+            coffeeRoomId = parameter.CoffeeRoomId;
         }
     }
 }
