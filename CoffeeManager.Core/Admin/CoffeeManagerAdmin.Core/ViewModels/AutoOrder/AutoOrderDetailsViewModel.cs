@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using CoffeeManager.Models;
 using CoffeeManager.Models.Data.DTO.AutoOrder;
 using CoffeManager.Common.Managers;
 using MobileCore.Collections;
@@ -25,7 +26,8 @@ namespace CoffeeManagerAdmin.Core.ViewModels.AutoOrder
         private int autoOrderId;
         
         public ICommand UpdateOrderCommand { get; }
-        public ICommand DeleteOrderCommand { get; }
+
+        public ICommand AddSuplyProductsCommand { get; }
         public bool IsActive { get; set; }
 
         public string EmailToSend
@@ -77,10 +79,11 @@ namespace CoffeeManagerAdmin.Core.ViewModels.AutoOrder
         public AutoOrderDetailsViewModel(IAutoOrderManager manager)
         {
             this.manager = manager;
-            DeleteOrderCommand = new MvxAsyncCommand(DoDeleteOrder);
+
             UpdateOrderCommand = new MvxAsyncCommand(DoUpdateOrder);
+            AddSuplyProductsCommand = new MvxAsyncCommand(DoAddSuplyProducts);
         }
-        
+
         public override Task Initialize()
         {
             var values = Enum.GetValues(typeof(DayOfWeek)).Cast<DayOfWeek>();
@@ -97,13 +100,14 @@ namespace CoffeeManagerAdmin.Core.ViewModels.AutoOrder
         private async Task DoUpdateOrder()
         {
              var dto = new AutoOrderDTO();
+            dto.Id = autoOrderId;
             dto.CCToSend = CCToSend;
             dto.DayOfWeek = DayOfWeek;
             dto.Subject = Subject;
-            dto.EmailToSend = dto.EmailToSend;
-            dto.OrderTime = dto.OrderTime;
-            dto.SenderEmail = dto.SenderEmail;
-            dto.SenderEmailPassword = dto.SenderEmailPassword;
+            dto.EmailToSend = EmailToSend;
+            dto.OrderTime = TimeSpan.FromHours(OrderTime);
+            dto.SenderEmail = SenderEmail;
+            dto.SenderEmailPassword = SenderEmailPassword;
 
             dto.OrderItems = ItemsCollection.Select(MapDto).ToList();
 
@@ -116,14 +120,14 @@ namespace CoffeeManagerAdmin.Core.ViewModels.AutoOrder
             await NavigationService.Close(this, false);
         }
 
-        private async Task DoDeleteOrder()
+
+
+        private async Task DoAddSuplyProducts()
         {
-            Confirm("Удалить автозаказ?", async () =>
-             {
-                 await ExecuteSafe(manager.DeleteAutoOrderItem(autoOrderId));
-                 await NavigationService.Close(this, true);
-             });
+            var suplyProducts = await NavigationService.Navigate<SelectSuplyProductsForAutoOrderViewModel, IEnumerable<SupliedProduct>>();
+            ItemsCollection.AddRange(suplyProducts.Select(s => new SuplyProductToOrderItemViewModel(s.Id, s.Name)));
         }
+
 
         public void Prepare(int parameter)
         {
@@ -136,8 +140,20 @@ namespace CoffeeManagerAdmin.Core.ViewModels.AutoOrder
             DayOfWeek = order.DayOfWeek;
             OrderTime = order.OrderTime.Hours;
             IsActive = order.IsActive;
-            
+
+            CCToSend = order.CCToSend;
+            Subject = order.Subject;
+            EmailToSend = order.EmailToSend;
+            SenderEmail = order.SenderEmail;
+            SenderEmailPassword = order.SenderEmailPassword;
+
+
             return order.OrderItems.Select(MapItem).ToPageContainer();
+        }
+
+        protected async override Task OnItemSelectedAsync(SuplyProductToOrderItemViewModel item)
+        {
+            Confirm("Удалить продукт?", () => ItemsCollection.Remove(item));
         }
 
         private SuplyProductToOrderItemViewModel MapItem(SuplyProductToOrderItemDTO dto)

@@ -13,6 +13,9 @@ namespace CoffeeManagerAdmin.iOS
 	partial class AutoOrderDetailsView
 	{
 		[Outlet]
+		UIKit.UIButton AddSuplyProductsButton { get; set; }
+
+		[Outlet]
 		UIKit.UITextField CCTextField { get; set; }
 
 		[Outlet]
@@ -38,6 +41,21 @@ namespace CoffeeManagerAdmin.iOS
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (AddSuplyProductsButton != null) {
+				AddSuplyProductsButton.Dispose ();
+				AddSuplyProductsButton = null;
+			}
+
+			if (CCTextField != null) {
+				CCTextField.Dispose ();
+				CCTextField = null;
+			}
+
+			if (EmailTextField != null) {
+				EmailTextField.Dispose ();
+				EmailTextField = null;
+			}
+
 			if (OrderItemsTableView != null) {
 				OrderItemsTableView.Dispose ();
 				OrderItemsTableView = null;
@@ -53,24 +71,14 @@ namespace CoffeeManagerAdmin.iOS
 				OrderWeekDayTextField = null;
 			}
 
-			if (EmailTextField != null) {
-				EmailTextField.Dispose ();
-				EmailTextField = null;
-			}
-
-			if (CCTextField != null) {
-				CCTextField.Dispose ();
-				CCTextField = null;
+			if (PasswordTextField != null) {
+				PasswordTextField.Dispose ();
+				PasswordTextField = null;
 			}
 
 			if (SenderEmailTextField != null) {
 				SenderEmailTextField.Dispose ();
 				SenderEmailTextField = null;
-			}
-
-			if (PasswordTextField != null) {
-				PasswordTextField.Dispose ();
-				PasswordTextField = null;
 			}
 
 			if (SubjectTextField != null) {

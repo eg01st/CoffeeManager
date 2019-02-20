@@ -1,54 +1,90 @@
 // WARNING
 //
-// This file has been generated automatically by Visual Studio from the outlets and
-// actions declared in your storyboard file.
-// Manual changes to this file will not be maintained.
+// This file has been generated automatically by Visual Studio to store outlets and
+// actions made in the UI designer. If it is removed, they will be lost.
+// Manual changes to this file may not be handled correctly.
 //
 using Foundation;
-using System;
 using System.CodeDom.Compiler;
 
 namespace CoffeeManagerAdmin.iOS
 {
-    [Register ("AddAutoOrderView")]
-    partial class AddAutoOrderView
-    {
-        [Outlet]
-        UIKit.UIButton AddSuplyProductsButton { get; set; }
+	[Register ("AddAutoOrderView")]
+	partial class AddAutoOrderView
+	{
+		[Outlet]
+		UIKit.UIButton AddSuplyProductsButton { get; set; }
 
+		[Outlet]
+		UIKit.UITextField CCTextField { get; set; }
 
-        [Outlet]
-        UIKit.UITextField HourTextField { get; set; }
+		[Outlet]
+		UIKit.UITextField EmailTextField { get; set; }
 
+		[Outlet]
+		UIKit.UITextField OrderTimeTextField { get; set; }
 
-        [Outlet]
-        UIKit.UITableView SUplyProductsTableView { get; set; }
+		[Outlet]
+		UIKit.UITextField OrderWeekDayTextField { get; set; }
 
+		[Outlet]
+		UIKit.UITextField PasswordTextField { get; set; }
 
-        [Outlet]
-        UIKit.UITextField WeekDayTextField { get; set; }
+		[Outlet]
+		UIKit.UITextField SenderEmailTextField { get; set; }
 
-        void ReleaseDesignerOutlets ()
-        {
-            if (AddSuplyProductsButton != null) {
-                AddSuplyProductsButton.Dispose ();
-                AddSuplyProductsButton = null;
-            }
+		[Outlet]
+		UIKit.UITextField SubjectTextField { get; set; }
 
-            if (HourTextField != null) {
-                HourTextField.Dispose ();
-                HourTextField = null;
-            }
+		[Outlet]
+		UIKit.UITableView SUplyProductsTableView { get; set; }
+		
+		void ReleaseDesignerOutlets ()
+		{
+			if (AddSuplyProductsButton != null) {
+				AddSuplyProductsButton.Dispose ();
+				AddSuplyProductsButton = null;
+			}
 
-            if (SUplyProductsTableView != null) {
-                SUplyProductsTableView.Dispose ();
-                SUplyProductsTableView = null;
-            }
+			if (SUplyProductsTableView != null) {
+				SUplyProductsTableView.Dispose ();
+				SUplyProductsTableView = null;
+			}
 
-            if (WeekDayTextField != null) {
-                WeekDayTextField.Dispose ();
-                WeekDayTextField = null;
-            }
-        }
-    }
+			if (CCTextField != null) {
+				CCTextField.Dispose ();
+				CCTextField = null;
+			}
+
+			if (EmailTextField != null) {
+				EmailTextField.Dispose ();
+				EmailTextField = null;
+			}
+
+			if (OrderTimeTextField != null) {
+				OrderTimeTextField.Dispose ();
+				OrderTimeTextField = null;
+			}
+
+			if (OrderWeekDayTextField != null) {
+				OrderWeekDayTextField.Dispose ();
+				OrderWeekDayTextField = null;
+			}
+
+			if (PasswordTextField != null) {
+				PasswordTextField.Dispose ();
+				PasswordTextField = null;
+			}
+
+			if (SenderEmailTextField != null) {
+				SenderEmailTextField.Dispose ();
+				SenderEmailTextField = null;
+			}
+
+			if (SubjectTextField != null) {
+				SubjectTextField.Dispose ();
+				SubjectTextField = null;
+			}
+		}
+	}
 }

@@ -211,6 +211,17 @@ namespace CoffeeManager.Api.Controllers
 
             entities.Expenses.Add(expense);
 
+            foreach (var sp in expenseEx.SuplyProducts)
+            {
+                var suplyProduct = entities.SupliedProducts.FirstOrDefault(s => s.Id == sp.Id);
+                if (suplyProduct != null)
+                {
+                    var salePrice = sp.Price / (sp.ExpenseNumerationMultyplier * sp.Quatity.Value);
+                    suplyProduct.Price = salePrice;
+                    entities.SaveChanges();
+                }
+            }
+
             foreach (var suplyProduct in expenseEx.SuplyProducts)
             {
                 if (!suplyProduct.Quatity.HasValue || suplyProduct.Quatity <= 0 || suplyProduct.Price <= 0)

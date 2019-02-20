@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AutoOrderDetailsView">
             <connections>
+                <outlet property="AddSuplyProductsButton" destination="rf5-be-rSW" id="2wE-5P-lvY"/>
                 <outlet property="CCTextField" destination="93L-ug-iAf" id="VtZ-y8-Rpp"/>
                 <outlet property="EmailTextField" destination="W8N-FK-XLd" id="SMz-np-7sd"/>
                 <outlet property="OrderItemsTableView" destination="6iM-lV-1uZ" id="MZh-ob-Ieb"/>
@@ -215,33 +216,38 @@
                     </subviews>
                 </stackView>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6iM-lV-1uZ">
-                    <rect key="frame" x="0.0" y="267" width="375" height="400"/>
+                    <rect key="frame" x="0.0" y="329" width="375" height="338"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </tableView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Товары для заказа" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="loW-yt-lfE">
-                    <rect key="frame" x="113" y="210" width="149.5" height="20.5"/>
+                    <rect key="frame" x="113" y="272" width="149.5" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Товар" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c43-kh-xuj">
-                    <rect key="frame" x="16" y="246.5" width="47.5" height="20.5"/>
+                    <rect key="frame" x="16" y="308.5" width="47.5" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Должно быть" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gFi-34-75Q">
-                    <rect key="frame" x="252" y="246.5" width="107" height="20.5"/>
+                    <rect key="frame" x="252" y="308.5" width="107" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rf5-be-rSW">
+                    <rect key="frame" x="116.5" y="226" width="142" height="30"/>
+                    <state key="normal" title="Добавить продукты"/>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="rf5-be-rSW" firstAttribute="centerX" secondItem="2" secondAttribute="centerX" id="1Pf-jh-69y"/>
                 <constraint firstItem="moi-NG-d8m" firstAttribute="top" secondItem="2" secondAttribute="top" id="1nR-VW-AEH"/>
                 <constraint firstItem="6iM-lV-1uZ" firstAttribute="top" secondItem="c43-kh-xuj" secondAttribute="bottom" id="34z-TT-653"/>
-                <constraint firstItem="loW-yt-lfE" firstAttribute="top" secondItem="moi-NG-d8m" secondAttribute="bottom" id="5k2-7y-3mt"/>
+                <constraint firstItem="loW-yt-lfE" firstAttribute="top" secondItem="rf5-be-rSW" secondAttribute="bottom" constant="16" id="5ok-Jz-Rap"/>
                 <constraint firstAttribute="trailing" secondItem="moi-NG-d8m" secondAttribute="trailing" constant="16" id="7WV-Yf-1d6"/>
                 <constraint firstItem="c43-kh-xuj" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="16" id="BoS-KA-ZUe"/>
                 <constraint firstAttribute="trailing" secondItem="6iM-lV-1uZ" secondAttribute="trailing" id="Ces-sS-7iD"/>
@@ -251,6 +257,7 @@
                 <constraint firstItem="c43-kh-xuj" firstAttribute="top" secondItem="loW-yt-lfE" secondAttribute="bottom" constant="16" id="ak0-HN-RDy"/>
                 <constraint firstItem="loW-yt-lfE" firstAttribute="centerX" secondItem="2" secondAttribute="centerX" id="bkG-Jb-HGc"/>
                 <constraint firstItem="6iM-lV-1uZ" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="jiO-XY-xUO"/>
+                <constraint firstItem="rf5-be-rSW" firstAttribute="top" secondItem="moi-NG-d8m" secondAttribute="bottom" constant="16" id="uxZ-ba-3JL"/>
                 <constraint firstAttribute="bottom" secondItem="6iM-lV-1uZ" secondAttribute="bottom" id="xi9-fd-rjk"/>
             </constraints>
             <point key="canvasLocation" x="24.800000000000001" y="51.724137931034484"/>

@@ -12,7 +12,7 @@ using CoffeeManagerAdmin.iOS.Extensions;
 
 namespace CoffeeManagerAdmin.iOS
 {
-    public partial class AutoOrderDetailsView : ViewControllerBase<AutoOrderDetailsViewModel>
+    public partial class AutoOrderDetailsView : KeyboardViewControllerBase<AutoOrderDetailsViewModel>
     {
         private MvxPickerViewModel dayOfWeekPickerViewModel;
         private MvxPickerViewModel hourPickerViewModel;
@@ -22,9 +22,13 @@ namespace CoffeeManagerAdmin.iOS
         {
         }
 
+        protected override bool HandlesKeyboardNotifications => true;
+
         protected override void InitStylesAndContent()
         {
             base.InitStylesAndContent();
+
+            DismissKeyboardOnBackgroundTap();
 
             var toolbar = Helper.ProducePickerToolbar(View);
 
@@ -67,7 +71,8 @@ namespace CoffeeManagerAdmin.iOS
             set.Bind(SubjectTextField).To(vm => vm.Subject);
 
             set.Bind(tableSource).For(p => p.ItemsSource).To(vm => vm.ItemsCollection);
-            set.Bind(tableSource).For(p => p.SelectionChangedCommand).To(vm => vm.ItemSelectedCommand);
+            set.Bind(tableSource).For(p => p.LongPressCommand).To(vm => vm.ItemSelectedCommand);
+            set.Bind(AddSuplyProductsButton).To(vm => vm.AddSuplyProductsCommand);
 
             set.Apply();
         }

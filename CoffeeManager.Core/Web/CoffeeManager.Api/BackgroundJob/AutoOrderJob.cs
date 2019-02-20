@@ -27,6 +27,7 @@ namespace CoffeeManager.Api.BackgroundJob
                         .ToList();
                     var ordersHistories = new List<SuplyProductAutoOrdersHistory>();
                     var ordersStrings = new List<string>();
+                    decimal entirePrice = 0;
                     foreach (var orderItem in supliedProductsToOrder)
                     {
                         var product =
@@ -41,7 +42,9 @@ namespace CoffeeManager.Api.BackgroundJob
                             }
                             var roundedCount = (diff / multiplier) + 1;
                             var quantityToOrder = multiplier * roundedCount;
-                            ordersStrings.Add($"{product.SupliedProduct.Name} : {roundedCount} {product.SupliedProduct.ExpenseNumerationName}");
+                            var price = quantityToOrder * product.SupliedProduct.Price;
+                            entirePrice += price;
+                            ordersStrings.Add($"{product.SupliedProduct.Name} : {roundedCount} {product.SupliedProduct.ExpenseNumerationName} Ориентировочная стоимость {price:F}");
                             var historyItem = new SuplyProductAutoOrdersHistory()
                             {
                                 SuplyProductId = product.SuplyProductId,
@@ -55,7 +58,7 @@ namespace CoffeeManager.Api.BackgroundJob
                     var coffeeRoom = entities.CoffeeRooms.First(c => c.Id == order.CoffeeRoomId);
 
                     string message = string.Format(Constants.AutoOrderMessage, coffeeRoom.Name,
-                        string.Join("\n", ordersStrings));
+                        string.Join("\n", ordersStrings), entirePrice.ToString("F"));
                     SendEmail(order.SenderEmail, order.SenderEmailPassword, order.EmailToSend, order.CCToSend, order.Subject, message);
                     
                     var orderHistory = new AutoOrdersHistory();

@@ -5,13 +5,50 @@ using Foundation;
 using MobileCore.ViewModels;
 using MvvmCross.Binding.iOS.Views;
 using UIKit;
+using System.Windows.Input;
+using System.Linq;
 
 namespace CoffeeManagerAdmin.iOS.TableSources
 {
     public class BaseTableSource<T> : MvxTableViewSource where T: FeedItemElementViewModel
     {
+        private const string longPressGestureRecognizerName = "longPressGestureRecognizerName";
+
         protected readonly NSString reuseIdentifier;
         protected readonly NSString headerReuseIdentifier;
+
+        private UILongPressGestureRecognizer longPressGestureRecognizer;
+
+        private ICommand longPressCommand;
+
+        public ICommand LongPressCommand
+        {
+            get => longPressCommand;
+            set
+            {
+                longPressCommand = value;
+                if (longPressGestureRecognizer == null)
+                {
+                    longPressGestureRecognizer = new UILongPressGestureRecognizer((obj) =>
+                    {
+                        if (obj.State == UIGestureRecognizerState.Began)
+                        {
+                            var point = obj.LocationInView(this.TableView);
+                            var index = TableView.IndexPathForRowAtPoint(point);
+                            var item = GetItemAt(index) as T;
+                            longPressCommand.Execute(item);
+                        }
+                    });
+                    longPressGestureRecognizer.Name = longPressGestureRecognizerName;
+                    longPressGestureRecognizer.MinimumPressDuration = 1;
+                }
+                if(TableView.GestureRecognizers.All(g => !g.Name?.Equals(longPressGestureRecognizerName) ?? true))
+                {
+                    TableView.AddGestureRecognizer(longPressGestureRecognizer);
+                }
+
+            }
+        }
 
         private List<ListItemViewModelBase> Source => ItemsSource as List<ListItemViewModelBase>;
 

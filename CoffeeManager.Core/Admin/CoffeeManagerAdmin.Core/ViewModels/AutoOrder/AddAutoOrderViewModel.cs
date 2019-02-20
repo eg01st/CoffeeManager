@@ -18,11 +18,46 @@ namespace CoffeeManagerAdmin.Core.ViewModels.AutoOrder
     {
         private DayOfWeek dayOfWeek;
         private int orderTime;
-        
+        private string emailToSend;
+        private string cCToSend;
+        private string senderEmail;
+        private string senderEmailPassword;
+        private string subject;
+
         private readonly IAutoOrderManager manager;
         public ICommand AddSuplyProductsCommand { get; }
         
         public IMvxAsyncCommand SaveAutoOrderCommand { get; }
+
+        public string EmailToSend
+        {
+            get => emailToSend;
+            set => SetProperty(ref emailToSend, value);
+        }
+
+        public string CCToSend
+        {
+            get => cCToSend;
+            set => SetProperty(ref cCToSend, value);
+        }
+
+        public string SenderEmail
+        {
+            get => senderEmail;
+            set => SetProperty(ref senderEmail, value);
+        }
+
+        public string SenderEmailPassword
+        {
+            get => senderEmailPassword;
+            set => SetProperty(ref senderEmailPassword, value);
+        }
+
+        public string Subject
+        {
+            get => subject;
+            set => SetProperty(ref subject, value);
+        }
 
         public List<DayOfWeek> DaysOfWeek { get; set; }
 
@@ -72,6 +107,12 @@ namespace CoffeeManagerAdmin.Core.ViewModels.AutoOrder
             order.IsActive = true;
             order.OrderItems = ItemsCollection.Select(MapItem).ToList();
             order.CoffeeRoomId = CurrentCoffeeRoom.CoffeeRoomNo;
+
+            order.CCToSend = CCToSend;
+            order.Subject = Subject;
+            order.EmailToSend = EmailToSend;
+            order.SenderEmail = SenderEmail;
+            order.SenderEmailPassword = SenderEmailPassword;
 
             var id = await ExecuteSafe(async () => await manager.AddAutoOrderItem(order));
             await NavigationService.Close(this, true);

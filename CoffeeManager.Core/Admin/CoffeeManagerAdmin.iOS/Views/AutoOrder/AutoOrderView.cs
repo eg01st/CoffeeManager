@@ -33,7 +33,6 @@ namespace CoffeeManagerAdmin.iOS
             {
                 {addProductButtonItem, "Clicked AddNewAutoOrderCommad"},
             });
-
             tableSource = new SimpleTableSource(OrdersTableView, AutoOrderItemViewCell.Key, AutoOrderItemViewCell.Nib);
             OrdersTableView.Source = tableSource;
 
@@ -44,6 +43,7 @@ namespace CoffeeManagerAdmin.iOS
             var set = this.CreateBindingSet<AutoOrderView, AutoOrderViewModel>();
             set.Bind(tableSource).For(p => p.ItemsSource).To(vm => vm.ItemsCollection);
             set.Bind(tableSource).For(p => p.SelectionChangedCommand).To(vm => vm.ItemSelectedCommand);
+            set.Bind(tableSource).For(p => p.LongPressCommand).To(vm => vm.DeleteOrderCommand);
             set.Apply();
         }
     }

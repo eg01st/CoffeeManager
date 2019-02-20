@@ -12,11 +12,22 @@ namespace CoffeeManagerAdmin.Core.ViewModels.AutoOrder
     {
         private readonly IAutoOrderManager manager;
         public ICommand AddNewAutoOrderCommad { get; }
+        public ICommand DeleteOrderCommand { get; }
 
         public AutoOrderViewModel(IAutoOrderManager manager)
         {
             this.manager = manager;
             AddNewAutoOrderCommad = new MvxAsyncCommand(AddNewAutoOrder);
+            DeleteOrderCommand = new MvxAsyncCommand<AutoOrderItemViewModel>(DoDeleteOrder);
+        }
+
+        private async Task DoDeleteOrder(AutoOrderItemViewModel item)
+        {
+            Confirm("Удалить автозаказ?", async () =>
+            {
+                await ExecuteSafe(manager.DeleteAutoOrderItem(item.Id));
+                await RefreshDataAsync();
+            });
         }
 
         private async Task AddNewAutoOrder()
@@ -27,6 +38,7 @@ namespace CoffeeManagerAdmin.Core.ViewModels.AutoOrder
                 await RefreshDataAsync();
             }
         }
+
 
         protected override async Task<PageContainer<AutoOrderItemViewModel>> GetPageAsync(int skip)
         {
