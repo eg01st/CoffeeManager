@@ -4,6 +4,8 @@ using Foundation;
 using UIKit;
 using CoffeManager.Common;
 using MvvmCross.iOS.Views;
+using System.Reflection;
+using MobileCore.iOS;
 
 namespace CoffeeManagerAdmin.iOS
 {
@@ -31,8 +33,11 @@ namespace CoffeeManagerAdmin.iOS
         [Export("navigationController:didShowViewController:animated:")]
         public void DidShowViewController(UINavigationController navigationController, UIViewController viewController, bool animated)
         {
+            var type = viewController.GetType();
+            var attr = type.GetCustomAttribute(typeof(NonSwipeBackNavigationAttribute));
+
             bool isRootController = viewController == navigationController.ViewControllers.FirstOrDefault();
-            navigationController.InteractivePopGestureRecognizer.Enabled = !isRootController;
+            navigationController.InteractivePopGestureRecognizer.Enabled = !isRootController && attr == null;
         }
     }
 }

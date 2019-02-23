@@ -244,7 +244,23 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Products
                     var vms = productDTO.ProductPrices
                         .Select(s =>
                             new ProductPriceItemViewModel(s,
-                                CoffeeRooms.First(c => c.CoffeeRoomNo == s.CoffeeRoomNo).Name));
+                                CoffeeRooms.First(c => c.CoffeeRoomNo == s.CoffeeRoomNo).Name)).ToList();
+                    if(vms.Count != CoffeeRooms.Count)
+                    {
+                        foreach (var cr in CoffeeRooms)
+                        {
+                            if(vms.Any(a => a.CoffeeRoomId == cr.CoffeeRoomNo))
+                            {
+                                continue;
+                            }
+                            var dto = new ProductPriceDTO();
+                            dto.CoffeeRoomNo = cr.CoffeeRoomNo;
+                            dto.ProductId = productId;
+
+                            var vm = new ProductPriceItemViewModel(dto, cr.Name);
+                            vms.Add(vm);
+                        }
+                    }
                     ProductPrices.ReplaceWith(vms);
                 }
             });

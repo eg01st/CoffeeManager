@@ -1,13 +1,13 @@
 ﻿using System;
 using CoffeeManagerAdmin.Core;
 using Foundation;
+using MobileCore.iOS;
 using MvvmCross.Binding.BindingContext;
-using MvvmCross.Binding.iOS.Views;
 using UIKit;
 
 namespace CoffeeManagerAdmin.iOS
 {
-    public partial class StatisticSaleItemViewCell : MvxTableViewCell
+    public partial class StatisticSaleItemViewCell : BaseTableViewCell
     {
         public static readonly NSString Key = new NSString("StatisticSaleItemViewCell");
         public static readonly UINib Nib;
@@ -22,18 +22,13 @@ namespace CoffeeManagerAdmin.iOS
             // Note: this .ctor should not contain any initialization logic.
         }
 
-        public override void AwakeFromNib()
+        protected override void DoBind()
         {
-            base.AwakeFromNib();
-
-            this.DelayBind(() =>
-            {
-                var set = this.CreateBindingSet<StatisticSaleItemViewCell, StatisticSaleItemViewModel>();
-                set.Bind(NameLabel).To(vm => vm.Name);
-                set.Bind(PriceLabel).To(vm => vm.Amount);
-                set.Bind(TimeLabel).To(vm => vm.Time);
-                set.Apply();
-            });
+            base.DoBind();
+            var set = this.CreateBindingSet<StatisticSaleItemViewCell, StatisticSaleItemViewModel>();
+            set.Bind(NameLabel).To(vm => vm.Name);
+            set.Bind(PriceLabel).To(vm => vm.Amount);
+            set.Apply();
         }
     }
 }

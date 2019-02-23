@@ -16,7 +16,7 @@ namespace CoffeeManagerAdmin.iOS.Views.Statistic
         private SalesStatisticTableSource salesTableSource;
         private SimpleTableSource expensesTableSource;
 
-        public StatisticResultSubView() : base("StatisticResultView", null)
+        public StatisticResultSubView() : base("StatisticResultSubView", null)
         {
         }
 
@@ -24,20 +24,7 @@ namespace CoffeeManagerAdmin.iOS.Views.Statistic
         {
             base.ViewDidLoad();
             Styles.ApplyNavigationControllerStyle(NavigationController, NavigationItem, UINavigationItemLargeTitleDisplayMode.Never);
-            // Title = "Статистика";
-
-            //var btn = new UIBarButtonItem();
-            //btn.Title = "Графики";
-
-            //NavigationItem.SetRightBarButtonItem(btn, false);
-            //this.AddBindings(new Dictionary<object, string>
-            //{
-            //    {btn, "Clicked ShowChartCommand"},
-
-            //});
-
             SetActiveTab(0);
-
         }
 
         protected override void InitStylesAndContent()
@@ -49,9 +36,8 @@ namespace CoffeeManagerAdmin.iOS.Views.Statistic
                    SaleStatisticHeaderViewCell.Key,
                    SaleStatisticHeaderViewCell.Nib);
             SalesTableView.Source = salesTableSource;
-
-            creaditCardSalesTableSource = new SimpleTableSource(CrediCardTableView, StatisticSaleItemViewCell.Key, StatisticSaleItemViewCell.Nib);
-            CrediCardTableView.Source = creaditCardSalesTableSource;
+            SalesTableView.RowHeight = UITableView.AutomaticDimension;
+            SalesTableView.EstimatedRowHeight = 50;
 
             expensesTableSource = new SimpleTableSource(ExpensesTableView, ExpenseItemCell.Key, ExpenseItemCell.Nib);
             ExpensesTableView.Source = expensesTableSource;
@@ -59,19 +45,16 @@ namespace CoffeeManagerAdmin.iOS.Views.Statistic
 
             var saleTap = new UITapGestureRecognizer(() => SetActiveTab(0));
             var expenseTap = new UITapGestureRecognizer(() => SetActiveTab(1));
-            var creditCardTap = new UITapGestureRecognizer(() => SetActiveTab(2));
             SalesHeaderView.AddGestureRecognizer(saleTap);
             ExpensesHeaderView.AddGestureRecognizer(expenseTap);
-            CreaditCardHeaderView.AddGestureRecognizer(creditCardTap);
         }
 
         protected override void DoBind()
         {
             var set = this.CreateBindingSet<StatisticResultSubView, StatisticResultSubViewModel>();
-            //set.Bind(CreditCardEntireAmountLabel).To(vm => vm.CreditCardSalesVm.EntireSaleAmount).WithConversion(new DecimalToStringConverter());
-            //set.Bind(creaditCardSalesTableSource).To(vm => vm.CreditCardSalesVm.Sales);
             set.Bind(expensesTableSource).To(vm => vm.ExpensesVm.Items);
-            set.Bind(salesTableSource).To(vm => vm.SalesVm.Items);
+            set.Bind(salesTableSource).To(vm => vm.SalesVm.ItemsCollection);
+            set.Bind(salesTableSource).For(t => t.SelectionChangedCommand).To(vm => vm.SalesVm.ItemSelectedCommand);
             set.Apply();
         }
 
@@ -86,9 +69,6 @@ namespace CoffeeManagerAdmin.iOS.Views.Statistic
                     ExpensesView.Hidden = true;
                     ExpensesHeaderView.BackgroundColor = UIColor.White;
 
-                    CreditCardView.Hidden = true;
-                    CreaditCardHeaderView.BackgroundColor = UIColor.White;
-
                     break;
                 case(1):
                     SalesView.Hidden = true;
@@ -96,19 +76,6 @@ namespace CoffeeManagerAdmin.iOS.Views.Statistic
 
                     ExpensesView.Hidden = false;
                     ExpensesHeaderView.BackgroundColor = UIColor.LightGray;
-
-                    CreditCardView.Hidden = true;
-                    CreaditCardHeaderView.BackgroundColor = UIColor.White;
-                    break;
-                 case(2):
-                    SalesView.Hidden = true;
-                    SalesHeaderView.BackgroundColor = UIColor.White;
-
-                    ExpensesView.Hidden = true;
-                    ExpensesHeaderView.BackgroundColor = UIColor.White;
-
-                    CreditCardView.Hidden = false;
-                    CreaditCardHeaderView.BackgroundColor = UIColor.LightGray;
                     break;
                     
             }

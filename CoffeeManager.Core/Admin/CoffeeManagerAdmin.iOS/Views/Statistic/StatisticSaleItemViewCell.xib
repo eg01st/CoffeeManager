@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -20,20 +18,14 @@
                 <rect key="frame" x="0.0" y="0.0" width="407" height="68.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2eC-u4-wFj">
-                        <rect key="frame" x="8" y="24" width="203.5" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2eC-u4-wFj">
+                        <rect key="frame" x="20" y="24" width="313" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iMA-A2-XWN">
-                        <rect key="frame" x="211.5" y="23" width="61" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3OP-lI-nDZ">
-                        <rect key="frame" x="277" y="24" width="122" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iMA-A2-XWN">
+                        <rect key="frame" x="349" y="24" width="42" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -42,19 +34,14 @@
                 <constraints>
                     <constraint firstItem="2eC-u4-wFj" firstAttribute="leading" secondItem="YTl-1W-gDM" secondAttribute="leadingMargin" id="FEb-gN-Vyq"/>
                     <constraint firstItem="iMA-A2-XWN" firstAttribute="centerY" secondItem="YTl-1W-gDM" secondAttribute="centerY" id="O5t-tq-pT7"/>
-                    <constraint firstItem="2eC-u4-wFj" firstAttribute="width" secondItem="YTl-1W-gDM" secondAttribute="width" multiplier="0.5" id="Zm1-7O-g5t"/>
+                    <constraint firstAttribute="trailing" secondItem="iMA-A2-XWN" secondAttribute="trailing" constant="16" id="dHw-rP-xwj"/>
                     <constraint firstItem="2eC-u4-wFj" firstAttribute="centerY" secondItem="YTl-1W-gDM" secondAttribute="centerY" id="mxe-Ma-mxX"/>
-                    <constraint firstItem="iMA-A2-XWN" firstAttribute="leading" secondItem="2eC-u4-wFj" secondAttribute="trailing" id="qar-Y6-zqp"/>
-                    <constraint firstItem="iMA-A2-XWN" firstAttribute="width" secondItem="YTl-1W-gDM" secondAttribute="width" multiplier="0.15" id="wDg-jR-SIy"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="3OP-lI-nDZ" secondAttribute="trailing" id="xQ9-NB-npQ"/>
-                    <constraint firstItem="3OP-lI-nDZ" firstAttribute="width" secondItem="YTl-1W-gDM" secondAttribute="width" multiplier="0.3" id="ydL-GX-zk7"/>
-                    <constraint firstItem="3OP-lI-nDZ" firstAttribute="centerY" secondItem="YTl-1W-gDM" secondAttribute="centerY" id="zfv-FC-yUp"/>
+                    <constraint firstItem="iMA-A2-XWN" firstAttribute="leading" secondItem="2eC-u4-wFj" secondAttribute="trailing" constant="16" id="qar-Y6-zqp"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="NameLabel" destination="2eC-u4-wFj" id="b2G-5O-qwK"/>
                 <outlet property="PriceLabel" destination="iMA-A2-XWN" id="Rtg-Nu-zrF"/>
-                <outlet property="TimeLabel" destination="3OP-lI-nDZ" id="4qb-nf-W5Z"/>
             </connections>
             <point key="canvasLocation" x="68.5" y="64.5"/>
         </tableViewCell>

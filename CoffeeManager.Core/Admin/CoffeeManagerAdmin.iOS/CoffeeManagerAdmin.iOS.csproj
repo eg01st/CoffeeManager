@@ -554,6 +554,7 @@
       <DependentUpon>SelectSuplyProductItemViewCell.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Statistic\StatisticResultParentView.cs" />
+    <Compile Include="Converters\ExpandedImageConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Setup.cs" />
@@ -874,6 +875,12 @@
     <BundleResource Include="Resources\ic_more_horiz_2x.png" />
     <BundleResource Include="Resources\ic_more_horiz_3x.png" />
     <BundleResource Include="Resources\ic_more_horiz.png" />
+    <BundleResource Include="Resources\ic_arrow_down.png" />
+    <BundleResource Include="Resources\ic_arrow_down%402x.png" />
+    <BundleResource Include="Resources\ic_arrow_down%403x.png" />
+    <BundleResource Include="Resources\ic_arrow_up.png" />
+    <BundleResource Include="Resources\ic_arrow_up%402x.png" />
+    <BundleResource Include="Resources\ic_arrow_up%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\Contents.json" />

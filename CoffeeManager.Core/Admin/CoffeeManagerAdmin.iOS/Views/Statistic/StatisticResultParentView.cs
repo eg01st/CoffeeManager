@@ -7,6 +7,7 @@ using UIKit;
 
 namespace CoffeeManagerAdmin.iOS.Views.Statistic
 {
+    [NonSwipeBackNavigation]
     [PageRootViewPresentation]
     public class StatisticResultParentView : ViewPagerController<StatisticResultParentViewModel>
     {

@@ -264,8 +264,13 @@ namespace CoffeeManager.Core.ViewModels
             await ExecuteSafe(async () =>
             {
                 var tasks = new List<Task>();
-    
+
                 var cats = await categoryManager.GetCategoriesForClient();
+                if (cats.Any())
+                {
+                    UserDialogs.Alert("Не включенно не одной категории товаров");
+                    return;
+                }
                 var categories = cats.ToList();
                 foreach (var category in categories)
                 {
@@ -273,15 +278,15 @@ namespace CoffeeManager.Core.ViewModels
                     Products.Add(vm);
                     tasks.Add(vm.InitViewModel(category));
                 }
-    
+
                 Categories = new MvxObservableCollection<CategoryItemViewModel>(
                     categories.Select(s => new CategoryItemViewModel(OnCategorySelectedAction)
                     {
                         Id = s.Id,
                         Name = s.Name
                     }));
+
                 Categories.First().IsSelected = true;
-            
                 await Task.WhenAll(tasks);
 
                 List<ProductItemViewModel> prods = new List<ProductItemViewModel>();

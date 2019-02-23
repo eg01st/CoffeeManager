@@ -1,7 +1,9 @@
 ﻿using CoffeeManager.Models;
+using MobileCore.ViewModels;
+
 namespace CoffeeManagerAdmin.Core
 {
-    public class StatisticSaleItemViewModel : BaseStatisticSaleItemViewModel
+    public class StatisticSaleItemViewModel : FeedItemElementViewModel
     {
         public StatisticSaleItemViewModel(SaleInfo sale)
         {
@@ -10,15 +12,8 @@ namespace CoffeeManagerAdmin.Core
             Quantity = sale.Quantity.ToString();
         }
 
-        public StatisticSaleItemViewModel(Sale sale)
-        {
-            Name = sale.ProductName;
-            Amount = sale.Amount.ToString("F");
-            Time = sale.Time.ToString("HH:mm:ss");
-        }
-
+        public string Name { get; set; }
         public string Amount { get; set; }
-        public string Time { get; set; }
         public string Quantity { get; set; }
     }
 }

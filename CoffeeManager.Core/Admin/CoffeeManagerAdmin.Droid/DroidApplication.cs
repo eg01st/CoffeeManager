@@ -7,6 +7,7 @@ using Android.Runtime;
 using MvvmCross.Platform;
 using CoffeManager.Common;
 using CoffeeManager.Common;
+using MobileCore;
 using MobileCore.Email;
 
 namespace CoffeeManagerAdmin.Droid

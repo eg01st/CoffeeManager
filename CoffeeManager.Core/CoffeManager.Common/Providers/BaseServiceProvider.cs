@@ -90,7 +90,11 @@ namespace CoffeManager.Common
                 }
             }
 
-            Debug.WriteLine(responseString);          
+            Debug.WriteLine(responseString);
+            if(responseString == null || responseString == "null")
+            {
+                return default(T);
+            }
             var result = JsonConvert.DeserializeObject<T>(responseString);
             return result;
         }

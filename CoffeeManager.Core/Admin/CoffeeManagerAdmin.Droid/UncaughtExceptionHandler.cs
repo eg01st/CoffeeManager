@@ -4,6 +4,7 @@ using Android.Runtime;
 using CoffeeManager.Common;
 using CoffeManager.Common;
 using Java.Lang;
+using MobileCore;
 using MobileCore.Email;
 using MvvmCross.Platform;
 using StringBuilder = System.Text.StringBuilder;

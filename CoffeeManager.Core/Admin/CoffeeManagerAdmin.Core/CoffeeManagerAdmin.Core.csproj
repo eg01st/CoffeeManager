@@ -94,7 +94,6 @@
     <Compile Include="ViewModels\Shifts\ShiftCountersViewModel.cs" />
     <Compile Include="ViewModels\Statistic\Items\BaseStatisticSaleItemViewModel.cs" />
     <Compile Include="ViewModels\Statistic\Items\SelectSaleItemViewModel.cs" />
-    <Compile Include="ViewModels\Statistic\Items\StatisticSaleHeaderViewModel.cs" />
     <Compile Include="ViewModels\Statistic\Items\StatisticSaleItemViewModel.cs" />
     <Compile Include="ViewModels\Statistic\StatisticResultParentViewModel.cs" />
     <Compile Include="ViewModels\Users\UserItemViewModel.cs" />

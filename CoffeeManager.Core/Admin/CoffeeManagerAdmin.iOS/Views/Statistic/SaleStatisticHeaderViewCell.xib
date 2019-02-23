@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -19,32 +18,46 @@
                 <rect key="frame" x="0.0" y="0.0" width="414" height="64.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dgk-FP-o0l">
-                        <rect key="frame" x="8" y="22" width="42" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dgk-FP-o0l">
+                        <rect key="frame" x="20" y="22" width="288" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u1G-pM-QGj">
-                        <rect key="frame" x="364" y="22" width="42" height="21"/>
+                        <rect key="frame" x="324" y="22" width="42" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_arrow_up.png" translatesAutoresizingMaskIntoConstraints="NO" id="XRJ-KZ-yxn">
+                        <rect key="frame" x="374" y="20.5" width="24" height="24"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="24" id="3P4-QT-tbb"/>
+                            <constraint firstAttribute="width" constant="24" id="Toh-KM-OPZ"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
+                    <constraint firstItem="XRJ-KZ-yxn" firstAttribute="leading" secondItem="u1G-pM-QGj" secondAttribute="trailing" constant="8" id="5wn-Qj-hEN"/>
                     <constraint firstItem="Dgk-FP-o0l" firstAttribute="leading" secondItem="YTl-1W-gDM" secondAttribute="leadingMargin" id="Fev-33-YNq"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="u1G-pM-QGj" secondAttribute="trailing" id="JJU-xw-qsG"/>
+                    <constraint firstItem="XRJ-KZ-yxn" firstAttribute="centerY" secondItem="YTl-1W-gDM" secondAttribute="centerY" id="GkE-kP-zZZ"/>
                     <constraint firstItem="u1G-pM-QGj" firstAttribute="centerY" secondItem="YTl-1W-gDM" secondAttribute="centerY" id="UnP-ee-xc7"/>
+                    <constraint firstAttribute="trailing" secondItem="XRJ-KZ-yxn" secondAttribute="trailing" constant="16" id="iGd-rZ-DgC"/>
                     <constraint firstItem="Dgk-FP-o0l" firstAttribute="centerY" secondItem="YTl-1W-gDM" secondAttribute="centerY" id="iLX-mK-g2g"/>
+                    <constraint firstItem="u1G-pM-QGj" firstAttribute="leading" secondItem="Dgk-FP-o0l" secondAttribute="trailing" constant="16" id="uut-gd-bpt"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="AmountLabel" destination="u1G-pM-QGj" id="tm9-NP-sNq"/>
+                <outlet property="CollapseImageView" destination="XRJ-KZ-yxn" id="7BR-e7-1ub"/>
                 <outlet property="NameLabel" destination="Dgk-FP-o0l" id="SDR-Lh-Q1M"/>
             </connections>
             <point key="canvasLocation" x="72" y="62.5"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="ic_arrow_up.png" width="12" height="7"/>
+    </resources>
 </document>
