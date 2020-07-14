@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<style name="toolbar_global">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">?android:actionBarSize</item>
+		<item name="android:background">#3F51B5</item>
+		<item name="android:elevation">0dp</item>
+		<item name="titleTextAppearance">@style/Toolbar.TitleText</item>
+	</style>
+
+	<style name="Toolbar.TitleText"
+		parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+		<item name="android:textSize">20dp</item>
+	</style>
+	<style name="toolbar_title_fontify">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:textSize">20dp</item>
+		<item name="android:textColor">#ffffff</item>
+		<item name="android:maxLines">1</item>
+		<item name="android:ellipsize">end</item>
+	</style>
+
+	<style name="icon_24" parent="@style/icon_base">
+        <item name="android:layout_width">24dp</item>
+        <item name="android:layout_height">24dp</item>
+    </style>
+    <style name="icon_base">
+        <item name="android:scaleType">center</item>
+    </style>
+
+	</resources>

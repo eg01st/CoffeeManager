@@ -76,21 +76,21 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Abstract
         
         private void DoSelectCoffeeRoom()
         {
-            if (CoffeeRooms.Count <= 1)
-            {
-                return;
-            }
-            var optionList = new List<ActionSheetOption>();
-            foreach (var cr in CoffeeRooms)
-            {
-                optionList.Add(new ActionSheetOption(cr.Name, () => { CurrentCoffeeRoom = CoffeeRooms.First(c => c.Id == cr.Id); }));
-            }
+            //if (CoffeeRooms.Count <= 1)
+            //{
+            //    return;
+            //}
+            //var optionList = new List<ActionSheetOption>();
+            //foreach (var cr in CoffeeRooms)
+            //{
+            //    optionList.Add(new ActionSheetOption(cr.Name, () => { CurrentCoffeeRoom = CoffeeRooms.First(c => c.Id == cr.Id); }));
+            //}
 
-            UserDialogs.ActionSheet(new ActionSheetConfig
-            {
-                Options = optionList,
-                Title = "Выбор заведения",
-            });
+            //UserDialogs.ActionSheet(new ActionSheetConfig
+            //{
+            //    Options = optionList,
+            //    Title = "Выбор заведения",
+            //});
         }
 
         protected override async Task DoPreLoadDataImplAsync()

@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+    <color name="VeryDarkGreyMostlyBlack">#222222</color>
+    <color name="transparent">#00000000</color>
+    <color name="transparentWhite">#00FFFFFF</color>
+    <color name="veryDarkGrayMostlyBlack">#191919</color>
+    <color name="white">#FFFFFF</color>
+    <color name="white95Opaque">#F2FFFFFF</color>
+    <color name="white50Opaque">#7FFFFFFF</color>
+    <color name="white20Opaque">#33FFFFFF</color>
+    <color name="white06Opaque">#0FFFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="black54Opaque">#8A000000</color>
+    <color name="black38Opaque">#61000000</color>
+    <color name="black20Opaque">#33000000</color>
+    <color name="black12Opaque">#1F000000</color>
+    <color name="black06opaque">#0F000000</color>
+    <color name="halfOpqaueBlack">#80000000</color>
+    <color name="darkGrayishBlue">#75787B</color>
+    <color name="darkGrayishBlue1">#97999B</color>
+    <color name="grayishCyan">#BBBCBC</color>
+    <color name="strongGreen">#86BC25</color>
+    <color name="lightGrayishBlue">#E8E9EB</color>
+    <color name="pureOrMostlyPureBlue">#00A3E0</color>
+    <color name="pureOrMostlyPureBlue50Opaque">#7F00A3E0</color>
+    <color name="pureOrMostlyPureBlue70Opaque">#B300A3E0</color>
+    <color name="veryLightGray">#E6E6E6</color>
+    <color name="vividRed">#E30613</color>
+    <color name="darkCyan">#00ABAB</color>
+    <color name="pureOrMostlyPureOrange">#F39200</color>
+    <color name="veryLightGrayMostlyWhite">#F6F6F6</color>
+    <color name="veryDarkGrayishBlue">#53565A</color>
+    <color name="gray">#BDBDBD</color>
+    <color name="veryLightGrayMostlyWhite">#FAFAFA</color>
+    <color name="darkLimeGreen">#43B02A</color>
+    <color name="darkBlue">#0076A8</color>
+    <color name="strongBlue">#0074B8</color>
+    <color name="strongCyan">#16A2C1</color>
+    <color name="green">#009A44</color>
+    <color name="lightBlue">#62B5E5</color>
+</resources>

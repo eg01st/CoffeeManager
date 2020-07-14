@@ -359,6 +359,14 @@
     <AndroidResource Include="Resources\drawable-xhdpi\Icon.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\MobileCore\MobileCore.csproj">
+      <Project>{0b0aea8c-1c13-48aa-975c-3933943d04db}</Project>
+      <Name>MobileCore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\MobileCore\MobileCore.Droid\MobileCore.Droid.csproj">
+      <Project>{a9299438-6dd9-4f94-9900-379e0ec2afd0}</Project>
+      <Name>MobileCore.Droid</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CoffeeManagerAdmin.Core\CoffeeManagerAdmin.Core.csproj">
       <Project>{31d7792c-8339-4c32-8c91-123c9b248b83}</Project>
       <Name>CoffeeManagerAdmin.Core</Name>
@@ -366,14 +374,6 @@
     <ProjectReference Include="..\..\CoffeManager.Common\CoffeManager.Common.csproj">
       <Project>{F630255E-C4A6-4DC6-ACC2-D9DE1E3D06F0}</Project>
       <Name>CoffeManager.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\Projects\MobileCore\MobileCore.csproj">
-      <Project>{0B0AEA8C-1C13-48AA-975C-3933943D04DB}</Project>
-      <Name>MobileCore</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\Projects\MobileCore\MobileCore.Droid\MobileCore.Droid.csproj">
-      <Project>{A9299438-6DD9-4F94-9900-379E0EC2AFD0}</Project>
-      <Name>MobileCore.Droid</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

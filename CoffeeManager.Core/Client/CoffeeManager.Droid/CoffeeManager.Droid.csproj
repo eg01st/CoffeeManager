@@ -15,7 +15,7 @@
     <AndroidApplication>true</AndroidApplication>
     <AndroidResgenFile>Resources\Resource.Designer.cs</AndroidResgenFile>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
-    <TargetFrameworkVersion>v8.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v9.0</TargetFrameworkVersion>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
@@ -46,30 +46,24 @@
   <ItemGroup>
     <Reference Include="BouncyCastle, Version=1.8.1.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
       <HintPath>..\..\packages\MimeKit.1.10.1\lib\MonoAndroid10\BouncyCastle.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="MailKit, Version=1.10.0.0, Culture=neutral, PublicKeyToken=4e064fe7c44a8f1b, processorArchitecture=MSIL">
       <HintPath>..\..\packages\MailKit.1.10.2\lib\MonoAndroid10\MailKit.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="MimeKit, Version=1.10.0.0, Culture=neutral, PublicKeyToken=bede1c8a46c66814, processorArchitecture=MSIL">
       <HintPath>..\..\packages\MimeKit.1.10.1\lib\MonoAndroid10\MimeKit.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="Mono.Android" />
     <Reference Include="Mono.Android.Export" />
     <Reference Include="mscorlib" />
     <Reference Include="MvvmCross.Binding, Version=5.6.3.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\..\packages\MvvmCross.Binding.5.6.3\lib\MonoAndroid\MvvmCross.Binding.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="MvvmCross.Binding.Droid, Version=5.6.3.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\..\packages\MvvmCross.Binding.5.6.3\lib\MonoAndroid\MvvmCross.Binding.Droid.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="MvvmCross.Core, Version=5.6.3.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\..\packages\MvvmCross.Core.5.6.3\lib\MonoAndroid\MvvmCross.Core.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="MvvmCross.Droid, Version=5.6.3.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\..\packages\MvvmCross.Core.5.6.3\lib\MonoAndroid\MvvmCross.Droid.dll</HintPath>
@@ -375,6 +369,14 @@
     <None Include="Properties\AndroidManifest.xml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\MobileCore\MobileCore.csproj">
+      <Project>{0b0aea8c-1c13-48aa-975c-3933943d04db}</Project>
+      <Name>MobileCore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\MobileCore\MobileCore.Droid\MobileCore.Droid.csproj">
+      <Project>{a9299438-6dd9-4f94-9900-379e0ec2afd0}</Project>
+      <Name>MobileCore.Droid</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CoffeeManager.Core\CoffeeManager.Core.csproj">
       <Project>{8e7d0de1-c5be-4435-b79b-7bc76768705d}</Project>
       <Name>CoffeeManager.Core</Name>
@@ -386,14 +388,6 @@
     <ProjectReference Include="..\..\CoffeManager.Common\CoffeManager.Common.csproj">
       <Project>{F630255E-C4A6-4DC6-ACC2-D9DE1E3D06F0}</Project>
       <Name>CoffeManager.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\Projects\MobileCore\MobileCore.csproj">
-      <Project>{0B0AEA8C-1C13-48AA-975C-3933943D04DB}</Project>
-      <Name>MobileCore</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\Projects\MobileCore\MobileCore.Droid\MobileCore.Droid.csproj">
-      <Project>{A9299438-6DD9-4F94-9900-379E0EC2AFD0}</Project>
-      <Name>MobileCore.Droid</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

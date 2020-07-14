@@ -174,7 +174,6 @@
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Newtonsoft.Json.9.0.1\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="MvvmCross.Plugins.Visibility">
       <HintPath>..\..\packages\MvvmCross.Plugin.Visibility.4.4.0\lib\portable-net45+win+wpa81+wp80\MvvmCross.Plugins.Visibility.dll</HintPath>
@@ -240,7 +239,7 @@
       <Project>{F630255E-C4A6-4DC6-ACC2-D9DE1E3D06F0}</Project>
       <Name>CoffeManager.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\..\Projects\MobileCore\MobileCore.csproj">
+    <ProjectReference Include="..\..\MobileCore\MobileCore.csproj">
       <Project>{0B0AEA8C-1C13-48AA-975C-3933943D04DB}</Project>
       <Name>MobileCore</Name>
     </ProjectReference>

@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0B0AEA8C-1C13-48AA-975C-3933943D04DB}</ProjectGuid>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <UseMSBuildEngine>true</UseMSBuildEngine>
+    <OutputType>Library</OutputType>
+    <RootNamespace>MobileCore</RootNamespace>
+    <AssemblyName>MobileCore</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Profile111</TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Collections\CollectionChangedAction.cs" />
+    <Compile Include="Collections\CollectionChangedEventArgs.cs" />
+    <Compile Include="Collections\ExtendedObservableCollection.cs" />
+    <Compile Include="Collections\IExtendedObservableCollection.cs" />
+    <Compile Include="Collections\IExtendedObservableCollection{T}.cs" />
+    <Compile Include="Collections\PageContainer.cs" />
+    <Compile Include="Collections\PageContainerExtensions.cs" />
+    <Compile Include="Extensions\CollapsableElementsExtensions.cs" />
+    <Compile Include="Extensions\CommonExtensions.cs" />
+    <Compile Include="Extensions\FunctionalExtensions.cs" />
+    <Compile Include="Lists\CustomObservableCollection.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Connection\ConnectionType.cs" />
+    <Compile Include="Connection\ConnectivityBase.cs" />
+    <Compile Include="Connection\ConnectivityChangedEventArgs.cs" />
+    <Compile Include="Connection\ConnectivityException.cs" />
+    <Compile Include="Connection\ConnectivityTypeChangedEventArgs.cs" />
+    <Compile Include="Connection\IConnectivity.cs" />
+    <Compile Include="Connection\NoInternetConnectionException.cs" />
+    <Compile Include="Extensions\Maybe.cs" />
+    <Compile Include="Extensions\ExceptionExtensions.cs" />
+    <Compile Include="Extensions\StringBuilderExtensions.cs" />
+    <Compile Include="Exceptions\BusinessDomainException.cs" />
+    <Compile Include="Logging\ConsoleLogger.cs" />
+    <Compile Include="Logging\IConsoleLogger.cs" />
+    <Compile Include="Logging\LogLevel.cs" />
+    <Compile Include="Logging\DiagnosticLogger.cs" />
+    <Compile Include="Logging\IDiagnosticLogger.cs" />
+    <Compile Include="MvxApplicationBase.cs" />
+    <Compile Include="Extensions\ThrowExtensions.cs" />
+    <Compile Include="Email\IEmailService.cs" />
+    <Compile Include="AutoUpdate\IUpdateAppWorker.cs" />
+    <Compile Include="AutoUpdate\UpdateAppWorker.cs" />
+    <Compile Include="AutoUpdate\IUpdateProvider.cs" />
+    <Compile Include="ViewModels\FeedItemElementViewModel.cs" />
+    <Compile Include="ViewModels\FeedViewModel.cs" />
+    <Compile Include="ViewModels\Items\SectionHeaderItemViewModel.cs" />
+    <Compile Include="ViewModels\PageViewModel.cs" />
+    <Compile Include="ViewModels\SimpleViewModel.cs" />
+    <Compile Include="Extensions\EnumerableExtensions.cs" />
+    <Compile Include="Converters\Base\GenericConverter.cs" />
+    <Compile Include="Converters\Base\GenericConverter{T}.cs" />
+    <Compile Include="Converters\Base\GenericSingletonConverter.cs" />
+    <Compile Include="Converters\Base\GenericSingletonConverter{T}.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Connection\" />
+    <Folder Include="Extensions\" />
+    <Folder Include="Exceptions\" />
+    <Folder Include="Logging\" />
+    <Folder Include="Storage\" />
+    <Folder Include="Email\" />
+    <Folder Include="AutoUpdate\" />
+    <Folder Include="Converters\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Acr.UserDialogs, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\Acr.UserDialogs.6.3.2\lib\portable-win+net45+wp8+win8+wpa81\Acr.UserDialogs.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Acr.UserDialogs.Interface, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\Acr.UserDialogs.6.3.2\lib\portable-win+net45+wp8+win8+wpa81\Acr.UserDialogs.Interface.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MvvmCross.Binding, Version=5.6.3.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\MvvmCross.Binding.5.6.3\lib\portable-net45+win+wpa81+wp80\MvvmCross.Binding.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MvvmCross.Core, Version=5.6.3.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\MvvmCross.Core.5.6.3\lib\portable-net45+win+wpa81+wp80\MvvmCross.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MvvmCross.Localization, Version=5.6.3.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\MvvmCross.Binding.5.6.3\lib\portable-net45+win+wpa81+wp80\MvvmCross.Localization.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MvvmCross.Platform, Version=5.6.3.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\MvvmCross.Platform.5.6.3\lib\portable-net45+win+wpa81+wp80\MvvmCross.Platform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MvvmCross.Plugins.Messenger, Version=5.6.3.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\MvvmCross.Plugin.Messenger.5.6.3\lib\portable-net45+win+wpa81+wp80\MvvmCross.Plugins.Messenger.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Splat, Version=1.6.2.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\Splat.1.6.2\lib\Portable-net45+win+wpa81+wp80\Splat.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Collections.Immutable, Version=1.2.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <HintPath>..\packages\System.Collections.Immutable.1.4.0\lib\portable-net45+win8+wp8+wpa81\System.Collections.Immutable.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+</Project>

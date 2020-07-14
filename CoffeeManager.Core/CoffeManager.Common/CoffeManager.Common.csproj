@@ -160,8 +160,8 @@
       <Project>{77E355CB-ADF2-4617-AD95-59E1F4F8AF17}</Project>
       <Name>CoffeeManager.Models</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Projects\MobileCore\MobileCore.csproj">
-      <Project>{0B0AEA8C-1C13-48AA-975C-3933943D04DB}</Project>
+    <ProjectReference Include="..\MobileCore\MobileCore.csproj">
+      <Project>{0b0aea8c-1c13-48aa-975c-3933943d04db}</Project>
       <Name>MobileCore</Name>
     </ProjectReference>
   </ItemGroup>

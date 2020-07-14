@@ -127,21 +127,21 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Users
         
         private void DoSelectExpense()
         {
-            if (ExpenseItems.Count <= 1)
-            {
-                return;
-            }
-            var optionList = new List<ActionSheetOption>();
-            foreach (var cr in ExpenseItems)
-            {
-                optionList.Add(new ActionSheetOption(cr.Name, () => { SelectedExpenseType = ExpenseItems.First(c => c.Id == cr.Id); }));
-            }
+            //if (ExpenseItems.Count <= 1)
+            //{
+            //    return;
+            //}
+            //var optionList = new List<ActionSheetOption>();
+            //foreach (var cr in ExpenseItems)
+            //{
+            //    optionList.Add(new ActionSheetOption(cr.Name, () => { SelectedExpenseType = ExpenseItems.First(c => c.Id == cr.Id); }));
+            //}
 
-            UserDialogs.ActionSheet(new ActionSheetConfig
-            {
-                Options = optionList,
-                Title = "Выбор расхода",
-            });
+            //UserDialogs.ActionSheet(new ActionSheetConfig
+            //{
+            //    Options = optionList,
+            //    Title = "Выбор расхода",
+            //});
         }
 
         private async Task DoShowEarnings()
