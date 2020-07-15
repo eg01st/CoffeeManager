@@ -1,5 +1,4 @@
-﻿using Acr.UserDialogs;
-using CoffeManager.Common.Managers;
+﻿using CoffeManager.Common.Managers;
 using CoffeManager.Common.Providers;
 using MobileCore;
 using MvvmCross.Core.ViewModels;

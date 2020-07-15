@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Threading.Tasks;
-using System.Windows.Input;
-using Acr.UserDialogs;
 using CoffeeManager.Models;
 using CoffeManager.Common.Managers;
 using MobileCore.ViewModels;
@@ -57,25 +55,25 @@ namespace CoffeManager.Common.ViewModels
 
         public void ShowSuccessMessage(string message)
         {
-            UserDialogs.ShowSuccess(message, 300);
+            //UserDialogs.ShowSuccess(message, 300);
         }
 
    
-        protected async Task<bool> PromtLogin()
-        {
-            var email = await PromtStringAsync("Введите логин");
-            if (string.IsNullOrEmpty(email))
-            {
-                return false;
-            }
-            var password = await PromtStringAsync("Введите пароль", InputType.Password);
-            if (string.IsNullOrEmpty(password))
-            {
-                return false;
-            }
-            await AccountManager.Authorize(email, password);
-            LocalStorage.SetUserInfo(new UserInfo() { Login = email, Password = password });
-            return true;
-        }
+        //protected async Task<bool> PromtLogin()
+        //{
+        //    var email = await PromtStringAsync("Введите логин");
+        //    if (string.IsNullOrEmpty(email))
+        //    {
+        //        return false;
+        //    }
+        //    var password = await PromtStringAsync("Введите пароль", InputType.Password);
+        //    if (string.IsNullOrEmpty(password))
+        //    {
+        //        return false;
+        //    }
+        //    await AccountManager.Authorize(email, password);
+        //    LocalStorage.SetUserInfo(new UserInfo() { Login = email, Password = password });
+        //    return true;
+        //}
     }
 }

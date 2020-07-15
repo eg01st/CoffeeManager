@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Acr.UserDialogs;
 using CoffeeManager.Models;
 using CoffeeManager.Models.Data.DTO.AutoOrder;
 using CoffeManager.Common.Common;
@@ -17,7 +16,6 @@ namespace CoffeManager.Common.Managers
     {
         readonly IInventoryProvider provider;
         private readonly IDataBaseProvider _dataBaseProvider;
-        private IUserDialogs userDialogs => Mvx.Resolve<IUserDialogs>();
         private readonly IMvxNavigationService navigationService;
 
         public InventoryManager(IInventoryProvider provider, 

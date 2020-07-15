@@ -112,14 +112,13 @@ namespace MobileCore.ViewModels
             });
         }
 
-        public async Task<int?> PromtAsync(string message)
+        public async Task<int?> PromtAsync(string message, InputType inputType = InputType.Default)
         {
            var result = await UserDialogs.PromptAsync(new PromptConfig()
                 {
                     Message = message, 
-                    InputType = InputType.Number
-                    
-                });
+                    InputType = inputType
+           });
             if(string.IsNullOrWhiteSpace(result.Value))
             {
                 return null;
@@ -132,7 +131,7 @@ namespace MobileCore.ViewModels
             var result = await UserDialogs.PromptAsync(new PromptConfig()
             {
                 Message = message,
-                InputType = InputType.DecimalNumber,
+               InputType = InputType.DecimalNumber
 
             });
             if (string.IsNullOrWhiteSpace(result.Value))
@@ -142,12 +141,11 @@ namespace MobileCore.ViewModels
             return decimal.Parse(result.Value);
         }
 
-        public async Task<string> PromtStringAsync(string message, InputType inputType = InputType.Default)
+        public async Task<string> PromtStringAsync(string message)
         {
             var result = await UserDialogs.PromptAsync(new PromptConfig()
             {
                 Message = message,
-                InputType = inputType
 
             });
             return result.Value;

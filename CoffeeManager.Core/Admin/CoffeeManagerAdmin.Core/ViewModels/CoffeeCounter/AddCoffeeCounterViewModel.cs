@@ -88,40 +88,40 @@ namespace CoffeeManagerAdmin.Core.ViewModels.CoffeeCounter
 
         protected void DoSelectCategory()
         {
-            //var optionList = new List<ActionSheetOption>();
-            //foreach (var cr in categories)
-            //{
-            //    optionList.Add(new ActionSheetOption(cr.Name, () =>
-            //    {
-            //        CategoryName = cr.Name;
-            //        categoryId = cr.Id;
-            //    }));
-            //}
+            var optionList = new List<ActionSheetOption>();
+            foreach (var cr in categories)
+            {
+                optionList.Add(new ActionSheetOption(cr.Name, () =>
+                {
+                    CategoryName = cr.Name;
+                    categoryId = cr.Id;
+                }));
+            }
 
-            //UserDialogs.ActionSheet(new ActionSheetConfig
-            //{
-            //    Options = optionList,
-            //    Title = "Выбор категории",
-            //});
+            UserDialogs.ActionSheet(new ActionSheetConfig
+            {
+                Options = optionList,
+                Title = "Выбор категории",
+            });
         }
 
         protected void DoSelectSuplyProduct()
         {
-            //var optionList = new List<ActionSheetOption>();
-            //foreach (var cr in suplyProducts)
-            //{
-            //    optionList.Add(new ActionSheetOption(cr.Name, () =>
-            //    {
-            //        SuplyProductName = cr.Name;
-            //        suplyProductId = cr.Id;
-            //    }));
-            //}
+            var optionList = new List<ActionSheetOption>();
+            foreach (var cr in suplyProducts)
+            {
+                optionList.Add(new ActionSheetOption(cr.Name, () =>
+                {
+                    SuplyProductName = cr.Name;
+                    suplyProductId = cr.Id;
+                }));
+            }
 
-            //UserDialogs.ActionSheet(new ActionSheetConfig
-            //{
-            //    Options = optionList,
-            //    Title = "Выбор продукта",
-            //});
+            UserDialogs.ActionSheet(new ActionSheetConfig
+            {
+                Options = optionList,
+                Title = "Выбор продукта",
+            });
         }
 
         protected bool CanAddCounter()

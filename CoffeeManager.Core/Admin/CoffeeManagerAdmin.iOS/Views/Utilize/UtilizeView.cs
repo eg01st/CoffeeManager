@@ -24,7 +24,8 @@ namespace CoffeeManagerAdmin.iOS
             UtilizedTableView.Source = source;
             UtilizedTableView.RegisterNibForHeaderFooterViewReuse(UtilizeItemHeader.Nib, UtilizeItemHeader.Key);
             var set = this.CreateBindingSet<UtilizeView, UtilizeViewModel>();
-            set.Bind(source).To(vm => vm.Items);
+            set.Bind(source).To(vm => vm.ItemsCollection);
+            set.Bind(source).For(d => d.SelectionChangedCommand).To(vm => vm.ItemSelectedCommand);
             set.Apply();
         }
 

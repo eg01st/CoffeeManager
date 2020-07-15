@@ -72,22 +72,22 @@ namespace CoffeeManagerAdmin.Core.ViewModels.Categories
 
         private void DoAddSubCategory()
         {
-            //var subs = new List<ActionSheetOption>();
-            //foreach (var cat in AllCategories)
-            //{
-            //    subs.Add(new ActionSheetOption(cat.Name, () =>
-            //    {
-            //        SubCategories.Add(cat);
-            //        RefreshCategories();
-            //    }));
-            //}
+            var subs = new List<ActionSheetOption>();
+            foreach (var cat in AllCategories)
+            {
+                subs.Add(new ActionSheetOption(cat.Name, () =>
+                {
+                    SubCategories.Add(cat);
+                    RefreshCategories();
+                }));
+            }
 
-            //UserDialogs.ActionSheet(new ActionSheetConfig()
-            //{
-            //    Title = "Добавить подкатегорию",
-            //    Options = subs,
-            //    Cancel = new ActionSheetOption("Отмена")
-            //});
+            UserDialogs.ActionSheet(new ActionSheetConfig()
+            {
+                Title = "Добавить подкатегорию",
+                Options = subs,
+                Cancel = new ActionSheetOption("Отмена")
+            });
         }
 
         protected override async Task DoLoadDataImplAsync()
