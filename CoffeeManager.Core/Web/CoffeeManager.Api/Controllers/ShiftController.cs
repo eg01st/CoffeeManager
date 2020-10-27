@@ -198,7 +198,7 @@ namespace CoffeeManager.Api.Controllers
 
                 Log.Info($"Shift ID {shiftId}: Start calculate motivation score");
                 var currentMotivation = enities.Motivations.FirstOrDefault(m => !m.EndDate.HasValue);
-                var isValidShift = (DateTime.Now - shift.Date.Value).Hours > Constants.MinHoursForValidShift;
+                var isValidShift = (DateTime.Now - shift.Date.Value).Hours >= Constants.MinHoursForValidShift;
                 if (Math.Abs(diff) < Constants.MaxShiftAmountOversight && currentMotivation != null && isValidShift)
                 {
                     var sevenDaysAgo = DateTime.Now.AddDays(-7);

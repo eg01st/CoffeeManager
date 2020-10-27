@@ -82,6 +82,7 @@ namespace CoffeeManagerAdmin.iOS.Views.Users
             set.Bind(coffeeRoomPickerViewModel).For(p => p.SelectedItem).To(vm => vm.CurrentCoffeeRoom);
 
             set.Bind(source).To(vm => vm.ItemsCollection);
+            set.Bind(source).For(s => s.SelectionChangedCommand).To(vm => vm.ItemSelectedCommand);
             set.Apply();
         }
     }
