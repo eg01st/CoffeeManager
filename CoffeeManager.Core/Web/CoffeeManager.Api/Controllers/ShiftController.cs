@@ -199,12 +199,30 @@ namespace CoffeeManager.Api.Controllers
                 Log.Info($"Shift ID {shiftId}: Start calculate motivation score");
                 var currentMotivation = enities.Motivations.FirstOrDefault(m => !m.EndDate.HasValue);
                 var isValidShift = (DateTime.Now - shift.Date.Value).Hours >= Constants.MinHoursForValidShift;
+                var isHalfShift = (DateTime.Now - shift.Date.Value).Hours <= Constants.MaxHoursForHalfShift;
                 if (Math.Abs(diff) < Constants.MaxShiftAmountOversight && currentMotivation != null && isValidShift)
                 {
                     var sevenDaysAgo = DateTime.Now.AddDays(-7);
                     var weekShifts = enities.Shifts.Where(s => s.Id != shiftId && s.CoffeeRoomNo == coffeeroomno
                                                                && s.IsFinished.Value
-                                                               && s.Date > sevenDaysAgo).ToList();
+                                                               && s.Date > sevenDaysAgo).OrderBy(o => o.Date).ToList();
+                    if (isHalfShift)
+                    {
+                        var shiftsDurationHours = new Dictionary<int, int>();
+
+                        for (int i = 1; i < weekShifts.Count - 1; i++)
+                        {
+                            var next = weekShifts[i];
+                            var current = weekShifts[i - 1];
+                            var hours = (next.Date - current.Date).Value.Hours;
+                            if (hours <= Constants.MaxHoursForHalfShift)
+                            {
+                                shiftsDurationHours.Add(current.Id, hours);
+                            }
+                        }
+                        weekShifts = weekShifts.Where(s => shiftsDurationHours.ContainsKey(s.Id)).ToList();
+                    }
+                    
                     if (isDayShift)
                     {
                         weekShifts = weekShifts.Where(w => w.Date.Value.TimeOfDay.Hours < 12).ToList();
@@ -213,6 +231,9 @@ namespace CoffeeManager.Api.Controllers
                     {
                         weekShifts = weekShifts.Where(w => w.Date.Value.TimeOfDay.Hours > 12).ToList();
                     }
+
+                   
+                    
                     Log.Info($"Shift {shiftId} coffeeroom {coffeeroomno} isDayShift is {isDayShift}");
                     var maxAmount = weekShifts.Max(w =>
                     {
